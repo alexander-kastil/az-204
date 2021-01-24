@@ -3,11 +3,11 @@
 Companion Material for Class Delivery by [Alexander Pajer](https://www.integrations.at/kontakt.aspx). It contains:
 
 - [Requirements / Tooling](./Tooling)
-  - [Azure Pass](./05-AzurePass)
-  - [GitHub](./01-Github)
-  - [Visual Studio Code](./02-VSCode)
-  - [Markdown](./03-Markdown)
-  - [Azure CLI](./04-CLI)
+  - [Azure Pass](./Tooling/05-AzurePass)
+  - [GitHub](./Tooling/01-Github)
+  - [Visual Studio Code](./Tooling/02-VSCode)
+  - [Markdown](./Tooling/03-Markdown)
+  - [Azure CLI](./Tooling/04-CLI)
 - [Setup](./Setup)
 - [Demos](./Demos)
 - [Labs](./Labs)
