@@ -14,7 +14,7 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
 
 > Note: Labs are taken from the official repo [AZ-204: Developing solutions for Microsoft Azure](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)
 
-Exam:
+## Exam
 
 [Exam AZ-204: Developing Solutions for Microsoft Azure](https://docs.microsoft.com/en-us/learn/certifications/exams/az-204)
 
