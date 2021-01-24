@@ -1,0 +1,12 @@
+rnd=$RANDOM
+grp=az204-lab
+loc=westeurope
+acct=labvm$rnd
+
+az group create -n $grp -l $loc
+
+az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
+
+az storage share create --account-name $acct -n labfileshare
+
+echo 'labfileshare create at '$acct

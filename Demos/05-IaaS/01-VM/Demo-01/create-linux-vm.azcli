@@ -1,0 +1,14 @@
+# rnd=$RANDOM
+rnd=007
+loc=westeurope
+grp=az204-vmgrp-$rnd
+vmname=ubuntuvm-$rnd
+adminuser=az204admin
+
+az group create -l $loc -n $grp
+
+az vm create -n linuxvm -g $grp --image UbuntuLTS --size Standard_B1ms --generate-ssh-keys --admin-username $adminuser
+
+# Connect to vm
+
+ssh azureuser@104.40.251.162

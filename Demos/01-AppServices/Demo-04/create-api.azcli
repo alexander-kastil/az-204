@@ -1,0 +1,27 @@
+# rnd=$RANDOM
+rnd=007
+grp=az204-foodapp
+appPlan=foodplan-$rnd
+app=foodapi-$rnd
+loc=westeurope
+
+# list runtrimes
+az webapp list-runtimes
+
+# create a resource group
+az group create -n $grp -l $loc
+
+# create an App Service plan
+az appservice plan create -n $appPlan -g $grp --sku S1
+
+# create a Web App
+az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNET|5.0"
+
+# print out the FQDN for the Web App
+echo "Web Url: http://$app.azurewebsites.net"
+
+# Deploy using Github Actions in Portal
+
+# Create Deployment Slot
+
+az webapp deployment slot create -n $app -g $grp --slot staging

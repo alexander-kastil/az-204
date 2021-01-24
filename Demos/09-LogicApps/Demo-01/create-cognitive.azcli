@@ -1,0 +1,19 @@
+rnd=007
+grp=az204-logicapp-$rnd
+loc=westeurope
+kind=TextAnalytics
+cs=text-ai-$rnd
+
+az cognitiveservices account list-skus --kind $kind --location $loc -o table
+
+az group create --n $grp --location $loc
+
+az cognitiveservices account create -n $cs -g $grp --kind $kind --sku F0 --location $loc --yes
+
+key=$(az cognitiveservices account keys list -n $cs -g $grp --query key1)
+
+echo "Key for service to use in lab: $key" 
+
+# Cleanup after the Demo
+
+az cognitiveservices account delete -n $cs -g $grp

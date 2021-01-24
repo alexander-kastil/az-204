@@ -1,0 +1,117 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workflows_ConsumeEvent_name": {
+            "defaultValue": "ConsumeEvent",
+            "type": "String"
+        },
+        "storageAccounts_eventgrid24295_externalid": {
+            "defaultValue": "/subscriptions/78033352-805c-4acd-af80-f8f95083268d/resourceGroups/az204-evtgrid-24295/providers/Microsoft.Storage/storageAccounts/eventgrid24295",
+            "type": "String"
+        },
+        "connections_azureeventgrid_externalid": {
+            "defaultValue": "/subscriptions/78033352-805c-4acd-af80-f8f95083268d/resourceGroups/az204-evtgrid-24295/providers/Microsoft.Web/connections/azureeventgrid",
+            "type": "String"
+        },
+        "connections_teams_externalid": {
+            "defaultValue": "/subscriptions/78033352-805c-4acd-af80-f8f95083268d/resourceGroups/az204-evtgrid-24295/providers/Microsoft.Web/connections/teams",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[parameters('workflows_ConsumeEvent_name')]",
+            "location": "westeurope",
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "When_a_resource_event_occurs": {
+                            "splitOn": "@triggerBody()",
+                            "type": "ApiConnectionWebhook",
+                            "inputs": {
+                                "body": {
+                                    "properties": {
+                                        "destination": {
+                                            "endpointType": "webhook",
+                                            "properties": {
+                                                "endpointUrl": "@{listCallbackUrl()}"
+                                            }
+                                        },
+                                        "filter": {
+                                            "includedEventTypes": [
+                                                "Microsoft.Storage.BlobCreated",
+                                                "Microsoft.Storage.BlobDeleted"
+                                            ],
+                                            "subjectBeginsWith": "/blobServices/default/containers/evtgrid/"
+                                        },
+                                        "topic": "[parameters('storageAccounts_eventgrid24295_externalid')]"
+                                    }
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['azureeventgrid']['connectionId']"
+                                    }
+                                },
+                                "path": "/subscriptions/@{encodeURIComponent('78033352-805c-4acd-af80-f8f95083268d')}/providers/@{encodeURIComponent('Microsoft.Storage.StorageAccounts')}/resource/eventSubscriptions",
+                                "queries": {
+                                    "x-ms-api-version": "2017-09-15-preview"
+                                }
+                            }
+                        }
+                    },
+                    "actions": {
+                        "Post_a_message_(V3)": {
+                            "runAfter": {},
+                            "type": "ApiConnection",
+                            "inputs": {
+                                "body": {
+                                    "body": {
+                                        "content": "<p>A blog was created / deleted: @{triggerBody()?['subject']} @{triggerBody()?['eventTime']}@{triggerBody()?['eventType']}</p>",
+                                        "contentType": "html"
+                                    }
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['teams']['connectionId']"
+                                    }
+                                },
+                                "method": "post",
+                                "path": "/v3/beta/teams/@{encodeURIComponent('23951a9e-1324-4c26-936b-c73c522fa80b')}/channels/@{encodeURIComponent('19:3b24bc6a4480445a9fa6e4b7fcca122b@thread.skype')}/messages"
+                            }
+                        }
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "azureeventgrid": {
+                                "connectionId": "[parameters('connections_azureeventgrid_externalid')]",
+                                "connectionName": "azureeventgrid",
+                                "id": "/subscriptions/78033352-805c-4acd-af80-f8f95083268d/providers/Microsoft.Web/locations/westeurope/managedApis/azureeventgrid"
+                            },
+                            "teams": {
+                                "connectionId": "[parameters('connections_teams_externalid')]",
+                                "connectionName": "teams",
+                                "id": "/subscriptions/78033352-805c-4acd-af80-f8f95083268d/providers/Microsoft.Web/locations/westeurope/managedApis/teams"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

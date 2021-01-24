@@ -1,0 +1,14 @@
+rnd=$RANDOM
+loc=westeurope
+grp=az204-cosmosdb-$rnd
+acct=az204-cosmos-$rnd
+dbname=productsdb
+
+az group create --name $grp --location $loc
+
+az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp
+
+az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
+
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name products --partition-key-path "/Color"  --throughput 1000 -g $grp
+    

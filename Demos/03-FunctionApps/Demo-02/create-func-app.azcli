@@ -1,0 +1,19 @@
+rnd=$RANDOM
+grp=az204-vscodefuncts-$rnd
+loc=westeurope
+app=vscodeapp-$rnd
+storage=vscodeapp$rnd
+
+az group create -n $grp -l $loc
+
+az storage account  create -n $storage -g $grp 
+
+az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime dotnet --functions-version 2
+
+echo "Funtions app created: $app"
+
+az functionapp list
+
+# Set Application Settings
+
+az functionapp config appsettings set -n $app -g $grp --settings "MyImportantSetting=abc"

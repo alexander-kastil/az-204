@@ -1,0 +1,17 @@
+rnd=$RANDOM
+loc=westeurope
+grp=az204-msgqueue-$rnd
+acct=msgqueue$rnd
+queue=az-204-queue
+
+az group create -n $grp -l $loc
+
+az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
+
+key=$(az storage account keys list -n $acct --query "[0].[value][0]")
+
+az storage queue create -n $queue --account-key $key --account-name $acct
+
+conStr=$(az storage account show-connection-string -n $acct -g $grp | jq .connectionString)
+
+echo 'Connection String for .NET Core proj: ' $conStr

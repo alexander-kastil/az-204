@@ -1,0 +1,14 @@
+FROM node:latest
+WORKDIR /frontend
+COPY package.json ./
+
+RUN npm i
+COPY . .
+
+EXPOSE 80
+CMD [ "node", "server.js" ]
+
+# Build
+
+# docker build -t arambazamba/node-app .
+# docker run -p 8090:80 -d arambazamba/node-app

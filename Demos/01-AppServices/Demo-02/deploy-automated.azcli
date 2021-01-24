@@ -1,0 +1,13 @@
+rnd=$RANDOM
+grp=az204-automated-$rnd
+appPlan=automated-deployment-$rnd
+app=static-website-$rnd
+gitrepo="https://github.com/ARambazamba/GitDeployApp"
+
+az group create --name $grp --location westeurope
+
+az appservice plan create --name $appPlan -g $grp --sku F1
+
+az webapp create -g $grp -p $appPlan -n $app
+
+az webapp deployment source config -n $app -g $grp -u $gitrepo --branch master

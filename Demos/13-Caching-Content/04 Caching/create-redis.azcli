@@ -1,0 +1,12 @@
+rnd=$RANDOM
+grp=az-204-redis
+loc=westeurope
+cacheName=az204-redis-demo-$rnd
+
+az group create -n $grp -l $loc
+
+az redis create -l $loc -n $cacheName -g $grp --sku Standard --vm-size c0
+
+key=$(az redis list-keys -n $cacheName  -g $grp --query primaryKey)                 
+
+echo "Use this to create UserSecret: dotnet user-secrets set CacheConnection $cacheName.redis.cache.windows.net,abortConnect=false,ssl=true,password=$key"

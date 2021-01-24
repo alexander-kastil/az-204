@@ -1,0 +1,7 @@
+groups=$(az group list --query "[?starts_with(name, 'az204')].name" )
+echo $groups
+
+for var in "${groups[@]}"
+do
+   echo $var
+done

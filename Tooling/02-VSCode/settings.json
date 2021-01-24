@@ -1,0 +1,101 @@
+{
+  "workbench.startupEditor": "none",
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "git.enableSmartCommit": true,
+  "window.zoomLevel": 2,
+  "problems.autoReveal": false,
+  "workbench.editor.enablePreview": false,
+  "window.restoreWindows": "none",
+  "files.hotExit": "off",
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+  "problems.decorations.enabled": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.openEditors.visible": 0,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "emmet.triggerExpansionOnTab": true,
+  "workbench.editor.restoreViewState": false,
+  "workbench.colorTheme": "Cobalt2",
+  "workbench.colorCustomizations": {
+    "terminal.background": "#6b7477",
+    "terminal.foreground": "#e6ddd3",
+    "terminalCursor.background": "#d33f12",
+    "terminalCursor.foreground": "#ec1426",
+    "terminal.ansiBlack": "#1D2021",
+    "terminal.ansiBlue": "#0D6678",
+    "terminal.ansiBrightBlack": "#ebe6e2",
+    "terminal.ansiBrightBlue": "#0D6678",
+    "terminal.ansiBrightCyan": "#8BA59B",
+    "terminal.ansiBrightGreen": "#95C085",
+    "terminal.ansiBrightMagenta": "#8F4673",
+    "terminal.ansiBrightRed": "#FB543F",
+    "terminal.ansiBrightWhite": "#FDF4C1",
+    "terminal.ansiBrightYellow": "#FAC03B",
+    "terminal.ansiCyan": "#8BA59B",
+    "terminal.ansiGreen": "#95C085",
+    "terminal.ansiMagenta": "#8F4673",
+    "terminal.ansiRed": "#FB543F",
+    "terminal.ansiWhite": "#A89984",
+    "terminal.ansiYellow": "#FAC03B"
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "bracket-pair-colorizer-2.colors": ["Red", "yellow", "Green", "Pink"],
+  "csharp.format.enable": true,
+  "csharpfixformat.sort.usings.enabled": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.confirmSync": false,
+  "git.autofetchPeriod": 90,
+  "git.autofetch": true,
+  "todo-tree.tree.showScanModeButton": false,
+  "codespaces.accountProvider": "Microsoft",
+  "shellLauncher.shells.windows": [
+    {
+      "shell": "C:\\Windows\\System32\\wsl.exe",
+      "label": "WSL Bash"
+    },
+    {
+      "shell": "C:\\Windows\\System32\\cmd.exe",
+      "label": "CMD"
+    },
+    {
+      "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "label": "PowerShell"
+    }
+  ],
+  "vs-kubernetes": {
+    "vs-kubernetes.minikube-path.windows": "C:\\Users\\AlexanderPajer\\.vs-kubernetes\\tools\\minikube\\windows-amd64\\minikube.exe",
+    "vs-kubernetes.helm-path.windows": "C:\\Users\\AlexanderPajer\\.vs-kubernetes\\tools\\helm\\windows-amd64\\helm.exe",
+    "vs-kubernetes.draft-path.windows": "C:\\Users\\AlexanderPajer\\.vs-kubernetes\\tools\\draft\\windows-amd64\\draft.exe",
+    "vs-kubernetes.kubectl-path.windows": "C:\\Users\\AlexanderPajer\\.vs-kubernetes\\tools\\kubectl\\kubectl.exe"
+  },
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "workbench.editor.revealIfOpen": true,
+  "csharp.suppressDotnetInstallWarning": true,
+  "csharp.suppressDotnetRestoreNotification": true,
+  "csharp.suppressProjectJsonWarning": true,
+  "csharp.suppressBuildAssetsNotification": true,
+  "mssql.connections": [
+    {
+      "server": "localhost",
+      "database": "",
+      "authenticationType": "Integrated",
+      "password": ""
+    }
+  ],
+  "workbench.editor.pinnedTabSizing": "compact",
+  "update.mode": "manual",
+  "update.enableWindowsBackgroundUpdates": false,
+  "yaml.schemaStore.enable": false
+}

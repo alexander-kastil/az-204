@@ -1,0 +1,14 @@
+rnd=$RANDOM
+grp=az204-sb-$rnd
+namespace=sbdemons$rnd
+q=BasicQueue
+
+az group create --name $grp --location eastus
+
+az servicebus namespace create -g $grp -n $namespace -l eastus
+
+az servicebus queue create --resource-group $grp --namespace-name $namespace --name $q
+
+connectionString=$(az servicebus namespace authorization-rule keys list --resource-group $grp --namespace-name $namespace --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
+
+echo 'Connection String: ' $connectionString

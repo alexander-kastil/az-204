@@ -1,0 +1,15 @@
+rnd=$RANDOM
+grp=az204-durable-$rnd
+loc=westeurope
+app=durablefuncts-$rnd
+storage=az204durablefuncts$rnd
+
+az group create --name $grp --location $loc
+
+az storage account  create -n $storage -g $grp 
+
+az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --functions-version 3
+
+echo "Funtions app created: $app"
+
+az functionapp list

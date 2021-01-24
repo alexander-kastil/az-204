@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Butter Chicken",
+    "price": 9,
+    "calories": 1200,
+    "kitchen": "india"
+  },
+  {
+    "id": 2,
+    "name": "Curry Wurst",
+    "price": 2.7,
+    "calories": 730,
+    "kitchen": "european"
+  },
+  {
+    "id": 3,
+    "name": "Blini with Salmon",
+    "price": 8.3,
+    "calories": 600,
+    "kitchen": "european"
+  }
+]

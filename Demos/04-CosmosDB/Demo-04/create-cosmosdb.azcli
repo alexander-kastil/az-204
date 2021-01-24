@@ -1,0 +1,16 @@
+# rnd=$RANDOM
+rnd=007
+loc=westeurope
+grp=az204-cosmosdb-$rnd
+acct=az204-cosmosdb-$rnd
+dbname=fooddb
+container=food
+
+az group create -n $grp -l $loc
+
+az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp
+
+az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
+
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name $container --partition-key-path "/kitchen"  --throughput 1000 -g $grp
+    

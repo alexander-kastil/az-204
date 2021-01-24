@@ -1,0 +1,16 @@
+# rnd=$RANDOM
+rnd=007
+grp=az204-js-$rnd
+loc=westeurope
+app=javascript-$rnd
+storage=az204functsjs$rnd
+
+az group create --name $grp --location $loc
+
+az storage account  create -n $storage -g $grp 
+
+az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node
+
+echo "Funtions app created: $app"
+
+az functionapp list

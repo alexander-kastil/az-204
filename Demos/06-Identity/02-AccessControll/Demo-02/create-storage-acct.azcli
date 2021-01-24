@@ -1,0 +1,21 @@
+# rnd=$RANDOM
+rnd=007
+loc=westeurope
+grp=az204-sas-$rnd
+acct=medicalrecords$rnd
+container=patient-images
+path='./patient-images/'
+
+az group create -n $grp -l $loc
+
+az storage account create -n $acct --access-tier hot --kind StorageV2 -g $grp
+
+key=$(az storage account keys list -n $acct --query "[0].[value][0]")
+
+az storage container create -n $container --account-name $acct --account-key $key
+
+az storage blob upload-batch --account-name $acct --account-key $key -s $path -d $container
+
+# Upload files using from Demo-02 using Azure Storage Explorer
+
+az storage account show-connection-string -n $acct | jq .connectionString

@@ -1,0 +1,25 @@
+# Create a Container Registry instance 
+# Execute on WSL
+
+rnd=$RANDOM
+grp=az204-acr-$rnd
+acr=az204demos$rnd
+
+az group create -n $grp -l westeurope
+
+az acr create -g $grp --name $acr --sku Basic
+
+# Login to Container Registry & get loginServer
+
+az acr login --name $acr
+az acr list --query "[].loginServer" -o tsv
+
+# Tag img & upload to ACR
+
+az acr update --name $acr --admin-enabled true
+az acr credential show -n $acr --query "passwords[0].value"
+
+# Upload Image
+
+docker tag foodui $acr.azurecr.io/foodui:1.1.0
+docker push $acr.azurecr.io/foodui:1.1.0

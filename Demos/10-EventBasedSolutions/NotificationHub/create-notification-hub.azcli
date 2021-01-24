@@ -1,0 +1,12 @@
+rnd=$RANDOM
+loc=westeurope
+grp=az204-notificationhub-$rnd
+hub=az204-hub
+
+az group create --name $grp --location $loc
+
+az notification-hub namespace check-availability --name $hub
+
+az notification-hub namespace create -g $grp -n $hub  -l $loc --sku Free
+
+az notification-hub namespace list -g $grp

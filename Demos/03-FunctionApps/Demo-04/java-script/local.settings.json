@@ -1,0 +1,18 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "WEBSITE_SLOT_NAME": "Production",
+    "FUNCTIONS_EXTENSION_VERSION": "~3",
+    "ScmType": "None",
+    "WEBSITE_AUTH_ENABLED": "False",
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=72f4f187-1f83-4ea9-b280-5ce538a96453",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "72f4f187-1f83-4ea9-b280-5ce538a96453",
+    "WEBSITE_NODE_DEFAULT_VERSION": "12.15.0",
+    "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "DefaultEndpointsProtocol=https;AccountName=storageaccountaz203a14e;AccountKey=YjsBjF8vhZ3BpHCDBivcccUXdF+X++FnY3XuX+sod8l0Gt7Vh/WsVBQghObZX9KhLNbQovJelZTN1GJo2L7oFw==;EndpointSuffix=core.windows.net",
+    "WEBSITE_CONTENTSHARE": "jsappdemoa3a6",
+    "conCosmosDB": "AccountEndpoint=https://cosmosfunctions.documents.azure.com:443/;AccountKey=EH33cmdcAlqK3cPKYR2viFIuNXia2vw7B3utuNlgI3WCXbAHJyMMEQYZIegqWkcPB06H3bxIoYS04Ej53VczDw==;",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "WEBSITE_SITE_NAME": "jsappdemo",
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}"
+  }
+}

@@ -1,0 +1,22 @@
+rnd=$RANDOM
+grp=az204-bindingfuncts-$rnd
+loc=westeurope
+storage=az204bindingfuncts$rnd
+path='./data'
+source=drop
+target=processed
+
+az group create -n $grp -l $loc
+
+az storage account create -l $loc -n $storage -g $grp --sku Standard_LRS
+
+key=$(az storage account keys list -n $storage --query "[0].[value][0]")
+
+az storage container create -n $source --account-name $storage --account-key $key
+
+az storage blob upload-batch --account-name $storage --account-key $key -s $path -d $source
+
+az storage container create -n $target --account-name $storage --account-key $key
+
+echo "acct: $storage"
+echo "key: $key"

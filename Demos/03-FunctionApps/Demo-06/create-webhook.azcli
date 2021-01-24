@@ -1,0 +1,18 @@
+# rnd=$RANDOM
+rnd=007
+grp=az204-webhook-$rnd
+loc=westeurope
+app=webhookfx-$rnd
+storage=webhookfx$rnd
+
+az group create --name $grp --location $loc
+
+az storage account  create -n $storage -g $grp 
+
+az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime dotnet --functions-version 2
+
+echo "Funtions app created: $app"
+
+# Create a service principal
+
+az ad sp create-for-rbac -n http://webhookprincipal

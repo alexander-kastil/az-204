@@ -1,0 +1,10 @@
+rnd=007
+loc=westeurope
+grp=az204class
+vmname=devvm-$rnd
+user=az204admin
+pwd=TiTp4@dmin12334!
+
+az group create -n $grp -l $loc
+
+az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2ms
