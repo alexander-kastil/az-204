@@ -8,7 +8,7 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
   - [Visual Studio Code](./Tooling/02-VSCode)
   - [Markdown](./Tooling/03-Markdown)
   - [Azure CLI](./Tooling/04-CLI)
-- [Setup](./Setup)
+- [Setup of Lab VM](./Setup)
 - [Demos](./Demos)
 - [Labs](./Labs)
 
