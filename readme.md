@@ -24,7 +24,7 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
 
 - Azure Subscription:
 
-  Please do not use a Production Account for Training
+  Please do not use a Production Subscription for Training
 
   - Using [Azure Passes](https://www.microsoftazurepass.com/)
   - Azure Paid / Sponsored Subscription
