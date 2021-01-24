@@ -1,6 +1,6 @@
 # AZ-204: Developing solutions for Microsoft Azure
 
-Companion Material for Class Delivery by [Alexander Pajer](https://www.integrations.at/kontakt.aspx). It contains:
+Companion Material for Class Delivery by [Alexander Pajer](https://www.integrations.at/kontakt.aspx) containing:
 
 - [Requirements / Tooling](./Tooling)
   - [Azure Pass](./Tooling/05-AzurePass)
