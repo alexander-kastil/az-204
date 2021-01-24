@@ -24,8 +24,8 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
 
 - Azure Subscription:
 
-  - Using [Azure Passes](https://www.microsoftazurepass.com/)
-  - Azure Paid / Sponsored or MSDN Subscriptions. Please do not use a Production Subscription for Training
+  - [Azure Passes](https://www.microsoftazurepass.com/) with [Code](./Tooling/05-AzurePass)
+  - Paid or MSDN Subscriptions. Please do not use a Production Subscription for Training
   - [Azure Trial Subscription](https://azure.microsoft.com/en-us/free/)
 
 > Note: Azure Passes can only be used once per e-mail account (Live ID)
