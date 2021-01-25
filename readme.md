@@ -4,7 +4,7 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
 
 - [Requirements / Tooling](./Tooling)
   - [Azure Pass](./Tooling/05-AzurePass)
-  - [GitHub](./Tooling/01-Github)
+  - [Git & GitHub Basics](./Tooling/01-Github)
   - [Visual Studio Code](./Tooling/02-VSCode)
   - [Markdown](./Tooling/03-Markdown)
   - [Azure CLI](./Tooling/04-CLI)
