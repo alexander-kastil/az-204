@@ -26,7 +26,7 @@ az vm auto-shutdown -g $grp -n $vmname --time 1830
 > Note: You could also execute `create-lab-vm.sh` or run the following remote script in Cloud Shell
 
 ```bash
-curl https://raw.githubusercontent.com/ARambazamba/AZ-204/master/Labs/Setup/create-lab-vm.sh | bash
+curl https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Setup/create-lab-vm.sh | bash
 ```
 
 ![create-labvm](_images/create-lab-vm.jpg)
