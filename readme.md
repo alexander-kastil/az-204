@@ -1,6 +1,6 @@
 # AZ-204: Developing solutions for Microsoft Azure
 
-Companion Material for Class Delivery by [Alexander Pajer](https://www.integrations.at/kontakt.aspx). It contains:
+Companion Material for Class Delivery by [Alexander Pajer](https://www.integrations.at/kontakt.aspx) containing:
 
 - [Requirements / Tooling](./Tooling)
   - [Azure Pass](./Tooling/05-AzurePass)
@@ -8,13 +8,13 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
   - [Visual Studio Code](./Tooling/02-VSCode)
   - [Markdown](./Tooling/03-Markdown)
   - [Azure CLI](./Tooling/04-CLI)
-- [Setup](./Setup)
+- [Lab VM Setup Guide](./Setup)
 - [Demos](./Demos)
 - [Labs](./Labs)
 
 > Note: Labs are taken from the official repo [AZ-204: Developing solutions for Microsoft Azure](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)
 
-Exam:
+## Exam
 
 [Exam AZ-204: Developing Solutions for Microsoft Azure](https://docs.microsoft.com/en-us/learn/certifications/exams/az-204)
 
@@ -24,13 +24,11 @@ Exam:
 
 - Azure Subscription:
 
-  Please do not use a Production Account for Training
-
-  - Using [Azure Passes](https://www.microsoftazurepass.com/)
-  - Azure Paid / Sponsored Subscription
+  - [Azure Passes](https://www.microsoftazurepass.com/) with [Code](./Tooling/05-AzurePass)
+  - Paid or MSDN Subscriptions. Please do not use a Production Subscription for Training
   - [Azure Trial Subscription](https://azure.microsoft.com/en-us/free/)
 
-> Note: Azure Passes can only be used once per e-mail account (Live ID)
+> Note: Azure Passes can only be used once per e-mail account. Please do not use Azure AD Accounts.
 
 ## Contributing
 
