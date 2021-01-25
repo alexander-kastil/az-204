@@ -8,12 +8,6 @@
 
 [Git History Diff](https://marketplace.visualstudio.com/items?itemName=huizhou.githd)
 
-## Learning Labs:
-
-[Introduction to Git](https://docs.microsoft.com/en-us/learn/modules/intro-to-git/)
-
-[Learning Path - Introduction to version control with Git](https://docs.microsoft.com/en-us/learn/paths/intro-to-vc-git/)
-
 # Git / Github Essentials
 
 ## Configuration
@@ -312,4 +306,6 @@ git flow release finish  RELEASE
 
 ## Additional Labs & Walkthroughs
 
-[Introduction to version control with Git](https://docs.microsoft.com/en-us/learn/paths/intro-to-vc-git/)
+[Introduction to Git](https://docs.microsoft.com/en-us/learn/modules/intro-to-git/)
+
+[Learning Path - Introduction to version control with Git](https://docs.microsoft.com/en-us/learn/paths/intro-to-vc-git/)
