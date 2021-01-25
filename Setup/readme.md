@@ -95,10 +95,10 @@ The forking-workflow allows you to commit your changes to your fork of the repo 
 Clone Class Repo:
 
 ```bash
-git clone https://github.com/ARambazamba/az-204
+git clone https://github.com/Student01/az-204
 ```
 
-> Note: If you have forked the class repo clone your own fork
+> Note: If you have forked the class repo clone your own fork, otherwise use https://github.com/ARambazamba/az-204
 
 ---
 

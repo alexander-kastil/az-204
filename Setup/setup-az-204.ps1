@@ -8,17 +8,14 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://cho
 # Install Git Related Software
 Write-Host "Installing VSCode & Git Related Software" -ForegroundColor yellow
 
-choco install microsoft-edge -y
 choco install googlechrome -y
 choco install vscode -y
 choco install git -y
 choco install gitextensions -y
 
 Write-Host "*****" -ForegroundColor red
-Write-Host "You can now clone your fork to c:\az-204 using git clone REPO-URL" 
--ForegroundColor red
-Write-Host "git clone https://github.com/Student01/AZ-204/" 
--ForegroundColor yellow
+Write-Host "You can now clone your fork to c:\az-204 using git clone REPO-URL" -ForegroundColor red
+Write-Host "git clone https://github.com/Student01/AZ-204/" -ForegroundColor yellow
 Write-Host "*****" -ForegroundColor red
 
 # Install Software
@@ -65,6 +62,7 @@ code --install-extension bencoleman.armview
 code --install-extension msazurermtools.azurerm-vscode-tools
 code --install-extension CoenraadS.bracket-pair-colorizer-2
 code --install-extension mdickin.markdown-shortcuts
+code --install-extension mhutchie.git-graph 
 
 # Install Angular
 Write-Host "Installing Angular - 6/6" -ForegroundColor yellow
