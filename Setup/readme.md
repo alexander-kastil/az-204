@@ -14,7 +14,7 @@ loc=westeurope
 grp=az-lab
 vmname=labvm-$rnd
 user=azlabadmin
-pwd=Lab@dmin1233
+pwd=Lab@dmin1234
 
 az group create -n $grp -l $loc
 
@@ -45,9 +45,18 @@ Optional - Disable Login:
 
 ![disable-login](_images/disable-login.jpg)
 
-Sign In:
+Sign In & Remember:
 
 ![connect-rdp](_images/trust-vm.jpg)
+
+Credentials:
+
+```
+user=azlabadmin
+pwd=Lab@dmin1234
+```
+
+![sign-in.jpg](_images/sign-in.jpg)
 
 ## Install Software
 
@@ -127,6 +136,13 @@ Second Run:
 ![select-distro](_images/select-distro.jpg)
 
 After the second run your selected linux distro will be opened an you can set your username:
+
+> Note: You can take the same credntials just like on the Windows VM
+
+```
+user=azlabadmin
+pwd=Lab@dmin1234
+```
 
 ![ubuntu-setup](_images/ubuntu-setup.jpg)
 
