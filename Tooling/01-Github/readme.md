@@ -43,7 +43,7 @@ Init Git:
 git init
 ```
 
-Add all files to Git:
+Stage all files:
 
 ```
 git add .
