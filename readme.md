@@ -9,8 +9,8 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
   - [Markdown](./Tooling/03-Markdown)
   - [Azure CLI](./Tooling/04-CLI)
 - [Instructor Demos](./Demos)
-- [Setup Guide for an Azure hosted Development & Lab VM](./Setup)
-  - Base Dev Environment Setup inkluding Extension
+- [Guided Scripts to setup an Azure hosted Development & Lab VM](./Setup)
+  - Base Dev Environment Setup inkluding Visual Studio Code Extensions
   - Windows Subsystem for Linux 2 - WSL2
   - Docker & Kubernetes
 - [Labs](./Labs)
