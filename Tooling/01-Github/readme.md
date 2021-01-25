@@ -8,10 +8,6 @@
 
 [Git History Diff](https://marketplace.visualstudio.com/items?itemName=huizhou.githd)
 
-## Labs
-
-[Version Controlling with Git in Azure Repos - Exercises 1 - 5](https://www.azuredevopslabs.com/labs/azuredevops/git/)
-
 ## Learning Labs:
 
 [Introduction to Git](https://docs.microsoft.com/en-us/learn/modules/intro-to-git/)
@@ -49,7 +45,7 @@ Stage all files:
 git add .
 ```
 
-Add a specific file to Git:
+Stage a specific file and all TypeScript files:
 
 ```
 git add file.txt | *.ts
