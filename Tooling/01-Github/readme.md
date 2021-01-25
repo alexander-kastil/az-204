@@ -264,7 +264,7 @@ git submodule update --remote --merge
 
 ## Git-flow
 
-[Gitflow Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+[Git-flow Intoduction & Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
 
 > Note: Require GIT 2.24.0+ - Check with `git --version`
 
