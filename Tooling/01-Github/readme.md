@@ -227,8 +227,8 @@ Fetch from Upstream:
 
 ```
  git fetch upstream
- git merge upstream/master
- git push origin master
+ git merge upstream/main
+ git push origin main
 ```
 
 ## Working with Submodules
