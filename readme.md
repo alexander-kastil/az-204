@@ -11,8 +11,8 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
 - [Instructor Demos](./Demos)
 - [Guided Scripts to setup an Azure hosted Development & Lab VM](./Setup)
   - [Base Dev Environment Setup inkluding Visual Studio Code Extensions](./Setup/#basics)
-  - Windows Subsystem for Linux 2 - WSL2
-  - Docker & Kubernetes
+  - [Windows Subsystem for Linux 2 - WSL2](./Setup/#wsl)
+  - [Docker & Kubernetes] (./Setup/#docker-wsl)
 - [Labs](./Labs)
 
 > Note: Labs are taken from the official repo [AZ-204: Developing solutions for Microsoft Azure](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)

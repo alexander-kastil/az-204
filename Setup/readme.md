@@ -118,7 +118,7 @@ Check Docker Settings:
 
 ### Option 2 - Install Docker with WSL2
 
-#### Install WSL2
+#### <a id="wsl">Install WSL2</a>
 
 Execute script `setup-wsl2.ps1` multible times to setup WSL2
 
@@ -146,7 +146,7 @@ pwd=Lab@dmin1234
 
 ![ubuntu-setup](_images/ubuntu-setup.jpg)
 
-#### Install Docker
+#### <a id="docker-wsl">Install Docker using WSL2</a>
 
 Install Docker Desktop using an elevated Powershell:
 
