@@ -186,7 +186,7 @@ docker run hello-world
 
 ![docker-test](_images/docker-test.png)
 
-## <a id="docker-wsl">Using Teams in VM</a>
+## <a id="teams">Using Teams in VM</a>
 
 To avoid switching between Host an VM you can use Microsoft Teams in the VM and use Audio Redirection
 

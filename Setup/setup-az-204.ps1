@@ -31,6 +31,7 @@ choco install microsoftazurestorageexplorer -y
 choco install azure-data-studio -y
 choco install postman -y
 choco install microsoft-teams -y
+choco install snagit -y
 
 # Refresh Path Env
 Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
