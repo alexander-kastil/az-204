@@ -4,11 +4,7 @@ The lab guides are available to the folder corresponding to the module.
 
 ![connect-rdp](_images/modules.jpg)
 
-They contain short guides (\*\_.md) for experienced developers and more detailed guides. I advise you to use the files ending on \*\_ak.md, which are the more detailed guides.
-
-![connect-rdp](_images/md-files.jpg)
-
-> Note: For better reading experience I recommend reading the lab guides using the browser. Example: https://github.com/ARambazamba/AZ-204/blob/main/Labs/01/AZ-204_01_lab_ak.md
+> Note: For better reading experience I recommend reading the lab guides using the browser. Example: https://github.com/ARambazamba/AZ-204/blob/main/Labs/01/AZ-204_01_lab.md
 
 # Lab Execution
 
