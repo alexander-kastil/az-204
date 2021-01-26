@@ -2,7 +2,7 @@
 
 This is a semin-automated guide for a Azure Lab VM Setup. Feel free to automate the missing steps on a seperate branch in your fork and create a pull request. An introduction video into forks and pull requests can be found [here](https://www.youtube.com/watch?v=nT8KGYVurIU)
 
-## Create VM
+## <a id="basics">Create VM</a>
 
 We are using this image and vm size because it supports nested virtualization used for Hyper-V and WSL2 Support
 
