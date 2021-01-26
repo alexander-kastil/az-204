@@ -17,10 +17,6 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
 
 > Note: Labs are taken from the official repo [AZ-204: Developing solutions for Microsoft Azure](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)
 
-## Exam
-
-[Exam AZ-204: Developing Solutions for Microsoft Azure](https://docs.microsoft.com/en-us/learn/certifications/exams/az-204)
-
 ## Required Cloud Ressources
 
 - [Github User Account](https://github.com/)
@@ -32,6 +28,10 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
   - [Azure Trial Subscription](https://azure.microsoft.com/en-us/free/)
 
 > Note: Azure Passes can only be used once per e-mail account. Please do not use Azure AD Accounts. A guide on how to use your Azure Pass can be found [here](./Tooling/05-AzurePass)
+
+## Exam
+
+[Exam AZ-204: Developing Solutions for Microsoft Azure](https://docs.microsoft.com/en-us/learn/certifications/exams/az-204)
 
 ## Contributing
 
