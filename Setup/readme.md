@@ -182,6 +182,22 @@ docker run hello-world
 
 ![docker-test](_images/docker-test.png)
 
+## <a id="docker-wsl">Using Teams in VM</a>
+
+To avoid switching between Host an VM you can use Microsoft Teams in the VM and use Audio Redirection
+
+Edit RDP Connection:
+
+![edit-rdp](_images/edit-rdp.jpg)
+
+Redirect Audio:
+
+![remote-audio](_images/remote-audio.jpg)
+
+Use Secondary Display:
+
+![all-monitors](_images/all-monitors.jpg)
+
 ## TODO: Publish Image to Shared Image Galery
 
 [Publish Image to Shared Image Galery](./Create/readme.md)
