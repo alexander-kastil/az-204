@@ -58,6 +58,10 @@ pwd=Lab@dmin1234
 
 ![sign-in.jpg](_images/sign-in.jpg)
 
+Accept Settings:
+
+![accept-settings](_images/accept-settings.jpg)
+
 ## Install Software
 
 To install Software run the script `setup-az-204.ps1` from an elevated PowerShell prompt:
