@@ -15,7 +15,7 @@ namespace Integrations
     public static class BlobTriggered
     {
         [FunctionName("BlobTriggered")]
-        public static void Run([BlobTrigger("drop/{name}", Connection = "conStorage")] Stream image, string name, [Blob("processed/{name}", FileAccess.Write)] Stream imageSmall, ILogger log)
+        public static void Run([BlobTrigger("drop/{name}", Connection = "AzureWebJobsStorage")] Stream image, string name, [Blob("processed/{name}", FileAccess.Write)] Stream imageSmall, ILogger log)
         {
 
             IImageFormat format;
