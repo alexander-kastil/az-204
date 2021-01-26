@@ -33,6 +33,12 @@ Init Git:
 git init
 ```
 
+Get Status
+
+```
+git status
+```
+
 Stage all files:
 
 ```
@@ -49,26 +55,6 @@ Commit files:
 
 ```
 git commit -m "your checkin comment"
-```
-
-## Status & Updates
-
-Show Commit logs:
-
-```
-git log
-```
-
-Check for remote updates:
-
-```
-git remote update
-```
-
-Show Status (Adds/Delets/Changes):
-
-```
-git status
 ```
 
 ## Branching
@@ -264,7 +250,11 @@ git submodule update --remote --merge
 
 ## Git-flow
 
+GitFlow is a branching model for Git, created by Vincent Driessen. It has attracted a lot of attention because it is very well suited to collaboration and scaling the development team.
+
 [Git-flow Intoduction & Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+
+![git-flow](_images/git-flow.png)
 
 > Note: Require GIT 2.24.0+ - Check with `git --version`
 
