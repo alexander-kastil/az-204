@@ -2,7 +2,7 @@ rnd=$RANDOM
 grp=az204-bindingfuncts-$rnd
 loc=westeurope
 storage=az204bindingfuncts$rnd
-path='./data'
+path='./pictures'
 source=drop
 target=processed
 
