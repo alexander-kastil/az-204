@@ -7,6 +7,7 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://cho
 
 # Install Git Related Software
 Write-Host "Installing VSCode & Git Related Software" -ForegroundColor yellow
+Write-Host "Refresh Path Env - 2/6" -ForegroundColor yellow
 
 choco install googlechrome -y
 choco install vscode -y
@@ -19,7 +20,7 @@ Write-Host "git clone https://github.com/Student01/AZ-204/" -ForegroundColor yel
 Write-Host "*****" -ForegroundColor red
 
 # Install Software
-Write-Host "Refresh Path Env - 2/6" -ForegroundColor yellow
+Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
 
 choco install dotnetcore-sdk -y
 choco install dotnet-5.0-sdk -y
@@ -34,7 +35,7 @@ choco install microsoft-teams -y
 choco install snagit -y
 
 # Refresh Path Env
-Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
+Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
 
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
