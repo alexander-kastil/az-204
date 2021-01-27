@@ -1,1 +1,1 @@
-az deployment group create -g az204-git-$RANDOm -n winVM --template-uri https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-encrypt-running-windows-vm/azuredeploy.json
+az deployment group create -g az204-git-$RANDOm -n winVM --template-uri "https%3A%2F%2Fraw.githubusercontent.com%2FARambazamba%2FAZ-204%2Fmain%2FDemos%2F05-IaaS%2F02-ARM%2FDemo-02%2Fazuredeploy.json"
