@@ -2,6 +2,8 @@
 
 [Microsoft Identity Platforms](https://docs.microsoft.com/en-us/azure/active-directory/develop/)
 
+[Authentication Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
+
 ## Additional Labs & Walkthroughs
 
 [Getting Started with Microsoft Identity](https://docs.microsoft.com/en-us/learn/modules/getting-started-identity/)
