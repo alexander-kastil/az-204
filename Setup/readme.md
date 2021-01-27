@@ -1,8 +1,27 @@
 # Lab VM Setup Guide
 
-This is a semin-automated guide for a Azure Lab VM Setup. Feel free to automate the missing steps on a seperate branch in your fork and create a pull request. An introduction video into forks and pull requests can be found [here](https://www.youtube.com/watch?v=nT8KGYVurIU)
+Lab Machine Software Requirements:
+
+| Software                                                  | Link                                                                                    |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Visual Studio Code                                        | https://code.visualstudio.com/                                                          |
+| Visual Studio Code Azure Account Extension                | https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account             |
+| Visual Studio Code Azure Resource Manager Tools Extension | https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools |
+| Visual Studio Code Azure CLI Tools Extension              | https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli                  |
+| Visual Studio Code PowerShell Extension                   | https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell                |
+| Visual Studio Code C# Extension                           | https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp                    |
+| Azure PowerShell                                          | https://docs.microsoft.com/powershell/azure/install-az-ps                               |
+| Azure CLI                                                 | https://docs.microsoft.com/cli/azure/install-azure-cli                                  |
+| Azure Storage Explorer                                    | https://azure.microsoft.com/features/storage-explorer/                                  |
+| Git for Windows                                           | https://git-scm.com/download/win                                                        |
+| Git Extensions                                            | http://gitextensions.github.io                                                          |
+| .NET 5 SDK, .NET Core 3.1 SDK                             | https://dotnet.microsoft.com/download                                                   |
+| Docker Desktop                                            | https://www.docker.com/products/docker-desktop                                          |
+| Node.js 12.20.0                                           | https://nodejs.org/download/release/v10.23.0/                                           |
 
 ## <a id="basics">Create VM</a>
+
+This is a semin-automated guide for a Azure Lab VM Setup. Feel free to automate the missing steps on a seperate branch in your fork and create a pull request. An introduction video into forks and pull requests can be found [here](https://www.youtube.com/watch?v=nT8KGYVurIU)
 
 We are using this image and vm size because it supports nested virtualization used for Hyper-V and WSL2 Support
 
