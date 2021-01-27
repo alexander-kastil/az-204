@@ -1,4 +1,4 @@
-rnd=009
+rnd=011
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
