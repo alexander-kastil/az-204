@@ -1,9 +1,10 @@
-rnd=007
+rnd=009
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 identity=ua-identity-$rnd
 vm=identityvm-$rnd
 admin=az204admin
+
 # use key vault from prev demo - change vault name in script
 vault=foodvault-$rnd
 

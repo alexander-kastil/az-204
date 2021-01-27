@@ -1,5 +1,5 @@
 # rnd=$RANDOM
-rnd=008
+rnd=009
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
