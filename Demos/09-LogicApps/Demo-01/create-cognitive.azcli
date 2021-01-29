@@ -13,7 +13,3 @@ az cognitiveservices account create -n $cs -g $grp --kind $kind --sku F0 --locat
 key=$(az cognitiveservices account keys list -n $cs -g $grp --query key1)
 
 echo "Key for service to use in lab: $key" 
-
-# Cleanup after the Demo
-
-az cognitiveservices account delete -n $cs -g $grp
