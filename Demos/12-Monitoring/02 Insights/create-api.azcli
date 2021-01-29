@@ -1,0 +1,32 @@
+rnd=007
+grp=az204-insights-$rnd
+appPlan=insights-$rnd
+web=foodapi-$rnd
+loc=westeurope
+
+# create a resource group
+az group create -n $grp -l $loc
+
+# create an App Service plan
+az appservice plan create -n $appPlan -g $grp --sku FREE
+
+# create a Web App
+az webapp create -n $web -g $grp --plan $appPlan
+
+# print out the FQDN for the Web App
+# modify /Properies/PublishProfiles/azure.pubxml
+echo "Web Url: http://$web.azurewebsites.net"
+
+# show the deployment user
+az webapp deployment user show 
+
+# Deployment Open Terminal in ./FoodWebMVC - Execute: 
+dotnet restore
+dotnet run, 
+
+# Check https://localhost:5001, press ctrl+c,
+
+dotnet publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProfiles\azure.pubxml /p:Password=<password>
+
+# Use App Service Extension to deploy to website
+

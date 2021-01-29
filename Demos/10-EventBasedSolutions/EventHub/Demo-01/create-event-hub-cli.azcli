@@ -14,7 +14,7 @@ az eventhubs namespace create -n $namespace -g $grp -l $loc --sku Basic
 
 nsconStr=$(az eventhubs namespace authorization-rule keys list --name RootManageSharedAccessKey --namespace-name $namespace -g $grp | jq .primaryConnectionString)
 
-echo "primaryConnectionString to use for .NET Core project: $nsconStr"
+echo "****** primaryConnectionString to use for .NET Core project: $nsconStr"
 
 # Create Event Hub
 

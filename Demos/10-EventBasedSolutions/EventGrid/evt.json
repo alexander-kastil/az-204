@@ -1,0 +1,12 @@
+{
+  "api": "PutBlob",
+  "clientRequestId": "9c1dd2da-bdc1-47c4-8008-a0a6f4b5c018",
+  "requestId": "c585e9c9-001e-002b-6776-f51dfa000000",
+  "eTag": "0x8D8C38D788E8A23",
+  "contentType": "image/jpeg",
+  "contentLength": 305579,
+  "blobType": "BlockBlob",
+  "url": "https://azcloudshelldrive.blob.core.windows.net/pictures/IMG_0794.jpg",
+  "sequencer": "0000000000000000000000000000260A00000000009e9995",
+  "storageDiagnostics": { "batchId": "9b412bb7-f006-0062-0076-f55f11000000" }
+}
