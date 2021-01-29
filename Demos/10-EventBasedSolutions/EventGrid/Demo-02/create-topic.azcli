@@ -1,5 +1,4 @@
-# rnd=$RANDOM
-rnd=10119
+rnd=$RANDOM
 loc=westeurope
 grp=az204-evtgrid-$rnd
 topic=foodorder-topic
@@ -18,7 +17,7 @@ key=$(az eventgrid topic key list --name $topic -g $grp --query "key1" --output 
 echo 'Endpoint: ' $endpoint
 echo 'Key: ' $key
 
-# create function app
+# create function app which will host the consumer
 
 az storage account  create -n $storage -g $grp
 

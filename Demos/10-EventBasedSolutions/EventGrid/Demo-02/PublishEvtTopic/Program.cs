@@ -14,21 +14,21 @@ namespace PublishTopic
             var region = "westeurope";
 
             // TODO: Enter value for topic-key from create script
-            string topicKey = "N9RiTUVCe3iv0+AaMtsig4438DVriVD/EyDOfSjiIVk=";
+            string topicKey = "eG3vxTHsHg95AWWr964DEmebNM8o0XvOlkCIq0afBjA=";
             string topicEndpoint = $"https://{topic}.{region}-1.eventgrid.azure.net/api/events";
-
             string topicHostname = new Uri (topicEndpoint).Host;
+
             TopicCredentials topicCredentials = new TopicCredentials (topicKey);
             EventGridClient client = new EventGridClient (topicCredentials);
-
-            client.PublishEventsAsync (topicHostname, GetEventsList ()).GetAwaiter ().GetResult ();
+            var evts = GetEventsList ();
+            client.PublishEventsAsync (topicHostname, evts).GetAwaiter ().GetResult ();
             Console.Write ("Published events to Event Grid topic.");
         }
 
         static IList<EventGridEvent> GetEventsList () {
             List<EventGridEvent> eventsList = new List<EventGridEvent> ();
 
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 10; i++) {
                 eventsList.Add (new EventGridEvent () {
                     Id = Guid.NewGuid ().ToString (),
                         EventType = "Contoso.Items.ItemReceived",
