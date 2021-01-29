@@ -6,12 +6,12 @@ using Azure.Storage.Queues.Models;
 namespace QueueApp {
     class Program {
 
-        const string connectionString = "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=msgqueue20226;AccountKey=cHcU9VlTbOGtKcCZPQjRx+hv5Kf49MA76W5aGK4uHHCCItAv5EFwgpFEEh1mxIW32Z9kWOkXTmCbOypVl25XhQ==";
+        const string connectionString = "DefaultEndpointsProtocol=https;AccountName=msgqueue32445;AccountKey=OCDVzGv0bxS0Ln3fcSe/A4P+bigqxTDyBehGi9BSL2KL6bgiGFUDv9joGUvDgIPr9NKnSHz3WYKyt1wv+gqLwQ==;EndpointSuffix=core.windows.net";
 
         static async Task Main (string[] args) {
 
            QueueClient queue = new QueueClient(connectionString, "az-204-queue");
-            if (true)
+            if (false)
             {
                 var value = "My demo value";
                 await InsertMessageAsync(queue, value);

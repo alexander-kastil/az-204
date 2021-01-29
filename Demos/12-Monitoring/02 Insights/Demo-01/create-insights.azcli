@@ -1,0 +1,6 @@
+rnd=007
+grp=az204-insights-$rnd
+loc=westeurope
+app=foodapp
+
+az monitor app-insights component create --app $app --location $loc --kind web -g $grp --application-type web --retention-time 10
