@@ -25,3 +25,5 @@ sas=$(az storage account generate-sas --account-key $key --account-name $acct --
 echo "SAS Token: " $sas
 
 echo "${url}${container}"
+
+https://medicalrecords007.blob.core.windows.net/patient-images

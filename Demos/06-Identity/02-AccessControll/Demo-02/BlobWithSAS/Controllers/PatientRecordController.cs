@@ -73,7 +73,7 @@ namespace patientrecords.Controllers
                 BlobContainerName = blob.BlobContainerName,
                 BlobName = blob.Name,
                 Resource = "b",
-                ExpiresOn = DateTimeOffset.UtcNow.AddMinutes(2)
+                ExpiresOn = DateTimeOffset.UtcNow.AddDays(2)
             };
             // Allow read access
             sas.SetPermissions(BlobSasPermissions.Read);

@@ -22,5 +22,7 @@ function getBlobSAS(name) {
 
   $.get(qry).then((data) => {
     console.log("SAS for Blob", data);
+    const url = data.imageURI + data.sasToken;
+    console.log("Full SAS for Blob", url);
   });
 }
