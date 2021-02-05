@@ -3,12 +3,14 @@ rnd=007
 loc=westeurope
 grp=az204-sas-$rnd
 acct=medicalrecords$rnd
-container=patient-images
+container="patient-images"
 path='./patient-images/'
 
 az group create -n $grp -l $loc
 
-az storage account create -n $acct --access-tier hot --kind StorageV2 -g $grp
+url=$(az storage account create -n $acct --access-tier hot --kind StorageV2 -g $grp --query primaryEndpoints.blob)
+
+echo $url
 
 key=$(az storage account keys list -n $acct --query "[0].[value][0]")
 
@@ -21,3 +23,5 @@ az storage account show-connection-string -n $acct | jq .connectionString
 sas=$(az storage account generate-sas --account-key $key --account-name $acct --expiry 2020-02-15 --https-only --permissions lr --resource-types co --services b)
 
 echo "SAS Token: " $sas
+
+echo "${url}${container}"

@@ -17,8 +17,10 @@ function getRecords() {
 }
 
 function getBlobSAS(name) {
-  const sas = "api/PatientRecord/" + name;
-  console.log("calling with SAS:", sas);
+  const qry = "api/PatientRecords/" + name;
+  console.log("Requesting SAS from Api:", qry);
 
-  $.get(sas).then((data) => console.log(data));
+  $.get(qry).then((data) => {
+    console.log("SAS for Blob", data);
+  });
 }
