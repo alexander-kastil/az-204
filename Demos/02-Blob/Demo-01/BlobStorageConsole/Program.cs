@@ -11,9 +11,10 @@ namespace BlobStorageConsole
     {
         static async Task Main(string[] args)
         {
+            // In real live you would take the conStr from an env var
             // setx AZURE_STORAGE_CONNECTION_STRING "DefaultEndpointsProtocol=https;AccountName=az203storageacct10010;AccountKey=..."
-            Console.WriteLine("Blob Example");
             // string connectionString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
+
             string connectionString = "DefaultEndpointsProtocol=https;AccountName=storage0078;AccountKey=yxe4XysMdEOonXaHhWenbLO3Ar04ceBj6AUyH7XSRdkC1Sh//3jjWImXF5oF7f1rGQxDx5c6asfcB7rsYbREFw==;EndpointSuffix=core.windows.net";
 
             BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);

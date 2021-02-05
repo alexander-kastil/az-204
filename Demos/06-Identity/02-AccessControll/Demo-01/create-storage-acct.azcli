@@ -1,4 +1,3 @@
-# rnd=$RANDOM
 rnd=007
 loc=westeurope
 grp=az204-sas-$rnd
@@ -15,9 +14,3 @@ key=$(az storage account keys list -n $acct --query "[0].[value][0]")
 az storage container create -n $container --account-name $acct --account-key $key
 
 az storage blob upload-batch --account-name $acct --account-key $key -s $path -d $container
-
-az storage account show-connection-string -n $acct | jq .connectionString
-
-sas=$(az storage account generate-sas --account-key $key --account-name $acct --expiry 2020-02-15 --https-only --permissions lr --resource-types co --services b)
-
-echo "SAS Token: " $sas
