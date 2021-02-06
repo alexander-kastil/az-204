@@ -12,6 +12,8 @@
 
 [Azure Durable Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable/)
 
+[Developer's guide to durable entities in .NET](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-entities)
+
 ## CLI Reference
 
 [az functionapp](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest)

@@ -1,0 +1,40 @@
+rnd=$RANDOM
+eugrp=az204-tm-eu-$rnd
+usgrp=az204-tm-us-$rnd
+usplan=tm-eastus-$rnd
+euplan=tm-westeur-$rnd
+gitrepo="https://github.com/ARambazamba/GitDeployApp"
+user=labadmin
+pwd="Pa$$w0rd1234!"
+
+az group create -g $eugrp -l westeurope
+az group create -g $usgrp -l eastus2
+
+az vm create -g $eugrp -n euvm --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2msm --no-wait
+az vm create -g $usgrp -n euvm --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2msm --no-wait
+
+az appservice plan create -n $euplan -g $eugrp -l westeurope --sku S1 
+az appservice plan create -n $usplan -g $usgrp -l eastus2 --sku S1
+
+# Create WebApps in two regions
+az webapp create -n tmapp-$euplan -g $eugrp -p $euplan
+az webapp deployment source config -n tmapp-$euplan -g $eugrp -u $gitrepo --branch master
+euid=$(az webapp show -n tmapp-$euplan -g $eugrp --query id)
+
+az webapp create -n tmapp-$usplan -g $usgrp -p $usplan
+az webapp deployment source config -n tmapp-$usplan -g $usgrp -u $gitrepo --branch master  
+usid=$(az webapp show -n tmapp-$usplan -g $usgrp --query id)
+  
+# Create TM Profile & Add Endpoints  
+az network traffic-manager profile create -g $eugrp -n tmprofile$rnd --routing-method Geographic \
+    --unique-dns-name tmapp-$rnd --ttl 30 --protocol HTTP --port 80 --path "/"
+
+az network traffic-manager endpoint create --name tmapp-$euplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-EU \
+    --type azureEndpoints --target-resource-id $euid --endpoint-status Enabled 
+
+az network traffic-manager endpoint create --name tmapp-$usplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-NA \
+    --type azureEndpoints --target-resource-id $usid --endpoint-status Enabled 
+
+
+
+
