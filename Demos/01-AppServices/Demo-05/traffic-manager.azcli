@@ -29,11 +29,11 @@ usid=$(az webapp show -n tmapp-$usplan -g $usgrp --query id)
 az network traffic-manager profile create -g $eugrp -n tmprofile$rnd --routing-method Geographic \
     --unique-dns-name tmapp-$rnd --ttl 30 --protocol HTTP --port 80 --path "/"
 
-az network traffic-manager endpoint create --name tmapp-$euplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-EU \
-    --type azureEndpoints --target-resource-id $euid --endpoint-status Enabled 
+az network traffic-manager endpoint create --name ep-$euplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-EU \
+    --type azureEndpoints --target-resource-id "/subscriptions/78033352-805c-4acd-af80-f8f95083268d/resourceGroups/az204-tm-eu-14155/providers/Microsoft.Web/sites/tmapp-tm-westeur-14155" --endpoint-status Enabled 
 
-az network traffic-manager endpoint create --name tmapp-$usplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-NA \
-    --type azureEndpoints --target-resource-id $usid --endpoint-status Enabled 
+az network traffic-manager endpoint create --name ep-$usplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-NA \
+    --type azureEndpoints --target-resource-id '$usid' --endpoint-status Enabled 
 
 
 
