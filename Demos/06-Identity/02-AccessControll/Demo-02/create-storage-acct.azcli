@@ -1,10 +1,10 @@
-# rnd=$RANDOM
 rnd=007
 loc=westeurope
 grp=az204-sas-$rnd
 acct=medicalrecords$rnd
 container="patient-images"
-path='./patient-images/'
+path="./patient-images/"
+blob="patient-32589.jpg"
 
 az group create -n $grp -l $loc
 
@@ -20,10 +20,11 @@ az storage blob upload-batch --account-name $acct --account-key $key -s $path -d
 
 az storage account show-connection-string -n $acct | jq .connectionString
 
-sas=$(az storage account generate-sas --account-key $key --account-name $acct --expiry 2020-02-15 --https-only --permissions lr --resource-types co --services b)
+sas=$(az storage blob generate-sas --account-key $key --account-name $acct --container-name $container --name $blob --expiry 2021-02-15 --permissions r)
 
 echo "SAS Token: " $sas
 
-echo "${url}${container}"
+## Open Url with $sas
 
-https://medicalrecords007.blob.core.windows.net/patient-images
+https://medicalrecords007.blob.core.windows.net/patient-images/patient-32589.jpg?se=2021-02-15&sp=r&sv=2018-11-09&sr=b&sig=2ZsxyXDrlWR0dympE/IJVbArpfoTVigZPFFpM7xM32M%3D
+

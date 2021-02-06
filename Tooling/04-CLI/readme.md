@@ -14,6 +14,8 @@
 
 ![cloud-shell](_images/cloud-shell.png)
 
+> Note: Cloud Shell can be opened using [https://shell.azure.com/](https://shell.azure.com/)
+
 ## Install Azure CLI
 
 Install Chocoolatey in an elevated Prompt:
