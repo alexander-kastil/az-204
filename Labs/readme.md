@@ -11,7 +11,7 @@ The lab guides are available to the folder corresponding to the module.
 - An Azure hosted virtual Azure Windows VM with scriptend Installation
 - Your own machine - requires proconfigured sowftware on your Windows 10, Mac, Linux
 - [GitHub Codespaces Preview](https://github.com/features/codespaces)
-- Offerend Lab Hostings from your Learning Provider (Microsoft Learning, [Lab on Demand](https://labondemand.com/user/signin?ReturnUrl=%2F), [FastLane Remote Labs](../Setup/07-Flane/), ...)
+- Offerend Lab Hostings from your Learning Provider (Microsoft Learning, [Lab on Demand](https://labondemand.com/user/signin?ReturnUrl=%2F), [FastLane Remote Labs](/Setup/07-Flane/), ...)
 
 ### Lab Machine Setup
 
