@@ -8,3 +8,10 @@ pwd=TiTp4@dmin12334!
 az group create -n $grp -l $loc
 
 az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2ms
+
+# Enable Azure AD Login
+az vm extension set --publisher Microsoft.Azure.ActiveDirectory --name AADLoginForWindows -g $grp --vm-name $vmname
+
+username=$(az account show --query user.name --output tsv)
+
+az role assignment create --role "Virtual Machine Administrator Login" --assignee $username --scope $vmname
