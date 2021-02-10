@@ -15,7 +15,7 @@ The lab guides are available to the folder corresponding to the module.
 
 ### Lab Machine Setup
 
-Detailed Setup instructions for the Azure hosted virtual Azure Windows VM can be found in the [Lab VM Setup Guide](../Setup/readme.md). A gettings started will be given as part of the [Tooling Section]()
+Detailed Setup instructions for the Azure hosted virtual Azure Windows VM can be found in the [Lab VM Setup Guide](../Setup/readme.md). An Azure CLI Gettings started will be given as part of the [Tooling Section](../Tooling/readme.md)
 
 ### GitHub Codespaces
 
