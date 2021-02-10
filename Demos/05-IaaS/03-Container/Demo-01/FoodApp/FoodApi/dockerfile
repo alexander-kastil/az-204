@@ -10,6 +10,8 @@ WORKDIR /app
 COPY --from=build /app .
 ENTRYPOINT ["dotnet", "FoodApi.dll"]
 
+#TODO: Check Image Build
+
 # Build Image
 # docker build --rm -f "Dockerfile" -t foodservice .
 

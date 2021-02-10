@@ -3,7 +3,7 @@
 
 rnd=$RANDOM
 grp=az204-acr-$rnd
-acr=az204demos$rnd
+acr=az204acr$rnd
 
 az group create -n $grp -l westeurope
 
@@ -21,5 +21,5 @@ az acr credential show -n $acr --query "passwords[0].value"
 
 # Upload Image
 
-docker tag foodui $acr.azurecr.io/foodui:1.1.0
-docker push $acr.azurecr.io/foodui:1.1.0
+docker tag foodui $acr.azurecr.io/foodui
+docker push $acr.azurecr.io/foodui
