@@ -20,8 +20,8 @@ namespace CosmosReader {
             Container container;
 
             cosmosClient = new CosmosClient (conStr);
-            database = cosmosClient.GetDatabase ("productsdb");
-            container = database.GetContainer ("products");
+            database = cosmosClient.GetDatabase ("ProductsDB");
+            container = database.GetContainer ("Products");
 
             // Read from Cosmos DB
 
@@ -69,7 +69,7 @@ namespace CosmosReader {
                 "DiscontinuedTrigger"
             }});
 
-            Console.WriteLine ("\tRead {0}\n", discontitem.Discontinued);
+            Console.WriteLine ("\tDiscontinued: {0}\n", discontitem.Discontinued);
 
         }
     }
