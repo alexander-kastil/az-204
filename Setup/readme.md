@@ -1,6 +1,6 @@
 # Lab VM Setup Guide
 
-Lab Machine Software Requirements:
+## Lab Machine Software Requirements:
 
 | Software                                                  | Link                                                                                    |
 | --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
