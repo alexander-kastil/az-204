@@ -8,34 +8,21 @@ namespace AppConfigConsole
     {
         static void Main(string[] args)
         {
-            var kvPermissions = false;
             var builder = new ConfigurationBuilder();
-            var cs = "Endpoint=https://foodconfig-31949.azconfig.io;Id=cmao-l9-s0:vdUbard9SZn5qXw6AJeq;Secret=BHhkZz4eGIAlRcv5xRrRt8dnTLkyWXNlNOp/5qJYI3M=";
+            var cs = "Endpoint=https://foodconfig-014.azconfig.io;Id=CmbS-l9-s0:WO2JsvkyX1ls499JMlOg;Secret=jCi77pbz+HXGKg15iEsoKpFFiki9HJWD0OQgf54nb6Q=";
 
-            
-            //Toogle kvPersmission after first run. Default value: false
-            if (!kvPermissions)
-            {
-                builder.AddAzureAppConfiguration(cs);
-                var config = builder.Build();
-                var title = config["Settings:Title"];
-                Console.WriteLine(title ?? "No Title received");
-            }
-            else
-            {
                 builder.AddAzureAppConfiguration(options =>
-               {
-                   options.Connect(cs)
-                           .ConfigureKeyVault(kv =>
-                           {
-                               kv.SetCredential(new DefaultAzureCredential());
-                           });
-               });
+                {
+                    options.Connect(cs)
+                            .ConfigureKeyVault(kv =>
+                            {
+                                kv.SetCredential(new DefaultAzureCredential());
+                            });
+                });
 
                 var config = builder.Build();
                 Console.WriteLine(config["Settings:Title"] ?? "No Title received");
                 Console.WriteLine(config["Settings:ConnectionString"] ?? "No ConString received");
-            }
         }
     }
 }

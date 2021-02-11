@@ -1,18 +1,18 @@
-# rnd=$RANDOM
-rnd=013
+rnd=014
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
-plan=mi-plan-$rnd
-app=mi-app-$rnd
+plan=food-mi-plan-$rnd
+app=food-mi-app-$rnd
+gitrepo="https://github.com/ARambazamba/https://github.com/ARambazamba/foodapp"
 
 az appservice plan create -n $plan  -g $grp --sku FREE
 az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|5.0"
 
 az webapp identity assign -g $grp -n $app
-mi=$(az webapp identity show  -g $grp -n $app | jq .principalId)
+mi=$(az webapp identity show  -g $grp -n $app --query principalId)
 echo "managed identity object id: $mi"
 
 # Uses KeyVault from Demo-01
 
-az keyvault set-policy -n $vault --object-id e3c18a48-483f-4535-8220-9215a93ea59a --secret-permissions list get
+az keyvault set-policy -n $vault --object-id b96ac957-7a95-49a5-96f0-c8f4d27ad7e7 --secret-permissions list get

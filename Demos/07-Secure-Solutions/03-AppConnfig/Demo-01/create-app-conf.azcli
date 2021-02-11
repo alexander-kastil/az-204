@@ -1,8 +1,8 @@
-rnd=013
-grp=az204-appconfig-$rnd
+rnd=014
+grp=az204-secure-solutions-$rnd
 loc=westeurope
 cfg=foodconfig-$rnd
-vault=foodconfig-$rnd
+vault=foodvault-$rnd
 principal="http://foodprincipal"
 
 # create appconfig and add a value
@@ -13,7 +13,7 @@ az appconfig create -g $grp -n $cfg -l $loc --sku free
 
 az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y
 
-az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$cfg.vault.azure.net/Secrets/DBConnection" -y
+az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/DBConnection" -y
 
 # create a feature flag and turn it on
 
@@ -21,10 +21,8 @@ az appconfig feature set -n $cfg --feature AdminFeature -y
 
 az appconfig feature enable -n $cfg --feature AdminFeature -y
 
-# stop here - follow readme.md and execute AppConfigConsole
-
-# assigning permissions using service principals - you could use managed identities
+# create a service principal assign permissions on keyvault
 
 az ad sp create-for-rbac -n $principal --sdk-auth
 
-az keyvault set-policy -n $cfg --spn $principal --secret-permissions get list set
+az keyvault set-policy -n $vault --spn $principal --secret-permissions get list set
