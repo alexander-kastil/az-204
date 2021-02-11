@@ -13,23 +13,15 @@ az appconfig create -g $grp -n $cfg -l $loc --sku free
 
 az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y
 
+az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$cfg.vault.azure.net/Secrets/DBConnection" -y
+
 # create a feature flag and turn it on
 
 az appconfig feature set -n $cfg --feature AdminFeature -y
 
 az appconfig feature enable -n $cfg --feature AdminFeature -y
 
-# stop here - follow readme.md and execute demo-01
-
-# add a keyvault and reference its value in app config
-
-az keyvault create -l $loc -n $vault -g $grp --enabled-for-disk-encryption true --sku standard
-
-az keyvault secret set --vault-name $vault --name "DBConnection" --value "Data Source=server2020.integrations.at;Initial Catalog=FoodDB;Persist Security Info=True;User ID=dbuser;Password=dbpassword"
-
-az appconfig kv set-keyvault -n $cfg --key "ConnectionString:SQL" --secret-identifier "https://$cfg.vault.azure.net/Secrets/DBConnection" -y
-
-# stop here - follow readme.md and execute demo-01 - does it work?
+# stop here - follow readme.md and execute AppConfigConsole
 
 # assigning permissions using service principals - you could use managed identities
 
