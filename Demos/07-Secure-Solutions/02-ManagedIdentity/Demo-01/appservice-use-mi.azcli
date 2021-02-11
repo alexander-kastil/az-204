@@ -1,5 +1,5 @@
 # rnd=$RANDOM
-rnd=012
+rnd=013
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
@@ -15,4 +15,4 @@ echo "managed identity object id: $mi"
 
 # Uses KeyVault from Demo-01
 
-az keyvault set-policy -n $vault --object-id 96e3a40b-6e1a-49e4-99bb-8e1897d6b33a --secret-permissions list get
+az keyvault set-policy -n $vault --object-id e3c18a48-483f-4535-8220-9215a93ea59a --secret-permissions list get
