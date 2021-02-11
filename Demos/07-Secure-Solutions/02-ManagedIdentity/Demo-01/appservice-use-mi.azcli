@@ -5,10 +5,9 @@ loc=westeurope
 vault=foodvault-$rnd
 plan=mi-plan-$rnd
 app=mi-app-$rnd
-gitrepo="https://github.com/ARambazamba/ManagedIdentityApp"
 
 az appservice plan create -n $plan  -g $grp --sku FREE
-az webapp create -g $grp --plan $plan --name $app
+az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|5.0"
 
 az webapp identity assign -g $grp -n $app
 mi=$(az webapp identity show  -g $grp -n $app | jq .principalId)
@@ -16,4 +15,4 @@ echo "managed identity object id: $mi"
 
 # Uses KeyVault from Demo-01
 
-az keyvault set-policy -n $vault --object-id 6017008d-2e80-4de0-ab9b-45d8656ec2be --secret-permissions list get
+az keyvault set-policy -n $vault --object-id 96e3a40b-6e1a-49e4-99bb-8e1897d6b33a --secret-permissions list get

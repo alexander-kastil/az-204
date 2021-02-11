@@ -1,4 +1,4 @@
-rnd=$RANDOM
+rnd=012
 grp=az204-appconfig-$rnd
 loc=westeurope
 cfg=foodconfig-$rnd

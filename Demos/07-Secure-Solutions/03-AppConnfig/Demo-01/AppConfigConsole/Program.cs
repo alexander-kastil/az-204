@@ -10,7 +10,7 @@ namespace AppConfigConsole
         {
             var permissions = true;
             var builder = new ConfigurationBuilder();
-            var cs = "Endpoint=https://foodconfig-17830.azconfig.io;Id=pZrv-l9-s0:0Z1KF7t7l8O1N1T8G+KD;Secret=8fizNeNX5IbFzx4A4md6IdDG/Nj6RFOTrDk9vhz72Jc=";
+            var cs = "Endpoint=https://foodconfig-31949.azconfig.io;Id=cmao-l9-s0:vdUbard9SZn5qXw6AJeq;Secret=BHhkZz4eGIAlRcv5xRrRt8dnTLkyWXNlNOp/5qJYI3M=";
 
             if (permissions)
             {
