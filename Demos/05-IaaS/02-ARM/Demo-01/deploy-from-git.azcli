@@ -1,1 +1,7 @@
-az deployment group create -g az204-git-$RANDOm -n winVM --template-uri "https%3A%2F%2Fraw.githubusercontent.com%2FARambazamba%2FAZ-204%2Fmain%2FDemos%2F05-IaaS%2F02-ARM%2FDemo-02%2Fazuredeploy.json"
+rnd=$RANDOM
+loc=westeurope
+grp=az204-deploy-arm-$rnd
+
+az group create -n $grp -l $loc
+
+az deployment group create -g $grp -n storage$rnd --template-uri "https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Demos/05-IaaS/02-ARM/Demo-01/azuredeploy.json"
