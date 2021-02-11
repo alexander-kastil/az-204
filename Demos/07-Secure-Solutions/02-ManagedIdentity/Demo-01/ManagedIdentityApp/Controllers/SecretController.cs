@@ -25,7 +25,7 @@ namespace managed_identity_demo.Controllers
         {
             var azureServiceTokenProvider = new AzureServiceTokenProvider();
             var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-            string secret = (await kv.GetSecretAsync("https://foodvault-007.vault.azure.net/", "DBConnection")).Value;
+            string secret = (await kv.GetSecretAsync("https://foodvault-012.vault.azure.net/", "DBConnection")).Value;
             return secret;
         }
     }
