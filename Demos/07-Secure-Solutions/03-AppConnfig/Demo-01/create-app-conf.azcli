@@ -1,4 +1,4 @@
-rnd=012
+rnd=013
 grp=az204-appconfig-$rnd
 loc=westeurope
 cfg=foodconfig-$rnd
@@ -11,7 +11,7 @@ az group create -n $grp -l $loc
 
 az appconfig create -g $grp -n $cfg -l $loc --sku free
 
-az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food" -y
+az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y
 
 # create a feature flag and turn it on
 
