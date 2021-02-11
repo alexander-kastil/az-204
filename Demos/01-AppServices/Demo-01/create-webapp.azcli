@@ -11,7 +11,7 @@ az group create -n $grp -l $loc
 az appservice plan create -n $appPlan -g $grp --sku FREE
 
 # create a Web App
-az webapp create -n $web -g $grp --plan $appPlan 
+az webapp create -n $web -g $grp --plan $appPlan --runtime "DOTNETCORE|3.1"
 
 # print out the FQDN for the Web App
 # modify /Properies/PublishProfiles/azure.pubxml

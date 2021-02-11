@@ -1,16 +1,14 @@
 # rnd=$RANDOM
-rnd=011
+rnd=012
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
-# rnd=8811
 plan=mi-plan-$rnd
 app=mi-app-$rnd
 gitrepo="https://github.com/ARambazamba/ManagedIdentityApp"
 
 az appservice plan create -n $plan  -g $grp --sku FREE
 az webapp create -g $grp --plan $plan --name $app
-az webapp deployment source config -n $app -g $grp --repo-url $gitrepo
 
 az webapp identity assign -g $grp -n $app
 mi=$(az webapp identity show  -g $grp -n $app | jq .principalId)

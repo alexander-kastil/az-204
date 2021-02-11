@@ -9,7 +9,7 @@ namespace key_vault_console
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            string keyVaultName = "foodvault";
+            string keyVaultName = "foodvault-012";
             string keyVaultUri = "https://" + keyVaultName + ".vault.azure.net";
             string secretName = "DBConnection";
             
