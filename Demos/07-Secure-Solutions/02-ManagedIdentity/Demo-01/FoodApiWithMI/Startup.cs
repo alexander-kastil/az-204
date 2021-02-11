@@ -36,7 +36,7 @@ namespace FoodApi {
             //Use MI to get DB Con Str
             var azureServiceTokenProvider = new AzureServiceTokenProvider();
             var kv = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-            string dbconstring = (kv.GetSecretAsync("https://foodvault-013.vault.azure.net/", "DBConnection").Result).Value;
+            string dbconstring = (kv.GetSecretAsync("https://foodvault-014.vault.azure.net/", "DBConnection").Result).Value;
 
             //EF
             //We dont need the conStrLite anymore - just there for comparison
