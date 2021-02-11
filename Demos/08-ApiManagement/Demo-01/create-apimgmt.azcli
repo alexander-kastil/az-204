@@ -8,5 +8,3 @@ publisher="integrationsonline"
 az group create -n $grp -l $loc
 
 az apim create -n $apimgmt -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Consumption
-
-
