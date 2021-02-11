@@ -14,7 +14,7 @@ az group create -n $grp -l $loc
 az appservice plan create -n $appPlan -g $grp --sku Free
 
 # create a Web App
-az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNETCORE|3.1"
+az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNET|5.0"
 
 # print out the FQDN for the Web App
 echo "Web Url: http://$app.azurewebsites.net"
