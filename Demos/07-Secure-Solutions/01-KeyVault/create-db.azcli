@@ -1,0 +1,22 @@
+rnd=014
+grp=az204-secure-solutions-$rnd
+loc=westeurope
+server=foodserver$rnd
+db=foodb$rnd
+user=azlabadmin
+pwd=Lab@dmin1234
+vault=foodvault-$rnd
+
+az sql server create -l $loc -g $grp -n $server -u $user -p $pwd
+
+az sql db create -g $grp -s $server -n $db \
+    -e GeneralPurpose -f Gen5 --min-capacity 0.5 -c 2 --compute-model Serverless --auto-pause-delay 720
+
+cs=$(az sql db show-connection-string -n $db --server $server -c ado.net)
+echo $cs
+
+# Fix cs user and password
+cs="Server=tcp:foodserver014.database.windows.net,1433;Database=foodb014;User ID=sqladmin;Password='TiTp4sQl@'';Encrypt=true;Connection Timeout=30;"
+
+az keyvault secret set --vault-name $vault --name "SQLConnection" --value "Server=tcp:foodserver014.database.windows.net,1433;Database=foodb014;User ID=sqladmin;Password='TiTp4sQl@'';Encrypt=true;Connection Timeout=30;"
+
