@@ -41,7 +41,10 @@ namespace ManagedIdentity
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ManagedIdentity v1"));
+                app.UseSwaggerUI (c => {
+                    c.SwaggerEndpoint ("/swagger/v1/swagger.json", "Food API");
+                    c.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseHttpsRedirection();
