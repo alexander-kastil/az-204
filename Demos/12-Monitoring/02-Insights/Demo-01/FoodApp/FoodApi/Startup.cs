@@ -33,6 +33,8 @@ namespace FoodApi
 
             //AI
             services.AddApplicationInsightsTelemetry (Configuration["Azure:ApplicationInsights:InstrumentationKey"]);
+            
+            services.AddSingleton<AILogger>();
 
             //Swagger
             services.AddSwaggerGen (c => {

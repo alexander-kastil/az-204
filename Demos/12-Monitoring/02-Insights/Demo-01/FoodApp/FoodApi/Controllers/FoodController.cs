@@ -7,11 +7,13 @@ namespace FoodApi
     [Route ("api/[controller]")]
     [ApiController]
     public class FoodController : ControllerBase {
-        public FoodController (FoodDBContext context) {
-            ctx = context;
-        }
 
         private FoodDBContext ctx;
+        private AILogger logger;
+
+        public FoodController (FoodDBContext context, AILogger l) {
+            ctx = context;
+        }
 
         // http://localhost:PORT/api/food
         [HttpGet ()]
@@ -21,7 +23,8 @@ namespace FoodApi
 
         // http://localhost:PORT/api/food/3
         [HttpGet ("{id}")]
-        public FoodItem GetById (int id) {
+        public FoodItem GetById (int id) {            
+            logger.LogEvent("Getting item with id", id.ToString());
             return ctx.Food.FirstOrDefault (v => v.ID == id);
         }
 
