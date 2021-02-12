@@ -2,9 +2,8 @@ rnd=014
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
-plan=food-mi-plan-$rnd
-app=food-mi-app-$rnd
-gitrepo="https://github.com/ARambazamba/https://github.com/ARambazamba/foodapp"
+plan=food-plan-$rnd
+app=foodapi-mi-$rnd
 
 az appservice plan create -n $plan  -g $grp --sku FREE
 az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|5.0"

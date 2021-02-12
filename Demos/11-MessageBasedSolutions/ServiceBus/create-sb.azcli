@@ -1,11 +1,12 @@
 rnd=$RANDOM
 grp=az204-sb-$rnd
+loc=westeurope
 namespace=sbdemons$rnd
 q=BasicQueue
 
-az group create --name $grp --location eastus
+az group create -n $grp -l $loc
 
-az servicebus namespace create -g $grp -n $namespace -l eastus
+az servicebus namespace create -g $grp -n $namespace -l $loc
 
 az servicebus queue create --resource-group $grp --namespace-name $namespace --name $q
 
