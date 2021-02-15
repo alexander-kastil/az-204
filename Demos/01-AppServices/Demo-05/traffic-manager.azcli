@@ -1,8 +1,8 @@
 rnd=$RANDOM
 eugrp=az204-tm-eu-$rnd
 usgrp=az204-tm-us-$rnd
-usplan=tm-eastus-$rnd
 euplan=tm-westeur-$rnd
+usplan=tm-eastus-$rnd
 gitrepo="https://github.com/ARambazamba/GitDeployApp"
 user=labadmin
 pwd="Pa$$w0rd1234!"
@@ -11,7 +11,7 @@ az group create -g $eugrp -l westeurope
 az group create -g $usgrp -l eastus2
 
 az vm create -g $eugrp -n euvm --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2msm --no-wait
-az vm create -g $usgrp -n euvm --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2msm --no-wait
+az vm create -g $usgrp -n usvm --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2msm --no-wait
 
 az appservice plan create -n $euplan -g $eugrp -l westeurope --sku S1 
 az appservice plan create -n $usplan -g $usgrp -l eastus2 --sku S1
