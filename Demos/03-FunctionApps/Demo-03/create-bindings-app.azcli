@@ -1,11 +1,11 @@
 rnd=$RANDOM
 grp=az204-bindingfuncts-$rnd
 loc=westeurope
-storage=az204bindingfuncts$rnd
-path='./pictures'
+storage=foodpics$rnd
+path='./food-pictures'
 source=drop
 target=processed
-app=picresizer
+app=foodpicsprocessor
 
 az group create -n $grp -l $loc
 
