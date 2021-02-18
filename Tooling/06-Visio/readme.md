@@ -1,6 +1,6 @@
-# Azure Visio Drawings
+# Azure Visio Diagrams
 
-[Vision Online](https://www.microsoft.com/de-at/microsoft-365/visio/flowchart-software)
+Create professional Diagrams using [Vision Online](https://www.microsoft.com/de-at/microsoft-365/visio/flowchart-software)
 
 ## Visio Client
 
