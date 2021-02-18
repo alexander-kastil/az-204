@@ -13,7 +13,7 @@ ENTRYPOINT ["dotnet", "FoodApi.dll"]
 #TODO: Check Image Build
 
 # Build Image
-# docker build --rm -f "Dockerfile" -t foodservice .
+# docker build --rm -f "dockerfile" -t foodservice .
 
 # Run Image
 # docker run -it --rm -p 5051:80 foodservice

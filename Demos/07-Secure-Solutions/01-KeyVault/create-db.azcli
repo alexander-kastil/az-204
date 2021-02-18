@@ -1,4 +1,4 @@
-rnd=014
+rnd=016
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 server=foodserver$rnd
