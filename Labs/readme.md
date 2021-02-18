@@ -11,7 +11,10 @@ The lab guides are available to the folder corresponding to the module.
 - An Azure hosted virtual Azure Windows VM with scriptend Installation
 - Your own machine - requires proconfigured sowftware on your Windows 10, Mac, Linux
 - [GitHub Codespaces Preview](https://github.com/features/codespaces)
-- Hosted Lab Envirionments from your Learning Provider ([Microsoft](00-LOD/)), [Lab on Demand](00-LOD/), [FastLane Remote Labs](00-Flane/), ...)
+- Hosted Lab Envirionments from your Learning Provider:
+  - [Microsoft](00-LOD/),
+  - [Lab on Demand](00-LOD/),
+  - [FastLane Remote Labs](00-Flane/)
 
 ### Azure hosted virtual Azure Windows VM Setup
 
