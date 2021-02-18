@@ -1,4 +1,4 @@
-rnd=007
+rnd=0120$RANDOM
 grp=az204-insights-$rnd
 appPlan=insights-$rnd
 web=foodapi-$rnd
@@ -16,17 +16,6 @@ az webapp create -n $web -g $grp --plan $appPlan --runtime "DOTNET|5.0"
 # print out the FQDN for the Web App
 # modify /Properies/PublishProfiles/azure.pubxml
 echo "Web Url: http://$web.azurewebsites.net"
-
-# show the deployment user
-az webapp deployment user show 
-
-# Deployment Open Terminal in ./FoodWebMVC - Execute: 
-dotnet restore
-dotnet run, 
-
-# Check https://localhost:5001, press ctrl+c,
-
-dotnet publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProfiles\azure.pubxml /p:Password=<password>
 
 # Use App Service Extension to deploy to website
 
