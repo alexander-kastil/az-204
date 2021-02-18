@@ -6,10 +6,10 @@ The lab guides are available to the folder corresponding to the module.
 
 > Note: For better reading experience I recommend reading the lab guides using the browser. Example: https://github.com/ARambazamba/AZ-204/blob/main/Labs/01/AZ-204_01_lab.md
 
-# Lab Execution
+# Lab Envirionment
 
+- Your own machine - requires preconfigured sowftware on your Windows 10, Mac, Linux
 - An Azure hosted virtual Azure Windows VM with scriptend Installation
-- Your own machine - requires proconfigured sowftware on your Windows 10, Mac, Linux
 - [GitHub Codespaces Preview](https://github.com/features/codespaces)
 - Hosted Lab Envirionments from your Learning Provider:
   - [Microsoft](00-LOD/),
