@@ -1,4 +1,8 @@
-# Azure Visio Stencils
+# Azure Visio Drawings
+
+[Vision Online](https://www.microsoft.com/de-at/microsoft-365/visio/flowchart-software)
+
+## Visio Client
 
 - Execute `install-az-stencils.ps1`
 
