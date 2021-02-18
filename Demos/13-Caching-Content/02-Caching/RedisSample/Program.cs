@@ -4,18 +4,6 @@ using StackExchange.Redis;
 
 namespace RedisSample {
 
-    private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer> (() => {
-        string cacheConnection = Configuration[SecretName];
-        Console.WriteLine (cacheConnection);
-        var conStr = "az204-redis-demo-8141.redis.cache.windows.net:6380,password=NJcEf7LRrI5Pqdq1YnbwYA+VHzIPqRfqJAN0PyOC87M=,ssl=True,abortConnect=False";
-        return ConnectionMultiplexer.Connect (conStr);
-    });
-
-    public static ConnectionMultiplexer Connection {
-        get {
-            return lazyConnection.Value;
-        }
-    }
 
     class Program {
         static void Main (string[] args) {
@@ -66,5 +54,18 @@ namespace RedisSample {
 
             Configuration = builder.Build ();
         }
+            
+        private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer> (() => {
+            string cacheConnection = Configuration[SecretName];
+            Console.WriteLine (cacheConnection);
+            var conStr = "az204-redis-demo-5264.redis.cache.windows.net:6380,password=uL7AyRLuzAyS2oo5Dt9zNgwAhCZVB4CwFAxqQ1ycSc8=,ssl=True,abortConnect=False";
+            return ConnectionMultiplexer.Connect (conStr);
+        });
+
+        public static ConnectionMultiplexer Connection {
+            get {
+                return lazyConnection.Value;
+            }
+    }
     }
 }
