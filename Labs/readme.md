@@ -13,11 +13,11 @@ The lab guides are available to the folder corresponding to the module.
 - [GitHub Codespaces Preview](https://github.com/features/codespaces)
 - Hosted Lab Envirionments from your Learning Provider ([Microsoft](00-LOD/)), [Lab on Demand](00-LOD/), [FastLane Remote Labs](00-Flane/), ...)
 
-### Lab Machine Setup
+### Azure hosted virtual Azure Windows VM Setup
 
 Detailed Setup instructions for the Azure hosted virtual Azure Windows VM can be found in the [Lab VM Setup Guide](../Setup/readme.md). An Azure CLI Gettings started will be given as part of the [Tooling Section](../Tooling/readme.md)
 
-### GitHub Codespaces
+### Using GitHub Codespaces
 
 Open Current Project in Codespaces:
 
