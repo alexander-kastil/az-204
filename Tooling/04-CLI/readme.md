@@ -14,23 +14,33 @@
 
 ![cloud-shell](_images/cloud-shell.png)
 
-> Note: Cloud Shell can be opened using [https://shell.azure.com/](https://shell.azure.com/)
+## Install Azure CLI & CloudShell
 
-## Install Azure CLI
+### Configure CloudShell for first use
 
-Install Chocoolatey in an elevated Prompt:
+Open the Cloud Shell to configure it for first use:
+
+![configure-cs](_images/configure-cs.jpg)
+
+Chose Bash and your subscription
+
+![chose-bash](_images/chose-bash.jpg)
+
+Optional: Give a meaningfull name to your Clould Shell Storage using Advanced Settings:
+
+![set-storage](_images/set-storage.jpg)
+
+> Note: To reset CloudShell you can use `Dismount-Clouddrive`
+
+### Install Azure CLI
+
+Install Azure CLI in an elevated PowerShell prompt:
 
 ```
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
 ```
 
-Install Azure CLI in an elevated Prompt:
-
-```
-choco install azure-cli
-```
-
-> Note: To install Azure CLI in Linux (ie. WSL) execute `install-az-cli-linux.sh`
+> Note: To install Azure CLI in Linux (ie. WSL) execute `install-az-cli-linux.sh` from Setup/Linux folder
 
 ## Getting Started
 
@@ -57,7 +67,9 @@ az extension list-available --output table
 az extension add --name <extension-name>
 ```
 
-### Create an App Service to host a Web App:
+### CLI Examples
+
+#### Create an App Service to host a Web App:
 
 ```bash
 rnd=$RANDOM
@@ -79,7 +91,7 @@ az appservice plan create -n $appPlan -g $grp --sku B2
 curl https://raw.githubusercontent.com/ARambazamba/AZ-204/master/Labs/create-lab-vm.sh | bash
 ```
 
-### Create a Lab VM
+#### Create a Lab VM
 
 If you want to execute the labs on a machine where you have full controll please follow this guide:
 
@@ -106,7 +118,7 @@ az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --i
 
 > Note: We are using this image and vm size because it supports nested virtualization
 
-## Troubleshoot CLI
+### Troubleshoot CLI
 
 Select Directory:
 
