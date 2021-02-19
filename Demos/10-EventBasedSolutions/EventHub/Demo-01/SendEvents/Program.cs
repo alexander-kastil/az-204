@@ -8,8 +8,8 @@ namespace SendEvents {
 
     //https://github.com/Azure/azure-sdk-for-net/issues/14068
     class Program {
-        private const string connectionString = "Endpoint=sb://evthubns-22623.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=V9PMW4Trptj7uQr9S5x9HGWdJuh2wdsdnSXJEn1+vXg=";
-        private const string eventHubName = "evthub-22623";
+        private const string connectionString = "Endpoint=sb://evthubns-24033.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=EB5Opk717eV62CC8Rza9/VQU4fILLt9U1zCEU6JKgGM=";
+        private const string eventHubName = "evthubns-24033";
 
         static async Task Main () {
             // Create a producer client that you can use to send events to an event hub
