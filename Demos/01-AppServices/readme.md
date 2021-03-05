@@ -6,7 +6,7 @@
 - Deploy Static HTML App using Git
 - Web App for Containers
 - Net 5 Api & ng UI deployed with Github Actions
-- Traffic Manager
+- Swap Slots & Traffic Manager
 
 ## Readings
 
@@ -25,14 +25,6 @@
 ## Extensions
 
 [Azure App Services](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
-
-## Demos
-
-- Create App Service & Publish .NET Core Api using Portal & CLI
-- Deploy Static HTML App using Git
-- Web App for Containers
-- Deploy Api using GitHub Actions
-- Swap Slots
 
 ## Additional Labs & Walkthroughs
 
