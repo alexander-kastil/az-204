@@ -1,5 +1,15 @@
 # App Services
 
+## Demos
+
+- MVC with Publishing Profile and AZ Tools
+- Deploy Static HTML App using Git
+- Web App for Containers
+- Net 5 Api & ng UI deployed with Github Actions
+- Traffic Manager
+
+## Readings
+
 [Azure App Services](https://docs.microsoft.com/en-us/azure/app-service/)
 
 [App Service Environments](https://docs.microsoft.com/en-us/azure/app-service/environment/intro)
