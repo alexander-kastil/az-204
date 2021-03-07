@@ -38,6 +38,9 @@ Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
 
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
+# Install httprepl
+dotnet tool install -g Microsoft.dotnet-httprepl
+
 # Intall VS Code Extensions
 Write-Host "VS Code Extensions - 5/6" -ForegroundColor yellow
 
