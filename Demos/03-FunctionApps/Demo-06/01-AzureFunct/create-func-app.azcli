@@ -1,0 +1,13 @@
+rnd=$RANDOM
+grp=m365dev-webhook-$rnd
+loc=westeurope
+app=webhookapp-$rnd
+storage=webhookapp$rnd
+
+az group create -n $grp -l $loc
+
+az storage account  create -n $storage -g $grp 
+
+az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3
+
+echo "Funtions app created: $app"
