@@ -1,7 +1,7 @@
 rnd=$RANDOM
 grp=az204-appsettings-$rnd
 appPlan=appsettings-$rnd
-web=appsettings-$rnd
+web=AppSettingsApp-$rnd
 loc=westeurope
 
 az group create -n $grp -l $loc
@@ -10,5 +10,5 @@ az appservice plan create -n $appPlan -g $grp --sku FREE
 
 az webapp create -n $web -g $grp --plan $appPlan --runtime "DOTNET|5.0"
 
-az webapp config appsettings set -g $grp -n $web --settings TestKey="Loaded from App Settings"
+az webapp config appsettings set -g $grp -n $web --settings TestKey="Loaded from App Settings in Azure"
 
