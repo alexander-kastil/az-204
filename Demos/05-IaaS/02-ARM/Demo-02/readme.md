@@ -2,7 +2,7 @@
 
 Click the button below:
 
-[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Demos/05-IaaS/02-ARM/Demo-02/azuredeploy.json)
+[![Deploy to Azure](https://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Demos/05-IaaS/02-ARM/Demo-02/azuredeploy.json)
 
 Result:
 
