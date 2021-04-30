@@ -1,5 +1,14 @@
 # Implement Authentication
 
+## Demos
+
+- Token Flow
+- MSAL Interactive
+- MSAL Daemon
+- MSAL Blazor
+
+## Readings
+
 [Azure AD](https://docs.microsoft.com/de-at/azure/active-directory/fundamentals/active-directory-whatis)
 
 [MSAL](https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-v2-libraries)
