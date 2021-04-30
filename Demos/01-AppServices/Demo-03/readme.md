@@ -1,17 +1,6 @@
-# Web App for Containers
+# Deploy Static HTML App using Git
 
-- Explain Docker Build
-- Execute `create-webapp-container.azcli`
+GitDeployApp is hosted on: [https://github.com/ARambazamba/GitDeployApp](https://github.com/ARambazamba/GitDeployApp) to avoid long directory subpaths in yaml
 
-```
-rnd=$RANDOM
-grp=az204-wacontainers-$rnd
-appPlan=wacontainers$rnd
-app=foodui-$rnd
-
-az group create --name $grp --location westeurope
-
-az appservice plan create --name $appPlan -g $grp --sku B1 --is-linux --number-of-workers 1
-
-az webapp create -g $grp -p $appPlan -n $app -i arambazamba/foodui
-```
+- Create & deploy app
+- Use it for easy auth demo

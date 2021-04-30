@@ -2,11 +2,12 @@
 
 ## Demos
 
-- MVC with Publishing Profile and AZ Tools
+- Create and Deploy Web App
 - Deploy Static HTML App using Git
 - Web App for Containers
-- Net 5 Api & ng UI deployed with Github Actions
-- Swap Slots & Traffic Manager
+- App Settings
+- Easy Auth
+- Traffic Manager
 
 ## Readings
 

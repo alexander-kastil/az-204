@@ -1,7 +1,7 @@
 rnd=$RANDOM
-grp=az204-automated-$rnd
-appPlan=automated-deployment-$rnd
-app=static-website-$rnd
+grp=az204-gitdeploy-$rnd
+appPlan=gitdeploy-$rnd
+app=sgitdeploy-website-$rnd
 gitrepo="https://github.com/ARambazamba/GitDeployApp"
 
 az group create -n $grp -l westeurope

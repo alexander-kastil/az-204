@@ -1,4 +1,3 @@
-# Azure Traffic Manager
+# Easy Auth
 
-- Execute `create-client-vms.azcli`
-- Execute `traffic-manager.azcli`
+- Enable Easy Auth on Git Deployment App

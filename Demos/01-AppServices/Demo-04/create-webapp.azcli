@@ -1,0 +1,14 @@
+rnd=$RANDOM
+grp=az204-appsettings-$rnd
+appPlan=appsettings-$rnd
+web=appsettings-$rnd
+loc=westeurope
+
+az group create -n $grp -l $loc
+
+az appservice plan create -n $appPlan -g $grp --sku FREE
+
+az webapp create -n $web -g $grp --plan $appPlan --runtime "DOTNET|5.0"
+
+echo "Web Url: http://$web.azurewebsites.net"
+
