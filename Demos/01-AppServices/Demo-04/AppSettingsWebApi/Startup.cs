@@ -16,16 +16,26 @@ namespace AppSettingsWebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Configuration = configuration;
+            env = environment;
         }
 
         public IConfiguration Configuration { get; }
 
+        private readonly IWebHostEnvironment env;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var cfgBuilder = new ConfigurationBuilder ()
+                .SetBasePath (env.ContentRootPath)
+                .AddJsonFile ("appsettings.json");
+            var configuration = cfgBuilder.Build ();
+            services.Configure<AppConfig> (configuration);
+            services.AddSingleton (typeof (IConfigurationRoot), configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
