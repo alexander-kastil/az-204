@@ -1,5 +1,5 @@
 rnd=0078
-grp=az204-storage-$rnd
+grp=az204-m01-storage-$rnd
 loc=westeurope
 acct=storage$rnd
 container="upload-container"

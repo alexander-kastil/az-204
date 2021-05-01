@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-lab
+grp=az-lab
 loc=westeurope
 acct=labvm$rnd
 

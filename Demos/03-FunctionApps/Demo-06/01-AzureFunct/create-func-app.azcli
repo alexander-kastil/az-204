@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=m365dev-webhook-$rnd
+grp=az-204-m03-webhook-$rnd
 loc=westeurope
 app=webhookapp-$rnd
 storage=webhookapp$rnd

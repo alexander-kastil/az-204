@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-vscodefuncts-$rnd
+grp=az204-m03-vscodefuncts-$rnd
 loc=westeurope
 app=vscodeapp-$rnd
 storage=vscodeapp$rnd

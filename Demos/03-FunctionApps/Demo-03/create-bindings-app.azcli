@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-bindingfuncts-$rnd
+grp=az204-m03-bindingfuncts-$rnd
 loc=westeurope
 storage=foodpics$rnd
 path='./food-pictures'

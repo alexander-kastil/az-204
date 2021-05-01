@@ -1,6 +1,6 @@
 # rnd=$RANDOM
 rnd=007
-grp=az204-js-$rnd
+grp=az204-m03-jsfuncts-$rnd
 loc=westeurope
 app=javascript-$rnd
 storage=az204functsjs$rnd

@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-appsettings-$rnd
+grp=az204-m01-appsettings-$rnd
 appPlan=appsettings-$rnd
 web=AppSettingsApp-$rnd
 loc=westeurope

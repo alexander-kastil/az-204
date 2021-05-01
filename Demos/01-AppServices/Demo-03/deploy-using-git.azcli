@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-gitdeploy-$rnd
+grp=az204-m01-gitdeploy-$rnd
 appPlan=gitdeploy-$rnd
 app=sgitdeploy-website-$rnd
 gitrepo="https://github.com/ARambazamba/GitDeployApp"
