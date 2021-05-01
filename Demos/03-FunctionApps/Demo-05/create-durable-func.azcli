@@ -1,14 +1,14 @@
 rnd=$RANDOM
 grp=az204-m03-durable-$rnd
 loc=westeurope
-app=durablefuncts-$rnd
-storage=az204durablefuncts$rnd
+app=durablewf-$rnd
+storage=durablestoarge$rnd
 
 az group create --name $grp --location $loc
 
 az storage account  create -n $storage -g $grp 
 
-az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node 
+az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --
 
 az functionapp config appsettings list --name $app --resource-group $grp | jq '.[] | select(.name == "WEBSITE_NODE_DEFAULT_VERSION")'
 
