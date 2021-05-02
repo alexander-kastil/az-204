@@ -1,15 +1,12 @@
 {
   "bindings": [
     {
-      "authLevel": "anonymous",
+      "authLevel": "function",
       "name": "req",
       "type": "httpTrigger",
       "direction": "in",
       "route": "orchestrators/{functionName}",
-      "methods": [
-        "post",
-        "get"
-      ]
+      "methods": ["post", "get"]
     },
     {
       "name": "$return",

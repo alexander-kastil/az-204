@@ -6,6 +6,10 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "durable-functions": "^1.4.6",
+    "moment": "^2.29.1",
+    "typescript": "^4.2.4"
+  },
   "devDependencies": {}
 }
