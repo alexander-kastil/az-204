@@ -3,8 +3,9 @@ grp=az204-m01-wacontainers-$rnd
 appPlan=wacontainers$rnd
 app=foodui-container-$rnd
 img=arambazamba/foodui
+loc=westeurope
 
-az group create --name $grp --location westeurope
+az group create --name $grp --location $loc
 
 az appservice plan create --name $appPlan -g $grp --sku B1 --is-linux --number-of-workers 1
 
