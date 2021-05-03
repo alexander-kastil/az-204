@@ -1,7 +1,7 @@
 rnd=$RANDOM
 grp=az204-m01-appservice-$rnd
 appPlan=appservice-$rnd
-web=foodweb-$rnd
+web=foodmvc-$rnd
 loc=westeurope
 
 # create a resource group
