@@ -4,8 +4,8 @@ const moment = require("moment");
 module.exports = df.orchestrator(function* (context) {
   const outputs = [];
 
-  outputs.push(yield context.df.callActivity("Approval", "Approved"));
-  outputs.push(yield context.df.callActivity("Approval", "Rejected"));
+  outputs.push(yield context.df.callActivity("wfApproval", "Approved"));
+  outputs.push(yield context.df.callActivity("wfApproval", "Rejected"));
 
   // const deadline = moment.utc(context.df.currentUtcDateTime).add(20, "s");
   // const activityTask = context.df.waitForExternalEvent("Approval");
@@ -13,9 +13,9 @@ module.exports = df.orchestrator(function* (context) {
 
   // const winner = yield context.df.Task.any([activityTask, timeoutTask]);
   // if (winner === activityTask) {
-  //   outputs.push(yield context.df.callActivity("Approval", "Approved"));
+  //   outputs.push(yield context.df.callActivity("wfApproval", "Approved"));
   // } else {
-  //   outputs.push(yield context.df.callActivity("Escalation", "Head of department"));
+  //   outputs.push(yield context.df.callActivity("wfEscalation", "Head of department"));
   // }
 
   // if (!timeoutTask.isCompleted) {
