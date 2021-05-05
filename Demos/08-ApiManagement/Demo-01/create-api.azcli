@@ -1,11 +1,8 @@
-rnd=26685
-grp=az204-apimgmt-$rnd
+rnd=$RANDOM
+grp=az204-m08-apimgmt-$rnd
 appPlan=apimgmt-$rnd
 app=foodapi-$rnd
 loc=westeurope
-
-# list runtrimes
-az webapp list-runtimes
 
 # create a resource group
 az group create -n $grp -l $loc

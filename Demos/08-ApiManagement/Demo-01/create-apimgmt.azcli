@@ -1,6 +1,6 @@
 rnd=26685
 loc=westeurope
-grp=az204-apimgmt-$rnd
+grp=az204-m08-apimgmt-$rnd
 apimgmt=apimgmtcons-$rnd
 mail="alexander.pajer@integrations.at"
 publisher="integrationsonline"
