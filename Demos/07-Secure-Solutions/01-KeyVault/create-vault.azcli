@@ -1,14 +1,14 @@
-rnd=016
+rnd=020
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
 
 az group create -n $grp -l $loc
 
-az keyvault create -l $loc -n $vault -g $grp --sku premium 
-
-az keyvault key list --vault-name $vault
+az keyvault create -l $loc -n $vault -g $grp --sku premium --enable-purge-protection false
 
 az keyvault secret set --vault-name $vault --name "DBConnection" --value "Data Source=./food.db"
 
 az keyvault secret show --name "DBConnection" --vault-name $vault
+
+az keyvault key list --vault-name $vault

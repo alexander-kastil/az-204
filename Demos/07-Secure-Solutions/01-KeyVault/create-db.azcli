@@ -1,4 +1,4 @@
-rnd=016
+rnd=030
 grp=az204-secure-solutions-$rnd
 loc=westeurope
 server=foodserver$rnd
@@ -18,5 +18,5 @@ echo $cs
 # Fix cs user and password
 cs="Server=tcp:foodserver014.database.windows.net,1433;Database=foodb014;User ID=sqladmin;Password='TiTp4sQl@'';Encrypt=true;Connection Timeout=30;"
 
-az keyvault secret set --vault-name $vault --name "SQLConnection" --value "Server=tcp:foodserver014.database.windows.net,1433;Database=foodb014;User ID=sqladmin;Password='TiTp4sQl@'';Encrypt=true;Connection Timeout=30;"
+az keyvault secret set --vault-name $vault --name "SQLConnection" --value "Server=tcp:foodserver014.database.windows.net,1433;Database=foodb014;User ID=sqladmin;Password='TiTp4sQl@';Encrypt=true;Connection Timeout=30;"
 
