@@ -1,6 +1,6 @@
 rnd=007
 loc=westeurope
-grp=az204-sas-$rnd
+grp=az204-m06-sas-$rnd
 acct=medicalrecords$rnd
 container=patient-images
 path='./patient-images/'

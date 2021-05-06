@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-logic-app
+grp=az204-m09-logic-app
 loc=westeurope
 acct=logicapp$rnd
 container=logicblobs

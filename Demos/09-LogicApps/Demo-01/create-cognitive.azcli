@@ -1,5 +1,5 @@
 rnd=007
-grp=az204-logicapp-$rnd
+grp=az204-m09-logicapp-$rnd
 loc=westeurope
 kind=TextAnalytics
 cs=text-ai-$rnd
