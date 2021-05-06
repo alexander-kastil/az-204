@@ -1,6 +1,6 @@
 # rnd=$RANDOM
-rnd=012012108
-grp=az204-insights-$rnd
+rnd=020
+grp=az204-m12-insights-$rnd
 loc=westeurope
 acct=foodapp$rnd
 path='./FoodApp/FoodUI/dist/FoodUI'

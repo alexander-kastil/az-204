@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az-204-redis
+grp=az204-m13-redis
 loc=westeurope
 cacheName=az204-redis-demo-$rnd
 

@@ -1,6 +1,6 @@
 rnd=$RANDOM
 loc=westeurope
-grp=az204-evthub-$rnd
+grp=az204-m10-evthub-$rnd
 namespace=evthubns-$rnd
 hub=evthub-$rnd
 storage=eventhub$rnd

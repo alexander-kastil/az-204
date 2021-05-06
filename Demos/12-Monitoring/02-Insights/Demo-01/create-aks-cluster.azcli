@@ -1,5 +1,5 @@
-rnd=$RANDOM
-grp=az204-aks-$rnd
+rnd=020
+grp=az204-m12-aks-$rnd
 loc=westeurope
 aks=foodcluster-$rnd
 

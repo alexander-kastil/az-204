@@ -1,5 +1,5 @@
-rnd=0120$RANDOM
-grp=az204-insights-$rnd
+rnd=025
+grp=az204-m12-insights-$rnd
 appPlan=insights-$rnd
 web=foodapi-$rnd
 loc=westeurope

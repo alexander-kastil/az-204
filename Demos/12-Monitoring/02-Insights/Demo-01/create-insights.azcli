@@ -1,5 +1,5 @@
 rnd=012012108
-grp=az204-insights-$rnd
+grp=az204-m12-insights-$rnd
 loc=westeurope
 app=foodapp$rnd
 

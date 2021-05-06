@@ -1,6 +1,6 @@
 rnd=$RANDOM
 loc=westeurope
-grp=az204-msgqueue-$rnd
+grp=az204-m11-msgqueue-$rnd
 acct=msgqueue$rnd
 queue=az-204-queue
 

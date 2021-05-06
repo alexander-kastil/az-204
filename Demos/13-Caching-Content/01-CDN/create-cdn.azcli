@@ -1,11 +1,10 @@
 # rnd=$RANDOM
 rnd=007
-grp=az204-cdn-$rnd
+grp=az204-m13-cdn-$rnd
 loc=westeurope
 profile=ngprofile
 epname=ngendpoint
 acct=staticwebsite$rnd
-content='/FoodUI/dist/FoodUI/'
 
 # Take from prev script output without https:// and / at the end
 pep='staticwebsite007.z6.web.core.windows.net'

@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-sb-$rnd
+grp=az204-m11-sb-$rnd
 loc=westeurope
 namespace=sbdemons$rnd
 q=BasicQueue
