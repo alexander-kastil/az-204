@@ -55,6 +55,7 @@ code --install-extension ms-azuretools.vscode-azureappservice
 code --install-extension ms-azuretools.vscode-docker
 code --install-extension ms-azuretools.vscode-cosmosdb
 code --install-extension ms-azuretools.vscode-azurefunctions
+code --install-extension ms-azuretools.vscode-azurestaticwebapps
 code --install-extension GitHub.vscode-pull-request-github
 code --install-extension redhat.vscode-yaml
 code --install-extension bencoleman.armview
