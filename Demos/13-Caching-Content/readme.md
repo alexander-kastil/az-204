@@ -15,3 +15,5 @@
 [Create a Content Delivery Network for your Website with Azure CDN and Blob Services](https://docs.microsoft.com/en-us/learn/modules/create-cdn-static-resources-blob-storage/)
 
 [Optimize your web applications by caching read-only data with Redis](https://docs.microsoft.com/en-us/learn/modules/optimize-your-web-apps-with-redis/)
+
+[Azure Static Web Apps](https://docs.microsoft.com/en-us/learn/paths/azure-static-web-apps/)
