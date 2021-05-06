@@ -7,7 +7,7 @@ epname=ngendpoint
 acct=staticwebsite$rnd
 
 # Take from prev script output without https:// and / at the end
-pep='staticwebsite007.z6.web.core.windows.net'
+pep=staticwebsite$rnd.z6.web.core.windows.net
 
 az cdn profile create -g $grp --name $profile --sku Standard_Microsoft
 
