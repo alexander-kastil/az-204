@@ -1,5 +1,5 @@
-# rnd=$RANDOM
-rnd=007
+# take rnd from create-static-website.azcli
+rnd=6914
 grp=az204-m13-cdn-$rnd
 loc=westeurope
 profile=ngprofile

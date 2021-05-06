@@ -1,5 +1,4 @@
-# rnd=$RANDOM
-rnd=007
+rnd=$RANDOM
 grp=az204-m13-cdn-$rnd
 loc=westeurope
 acct=staticwebsite$rnd
