@@ -58,7 +58,7 @@ namespace RedisSample {
         private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer> (() => {
             string cacheConnection = Configuration[SecretName];
             Console.WriteLine (cacheConnection);
-            var conStr = "az204-redis-demo-5264.redis.cache.windows.net:6380,password=uL7AyRLuzAyS2oo5Dt9zNgwAhCZVB4CwFAxqQ1ycSc8=,ssl=True,abortConnect=False";
+            var conStr = "az204-redis-demo-25705.redis.cache.windows.net:6380,password=oKGuCuAvvcAs8J7P3RlNKbxySLD1UNXsHH0+xI+k8wU=,ssl=True,abortConnect=False";
             return ConnectionMultiplexer.Connect (conStr);
         });
 
