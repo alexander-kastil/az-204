@@ -40,6 +40,7 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 # Install httprepl
 dotnet tool install -g Microsoft.dotnet-httprepl
+dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 
 # Intall VS Code Extensions
 Write-Host "VS Code Extensions - 5/6" -ForegroundColor yellow
