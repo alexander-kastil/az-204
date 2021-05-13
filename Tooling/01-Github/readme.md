@@ -65,6 +65,12 @@ List Branches:
 git branch
 ```
 
+List remote branches:
+
+```
+git branch -r
+```
+
 Create Branch:
 
 ```
@@ -93,7 +99,7 @@ git merge [branch_to_merge]
 
 > Note: You might have to switch to the branch that you might want to merge into befor executing merge
 
-## Dealing with special Commits
+## Checkout Commits
 
 Get a spcific Commit:
 
