@@ -9,9 +9,9 @@ az appservice plan create -n $plan  -g $grp --sku FREE
 az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|5.0"
 
 az webapp identity assign -g $grp -n $app
-mi=$(az webapp identity show  -g $grp -n $app --query principalId)
+mi=$(az webapp identity show  -g $grp -n $app --query principalId -o tsv)
 echo "managed identity object id: $mi"
 
 # Uses KeyVault from Demo-01
 
-az keyvault set-policy -n $vault --object-id b96ac957-7a95-49a5-96f0-c8f4d27ad7e7 --secret-permissions list get
+az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
