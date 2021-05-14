@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 
 namespace AppSettingsWebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SettingsController : ControllerBase
     {
@@ -26,8 +26,10 @@ namespace AppSettingsWebApi.Controllers
         [HttpGet]
         public ActionResult GetSettings()
         {
-           var val = cfg.GetValue<string>("TestKey");
-           return Ok(val);  
+           //access a single key
+           var useSQLite = cfg.GetValue<string>("AppSettings:UseSQLite");
+           var config = cfg.Get<AppConfig>();
+           return Ok(config);  
         }
 
         [HttpGet("getEnv")]
