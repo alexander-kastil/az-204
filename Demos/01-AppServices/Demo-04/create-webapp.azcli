@@ -10,5 +10,5 @@ az appservice plan create -n $appPlan -g $grp --sku FREE
 
 az webapp create -n $web -g $grp --plan $appPlan --runtime "DOTNET|5.0"
 
-az webapp config appsettings set -g $grp -n $web --settings TestKey="Loaded from App Settings in Azure"
+az webapp config appsettings set -g $grp -n $web --settings AppSettings:UseSQLite=false
 
