@@ -4,6 +4,6 @@
 
 Execute `create-webapp-container.azcli`
 
-## Containers
+## Azure Container Instances
 
 Execute `create-container-instance.azcli`
