@@ -1,5 +1,18 @@
 # Function Apps
 
+## Demos
+
+- Create Hello World Function App using Portal using Portal Designer
+- Azure Function Core Tools & Visual Studio Code
+- Introduction to Bindings
+- Bindings in Java Script projects (optional)
+- Durable Functions
+- Azure Functions & Webhooks (optional)
+
+## Readings
+
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-java)
+
 [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
 
 [Azure Functions Reference](https://docs.microsoft.com/en-gb/azure/azure-functions/functions-reference)

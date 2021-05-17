@@ -1,5 +1,8 @@
 # Using ARM Templates
 
+- Show Templates in Azure Portal
+- Show Deployment
+
 ## Deploy template from the command line:
 
 ```

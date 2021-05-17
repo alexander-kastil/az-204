@@ -1,5 +1,14 @@
 # CosmosDB
 
+## Demos
+
+- Create and use Cosmos DB
+- Use Cosmos DB in .NET Core
+
+## Readings
+
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-java?tabs=sync)
+
 [Azure Cosmos DB](https://docs.microsoft.com/de-at/azure/cosmos-db/)
 
 [Cosmos DB Playground](https://www.documentdb.com/sql/demo)

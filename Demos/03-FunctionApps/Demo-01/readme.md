@@ -1,2 +1,1 @@
-- Create Hello World Function App using Portal
-- Show Designer
+- Create Hello World Function App using Portal using Portal Designer

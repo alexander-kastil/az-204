@@ -1,5 +1,14 @@
 # Develop solutions that use Microsoft Azure Storage
 
+## Demos
+
+- Provision and use Blob Storage
+- Use Blob Storage Fileshare
+
+## Readings
+
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-java?tabs=powershell)
+
 [Azure Storage](https://docs.microsoft.com/en-us/azure/storage/)
 
 [Blob Redundany](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy)

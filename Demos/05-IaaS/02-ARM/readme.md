@@ -1,5 +1,12 @@
 # ARM Templates
 
+## Demos
+
+- ARM Template Basics & deployment
+- Deploy to Azure Button
+
+## Readings
+
 [ARM Templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
 
 [Azure Quickstarter Templates](https://azure.microsoft.com/en-us/resources/templates/)

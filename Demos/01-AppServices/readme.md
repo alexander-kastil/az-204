@@ -11,6 +11,8 @@
 
 ## Readings
 
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux)
+
 [Azure App Services](https://docs.microsoft.com/en-us/azure/app-service/)
 
 [App Service Environments](https://docs.microsoft.com/en-us/azure/app-service/environment/intro)
