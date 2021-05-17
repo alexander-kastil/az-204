@@ -20,11 +20,11 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 [NGINX](https://www.nginx.com/)
 
-## Hosting Containers on Azure
-
-[Azure Container Service](https://docs.microsoft.com/de-at/azure/container-service/)
+## Readings
 
 [Web App for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/)
+
+[Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/)
 
 [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/)
 
