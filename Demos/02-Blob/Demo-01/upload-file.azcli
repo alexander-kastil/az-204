@@ -19,7 +19,7 @@ key=$(az storage account keys list -n $acct --query "[0].[value][0]")
 export AZURE_STORAGE_ACCOUNT=$acct
 export AZURE_STORAGE_KEY=$key
 
-az storage container create -n $container 
+az storage container create -n $container
 
 az storage blob upload --container-name $container --file $file_to_upload --name $blob_name
 
