@@ -1,26 +1,17 @@
 # Create containerized solutions
 
-## Docker Basics
+## Demos
 
-[Docker](https://www.docker.com/products/docker-desktop)
-
-[Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/)
-
-[Kubernetes](https://kubernetes.io/de/)
-
-[Windows Subsystem Linux - WSL 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-about)
-
-[Install WSL 2 on Windows 10](https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/)
-
-Install Azure CLI in WSL Bash:
-
-```
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-```
-
-[NGINX](https://www.nginx.com/)
+- Docker Basics
+- Deploy to Azure Container Registry
+- Use Azure Container Registry Build Task
+- Deploy to Azure Container Instances & Web Apps for Containers
+- Kubernetes Intro (optional)
+- Helm (optional)
 
 ## Readings
+
+[Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-registry/)
 
 [Web App for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/)
 
@@ -34,6 +25,8 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 [Azure DevSpaces](https://docs.microsoft.com/en-us/azure/dev-spaces/)
 
+[NGINX](https://www.nginx.com/)
+
 ## CLI Reference
 
 [az aks Commands Overview](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
@@ -45,19 +38,6 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 [Kubernetes](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools)
 
 [Azure Dev Spaces](https://marketplace.visualstudio.com/items?itemName=azuredevspaces.azds)
-
-## Demos
-
-- Build Image and Upload to DockerHub
-- Create Container Registry
-- Build using Build Task from ACR
-- Web App for Container
-- Azure Container Instances
-
-Optional Demos - if time permitts
-
-- Introduction AKS
-- Introduction Helm
 
 ## Additional Labs & Walkthroughs
 
