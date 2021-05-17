@@ -5,6 +5,8 @@
 - Create Windows VM
 - Create Linux VM
 
+## Readings
+
 [Virtual Machines Documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/)
 
 [Azure Image Builder](https://docs.microsoft.com/en-us/azure/virtual-machines/image-builder-overview)
