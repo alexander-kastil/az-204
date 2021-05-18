@@ -1,5 +1,13 @@
 # Secure Data Solutions
 
+## Demos
+
+- Azure Key Vault
+- Managed Identity
+- App Configuration Services
+
+## Readings
+
 [Azure Key Vault](https://docs.microsoft.com/de-de/azure/key-vault/general/)
 
 [Azure Managed Idntieites](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/)

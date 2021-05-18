@@ -1,5 +1,12 @@
 # Implement Access Control
 
+## Demos
+
+- RBAC Basics
+- Use SAS with Blob
+
+## Readings
+
 [RBAC for Azure](https://docs.microsoft.com/en-us/azure/role-based-access-control/)
 
 [Grant limited access to Azure Storage resources using shared access signatures](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview)

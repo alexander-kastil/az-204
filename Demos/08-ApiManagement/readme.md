@@ -1,5 +1,11 @@
 # API Management
 
+## Demos
+
+- Api Management Basics
+
+## Readings
+
 [Swaggger](https://swagger.io/)
 
 [API Management Documentation](https://docs.microsoft.com/en-us/azure/api-management/)
