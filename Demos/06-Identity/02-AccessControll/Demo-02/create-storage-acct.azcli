@@ -1,4 +1,4 @@
-rnd=007
+rnd=$RANDOM
 loc=westeurope
 grp=az204-m06-sas-$rnd
 acct=medicalrecords$rnd
@@ -18,13 +18,16 @@ az storage container create -n $container --account-name $acct --account-key $ke
 
 az storage blob upload-batch --account-name $acct --account-key $key -s $path -d $container
 
-az storage account show-connection-string -n $acct | jq .connectionString
+conStr=$(az storage account show-connection-string -n $acct | jq .connectionString)
 
-sas=$(az storage blob generate-sas --account-key $key --account-name $acct --container-name $container --name $blob --expiry 2021-02-15 --permissions r)
+echo "connectionString: " $conStr
+
+# change expiry date accodingly
+sas=$(az storage blob generate-sas --account-key $key --account-name $acct --container-name $container --name $blob --expiry 2021-06-15 --permissions r -o tsv)
 
 echo "SAS Token: " $sas
 
 ## Open Url with $sas
 
-https://medicalrecords007.blob.core.windows.net/patient-images/patient-32589.jpg?se=2021-02-15&sp=r&sv=2018-11-09&sr=b&sig=2ZsxyXDrlWR0dympE/IJVbArpfoTVigZPFFpM7xM32M%3D
+echo https://$acct.blob.core.windows.net/patient-images/patient-32589.jpg?se=$sas
 
