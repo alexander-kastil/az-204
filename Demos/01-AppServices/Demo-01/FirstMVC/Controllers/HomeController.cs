@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using FoodWebMVC.Models;
+using FirstMVC.Models;
 
-namespace FoodWebMVC.Controllers
+namespace FirstMVC.Controllers
 {
     public class HomeController : Controller
     {

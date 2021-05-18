@@ -1,6 +1,6 @@
 using System;
 
-namespace FoodWebMVC.Models
+namespace FirstMVC.Models
 {
     public class ErrorViewModel
     {

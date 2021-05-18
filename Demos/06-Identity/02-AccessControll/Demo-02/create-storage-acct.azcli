@@ -23,9 +23,9 @@ conStr=$(az storage account show-connection-string -n $acct | jq .connectionStri
 echo "connectionString: " $conStr
 
 # change expiry date accodingly
-sas=$(az storage blob generate-sas --account-key $key --account-name $acct --container-name $container --name $blob --expiry 2021-06-15 --permissions r -o tsv)
+sas=$(az storage blob generate-sas --account-key $key --account-name $acct --container-name $container --name $blob --expiry 2021-06-15 --permissions r)
 
-echo "SAS Token: " $sas
+echo $sas
 
 ## Open Url with $sas
 

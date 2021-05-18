@@ -41,6 +41,7 @@ namespace BlobWithSAS
             }
 
             app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
 
             app.UseRouting();
