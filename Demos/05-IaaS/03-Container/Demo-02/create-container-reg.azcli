@@ -2,7 +2,7 @@
 # Execute on WSL
 
 rnd=$RANDOM
-grp=az204-acr-$rnd
+grp=az204-m05-acr-$rnd
 acr=az204acr$rnd
 
 az group create -n $grp -l westeurope

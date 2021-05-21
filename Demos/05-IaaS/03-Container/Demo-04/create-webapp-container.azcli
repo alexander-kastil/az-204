@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-wacontainers-$rnd
+grp=az204-m05-wacontainers-$rnd
 appPlan=foodui$rnd
 app=foodui-$rnd
 

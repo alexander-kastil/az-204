@@ -8,7 +8,7 @@ Connect-AzAccount
 
 $rnd = Get-Random
 $VMSize = "Standard_B1ms"
-$grp = "az-204-vmgrp-$rnd"
+$grp = "az-204-m05-vm-$rnd"
 
 # The credential of the designated Windows Admin - Not your credential :-)
 # Use: az204admin PWD: P@$$w0rd1234!

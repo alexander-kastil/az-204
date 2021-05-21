@@ -1,13 +1,26 @@
-rnd=007
+rnd=$RANDOM
 loc=westeurope
-grp=az204class
+grp=az204-m05-vm
 vmname=devvm-$rnd
 user=az204admin
 pwd=TiTp4@dmin12334!
+vault=vmvault-$rnd
 
 az group create -n $grp -l $loc
 
 az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2ms
+
+# Create KeyVault
+
+az keyvault create -l $loc -n $vault -g $grp
+
+az keyvault update -n $vault -g $grp --enabled-for-disk-encryption "true"
+
+# Encrypt VM
+
+az vm encryption show -g $grp -n $vm
+
+az vm encryption enable -g $grp -n $vm --disk-encryption-keyvault $vault --volume-type all
 
 # Enable Azure AD Login
 az vm extension set --publisher Microsoft.Azure.ActiveDirectory --name AADLoginForWindows -g $grp --vm-name $vmname
