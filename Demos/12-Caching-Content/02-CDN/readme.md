@@ -14,6 +14,4 @@ npm i
 ng build --prod
 ```
 
-Create Storage Account & Upload Blog: `create-static-website.azcli`
-
-Create CDN Profile including URL Rewrite: `create-cdn.azcli`
+Create Storage Account, Upload ngApp Create CDN with URL Rewrite: `create-blob-with-cdn.azcli`
