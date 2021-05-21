@@ -1,6 +1,18 @@
 # Service Bus
 
+## Demo
+
+- Service Bus send msg
+
+## Readings
+
+[Azure Service Bus Examples](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-samples)
+
 [Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
+
+## CLI Reference
+
+[az servicebus](https://docs.microsoft.com/en-us/cli/azure/servicebus?view=azure-cli-latest)
 
 # Lab
 
