@@ -4,7 +4,7 @@ using Microsoft.Azure.EventGrid;
 using Microsoft.Azure.EventGrid.Models;
 using Newtonsoft.Json;
 
-namespace PublishTopic
+namespace FoodApp
 {
     class Program
     {
@@ -31,22 +31,17 @@ namespace PublishTopic
             for (int i = 0; i < 20; i++) {
                 eventsList.Add (new EventGridEvent () {
                     Id = Guid.NewGuid ().ToString (),
-                        EventType = "Contoso.Items.ItemReceived",
-                        Data = new ContosoItemReceivedEventData () {
-                            ItemSku = "Contoso Item SKU #1"
+                        EventType = "FoodApp.Orders.OrderDelivered",
+                        Data = new OrderDeliveredEventData () {
+                            OrderNumber = i.ToString()
                         },
                         EventTime = DateTime.Now,
-                        Subject = "Door1",
+                        Subject = "Delivery of Order Complete",
                         DataVersion = "2.0"
                 });
             }
 
             return eventsList;
         }
-    }
-
-    class ContosoItemReceivedEventData {
-        [JsonProperty (PropertyName = "itemSku")]
-        public string ItemSku { get; set; }
-    }
+    }    
 }
