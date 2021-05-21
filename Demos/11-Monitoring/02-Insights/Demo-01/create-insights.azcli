@@ -1,4 +1,4 @@
-rnd=012012108
+rnd=025
 grp=az204-m12-insights-$rnd
 loc=westeurope
 app=foodapp$rnd

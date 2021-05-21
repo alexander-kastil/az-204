@@ -1,5 +1,5 @@
 # rnd=$RANDOM
-rnd=020
+rnd=025
 grp=az204-m12-insights-$rnd
 loc=westeurope
 acct=foodapp$rnd
