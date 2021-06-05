@@ -2,12 +2,12 @@
 
 ## Demos
 
-- Create and Deploy Web App
-- Deploy Static HTML App using Git
-- Web App for Containers
-- App Settings
-- Easy Auth
-- Traffic Manager
+-   Create and Deploy Web App
+-   Deploy Static HTML App using Git
+-   Web App for Containers
+-   App Settings
+-   Easy Auth
+-   Traffic Manager
 
 ## Readings
 
@@ -32,3 +32,5 @@
 ## Additional Labs & Walkthroughs
 
 [Learning Path - Deploy a website to Azure with Azure App Service](https://docs.microsoft.com/en-us/learn/paths/deploy-a-website-with-azure-app-service/)
+
+[Deploy a Java web app to Azure App Service](https://docs.microsoft.com/en-us/learn/modules/create-java-webapp-to-app-service-linux/?WT.mc_id=java-11777-judubois&source=learn)

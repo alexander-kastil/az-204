@@ -2,12 +2,12 @@
 
 ## Demos
 
-- Create Hello World Function App using Portal using Portal Designer
-- Azure Function Core Tools & Visual Studio Code
-- Introduction to Bindings
-- Bindings in Java Script projects (optional)
-- Durable Functions
-- Azure Functions & Webhooks (optional)
+-   Create Hello World Function App using Portal using Portal Designer
+-   Azure Function Core Tools & Visual Studio Code
+-   Introduction to Bindings
+-   Bindings in Java Script projects (optional)
+-   Durable Functions
+-   Azure Functions & Webhooks (optional)
 
 ## Readings
 
@@ -37,54 +37,10 @@
 
 [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 
-## Azure Functions Core Tools
-
-Install Azure Functions Core Tools:
-
-```
-npm i -g azure-functions-core-tools@3 --unsafe-perm true
-```
-
-or
-
-```
-choco install azure-functions-core-tools-3 --params="'/x64:true'" -y
-```
-
-[Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2)
-
-## Testing
-
-To Execute REST Calls you could use:
-
-- httprepl
-- [az rest](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_rest)
-- Postman
-
-Install httprepl:
-
-```
-dotnet tool install -g Microsoft.dotnet-httprepl
-```
-
-For [Storage Account Testing and Emulation](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) download the [Local Storage Account Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)
-
-## Durable Functions
-
-[Azure Functions Durable Extensions](https://github.com/Azure/azure-functions-durable-extension)
-
-Install Durable Functions Package into a specific project:
-
-```
-func extensions install -p Microsoft.Azure.WebJobs.Extensions.DurableTask -v 2.4.0
-```
-
-or
-
-```
-dotnet add package Microsoft.Azure.WebJobs.Extensions.DurableTask --version 2.4.0
-```
-
 ## Additional Labs & Walkthroughs
 
 [Create serverless applications](https://docs.microsoft.com/en-us/learn/paths/create-serverless-applications/)
+
+[Build a real-time event-driven Java solution in Azure](https://docs.microsoft.com/en-us/learn/modules/deploy-real-time-event-driven-app/?WT.mc_id=java-11777-judubois&source=learn)
+
+[Develop Java serverless Functions on Azure using Maven](https://docs.microsoft.com/en-us/learn/modules/develop-azure-functions-app-with-maven-plugin/?WT.mc_id=java-11777-judubois&source=learn)

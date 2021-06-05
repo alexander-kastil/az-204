@@ -1,10 +1,12 @@
 # Azure Function Core Tools
 
+[Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2)
+
 Install azure-function-tools:
 
 ```
 npm i -g azure-functions-core-tools
-npm i -g azure-functions-core-tools@3
+npm i -g azure-functions-core-tools@3 --unsafe-perm true
 ```
 
 > Note: Documentaion can be found on [Github](https://github.com/Azure/azure-functions-core-tools) or on [Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash)
@@ -20,7 +22,23 @@ cd vscode-functs
 
 ![init-vscode](../_images/init-vscode.png)
 
-# VS Code Function Apps
+## Testing
+
+To Execute REST Calls you could use:
+
+-   httprepl
+-   [az rest](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_rest)
+-   Postman
+
+Install httprepl:
+
+```
+dotnet tool install -g Microsoft.dotnet-httprepl
+```
+
+For [Storage Account Testing and Emulation](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) download the [Local Storage Account Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)
+
+## Demo VS Code Function Apps
 
 Provision required Services:
 

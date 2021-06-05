@@ -2,8 +2,8 @@
 
 ## Demos
 
-- Create and use Cosmos DB
-- Use Cosmos DB in .NET Core
+-   Create and use Cosmos DB
+-   Use Cosmos DB in .NET Core
 
 ## Readings
 
@@ -24,3 +24,7 @@
 ## Additional Labs & Walkthroughs
 
 [Learning Path - Work with NoSQL data in Azure Cosmos DB](https://docs.microsoft.com/en-us/learn/paths/work-with-nosql-data-in-azure-cosmos-db/)
+
+[Build a real-time event-driven Java solution in Azure](https://docs.microsoft.com/en-us/learn/modules/deploy-real-time-event-driven-app/?WT.mc_id=java-11777-judubois&source=learn)
+
+[Build a Java app with cloud-scale NoSQL Cosmos DB](https://docs.microsoft.com/en-us/learn/modules/build-cosmos-db-java-app/?WT.mc_id=java-11777-judubois&source=learn)
