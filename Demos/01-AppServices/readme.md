@@ -27,6 +27,10 @@
 
 ## Extensions
 
+[Azure CLI](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli)
+
+[Azrue Account](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account)
+
 [Azure App Services](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
 
 ## Additional Labs & Walkthroughs
