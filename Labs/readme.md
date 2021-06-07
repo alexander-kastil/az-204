@@ -1,10 +1,6 @@
 # Labs
 
-The lab guides are available to the folder corresponding to the module.
-
-![connect-rdp](_images/modules.jpg)
-
-> Note: For better reading experience I recommend reading the lab guides using the browser. Example: https://github.com/ARambazamba/AZ-204/blob/main/Labs/01/AZ-204_01_lab.md
+For better reading experience I recommend reading the lab guides using the browser. Example: https://github.com/ARambazamba/AZ-204/blob/main/Labs/01/AZ-204_01_lab.md
 
 To avoid Nuget-errors execute the following cmd:
 
