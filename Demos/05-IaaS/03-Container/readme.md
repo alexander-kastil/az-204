@@ -2,12 +2,12 @@
 
 ## Demos
 
-- Docker Basics
-- Deploy to Azure Container Registry
-- Use Azure Container Registry Build Task
-- Deploy to Azure Container Instances & Web Apps for Containers
-- Kubernetes Intro (optional)
-- Helm (optional)
+-   Docker Basics
+-   Deploy to Azure Container Registry
+-   Use Azure Container Registry Build Task
+-   Deploy to Azure Container Instances & Web Apps for Containers
+-   Kubernetes Intro (optional)
+-   Helm (optional)
 
 ## Readings
 
@@ -37,7 +37,7 @@
 
 [Kubernetes](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools)
 
-[Azure Dev Spaces](https://marketplace.visualstudio.com/items?itemName=azuredevspaces.azds)
+[Bridge to Kubernetes](https://marketplace.visualstudio.com/items?itemName=mindaro.mindaro)
 
 ## Additional Labs & Walkthroughs
 
