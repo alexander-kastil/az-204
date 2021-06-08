@@ -144,7 +144,7 @@ Check Docker Settings:
 
 #### <a id="wsl">Install WSL2</a>
 
-Execute script `setup-wsl2.ps1` multible times to setup WSL2
+Execute script `setup-wsl2.ps1` multible times to setup WSL2. Reboot between first and second run.
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force;
