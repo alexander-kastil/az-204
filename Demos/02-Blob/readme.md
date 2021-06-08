@@ -2,8 +2,8 @@
 
 ## Demos
 
-- Provision and use Blob Storage
-- Use Blob Storage Fileshare
+-   Provision and use Blob Storage
+-   Use Blob Storage Fileshare
 
 ## Readings
 
@@ -11,11 +11,11 @@
 
 [Azure Storage](https://docs.microsoft.com/en-us/azure/storage/)
 
+[Blob service REST API](https://docs.microsoft.com/en-us/rest/api/storageservices/blob-service-rest-api)
+
 [Blob Redundany](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy)
 
 [Blob Metadata](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-properties-metadata?tabs=dotnet)
-
-[Blob Lease](https://docs.microsoft.com/en-us/rest/api/storageservices/lease-blob)
 
 ## CLI Reference
 
