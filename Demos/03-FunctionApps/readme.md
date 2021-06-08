@@ -33,6 +33,8 @@
 
 [az functionapp](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest)
 
+[az rest](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_rest)
+
 ## Extensions
 
 [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
