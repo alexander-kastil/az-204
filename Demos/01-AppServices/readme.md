@@ -27,6 +27,8 @@
 
 [az webapp](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest)
 
+[az webapp up](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az_webapp_up)
+
 ## Extensions
 
 [Azure CLI](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli)
