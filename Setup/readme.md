@@ -221,7 +221,3 @@ Redirect Audio:
 Use Secondary Display:
 
 ![all-monitors](_images/all-monitors.jpg)
-
-## TODO: Publish Image to Shared Image Galery
-
-[Publish Image to Shared Image Galery](./Create/readme.md)
