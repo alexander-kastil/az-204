@@ -12,12 +12,13 @@ az acr create -g $grp --name $acr --sku Basic
 # Login to Container Registry & get loginServer
 
 az acr login --name $acr
+
 az acr list --query "[].loginServer" -o tsv
+az acr credential show -n $acr --query "passwords[0].value"
 
 # Tag img & upload to ACR
 
 az acr update --name $acr --admin-enabled true
-az acr credential show -n $acr --query "passwords[0].value"
 
 # Upload Image
 

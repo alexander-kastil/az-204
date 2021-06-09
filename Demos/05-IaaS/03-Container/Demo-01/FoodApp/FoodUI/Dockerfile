@@ -13,7 +13,7 @@ VOLUME /var/cache/nginx
 
 # Take from node-build
 COPY --from=node /app/dist/FoodUI /usr/share/nginx/html
-# Take from project folder
+# URL Rewrite for Single Page Applications - Take from project folder 
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
 # docker build --rm -f "Dockerfile" -t foodui .
