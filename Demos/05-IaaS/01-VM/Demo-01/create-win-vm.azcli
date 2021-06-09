@@ -25,6 +25,6 @@ az vm encryption enable -g $grp -n $vm --disk-encryption-keyvault $vault --volum
 # Enable Azure AD Login
 az vm extension set --publisher Microsoft.Azure.ActiveDirectory --name AADLoginForWindows -g $grp --vm-name $vmname
 
-username=$(az account show --query user.name --output tsv)
+username=$(az account show --query user.name -o tsv)
 
 az role assignment create --role "Virtual Machine Administrator Login" --assignee $username --scope $vmname

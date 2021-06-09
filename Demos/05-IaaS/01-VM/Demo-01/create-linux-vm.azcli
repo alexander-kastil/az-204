@@ -10,4 +10,4 @@ az vm create -n linuxvm -g $grp --image UbuntuLTS --size Standard_B1ms --generat
 
 # Connect to vm
 
-ssh azureuser@104.40.251.162
+ssh az204admin@104.40.251.162
