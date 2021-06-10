@@ -1,10 +1,18 @@
-rnd=26685
+rnd=$RANDOM
 loc=westeurope
+appPlan=apimgmt-$rnd
+app=foodapi-$rnd
 grp=az204-m08-apimgmt-$rnd
 apimgmt=apimgmtcons-$rnd
 mail="alexander.pajer@integrations.at"
 publisher="integrationsonline"
 
 az group create -n $grp -l $loc
+
+# az webapp up replaces the two step below, build, publishes and deploys the web app
+# az appservice plan create -n $appPlan -g $grp --sku Free
+# az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNET|5.0"
+
+az webapp up -n $app -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|5.0"
 
 az apim create -n $apimgmt -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Consumption
