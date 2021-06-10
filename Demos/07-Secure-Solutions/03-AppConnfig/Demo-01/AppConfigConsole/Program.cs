@@ -1,6 +1,7 @@
 ﻿using System;
 using Azure.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
 namespace AppConfigConsole
 {
@@ -14,6 +15,8 @@ namespace AppConfigConsole
                 builder.AddAzureAppConfiguration(options =>
                 {
                     options.Connect(cs)
+                            // Uncomment if you want to use a specific label
+                            // .Select(KeyFilter.Any, "Production") 
                             .ConfigureKeyVault(kv =>
                             {
                                 kv.SetCredential(new DefaultAzureCredential());
