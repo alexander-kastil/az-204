@@ -9,7 +9,7 @@ publisher="integrationsonline"
 
 az group create -n $grp -l $loc
 
-# az webapp up replaces the two step below:
+# az webapp up replaces the two step below, build, publishes and deploys the web app
 # az appservice plan create -n $appPlan -g $grp --sku Free
 # az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNET|5.0"
 
