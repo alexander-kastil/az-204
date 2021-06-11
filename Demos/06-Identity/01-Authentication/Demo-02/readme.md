@@ -1,1 +1,3 @@
-# MSAL in MVC
+# MSAL WebApp
+
+-   Uses `msal-mvc-webapp` app registration
