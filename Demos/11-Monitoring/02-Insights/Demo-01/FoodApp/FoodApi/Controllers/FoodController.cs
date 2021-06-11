@@ -13,6 +13,7 @@ namespace FoodApi
 
         public FoodController (FoodDBContext context, AILogger l) {
             ctx = context;
+            logger = l;
         }
 
         // http://localhost:PORT/api/food
@@ -24,7 +25,7 @@ namespace FoodApi
         // http://localhost:PORT/api/food/3
         [HttpGet ("{id}")]
         public FoodItem GetById (int id) {            
-            // logger.LogEvent("Getting item with id", id.ToString());
+            logger.LogEvent("Getting item with id", id.ToString());
             return ctx.Food.FirstOrDefault (v => v.ID == id);
         }
 
