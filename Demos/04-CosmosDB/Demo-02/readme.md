@@ -8,6 +8,8 @@
 
 ## Demo
 
+Trigger Source:
+
 ```javascript
 function trigger() {
   var context = getContext();
