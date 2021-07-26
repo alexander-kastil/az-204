@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Linq;
 using Microsoft.Extensions.Configuration;
 
 namespace CosmosReader {
@@ -20,8 +22,8 @@ namespace CosmosReader {
             Container container;
 
             cosmosClient = new CosmosClient (conStr);
-            database = cosmosClient.GetDatabase ("ProductsDB");
-            container = database.GetContainer ("Products");
+            database = cosmosClient.GetDatabase ("productsdb");
+            container = database.GetContainer ("products");
 
             // Read from Cosmos DB
 
@@ -54,8 +56,21 @@ namespace CosmosReader {
 
             orangeSoda.ProductNumber = "DFG";
             item = await container.UpsertItemAsync(orangeSoda);            
-   
             
+            // Linq Queries
+            using (FeedIterator<Product> setIterator = container.GetItemLinqQueryable<Product>()
+            .Where(p => p.Color == "Red")
+            .ToFeedIterator<Product>())
+            {
+                while (setIterator.HasMoreResults)
+                {
+                    foreach(var product in await setIterator.ReadNextAsync()){
+                    {
+                        Console.WriteLine(product.Name);
+                        }}
+                    }
+                }            
+
             // Discontinued Trigger
 
             Product discont = new Product {           
