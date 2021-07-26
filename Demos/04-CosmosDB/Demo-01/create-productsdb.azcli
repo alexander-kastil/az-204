@@ -11,5 +11,11 @@ az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp
 
 az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
 
-az cosmosdb sql container create --account-name $acct --database-name $dbname --name $container --partition-key-path "/Color"  --throughput 1000 -g $grp
+# Create a container with even partitioning
+
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name $container --partition-key-path "/id"  --throughput 1000 -g $grp
+
+# Create a container with 'hot' partition
+
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name hot-$container --partition-key-path "/Color"  --throughput 1000 -g $grp
     

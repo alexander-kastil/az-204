@@ -1,7 +1,12 @@
-# .NET Data Access and Trigger
+# Using Cosmos DB and .NET Core
 
 - Explain .NET Data Access
+- Show Linq Sample
 - Explain Trigger
+
+[LINQ to SQL translation](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-linq-to-sql)
+
+## Demo
 
 ```javascript
 function trigger() {
