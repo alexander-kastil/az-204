@@ -3,6 +3,7 @@
 - Explain .NET Data Access
 - Show Linq Sample
 - Explain Trigger
+- Create Stored Proc 'getFirstItem' and use it
 
 [LINQ to SQL translation](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-linq-to-sql)
 

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Linq;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace CosmosReader {
@@ -20,8 +23,8 @@ namespace CosmosReader {
             Container container;
 
             cosmosClient = new CosmosClient (conStr);
-            database = cosmosClient.GetDatabase ("ProductsDB");
-            container = database.GetContainer ("Products");
+            database = cosmosClient.GetDatabase ("productsdb");
+            container = database.GetContainer ("products");
 
             // Read from Cosmos DB
 
@@ -42,7 +45,7 @@ namespace CosmosReader {
             // Write to Cosmos DB
 
             Product orangeSoda = new Product {           
-                id = "9999",
+                id = "9996",
                 Name = "Orange Soda", 
                 ProductNumber = "ABC",
                 Color = "yellow"
@@ -54,10 +57,28 @@ namespace CosmosReader {
 
             orangeSoda.ProductNumber = "DFG";
             item = await container.UpsertItemAsync(orangeSoda);            
-   
+            
+            // Linq Queries
+            using (FeedIterator<Product> setIterator = container.GetItemLinqQueryable<Product>()
+            .Where(p => p.Color == "Red")
+            .ToFeedIterator<Product>())
+            {
+                while (setIterator.HasMoreResults)
+                {
+                    foreach(var product in await setIterator.ReadNextAsync()){
+                    {
+                        Console.WriteLine(product.Name);
+                        }}
+                    }
+                }            
+
+            // Entity Framework - con string hardcoded in class
+            var context = new ProductCosmosDbContext();
+            context.Database.EnsureCreated();
+            context.Products.Add(new Product(){id = "8888", Name = "Hazelenut Protein", ProductNumber = "Whey HZ", Promotion = false});
+            context.SaveChanges(); 
             
             // Discontinued Trigger
-
             Product discont = new Product {           
                 id = "9999",
                 Name = "Orange Soda Bitter", 
@@ -70,7 +91,8 @@ namespace CosmosReader {
             }});
 
             Console.WriteLine ("\tDiscontinued: {0}\n", discontitem.Discontinued);
+       
+       }
 
-        }
     }
 }
