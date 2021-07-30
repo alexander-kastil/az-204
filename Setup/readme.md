@@ -17,7 +17,8 @@
 | Git Extensions                                            | http://gitextensions.github.io                                                          |
 | .NET 5 SDK, .NET Core 3.1 SDK                             | https://dotnet.microsoft.com/download                                                   |
 | Docker Desktop                                            | https://www.docker.com/products/docker-desktop                                          |
-| Node.js 12.20.0                                           | https://nodejs.org/download/release/v10.23.0/                                           | Azure DocumentDB Data Migration Tool                       | https://www.microsoft.com/en-us/download/confirmation.aspx?id=46436
+| Node.js 12.20.0                                           | https://nodejs.org/download/release/v10.23.0/                                           
+| Azure DocumentDB Data Migration Tool                       | https://www.microsoft.com/en-us/download/confirmation.aspx?id=46436
 
 
 ## <a id="basics">Create VM</a>

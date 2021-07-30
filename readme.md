@@ -2,19 +2,19 @@
 
 Companion Material for Class Delivery by [Alexander Pajer](https://www.integrations.at/kontakt.aspx) containing:
 
-- [Requirements / Tooling](./Tooling)
+  - [Requirements / Tooling](./Tooling)
   - [Register Azure Pass](./Tooling/05-AzurePass)
   - [Git & GitHub Basics](./Tooling/01-Github)
   - [Visual Studio Code Intro](./Tooling/02-VSCode)
   - [Document Repos using Markdown](./Tooling/03-Markdown)
   - [Using Azure CLI](./Tooling/04-CLI)
-- [Instructor Demos](./Demos)
-- [Guided Scripts to setup an Azure hosted Development & Lab VM](./Setup)
+  - [Instructor Demos](./Demos)
+  - [Guided Scripts to setup an Azure hosted Development & Lab VM](./Setup)
   - [Base Dev Environment Setup inkluding Visual Studio Code Extensions](./Setup/#basics)
   - [Setup Windows Subsystem for Linux 2 - WSL2](./Setup/#wsl)
   - [Setup Docker & Kubernetes](./Setup/#docker-wsl)
   - [Use Teams in VM](./Setup/#teams)
-- [Labs](./Labs)
+  - [Labs](./Labs)
 
 > Note: Labs are taken from the official repo [AZ-204: Developing solutions for Microsoft Azure](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)
 
