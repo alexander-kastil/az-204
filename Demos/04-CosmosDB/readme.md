@@ -19,6 +19,8 @@
 
 [Partitioning and horizontal scaling in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview)
 
+[Use Data migration tool to migrate your data to Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#JSON)
+
 
 ## CLI Reference
 
