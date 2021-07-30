@@ -16,15 +16,19 @@ namespace CosmosReader {
                 .SetBasePath (Directory.GetCurrentDirectory ())
                 .AddJsonFile ("appsettings.json", optional : true, reloadOnChange : true);
             IConfigurationRoot configuration = builder.Build ();
-            var conStr = configuration["ConnectionStrings"];
+            // var conStr = configuration["ConnectionStrings"];
+            var accountEndpoint = configuration["accountEndpoint"];
+            var accountKey = configuration["accountKey"];
+            var db = configuration["DBName"];
+            var collection = configuration["Collection"];
 
             CosmosClient cosmosClient;
             Database database;
             Container container;
 
             cosmosClient = new CosmosClient (conStr);
-            database = cosmosClient.GetDatabase ("productsdb");
-            container = database.GetContainer ("products");
+            database = cosmosClient.GetDatabase (db);
+            container = database.GetContainer (collection);
 
             // Read from Cosmos DB
 
