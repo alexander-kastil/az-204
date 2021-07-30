@@ -30,7 +30,6 @@ choco install azure-functions-core-tools-3 --params="'/x64:true'" -y
 choco install azurepowershell -y
 choco install microsoftazurestorageexplorer -y
 choco install azure-data-studio -y
-choco install azure-documentdb-data-migration-tool
 choco install postman -y
 choco install ngrok -y
 

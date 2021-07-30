@@ -16,18 +16,19 @@ namespace CosmosReader {
                 .SetBasePath (Directory.GetCurrentDirectory ())
                 .AddJsonFile ("appsettings.json", optional : true, reloadOnChange : true);
             IConfigurationRoot configuration = builder.Build ();
-            // var conStr = configuration["ConnectionStrings"];
+            
             var accountEndpoint = configuration["accountEndpoint"];
             var accountKey = configuration["accountKey"];
             var db = configuration["DBName"];
             var collection = configuration["Collection"];
+            var conStr = $"AccountEndpoint={accountEndpoint};AccountKey={accountKey};";
 
-            CosmosClient cosmosClient;
+            CosmosClient cclient;
             Database database;
             Container container;
 
-            cosmosClient = new CosmosClient (conStr);
-            database = cosmosClient.GetDatabase (db);
+            cclient = new CosmosClient (conStr);
+            database = cclient.GetDatabase (db);
             container = database.GetContainer (collection);
 
             // Read from Cosmos DB
@@ -47,7 +48,6 @@ namespace CosmosReader {
             }
 
             // Write to Cosmos DB
-
             Product orangeSoda = new Product {           
                 id = "9996",
                 Name = "Orange Soda", 
@@ -58,7 +58,6 @@ namespace CosmosReader {
             Product item = await container.CreateItemAsync(orangeSoda);
 
             // Update item
-
             orangeSoda.ProductNumber = "DFG";
             item = await container.UpsertItemAsync(orangeSoda);            
             
@@ -76,8 +75,8 @@ namespace CosmosReader {
                     }
                 }            
 
-            // Entity Framework - con string hardcoded in class
-            var context = new ProductCosmosDbContext();
+            // Entity Framework
+            var context = new ProductCosmosDbContext(accountEndpoint, accountKey, db);
             context.Database.EnsureCreated();
             context.Products.Add(new Product(){id = "8888", Name = "Hazelenut Protein", ProductNumber = "Whey HZ", Promotion = false});
             context.SaveChanges(); 
