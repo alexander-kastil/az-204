@@ -1,4 +1,5 @@
-rnd=$RANDOM
+# rnd=$RANDOM
+rnd=31049
 loc=westeurope
 grp=az204-m04-cosmosdb-$rnd
 acct=az204-cosmos-$rnd
@@ -22,3 +23,13 @@ echo "container $container created in $acct"
 az cosmosdb sql container create --account-name $acct --database-name $dbname --name hot-$container --partition-key-path "/Color"  --throughput 1000 -g $grp
     
 echo "container hot-$container created in $acct"    
+
+# Make sure Cosmos DB Migration tool is installed to import products.json to collections
+# https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#JSON
+
+cs=$(az cosmosdb keys list --type connection-strings --name $acct --resource-group $grp --query "connectionStrings[0].connectionString" -o tsv)
+
+echo "Connection String to use for command below:" $cs
+
+dt.exe /s:JsonFile /s.Files:.\products.json /t:DocumentDB /t.ConnectionString:"AccountEndpoint=https://az204-cosmos-31049.documents.azure.com:443/;AccountKey=hBJcrGr1ZNzFNJ1do6yFJ1iIAhmEBI5ZwofqoOojoOdNQzyemVIFmNBy1LwdlTBk4sUpc4cfxDdvJeGEKYht7Q==;Database=productsdb;" /t.Collection:products /t.PartitionKey:/id /t.CollectionThroughput:1000 /ErrorLog:H:\import.csv /OverwriteErrorLog /ErrorDetails:All 
+
