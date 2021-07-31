@@ -2,7 +2,9 @@
 
 ## Demos
 
-- Api Management Basics
+- Api Management Create / Add Api
+- Create Product
+- Create Subscription / Use it
 
 Use Subscription Key:
 
