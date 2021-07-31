@@ -4,6 +4,12 @@
 
 - Api Management Basics
 
+Use Subscription Key:
+
+```
+curl -X GET https://APIM-URL.azure-api.net/api/METHOD -H 'Ocp-Apim-Subscription-Key: [SUBSCRIPTION-KEY]'
+```
+
 ## Readings
 
 [Swaggger](https://swagger.io/)
