@@ -6,6 +6,10 @@
 
 [Notification Hub](https://docs.microsoft.com/en-us/azure/notification-hubs/)
 
+Not Part of AZ-204:
+
+[SignalR](https://docs.microsoft.com/en-us/azure/azure-signalr/signalr-overview)
+
 ## CLI Reference
 
 [az eventgrid](https://docs.microsoft.com/en-us/cli/azure/eventgrid?view=azure-cli-latest)
