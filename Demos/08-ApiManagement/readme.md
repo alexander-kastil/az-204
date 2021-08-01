@@ -4,6 +4,7 @@
 
 - Api Management Create / Add Api
 - Create Product
+- Explain Policies
 - Create Subscription / Use it
 
 Use Subscription Key:

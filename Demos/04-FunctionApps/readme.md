@@ -8,6 +8,7 @@
 -   Bindings in Java Script projects (optional)
 -   Durable Functions
 -   Azure Functions & Webhooks (optional)
+-   Azure Functions REST Api  (optional)
 
 ## Readings
 
