@@ -23,6 +23,8 @@ curl -X GET https://APIM-URL.azure-api.net/api/METHOD -H 'Ocp-Apim-Subscription-
 
 [API Management Policies](https://docs.microsoft.com/en-us/azure/api-management/api-management-policies)
 
+[Debug your APIs using request tracing](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-api-inspector)
+
 ## CLI Reference
 
 [az apim](https://docs.microsoft.com/en-us/cli/azure/apim?view=azure-cli-latest)
