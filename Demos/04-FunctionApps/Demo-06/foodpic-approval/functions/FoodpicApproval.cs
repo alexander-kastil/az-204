@@ -35,20 +35,50 @@ namespace Integrations
             var outputs = new List<string>();
             // Get the url data and pass it to an activity function
             var data = context.GetInput<ApprovalRequest>();
-            outputs.Add(await context.CallActivityAsync<string>("ApprovalSendToTeams", data.Url));
+            outputs.Add(await context.CallActivityAsync<string>("ApprovalSendToTeams", data.PicUrl));
 
             // returns ["Hello Tokyo!", "Hello Seattle!", "Hello London!"]
             return outputs;
         }
-
-
-
-        
+    
         [FunctionName("ApprovalSendToTeams")]
-        public static string SayHello([ActivityTrigger] string url, ILogger log)
+        public static string ApprovalSendToTeams([ActivityTrigger] string url, ILogger log)
         {
             log.LogInformation($"Sending url to Teams {url}.");
             return $"Sent url to Teams {url}!";
         }
+
+        [FunctionName(nameof(SendApprovalRequestCard))]
+        public static Task SendApprovalRequestCard([ActivityTrigger] TeamsApprovalRequest req, ILogger log)
+        {
+            log.LogInformation($"Message regarding {req.request.PicUrl} sent to Teams as Adaptive Card " +
+                $"(instance ID {req.OrchestrationInstanceID}!");
+        
+            // Todo: Send data about speed violation to Slack via Slack REST API.
+            // Not implemented here, just a demo.
+        
+            return Task.CompletedTask;
+        }
+
+        private const string ReceiveApprovalResponseEvent = "ReceiveApprovalResponse";
+        
+        [FunctionName(nameof(ProcessTeamsApproval))]
+        public static async Task<HttpResponseMessage> ProcessTeamsApproval(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post")]HttpRequestMessage req,
+        [DurableClient] IDurableOrchestrationClient orchestrationClient,
+        ILogger log)
+        {
+            // Get approval response from HTTP body
+            var teamsResponse = JsonSerializer.Deserialize<TeamsApprovalRequest>(await req.Content.ReadAsStringAsync());        
+            // Get status based on orchestration Id
+            var status = await orchestrationClient.GetStatusAsync(teamsResponse.OrchestrationInstanceID);
+            if (status.RuntimeStatus == OrchestrationRuntimeStatus.Running || status.RuntimeStatus == OrchestrationRuntimeStatus.Pending)
+            {
+                log.LogInformation("Received Teams response in time, raising event");
+                await orchestrationClient.RaiseEventAsync(teamsResponse.OrchestrationInstanceID,ReceiveApprovalResponseEvent, teamsResponse.Approved);
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            }    
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        }       
     }
 }
