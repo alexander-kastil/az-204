@@ -1,7 +1,5 @@
 POST  http://localhost:7071/api/ApprovalStarter HTTP/1.1
 content-type: application/json
 {
-    "Url": "http://localhost/test",
-    "ReturnUrl": "",
-    "Approved": null
+    "PicUrl": "https://foodpics6743.blob.core.windows.net/drop/zander.jpg",
 }
