@@ -1,0 +1,24 @@
+{
+  "name": "tailwind-products",
+  "version": "1.0.0",
+  "description": "",
+  "main": "POPULATE_DATABASE.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burkeholland/tailwind-products.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burkeholland/tailwind-products/issues"
+  },
+  "homepage": "https://github.com/burkeholland/tailwind-products#readme",
+  "dependencies": {
+    "@azure/cosmos": "^3.5.2",
+    "yargs": "15.1.0"
+  }
+}

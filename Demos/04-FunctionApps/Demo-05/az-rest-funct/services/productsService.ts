@@ -2,12 +2,13 @@ import { CosmosClient } from '@azure/cosmos';
 
 // Set connection string from CONNECTION_STRING value in local.settings.json
 const CONNECTION_STRING = process.env.CONNECTION_STRING;
+const dbname = process.env.dbname;
 
 const productService = {
     init() {
         try {
             this.client = new CosmosClient(CONNECTION_STRING);
-            this.database = this.client.database('tailwind');
+            this.database = this.client.database(dbname);
             this.container = this.database.container('products');
         } catch (err) {
             console.log(err.message);

@@ -64,6 +64,7 @@ code --install-extension msazurermtools.azurerm-vscode-tools
 code --install-extension CoenraadS.bracket-pair-colorizer-2
 code --install-extension mdickin.markdown-shortcuts
 code --install-extension mhutchie.git-graph 
+code --install-extension humao.rest-client
 
 # Install Angular
 Write-Host "Installing Angular - 6/6" -ForegroundColor yellow
