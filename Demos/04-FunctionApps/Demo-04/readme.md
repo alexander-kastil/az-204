@@ -1,5 +1,7 @@
 # JavaScript Functions
 
+> Note: Using Node 12.x
+
 ## Http-Trigger - Simple Interest
 
 Run:
@@ -21,4 +23,9 @@ content-type: application/json
 }
 ```
 
-> Note: Using Node 12.x
+## Http-Trigger - Currency Calculater
+
+Uses [Fixer.io](https://fixer.io/).
+
+- Get your Api Key
+- Replace in `create-func-app.azcli` and `local.settings.json`

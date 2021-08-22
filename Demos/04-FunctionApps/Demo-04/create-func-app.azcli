@@ -1,19 +1,18 @@
-# rnd=$RANDOM
-rnd=007
-grp=az204-m04-jsfuncts-$rnd
+rnd=$RANDOM
+grp=az204-m04-financial-js-$rnd
 loc=westeurope
 app=interestjs-$rnd
-storage=az204interestjs$rnd
+storage=az204financial$rnd
 
 az group create --name $grp --location $loc
 
 az storage account  create -n $storage -g $grp 
 
-az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node
+az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 12 --functions-version 3
 
 echo "Funtions app created: $app"
 
 # Set Application Settings
 # Get Fixer Key at fixer.io
 
-az functionapp config appsettings set -n $app -g $grp --settings "FixerKey=03325b5fecd5eef31244823328db00f9"
+az functionapp config appsettings set -n $app -g $grp --settings "FixerKey=<YOUR API KEY>"
