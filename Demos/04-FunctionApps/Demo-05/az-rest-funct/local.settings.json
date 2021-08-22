@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "CONNECTION_STRING": "AccountEndpoint=https://tailwind-traders-21905.documents.azure.com:443/;AccountKey=bAdVxJk77JkS9WIhNXE5kX5riZWIQYwzgou5edtfqOPSNTF8E94pqrI1mctwtCYn6h2BQRefiSNBKfSpFT2upA==;"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}

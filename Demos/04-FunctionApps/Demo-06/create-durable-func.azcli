@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-m03-durablewf-$rnd
+grp=az204-m04-durablewf-$rnd
 loc=westeurope
 app=durablewf-$rnd
 storage=durablewf$rnd

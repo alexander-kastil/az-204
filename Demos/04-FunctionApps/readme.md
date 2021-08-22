@@ -6,9 +6,9 @@
 -   Azure Function Core Tools & Visual Studio Code
 -   Introduction to Bindings
 -   Bindings in Java Script projects (optional)
+-   Azure Functions REST Api  (optional)
 -   Durable Functions
 -   Azure Functions & Webhooks (optional)
--   Azure Functions REST Api  (optional)
 
 ## Readings
 
