@@ -13,4 +13,7 @@ az functionapp create -n $app -g $grp --storage-account $storage --consumption-p
 
 echo "Funtions app created: $app"
 
-az functionapp list
+# Set Application Settings
+# Get Fixer Key at fixer.io
+
+az functionapp config appsettings set -n $app -g $grp --settings "FixerKey=03325b5fecd5eef31244823328db00f9"
