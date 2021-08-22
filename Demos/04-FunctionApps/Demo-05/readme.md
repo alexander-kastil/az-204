@@ -1,27 +1,23 @@
-# Durable Functions
+# Build Serverless APIs with Azure Functions
 
-[Azure Functions Durable Extensions](https://github.com/Azure/azure-functions-durable-extension)
+- Run `create-db.azcli` in folder `db-setup` to create the db
+- Replace the connection string in `local.settings.json`
 
-Install Durable Functions Package into a specific project:
+    ```json
+    {
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "",
+        "FUNCTIONS_WORKER_RUNTIME": "node",
+        "CONNECTION_STRING": "YOUR CONNECTION_STRING",
+        "dbname": "productsdb"
+    },
+    "Host": {
+        "CORS": "*"
+    }
+    }
+    ```
 
-```
-func extensions install -p Microsoft.Azure.WebJobs.Extensions.DurableTask -v 2.4.0
-```
+- Execute `create-product.http`
+- Execute `get-products.http`
 
-or
-
-```
-dotnet add package Microsoft.Azure.WebJobs.Extensions.DurableTask --version 2.4.0
-```
-
-## Demo
-
--   Execute `create-durable-func.azcli`
--   Create new Proj using function core tools or azure funct extension
--   Install durable functions npm package: `npm i -S durable-functions@1.4.0`
--   Explain HttpStarter, Orchestrator, Activity
--   ShowDebugging: Hit F5 & execute Request: http://localhost:7071/api/orchestrators/OrchestratorJS
-
-Complete Guide:
-
-[Durable Functions Walkthrough](https://docs.microsoft.com/en-us/azure/azure-functions/durable/quickstart-js-vscode)

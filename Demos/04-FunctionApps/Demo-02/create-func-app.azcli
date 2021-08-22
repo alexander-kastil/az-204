@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-m03-vscodefuncts-$rnd
+grp=az204-m04-vscodefuncts-$rnd
 loc=westeurope
 app=vscodeapp-$rnd
 storage=vscodeapp$rnd
@@ -12,8 +12,4 @@ az functionapp create -n $app -g $grp --storage-account $storage --consumption-p
 
 echo "Funtions app created: $app"
 
-az functionapp list
-
-# Set Application Settings
-
-az functionapp config appsettings set -n $app -g $grp --settings "MyImportantSetting=abc"
+az functionapp list # just from info

@@ -4,11 +4,11 @@
 
 -   Create Hello World Function App using Portal using Portal Designer
 -   Azure Function Core Tools & Visual Studio Code
--   Introduction to Bindings
--   Bindings in Java Script projects (optional)
+-   Introduction to Bindings using Blob Storage
+-   Using App Settings in Java Script projects (optional)
+-   Azure Functions REST Api  (optional)
 -   Durable Functions
 -   Azure Functions & Webhooks (optional)
--   Azure Functions REST Api  (optional)
 
 ## Readings
 
@@ -47,3 +47,5 @@
 [Build a real-time event-driven Java solution in Azure](https://docs.microsoft.com/en-us/learn/modules/deploy-real-time-event-driven-app/?WT.mc_id=java-11777-judubois&source=learn)
 
 [Develop Java serverless Functions on Azure using Maven](https://docs.microsoft.com/en-us/learn/modules/develop-azure-functions-app-with-maven-plugin/?WT.mc_id=java-11777-judubois&source=learn)
+
+[Build Serverless APIs with Azure Functions](https://docs.microsoft.com/en-us/learn/modules/build-api-azure-functions/)

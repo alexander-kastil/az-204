@@ -1,29 +1,37 @@
 # JavaScript Functions
 
+> Note: Using Node 12.x
+
 ## Http-Trigger - Simple Interest
 
-Open project js-functions ... press F5 & Execute
+- Run `npm run start`
 
-```
-func start
-```
+- Test using [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and execute `call-get-interest.http` or use curl, az rest, Postman:
 
-Open another terminal
+    ```json
+    POST  http://localhost:7071/api/getInterest HTTP/1.1
+    content-type: application/json
 
-```
-curl "http://localhost:7071/api/simple-interest?principal=5000&rate=.035&term=36"
-```
+    {
+        "principal": 100,
+        "rate": 10,
+        "term": 2
+    }
+    ```
 
-> Note: You might have to switch to Node 10.x - higher Node Versions a currently not supported
+## Http-Trigger - Currency Calculater
 
-## Blob Storage Binding - Find Bookmark
+- Get your Api Key at [Fixer.io](https://fixer.io/)
+- Replace in `create-func-app.azcli` and `local.settings.json`
 
-![cosmos](../_images/cosmos.png)
+    ```json
+    {
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "",
+        "FUNCTIONS_WORKER_RUNTIME": "node",
+        "FixerKey": "YOUR API KEY"
+    }
+    ```
 
-Create DB usin `create-sql-cosmos.azcli` & `create-storage-acct.azcli`
-
-Import Data from `binding-data.json`
-
-Test `find-bookmark`
-
-> Note: If you want to can finish this [Exercise from Microsoft Learning](https://docs.microsoft.com/en-us/learn/modules/chain-azure-functions-data-using-bindings/7-write-data-with-output-bindings-portal-lab?pivots=javascript) later on.
+- Start function app and execute `convert-to.http`
