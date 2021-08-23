@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -9,6 +10,7 @@ using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 
 namespace Integrations
 {
@@ -35,30 +37,38 @@ namespace Integrations
             var outputs = new List<string>();
             // Get the url data and pass it to an activity function
             var data = context.GetInput<ApprovalRequest>();
-            outputs.Add(await context.CallActivityAsync<string>("ApprovalSendToTeams", data.PicUrl));
+            outputs.Add(await context.CallActivityAsync<string>("SendApprovalRequestCard", data.PicUrl));
 
             // returns ["Hello Tokyo!", "Hello Seattle!", "Hello London!"]
             return outputs;
         }
     
-        [FunctionName("ApprovalSendToTeams")]
-        public static string ApprovalSendToTeams([ActivityTrigger] string url, ILogger log)
+        [FunctionName("SendApprovalRequestCard")]
+        public async static string SendApprovalRequestCard([ActivityTrigger] string url, ILogger log)
         {
             log.LogInformation($"Sending url to Teams {url}.");
+
+            JObject card = JObject.Parse(File.ReadAllText("card.json"));
+        
+            var result = await context.CallHttpAsync(HttpMethod.Post, new System.Uri(req.InitialRequest.PicUrl),req.InitialRequest.Card);   
+
             return $"Sent url to Teams {url}!";
         }
 
-        [FunctionName(nameof(SendApprovalRequestCard))]
-        public static Task SendApprovalRequestCard([ActivityTrigger] TeamsApprovalRequest req, ILogger log)
-        {
-            log.LogInformation($"Message regarding {req.request.PicUrl} sent to Teams as Adaptive Card " +
-                $"(instance ID {req.OrchestrationInstanceID}!");
+        // [FunctionName(nameof(SendApprovalRequestCard))]
+        // public async static Task SendApprovalRequestCard([ActivityTrigger] TeamsApprovalRequest req
+        // , [OrchestrationTrigger] IDurableOrchestrationContext context
+        // , ILogger log)
+        // {
+        //     log.LogInformation($"Message regarding {req.InitialRequest.PicUrl} sent to Teams as Adaptive Card " +
+        //         $"(instance ID {req.OrchestrationInstanceID}!");
+
+        //     JObject card = JObject.Parse(File.ReadAllText("card.json"));
         
-            // Todo: Send data about speed violation to Slack via Slack REST API.
-            // Not implemented here, just a demo.
+        //     var result = await context.CallHttpAsync(HttpMethod.Post, new System.Uri(req.InitialRequest.PicUrl),req.InitialRequest.Card);            
         
-            return Task.CompletedTask;
-        }
+        //     // return Task<object>.CompletedTask;
+        // }
 
         private const string ReceiveApprovalResponseEvent = "ReceiveApprovalResponse";
         
