@@ -49,6 +49,6 @@ dotnet add package Microsoft.Azure.WebJobs.Extensions.DurableTask --version 2.5.
 
 -   Install durable functions npm package: `npm i -S durable-functions@1.5.1`
 
-## Durable Functions Snippets
+## Tools & Extensions
 
 [GitHub: Durable Functions Snippets](https://github.com/marcduiker/durable-functions-snippets)
