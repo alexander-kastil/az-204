@@ -43,6 +43,7 @@ namespace Integrations
                 log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");                
             } 
             else if (resultingEvent == removeFoodTask){
+                //TODO: Fix remove and status afert remove
                 food = food.Where(f=>f.ID != removeFoodTask.Result.ID).ToList();
                 // food.Remove(removeFoodTask.Result);
                 log.LogInformation($"Removed food {addFoodTask.Result.Name} from foodlist");  
@@ -50,6 +51,7 @@ namespace Integrations
 
             if(resultingEvent == isCompleteTask && isCompleteTask.Result){
                 log.LogInformation($"Foodlist orchestration completed");
+                //TODO: return state on complete and terminate
             }
             else{
                 context.ContinueAsNew(food);
