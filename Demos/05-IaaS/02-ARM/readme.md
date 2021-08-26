@@ -19,7 +19,7 @@
 
 [az deployment](https://docs.microsoft.com/en-us/cli/azure/deployment?view=azure-cli-latest)
 
-## Extensions
+## Tools & Extensions
 
 [Azure Resource Manager (ARM) Tools](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)
 

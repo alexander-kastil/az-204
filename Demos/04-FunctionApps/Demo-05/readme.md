@@ -5,16 +5,16 @@
 
     ```json
     {
-    "IsEncrypted": false,
-    "Values": {
-        "AzureWebJobsStorage": "",
-        "FUNCTIONS_WORKER_RUNTIME": "node",
-        "CONNECTION_STRING": "YOUR CONNECTION_STRING",
-        "dbname": "productsdb"
-    },
-    "Host": {
-        "CORS": "*"
-    }
+        "IsEncrypted": false,
+        "Values": {
+            "AzureWebJobsStorage": "",
+            "FUNCTIONS_WORKER_RUNTIME": "node",
+            "CONNECTION_STRING": "YOUR CONNECTION_STRING",
+            "dbname": "productsdb"
+        },
+        "Host": {
+            "CORS": "*"
+        }
     }
     ```
 

@@ -21,7 +21,7 @@
 
 [az storage](https://docs.microsoft.com/en-us/cli/azure/storage?view=azure-cli-latest)
 
-## Extensions
+## Tools & Extensions
 
 [Azure Storage](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestorage)
 

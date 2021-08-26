@@ -25,7 +25,7 @@
 
 [az cosmosdb](https://docs.microsoft.com/en-us/cli/azure/cosmosdb?view=azure-cli-latest)
 
-## Extensions
+## Tools & Extensions
 
 [Azure Databases](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-cosmosdb)
 

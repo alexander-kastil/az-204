@@ -5,8 +5,8 @@
       "name": "req",
       "type": "httpTrigger",
       "direction": "in",
-      "route": "orchestrators/{functionName}",
-      "methods": ["post", "get"]
+      "route": "foodapproval",
+      "methods": ["post"]
     },
     {
       "name": "$return",
