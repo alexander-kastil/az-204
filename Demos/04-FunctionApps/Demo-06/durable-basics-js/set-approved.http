@@ -1,0 +1,5 @@
+# Replace with value from sendEventPostUri - set eventName to 'wfApproval'
+
+POST http://localhost:7071/runtime/webhooks/durabletask/instances/47c5b5af776e40d2a74f2635d5e398fe/raiseEvent/wfApproval?taskHub=DurableFunctionsHub&connection=Storage&code=oRUSBjBia1nyaMIltDj8dPx1vpHDKY4yCNj/YPJrcaGbaccTB6eK9Q==, HTTP/1.1
+    content-type: application/json
+    

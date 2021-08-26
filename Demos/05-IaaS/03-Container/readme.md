@@ -31,7 +31,7 @@
 
 [az aks Commands Overview](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
 
-## Extensions
+## Tools & Extensions
 
 [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
 

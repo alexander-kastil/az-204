@@ -1,0 +1,10 @@
+# Start Approval
+POST http://localhost:7071/api/foodapproval HTTP/1.1
+    content-type: application/json
+
+{ 
+    "id": 4, 
+    "name": "Lamb Curry", 
+    "price": 13, 
+    "calories": 1500 
+}

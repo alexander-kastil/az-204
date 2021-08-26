@@ -15,7 +15,7 @@
 
 [az vm](https://docs.microsoft.com/en-us/cli/azure/vm?view=azure-cli-latest)
 
-## Extensions
+## Tools & Extensions
 
 [Azure Virtual Machines](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurevirtualmachines)
 
