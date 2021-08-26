@@ -2,6 +2,21 @@
 
 [Durable Functions Getting Started Walkthrough](https://docs.microsoft.com/en-us/azure/azure-functions/durable/quickstart-js-vscode)
 
+## Demos 
+
+- Stateful Durable Function
+- Basic Workflow / Human Intervention
+
+### Stateful Durable Function
+
+Functions in project `stateful-cs`:
+
+![stateful-functs](_images/stateful-functs.png)
+
+### Basic Workflow / Human Intervention
+
+Functions in project `foodpic-approval-cs`:
+
 ## Readings
 
 [Azure Durable Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable/)
@@ -27,6 +42,8 @@ or
 ```
 dotnet add package Microsoft.Azure.WebJobs.Extensions.DurableTask --version 2.5.1
 ```
+
+> Note: Search on NuGet for other [WebJobs.Extensions](https://www.nuget.org/packages?q=Microsoft.Azure.WebJobs.Extensions)
 
 ### Node (JavaScript / TypeScript)
 
