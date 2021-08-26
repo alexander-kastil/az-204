@@ -17,7 +17,7 @@ namespace Integrations
             ILogger logger)
         {
             
-            var eventData = await req.Content.ReadAsAsync<FoodItem>();
+            var eventData = await req.Content.ReadAsAsync<FoodModel>();
 
             string eventName = req.Method == HttpMethod.Delete ? "RemoveFood" : "AddFood";
 

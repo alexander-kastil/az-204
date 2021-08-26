@@ -12,7 +12,7 @@ namespace Integrations
     {
         [FunctionName("StatefulCompletion")]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "food/complete-collection")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "food/complete")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient orchclient,
             ILogger logger)
         {
@@ -24,7 +24,7 @@ namespace Integrations
                 "CompleteFoodOrchestration",
                 eventData);
 
-            return req.CreateResponse(HttpStatusCode.OK);
+            return req.CreateResponse(orchclient);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
@@ -25,14 +26,14 @@ namespace Integrations
 
 
         [FunctionName("StatefulOrch")]
-        public static async Task<List<FoodItem>> RunOrchestrator(
+        public static async Task<List<FoodModel>> RunOrchestrator(
             [OrchestrationTrigger] IDurableOrchestrationContext context,
             ILogger log)
         {
-            var food = context.GetInput<List<FoodItem>>() ?? new List<FoodItem>();
+            var food = context.GetInput<List<FoodModel>>() ?? new List<FoodModel>();
 
-            var addFoodTask = context.WaitForExternalEvent<FoodItem>("AddFood");
-            var removeFoodTask = context.WaitForExternalEvent<FoodItem>("RemoveFood");
+            var addFoodTask = context.WaitForExternalEvent<FoodModel>("AddFood");
+            var removeFoodTask = context.WaitForExternalEvent<FoodModel>("RemoveFood");
             var isCompleteTask = context.WaitForExternalEvent<bool>("CompleteFoodOrchestration");
 
             var resultingEvent = await Task.WhenAny(addFoodTask, removeFoodTask, isCompleteTask);
@@ -42,7 +43,8 @@ namespace Integrations
                 log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");                
             } 
             else if (resultingEvent == removeFoodTask){
-                food.Remove(removeFoodTask.Result);
+                food = food.Where(f=>f.ID != removeFoodTask.Result.ID).ToList();
+                // food.Remove(removeFoodTask.Result);
                 log.LogInformation($"Removed food {addFoodTask.Result.Name} from foodlist");  
             }
 
