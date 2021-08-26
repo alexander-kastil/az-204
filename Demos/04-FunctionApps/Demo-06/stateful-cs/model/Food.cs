@@ -9,6 +9,10 @@ namespace Integrations
         public string Code {get;set;}
         public DateTime Date {get;set;}
         public bool Enabled {get;set;}
+        public string OrchestrationInstanceId {get;set;}
     }
 
+    public class FoodCompleteData {
+        public string OrchestrationInstanceId {get;set;}
+    }
 }
