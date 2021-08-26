@@ -29,7 +29,9 @@ Functions in project `foodpic-approval-cs`:
 
 [Azure Functions Durable Extensions](https://github.com/Azure/azure-functions-durable-extension)
 
-### .NET
+> Note: Search on NuGet for other [WebJobs.Extensions](https://www.nuget.org/packages?q=Microsoft.Azure.WebJobs.Extensions)
+
+### Installation .NET
 
 Install Durable Functions Package into a specific project:
 
@@ -43,9 +45,7 @@ or
 dotnet add package Microsoft.Azure.WebJobs.Extensions.DurableTask --version 2.5.1
 ```
 
-> Note: Search on NuGet for other [WebJobs.Extensions](https://www.nuget.org/packages?q=Microsoft.Azure.WebJobs.Extensions)
-
-### Node (JavaScript / TypeScript)
+### Installation Node (JavaScript / TypeScript)
 
 -   Install durable functions npm package: `npm i -S durable-functions@1.5.1`
 
