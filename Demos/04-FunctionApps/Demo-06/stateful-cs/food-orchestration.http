@@ -1,6 +1,6 @@
 ### Start orchestration 
 
-GET  http://localhost:7071/api/food/start-collection HTTP/1.1
+GET  http://localhost:7071/api/food/start HTTP/1.1
 content-type: application/json
 
 ###
@@ -8,7 +8,7 @@ content-type: application/json
 # -> replace OrchestrationInstanceId in subsequent rest calls
 # -> make rest call to statusQueryGetUri
 
-GET http://localhost:7071/runtime/webhooks/durabletask/instances/d3b1cc41a94c4ec1b74d1cbf510f8d6c?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/39c7bfba4026465e99ea5e653fd89b65?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
 
 ### Add chips
 
@@ -21,7 +21,7 @@ content-type: application/json
     "Amount": 5,
     "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/chips.jpeg",
     "Enabled": true,
-    "OrchestrationInstanceId": "d3b1cc41a94c4ec1b74d1cbf510f8d6c"
+    "OrchestrationInstanceId": "39c7bfba4026465e99ea5e653fd89b65"
 }
 
 ### Add fish
@@ -35,7 +35,7 @@ content-type: application/json
     "Amount": 3,
     "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/fish.jpeg",
     "Enabled": false,
-    "OrchestrationInstanceId": "d3b1cc41a94c4ec1b74d1cbf510f8d6c"
+    "OrchestrationInstanceId": "39c7bfba4026465e99ea5e653fd89b65"
 }
 
 ### Delete fish
@@ -49,7 +49,7 @@ content-type: application/json
     "Amount": 3,
     "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/fish.jpeg",
     "Enabled": false,
-    "OrchestrationInstanceId": "d3b1cc41a94c4ec1b74d1cbf510f8d6c"
+    "OrchestrationInstanceId": "39c7bfba4026465e99ea5e653fd89b65"
 }
 
 ### Complete 
@@ -57,4 +57,4 @@ content-type: application/json
 POST   http://localhost:7071/api/food/complete HTTP/1.1
 content-type: application/json
 
-{"OrchestrationInstanceId": "d3b1cc41a94c4ec1b74d1cbf510f8d6c"}
+{"OrchestrationInstanceId": "39c7bfba4026465e99ea5e653fd89b65"}

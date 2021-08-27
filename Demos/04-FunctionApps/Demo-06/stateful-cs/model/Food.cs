@@ -1,7 +1,7 @@
 using System;
 namespace Integrations
 {
-       public class FoodModel {
+    public class FoodModel {
         public int ID { get; set; }
         public string Name { get; set; }
         public decimal Amount { get; set; }
@@ -9,6 +9,7 @@ namespace Integrations
         public bool Enabled {get;set;}
         public string OrchestrationInstanceId {get;set;}
     }
+    
     public class FoodCompleteData {
         public string OrchestrationInstanceId {get;set;}
     }

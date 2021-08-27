@@ -1,5 +1,9 @@
-POST  http://localhost:7071/api/ApprovalStarter HTTP/1.1
+### Start approval
+
+POST  http://localhost:7071/api/foodpicapproval/start HTTP/1.1
 content-type: application/json
+
 {
     "PicUrl": "https://foodpics6743.blob.core.windows.net/drop/zander.jpg",
+    "Card": ""
 }
