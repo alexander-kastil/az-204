@@ -5,14 +5,10 @@ using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ImpromptuInterface;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
 
 namespace Integrations
 {
@@ -50,30 +46,24 @@ namespace Integrations
             var result = await context.CallHttpAsync(HttpMethod.Post, new Uri( TeamsWebhook), card);   
             log.LogInformation($"Starting Teams approval for: {teamsApproval.PicUrl}.");
 
-            outputs.Add(await context.CallActivityAsync<string>("SendApprovalRequestCard", teamsApproval));
+            var processTeamsResponse = context.WaitForExternalEvent<TeamsApprovalResponse>("ProcessTeamsResponse");
+            var isCompleteTask = context.WaitForExternalEvent<bool>("CompleteFoodOrchestration");
+
+            var resultingEvent = await Task.WhenAny(processTeamsResponse, isCompleteTask);
+
+            if(resultingEvent == processTeamsResponse){
+                approval.Approved = processTeamsResponse.Result.Approved;
+                log.LogInformation($"Approval Request for Url {approval.PicUrl} was {approval.Approved}");                
+            }
+
+            if(resultingEvent == isCompleteTask && isCompleteTask.Result){
+                log.LogInformation($"Approval Request for Url {approval.PicUrl} completed");
+            }
+            else{
+                context.ContinueAsNew(approval);
+            }
 
             return outputs;
         }
-
-        private const string ReceiveApprovalResponseEvent = "ReceiveApprovalResponse";
-        
-        [FunctionName(nameof(ProcessTeamsApproval))]
-        public static async Task<HttpResponseMessage> ProcessTeamsApproval(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "foodpicapproval/process-teams")]HttpRequestMessage req,
-        [DurableClient] IDurableOrchestrationClient orchestrationClient,
-        ILogger log)
-        {
-            // Get approval response from HTTP body
-            var teamsResponse = JsonSerializer.Deserialize<TeamsApprovalRequest>(await req.Content.ReadAsStringAsync());        
-            // Get status based on orchestration Id
-            var status = await orchestrationClient.GetStatusAsync(teamsResponse.OrchestrationInstanceID);
-            if (status.RuntimeStatus == OrchestrationRuntimeStatus.Running || status.RuntimeStatus == OrchestrationRuntimeStatus.Pending)
-            {
-                log.LogInformation("Received Teams response in time, raising event");
-                await orchestrationClient.RaiseEventAsync(teamsResponse.OrchestrationInstanceID,ReceiveApprovalResponseEvent, teamsResponse.Approved);
-                return new HttpResponseMessage(HttpStatusCode.OK);
-            }    
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        }       
     }
 }
