@@ -1,53 +1,4 @@
 # Durable Functions
-
-[Durable Functions Getting Started Walkthrough](https://docs.microsoft.com/en-us/azure/azure-functions/durable/quickstart-js-vscode)
-
-## Demos 
-
-- Stateful Durable Function
-- Basic Workflow / Human Intervention
-
-### Stateful Durable Function
-
-Functions in project `stateful-cs`:
-
-![stateful-functs](_images/stateful-functs.png)
-
-`local.settings.json`:
-
-```json
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "FUNCTIONS_V2_COMPATIBILITY_MODE": true
-  }
-}
-
-```
-### Basic Workflow / Human Intervention
-
-Functions in project `foodpic-approval-cs`:
-
-![pic-approval](_images/pic-approval.png)
-
-`local.settings.json`:
-
-```json
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "TeamsReturnUrl": "http://localhost:7071/api/foodpicapproval/process-teams",
-    "TeamsWebhook": "<Incoming-Webhook-Url>"          
-  }
-}
-```
-
-> Note: To register an Incoming Webhook in Teams use this [guide: Create Incoming Webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook)
-
 ## Readings
 
 [Azure Durable Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable/)
@@ -102,3 +53,49 @@ func durable purge-history --created-before 2021-11-14T19:35:00.0000000Z --runti
 [Durable Functions Monitor](https://marketplace.visualstudio.com/items?itemName=DurableFunctionsMonitor.durablefunctionsmonitor)
 
 [GitHub: Durable Functions Snippets](https://github.com/marcduiker/durable-functions-snippets)
+
+## Demos 
+
+- Stateful Durable Function
+- Basic Workflow / Human Intervention
+
+### Stateful Durable Function
+
+Functions in project `stateful-cs`:
+
+![stateful-functs](_images/stateful-functs.png)
+
+`local.settings.json`:
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "FUNCTIONS_V2_COMPATIBILITY_MODE": true
+  }
+}
+
+```
+### Basic Workflow / Human Intervention
+
+Functions in project `foodpic-approval-cs`:
+
+![pic-approval](_images/pic-approval.png)
+
+`local.settings.json`:
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "TeamsReturnUrl": "http://localhost:7071/api/foodpicapproval/process-teams",
+    "TeamsWebhook": "<Incoming-Webhook-Url>"          
+  }
+}
+```
+
+> Note: To register an Incoming Webhook in Teams use this [guide: Create Incoming Webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook)
