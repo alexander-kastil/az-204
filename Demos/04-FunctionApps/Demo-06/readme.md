@@ -46,7 +46,7 @@ Functions in project `foodpic-approval-cs`:
 }
 ```
 
-> Note: To register an Incoming Webhook in Teams use this [Guide: Create Incoming Webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook)
+> Note: To register an Incoming Webhook in Teams use this [guide: Create Incoming Webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook)
 
 ## Readings
 
