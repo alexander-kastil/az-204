@@ -31,8 +31,8 @@ namespace Integrations
             ILogger log)
         {
             var food = context.GetInput<List<FoodModel>>() ?? new List<FoodModel>();
-
-            var addFoodTask = context.WaitForExternalEvent<FoodModel>("AddFood");
+var addFoodTask = context.WaitForExternalEvent<FoodModel>("AddFood");
+            
             var removeFoodTask = context.WaitForExternalEvent<FoodModel>("RemoveFood");
             var isCompleteTask = context.WaitForExternalEvent<bool>("CompleteFoodOrchestration");
 
