@@ -38,20 +38,6 @@ content-type: application/json
     "OrchestrationInstanceId": "39c7bfba4026465e99ea5e653fd89b65"
 }
 
-### Delete fish
-
-DELETE http://localhost:7071/api/food/update HTTP/1.1
-content-type: application/json
-
-{
-    "ID": 2,
-    "Name": "Fish",
-    "Amount": 3,
-    "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/fish.jpeg",
-    "Enabled": false,
-    "OrchestrationInstanceId": "39c7bfba4026465e99ea5e653fd89b65"
-}
-
 ### Complete 
 
 POST   http://localhost:7071/api/food/complete HTTP/1.1
