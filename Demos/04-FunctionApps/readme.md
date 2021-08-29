@@ -24,19 +24,13 @@
 
 [Register Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register)
 
-[Azure Durable Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable/)
-
-[Durable Function HTTP API reference](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-http-api)
-
-[Developer's guide to durable entities in .NET](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-entities)
-
 ## CLI Reference
 
 [az functionapp](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest)
 
 [az rest](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_rest)
 
-## Extensions
+## Tools & Extensions
 
 [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 

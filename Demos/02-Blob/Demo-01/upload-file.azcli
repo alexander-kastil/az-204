@@ -1,13 +1,11 @@
 rnd=$RANDOM
-grp=az204-m02-storage-$rnd
+grp=az204-m02-foodpics-$rnd
 loc=westeurope
-acct=storage$rnd
-container="upload-container"
-blob_name="boot.jp"
-file_to_upload="./images/boat.jpg"
-destination_file="uploaded-boat.jpg"
-
-# Execute in Cloud shell and upload pics in advance
+acct=foodpics$rnd
+container="food"
+blob_name="shrimp-vindaloo.jpg"
+file_to_upload="./food-pics/shrimp-vindaloo.jpg"
+destination_file="./downloaded/shrimp-vindaloo.jpg"
 
 az group create -n $grp -l $loc
 
@@ -15,18 +13,20 @@ az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 
 key=$(az storage account keys list -n $acct --query "[0].[value][0]")
 
-#Export vars to env so that they are taken by default instead of passing params
-export AZURE_STORAGE_ACCOUNT=$acct
-export AZURE_STORAGE_KEY=$key
+# Export vars to env so that they are taken by default instead of passing params
+# export AZURE_STORAGE_ACCOUNT=$acct
+# export AZURE_STORAGE_KEY=$key
 
-az storage container create -n $container
+az storage container create -n $container --account-key $key --account-name $acct
 
-az storage blob upload --container-name $container --file $file_to_upload --name $blob_name
+az storage blob upload --container-name $container --file $file_to_upload --name $blob_name --account-key $key --account-name $acct
 
-az storage blob list --container-name $container --output table
+az storage blob list --container-name $container --output table --account-name $acct
 
-az storage blob download --container-name $container --name $blob_name --file $destination_file --output table
+az storage blob download --container-name $container --name $blob_name --file $destination_file --output table --account-key $key --account-name $acct
 
-conStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString)
+conStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
 
-echo "connectionString to use in .NET Demo: $conStr"
+echo "Export ConnectionString to Windows Env to use in .NET Demo:
+echo $conStr
+

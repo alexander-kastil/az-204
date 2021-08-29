@@ -1,27 +1,81 @@
 # Durable Functions
 
+## Demos 
+
+- Stateful Durable Function
+
+### Stateful Durable Function
+
+Functions in project `stateful-cs`:
+
+![stateful-functs](_images/stateful-functs.png)
+
+`local.settings.json`:
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "FUNCTIONS_V2_COMPATIBILITY_MODE": true
+  }
+}
+
+```
+
+## Readings
+
+[Azure Durable Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable/)
+
+[Durable Function HTTP API reference](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-http-api)
+
+[Developer's guide to durable entities in .NET](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-entities)
+
+## Durable Prerequisites
+
 [Azure Functions Durable Extensions](https://github.com/Azure/azure-functions-durable-extension)
 
-Install Durable Functions Package into a specific project:
+> Note: Search on NuGet for other [WebJobs.Extensions](https://www.nuget.org/packages?q=Microsoft.Azure.WebJobs.Extensions) you could use in your functions project.
 
-```
-func extensions install -p Microsoft.Azure.WebJobs.Extensions.DurableTask -v 2.4.0
-```
+### Install Durable Functions Package into a specific project:
 
-or
+.NET / C#:
 
-```
-dotnet add package Microsoft.Azure.WebJobs.Extensions.DurableTask --version 2.4.0
+```powershell
+dotnet add package Microsoft.Azure.WebJobs.Extensions.DurableTask --version 2.5.1
 ```
 
-## Demo
+Node (JavaScript / TypeScript): 
 
--   Execute `create-durable-func.azcli`
--   Create new Proj using function core tools or azure funct extension
--   Install durable functions npm package: `npm i -S durable-functions@1.4.0`
--   Explain HttpStarter, Orchestrator, Activity
--   ShowDebugging: Hit F5 & execute Request: http://localhost:7071/api/orchestrators/OrchestratorJS
+```powershell
+npm i -S durable-functions@1.5.1
+```
+## Durable Functions Management
 
-Complete Guide:
+[Manage instances in Durable Functions in Azure](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-instance-management?tabs=csharp)
 
-[Durable Functions Walkthrough](https://docs.microsoft.com/en-us/azure/azure-functions/durable/quickstart-js-vscode)
+Query all instances:
+
+```powershell
+func durable get-instances
+```
+
+Terminate instance:
+
+```powershell
+func durable terminate --id 0ab8c55a66644d68a3a8b220b12d209c --reason "Found a bug"
+```
+
+Purge instance history:
+
+```powershell
+func durable purge-history 
+func durable purge-history --created-before 2021-11-14T19:35:00.0000000Z --runtime-status failed
+```
+## Tools & Extensions
+
+[Durable Functions Monitor](https://marketplace.visualstudio.com/items?itemName=DurableFunctionsMonitor.durablefunctionsmonitor)
+
+[GitHub: Durable Functions Snippets](https://github.com/marcduiker/durable-functions-snippets)
+
