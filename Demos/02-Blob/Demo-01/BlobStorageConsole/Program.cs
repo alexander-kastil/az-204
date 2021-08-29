@@ -11,7 +11,7 @@ namespace BlobStorageConsole
     {
         static async Task Main(string[] args)
         {
-            string connectionString = "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=foodpics11437;AccountKey=BNLyUT5/xcScLBcGn/sWFCBje0g4J/5/SaRnxkXMzbbLZRDMweXEh0kX8yLzcajwnqzXlsVeDN6iGVyoa+rUpA==";
+            string connectionString = "";
             string containerName = "food";
 
             // In real live you would take the conStr from an env var
