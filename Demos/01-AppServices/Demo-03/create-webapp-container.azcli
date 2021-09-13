@@ -2,7 +2,7 @@ rnd=$RANDOM
 grp=az204-m01-wacontainers-$rnd
 appPlan=wacontainers$rnd
 app=foodui-container-$rnd
-img=arambazamba/foodservice
+img=arambazamba/foodui
 loc=westeurope
 
 az group create --name $grp --location $loc
