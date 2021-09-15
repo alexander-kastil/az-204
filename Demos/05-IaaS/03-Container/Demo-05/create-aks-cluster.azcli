@@ -1,13 +1,11 @@
 rnd=$RANDOM
-grp=az204-m05-aks-$rnd
+grp=az400-m16-aks-$rnd
 loc=westeurope
 aks=foodcluster-$rnd
+ns=foodapp-staging
 
-# Install kubectl command line client locally + only required once otherwise err
-
-az aks install-cli
-
-# You might need to set a path to your system env variables
+# Install kubectl command line client locally:
+# az aks install-cli
 
 # Create resource group:
 
@@ -15,27 +13,27 @@ az group create -n $grp -l $loc
 
 # Create AKS cluster:
 
-az aks create -g $grp -n $aks --node-count 1 --enable-addons monitoring --generate-ssh-keys
+az aks create -g $grp -n $aks --node-count 1 --generate-ssh-keys 
 
 # Get credentials for the Kubernets cluster:
 
 az aks get-credentials -g $grp -n $aks
 
-# Show the credentials:
-
-cat /home/alexander/.kube/config
-
 # Get a list of cluster nodes:
 
 kubectl get nodes
 
-# Apply the yaml
+# Create a namespace
 
-kubectl apply -f foodui.yaml
+kubectl create namespace $ns
+
+# Apply the yaml - Make sure you uploaded foodui.yaml to CloudShell
+
+kubectl apply -f foodui.yaml --namespace $ns
 
 # Get the serive IP and use it on the assigned port
 
 kubectl get service foodui --watch
 
 # port taken from yaml
-# ie: http://20.73.111.85:8081
+# ie: http://20.93.247.200:8081
