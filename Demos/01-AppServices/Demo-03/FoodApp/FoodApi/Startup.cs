@@ -20,12 +20,7 @@ namespace FoodApi
         public void ConfigureServices (IServiceCollection services) {
 
             //Config
-            var cfgBuilder = new ConfigurationBuilder ()
-                .SetBasePath (env.ContentRootPath)
-                .AddJsonFile ("appsettings.json");
-            var configuration = cfgBuilder.Build ();
-            services.Configure<AppConfig> (configuration);
-            services.AddSingleton (typeof (IConfigurationRoot), configuration);
+            services.AddSingleton < IConfiguration > (Configuration); 
 
             //EF
             var conStrLite = Configuration["ConnectionStrings:SQLiteDBConnection"];

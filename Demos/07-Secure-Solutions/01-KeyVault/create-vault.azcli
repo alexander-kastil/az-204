@@ -1,14 +1,18 @@
-rnd=020
+rnd=040
 grp=az204-m07-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
 
 az group create -n $grp -l $loc
 
-az keyvault create -l $loc -n $vault -g $grp --sku premium --enable-purge-protection false
+az keyvault create -l $loc -n $vault -g $grp --sku premium 
 
-az keyvault secret set --vault-name $vault --name "DBConnection" --value "Data Source=./food.db"
+az keyvault secret set --vault-name $vault --name "conSQLite" --value "Data Source=./food.db"
 
-az keyvault secret show --name "DBConnection" --vault-name $vault
+az keyvault secret set --vault-name $vault --name "DBUser" --value "azlabadmin"
 
-az keyvault key list --vault-name $vault
+az keyvault secret set --vault-name $vault --name "DBPassword" --value "Lab@dmin1234"
+
+az keyvault secret show --name "DBUser" --vault-name $vault
+
+az keyvault secret list --vault-name $vault
