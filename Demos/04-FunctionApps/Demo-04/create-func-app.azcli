@@ -1,8 +1,8 @@
 rnd=$RANDOM
-grp=az204-m04-financial-js-$rnd
+grp=az204-m04-foodutil-js-$rnd
 loc=westeurope
-app=interestjs-$rnd
-storage=az204financial$rnd
+app=foodutil-$rnd
+storage=az204foodutil$rnd
 
 az group create --name $grp --location $loc
 
