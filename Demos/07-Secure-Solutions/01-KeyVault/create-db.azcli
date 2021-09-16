@@ -17,4 +17,4 @@ az sql db create -g $grp -s $server -n $db --service-objective S0
 cs=$(az sql db show-connection-string -n $db --server $server -c ado.net)
 echo $cs
 
-az keyvault secret set --vault-name $vault --name "SQLConnection" --value "Server=tcp:$server.database.windows.net,1433;Database=$db;User ID=$user;Password='$pwd';Encrypt=true;Connection Timeout=30;"
+az keyvault secret set --vault-name $vault --name "conSQLServer" --value "Server=tcp:$server.database.windows.net,1433;Database=$db;User ID=$user;Password='$pwd';Encrypt=true;Connection Timeout=30;"
