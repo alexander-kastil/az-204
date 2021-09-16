@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { FoodItem } from "src/app/food/food.model";
 import { MatTableDataSource } from "@angular/material/table";
+import { AppInsightsService } from "src/app/shared/app-insights/app-insights.service";
 
 @Component({
   selector: "app-food-list",
@@ -15,7 +16,7 @@ import { MatTableDataSource } from "@angular/material/table";
   styleUrls: ["./food-list.component.scss"],
 })
 export class FoodListComponent implements OnInit {
-  constructor() {}
+  constructor(private ai: AppInsightsService) {}
 
   @Input()
   food: FoodItem[];
@@ -64,13 +65,17 @@ export class FoodListComponent implements OnInit {
     return this.food.reduce((acc, f) => (acc = acc > f.id ? acc : f.id), 0) + 1;
   }
 
-  selectFood(p: FoodItem) {
-    this.onEditSelected.emit(p);
+  selectFood(f: FoodItem) {
+    this.ai.logEvent("food-selected", f);
+    this.onEditSelected.emit(f);
   }
 
-  deleteFood(p: FoodItem) {
-    this.onDeleteSelected.emit(p);
+  deleteFood(f: FoodItem) {
+    this.ai.logEvent("food-deleted", f);
+    this.onDeleteSelected.emit(f);
   }
 
-  addItemToCart(f: FoodItem) {}
+  addItemToCart(f: FoodItem) {
+    this.ai.logEvent("food-to-cart", f);
+  }
 }

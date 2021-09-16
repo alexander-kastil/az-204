@@ -3,4 +3,12 @@ grp=az204-m12-insights-$rnd
 loc=westeurope
 app=foodapp$rnd
 
+az group create -n $grp -l $loc
+
+az extension add --name application-insights
+
 az monitor app-insights component create --app $app --location $loc --kind web -g $grp --application-type web --retention-time 30
+
+key=$(az monitor app-insights component show --app $app -g $grp --query instrumentationKey -o tsv)
+
+echo "instrumentationKey:" $key
