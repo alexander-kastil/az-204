@@ -1,4 +1,4 @@
-rnd=014
+rnd=040
 grp=az204-m07-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
@@ -10,6 +10,7 @@ az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|5.0"
 
 az webapp identity assign -g $grp -n $app
 mi=$(az webapp identity show  -g $grp -n $app --query principalId -o tsv)
+
 echo "managed identity object id: $mi"
 
 # Uses KeyVault from Demo-01

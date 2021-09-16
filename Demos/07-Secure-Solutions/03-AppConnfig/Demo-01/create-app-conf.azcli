@@ -1,4 +1,4 @@
-rnd=030
+rnd=040
 grp=az204-m07-secure-solutions-$rnd
 loc=westeurope
 cfg=foodconfig-$rnd
@@ -13,7 +13,7 @@ az appconfig create -g $grp -n $cfg -l $loc --sku free
 
 az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y
 
-az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/DBConnection" -y
+az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLite" -y
 
 # create a feature flag and turn it on
 

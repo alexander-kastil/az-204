@@ -12,7 +12,7 @@ pwd=$(az keyvault secret show --name "DBPassword" --vault-name $vault --query va
 
 az sql server create -l $loc -g $grp -n $server -u $user -p $pwd
 
-az sql db create -g $grp -s $server -n $db --service-objective S0
+az sql db create -g $grp -s $server -n $db --service-objective Basic
 
 cs=$(az sql db show-connection-string -n $db --server $server -c ado.net)
 echo $cs
