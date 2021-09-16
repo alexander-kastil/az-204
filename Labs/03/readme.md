@@ -689,8 +689,7 @@ In this exercise, you configured your ASP.NET web application to connect to your
 
     ```
     Container container = await database.CreateContainerIfNotExistsAsync("Online",
-        partitionKeyPath: $"/{nameof(Model.Category)}",
-        throughput: 1000
+        partitionKeyPath: $"/{nameof(Model.Category)}"
     );
     ```
 

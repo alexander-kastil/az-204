@@ -47,9 +47,6 @@ dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
 Write-Host "VS Code Extensions - 5/6" -ForegroundColor yellow
 
 code --install-extension ms-dotnettools.csharp
-code --install-extension ms-dotnettools.csharp
-code --install-extension msjsdiag.debugger-for-chrome
-code --install-extension msjsdiag.debugger-for-edge
 code --install-extension ms-vscode.powershell
 code --install-extension ms-vscode.azurecli
 code --install-extension ms-vscode.azure-account
