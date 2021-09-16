@@ -8,9 +8,8 @@ export interface FoodState extends EntityState<FoodItem> {
   selected: FoodItem;
 }
 
-export const foodAdapter: EntityAdapter<FoodItem> = createEntityAdapter<
-  FoodItem
->();
+export const foodAdapter: EntityAdapter<FoodItem> =
+  createEntityAdapter<FoodItem>();
 
 export const defaultFoodState: FoodState = {
   ids: [],
@@ -29,7 +28,7 @@ export function FoodReducer(
       return state;
     }
     case FoodActionTypes.LoadFood_Success: {
-      return foodAdapter.addAll(action.payload, {
+      return foodAdapter.addMany(action.payload, {
         ...state,
       });
     }

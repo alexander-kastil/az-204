@@ -324,7 +324,7 @@
             _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
           }
         },
-        directives: [_angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__["ɵgrid_privateo"], _angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__["ɵgrid_privateba"], _angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__["ɵgrid_privatebg"], _angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__["ɵgrid_privatex"], _angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__["ɵgrid_privatel"], _shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_1__.NavbarComponent, _angular_router__WEBPACK_IMPORTED_MODULE_6__.RouterOutlet, _angular_flex_layout_extended__WEBPACK_IMPORTED_MODULE_7__.DefaultShowHideDirective, _shared_sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_2__.SidebarComponent, _shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_3__.FooterComponent],
+        directives: [_angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__.DefaultGridAreasDirective, _angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__.DefaultGridGapDirective, _angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__.DefaultGridRowsDirective, _angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__.DefaultGridColumnsDirective, _angular_flex_layout_grid__WEBPACK_IMPORTED_MODULE_5__.DefaultGridAreaDirective, _shared_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_1__.NavbarComponent, _angular_router__WEBPACK_IMPORTED_MODULE_6__.RouterOutlet, _angular_flex_layout_extended__WEBPACK_IMPORTED_MODULE_7__.DefaultShowHideDirective, _shared_sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_2__.SidebarComponent, _shared_footer_footer_component__WEBPACK_IMPORTED_MODULE_3__.FooterComponent],
         styles: [".grid[_ngcontent-%COMP%] {\n  height: 100vh;\n}\n\n.sidebar[_ngcontent-%COMP%] {\n  background-color: darkgrey;\n}\n\n.main[_ngcontent-%COMP%] {\n  margin: 0 2rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQUE7QUFDRjs7QUFFQTtFQUNFLDBCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxjQUFBO0FBQ0YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmdyaWQge1xyXG4gIGhlaWdodDogMTAwdmg7XHJcbn1cclxuXHJcbi5zaWRlYmFyIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBkYXJrZ3JleTtcclxufVxyXG5cclxuLm1haW4ge1xyXG4gIG1hcmdpbjogMCAycmVtO1xyXG59XHJcbiJdfQ== */"]
       });
       /***/
@@ -440,7 +440,7 @@
 
       var _ngrx_store__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
       /*! @ngrx/store */
-      70797);
+      17562);
       /* harmony import */
 
 
@@ -452,7 +452,7 @@
 
       var _ngrx_effects__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
       /*! @ngrx/effects */
-      99964);
+      20275);
       /* harmony import */
 
 
@@ -464,7 +464,7 @@
 
       var _ngrx_store_devtools__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
       /*! @ngrx/store-devtools */
-      63219);
+      22373);
       /* harmony import */
 
 
@@ -1538,7 +1538,7 @@
 
       var _ngrx_store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
       /*! @ngrx/store */
-      70797);
+      17562);
       /* harmony import */
 
 
@@ -1550,7 +1550,7 @@
 
       var _ngrx_effects__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
       /*! @ngrx/effects */
-      99964);
+      20275);
       /* harmony import */
 
 
@@ -1787,7 +1787,7 @@
 
       var _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! @ngrx/effects */
-      99964);
+      20275);
       /* harmony import */
 
 
@@ -1907,7 +1907,7 @@
 
       var _ngrx_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! @ngrx/store */
-      70797);
+      17562);
       /* harmony import */
 
 
@@ -2036,7 +2036,7 @@
 
       var _ngrx_entity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @ngrx/entity */
-      20391);
+      64283);
       /* harmony import */
 
 
@@ -2068,7 +2068,7 @@
 
           case _actions_food_actions__WEBPACK_IMPORTED_MODULE_0__.FoodActionTypes.LoadFood_Success:
             {
-              return _foodAdapter.addAll(action.payload, Object.assign({}, state));
+              return _foodAdapter.addMany(action.payload, Object.assign({}, state));
             }
 
           case _actions_food_actions__WEBPACK_IMPORTED_MODULE_0__.FoodActionTypes.LoadFood_Error:
@@ -2145,7 +2145,7 @@
 
       var _ngrx_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @ngrx/store */
-      70797);
+      17562);
 
       var _getFoodState = (0, _ngrx_store__WEBPACK_IMPORTED_MODULE_1__.createFeatureSelector)(_reducers_food_reducer__WEBPACK_IMPORTED_MODULE_0__.foodFeatureKey);
 
