@@ -22,9 +22,4 @@ az storage container create -n $target --account-name $storage --account-key $ke
 echo "acct: $storage"
 echo "key: $key"
 
-
-## Create function App
-
-az storage account  create -n $storage -g $grp 
-
 az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3
