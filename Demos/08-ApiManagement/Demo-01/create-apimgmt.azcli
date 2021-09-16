@@ -3,7 +3,7 @@ loc=westeurope
 appPlan=apimgmt-$rnd
 app=foodapi-$rnd
 grp=az204-m08-apimgmt-$rnd
-apimgmt=apimgmtcons-$rnd
+apimgmt=fancy-food-apim-$rnd
 mail="alexander.pajer@integrations.at"
 publisher="integrationsonline"
 

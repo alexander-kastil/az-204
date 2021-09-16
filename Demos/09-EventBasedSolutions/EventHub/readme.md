@@ -2,6 +2,8 @@
 
 [Event Hub](https://docs.microsoft.com/en-us/azure/event-hubs/)
 
+[Azure Event Hubs trigger and bindings for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs)
+
 [az eventhubs](https://docs.microsoft.com/en-us/cli/azure/eventhubs?view=azure-cli-latest)
 
 # Lab
