@@ -2,12 +2,13 @@
 
 ## Demos
 
--   Create and Deploy Web App
--   Deploy Static HTML App using Git
--   Web App for Containers
--   App Settings
--   Easy Auth
--   Traffic Manager
+- Create and Deploy Web App
+- Deploy Static HTML App using Git
+- Web App for Containers
+- App Settings
+- Easy Auth
+- Traffic Manager
+- GitHub Actions
 
 ## Readings
 
