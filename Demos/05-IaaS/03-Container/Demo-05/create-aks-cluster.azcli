@@ -2,7 +2,9 @@ rnd=$RANDOM
 grp=az204-m05-aks-$rnd
 loc=westeurope
 aks=foodcluster-$rnd
-ns=foodapp-staging
+ns=staging
+ui=foodui.yaml
+app=foodui
 
 # Install kubectl command line client locally:
 # az aks install-cli
@@ -29,11 +31,18 @@ kubectl create namespace $ns
 
 # Apply the yaml - Make sure you uploaded foodui.yaml to CloudShell
 
-kubectl apply -f foodui.yaml --namespace $ns
+kubectl apply -f $ui --namespace $ns
+kubectl apply -f az-manifests/foodapi.yaml --namespace $ns
+
+# Get some metadata
+kubectl get deployment $app -n $ns
+
+kubectl get pods -n $ns
+
+kubectl get pods -l app=foodui -n $ns
 
 # Get the serive IP and use it on the assigned port
-
-kubectl get service foodui --watch
+kubectl get service $app -n $ns
 
 # port taken from yaml
 # ie: http://20.93.247.200:8081

@@ -64,6 +64,9 @@ code --install-extension mdickin.markdown-shortcuts
 code --install-extension mhutchie.git-graph 
 code --install-extension humao.rest-client
 
+# Azurite Storage Emulator
+npm install -g azurite
+
 # Install Angular
 Write-Host "Installing Angular - 6/6" -ForegroundColor yellow
 

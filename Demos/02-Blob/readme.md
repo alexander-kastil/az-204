@@ -17,6 +17,8 @@
 
 [Blob Metadata](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-properties-metadata?tabs=dotnet)
 
+[Use the Azurite emulator for local Azure Storage development](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
+
 ## CLI Reference
 
 [az storage](https://docs.microsoft.com/en-us/cli/azure/storage?view=azure-cli-latest)
