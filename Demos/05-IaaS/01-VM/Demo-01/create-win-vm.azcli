@@ -28,3 +28,7 @@ az vm extension set --publisher Microsoft.Azure.ActiveDirectory --name AADLoginF
 username=$(az account show --query user.name -o tsv)
 
 az role assignment create --role "Virtual Machine Administrator Login" --assignee $username --scope $vmname
+
+# Install SQL Management Extension
+
+az provider register --namespace Microsoft.SqlVirtualMachine

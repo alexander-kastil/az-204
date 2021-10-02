@@ -9,6 +9,8 @@
 
 [Virtual Machines Documentation](https://docs.microsoft.com/en-us/azure/virtual-machines/)
 
+[Register SQL Server VM with SQL IaaS Agent Extension](https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-agent-extension-manually-register-single-vm?tabs=bash%2Cazure-cli)
+
 [Azure Image Builder](https://docs.microsoft.com/en-us/azure/virtual-machines/image-builder-overview)
 
 ## CLI Reference
