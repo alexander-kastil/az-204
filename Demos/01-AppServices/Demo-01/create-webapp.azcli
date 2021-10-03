@@ -19,14 +19,3 @@ echo "Web Url: http://$web.azurewebsites.net"
 
 # show the deployment user
 az webapp deployment user show 
-
-# Deployment Open Terminal in ./FoodWebMVC - Execute: 
-dotnet restore
-dotnet run, 
-
-# Check https://localhost:5001, press ctrl+c,
-
-dotnet publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProfiles\azure.pubxml /p:Password=<password>
-
-# Use App Service Extension to deploy to website
-
