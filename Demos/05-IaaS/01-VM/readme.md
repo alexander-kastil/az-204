@@ -2,8 +2,12 @@
 
 ## Demos
 
--   Create Windows VM
--   Create Linux VM
+- List VM images using `list-vm-iamges.azcli` and execute: 
+    ```
+    az vm image list -f "Windows-10" --location westeurope --all
+    ```
+- Create Windows VM using Azure CLI and Powershell
+- Create Linux VM
 
 ## Readings
 
@@ -12,6 +16,8 @@
 [Register SQL Server VM with SQL IaaS Agent Extension](https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-agent-extension-manually-register-single-vm?tabs=bash%2Cazure-cli)
 
 [Azure Image Builder](https://docs.microsoft.com/en-us/azure/virtual-machines/image-builder-overview)
+
+[Chocolatey - THE PACKAGE MANAGER FOR WINDOWS](https://chocolatey.org/)
 
 ## CLI Reference
 
