@@ -55,16 +55,6 @@ namespace patientrecords.Controllers
             var token = GetBlobSas(blob);
             return new PatientRecord { name = blob.Name, imageURI = blob.Uri.AbsoluteUri, sasToken = token };
         }
-
-        // GET PatientRecord/patient-nnnnnn/secure
-        [HttpGet("{Name}/{secure}")]
-        public PatientRecord Get(string name, string flag)
-        {
-            BlobClient blob = container.GetBlobClient(name);
-            var token = GetBlobSas(blob);
-            return new PatientRecord { name = blob.Name, imageURI = blob.Uri.AbsoluteUri, sasToken = token };
-        }
-
         private string GetBlobSas(BlobClient blob)
         {
             // Create a user SAS that only allows reading for a minute

@@ -2,8 +2,9 @@
 
 ## Demos
 
--   Provision and use Blob Storage
--   Use Blob Storage Fileshare
+- Provision and use Blob Storage
+- Use Blob Storage Fileshare
+- Use Shared Access Signature
 
 ## Readings
 
@@ -18,6 +19,8 @@
 [Blob Metadata](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-properties-metadata?tabs=dotnet)
 
 [Use the Azurite emulator for local Azure Storage development](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
+
+[Control access to Azure Storage with shared access signatures](https://docs.microsoft.com/en-us/learn/modules/control-access-to-azure-storage-with-sas/)
 
 ## CLI Reference
 

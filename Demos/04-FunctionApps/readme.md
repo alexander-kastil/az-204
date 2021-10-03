@@ -10,6 +10,20 @@
 -   Durable Functions
 -   Azure Functions & Webhooks (optional)
 
+### Azurite Storage Emulator
+
+Installation:
+
+```bash
+npm install -g azurite
+```
+
+Start Emulator from Console:
+
+```bash
+azurite
+```
+
 ## Readings
 
 [Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-java)

@@ -24,5 +24,8 @@ function getBlobSAS(name) {
     console.log("SAS for Blob", data);
     const url = data.imageURI + data.sasToken;
     console.log("Full SAS for Blob", url);
+    var div = document.querySelector('#sasToken');
+    div.innerHTML=url;
+
   });
 }

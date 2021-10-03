@@ -3,7 +3,6 @@
 ## Demos
 
 - RBAC Basics
-- Use SAS with Blob
 
 ## Readings
 

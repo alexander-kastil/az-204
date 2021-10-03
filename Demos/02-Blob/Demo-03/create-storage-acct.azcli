@@ -1,13 +1,13 @@
 rnd=$RANDOM
 loc=westeurope
-grp=az204-m06-sas-$rnd
+grp=az204-m02-sas-$rnd
 acct=medicalrecords$rnd
 container="patient-images"
 path="./patient-images/"
 blob="patient-32589.jpg"
 
 ## Update expiry
-expiry=2021-09-20
+expiry=2021-10-09
 
 az group create -n $grp -l $loc
 
