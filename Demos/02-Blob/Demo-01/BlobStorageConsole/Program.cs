@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Azure.Storage;
@@ -21,10 +22,14 @@ namespace BlobStorageConsole
             BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
             BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
 
+            Dictionary<string,string> metadata = new Dictionary<string, string>();
+            metadata.Add("restaurant", "fusion");
+            await containerClient.SetMetadataAsync(metadata);
+
             await
             foreach (BlobItem blobItem in containerClient.GetBlobsAsync())
             {
-                Console.WriteLine("\t" + blobItem.Name);
+                Console.WriteLine("\t" + blobItem.Name + " " + blobItem.Properties.ETag);
             }
 
             string localPath = "../food-pics/";
@@ -40,6 +45,10 @@ namespace BlobStorageConsole
             using FileStream uploadFileStream = File.OpenRead(localFilePath);
             await blobClient.UploadAsync(uploadFileStream);
             uploadFileStream.Close();
+
+            Dictionary<string,string> bmetadata = new Dictionary<string, string>();
+            bmetadata.Add("vegan", "true");
+            await blobClient.SetMetadataAsync(bmetadata);
         }
     }
 }

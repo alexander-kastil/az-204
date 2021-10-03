@@ -10,4 +10,3 @@
 
 [Secure custom APIs with Microsoft Identity](https://docs.microsoft.com/en-us/learn/modules/identity-secure-custom-api/)
 
-[Control access to Azure Storage with shared access signatures](https://docs.microsoft.com/en-us/learn/modules/control-access-to-azure-storage-with-sas/)
