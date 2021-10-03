@@ -40,7 +40,7 @@ pwd=Lab@dmin1234
 az group create -n $grp -l $loc
 
 az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd  \
-    --image  MicrosoftWindowsDesktop:Windows-10:21h1-pro-g2:19043.985.2105141120 --size Standard_E2s_v3
+    --image  MicrosoftWindowsDesktop:Windows-10:21h1-pro:19043.1237.2109130412 --size Standard_E2s_v3
 
 az vm auto-shutdown -g $grp -n $vmname --time 1830
 ```
@@ -146,7 +146,7 @@ Check Docker Settings:
 
 #### <a id="wsl">Install WSL2</a>
 
-Execute script `setup-wsl2.ps1` multible times to setup WSL2. Reboot between first and second run.
+Execute script `setup-wsl2.ps1` multible times to setup WSL2. 
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force;
@@ -156,6 +156,8 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw
 First Run:
 
 ![finish-sw](_images/finish-sw.jpg)
+
+>Note: Reboot between first and second run.
 
 Second Run:
 
