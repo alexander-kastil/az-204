@@ -7,7 +7,7 @@ path="./patient-images/"
 blob="patient-32589.jpg"
 
 ## Update expiry
-expiry=2021-09-20
+expiry=2021-10-09
 
 az group create -n $grp -l $loc
 
