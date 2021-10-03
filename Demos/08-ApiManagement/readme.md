@@ -10,7 +10,8 @@
 Use Subscription Key:
 
 ```
-curl -X GET https://APIM-URL.azure-api.net/api/METHOD -H 'Ocp-Apim-Subscription-Key: [SUBSCRIPTION-KEY]'
+curl --header "Ocp-Apim-Subscription-Key: <key string>" https://<apim gateway>.azure-api.net/api/path
+curl https://<apim gateway>.azure-api.net/api/path?subscription-key=<key string>
 ```
 
 ## Readings
