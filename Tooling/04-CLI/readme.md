@@ -69,8 +69,17 @@ az extension add --name <extension-name>
 
 ### List and set Subscriptions
 
+List Subscriptions:
 
+```
+az account list -o table
+```
 
+Set default Subscription:
+
+```
+az account set --subscription <name or id>
+```
 ### Create an App Service to host a Web App:
 
 ```bash
