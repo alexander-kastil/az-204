@@ -23,6 +23,7 @@ namespace AppSettingsWebApi.Controllers
             env = environment;
         }
 
+        // https://localhost:5001/settings
         [HttpGet]
         public ActionResult GetSettings()
         {
@@ -34,6 +35,7 @@ namespace AppSettingsWebApi.Controllers
            return Ok(config);  
         }
 
+        // https://localhost:5001/settings/getEnv
         [HttpGet("getEnv")]
         public ActionResult GetEnv()
         {
