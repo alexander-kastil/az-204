@@ -117,14 +117,15 @@ If you want to execute the labs on a machine where you have full controll please
 ```
 rnd=$RANDOM
 loc=westeurope
-grp=az204-lab
+grp=az-lab
 vmname=labvm-$rnd
-user=az204lab
-pwd=Lab@dmin1233
+user=azlabadmin
+pwd=Lab@dmin1234
+vmname=labvault-$rnd
 
 az group create -n $grp -l $loc
 
-az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image MicrosoftWindowsDesktop:Windows-10:20h2-entn-g2:19042.630.2011061636 --size Standard_E2s_v3
+az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image  MicrosoftWindowsDesktop:Windows-10:21h1-pro:19043.1237.2109130412 --size Standard_E2s_v3
 ```
 
 > Note: We are using this image and vm size because it supports nested virtualization
