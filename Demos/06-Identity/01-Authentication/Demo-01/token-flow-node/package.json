@@ -10,8 +10,8 @@
   "author": "alexanderp@cloud-dev.io",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.0.0-alpha2",
-    "msal": "1.4.4"
+    "bootstrap": "^5.1.1",
+    "msal": "^1.4.4"
   },
   "devDependencies": {
     "http-server": "^0.12.3"
