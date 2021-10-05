@@ -3,6 +3,8 @@ grp=lab-03-$rnd
 loc=westeurope
 server=fooddbserver$rnd
 acct=foodpics$rnd
+container=dbbackup
+bak=./Starter/AdventureWorks.bacpac
 db=foodb$rnd
 user=foodadmin
 pwd=Food@dmin1234
@@ -25,3 +27,4 @@ az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 key=$(az storage account keys list -n $acct --query "[0].[value][0]")
 
 az storage container create -n $container --account-key $key --account-name $acct
+
