@@ -113,7 +113,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to use the **Azure Functions Core Tools** to create a new local Azure Functions project in the current directory using the **dotnet** runtime:
@@ -146,7 +146,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to **build** the .NET Core 3.1 project:
@@ -165,7 +165,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to use the **Azure Functions Core Tools** to create a new function named **Echo** using the **HTTP trigger** template:
@@ -341,7 +341,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to run the function app project:
@@ -371,7 +371,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to use the **Azure Functions Core Tools** to create a new function named **Recurring** using the **Timer trigger** template:
@@ -417,7 +417,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to run the function app project:
@@ -459,7 +459,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to run the function app project:
@@ -502,7 +502,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to use the **Azure Functions Core Tools** to create a new function named **GetSettingInfo** using the **Blob trigger** template:
@@ -647,7 +647,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to run the function app project:
@@ -719,7 +719,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\03\Starter\func
+    cd F:\Allfiles\Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to login to the Azure Command-Line Interface (CLI):
