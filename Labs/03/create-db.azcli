@@ -1,11 +1,11 @@
-rnd=030
-grp=foodapp-$rnd
+rnd=$RANDOM
+grp=lab-03-$rnd
 loc=westeurope
 server=fooddbserver$rnd
+acct=foodpics$rnd
 db=foodb$rnd
 user=foodadmin
 pwd=Food@dmin1234
-vault=foodvault-$rnd
 
 az group create -n $grp -l $loc
 
@@ -19,3 +19,9 @@ az sql server firewall-rule create -g $grp -s $server -n azure-rule --start-ip-a
 ip=$(curl ipinfo.io/ip)
 
 az sql server firewall-rule create -g $grp -s $server -n current-client-ip --start-ip-address $ip --end-ip-address $ip
+
+az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
+
+key=$(az storage account keys list -n $acct --query "[0].[value][0]")
+
+az storage container create -n $container --account-key $key --account-name $acct
