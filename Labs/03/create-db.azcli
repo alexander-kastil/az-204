@@ -1,0 +1,25 @@
+rnd=030
+grp=foodapp-$rnd
+loc=westeurope
+server=fooddbserver$rnd
+db=foodb$rnd
+user=foodadmin
+pwd=Food@dmin1234
+vault=foodvault-$rnd
+
+az group create -n $grp -l $loc
+
+az sql server create -l $loc -g $grp -n $server -u $user -p $pwd
+
+az sql db create -g $grp -s $server -n $db \
+    -e GeneralPurpose -f Gen5 --min-capacity 0.5 -c 2 --compute-model Serverless --auto-pause-delay 720
+
+cs=$(az sql db show-connection-string -n $db --server $server -c ado.net -o tsv)
+echo "cs: "$cs
+
+# Fix cs user and password
+dbcon="Server=tcp:$server.database.windows.net,1433;Database=$db;User ID=$user;Password=$pwd;Encrypt=true;Connection Timeout=30;"
+
+echo "dbcon: "$dbcon
+
+az keyvault secret set --vault-name $vault --name "SQLServerCon" --value "$dbcon"
