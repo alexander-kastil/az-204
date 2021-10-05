@@ -9,8 +9,8 @@ module.exports = async function (context, req) {
         body: "Please supply principal, rate and term in the query string",
     };
     } else {
-    let resp = { body: principal * rate * term };
-    console.log("response: ", resp);
-    context.res = resp;
+        let resp = { body: principal * rate * term };
+        console.log("response: ", resp);
+        context.res = resp;
     }
 }

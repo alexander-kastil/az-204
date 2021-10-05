@@ -1,0 +1,6 @@
+POST  http://localhost:7071/api/vsCodeTrigger HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Hubertus"
+}

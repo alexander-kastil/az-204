@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace Integrations
 {
-    public static class MyHttpTrigger
+    public static class vsCodeTrigger
     {
-        [FunctionName("MyHttpTrigger")]
+        [FunctionName("vsCodeTrigger")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)

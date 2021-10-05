@@ -107,6 +107,8 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 
 #### Task 1: Initialize a function project
 
+>Note: Make sure you have installed the Azure Function Core Tools in your env: `npm i -g azure-functions-core-tools@3 --unsafe-perm true`
+
 1. On the taskbar, select the **Windows Terminal** icon.
 1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
 
