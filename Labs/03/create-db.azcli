@@ -14,12 +14,8 @@ az sql server create -l $loc -g $grp -n $server -u $user -p $pwd
 az sql db create -g $grp -s $server -n $db \
     -e GeneralPurpose -f Gen5 --min-capacity 0.5 -c 2 --compute-model Serverless --auto-pause-delay 720
 
-cs=$(az sql db show-connection-string -n $db --server $server -c ado.net -o tsv)
-echo "cs: "$cs
+az sql server firewall-rule create -g $grp -s $server -n azure-rule --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 
-# Fix cs user and password
-dbcon="Server=tcp:$server.database.windows.net,1433;Database=$db;User ID=$user;Password=$pwd;Encrypt=true;Connection Timeout=30;"
+ip=$(curl ipinfo.io/ip)
 
-echo "dbcon: "$dbcon
-
-az keyvault secret set --vault-name $vault --name "SQLServerCon" --value "$dbcon"
+az sql server firewall-rule create -g $grp -s $server -n current-client-ip --start-ip-address $ip --end-ip-address $ip
