@@ -1,8 +1,8 @@
 ---
 lab:
     title: 'Lab: Constructing a NoSQL data solution by using Azure Cosmos DB'
-    az204Module: 'Module 04: Develop solutions that use Cosmos DB storage'
-    az020Module: 'Module 04: Develop solutions that use Cosmos DB storage'
+    az204Module: 'Module 03: Develop solutions that use Cosmos DB storage'
+    az020Module: 'Module 03: Develop solutions that use Cosmos DB storage'
     type: 'Answer Key'
 ---
 
@@ -231,7 +231,7 @@ In this exercise, you created all the Azure resources that you'll need for a pol
     
     1.  In the **Files** section, select the **Folder** icon.
     
-    1.  In the **File Explorer** window, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\Images**, select all 42 **.jpg** image files, and then select **Open**.
+    1.  In the **File Explorer** window, browse to **Allfiles (F):\\Allfiles\\Labs\\03\\Starter\\Images**, select all 42 **.jpg** image files, and then select **Open**.
     
     1.  Ensure that **Overwrite if files already exist** is selected, and then select **Upload**.
 
@@ -265,7 +265,7 @@ In this exercise, you created all the Azure resources that you'll need for a pol
     
     1.  In the **Files** section, select the **Folder** icon.
     
-    1.  In the **File Explorer** window, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter**, select the **AdventureWorks.bacpac** file, and then select **Open**.
+    1.  In the **File Explorer** window, browse to **Allfiles (F):\\Allfiles\\Labs\\03\\Starter**, select the **AdventureWorks.bacpac** file, and then select **Open**.
     
     1.  Ensure that **Overwrite if files already exist** is selected, and then select **Upload**.
 
@@ -387,7 +387,7 @@ In this exercise, you imported all the resources that you'll use with your web a
 
 1.  From the **File** menu, select **Open Folder**.
 
-1.  In the **File Explorer** window that opens, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\AdventureWorks**, and then select **Select Folder**.
+1.  In the **File Explorer** window that opens, browse to **Allfiles (F):\\Allfiles\\Labs\\03\\Starter\\AdventureWorks**, and then select **Select Folder**.
 
 1.  In the **Visual Studio Code** window, right-click or activate the shortcut menu for the Explorer pane, and then select **Open in Terminal**.
 
@@ -667,7 +667,7 @@ In this exercise, you configured your ASP.NET web application to connect to your
     dotnet build
     ```
 
-    > **Note**: If there are any build errors, review the **Program.cs** file in the **Allfiles (F):\\Allfiles\\Labs\\04\\Solution\\AdventureWorks\\AdventureWorks.Migrate** folder.
+    > **Note**: If there are any build errors, review the **Program.cs** file in the **Allfiles (F):\\Allfiles\\Labs\\03\\Solution\\AdventureWorks\\AdventureWorks.Migrate** folder.
 
 1.  Select **Kill Terminal** or the **Recycle Bin** icon to close the currently open terminal and any associated processes.
 
@@ -741,7 +741,7 @@ In this exercise, you configured your ASP.NET web application to connect to your
     dotnet build
     ```
 
-    > **Note**: If there are any build errors, review the **Program.cs** file in the **Allfiles (F):\\Allfiles\\Labs\\04\\Solution\\AdventureWorks\\AdventureWorks.Migrate** folder.
+    > **Note**: If there are any build errors, review the **Program.cs** file in the **Allfiles (F):\\Allfiles\\Labs\\03\\Solution\\AdventureWorks\\AdventureWorks.Migrate** folder.
 
 #### Task 5: Perform a migration
 
@@ -995,7 +995,7 @@ In this exercise, you used Entity Framework and the .NET SDK for Azure Cosmos DB
     dotnet build
     ```
 
-    > **Note**: If there are any build errors, review the **AdventureWorksCosmosContext.cs** file in the **Allfiles (F):\\Allfiles\\Labs\\04\\Solution\\AdventureWorks\\AdventureWorks.Context** folder.
+    > **Note**: If there are any build errors, review the **AdventureWorksCosmosContext.cs** file in the **Allfiles (F):\\Allfiles\\Labs\\03\\Solution\\AdventureWorks\\AdventureWorks.Context** folder.
 
 1.  Select **Kill Terminal** or the **Recycle Bin** icon to close the currently open terminal and any associated processes.
 
