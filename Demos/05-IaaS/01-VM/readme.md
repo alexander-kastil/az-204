@@ -10,8 +10,8 @@
     - Examing VM images using `list-vm-iamges.azcli` and execute: 
     - Create Windows VM using Azure CLI and Powershell
     - Create Linux VM
-- VM Extensions SQL IaaS Agent Extension
-- Explain Setup of Lab VM    
+- VM Extensions: SQL IaaS Agent & AADLoginForWindows
+- Setup of Lab VM    
 
 ## Readings
 
