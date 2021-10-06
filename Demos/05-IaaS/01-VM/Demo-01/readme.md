@@ -10,8 +10,6 @@ Create Windows VM using Azure CLI & Powershell:
 
 To create a Windows VM execute `create-win-vm.azcli` & `create-win-vm.ps1`
 
-[]
-
 ### PowerShell
 
 [Azure Powershell](https://docs.microsoft.com/en-us/powershell/azure/?view=azps-3.3.0)
