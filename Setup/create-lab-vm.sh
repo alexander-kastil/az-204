@@ -4,7 +4,7 @@ grp=az-lab
 vmname=labvm-$rnd
 user=azlabadmin
 pwd=Lab@dmin1234
-vmname=labvault-$rnd
+vault=labvault-$rnd
 
 az group create -n $grp -l $loc
 
