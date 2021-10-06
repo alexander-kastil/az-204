@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foodservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foodapi
+  template:
+    metadata:
+      labels:
+        app: foodapi                 
+    spec:
+      containers:
+      - name: foodapi
+        image: arambazamba/foodapi
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80        
+        resources:
+          limits:            
+            cpu: "500m"
+            memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: foodapi
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8088
+    targetPort: 80
+  selector:
+    app: foodapi
+---

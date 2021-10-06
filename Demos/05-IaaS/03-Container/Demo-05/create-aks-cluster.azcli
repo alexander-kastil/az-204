@@ -32,7 +32,6 @@ kubectl create namespace $ns
 # Apply the yaml - Make sure you uploaded foodui.yaml to CloudShell
 
 kubectl apply -f $ui --namespace $ns
-kubectl apply -f foodapi.yaml --namespace $ns
 
 # Get some metadata
 kubectl get deployment $app -n $ns

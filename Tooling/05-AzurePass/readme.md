@@ -33,3 +33,5 @@ Wait for Setup to complete:
 Congratulations! You have claimed an Azure Pass for this training and activated your account on an Azure Subscription with 50$ spending limit.
 
 ![azure-pass](_images/azure-welcome.jpg)
+
+>Note: You can check the balance of your Azure Pass Credits on https://www.microsoftazuresponsorships.com/balance
