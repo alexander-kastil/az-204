@@ -1,3 +1,14 @@
 # Create a lab vm
 
-- Explain Setup of lab vm
+[Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/)
+
+[Nested Virtualization](https://docs.microsoft.com/en-us/azure/lab-services/how-to-enable-nested-virtualization-template-vm)
+
+## Demos
+
+Explain Setup of Lab VM:
+
+- VM Setup
+- SW Setup using Chocolatey
+- Docker
+- WSL   
