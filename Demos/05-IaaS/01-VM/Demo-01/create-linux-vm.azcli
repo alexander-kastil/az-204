@@ -13,4 +13,5 @@ ip=$(az vm list-ip-addresses -n linuxvm --query [0].virtualMachine.network.publi
 
 echo $ip
 
-ssh az204admin@$ip
+# quit using exit
+ssh $adminuser@$ip
