@@ -9,8 +9,6 @@ az group create -l $loc -n $grp
 az vm create -n linuxvm -g $grp --image UbuntuLTS --size Standard_B1ms --generate-ssh-keys --admin-username $adminuser
 
 # Connect to vm
-az vm list-ip-addresses -n linuxvm --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress -o tsv
-
 ip=$(az vm list-ip-addresses -n linuxvm --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress -o tsv)
 
 echo $ip
