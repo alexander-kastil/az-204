@@ -1,5 +1,7 @@
 # Create a lab vm
 
+[Chocolatey - THE PACKAGE MANAGER FOR WINDOWS](https://chocolatey.org/)
+
 [Custom Script Extension for Windows](https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-windows)
 
 [Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/)

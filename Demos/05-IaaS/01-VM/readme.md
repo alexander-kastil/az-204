@@ -16,8 +16,6 @@
 
 [Azure Image Builder](https://docs.microsoft.com/en-us/azure/virtual-machines/image-builder-overview)
 
-[Chocolatey - THE PACKAGE MANAGER FOR WINDOWS](https://chocolatey.org/)
-
 ## CLI Reference
 
 [az vm](https://docs.microsoft.com/en-us/cli/azure/vm?view=azure-cli-latest)
