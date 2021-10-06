@@ -13,4 +13,6 @@ az vm list-ip-addresses -n linuxvm --query [0].virtualMachine.network.publicIpAd
 
 ip=$(az vm list-ip-addresses -n linuxvm --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress -o tsv)
 
-ssh az204admin@104.40.251.162
+echo $ip
+
+ssh az204admin@$ip
