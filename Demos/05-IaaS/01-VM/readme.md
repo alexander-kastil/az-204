@@ -3,10 +3,7 @@
 ## Demos
 
 - VM Basics
-    - List Windows 10 images using:
-        ```
-        az vm image list -f "Windows-10" --location westeurope --all
-        ```
+    - List Windows 10 images using `list-vm-iamges.azcli`
     - Examing VM images using `list-vm-iamges.azcli` and execute: 
     - Create Windows VM using Azure CLI and Powershell
     - Create Linux VM
