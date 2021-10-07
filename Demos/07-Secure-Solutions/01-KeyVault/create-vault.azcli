@@ -1,4 +1,4 @@
-rnd=041
+rnd=dev
 grp=az204-m07-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
@@ -16,3 +16,9 @@ az keyvault secret set --vault-name $vault --name "DBPassword" --value "Lab@dmin
 az keyvault secret show --name "DBUser" --vault-name $vault
 
 az keyvault secret list --vault-name $vault
+
+## Delete KV
+
+az keyvault delete -n $vault
+
+az keyvault purge -n $vault
