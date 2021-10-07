@@ -20,6 +20,7 @@ cfgmi=$(az appconfig identity show  -g $grp -n $cfg --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $cfgmi --secret-permissions get list set
 
 az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLite" -y
+az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --label Production --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y
 
 # alternative: keyvault policy assignment using service principal
 # az ad sp create-for-rbac -n $principal --sdk-auth
