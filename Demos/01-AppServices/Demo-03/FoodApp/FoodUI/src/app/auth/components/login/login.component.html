@@ -1,0 +1,37 @@
+<form [formGroup]="loginForm" (ngSubmit)="logIn(loginForm)">
+  <mat-card>
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="E-Mail"
+          id="username"
+          formControlName="email"
+        />
+        <mat-error *ngIf="loginForm.get('email').errors != undefined"
+          >Keine oder ungültige E-Mail-Adresse
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          id="password"
+          autocomplete="true"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <mat-error *ngIf="loginForm.get('email').errors != undefined"
+          >Min 4 Zeichen
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button mat-raised-button type="submit"  color="primary"  [disabled]="loginForm.invalid">
+        Login
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

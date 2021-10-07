@@ -1,10 +1,12 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+# Build Image
+FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine AS build
 WORKDIR /build
 
 COPY . .
 RUN dotnet restore "FoodApi.csproj"
 RUN dotnet publish -c Release -o /app
 
+# Runtime Image
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS final
 WORKDIR /app
 COPY --from=build /app .
@@ -17,7 +19,7 @@ ENTRYPOINT ["dotnet", "FoodApi.dll"]
 # docker run -it --rm -p 5051:80 foodapi
 
 # Browse using: 
-# http://localhost:5051/api/food
+# http://localhost:5051/food
 
 # Publish Image to dockerhub
 # docker tag foodapi arambazamba/foodapi

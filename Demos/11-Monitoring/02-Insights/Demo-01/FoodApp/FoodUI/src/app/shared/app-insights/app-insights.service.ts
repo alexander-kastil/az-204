@@ -9,8 +9,25 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class AppInsightsService implements OnDestroy {
+  private routerSubscription: Subscription;
+
+  private appInsights;
+
   constructor(private router: Router) {
+    this.appInsights = new ApplicationInsights({
+      config: {
+        instrumentationKey: environment.appInsights.instrumentationKey,
+        enableAutoRouteTracking: true, // option to log all route changes
+      },
+    });
+
     this.appInsights.loadAppInsights();
+
+    // this.appInsights.defaultClient.addTelemetryProcessor((envelope) => {
+    //   envelope.tags["ai.cloud.role"] = "ng-food-ui";
+    //   envelope.tags["ai.cloud.roleInstance"] = "your role instance";
+    // });
+
     this.routerSubscription = this.router.events
       .pipe(filter((event) => event instanceof ResolveEnd))
       .subscribe((event: ResolveEnd) => {
@@ -30,15 +47,6 @@ export class AppInsightsService implements OnDestroy {
     this.routerSubscription.unsubscribe();
   }
 
-  private routerSubscription: Subscription;
-
-  private appInsights = new ApplicationInsights({
-    config: {
-      instrumentationKey: environment.appInsights.instrumentationKey,
-      autoTrackPageVisitTime: true,
-    },
-  });
-
   setUserId(userId: string) {
     this.appInsights.setAuthenticatedUserContext(userId);
   }
@@ -50,6 +58,31 @@ export class AppInsightsService implements OnDestroy {
   logPageView(name?: string, uri?: string) {
     this.appInsights.trackPageView({ name, uri });
   }
+
+  logEvent(name: string, properties?: { [key: string]: any }) {
+    this.appInsights.trackEvent({ name: name }, properties);
+  }
+
+  logMetric(
+    name: string,
+    average: number,
+    properties?: { [key: string]: any }
+  ) {
+    this.appInsights.trackMetric({ name: name, average: average }, properties);
+  }
+
+  logException(exception: Error, severityLevel?: number) {
+    this.appInsights.trackException({
+      exception: exception,
+      severityLevel: severityLevel,
+    });
+  }
+
+  logTrace(message: string, properties?: { [key: string]: any }) {
+    this.appInsights.trackTrace({ message: message }, properties);
+  }
+
+  //routing
 
   private getActivatedComponent(snapshot: ActivatedRouteSnapshot): any {
     if (snapshot.firstChild) {
@@ -67,11 +100,5 @@ export class AppInsightsService implements OnDestroy {
       return path + this.getRouteTemplate(snapshot.firstChild);
     }
     return path;
-  }
-
-  logEvent(name: string, data: any) {
-    this.appInsights.trackEvent({ name, properties: data });
-    this.appInsights.stopTrackEvent(name);
-    this.appInsights.flush();
   }
 }

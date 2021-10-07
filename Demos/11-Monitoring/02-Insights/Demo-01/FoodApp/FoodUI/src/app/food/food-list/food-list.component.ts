@@ -6,9 +6,9 @@ import {
   EventEmitter,
   SimpleChanges,
 } from "@angular/core";
-import { FoodItem } from "src/app/food/food.model";
 import { MatTableDataSource } from "@angular/material/table";
-import { AppInsightsService } from "src/app/shared/app-insights/app-insights.service";
+import { AppInsightsService } from "../../shared/app-insights/app-insights.service";
+import { FoodItem } from "../food.model";
 
 @Component({
   selector: "app-food-list",
@@ -52,12 +52,13 @@ export class FoodListComponent implements OnInit {
   }
 
   addFood() {
-    console.log(this.getNextId());
     this.onEditSelected.emit({
       id: this.getNextId(),
-      name: "",
-      price: 0,
-      calories: 0,
+      name: "Pad Krapao",
+      amount: 1,
+      code: "padk",
+      date: new Date(),
+      pictureUrl: "",
     });
   }
 
@@ -65,17 +66,15 @@ export class FoodListComponent implements OnInit {
     return this.food.reduce((acc, f) => (acc = acc > f.id ? acc : f.id), 0) + 1;
   }
 
-  selectFood(f: FoodItem) {
-    this.ai.logEvent("food-selected", f);
-    this.onEditSelected.emit(f);
+  selectFood(p: FoodItem) {
+    this.ai.logEvent("FoodUI:FoodList:SelectFood", p);
+    this.onEditSelected.emit(p);
   }
 
-  deleteFood(f: FoodItem) {
-    this.ai.logEvent("food-deleted", f);
-    this.onDeleteSelected.emit(f);
+  deleteFood(p: FoodItem) {
+    this.ai.logEvent("FoodUI:FoodList:DeleteFood", p);
+    this.onDeleteSelected.emit(p);
   }
 
-  addItemToCart(f: FoodItem) {
-    this.ai.logEvent("food-to-cart", f);
-  }
+  addItemToCart(f: FoodItem) {}
 }

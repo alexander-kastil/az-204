@@ -16,14 +16,14 @@
         <input
           matInput
           type="number"
-          placeholder="Price"
-          formControlName="price"
+          placeholder="Amount"
+          formControlName="amount"
         />
       </mat-form-field>
       <em
         *ngIf="
-          form.controls['price'].touched &&
-          form.controls['price'].errors != undefined
+          form.controls['amount'].touched &&
+          form.controls['amount'].errors != undefined
         "
       >
         Price must be greater than 1€
@@ -31,19 +31,26 @@
       <mat-form-field>
         <input
           matInput
-          type="number"
-          placeholder="Calories"
-          formControlName="calories"
+          type="string"
+          placeholder="Code"
+          formControlName="code"
         />
       </mat-form-field>
 
+      <mat-form-field appearance="fill">
+        <mat-label>Puchase Date</mat-label>
+        <!-- #docregion toggle -->
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <!-- #enddocregion toggle -->
+      </mat-form-field>
+
       <mat-card-actions align="end">
-        <button mat-raised-button color="primary" type="submit">
-          Save
-        </button>
         <button mat-raised-button color="primary" (click)="mailTo()">
           Mail to
         </button>
+        <button mat-raised-button color="primary" type="submit">Save</button>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>

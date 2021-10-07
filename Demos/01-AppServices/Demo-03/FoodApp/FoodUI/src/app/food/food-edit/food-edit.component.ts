@@ -19,8 +19,10 @@ export class FoodEditComponent implements OnInit {
     this.form = this.fb.group({
       id: 0,
       name: ["", [Validators.required, Validators.minLength(3)]],
-      price: [0, Validators.min(1)],
-      calories: 0,
+      amount: [0],
+      pictureUrl: "",
+      code: "",
+      date: new Date(),
     });
   }
 
@@ -34,7 +36,7 @@ export class FoodEditComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.food != undefined) {
-      console.log("receiving food", changes.food.currentValue);
+      console.log("food from store", changes.food.currentValue);
       this.form.setValue(changes.food.currentValue);
     }
   }

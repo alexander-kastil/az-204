@@ -4,7 +4,7 @@
   (onDeleteSelected)="this.ff.deleteFood($event)"
 ></app-food-list>
 
-<app-food-edit
+<app-food-edit   
   *ngIf="selected$ | async as selected"
   [food]="selected"
   (onSaveFood)="this.ff.saveFood($event)"

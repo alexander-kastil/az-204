@@ -6,7 +6,7 @@ import { FoodEditComponent } from "./food-edit/food-edit.component";
 import { MaterialModule } from "../material.module";
 import { ReactiveFormsModule } from "@angular/forms";
 import { StoreModule } from "@ngrx/store";
-import { foodFeatureKey, FoodReducer } from "./store/reducers/food.reducer";
+import { foodFeatureKey, foodReducer } from "./store/reducers/food.reducer";
 import { EffectsModule } from "@ngrx/effects";
 import { FoodEffects } from "./store/effects/food.effects";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -21,8 +21,8 @@ let comps = [FoodContainerComponent, FoodListComponent, FoodEditComponent];
     MaterialModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    StoreModule.forFeature(foodFeatureKey, FoodReducer),
-    EffectsModule.forFeature([FoodEffects])
-  ]
+    StoreModule.forFeature(foodFeatureKey, foodReducer),
+    EffectsModule.forFeature([FoodEffects]),
+  ],
 })
 export class FoodModule {}

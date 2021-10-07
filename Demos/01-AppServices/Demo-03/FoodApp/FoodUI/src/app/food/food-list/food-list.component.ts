@@ -6,8 +6,9 @@ import {
   EventEmitter,
   SimpleChanges,
 } from "@angular/core";
-import { FoodItem } from "src/app/food/food.model";
 import { MatTableDataSource } from "@angular/material/table";
+import { AppInsightsService } from "../../shared/app-insights/app-insights.service";
+import { FoodItem } from "../food.model";
 
 @Component({
   selector: "app-food-list",
@@ -15,7 +16,7 @@ import { MatTableDataSource } from "@angular/material/table";
   styleUrls: ["./food-list.component.scss"],
 })
 export class FoodListComponent implements OnInit {
-  constructor() {}
+  constructor(private ai: AppInsightsService) {}
 
   @Input()
   food: FoodItem[];
@@ -51,12 +52,13 @@ export class FoodListComponent implements OnInit {
   }
 
   addFood() {
-    console.log(this.getNextId());
     this.onEditSelected.emit({
       id: this.getNextId(),
-      name: "",
-      price: 0,
-      calories: 0,
+      name: "Pad Krapao",
+      amount: 1,
+      code: "padk",
+      date: new Date(),
+      pictureUrl: "",
     });
   }
 
@@ -65,10 +67,12 @@ export class FoodListComponent implements OnInit {
   }
 
   selectFood(p: FoodItem) {
+    this.ai.logEvent("FoodUI:FoodList:SelectFood", p);
     this.onEditSelected.emit(p);
   }
 
   deleteFood(p: FoodItem) {
+    this.ai.logEvent("FoodUI:FoodList:DeleteFood", p);
     this.onDeleteSelected.emit(p);
   }
 

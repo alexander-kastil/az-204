@@ -1,17 +1,25 @@
-import { EntityState, EntityAdapter, createEntityAdapter } from "@ngrx/entity";
+import { createEntityAdapter, EntityAdapter, EntityState } from "@ngrx/entity";
+import { createReducer, on } from "@ngrx/store";
 import { FoodItem } from "../../food.model";
-import { FoodActions, FoodActionTypes } from "../actions/food.actions";
-
+import { deleteFood } from "../actions/food.actions";
+import {
+  loadFood,
+  loadFoodFailure,
+  loadFoodSuccess,
+  selectFood,
+} from "../actions/food.actions";
 export const foodFeatureKey = "food";
 
 export interface FoodState extends EntityState<FoodItem> {
   selected: FoodItem;
+  loading: boolean;
 }
 
 export const foodAdapter: EntityAdapter<FoodItem> =
   createEntityAdapter<FoodItem>();
 
 export const defaultFoodState: FoodState = {
+  loading: false,
   ids: [],
   entities: {},
   selected: null,
@@ -19,26 +27,27 @@ export const defaultFoodState: FoodState = {
 
 export const initialState = foodAdapter.getInitialState(defaultFoodState);
 
-export function FoodReducer(
-  state = initialState,
-  action: FoodActions
-): FoodState {
-  switch (action.type) {
-    case FoodActionTypes.LoadFood: {
-      return state;
-    }
-    case FoodActionTypes.LoadFood_Success: {
-      return foodAdapter.addMany(action.payload, {
-        ...state,
-      });
-    }
-    case FoodActionTypes.LoadFood_Error: {
-      return { ...state };
-    }
-    case FoodActionTypes.SelectFood: {
-      return { ...state, selected: action.payload };
-    }
-    default:
-      return state;
-  }
-}
+export const foodReducer = createReducer(
+  initialState,
+  on(loadFood, (state, action) => {
+    return { ...state };
+  }),
+  on(loadFoodSuccess, (state, action) => {
+    return foodAdapter.setAll(action.food, {
+      ...state,
+      loading: false,
+    });
+  }),
+  on(loadFoodFailure, (state, action) => {
+    return { ...state, loading: false };
+  }),
+  on(deleteFood, (state, action) => {
+    return foodAdapter.removeOne(action.food.id, {
+      ...state,
+      loading: false,
+    });
+  }),
+  on(selectFood, (state, action) => {
+    return { ...state, selected: action.food };
+  })
+);

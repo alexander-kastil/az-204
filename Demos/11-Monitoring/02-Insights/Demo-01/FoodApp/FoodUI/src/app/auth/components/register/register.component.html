@@ -1,0 +1,57 @@
+<form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm)">
+  <mat-card>
+    <mat-card-content fxLayout="column">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Email Address"
+          id="username"
+          formControlName="email"
+        />
+        <mat-error *ngIf="registerForm.get('email').errors != undefined"
+          >Keine oder ungültige E-Mail-Adresse
+        </mat-error>
+      </mat-form-field>
+
+      <div formGroupName="passwords" fxLayoutGap="10px">
+        <mat-form-field fxFlexFill>
+          <input
+            type="password"
+            matInput
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <mat-error
+            *ngIf="registerForm.get('passwords.password').errors != undefined"
+            >Min 4 Zeichen
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlexFill>
+          <input
+            type="password"
+            matInput
+            placeholder="Re-Enter Password"
+            formControlName="passwordRepeat"
+          />
+        </mat-form-field>
+        <mat-error
+          *ngIf="
+            registerForm.get(['passwords', 'passwordRepeat']).touched &&
+            registerForm.get(['passwords', 'password']).value !=
+              registerForm.get(['passwords', 'passwordRepeat']).value &&
+            registerForm.get(['passwords', 'passwordRepeat']).value != null
+          "
+          >Password does not match
+        </mat-error>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="center">
+      <button mat-raised-button type="submit" color="primary" [disabled]="registerForm.invalid">
+        Register
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

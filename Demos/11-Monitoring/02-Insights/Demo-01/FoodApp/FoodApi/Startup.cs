@@ -1,3 +1,6 @@
+using System;
+using FoodApp;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -16,25 +19,26 @@ namespace FoodApi
 
         public IConfiguration Configuration { get; }
         private readonly IWebHostEnvironment env;
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices (IServiceCollection services) {
 
-            //Config
-            var cfgBuilder = new ConfigurationBuilder ()
-                .SetBasePath (env.ContentRootPath)
-                .AddJsonFile ("appsettings.json");
-            var configuration = cfgBuilder.Build ();
-            services.Configure<AppConfig> (configuration);
-            services.AddSingleton (typeof (IConfigurationRoot), configuration);
+            services.AddSingleton < IConfiguration > (Configuration);  
+
+            //Aplication Insights
+            services.AddApplicationInsightsTelemetry (Configuration["Azure:ApplicationInsights"]);
+            services.AddSingleton<ITelemetryInitializer, FoodTelemetryInitializer>();
+            services.AddSingleton<AILogger>();
 
             //EF
-            var conStrLite = Configuration["ConnectionStrings:SQLiteDBConnection"];
-            services.AddEntityFrameworkSqlite ().AddDbContext<FoodDBContext> (options => options.UseSqlite (conStrLite));
-
-            //AI
-            services.AddApplicationInsightsTelemetry (Configuration["Azure:ApplicationInsights:InstrumentationKey"]);
-            
-            services.AddSingleton<AILogger>();
+            bool sqlite = bool.Parse(Configuration["App:UseSQLite"]);
+            if(sqlite){
+                var conStrLite = Configuration["App:ConnectionStrings:SQLiteDBConnection"];
+                services.AddEntityFrameworkSqlite ().AddDbContext<FoodDBContext> (options => options.UseSqlite (conStrLite));
+            }else{
+                var conStr = Configuration["App:ConnectionStrings:SQLServerConnection"];
+                services.AddEntityFrameworkSqlServer()
+                .AddDbContext<FoodDBContext>(options => options.UseSqlServer(conStr));
+            }
 
             //Swagger
             services.AddSwaggerGen (c => {
@@ -54,13 +58,15 @@ namespace FoodApi
             services.AddControllers ();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
+            
+            Console.WriteLine("Environment: " + env.EnvironmentName);
+
             if (env.IsDevelopment ()) {
                 app.UseDeveloperExceptionPage ();
             }
 
-            //Swagger
+            // Swagger
             app.UseSwagger ();
             app.UseSwaggerUI (c => {
                 c.SwaggerEndpoint ("/swagger/v1/swagger.json", "Food API");

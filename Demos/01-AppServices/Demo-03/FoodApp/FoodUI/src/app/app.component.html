@@ -1,4 +1,4 @@
-<div
+<div *ngIf="(displayAuth$ | async) == false"
   gdAreas="navbar navbar |  sidemenu main | footer footer"
   gdAreas.lt-md="navbar  | main  | footer "
   gdGap="0.3rem"
@@ -13,4 +13,20 @@
     <app-sidebar></app-sidebar>
   </div>
   <div gdArea="footer"><app-footer></app-footer></div>
+</div>
+
+<div
+  *ngIf="(displayAuth$ | async) == true"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  class="loginsplash"
+>
+  <app-login-splash>
+    <div class="login">
+      <app-login></app-login>
+    </div>
+    <div class="register">
+      <app-register></app-register>
+    </div>
+  </app-login-splash>
 </div>

@@ -1,0 +1,19 @@
+@use '~@angular/material' as mat;
+
+.formContainer {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-card { 
+  margin-bottom: 1rem;
+  padding: 0 !important;
+  @include mat.elevation(0);
+}
+
+mat-card-content{
+  background-color: #7B1FA1;
+  padding: 1rem;
+  width: 451px!important;
+}
