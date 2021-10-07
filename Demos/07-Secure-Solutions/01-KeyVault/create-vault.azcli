@@ -17,7 +17,8 @@ az keyvault secret show --name "DBUser" --vault-name $vault
 
 az keyvault secret list --vault-name $vault
 
-## Delete KV
+# Delete KV and purge it to permanently delete it
+# Do not execute
 
 az keyvault delete -n $vault
 
