@@ -9,9 +9,9 @@ namespace key_vault_console
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            string keyVaultName = "foodvault-040";
+            string keyVaultName = "foodvault-dev";
             string keyVaultUri = "https://" + keyVaultName + ".vault.azure.net";
-            string secretName = "DBConnection";
+            string secretName = "conSQLServer";
             
             var client = new SecretClient(new Uri(keyVaultUri), new DefaultAzureCredential());
             KeyVaultSecret key = await client.GetSecretAsync(secretName);

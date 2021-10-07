@@ -445,27 +445,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 1. When you receive the open command prompt, enter the following command, and then select Enter to start the **httprepl** tool setting the base Uniform Resource Identifier (URI) to `http://localhost:7071`:
 
    ```powershell
-   httprepl http://localhost:7071
-   ```
-
-   > **Note**: An error message is displayed by the httprepl tool. This message occurs because the tool is searching for a Swagger definition file to use to "traverse" the API. Because your functio projectp does not produce a Swagger definition file, you'll need to traverse the API manually.
-
-1. When you receive the tool prompt, enter the following command, and then select Enter to browse to the relative **api** directory:
-
-   ```powershell
-   cd api
-   ```
-
-1. Enter the following command, and then select Enter to browse to the relative **fileparser** directory:
-
-   ```powershell
-   cd fileparser
-   ```
-
-1. Enter the following command, and then select Enter to run the **get** command:
-
-   ```powershell
-   get
+   curl http://localhost:7071/api/FileParser
    ```
 
 1. Observe the **[TEST VALUE]** value of the **StorageConnectionString** being returned as the result of the HTTP request:

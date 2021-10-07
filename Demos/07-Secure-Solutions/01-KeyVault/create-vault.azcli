@@ -15,6 +15,8 @@ az keyvault secret set --vault-name $vault --name "DBPassword" --value "Lab@dmin
 
 az keyvault secret show --name "DBUser" --vault-name $vault
 
+user=$(az keyvault secret show --name "DBUser" --vault-name $vault --query value)
+
 az keyvault secret list --vault-name $vault
 
 # Delete KV and purge it to permanently delete it
