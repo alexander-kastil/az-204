@@ -3,17 +3,14 @@ grp=az204-m07-secure-solutions-$rnd
 loc=westeurope
 cfg=foodconfig-$rnd
 vault=foodvault-$rnd
-principal="http://foodprincipal"
-
-# create appconfig and add a value
 
 az group create -n $grp -l $loc
 
+# create appconfig and add a value
 az appconfig create -g $grp -n $cfg -l $loc --sku free
 az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y
 
 # key-vault binding
-
 az appconfig identity assign -g $grp -n $cfg
 cfgmi=$(az appconfig identity show  -g $grp -n $cfg --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $cfgmi --secret-permissions get list
@@ -22,6 +19,7 @@ az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-
 az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --label Production --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y
 
 # alternative: keyvault policy assignment using service principal
+# principal=http://foodprincipal
 # az ad sp create-for-rbac -n $principal --sdk-auth
 # az keyvault set-policy -n $vault --spn $principal --secret-permissions get list set
 
