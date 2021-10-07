@@ -2,20 +2,15 @@ rnd=dev
 grp=az204-m07-secure-solutions-$rnd
 loc=westeurope
 vault=foodvault-$rnd
-plan=food-plan-$rnd
-app=foodapi-mi-$rnd
+plan=foodplan-$rnd
+app=foodapi-$rnd
 
 az appservice plan create -n $plan  -g $grp --sku FREE
 az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|5.0"
 az webapp config appsettings set -g $grp -n $app --settings AppSettings:KevVault=$vault.vault.azure.net
 
-az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|5.0" 
+# az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|5.0" 
 
 az webapp identity assign -g $grp -n $app
 mi=$(az webapp identity show  -g $grp -n $app --query principalId -o tsv)
-
-echo "managed identity object id: $mi"
-
-# Uses KeyVault from Demo-01
-
 az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
