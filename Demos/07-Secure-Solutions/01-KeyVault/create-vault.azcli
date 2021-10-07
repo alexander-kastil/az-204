@@ -5,7 +5,7 @@ vault=foodvault-$rnd
 
 az group create -n $grp -l $loc
 
-az keyvault create -l $loc -n $vault -g $grp --sku premium 
+az keyvault create -l $loc -n $vault -g $grp --sku Standard
 
 az keyvault secret set --vault-name $vault --name "conSQLite" --value "Data Source=./food.db"
 
