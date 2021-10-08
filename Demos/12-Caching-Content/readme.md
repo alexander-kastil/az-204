@@ -4,7 +4,7 @@
 
 [Azure CDN](https://docs.microsoft.com/en-us/azure/cdn/)
 
-[Azure Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/)
+[Azure Static Web Apps - optional](https://docs.microsoft.com/en-us/azure/static-web-apps/)
 
 ## CLI Reference
 
