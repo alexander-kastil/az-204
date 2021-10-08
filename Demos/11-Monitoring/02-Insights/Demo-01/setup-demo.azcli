@@ -1,0 +1,48 @@
+rnd=025
+grp=az204-m12-insights-$rnd
+loc=westeurope
+ai=foodai$rnd
+plan=insights-$rnd
+api=foodapi-$rnd
+acct=foodapp$rnd
+path='./FoodApp/FoodUI/dist/FoodUI'
+
+az group create -n $grp -l $loc
+
+# ai
+
+az extension add --name application-insights
+
+az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --retention-time 30
+
+aikey=$(az monitor app-insights component show --app $app -g $grp --query instrumentationKey -o tsv)
+
+# api
+
+az appservice plan create -n $plan -g $grp --sku FREE
+
+az webapp create -n $api -g $grp --plan $plan --runtime "DOTNET|5.0"
+
+az webapp config appsettings set -g $grp -n $api --settings Azure:ApplicationInsights=$aikey
+
+# ui
+
+az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
+
+key=$(az storage account keys list -n $acct --query "[0].[value][0]")
+
+echo "Website Key: " $key
+
+ep=$(az storage account show -g $grp -n $acct --query "primaryEndpoints.web")
+
+echo "Primary Endpoint for Static Web: " $ep
+
+az storage blob service-properties update --account-name $acct --static-website --404-document error.html --index-document index.html
+
+az storage blob upload-batch --account-name $acct --account-key $key -s $path -d '$web'
+
+az storage account show --name $acct -g $grp --query "primaryEndpoints.web" --output tsv
+
+# output
+
+echo "*** InstrumentationKey:" $aikey
