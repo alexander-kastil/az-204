@@ -1,11 +1,11 @@
-rnd=$RANDOM
+rnd=26564
 grp=az204-m12-insights-$rnd
 loc=westeurope
 ai=foodai$rnd
 plan=insights-$rnd
 api=foodapi-$rnd
 acct=foodapp$rnd
-path='./FoodApp/FoodUI/dist/FoodUI'
+path='./FoodApp/FoodUI/dist/food-ui'
 
 az group create -n $grp -l $loc
 

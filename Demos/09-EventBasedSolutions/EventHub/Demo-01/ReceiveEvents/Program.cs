@@ -10,10 +10,10 @@ namespace ReceiveEvents
 {
     class Program
     {
-        private const string connectionString = "Endpoint=sb://evthubns-24033.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=EB5Opk717eV62CC8Rza9/VQU4fILLt9U1zCEU6JKgGM=";
-        private const string eventHubName = "evthubns-24033";
+        private const string connectionString = "Endpoint=sb://evthubns-17605.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=NY6OBKyN59Gp8hF7pefM4jY6MQ1jUIQdoHCH2IljqIQ=";
+        private const string eventHubName = "evthub-17605";
 
-        private const string blobStorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=eventhub24033;AccountKey=IABiMYvt+Crv2Y5XpYAeJwoonBJ4XTTQnSb9kx5ohnIsTK6msp2M/xj+LbBkn4HPxhHEDItF5OE+PEGjAhokBg==;EndpointSuffix=core.windows.net";
+        private const string blobStorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=eventhub17605;AccountKey=VxUK3Mkm0PZBDlzC+ORca9PsU8BRPOZI7lVjrPiUZoRHJjZrKmkB9S+sUU4DaFj9erA1a+ARlz4LmzA4sHfEpQ==;EndpointSuffix=core.windows.net";
 
         private const string blobContainerName = "messages";
         static async Task Main()
@@ -43,14 +43,12 @@ namespace ReceiveEvents
         {
             // Write the body of the event to the console window
             Console.WriteLine("\tRecevied event: {0}", Encoding.UTF8.GetString(eventArgs.Data.Body.ToArray()));
-
             // Update checkpoint in the blob storage so that the app receives only new events the next time it's run
             await eventArgs.UpdateCheckpointAsync(eventArgs.CancellationToken);
         }
 
         static Task ProcessErrorHandler(ProcessErrorEventArgs eventArgs)
         {
-            // Write details about the error to the console window
             Console.WriteLine($"\tPartition '{ eventArgs.PartitionId}': an unhandled exception was encountered. This was not expected to happen.");
             Console.WriteLine(eventArgs.Exception.Message);
             return Task.CompletedTask;
