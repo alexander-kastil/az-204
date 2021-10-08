@@ -14,13 +14,9 @@ az eventhubs namespace create -n $namespace -g $grp -l $loc --sku Basic
 
 nsconStr=$(az eventhubs namespace authorization-rule keys list --name RootManageSharedAccessKey --namespace-name $namespace -g $grp | jq .primaryConnectionString)
 
-echo "****** primaryConnectionString to use for .NET Core project: $nsconStr"
-
 # Create Event Hub
 
 az eventhubs eventhub create -n $hub -g $grp --namespace-name $namespace --partition-count 2 --message-retention 1
-
-echo "Eventhub created: $hub"
 
 # Create Storage Acct
 
@@ -29,6 +25,7 @@ az storage account keys list --account-name $storage
 
 conStr=$(az storage account show-connection-string -n $storage | jq .connectionString)
 
-echo "storageConnectionString used in Receive .NET Core project: $conStr"
-
 az storage container create -n $container --connection-string $conStr
+
+echo "*** primaryConnectionString to use for .NET Core project: $nsconStr"
+echo "*** storageConnectionString used in Receive .NET Core project: $conStr"
