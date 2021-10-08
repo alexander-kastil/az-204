@@ -1,7 +1,7 @@
 rnd=$RANDOM
 loc=westeurope
 grp=az204-m10-evtgrid-customevt-$rnd
-topic=foodorder-topic
+topic=foodorder-topic-$rnd
 storage=orderprocessor$rnd
 app=order-processor-$rnd
 
