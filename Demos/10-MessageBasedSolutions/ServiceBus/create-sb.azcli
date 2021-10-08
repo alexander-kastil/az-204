@@ -12,4 +12,4 @@ az servicebus queue create --resource-group $grp --namespace-name $namespace --n
 
 connectionString=$(az servicebus namespace authorization-rule keys list --resource-group $grp --namespace-name $namespace --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
 
-echo 'Connection String: ' $connectionString
+echo '*** Connection String: ' $connectionString
