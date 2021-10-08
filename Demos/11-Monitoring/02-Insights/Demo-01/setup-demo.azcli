@@ -1,4 +1,4 @@
-rnd=025
+rnd=$RANDOM
 grp=az204-m12-insights-$rnd
 loc=westeurope
 ai=foodai$rnd
@@ -15,7 +15,7 @@ az extension add --name application-insights
 
 az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --retention-time 30
 
-aikey=$(az monitor app-insights component show --app $app -g $grp --query instrumentationKey -o tsv)
+aikey=$(az monitor app-insights component show --app $ai -g $grp --query instrumentationKey -o tsv)
 
 # api
 
@@ -26,6 +26,8 @@ az webapp create -n $api -g $grp --plan $plan --runtime "DOTNET|5.0"
 az webapp config appsettings set -g $grp -n $api --settings Azure:ApplicationInsights=$aikey
 
 # ui
+echo "*** Build Angular and replace ai key in environment.prod.ts"
+echo "*** InstrumentationKey:" $aikey
 
 az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 
@@ -43,6 +45,4 @@ az storage blob upload-batch --account-name $acct --account-key $key -s $path -d
 
 az storage account show --name $acct -g $grp --query "primaryEndpoints.web" --output tsv
 
-# output
 
-echo "*** InstrumentationKey:" $aikey
