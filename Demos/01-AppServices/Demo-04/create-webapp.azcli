@@ -12,6 +12,8 @@ az webapp create -n $web -g $grp --plan $appPlan --runtime "DOTNET|5.0"
 
 az webapp config appsettings set -g $grp -n $web --settings AppSettings:UseSQLite=false
 
+az webapp config appsettings set -g $grp -n $web --settings WEBSITE_TIME_ZONE='Central European Standard Time'
+
 # Get outbound ip-address
 
 az webapp show -g $grp -n $web --query outboundIpAddresses --output tsv
