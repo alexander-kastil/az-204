@@ -1,20 +1,25 @@
 rnd=$RANDOM
 grp=az204-m01-appsettings-$rnd
 appPlan=appsettings-$rnd
-web=AppSettingsApp-$rnd
+app=settings-app-$rnd
 loc=westeurope
 
 az group create -n $grp -l $loc
 
 az appservice plan create -n $appPlan -g $grp --sku FREE
 
-az webapp create -n $web -g $grp --plan $appPlan --runtime "DOTNET|5.0"
+az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNET|5.0"
 
-az webapp config appsettings set -g $grp -n $web --settings AppSettings:UseSQLite=false
+az webapp config appsettings set -g $grp -n $app --settings AppSettings:UseSQLite=false
 
-az webapp config appsettings set -g $grp -n $web --settings WEBSITE_TIME_ZONE='Central European Standard Time'
+az webapp config appsettings set -g $grp -n $app --settings WEBSITE_TIME_ZONE='Central European Standard Time'
+
+az webapp config connection-string set -g $grp -n $app -t SQLAzure \
+    --settings conSQLServer='Server=tcp:fakeserver.database.windows.net,1433;Database=appdb;User ID=$user;Password='secret1234';Encrypt=true;Connection Timeout=30;'
+
+az webapp cors add -g $grp -n $app --allowed-origins http://localhost:4200    
 
 # Get outbound ip-address
 
-az webapp show -g $grp -n $web --query outboundIpAddresses --output tsv
+az webapp show -g $grp -n $app --query outboundIpAddresses --output tsv
 
