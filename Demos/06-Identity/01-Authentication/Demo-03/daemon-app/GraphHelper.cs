@@ -12,7 +12,36 @@ namespace MSALDaemon
 {
     public class GraphHelper
     {
+        public static bool SendMail(string Subject, string Message, string[] Recipient, GraphCfg config)
+        {
+            var result = false;
 
+            var recipients = new List<Recipient>();
+
+            foreach (var r in Recipient)
+            {
+                AddReciepient(recipients, r);
+            }
+
+            var body = new ItemBody
+            {
+                ContentType = BodyType.Html,
+                Content = Message,
+            };
+
+            Message message = new Message
+            {
+                Subject = Subject,
+                Body = body,
+                ToRecipients = recipients,
+            };
+
+            config.returnUrl = config.frontendUrl;
+            sendMail(config, message, config.mailSender);
+
+            result = true;
+            return result;
+        }       
         private static void sendMail(GraphCfg gconfig, Message msg, string SenderAcct)
         {
             IConfidentialClientApplication confidentialClientApplication = ConfidentialClientApplicationBuilder
@@ -24,7 +53,10 @@ namespace MSALDaemon
             ClientCredentialProvider authProvider = new ClientCredentialProvider(confidentialClientApplication);
 
             GraphServiceClient graphClient = new GraphServiceClient(authProvider);
+            
+            //POST /users/{id | userPrincipalName}/messages/{id}/send
             graphClient.Users[SenderAcct].SendMail(msg, false).Request().PostAsync();
+            
             List<QueryOption> options = new List<QueryOption> {
                     new QueryOption ("$top", "1")
                 };
@@ -45,38 +77,6 @@ namespace MSALDaemon
                 EmailAddress = emailAddress,
             };
             toRecipientsList.Add(toRecipients);
-        }
-
-        public static bool Send(string Subject, string Message, string[] Recipient, GraphCfg config)
-        {
-            var result = false;
-
-            var recipients = new List<Recipient>();
-
-            foreach (var r in Recipient)
-            {
-                AddReciepient(recipients, r);
-            }
-
-
-            var body = new ItemBody
-            {
-                ContentType = BodyType.Html,
-                Content = Message,
-            };
-
-            Message message = new Message
-            {
-                Subject = Subject,
-                Body = body,
-                ToRecipients = recipients,
-            };
-
-            config.returnUrl = config.frontendUrl;
-            sendMail(config, message, config.mailSender);
-
-            result = true;
-            return result;
         }
     }
 }

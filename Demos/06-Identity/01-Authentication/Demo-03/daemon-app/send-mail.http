@@ -1,0 +1,8 @@
+POST https://localhost:5001/api/mail HTTP/1.1
+Content-Type: application/json
+
+{
+    "subject": "daemon app mail",
+    "text": "a msg to the world",
+    "recipient": "alexander.pajer@integrations.at"
+}

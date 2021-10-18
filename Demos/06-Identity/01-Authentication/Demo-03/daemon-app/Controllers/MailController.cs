@@ -15,10 +15,11 @@ namespace MSALDaemon
             config = (AppConfig)cfg.Value;
         }
 
-        [HttpGet]
-        public ActionResult SendMail()
+        //https://localhost:5001/api/mail
+        [HttpPost]
+        public ActionResult SendMail([FromBody]MailModel mail)
         {
-            GraphHelper.Send("Hello World", "A msg from me", new[] { "alexander.pajer@integrations.at" }, config.GraphCfg);
+            GraphHelper.SendMail(mail.subject, mail.text, new[] { mail.recipient }, config.GraphCfg);
             return Ok();
         }
     }
