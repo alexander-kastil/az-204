@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using Microsoft.Graph;
 using Microsoft.Graph.Auth;
 using Microsoft.Identity.Client;
@@ -36,13 +32,12 @@ namespace MSALDaemon
                 ToRecipients = recipients,
             };
 
-            config.returnUrl = config.frontendUrl;
-            sendMail(config, message, config.mailSender);
+            sendMail(config, message);
 
             result = true;
             return result;
         }       
-        private static void sendMail(GraphCfg gconfig, Message msg, string SenderAcct)
+        private static void sendMail(GraphCfg gconfig, Message msg)
         {
             IConfidentialClientApplication confidentialClientApplication = ConfidentialClientApplicationBuilder
                 .Create(gconfig.clientId)
@@ -55,7 +50,7 @@ namespace MSALDaemon
             GraphServiceClient graphClient = new GraphServiceClient(authProvider);
             
             //POST /users/{id | userPrincipalName}/messages/{id}/send
-            graphClient.Users[SenderAcct].SendMail(msg, false).Request().PostAsync();
+            graphClient.Users[gconfig.mailSender].SendMail(msg, false).Request().PostAsync();
             
             List<QueryOption> options = new List<QueryOption> {
                     new QueryOption ("$top", "1")
@@ -64,7 +59,6 @@ namespace MSALDaemon
             var graphResult = graphClient.Users.Request(options).GetAsync().Result;
 
         }
-
         private static void AddReciepient(List<Recipient> toRecipientsList, string r)
         {
             var emailAddress = new Microsoft.Graph.EmailAddress

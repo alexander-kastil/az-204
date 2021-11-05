@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MSALDaemon;
 
-namespace MSALDaemon
+namespace daemon_app
 {
     public class Program
     {

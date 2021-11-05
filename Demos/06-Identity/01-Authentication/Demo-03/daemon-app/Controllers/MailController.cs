@@ -15,7 +15,8 @@ namespace MSALDaemon
             config = (AppConfig)cfg.Value;
         }
 
-        //https://localhost:5001/api/mail
+        // https://localhost:5001/api/mail
+        // test with send-mail.http
         [HttpPost]
         public ActionResult SendMail([FromBody]MailModel mail)
         {

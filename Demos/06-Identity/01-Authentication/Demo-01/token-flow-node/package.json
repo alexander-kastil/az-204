@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.1.1",
-    "msal": "^1.4.4"
+    "msal": "^1.4.15"
   },
   "devDependencies": {
     "http-server": "^0.12.3"
