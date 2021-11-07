@@ -23,9 +23,9 @@ Deploy App using [Azure App Service](https://marketplace.visualstudio.com/items?
 
 ## Deploy using Publishing Profile
 
-Demo uses [MVC-DevOps](https://github.com/arambazamba/mvc-devops) sample.
+Demo uses [mvc-devops sample](https://github.com/arambazamba/mvc-devops).
 
-Navigate to `./MVC-Skills/Properties/PublishProfile`
+Navigate to `./mvc-skills/Properties/PublishProfile`
 
 Add a file called `azure.pubxml` with the following content:
 
