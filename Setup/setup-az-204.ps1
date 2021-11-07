@@ -13,6 +13,7 @@ choco install googlechrome -y
 choco install vscode -y
 choco install git -y
 choco install gitextensions -y
+choco install gh -y
 
 Write-Host "*****" -ForegroundColor red
 Write-Host "You can now clone your fork to c:\az-204 using git clone REPO-URL" -ForegroundColor red
