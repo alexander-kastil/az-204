@@ -40,10 +40,16 @@ Add a file called `azure.pubxml` with the following content:
 </Project>
 ```
 
-Get the deployment user and update `azure.pubxml`:
+Get the publishing metadata to update `azure.pubxml`:
 
 ```
-az webapp deployment user show 
+user=$(az webapp deployment list-publishing-profiles -g $grp -n $mvcapp --query [1].userName -o tsv)
+pwd=$(az webapp deployment list-publishing-profiles -g $grp -n $mvcapp --query [1].userPWD -o tsv)
+
+echo "Update your publishing Profile:"
+echo "PublishSiteName: $mvcapp"
+echo "UserName: $user"
+echo "Password: $pwd"
 ```
 
 Publish app:
