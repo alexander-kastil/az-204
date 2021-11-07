@@ -1,24 +1,31 @@
 # Create App Service & Publish .NET Core Api using Portal & CLI
 
-## Deploy using Azure App Service Extensions
+## Scaffold App & Deploy using Azure App Service Extensions
 
-Use [.NET Core CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/) to create and test the app: 
+Use [.NET Core CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/). 
 
-```
+Scaffold and run App:
+
+```bash
 dotnet new api -n CliApi
 dotnet run
 ```
 
 Publish app
 
-```
+```bash
 dotnet publish
 ```
 
+Deploy App using [Azure App Service](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
+
 ![deploy](_images/deploy-ext.jpg)
+
 ## Deploy using Publishing Profile
 
-Navigate to `./FirstMVC/Properties/PublishProfile`
+Demo uses [MVC-DevOps](https://github.com/arambazamba/mvc-devops) sample.
+
+Navigate to `./MVC-Skills/Properties/PublishProfile`
 
 Add a file called `azure.pubxml` with the following content:
 
@@ -33,7 +40,13 @@ Add a file called `azure.pubxml` with the following content:
 </Project>
 ```
 
-Execute:
+Get the deployment user and update `azure.pubxml`:
+
+```
+az webapp deployment user show 
+```
+
+Publish app:
 
 ```
 dotnet publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProfiles\azure.pubxml /p:Password=<password>
@@ -43,21 +56,28 @@ dotnet publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProf
 
 ## Deploy using az webapp up
 
-Usually you would create an app service plan and a web app using:
+Create an app service plan and a web app:
 
-```
+```bash
+rnd=$RANDOM
+grp=az204-m01-appservices-$rnd
+loc=westeurope
+appPlan=appservices-$rnd
+app=blazorapp-$rnd
+az group create -n $grp -l $loc
 az appservice plan create -n $appPlan -g $grp --sku Free
 az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNET|5.0"
 ```
 
-`az webapp up` replaces the two step below, build, publishes and deploys the web app. Navigate to `./FirstApi/` and execute:
+`az webapp up` is a shortcut to, build, publishes and deploys the web app. Navigate to `./blazor-wasm-app/` and execute:
+
 
 ```bash
 rnd=$RANDOM
-loc=westeurope
 grp=az204-m01-appservices-$rnd
-app=firstapi-$rnd
-appPlan=appservice-$rnd
+loc=westeurope
+appPlan=appservices-$rnd
+app=blazorapp-$rnd
 
 az group create -n $grp -l $loc
 az webapp up -n $app -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|5.0"

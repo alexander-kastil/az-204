@@ -1,0 +1,29 @@
+rnd=$RANDOM
+grp=az204-m01-appservices-$rnd
+loc=westeurope
+appPlan=appservices-$rnd
+mvcapp=mvc-devops-$rnd
+
+# create a resource group
+az group create -n $grp -l $loc
+
+# create an App Service plan
+az appservice plan create -n $appPlan -g $grp --sku F1
+
+# create cliapp
+az webapp create -n cliapi-$rnd -g $grp --plan $appPlan --runtime "DOTNET|5.0"
+
+# create mvc app used with  publshing profile
+az webapp create -n $mvcapp -g $grp --plan $appPlan --runtime "DOTNET|5.0"
+
+user=$(az webapp deployment list-publishing-profiles -g $grp -n $mvcapp --query [1].userName -o tsv)
+pwd=$(az webapp deployment list-publishing-profiles -g $grp -n $mvcapp --query [1].userPWD -o tsv)
+
+echo "Update your publishing Profile:"
+echo "PublishSiteName: $mvcapp"
+echo "UserName: $user"
+echo "Password: $pwd"
+
+# create and upload blazor app using az webapp up - execute from within ./blazor-wasm-app
+
+az webapp up -n blazorapp-$rnd -g $grp -p $appPlan -l $loc -r "DOTNET|5.0"

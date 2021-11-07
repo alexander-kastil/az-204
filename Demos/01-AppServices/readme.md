@@ -3,6 +3,9 @@
 ## Demos
 
 - Create and Deploy Web App
+    - Using VS Extension
+    - Publishing Profile
+    - az webapp up
 - Deploy Static HTML App using Git
 - Web App for Containers
 - App Settings
