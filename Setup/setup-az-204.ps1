@@ -1,4 +1,5 @@
-# Install chocolatey
+# Script uses Chocolatey Package Manager for Windows from https://chocolatey.org/
+# Install Chocolatey
 Write-Host "Installing Chocolatey - 1/6" -ForegroundColor yellow
 
 Set-ExecutionPolicy Bypass -Scope Process -Force; 
