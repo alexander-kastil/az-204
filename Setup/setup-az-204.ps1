@@ -1,4 +1,6 @@
 # Script uses Chocolatey Package Manager for Windows from https://chocolatey.org/
+# Execute in elevated Powershell Prompt
+
 # Install Chocolatey
 Write-Host "Installing Chocolatey - 1/6" -ForegroundColor yellow
 
