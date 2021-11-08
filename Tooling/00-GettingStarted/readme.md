@@ -16,7 +16,7 @@ git config --global user.email "your.email@yourdomain.com"
 
 ## Setup Git and Fork the class repo
 
-Go to `https://github.com/ARambazamba/az-204` and fork the repo or use the GitHub Cli
+Go to `https://github.com/ARambazamba/az-204` and fork the repo or use the GitHub CLI:
 
 ```
 gh repo fork https://github.com/arambazamba/az-204
