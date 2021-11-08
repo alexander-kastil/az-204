@@ -73,36 +73,7 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw
 
 Congratulations you have completed the base setup of a labs vm!
 
----
-
-## Fork & Clone Class Repo and set Github requirements
-
-Set User and E-Mail in order to be able to commit to git:
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "your.email@yourdomain.com"
-```
-
-Go to `https://github.com/ARambazamba/az-204` and fork the repo
-
-![forking-wf](_images/fork.jpg)
-
-The forking-workflow allows you to commit your changes to your fork of the repo and still get updates on the repo
-
-![forking-wf](_images/forking-workflow.jpg)
-
-Clone Class Repo:
-
-```bash
-git clone https://github.com/Student01/az-204
-```
-
-> Note: If you have forked the class repo clone your own fork, otherwise use https://github.com/ARambazamba/az-204
-
----
-
-## Setup Docker Support
+## Setup Docker Support - optional
 
 There are two options to configure Docker support. WSL2 recommended
 
@@ -115,8 +86,6 @@ Install Hyper-V using `setup-docker.ps1` and restart after execution.
 Check Docker Settings:
 
 ![docker-test](_images/docker-settings.jpg)
-
----
 
 ### Option 2 - Install Docker with WSL2
 
