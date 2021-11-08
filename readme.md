@@ -9,6 +9,8 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
     - [Visual Studio Code Intro](./Tooling/02-VSCode)
     - [Document Repos using Markdown](./Tooling/03-Markdown)
     - [Using Azure CLI](./Tooling/04-CLI)
+    - [Docker and WSL Setup](./Tooling/08-Docker-WSL)
+    - [Configure VS Code REST Client Extension](./Tooling/07-REST-Client)
   - [Instructor Demos](./Demos)
   - [Guided Scripts to setup an Azure hosted Development & Lab VM](./Setup)
     - [Base Dev Environment Setup inkluding Visual Studio Code Extensions](./Setup/#basics)
