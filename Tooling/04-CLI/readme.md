@@ -14,9 +14,7 @@
 
 ![cloud-shell](_images/cloud-shell.png)
 
-## Install Azure CLI & CloudShell
-
-### <a id="configure-cloud-shell">Configure CloudShell for first use
+## <a id="configure-cloud-shell">Configure CloudShell for first use
 
 Open the Cloud Shell to configure it for first use:
 
@@ -32,7 +30,7 @@ Optional: Give a meaningfull name to your Clould Shell Storage using Advanced Se
 
 > Note: To reset CloudShell you can use `Dismount-Clouddrive`
 
-### Install Azure CLI
+## Install Azure CLI on your local machine
 
 Install Azure CLI in an elevated PowerShell prompt:
 
@@ -42,7 +40,7 @@ Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI
 
 > Note: To install Azure CLI in Linux (ie. WSL) execute `install-az-cli-linux.sh` from Setup/Linux folder
 
-## Getting Started
+## Azure CLI getting started
 
 Log In:
 
