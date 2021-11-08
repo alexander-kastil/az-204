@@ -16,7 +16,7 @@
 
 ## Install Azure CLI & CloudShell
 
-### Configure CloudShell for first use
+### <a id="configure-cloud-shell">Configure CloudShell for first use
 
 Open the Cloud Shell to configure it for first use:
 

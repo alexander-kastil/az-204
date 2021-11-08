@@ -1,6 +1,7 @@
 # Getting Started
 
 - [Register your Azure Pass](../05-AzurePass)
+- [Configure Cloud Shell in your Azure Tenant](../04-CLI/#configure-cloud-shell)
 - [Setup your Lab Machine & install required Software using Script](../../Setup)
     - You can also work on your own machine. Execute [setup-az-204.ps1](../../Setup/setup-az-204.ps1) to install the required Software on a Windows machine
 - Configure Git
