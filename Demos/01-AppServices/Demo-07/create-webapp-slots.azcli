@@ -1,0 +1,15 @@
+rnd=$RANDOM
+grp=az204-m01-deployment-slots-$rnd
+appPlan=deployment-slots-$rnd
+app=deployment-slots-app-$rnd
+loc=westeurope
+
+az group create -n $grp -l $loc
+
+az appservice plan create -n $appPlan -g $grp --sku S1
+
+az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNET|5.0"
+
+az webapp deployment slot create -n $app -g $grp --slot staging
+
+# az webapp deployment slot swap
