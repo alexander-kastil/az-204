@@ -8,10 +8,10 @@
     - az webapp up
     - [Use Azure Dev Ops (optional)](https://github.com/arambazamba/mvc-devops/blob/master/az-pipelines/build-provision-deploy.yml)
 - Deploy Static HTML App using Git
-- Web App for Containers
-- App Settings
-- Easy Auth
-- Traffic Manager
+- Web Apps for Containers
+- Config Mgmt using App Settings and Environment
+- Using Easy Auth
+- Geo Routing with Traffic Manager
 - GitHub Actions
 
 ## Readings
