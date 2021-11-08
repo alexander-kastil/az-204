@@ -2,7 +2,7 @@
 
 ## <a id="basics">Create VM</a>
 
-This is a semin-automated guide for a Azure Lab VM Setup. Feel free to automate the missing steps on a seperate branch in your fork and create a pull request. An introduction video into forks and pull requests can be found [here](https://www.youtube.com/watch?v=nT8KGYVurIU)
+This is a semin-automated guide for a Azure Lab VM Setup. 
 
 Execute `create-lab-vm.sh` or run the following remote script in Cloud Shell
 
