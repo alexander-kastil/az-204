@@ -3,8 +3,8 @@
 ## Demos
 
 - Provision and use Blob Storage
-- Use Blob Storage Fileshare
 - Use Shared Access Signature
+- Use Blob Storage Fileshare (optional)
 
 ## Readings
 
