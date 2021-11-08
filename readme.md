@@ -2,6 +2,7 @@
 
 Companion Material for Class Delivery by [Alexander Pajer](https://www.integrations.at/kontakt.aspx) containing:
 
+  - [Getting Started](./Tooling/00-GettingStarted)
   - [Requirements / Tooling](./Tooling)
     - [Register Azure Pass](./Tooling/05-AzurePass)
     - [Git & GitHub Basics](./Tooling/01-Github)
