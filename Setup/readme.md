@@ -31,7 +31,7 @@ Note: The image name of the Windows 10:20h2 image changes frequently. You might 
 
 ## Connect to VM
 
-Go to Ressource Group `az204-lab` and connect to VM using RDP and the credentials that you have used in the script:
+Go to Ressource Group `az-lab` and connect to VM using RDP and the credentials that you have used in the script:
 
 Download RDP File:
 
