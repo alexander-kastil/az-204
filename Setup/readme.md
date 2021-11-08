@@ -4,7 +4,13 @@
 
 This is a semin-automated guide for a Azure Lab VM Setup. Feel free to automate the missing steps on a seperate branch in your fork and create a pull request. An introduction video into forks and pull requests can be found [here](https://www.youtube.com/watch?v=nT8KGYVurIU)
 
-In order for Docker to work on a Windows 10 VM you need to install Hyper-V or use Windows Subsystem for Linux 2 (WSL2). Therefore you must use hardware that supports [Nested Virtualization](https://docs.microsoft.com/en-us/azure/lab-services/how-to-enable-nested-virtualization-template-vm). A detailed Setup Guide can be found [here](https://github.com/ARambazamba/ClassSetup).
+Execute `create-lab-vm.sh` or run the following remote script in Cloud Shell
+
+```bash
+curl https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Setup/create-lab-vm.sh | bash
+```
+
+![create-labvm](_images/create-lab-vm.jpg)
 
 Script `create-lab-vm.azcli`:
 
@@ -24,14 +30,6 @@ az vm auto-shutdown -g $grp -n $vmname --time 1830
 ```
 
 Note: The image name of the Windows 10:20h2 image changes frequently. You might have to update the image name. Get a list of all Windows 10 images: `az vm image list -f "Windows-10" --location westeurope --all -o table`. Remember to support WSL2 you must have at least patch level `20h2`
-
-You could also execute `create-lab-vm.sh` or run the following remote script in Cloud Shell
-
-```bash
-curl https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Setup/create-lab-vm.sh | bash
-```
-
-![create-labvm](_images/create-lab-vm.jpg)
 
 ## Connect to VM
 
@@ -109,6 +107,8 @@ git clone https://github.com/Student01/az-204
 ## Setup Docker Support
 
 There are two options to configure Docker support. WSL2 recommended
+
+In order for Docker to work on a Windows 10 VM you need to install Hyper-V or use Windows Subsystem for Linux 2 (WSL2). Therefore you must use hardware that supports [Nested Virtualization](https://docs.microsoft.com/en-us/azure/lab-services/how-to-enable-nested-virtualization-template-vm). A detailed Setup Guide can be found [here](https://github.com/ARambazamba/ClassSetup).
 
 ### Option 1 - Install Docker with Hyper-V
 
