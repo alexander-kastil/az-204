@@ -12,7 +12,7 @@ curl https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Setup/create-lab-
 
 ![create-labvm](_images/create-lab-vm.jpg)
 
-Script `create-lab-vm.azcli`:
+`create-lab-vm.azcli`:
 
 ```bash
 rnd=$RANDOM
