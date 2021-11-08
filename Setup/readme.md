@@ -2,8 +2,6 @@
 
 ## <a id="basics">Create VM</a>
 
-This is a semin-automated guide for a Azure Lab VM Setup. 
-
 Execute `create-lab-vm.sh` or run the following remote script in Cloud Shell
 
 ```bash
