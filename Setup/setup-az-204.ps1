@@ -28,9 +28,10 @@ Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
 
 choco install dotnetcore-sdk -y
 choco install dotnet-5.0-sdk -y
-choco install nodejs-lts --version=12.18.4 -y
+choco install dotnet-6.0-sdk -y
+choco install nodejs-lts --version=14.18.0 -y
 choco install azure-cli -y
-choco install azure-functions-core-tools-3 --params="'/x64:true'" -y
+choco install azure-functions-core-tools --params="'/x64:true'" -y
 choco install azurestorageemulator -y
 choco install azurepowershell -y
 choco install microsoftazurestorageexplorer -y
