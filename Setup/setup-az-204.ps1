@@ -37,6 +37,7 @@ choco install microsoftazurestorageexplorer -y
 choco install azure-data-studio -y
 choco install postman -y
 choco install ngrok -y
+choco install curl -y
 
 # Refresh Path Env
 Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
