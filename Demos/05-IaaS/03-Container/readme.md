@@ -43,8 +43,4 @@
 
 [Learning Path - Administer containers in Azure](https://docs.microsoft.com/en-us/learn/paths/administer-containers-in-azure/)
 
-[Learning Path - Deploy a website with Azure virtual machines](https://docs.microsoft.com/en-us/learn/paths/deploy-a-website-with-azure-virtual-machines/)
-
-[Build Azure Resource Manager templates](https://docs.microsoft.com/en-us/learn/modules/build-azure-vm-templates/)
-
-[Deploy a Spring Boot application to Linux on Azure App Service](https://docs.microsoft.com/en-us/azure/developer/java/spring-framework/deploy-spring-boot-java-app-on-linux)
+[Deploy a Spring Boot application to Linux Containers on Azure App Service](https://docs.microsoft.com/en-us/azure/developer/java/spring-framework/deploy-spring-boot-java-app-on-linux)

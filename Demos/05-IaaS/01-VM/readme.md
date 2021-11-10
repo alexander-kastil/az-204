@@ -27,3 +27,5 @@
 ## Additional Labs & Walkthroughs
 
 [Deploy a website with Azure virtual machines](https://docs.microsoft.com/en-us/learn/paths/deploy-a-website-with-azure-virtual-machines/)
+
+[Learning Path - Deploy a website with Azure virtual machines](https://docs.microsoft.com/en-us/learn/paths/deploy-a-website-with-azure-virtual-machines/)
