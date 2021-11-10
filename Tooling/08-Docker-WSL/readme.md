@@ -22,7 +22,7 @@ Execute script `setup-wsl2.ps1` multible times to setup WSL2.
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force;
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/ARambazamba/AZ-204/master/Setup/setup-wsl2.ps1'))
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/arambazamba/az-204/main/Tooling/08-Docker-WSL/setup-wsl2.ps1))
 ```
 
 First Run:
