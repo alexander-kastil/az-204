@@ -3,7 +3,7 @@ export const environment = {
   authEnabled: false,
   apiurl: "https://localhost:5001/",
   appInsights: {
-    instrumentationKey: "da2aaf3f-cfcd-4741-a0f0-b6b15a0ff47c",
+    instrumentationKey: "59c85e31-2a17-4877-a686-fce93ef72176",
   },
   firebaseConfig: {
     apiKey: "AIzaSyDK-xtrfT4YBzq4Hzmf5kEwHgHbYw4UQTc",

@@ -25,12 +25,14 @@ az webapp create -n $api -g $grp --plan $plan --runtime "DOTNET|5.0"
 
 az webapp config appsettings set -g $grp -n $api --settings Azure:ApplicationInsights=$aikey
 
-
-echo "Change ai key in api: " $aikey
+echo "*** Change ai key in api: " $aikey
+echo "*** Build and deploy api"
 
 # ui
 echo "*** Build Angular and replace ai key in environment.prod.ts"
 echo "*** InstrumentationKey:" $aikey
+echo "*** Api Url: $api.azurewebsites.net"
+echo "*** ng build --configuration production"
 
 az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 
