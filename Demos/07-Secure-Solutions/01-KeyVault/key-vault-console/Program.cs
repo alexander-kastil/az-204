@@ -11,7 +11,7 @@ namespace key_vault_console
         {
             string keyVaultName = "foodvault-dev";
             string keyVaultUri = "https://" + keyVaultName + ".vault.azure.net";
-            string secretName = "conSQLServer";
+            string secretName = "conSQLite";
             
             var client = new SecretClient(new Uri(keyVaultUri), new DefaultAzureCredential());
             KeyVaultSecret key = await client.GetSecretAsync(secretName);

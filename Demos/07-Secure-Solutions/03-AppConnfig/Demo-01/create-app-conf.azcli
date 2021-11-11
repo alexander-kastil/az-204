@@ -8,7 +8,10 @@ az group create -n $grp -l $loc
 
 # create appconfig and add a value
 az appconfig create -g $grp -n $cfg -l $loc --sku free
-az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y
+az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App Dev" -y
+az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y --label prod
+az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App Staging" -y --label staging
+
 
 # key-vault binding
 az appconfig identity assign -g $grp -n $cfg
