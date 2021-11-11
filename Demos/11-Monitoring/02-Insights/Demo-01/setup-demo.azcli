@@ -1,4 +1,4 @@
-rnd=26564
+rnd=dev
 grp=az204-m12-insights-$rnd
 loc=westeurope
 ai=foodai$rnd
@@ -24,6 +24,9 @@ az appservice plan create -n $plan -g $grp --sku FREE
 az webapp create -n $api -g $grp --plan $plan --runtime "DOTNET|5.0"
 
 az webapp config appsettings set -g $grp -n $api --settings Azure:ApplicationInsights=$aikey
+
+
+echo "Change ai key in api: " $aikey
 
 # ui
 echo "*** Build Angular and replace ai key in environment.prod.ts"
