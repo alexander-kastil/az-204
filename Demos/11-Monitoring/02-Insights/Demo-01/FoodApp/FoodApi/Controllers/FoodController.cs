@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using FoodApp;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,11 +9,15 @@ namespace FoodApi
     [Route ("[controller]")]
     [ApiController]
     public class FoodController : ControllerBase {
-        public FoodController (FoodDBContext context) {
+
+
+        public FoodController (FoodDBContext context, AILogger l) {
             ctx = context;
+            logger = l;
         }
 
         private FoodDBContext ctx;
+        private AILogger logger;
 
         // http://localhost:PORT/food
         [HttpGet ()]
@@ -47,6 +52,7 @@ namespace FoodApi
             if (v != null) {
                 ctx.Remove (v);
                 ctx.SaveChanges ();
+                logger.LogEvent("delete-food",id.ToString());
             }
             return Ok ();
         }

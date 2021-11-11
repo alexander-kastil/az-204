@@ -6,8 +6,8 @@ using Microsoft.Azure.ServiceBus;
 
 namespace ServiceBus {
     class Program {
-        const string ServiceBusConnectionString = "Endpoint=sb://sbdemons30607.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=3WaEnwes++yi+JuloaLwF6/jCVAPq+Y9+UTW/nFmvss=";
-        const string QueueName = "sbqueue";
+        const string ServiceBusConnectionString = "Endpoint=sb://sbdemons13230.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=L7RQAlQSxoP7vefrU0/rcxdaI3gk0W4Iy5cGupyHbIU=";
+        const string QueueName = "basicqueue";
         static IQueueClient queueClient;
 
         public static async Task Main (string[] args) {
@@ -17,7 +17,14 @@ namespace ServiceBus {
             // Send messages.
             await SendMessagesAsync (numberOfMessages);
             await queueClient.CloseAsync ();
-            Console.ReadLine();
+            Console.WriteLine ("Sending completed");
+            //Process messages
+            processor.ProcessMessageAsync += MessageHandler;
+            processor.ProcessErrorAsync += ErrorHandler;
+            await processor.StartProcessingAsync();
+
+            Console.WriteLine("Wait for a minute and then press any key to end the processing");
+            Console.ReadKey();
         }
 
         static async Task SendMessagesAsync (int numberOfMessagesToSend) {
