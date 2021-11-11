@@ -17,14 +17,7 @@ namespace ServiceBus {
             // Send messages.
             await SendMessagesAsync (numberOfMessages);
             await queueClient.CloseAsync ();
-            Console.WriteLine ("Sending completed");
-            //Process messages
-            processor.ProcessMessageAsync += MessageHandler;
-            processor.ProcessErrorAsync += ErrorHandler;
-            await processor.StartProcessingAsync();
-
-            Console.WriteLine("Wait for a minute and then press any key to end the processing");
-            Console.ReadKey();
+            Console.WriteLine ("Sending completed");            
         }
 
         static async Task SendMessagesAsync (int numberOfMessagesToSend) {
