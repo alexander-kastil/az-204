@@ -28,9 +28,9 @@ az storage account show --name $acct -g $grp --query "primaryEndpoints.web" --ou
 
 # Create CDN
 
-az cdn profile create -g $grp --name $profile --sku Standard_Microsoft
-
 host=$acct'.z6.web.core.windows.net'
+
+az cdn profile create -g $grp --name $profile --sku Standard_Microsoft
 
 az cdn endpoint create -g $grp --name $epname --profile-name $profile --origin $host --origin-host-header $host
 
