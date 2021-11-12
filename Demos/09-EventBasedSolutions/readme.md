@@ -6,7 +6,7 @@
 
 [Notification Hub](https://docs.microsoft.com/en-us/azure/notification-hubs/)
 
-# Real Time
+## Real Time Solutions
 
 [SignalR](https://docs.microsoft.com/en-us/azure/azure-signalr/signalr-overview)
 
