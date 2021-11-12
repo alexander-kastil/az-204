@@ -6,7 +6,7 @@ using Microsoft.Azure.ServiceBus;
 
 namespace ServiceBus {
     class Program {
-        const string ServiceBusConnectionString = "Endpoint=sb://sbdemons13230.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=L7RQAlQSxoP7vefrU0/rcxdaI3gk0W4Iy5cGupyHbIU=";
+        const string ServiceBusConnectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=K1X6hJCqaYuYtBYItO3fBZ2BdbU9DKBu/DaKBu/Dakvq9X4e8=";
         const string QueueName = "basicqueue";
         static IQueueClient queueClient;
 
