@@ -6,7 +6,7 @@
 
 [Notification Hub](https://docs.microsoft.com/en-us/azure/notification-hubs/)
 
-Not Part of AZ-204:
+# Real Time
 
 [SignalR](https://docs.microsoft.com/en-us/azure/azure-signalr/signalr-overview)
 
