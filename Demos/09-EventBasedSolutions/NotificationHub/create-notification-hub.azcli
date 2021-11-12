@@ -1,6 +1,6 @@
 rnd=$RANDOM
 loc=westeurope
-grp=az204-m10-notificationhub-$rnd
+grp=az204-m09-notificationhub-$rnd
 hubnsp=az204-hub-$rnd
 hub=demohub-$rnd
 

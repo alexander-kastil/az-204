@@ -1,6 +1,6 @@
 rnd=$RANDOM
 loc=westeurope
-grp=az204-m10-evtgrid-logic-$rnd
+grp=az204-m09-evtgrid-logic-$rnd
 strg=eventgrid$rnd
 container=evtgrid
 
