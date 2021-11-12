@@ -2,7 +2,8 @@
 
 ## Demo
 
-- Service Bus send msg
+- Send msg using queue
+- Use a topic and subscription
 
 ## Readings
 
