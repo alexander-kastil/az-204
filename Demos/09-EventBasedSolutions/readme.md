@@ -10,6 +10,8 @@
 
 [SignalR](https://docs.microsoft.com/en-us/azure/azure-signalr/signalr-overview)
 
+[Event Grid & SignalR](https://github.com/DavidGSola/event-grid-monitoring)
+
 ## CLI Reference
 
 [az eventgrid](https://docs.microsoft.com/en-us/cli/azure/eventgrid?view=azure-cli-latest)
