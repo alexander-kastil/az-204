@@ -9,10 +9,10 @@ az group create -n $grp -l $loc
 
 az servicebus namespace create -g $grp -n $namespace -l $loc
 
-az servicebus queue create -g $grp --namespace-name $namespace --name $q
+az servicebus queue create -g $grp -n $q --namespace-name $namespace 
 
-az servicebus topic create -g $grp --name $topic
+az servicebus topic create -g $grp -n $topic --namespace-name $namespace
 
-connectionString=$(az servicebus namespace authorization-rule keys list --resource-group $grp --namespace-name $namespace --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
+qcs=$(az servicebus namespace authorization-rule keys list --resource-group $grp --namespace-name $namespace --name RootManageSharedAccessKey --query primaryqcs --output tsv)
 
-echo '*** Connection String: ' $connectionString
+echo '***Queue Connection String: ' $qcs
