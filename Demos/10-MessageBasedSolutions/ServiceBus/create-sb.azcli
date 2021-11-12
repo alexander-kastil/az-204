@@ -1,15 +1,21 @@
-rnd=$RANDOM
-grp=az204-m11-sb-$rnd
+rnd=dev
+grp=az204-m10-sb-$rnd
 loc=westeurope
-namespace=sbdemons$rnd
+namespace=sbdemos$rnd
 q=BasicQueue
+topic=BasicTopic
+subs=sb-topic-subs
 
 az group create -n $grp -l $loc
 
 az servicebus namespace create -g $grp -n $namespace -l $loc
 
-az servicebus queue create --resource-group $grp --namespace-name $namespace --name $q
+az servicebus queue create -g $grp -n $q --namespace-name $namespace 
 
-connectionString=$(az servicebus namespace authorization-rule keys list --resource-group $grp --namespace-name $namespace --name RootManageSharedAccessKey --query primaryConnectionString --output tsv)
+az servicebus topic create -g $grp -n $topic --namespace-name $namespace
 
-echo '*** Connection String: ' $connectionString
+az servicebus topic subscription create -n $subs --namespace-name $namespace --topic-name $topic -g $grp
+
+cs=$(az servicebus namespace authorization-rule keys list --resource-group $grp --namespace-name $namespace --name RootManageSharedAccessKey --query primaryConnectionString -o tsv)
+
+echo '***Queue Connection String: ' $cs
