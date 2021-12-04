@@ -12,7 +12,7 @@ az vm list-sizes -l westeurope -o table
 
 # List Windows 10 images
 
-az vm image list -f "Windows-10" --all -o table
+az vm image list -f "Windows-10" -l westeurope  --all -o table
 
 # Get a list of all images available for the 2019-Datacenter SKU
 az vm image list --all --location westeurope --publisher MicrosoftWindowsServer --offer WindowsServer --sku 2019-Datacenter
