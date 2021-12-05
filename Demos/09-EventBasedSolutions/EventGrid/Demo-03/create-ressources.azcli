@@ -1,0 +1,35 @@
+rnd=dev
+grp=az204-m09-ngeventgrid-$rnd
+loc=westeurope
+storage=foodhub$rnd
+app=foodhub-$rnd
+topic=foodtopic-$rnd
+
+# base ressources
+
+az group create -n $grp -l $loc
+
+az signalr create  -g $grp -n $app --sku Free_F1 --service-mode Serverless -l $loc 
+
+az eventgrid topic create -g $grp -n $topic -l $loc --input-schema cloudeventschemav1_0
+
+az monitor app-insights component create --app $app --location $loc --kind web -g $grp --application-type web --retention-time 30
+
+# function app
+
+az storage account  create -n $storage -g $grp 
+
+az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3 --app-insights $app
+
+fxep=$(az functionapp show -n $app -g $grp --query "hostNames" --output tsv)
+
+echo "*** Function App Url: https://"$fxep
+echo "*** Please upload the function app"
+
+# event grid subscription
+
+subid=$(az account list --query "[?name=='Visual Studio Enterprise'].id" -o tsv)
+
+az eventgrid event-subscription create \ 
+   --source-resource-id /subscriptions/$subid/resourceGroups/$grp/providers/Microsoft.EventGrid/topics/topic --name $app --endpoint $fxep/api/EvtSubscription --endpoint-type webhook \
+   --event-delivery-schema cloudeventschemav1_0
