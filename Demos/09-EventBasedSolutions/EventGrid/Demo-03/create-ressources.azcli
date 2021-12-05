@@ -48,6 +48,6 @@ topickey=$(az eventgrid topic key list -n $topic -g $grp --query "key1" --output
 
 echo "*** Topic Key: "$topickey
 
-# post to topic - you can also execute post-topic.http
-curl $topicurl --request POST --header "Content-Type: application/cloudevents+json; charset=utf-8" --header "aeg-sas-key: $topickey" -data @event.json 
+# post to topic - execute post-topic.http
+
 
