@@ -20,7 +20,7 @@ namespace Integrations
         [FunctionName("negotiate")]
         public static SignalRConnectionInfo GetSignalRInfo(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req,
-            [SignalRConnectionInfo(HubName = "foodhub-dev")] SignalRConnectionInfo connectionInfo)
+            [SignalRConnectionInfo(HubName = "cloudEventSchemaHub")] SignalRConnectionInfo connectionInfo)
         {
             return connectionInfo;
         }
@@ -29,7 +29,7 @@ namespace Integrations
         [FunctionName("evtsubscription")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "options", "post", Route = null)] HttpRequest req,
-            [SignalR(HubName = "foodhub-dev")] IAsyncCollector<SignalRMessage> signalRMessages,
+            [SignalR(HubName = "cloudEventSchemaHub")] IAsyncCollector<SignalRMessage> signalRMessages,
             ILogger log)
         {
             // Handle EventGrid subscription validation for CloudEventSchema v1.0.
