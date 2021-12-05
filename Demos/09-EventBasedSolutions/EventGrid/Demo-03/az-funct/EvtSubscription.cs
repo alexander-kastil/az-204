@@ -20,16 +20,16 @@ namespace Integrations
         [FunctionName("negotiate")]
         public static SignalRConnectionInfo GetSignalRInfo(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req,
-            [SignalRConnectionInfo(HubName = "cloudEventSchemaHub")] SignalRConnectionInfo connectionInfo)
+            [SignalRConnectionInfo(HubName = "foodhub-dev")] SignalRConnectionInfo connectionInfo)
         {
             return connectionInfo;
         }
 
 
-        [FunctionName("EvtSubscription")]
+        [FunctionName("evtsubscription")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "options", "post", Route = null)] HttpRequest req,
-            [SignalR(HubName = "cloudEventSchemaHub")] IAsyncCollector<SignalRMessage> signalRMessages,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "options", "post", Route = null)] HttpRequest req,
+            [SignalR(HubName = "foodhub-dev")] IAsyncCollector<SignalRMessage> signalRMessages,
             ILogger log)
         {
             // Handle EventGrid subscription validation for CloudEventSchema v1.0.
