@@ -191,11 +191,17 @@ In this exercise, you created a couple of placeholder containers in the storage 
 1.  At the open command prompt, enter the following command, and then select Enter to create a new .NET project named **BlobManager** in the current folder:
 
     ```
-    dotnet new console --name BlobManager --output .
+    dotnet new console --name BlobManager --output .    
     ```
 
     > **Note**: The **dotnet new** command will create a new **console** project in a folder with the same name as the project.
 
+1.  Add the Nuget Package Source: 
+
+    ```
+    dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org
+    ```
+    
 1.  At the command prompt, enter the following command, and then select Enter to import version 12.0.0 of **Azure.Storage.Blobs** from NuGet:
 
     ```
