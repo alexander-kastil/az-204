@@ -18,14 +18,11 @@ namespace Integrations
         {
             
             var eventData = await req.Content.ReadAsAsync<FoodModel>();
-
             string eventName = req.Method == HttpMethod.Delete ? "RemoveFood" : "AddFood";
-
             await orchclient.RaiseEventAsync(
                 eventData.OrchestrationInstanceId,
                 eventName,
                 eventData);
-
             return req.CreateResponse(HttpStatusCode.OK);
         }    
     }
