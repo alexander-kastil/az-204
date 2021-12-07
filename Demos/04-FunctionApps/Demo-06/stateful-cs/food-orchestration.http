@@ -1,5 +1,6 @@
 ### Start orchestration 
 
+# @name orch
 GET  http://localhost:7071/api/food/start HTTP/1.1
 content-type: application/json
 
@@ -8,7 +9,7 @@ content-type: application/json
 # -> replace OrchestrationInstanceId in subsequent rest calls
 # -> make rest call to statusQueryGetUri
 
-GET http://localhost:7071/runtime/webhooks/durabletask/instances/39c7bfba4026465e99ea5e653fd89b65?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{orch.response.body.id}}?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
 
 ### Add chips
 
@@ -21,7 +22,7 @@ content-type: application/json
     "Amount": 5,
     "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/chips.jpeg",
     "Enabled": true,
-    "OrchestrationInstanceId": "39c7bfba4026465e99ea5e653fd89b65"
+    "OrchestrationInstanceId": "{{orch.response.body.id}}"
 }
 
 ### Add fish
@@ -35,7 +36,7 @@ content-type: application/json
     "Amount": 3,
     "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/fish.jpeg",
     "Enabled": false,
-    "OrchestrationInstanceId": "39c7bfba4026465e99ea5e653fd89b65"
+    "OrchestrationInstanceId": "{{orch.response.body.id}}"
 }
 
 ### Complete 
