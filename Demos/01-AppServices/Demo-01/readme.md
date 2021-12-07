@@ -13,7 +13,7 @@ Use [.NET Core CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/).
 Scaffold and run App:
 
 ```bash
-dotnet new api -n CliApi
+dotnet new api -n cli-api
 dotnet run
 ```
 
