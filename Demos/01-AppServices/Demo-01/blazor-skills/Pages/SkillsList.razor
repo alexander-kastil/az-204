@@ -1,0 +1,50 @@
+@page "/skills"
+@inject HttpClient Http
+
+<PageTitle>Skills</PageTitle>
+
+<h1>Skills-List</h1>
+
+@if (skills == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Hours</th>
+                <th>Completed</th>
+                <th>&nbsp</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sk in skills)
+            {
+                <tr>
+                    <td>@sk.ID</td>
+                    <td>@sk.Name</td>
+                    <td>@sk.Hours</td>
+                    <td>@sk.Completed</td>
+                    <td>
+                        <NavLink class="nav-link" href="@sk.Url" >
+                            Edit
+                        </NavLink>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Skill[]? skills;
+
+    protected override async Task OnInitializedAsync()
+    {
+        skills = await Http.GetFromJsonAsync<Skill[]>("sample-data/skills.json");
+    }
+}

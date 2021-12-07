@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Node.js", "hours": 3, "completed": false },
+  { "id": 2, "name": "TypeScript", "hours": 4, "completed": false },
+  { "id": 3, "name": "JavaScript", "hours": 10, "completed": false },
+  { "id": 4, "name": "Angular", "hours": 20, "completed": false }
+]

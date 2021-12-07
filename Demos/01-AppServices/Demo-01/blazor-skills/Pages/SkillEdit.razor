@@ -1,0 +1,61 @@
+@page "/skill-edit/{id}"
+@inject HttpClient Http
+
+<PageTitle>Skill Edit</PageTitle>
+
+<h1>Edit: </h1>
+
+@if (skill == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="@skill" OnValidSubmit="@handleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            ID:
+            <InputNumber @bind-Value="skill.ID" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Name:
+            <InputText @bind-Value="skill.Name" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Hours:
+            <InputNumber @bind-Value="skill.Hours" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Completed:
+            <InputCheckbox @bind-Value="skill.Completed" />
+        </label>
+    </p>    
+    <button type="submit">Submit</button>
+</EditForm>
+}
+
+@code {
+    [Parameter]
+    public string id {get;set;}
+    private Skill? skill;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var skills = await Http.GetFromJsonAsync<Skill[]>("sample-data/skills.json");
+        skill = skills[0];
+    }
+
+    private void handleSubmit()
+    {
+        
+    }
+}
