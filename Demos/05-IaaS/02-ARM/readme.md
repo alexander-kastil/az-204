@@ -15,6 +15,8 @@
 
 [Deploy resources with ARM templates and Azure CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-cli)
 
+[Bizep Documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
+
 ## CLI Reference
 
 [az deployment](https://docs.microsoft.com/en-us/cli/azure/deployment?view=azure-cli-latest)
