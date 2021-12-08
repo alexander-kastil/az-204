@@ -15,7 +15,7 @@
 
 [Deploy resources with ARM templates and Azure CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-cli)
 
-[Bizep Documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
+[Bicep Documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
 
 ## CLI Reference
 
@@ -26,6 +26,8 @@
 [Azure Resource Manager (ARM) Tools](https://marketplace.visualstudio.com/items?itemName=msazurermtools.azurerm-vscode-tools)
 
 [ARM Template Viewer](https://marketplace.visualstudio.com/items?itemName=bencoleman.armview)
+
+[Bicep Language Support](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
 
 ## Additional Labs & Walkthroughs
 
