@@ -9,7 +9,7 @@ namespace AppConfigConsole
     {
         static void Main(string[] args)
         {
-            var builder = new ConfigurationBuilder()
+            var builder = new ConfigurationBuilder();
             
             // Update Connection String
             var cs = "Endpoint=https://foodconfig-040.azconfig.io;Id=CmbS-l9-s0:WO2JsvkyX1ls499JMlOg;Secret=jCi77pbz+HXGKg15iEsoKpFFiki9HJWD0OQgf54nb6Q=";
