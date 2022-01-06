@@ -1,0 +1,24 @@
+app=food-app-test
+urlApi=https://localhost:5001
+urlUI=http://localhost:4200
+# generate unique guid using: guid=$(uuidgen)
+# --identifier-uris must be unique - value does not matter
+apiIdentifierUris=api://food-api-32d734c2-393e-4592-97c2-4db5867b57ce
+
+az config set extension.use_dynamic_install=yes_without_prompt
+tenantId=$(az account tenant list --query [0].tenantId)
+echo "*** tenantID:" $tenantId
+
+idApi=$(az ad app create --display-name $app-api --required-resource-accesses @manifest-api.json --identifier-uris $apiIdentifierUris --oauth2-allow-implicit-flow true --query appId -o tsv)  
+echo "*** clientId api:" $idApi 
+
+idUI=$(az ad app create --display-name $app-ui --required-resource-accesses @manifest-ui.json \
+    --oauth2-allow-implicit-flow true \
+    --replyUrlsWithType $urlUI --query appId -o tsv)      
+
+az ad app permission add --id $idUI 
+
+az ad app list --app-id $idUI    
+
+az ad app permission admin-consent --id $idApi    
+az ad app permission admin-consent --id $idUI

@@ -2,8 +2,8 @@
 
 ## Demos
 
-- Token Flow
-- MSAL Interactive
+- MSAL Token Flow
+- MSAL secured .NET 6 Api consumed by Angular U
 - MSAL Daemon
 - MSAL Blazor
 
