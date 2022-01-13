@@ -54,4 +54,4 @@ import { StoreModule } from '@ngrx/store';
     MsalBroadcastService,
   ],
 })
-export class MsalAuthHelperModule {}
+export class MsalAuthUtilModule {}

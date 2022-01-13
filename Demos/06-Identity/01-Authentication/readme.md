@@ -2,20 +2,20 @@
 
 ## Demos
 
-- MSAL Token Flow
+- Managing App Registrations and understanding Microsoft Identity Token Flow
+- MSAL Blazor SPA
+- MSAL Daemon Service
 - MSAL secured .NET 6 Api consumed by Angular U
-- MSAL Daemon
-- MSAL Blazor
 
 ## Readings
 
 [Azure AD](https://docs.microsoft.com/de-at/azure/active-directory/fundamentals/active-directory-whatis)
 
-[MSAL](https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-v2-libraries)
-
 [Register Postman Azure AD](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-configure-postman)
 
-[Facebook, Google, and external provider authentication in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-3.1&tabs=visual-studio)
+[MSAL](https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-v2-libraries)
+
+[NET 6: Facebook, Google, and external authentication provider registration Snippets](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-3.1&tabs=visual-studio)
 
 ### Managed Identity
 

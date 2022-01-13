@@ -1,7 +1,7 @@
-import { forwardRef, Inject, Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import { Subscription } from 'rxjs';
-import { ConfigService } from '../config/config.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,24 +10,18 @@ export class AppInsightsService implements OnDestroy {
   private routerSubscription!: Subscription;
   private appInsights!: ApplicationInsights;
 
-  constructor(
-    @Inject(forwardRef(() => ConfigService)) private cs: ConfigService
-  ) {
+  constructor() {
     this.initAppInsights();
   }
 
   initAppInsights() {
-    this.cs.cfgInit.subscribe((init) => {
-      if (init) {
-        this.appInsights = new ApplicationInsights({
-          config: {
-            instrumentationKey: this.cs.config.applicationInsights,
-            enableAutoRouteTracking: true,
-          },
-        });
-        this.appInsights.loadAppInsights();
-      }
+    this.appInsights = new ApplicationInsights({
+      config: {
+        instrumentationKey: environment.azure.applicationInsights,
+        enableAutoRouteTracking: true,
+      },
     });
+    this.appInsights.loadAppInsights();
   }
 
   ngOnDestroy(): void {

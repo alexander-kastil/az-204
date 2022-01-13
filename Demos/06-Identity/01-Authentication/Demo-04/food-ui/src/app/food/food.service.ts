@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ConfigService } from '../core/config/config.service';
 import { FoodItem } from './food.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +9,8 @@ import { FoodItem } from './food.model';
 export class FoodService {
   private api: string = '';
 
-  constructor(private httpClient: HttpClient, private cs: ConfigService) {
-    this.api = cs.config.apiUrl;
+  constructor(private httpClient: HttpClient) {
+    this.api = environment.apiUrl;
   }
 
   getFood() {

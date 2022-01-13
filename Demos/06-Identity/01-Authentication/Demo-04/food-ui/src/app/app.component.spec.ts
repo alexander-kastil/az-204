@@ -1,10 +1,10 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { MsalAuthUtilService } from './auth/msal-auth.facade';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { LoginComponent } from './core/login/login.component';
+import { MsalAuthFacade } from './auth/state/auth.facade';
 
 describe('AppComponent', () => {
   let auth: any;
@@ -17,7 +17,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [AppComponent, LoginComponent],
-      providers: [{ provide: MsalAuthUtilService, useValue: auth }],
+      providers: [{ provide: MsalAuthFacade, useValue: auth }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

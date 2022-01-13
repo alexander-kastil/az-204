@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { MsalAuthFacade } from './auth/state/auth.facade';
-import { ConfigService } from './core/config/config.service';
 import { FoodFacade } from './food/state/food.facade';
 import { MenuFacade } from './state/menu/menu.facade';
 
@@ -20,8 +19,7 @@ export class AppComponent implements OnInit {
   constructor(
     private af: MsalAuthFacade,
     public mf: MenuFacade,
-    public ff: FoodFacade,
-    public cs: ConfigService
+    public ff: FoodFacade
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +27,7 @@ export class AppComponent implements OnInit {
       (mode) => (this.sidenavMode = mode as MatDrawerMode)
     );
 
-    this.af.cfgInitAndAuthenticated().subscribe((proceed) => {
+    this.af.isInitAndAuthenticated().subscribe((proceed) => {
       if (proceed) {
         this.authenticated = proceed;
       }

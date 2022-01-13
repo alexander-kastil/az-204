@@ -12,7 +12,6 @@ const routes: Routes = [
   {
     path: 'food',
     loadChildren: () => import('./food/food.module').then((m) => m.FoodModule),
-    canLoad: [MsalGuard],
   },
 ];
 
