@@ -33,7 +33,7 @@ namespace MSALDaemon
 
             //Swagger
             services.AddSwaggerGen (c => {
-                c.SwaggerDoc ("v1", new OpenApiInfo { Title = "Food API", Version = "v1" });
+                c.SwaggerDoc ("v1", new OpenApiInfo { Title = "MSAL Daemon Service", Version = "v1" });
             });
 
             // Cors
