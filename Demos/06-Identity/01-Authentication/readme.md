@@ -5,7 +5,7 @@
 - Managing App Registrations and understanding Microsoft Identity Token Flow
 - MSAL Blazor SPA
 - MSAL Daemon Service
-- MSAL secured .NET 6 Api consumed by Angular U
+- MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
 
 ## Readings
 
