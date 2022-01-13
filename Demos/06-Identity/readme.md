@@ -2,7 +2,16 @@
 
 [Microsoft Identity Platforms](https://docs.microsoft.com/en-us/azure/active-directory/develop/)
 
-[Authentication Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
+[Azure AD](https://docs.microsoft.com/de-at/azure/active-directory/fundamentals/active-directory-whatis)
+
+## Demos
+
+- Managing App Registrations
+- Understanding Microsoft Identity Authentication Flows
+- MSAL Blazor SPA
+- MSAL secured Mail Daemon Service
+- MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
+
 
 ## Additional Labs & Walkthroughs
 

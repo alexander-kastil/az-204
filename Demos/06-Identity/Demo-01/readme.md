@@ -1,9 +1,15 @@
 # Microsoft Identity Getting Started
 
+[Authentication Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
+
+## Demos
+
 - App Registration MSAL-Token-Flow-App
 - Explain Inplicit Grant Token Flow
 
-## Demo
+## CLI Reference
+
+[az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)
 
 ### App Registration
 

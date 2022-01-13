@@ -9,7 +9,7 @@
 
 ## Readings
 
-[Azure AD](https://docs.microsoft.com/de-at/azure/active-directory/fundamentals/active-directory-whatis)
+
 
 [Register Postman Azure AD](https://docs.microsoft.com/en-us/azure/digital-twins/how-to-configure-postman)
 
@@ -20,10 +20,6 @@
 ### Managed Identity
 
 [Azure Managed Identites](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/)
-
-## CLI Reference
-
-[az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)
 
 [Create App Registration Azure CLI](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest#az-ad-app-create)
 
