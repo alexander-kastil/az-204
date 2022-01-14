@@ -33,52 +33,44 @@ Create Images for .NET Core Api & Angular UI using `*.dockerfile`
 
 #### .NET 6 Api
 
-Inspect `./FoodApp/FoodApi/api.prod.dockerfile`:
+Inspect `./food-app/food-api/dockerfile`:
 
-```docker
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
-LABEL author="Alexander Pajer"
-WORKDIR /app
+```yaml
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
+WORKDIR /build
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
-WORKDIR /src
-
-COPY ["*.csproj", "."]
-RUN dotnet restore "FoodApi.csproj"
 COPY . .
-RUN dotnet build "FoodApi.csproj" -c Release -o /app
+RUN dotnet restore "food-api.csproj"
+RUN dotnet publish -c Release -o /app
 
-FROM build AS publish
-RUN dotnet publish "FoodApi.csproj" -c Release -o /app
-
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "FoodApi.dll"]
 ```
 
 Build & Run Image:
 
 ```
-docker build --rm -f "app.prod.dockerfile" -t foodservice .
-docker run -it --rm -p 8085:80 foodservice
+docker build --rm -f "dockerfile" -t foodapi .
+docker run -it --rm -p 5051:80 foodapi
 ```
 
-Browse using `http://localhost:5050/api/food`
+Browse using `http://localhost:5050/food`
 
 Publish Image to Docker Hub:
 
 ```
-docker tag foodservice arambazamba/foodservice
-docker push arambazamba/foodservice
+docker tag foodapi arambazamba/foodapi
+docker push arambazamba/foodapi
 ```
 
 ### Angular UI
 
-Inspect `./FoodApp/FoodUI/ui.prod.dockerfile`:
+Inspect `./food-app/food-ui/dockerfile`:
 
 ```docker
-FROM node:12.10 as node
+FROM node:14 as node
 LABEL author="Alexander Pajer"
 WORKDIR /app
 COPY package.json package.json
@@ -89,15 +81,15 @@ RUN npm run build -- --prod
 FROM nginx:alpine
 VOLUME /var/cache/nginx
 
-COPY --from=node /app/dist/FoodUI /usr/share/nginx/html
+COPY --from=node /app/dist/food-ui /usr/share/nginx/html 
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 ```
 
 Build & Run Image:
 
 ```
-docker build --rm -f "app.prod.dockerfile" -t foodui .
-docker run -d --rm -p 8086:80 foodui
+docker build --rm -f "dockerfile" -t foodui .
+docker run -d --rm -p 5052:80 foodui
 ```
 
 Publish Image to Docker Hub:
