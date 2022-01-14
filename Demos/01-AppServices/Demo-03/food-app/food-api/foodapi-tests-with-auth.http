@@ -1,0 +1,14 @@
+### Authenticate - requires app registration
+# @name auth
+POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
+Content-type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientId}}
+&client_secret={{clientSecret}}
+&scope={{scope}}
+
+### Get all food
+GET https://localhost:5001/food HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{auth.response.body.access_token}}

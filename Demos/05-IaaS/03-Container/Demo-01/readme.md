@@ -33,7 +33,7 @@ Create Images for .NET Core Api & Angular UI using `*.dockerfile`
 
 #### .NET 6 Api
 
-Inspect `./food-app/food-api/dockerfile`:
+Examine `./food-app/food-api/dockerfile`:
 
 ```yaml
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
@@ -67,7 +67,7 @@ docker push arambazamba/foodapi
 
 ### Angular UI
 
-Inspect `./food-app/food-ui/dockerfile`:
+Examine `./food-app/food-ui/dockerfile`:
 
 ```docker
 FROM node:14 as node

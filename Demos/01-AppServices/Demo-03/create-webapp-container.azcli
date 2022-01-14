@@ -1,12 +1,13 @@
 rnd=$RANDOM
 grp=az204-m01-wacontainers-$rnd
-appPlan=wacontainers$rnd
-app=foodui-container-$rnd
-img=arambazamba/foodui
 loc=westeurope
+appPlan=foodapp-wac$rnd
+app=foodui-wac-$rnd
+img=arambazamba/foodui
 
 az group create --name $grp --location $loc
-
 az appservice plan create --name $appPlan -g $grp --sku B1 --is-linux --number-of-workers 1
-
 az webapp create -g $grp -p $appPlan -n $app -i $img
+
+# As an alternative you could use: az webapp up
+# https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az-webapp-up
