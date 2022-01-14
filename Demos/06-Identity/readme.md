@@ -1,6 +1,6 @@
 # Implement Authentication & Access Control
 
-[Microsoft Identity Platforms](https://docs.microsoft.com/en-us/azure/active-directory/develop/)
+[Microsoft Identity Platform Docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/)
 
 [Azure AD](https://docs.microsoft.com/de-at/azure/active-directory/fundamentals/active-directory-whatis)
 
@@ -9,9 +9,9 @@
 - Managing App Registrations
 - Understanding Microsoft Identity Authentication Flows
 - MSAL Blazor SPA
-- MSAL secured Mail Daemon Service
+- MSAL secured Mail Daemon Service with Microsoft Graph
 - MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
-
+- Implement Role based Access Control
 
 ## Additional Labs & Walkthroughs
 

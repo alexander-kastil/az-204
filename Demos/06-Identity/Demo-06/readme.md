@@ -1,14 +1,12 @@
-# Implement Access Control
-
-## Demos
-
-- RBAC Basics
-
-## Readings
+# Implement Role based Access Control
 
 [RBAC for Azure](https://docs.microsoft.com/en-us/azure/role-based-access-control/)
 
 [Grant limited access to Azure Storage resources using shared access signatures](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview)
+
+## Demos
+
+- Role Based Access Control Basics
 
 ## CLI Reference
 

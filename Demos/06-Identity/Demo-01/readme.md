@@ -1,17 +1,15 @@
 # Microsoft Identity Getting Started
 
-[Authentication Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
+[Azure App Registrations](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-apps)
+
+[az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)
 
 ## Demos
 
 - App Registration MSAL-Token-Flow-App
-- Explain Inplicit Grant Token Flow
+- Create App Registration using Azure CLI
 
-## CLI Reference
-
-[az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)
-
-### App Registration
+### App Registration MSAL-Token-Flow-App
 
 ![appreg](_images/app-reg.jpg)
 
@@ -54,3 +52,7 @@ http-server
 Consent Screen:
 
 ![consent](_images/consent.jpg)
+
+### Create App Registration using Azure CLI
+
+Examine and execute `create-appreg.azcli`

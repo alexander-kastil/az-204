@@ -1,13 +1,4 @@
-# Using Microsoft Authentication Library - MSAL Auth Code Grant and NgRx
-
-Sample taken from [Food App](https://github.com/arambazamba/food-app)
-
-- .NET 6 Api 
-- Angular 13 UI using NgRx 
-
-[Microsoft identity platform documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/)
-
-[MSAL Auth Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
+# MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
 
 [.NET Core Authentication Snippets](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/microsoft-logins?view=aspnetcore-6.0)
 
