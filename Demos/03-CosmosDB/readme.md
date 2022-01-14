@@ -1,12 +1,5 @@
 # CosmosDB
 
-## Demos
-
--   Create and use Cosmos DB
--   Use Cosmos DB in .NET Core
-
-## Readings
-
 [Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-java?tabs=sync)
 
 [Azure Cosmos DB](https://docs.microsoft.com/de-at/azure/cosmos-db/)
@@ -20,6 +13,11 @@
 [Partitioning and horizontal scaling in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview)
 
 [Use Data migration tool to migrate your data to Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#JSON)
+
+## Demos
+
+-   Create and use Cosmos DB
+-   Use Cosmos DB in .NET Core
 
 ## CLI Reference
 

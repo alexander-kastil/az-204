@@ -1,13 +1,5 @@
 # Develop solutions that use Microsoft Azure Storage
 
-## Demos
-
-- Provision and use Blob Storage
-- Use Shared Access Signature
-- Use Blob Storage Fileshare (optional)
-
-## Readings
-
 [Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-java?tabs=powershell)
 
 [Azure Storage](https://docs.microsoft.com/en-us/azure/storage/)
@@ -21,6 +13,12 @@
 [Use the Azurite emulator for local Azure Storage development](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio)
 
 [Control access to Azure Storage with shared access signatures](https://docs.microsoft.com/en-us/learn/modules/control-access-to-azure-storage-with-sas/)
+
+## Demos
+
+- Provision and use Blob Storage
+- Use Shared Access Signature
+- Use Blob Storage Fileshare (optional)
 
 ## CLI Reference
 
