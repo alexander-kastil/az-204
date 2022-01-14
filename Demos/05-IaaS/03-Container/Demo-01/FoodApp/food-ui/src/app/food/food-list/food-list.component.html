@@ -1,0 +1,72 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <mat-form-field>
+      <input matInput type="text" [formControl]="filter$" />
+    </mat-form-field>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Id</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="calories">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="addItemToCart">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" class="icon-cell">
+          <a mat-icon-button (click)="addItemToCart(element)">
+            <mat-icon class="mat-18" matTooltip="Hinzufügen">add</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="removeItemFromCart">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" class="icon-cell">
+          <a mat-icon-button (click)="addItemToCart(element)">
+            <mat-icon class="mat-18" matTooltip="Hinzufügen">remove</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deleteItem">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" class="icon-cell">
+          <a mat-icon-button (click)="deleteFood(element)">
+            <mat-icon class="mat-18" matTooltip="Löschen">delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="editItem">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" class="icon-cell">
+          <a mat-icon-button (click)="selectFood(element)">
+            <mat-icon class="mat-18" matTooltip="Bearbeiten">edit</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

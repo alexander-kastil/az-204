@@ -4,14 +4,12 @@
 
 [Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/)
 
-[Kubernetes](https://kubernetes.io/de/)
-
 [NGINX](https://www.nginx.com/)
 
 ## Demos
 
-- Build .NET 6 Api
-- Build Angular FrontEnd
+- Ceate and publish .NET 6 Api image
+- Ceate and publish Angular UI image
 
 ### Setup Requirements on Windows and Linux
 
