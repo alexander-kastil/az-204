@@ -56,7 +56,7 @@ docker build --rm -f "dockerfile" -t foodapi .
 docker run -it --rm -p 5051:80 foodapi
 ```
 
-Browse using `http://localhost:5050/food`
+Browse using `http://localhost:5051/food`
 
 Publish Image to Docker Hub:
 
@@ -91,6 +91,8 @@ Build & Run Image:
 docker build --rm -f "dockerfile" -t foodui .
 docker run -d --rm -p 5052:80 foodui
 ```
+
+Browse using `http://localhost:5052`
 
 Publish Image to Docker Hub:
 
