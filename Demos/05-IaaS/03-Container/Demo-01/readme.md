@@ -1,9 +1,4 @@
-# Docker Basics
-
-- Build .NET 5 Api
-- Build Angular FrontEnd
-
-## Readings
+# Docker Basics & Multistage Build
 
 [Docker](https://www.docker.com/products/docker-desktop)
 
@@ -11,23 +6,34 @@
 
 [Kubernetes](https://kubernetes.io/de/)
 
-## Setup
+[NGINX](https://www.nginx.com/)
 
-[Windows Subsystem Linux - WSL 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-about)
+## Demos
 
-[Install WSL 2 on Windows 10](https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/)
+- Build .NET 6 Api
+- Build Angular FrontEnd
 
-Install Azure CLI in WSL Bash:
+### Setup Requirements on Windows and Linux
 
-```
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-```
+Windows:
 
-## Create Image & Deploy to Dockerhub
+- [Windows Subsystem Linux - WSL 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-about)
+
+- [Install WSL 2 on Windows 10](https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/)
+
+Linux:
+
+- Install Azure CLI in WSL Bash:
+
+    ```bash
+    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    ```
+
+### Create Image & publish to Dockerhub
 
 Create Images for .NET Core Api & Angular UI using `*.dockerfile`
 
-### .NET Core Api
+#### .NET 6 Api
 
 Inspect `./FoodApp/FoodApi/api.prod.dockerfile`:
 

@@ -2,9 +2,9 @@
 
 [Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/)
 
-[az aks Commands Overview](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
+[Bridge to Kubernetes](https://docs.microsoft.com/en-us/visualstudio/bridge/)
 
-[DevSpaces Intro](https://docs.microsoft.com/en-us/azure/dev-spaces/quickstart-team-development)
+[az aks Commands Overview](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
 
 #### Create AKS Cluster
 

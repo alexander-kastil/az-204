@@ -2,6 +2,8 @@
 
 [Helm Documentation](https://helm.sh/)
 
+[Develop on Azure Kubernetes Service (AKS) with Helm](https://docs.microsoft.com/en-us/azure/aks/quickstart-helm)
+
 ## Installation on Windows
 
 [Get Chocolatey](https://chocolatey.org/install)
