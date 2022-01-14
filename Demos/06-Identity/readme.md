@@ -2,7 +2,7 @@
 
 [Microsoft Identity Platform Docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/)
 
-[Azure AD](https://docs.microsoft.com/de-at/azure/active-directory/fundamentals/active-directory-whatis)
+[Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis)
 
 ## Demos
 
