@@ -1,5 +1,13 @@
 # App Services
 
+[What is IaaS](https://azure.microsoft.com/en-us/overview/what-is-azure/iaas/#products)
+
+[Azure App Services](https://docs.microsoft.com/en-us/azure/app-service/)
+
+[App Service Environments](https://docs.microsoft.com/en-us/azure/app-service/environment/intro)
+
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux)
+
 ## Demos
 
 - Create and Deploy Web App
@@ -14,16 +22,6 @@
 - Using Easy Authentication
 - Geo Routing with Traffic Manager
 - Deployment Slots
-
-## Readings
-
-[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux)
-
-[Azure App Services](https://docs.microsoft.com/en-us/azure/app-service/)
-
-[App Service Environments](https://docs.microsoft.com/en-us/azure/app-service/environment/intro)
-
-[What is IaaS](https://azure.microsoft.com/en-us/overview/what-is-azure/iaas/#products)
 
 ## CLI Reference
 
