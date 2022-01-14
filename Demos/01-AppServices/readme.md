@@ -11,7 +11,7 @@
 - Deploy Static HTML App using Git
 - Web Apps for Containers
 - Config Mgmt using App Settings and Environment
-- Using Easy Auth
+- Using Easy Authentication
 - Geo Routing with Traffic Manager
 - Deployment Slots
 
