@@ -7,6 +7,6 @@ pwd=Lab@dmin1234
 
 az group create -n $grp -l $loc
 
-az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image  MicrosoftWindowsDesktop:Windows-10:21h1-pro:19043.1288.2110060459 --size Standard_E2s_v3 --public-ip-sku Standard
+az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image  MicrosoftWindowsDesktop:Windows-10:win10-21h2-pro-g2:19044.1466.220108 --size Standard_E2s_v3 --public-ip-sku Standard
 
 az vm auto-shutdown -g $grp -n $vmname --time 1830

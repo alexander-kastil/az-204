@@ -5,21 +5,20 @@ euplan=tm-westeur-$rnd
 usplan=tm-eastus-$rnd
 gitrepo="https://github.com/ARambazamba/GitDeployApp"
 user=labadmin
-pwd="Pa$$w0rd1234!"
+pwd=Pa$$w0rd1234!
 
 az group create -g $eugrp -l westeurope
 az group create -g $usgrp -l eastus2
 
 az vm create -g $usgrp -n usvm --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2ms 
 
-az appservice plan create -n $euplan -g $eugrp -l westeurope --sku S1 
-az appservice plan create -n $usplan -g $usgrp -l eastus2 --sku S1
-
 # Create WebApps in two regions
+az appservice plan create -n $euplan -g $eugrp -l westeurope --sku S1 
 az webapp create -n tmapp-$euplan -g $eugrp -p $euplan
 az webapp deployment source config -n tmapp-$euplan -g $eugrp -u $gitrepo --branch master
 euid=$(az webapp show -n tmapp-$euplan -g $eugrp --query id -o tsv)
 
+az appservice plan create -n $usplan -g $usgrp -l eastus2 --sku S1
 az webapp create -n tmapp-$usplan -g $usgrp -p $usplan
 az webapp deployment source config -n tmapp-$usplan -g $usgrp -u $gitrepo --branch master  
 usid=$(az webapp show -n tmapp-$usplan -g $usgrp --query id -o tsv)
