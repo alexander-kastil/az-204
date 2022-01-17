@@ -33,7 +33,3 @@ az network traffic-manager endpoint create --name ep-$euplan -g $eugrp  --profil
 
 az network traffic-manager endpoint create --name ep-$usplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-NA \
     --type azureEndpoints --target-resource-id $usid --endpoint-status Enabled 
-
-
-
-

@@ -14,7 +14,7 @@ az appservice plan create -n $appPlan -g $grp --sku F1
 az webapp create -n cli-api-$rnd -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 
 # create mvc app used with  publshing profile
-az webapp create -n $pubprofileapp -g $grp --plan $appPlan --runtime "DOTNET|6.0"
+az webapp create -n pubprofileapp -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 
 user=$(az webapp deployment list-publishing-profiles -g $grp -n $pubprofileapp --query [1].userName -o tsv)
 pwd=$(az webapp deployment list-publishing-profiles -g $grp -n $pubprofileapp --query [1].userPWD -o tsv)
@@ -25,5 +25,4 @@ echo "UserName: $user"
 echo "Password: $pwd"
 
 # create and upload blazor app using az webapp up - execute from within ./blazor-skills
-
 az webapp up -n blazor-skills-$rnd -g $grp -p $appPlan -l $loc -r "DOTNET|6.0"

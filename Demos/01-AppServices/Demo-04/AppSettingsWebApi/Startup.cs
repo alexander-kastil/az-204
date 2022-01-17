@@ -26,8 +26,9 @@ namespace AppSettingsWebApi
 
         private readonly IWebHostEnvironment env;
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)        
         {
+            //add the config to the .net IOC container
             services.AddSingleton < IConfiguration > (Configuration);  
 
             services.AddControllers();
