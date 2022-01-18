@@ -6,8 +6,8 @@ using Microsoft.Azure.ServiceBus;
 
 namespace ServiceBus {
     class Program {
-        const string ServiceBusConnectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=K1X6hJCqaYuYtBYItO3fBZ2BdbU9DKBu/DaKBu/Dakvq9X4e8=";
-        const string QueueName = "basicqueue";
+        const string ServiceBusConnectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SxLHsPCPL6uQXA+BNdVY1wUUUjFfl7TBMRSlPmIHWwo=";
+        const string QueueName = "console-queue";
         static IQueueClient queueClient;
 
         public static async Task Main (string[] args) {

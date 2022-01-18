@@ -2,8 +2,8 @@ rnd=dev
 grp=az204-m10-sb-$rnd
 loc=westeurope
 namespace=sbdemos$rnd
-q=BasicQueue
-topic=BasicTopic
+q=console-queue
+topic=console-topic
 subs=sb-topic-subs
 
 az group create -n $grp -l $loc
