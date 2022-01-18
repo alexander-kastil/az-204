@@ -43,12 +43,8 @@ namespace Integrations
                 log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");                
             } 
             else if (resultingEvent == removeFoodTask){
-                //TODO: Fix remove and status afert remove
                 FoodModel item = removeFoodTask.Result;
                 var removed = food.Remove(item);
-                var result = food.Where(f=>f.ID != removeFoodTask.Result.ID).ToList();
-                // context.SetOutput(food);
-                // food.Remove(removeFoodTask.Result);
                 log.LogInformation($"Removed food {addFoodTask.Result.Name} from foodlist");  
             }
 
