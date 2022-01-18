@@ -98,11 +98,8 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 
 1.  On the **Storage accounts** blade, select the **mediastor*[yourname]*** storage account instance.
 
-1.  On the **Storage account** blade, find the **Settings** section, and then select the **Properties** link.
+1.  On the **Endpoints** blade, find the **Blob service** section, and then select the url. Example: https://foodpics12534.blob.core.windows.net/
 
-1.  In the **Properties** section, record the value of the **Primary Blob Service Endpoint** text box.
-
-    > **Note**: You'll use this value later in the lab.
 
 1.  Still on the **Storage account** blade, find the **Settings** section, and then select the **Access keys** link.
 

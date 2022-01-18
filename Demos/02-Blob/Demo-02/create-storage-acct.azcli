@@ -7,13 +7,13 @@ path="./patient-images/"
 blob="patient-32589.jpg"
 
 ## Update expiry
-expiry=2021-11-15
+expiry=2022-01-20
 
 az group create -n $grp -l $loc
 
 url=$(az storage account create -n $acct --access-tier hot --kind StorageV2 -g $grp --query primaryEndpoints.blob)
 
-key=$(az storage account keys list -n $acct --query "[0].[value][0]")
+key=$(az storage account keys list -n $acct --query "[0].value")
 
 az storage container create -n $container --account-name $acct --account-key $key
 
