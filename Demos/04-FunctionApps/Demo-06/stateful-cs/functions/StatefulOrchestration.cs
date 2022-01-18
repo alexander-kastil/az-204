@@ -50,7 +50,6 @@ namespace Integrations
 
             if(resultingEvent == isCompleteTask && isCompleteTask.Result){
                 log.LogInformation($"Foodlist orchestration completed");
-                //TODO: return state on complete and terminate
             }
             else{
                 context.ContinueAsNew(food);
