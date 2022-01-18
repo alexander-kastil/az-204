@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +8,9 @@ namespace SBConsole
 {
     public class Program
     {
-        static string connectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=K1X6hJCqaYuYtBYItO3fBZ2BdbU9DKBu/Dakvq9X4e8=";
-
-        static string topicName = "BasicTopic";
-
-        static string subscriptionName = "sb-topic-subs";
+        static string connectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SxLHsPCPL6uQXA+BNdVY1wUUUjFfl7TBMRSlPmIHWwo=";
+        static string topic = "console-topic";
+        static string subs = "console-topic-subs";
 
         // the client that owns the connection and can be used to create senders and receivers
         static ServiceBusClient? client;
@@ -24,7 +21,7 @@ namespace SBConsole
         static async Task Main()
         {
             client = new ServiceBusClient(connectionString);
-            processor = client.CreateProcessor(topicName, subscriptionName, new ServiceBusProcessorOptions());
+            processor = client.CreateProcessor(topic, subs, new ServiceBusProcessorOptions());
 
             try
             {
@@ -50,7 +47,7 @@ namespace SBConsole
         static async Task MessageHandler(ProcessMessageEventArgs args)
         {
             string body = args.Message.Body.ToString();
-            Console.WriteLine($"Received: {body} from subscription: {subscriptionName}");
+            Console.WriteLine($"Received: {body} from subscription: {subs}");
             await args.CompleteMessageAsync(args.Message);
         }
 

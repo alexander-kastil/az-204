@@ -9,10 +9,10 @@ namespace SbApp
     public class Program
     {
         // connection string to your Service Bus namespace
-        static string connectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=K1X6hJCqaYuYtBYItO3fBZ2BdbU9DKBu/Dakvq9X4e8=";
+        static string connectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SxLHsPCPL6uQXA+BNdVY1wUUUjFfl7TBMRSlPmIHWwo=";
  
         // name of your Service Bus topic
-        static string topicName = "BasicTopic";
+        static string topic = "console-topic";
 
         // the client that owns the connection and can be used to create senders and receivers
         static ServiceBusClient? client;
@@ -29,10 +29,9 @@ namespace SbApp
         public static async Task Main(string[] args)
         {
             client = new ServiceBusClient(connectionString);
-            Sender = client.CreateSender(topicName);
+            Sender = client.CreateSender(topic);
 
             using ServiceBusMessageBatch messageBatch = await Sender.CreateMessageBatchAsync();
-
             for (int i = 1; i <= numOfMessages; i++)
             {
                 if (!messageBatch.TryAddMessage(new ServiceBusMessage($"Message {i}")))
@@ -51,9 +50,6 @@ namespace SbApp
                 await Sender.DisposeAsync();
                 await client.DisposeAsync();
             }
-
-            Console.WriteLine("Press any key to end the application");
-            Console.ReadKey();
         }
     }
 }

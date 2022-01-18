@@ -4,7 +4,7 @@ loc=westeurope
 namespace=sbdemos$rnd
 q=console-queue
 topic=console-topic
-subs=sb-topic-subs
+subs=console-topic-subs
 
 az group create -n $grp -l $loc
 
