@@ -1,0 +1,26 @@
+.loginsplash {
+  height: 100vh;
+}
+
+.grid {
+  display: grid;
+  height: 100vh;
+  width: 100%;
+}
+
+.main{
+  height: calc(100vh - 100px);
+}
+
+mat-sidenav{
+  min-width: 180px;
+}
+
+mat-sidenav-container{
+  background-color: white;
+  min-height: 90vh;
+}
+
+mat-sidenav-content{
+  padding: 0 1 0 1rem;
+}

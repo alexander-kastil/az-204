@@ -1,0 +1,33 @@
+<div
+  *ngIf="!authenticated"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  class="loginsplash"
+>
+  <app-login></app-login>
+</div>
+<div
+  *ngIf="authenticated"
+  gdAreas="navbar | mainrow"
+  gdAreas.lt-md="navbar  | mainrow"
+  gdRows="80px auto"
+  gdColumns="auto"
+  class="grid"
+>
+  <div gdArea="navbar"><app-navbar></app-navbar></div>
+  <div gdArea="mainrow" class="main">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav [opened]="sidenavVisible | async" [mode]="sidenavMode">
+        <app-sidebar></app-sidebar>
+      </mat-sidenav>
+      <mat-sidenav-content [ngStyle]="getWorbenchStyle()">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
+
+<div style="display: none">
+  <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+  <router-outlet *ngIf="!isIframe"></router-outlet>
+</div>

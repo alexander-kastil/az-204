@@ -1,6 +1,4 @@
-# Update this script with the ACR from the prev demo
 acr=integrationsonline.azurecr.io
 
 az acr login --name $acr
-
-az acr build --image node-app:1.0.0 --registry $acr --file dockerfile .
+az acr build --image food-ui:2.0.0 --registry $acr --file ./food-ui/dockerfile .
