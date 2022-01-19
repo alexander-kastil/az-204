@@ -6,4 +6,4 @@ img="arambazamba/ng-config-env"
 
 az group create -n $grp -l $loc
 
-az container create -g $grp -l $loc -n $app --image $img --cpu 1 --memory 1 --dns-name-label $app --port 80 --environment-variables 'API_URL'='https://food-api-staging-4591.azurewebsites.net'
+az container create -g $grp -l $loc -n $app --image $img --cpu 1 --memory 1 --dns-name-label $app --port 80 --environment-variables 'ENV_API_URL'='https://food-api-staging-4591.azurewebsites.net'

@@ -76,3 +76,7 @@ az group create -n $grp -l $loc
 
 az container create -g $grp -l $loc -n $app --image $img --cpu 1 --memory 1 --dns-name-label $app --port 80 --environment-variables 'API_URL'='https://food-api-staging-4591.azurewebsites.net'
 ```
+
+To check the env variables connect to ACI and enter `printenv`: 
+
+![check-env](_images/check-env.png)
