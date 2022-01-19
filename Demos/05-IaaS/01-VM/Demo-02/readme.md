@@ -1,20 +1,18 @@
-# VM Extensions
+# Create a lab vm
 
-## AADLoginForWindows 
+[Chocolatey - THE PACKAGE MANAGER FOR WINDOWS](https://chocolatey.org/)
 
-[Login to Windows virtual machine in Azure using Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/devices/howto-vm-sign-in-azure-ad-windows)
-## Install SQL IaaS Agent Extension
+[Custom Script Extension for Windows](https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-windows)
 
-[Register SQL Server VM with SQL IaaS Agent Extension](https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-agent-extension-manually-register-single-vm?tabs=bash%2Cazure-cli)
+[Windows Subsystem for Linux Documentation](https://docs.microsoft.com/en-us/windows/wsl/)
 
-[New-AzSqlVM](https://docs.microsoft.com/en-us/powershell/module/az.sqlvirtualmachine/new-azsqlvm?view=azps-6.4.0)
+[Nested Virtualization](https://docs.microsoft.com/en-us/azure/lab-services/how-to-enable-nested-virtualization-template-vm)
 
-[az sql vm](https://docs.microsoft.com/en-us/cli/azure/sql/vm?view=azure-cli-latest#az_sql_vm_create)
+## Demos
 
-### Install SQL Management Extension Provider
+Explain Setup of Lab VM:
 
-Register the Provider in Subscription:
-
-```
-az provider register --namespace Microsoft.SqlVirtualMachine
-```
+- VM Setup
+- SW Setup using Chocolatey
+- Docker
+- WSL   

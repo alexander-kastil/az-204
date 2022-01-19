@@ -21,3 +21,19 @@ az keyvault update -n $vault -g $grp --enabled-for-disk-encryption "true"
 az vm encryption show -g $grp -n $vm
 
 az vm encryption enable -g $grp -n $vm --disk-encryption-keyvault $vault --volume-type all
+
+# Enable Azure AD Login Extension
+az vm extension set --publisher Microsoft.Azure.ActiveDirectory --name AADLoginForWindows -g $grp --vm-name $vm
+
+username=$(az account show --query user.name -o tsv)
+vmid=$(az vm show -g $grp --name $vm --query id -o tsv)
+
+az role assignment create --role "Virtual Machine Administrator Login" --assignee $username --scope $vmid
+
+# Install SQL IaaS Extension
+# Note: to really make this work you will have to install a SQL instance in the machine before executing
+
+# SqlManagementType: LightWeight | Full
+# LicenseType: PAYG | AHUB | DR
+
+az sql vm create -n $vm -g $grp -l $loc --license-type PAYG --sql-mgmt-type Full
