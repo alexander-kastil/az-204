@@ -10,7 +10,7 @@ RUN dotnet publish -c Release -o /app
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 WORKDIR /app
 COPY --from=build /app .
-ENTRYPOINT ["dotnet", "FoodApi.dll"]
+ENTRYPOINT ["dotnet", "food-api.dll"]
 
 # Build Image
 # docker build --rm -f "dockerfile" -t foodapi .

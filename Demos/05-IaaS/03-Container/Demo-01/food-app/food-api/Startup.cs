@@ -29,39 +29,30 @@ namespace FoodApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddSingleton<IConfiguration>(Configuration);
+            var cfg = Configuration.Get<FoodConfig>();
 
             //Aplication Insights
-            services.AddApplicationInsightsTelemetry(Configuration["Azure:ApplicationInsights"]);
+            services.AddApplicationInsightsTelemetry(cfg.Azure.ApplicationInsights);
             services.AddSingleton<ITelemetryInitializer, FoodTelemetryInitializer>();
             services.AddSingleton<AILogger>();
 
-            //EF
-            bool sqlite = bool.Parse(Configuration["App:UseSQLite"]);
-            if (sqlite)
+            //Database
+            if (cfg.App.UseSQLite)
             {
-                var conStrLite = Configuration["App:ConnectionStrings:SQLiteDBConnection"];
-                services.AddEntityFrameworkSqlite().AddDbContext<FoodDBContext>(options => options.UseSqlite(conStrLite));
+                services.AddDbContext<FoodDBContext>(opts => opts.UseSqlite(cfg.App.ConnectionStrings.SQLiteDBConnection));
             }
             else
             {
-                var conStr = Configuration["App:ConnectionStrings:SQLServerConnection"];
-                services.AddEntityFrameworkSqlServer()
-                .AddDbContext<FoodDBContext>(options => options.UseSqlServer(conStr));
+                services.AddDbContext<FoodDBContext>(opts => opts.UseSqlServer(cfg.App.ConnectionStrings.SQLiteDBConnection));
             }
 
-            //AzureAD auth
-            // services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-            // .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAD"));
-
-            var cfg = Configuration.GetSection("AzureAd");
-
+            //Microsoft Identity Auth     
+            var az = Configuration.GetSection("Azure");
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApi(Configuration)
+                .AddMicrosoftIdentityWebApi(az)
                 .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches();
-
             services.AddAuthorization();
 
             //Swagger
@@ -71,25 +62,20 @@ namespace FoodApi
             });
             services.AddControllers();
 
-            //TODO: move domain to config
-            string corsDomains = "http://localhost:4200";
-            string[] domains = corsDomains.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-
             // Cors
-            services.AddCors(o => o.AddPolicy("default", builder =>
+            services.AddCors(o => o.AddPolicy("nocors", builder =>
             {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader()
-                       .AllowCredentials()
-                       .WithOrigins(domains);
+                builder
+                    .SetIsOriginAllowed(host => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
             }));
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
+            var cfg = Configuration.Get<FoodConfig>();
             Console.WriteLine("Environment: " + env.EnvironmentName);
 
             if (env.IsDevelopment())
@@ -106,11 +92,11 @@ namespace FoodApi
             });
 
             //Cors and Routing
-            app.UseCors("default");
+            app.UseCors("nocors");
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            if (Boolean.Parse(Configuration["App:AuthEnabled"]))
+            if (cfg.App.AuthEnabled)
             {
                 app.UseAuthentication();
                 app.UseAuthorization();
