@@ -1,7 +1,5 @@
 # Creating VMs
 
-Examine available Images:
-
 Examine available Images using `list-vm-iamges.azcli`
 
 ## Windows
