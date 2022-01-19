@@ -1,5 +1,5 @@
 
-# Get a list of all publishers available in the East US region
+# Get a list of all publishers available in the Westeurope region
 az vm image list-publishers --location westeurope -o table
 
 # Get a list of all offers for the MicrosoftWindowsServer publisher
