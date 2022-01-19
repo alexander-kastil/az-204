@@ -3,11 +3,11 @@
 ## Demos
 
 - VM Basics
-    - List Windows 10 images using `list-vm-iamges.azcli`
-    - Examing VM images using `list-vm-iamges.azcli` 
+    - List Windows 10 images using `list-vm-images.azcli`
+    - Examing VM images using `list-vm-images.azcli` 
     - Create Windows VM using Azure CLI and Powershell
     - Create Linux VM using `create-linux-vm.azcli`
-- VM Extensions: SQL IaaS Agent & AADLoginForWindows
+    - VM Extensions: SQL IaaS Agent & AADLoginForWindows
 - Setup of Lab VM    
 
 ## Readings
