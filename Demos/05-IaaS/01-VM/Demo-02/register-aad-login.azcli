@@ -18,6 +18,7 @@ vmid=$(az vm show -g $grp --name $vm --query id -o tsv)
 az role assignment create --role "Virtual Machine Administrator Login" --assignee $username --scope $vmid
 
 # Install SQL IaaS Extension
+# Note: to really make this work you will have to install a SQL instance in the machine before executing
 
 # SqlManagementType: LightWeight | Full
 # LicenseType: PAYG | AHUB | DR
