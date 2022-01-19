@@ -11,7 +11,7 @@ az vm create -n $vm -g $grp --image UbuntuLTS --size Standard_B1ms --generate-ss
 # Connect to vm
 ip=$(az vm list-ip-addresses -n $vm --query [0].virtualMachine.network.publicIpAddresses[0].ipAddress -o tsv)
 
-echo $ip
+echo "Linuxvm: " $ip
 
 # quit using exit
 ssh $adminuser@$ip
