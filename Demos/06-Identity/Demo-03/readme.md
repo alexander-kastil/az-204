@@ -51,7 +51,7 @@ UI App Registration:
 
 Update `environment.ts`:
 
-```json
+```typescript
 export const environment = {
   production: false,
   authEnabled: true,

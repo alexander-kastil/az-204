@@ -44,9 +44,9 @@ import { PublicClientApplication, InteractionType, BrowserCacheLocation } from "
 
 @NgModule({
     imports: [
-        MsalModule.forRoot( new PublicClientApplication({ // MSAL Configuration
+        MsalModule.forRoot( new PublicClientApplication(
             auth: {
-                clientId: "clientid",
+                clientId: "<clientid>",
                 authority: "https://login.microsoftonline.com/common/",
                 redirectUri: "http://localhost:4200/",
                 postLogoutRedirectUri: "http://localhost:4200/",
