@@ -20,7 +20,6 @@ namespace FoodApi
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             List<FoodItem> list = new List<FoodItem>();
             list.Add(new FoodItem { ID = 1, Name = "Butter Chicken", Amount = 12, Code = "btc", Date = DateTime.Now });
             list.Add(new FoodItem { ID = 2, Name = "Blini with Salmon", Amount = 9, Code = "bls", Date = DateTime.Now });
