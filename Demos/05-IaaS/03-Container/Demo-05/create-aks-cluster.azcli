@@ -29,8 +29,7 @@ kubectl get nodes
 
 kubectl create namespace $ns
 
-# Apply the yaml - Make sure you uploaded foodui.yaml to CloudShell
-
+# Apply the yaml - Make sure you uploaded foodui.yaml to CloudShell or use WSL
 kubectl apply -f $ui --namespace $ns
 
 # Get some metadata
@@ -44,4 +43,4 @@ kubectl get pods -l app=foodui -n $ns
 kubectl get service $app -n $ns
 
 # port taken from yaml
-# ie: http://20.93.247.200:8081
+# ie: http://20.93.247.9:8081

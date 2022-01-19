@@ -5,7 +5,6 @@
 -   Use Azure Container Registry Build Task
 -   Azure Container Instances & Web Apps for Containers
 -   Kubernetes Intro (optional)
--   Helm (optional)
 
 ## Tools & Extensions
 
