@@ -7,15 +7,13 @@ namespace RedisSample
     {
         static void Main(string[] args)
         {
-            Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
+            Lazy<ConnectionMultiplexer> conRedis = new Lazy<ConnectionMultiplexer>(() =>
             {
                 var conStr = "az204-redis-demo-22708.redis.cache.windows.net:6380,password=TaYurPXtWXZ71MeWyyr45YAmv5wdNQo1QAzCaMAbZEU=,ssl=True,abortConnect=False";
                 return ConnectionMultiplexer.Connect(conStr);
             });
 
-            // Connection refers to a property that returns a ConnectionMultiplexer
-            // as shown in the previous example.
-            IDatabase cache = lazyConnection.Value.GetDatabase();
+            IDatabase cache = conRedis.Value.GetDatabase();
 
             // Simple PING command
             string cacheCommand = "PING";
@@ -41,7 +39,7 @@ namespace RedisSample
             Console.WriteLine("\nCache command  : " + cacheCommand);
             Console.WriteLine("Cache response : \n" + cache.Execute("CLIENT", "LIST").ToString().Replace("id=", "id="));
 
-            lazyConnection.Value.Dispose();
+            conRedis.Value.Dispose();
         }
     }
 }

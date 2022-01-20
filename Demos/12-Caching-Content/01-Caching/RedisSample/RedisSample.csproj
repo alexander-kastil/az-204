@@ -1,13 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>Redistest</UserSecretsId>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
-  </ItemGroup>
-
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<UserSecretsId>Redistest</UserSecretsId>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="StackExchange.Redis" Version="2.2.88"/>
+	</ItemGroup>
 </Project>
