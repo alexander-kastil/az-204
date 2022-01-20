@@ -1,5 +1,5 @@
-rnd=dev
-grp=az204-m09-ngeventgrid-$rnd
+rnd=$RANDOM
+grp=az204-m09-evtgrid-ng-$rnd
 loc=westeurope
 storage=foodhub$rnd
 app=foodhub-$rnd
@@ -13,8 +13,6 @@ az group create -n $grp -l $loc
 az signalr create  -g $grp -n $app --sku Free_F1 --service-mode Serverless -l $loc 
 
 conStrSignalR=$(az signalr key list --name $app -g $grp --query primaryConnectionString -o tsv)
-
-echo "*** conStrSignalR: $conStrSignalR" 
 
 az eventgrid topic create -g $grp -n $topic -l $loc --input-schema cloudeventschemav1_0
 
@@ -30,12 +28,9 @@ az functionapp config appsettings set -n $app -g $grp --settings "AzureSignalRCo
 
 az functionapp cors add -g $grp -n $app --allowed-origins $ngurl
 
-# az resource update -n web --resource-group myResourceGroup --namespace Microsoft.Web --resource-type config --parent sites/<app_name> --set properties.cors.supportCredentials=true --api-version 2015-06-01
+# Please upload the function app before proceeding
 
 fxep=$(az functionapp show -n $app -g $grp --query "hostNames" --output tsv)
-
-echo "*** Function App Url: https://"$fxep
-echo "*** Please upload the function app"
 
 # create event grid subscription - you can also do this manually
 
@@ -44,13 +39,11 @@ subid=$(az account list --query "[?name=='Visual Studio Enterprise'].id" -o tsv)
 az eventgrid event-subscription create --name $app --source-resource-id /subscriptions/$subid/resourceGroups/$grp/providers/Microsoft.EventGrid/topics/$topic --endpoint https://$fxep/api/evtsubscription --endpoint-type webhook --event-delivery-schema cloudeventschemav1_0
 
 # test the endpoint
-
 topicurl=$(az eventgrid topic show -n $topic -g $grp --query "endpoint" --output tsv)
-
-echo "*** Topic Url: https://"$topicurl
-
 topickey=$(az eventgrid topic key list -n $topic -g $grp --query "key1" --output tsv)
-
+echo "*** Function App Url: https://"$fxep
+echo "*** conStrSignalR: $conStrSignalR" 
+echo "*** Topic Url: https://"$topicurl
 echo "*** Topic Key: "$topickey
 
 # post to topic - execute post-topic.http
