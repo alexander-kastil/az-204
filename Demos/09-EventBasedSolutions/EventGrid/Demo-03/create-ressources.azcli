@@ -46,6 +46,6 @@ echo "*** conStrSignalR: $conStrSignalR"
 echo "*** Topic Url: https://"$topicurl
 echo "*** Topic Key: "$topickey
 
-# post to topic - execute post-topic.http
+# to post to topic - execute post-topic.http
 
 
