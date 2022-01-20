@@ -4,8 +4,6 @@ loc=westeurope
 cfg=foodconfig-$rnd
 vault=foodvault-$rnd
 
-az group create -n $grp -l $loc
-
 # create appconfig and add a value
 az appconfig create -g $grp -n $cfg -l $loc --sku free
 az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App Dev" -y

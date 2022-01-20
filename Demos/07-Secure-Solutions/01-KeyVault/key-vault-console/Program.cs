@@ -1,6 +1,5 @@
 ﻿using System;
 using Azure.Identity;
-using Azure.Security.KeyVault.Keys;
 using Azure.Security.KeyVault.Secrets;
 
 namespace key_vault_console

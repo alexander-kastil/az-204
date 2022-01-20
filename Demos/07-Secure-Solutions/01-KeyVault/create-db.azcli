@@ -5,8 +5,6 @@ server=foodserver$rnd
 db=foodb$rnd
 vault=foodvault-$rnd
 
-az group create -n $grp -l $loc
-
 user=$(az keyvault secret show --name "DBUser" --vault-name $vault --query value -o tsv)
 pwd=$(az keyvault secret show --name "DBPassword" --vault-name $vault --query value -o tsv)
 
