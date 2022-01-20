@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 
 namespace MSALDaemon
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class MailController : ControllerBase
     {
@@ -15,7 +15,7 @@ namespace MSALDaemon
             config = (AppConfig)cfg.Value;
         }
 
-        // https://localhost:5001/api/mail
+        // https://localhost:5001/mail
         // test with send-mail.http
         [HttpPost]
         public ActionResult SendMail([FromBody]MailModel mail)
