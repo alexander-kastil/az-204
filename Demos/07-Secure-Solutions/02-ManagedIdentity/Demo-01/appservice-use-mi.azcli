@@ -5,9 +5,9 @@ vault=foodvault-$rnd
 plan=foodplan-$rnd
 app=foodapi-$rnd
 
-az appservice plan create -n $plan  -g $grp --sku FREE
-az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|5.0"
-# az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|5.0" 
+# az appservice plan create -n $plan  -g $grp --sku FREE
+# az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|6.0"
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|6.0" 
 
 # System assigned identity
 az webapp identity assign -g $grp -n $app
