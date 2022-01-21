@@ -8,7 +8,7 @@ az group create --name $grp --location $loc
 
 az storage account create -l $loc -n $strg -g $grp --sku Standard_LRS
 
-key=$(az storage account keys list -n $strg --query "[0].[value][0]")
+key=$(az storage account keys list -n $strg --query "[0].value")
 
 az storage container create --name $container --account-name $strg --account-key $key
 
