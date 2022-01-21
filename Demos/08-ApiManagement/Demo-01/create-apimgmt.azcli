@@ -11,9 +11,9 @@ publisher="integrationsonline"
 
 az group create -n $grp -l $loc
 
-cd FoodApi
+cd food-api
 
-az webapp up -n $netapp -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|5.0"
+az webapp up -n $netapp -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
 
 cd ..
 

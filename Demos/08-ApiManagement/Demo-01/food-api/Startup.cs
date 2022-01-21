@@ -24,19 +24,12 @@ namespace FoodApi {
         public void ConfigureServices (IServiceCollection services) {
 
             //Config
-            var cfgBuilder = new ConfigurationBuilder ()
-                .SetBasePath (env.ContentRootPath)
-                .AddJsonFile ("appsettings.json");
-            var configuration = cfgBuilder.Build ();
-            services.Configure<AppConfig> (configuration);
-            services.AddSingleton (typeof (IConfigurationRoot), configuration);
+            services.AddSingleton<IConfiguration>(Configuration);
+            var cfg = Configuration.Get<FoodConfig>();
 
             //EF
             var conStrLite = Configuration["ConnectionStrings:SQLiteDBConnection"];
-            services.AddEntityFrameworkSqlite ().AddDbContext<FoodDBContext> (options => options.UseSqlite (conStrLite));
-
-            //AI
-            services.AddApplicationInsightsTelemetry (Configuration["Azure:ApplicationInsights:InstrumentationKey"]);
+            services.AddDbContext<FoodDBContext> (options => options.UseSqlite (cfg.ConnectionStrings.SqLiteDbConnection));
 
             //Swagger
             services.AddSwaggerGen (c => {
@@ -75,9 +68,6 @@ namespace FoodApi {
             app.UseHttpsRedirection ();
 
             app.UseRouting ();
-
-            // app.UseAuthorization ();
-
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllers ();
             });
