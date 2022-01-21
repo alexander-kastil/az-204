@@ -5,8 +5,7 @@ using Azure.Storage.Queues.Models;
 
 namespace QueueApp {
     class Program {
-
-        const string connectionString = "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=msgqueue24791;AccountKey=NhtRnYlj703NiDyukesEou63w7ICRtnqTJjs+ml7isPwNolqtTiWvqAf8OPIvbeZhTxRUkqu/l9IVh45QQCgAw==";
+        const string connectionString = "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=msgqueue8373;AccountKey=acrUmkUoOmGZef9k0IBIxGIMvKdqSzH9qzqOMmDsMEtisL/5nmROtocTvEDE6cYKXRHYYnCrIkWclPaUYCnPXw==";
 
         static async Task Main (string[] args) {
 

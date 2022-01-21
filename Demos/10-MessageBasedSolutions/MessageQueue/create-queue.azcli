@@ -12,6 +12,6 @@ key=$(az storage account keys list -n $acct --query "[0].[value][0]")
 
 az storage queue create -n $queue --account-key $key --account-name $acct
 
-conStr=$(az storage account show-connection-string -n $acct -g $grp | jq .connectionString)
+conStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
 
 echo '*** Connection String for .NET Core proj: ' $conStr

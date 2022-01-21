@@ -10,11 +10,11 @@ namespace FoodApp
     {
         static void Main(string[] args)
         {
-            var topic = "foodorder-topic";
+            var topic = "foodorder-topic-30596";
             var region = "westeurope";
 
             // TODO: Enter value for topic-key from create script
-            string topicKey = "eG3vxTHsHg95AWWr964DEmebNM8o0XvOlkCIq0afBjA=";
+            string topicKey = "DW3+gYjepKG+PFOhpgEMDbYr1167IKYt9l4iwrjBdrs=";
             string topicEndpoint = $"https://{topic}.{region}-1.eventgrid.azure.net/api/events";
             string topicHostname = new Uri (topicEndpoint).Host;
 
