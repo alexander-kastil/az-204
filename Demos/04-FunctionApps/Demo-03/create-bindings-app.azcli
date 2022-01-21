@@ -1,7 +1,7 @@
 rnd=$RANDOM
 grp=az204-m04-binding-$rnd
 loc=westeurope
-storage=foodpics$rnd
+storage=processor$rnd
 path='./pictures'
 source=drop
 target=processed
@@ -12,6 +12,7 @@ az group create -n $grp -l $loc
 az storage account create -l $loc -n $storage -g $grp --sku Standard_LRS
 
 key=$(az storage account keys list -n $storage --query "[0].value")
+conStr=$(az storage account show-connection-string -n $storage -g $grp --query connectionString -o tsv)
 
 az storage container create -n $source --account-name $storage --account-key $key
 
@@ -21,5 +22,12 @@ az storage container create -n $target --account-name $storage --account-key $ke
 
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4
 
+az functionapp config appsettings set -n $app -g $grp --settings "PICS_STORAGE=$conStr"
+
+# Deploy app
+cd pic-processor
+func azure functionapp publish $app
+
+echo $app" provisioned"
 echo "storage-acct: $storage"
 echo "storage-key: $key"
