@@ -22,7 +22,7 @@ az monitor app-insights component create --app $app --location $loc --kind web -
 
 az storage account  create -n $storage -g $grp 
 
-az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3 --app-insights $app
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3 --app-insights $app
 
 az functionapp config appsettings set -n $app -g $grp --settings "AzureSignalRConnectionString=$conStrSignalR"
 

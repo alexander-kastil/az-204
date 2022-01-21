@@ -1,17 +1,17 @@
 rnd=$RANDOM
-grp=az204-m04-bindingfuncts-$rnd
+grp=az204-m04-binding-$rnd
 loc=westeurope
 storage=foodpics$rnd
-path='./food-pictures'
+path='./pictures'
 source=drop
 target=processed
-app=foodpicsprocessor
+app=picture-processor
 
 az group create -n $grp -l $loc
 
 az storage account create -l $loc -n $storage -g $grp --sku Standard_LRS
 
-key=$(az storage account keys list -n $storage --query "[0].[value][0]")
+key=$(az storage account keys list -n $storage --query "[0].value")
 
 az storage container create -n $source --account-name $storage --account-key $key
 
@@ -19,7 +19,7 @@ az storage blob upload-batch --account-name $storage --account-key $key -s $path
 
 az storage container create -n $target --account-name $storage --account-key $key
 
-echo "acct: $storage"
-echo "key: $key"
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4
 
-az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3
+echo "storage-acct: $storage"
+echo "storage-key: $key"
