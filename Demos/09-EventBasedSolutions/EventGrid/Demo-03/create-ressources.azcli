@@ -1,5 +1,5 @@
 rnd=$RANDOM
-grp=az204-m09-evtgrid-ng-$rnd
+grp=az204-m09-evtgrid-signalr-$rnd
 loc=westeurope
 storage=foodhub$rnd
 app=foodhub-$rnd
@@ -43,7 +43,7 @@ topicurl=$(az eventgrid topic show -n $topic -g $grp --query "endpoint" --output
 topickey=$(az eventgrid topic key list -n $topic -g $grp --query "key1" --output tsv)
 echo "*** Function App Url: https://"$fxep
 echo "*** conStrSignalR: $conStrSignalR" 
-echo "*** Topic Url: https://"$topicurl
+echo "*** Topic Url: "$topicurl
 echo "*** Topic Key: "$topickey
 
 # to post to topic - execute post-topic.http
