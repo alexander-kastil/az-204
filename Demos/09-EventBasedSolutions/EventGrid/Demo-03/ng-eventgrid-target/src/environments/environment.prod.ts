@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  signalr: 'https://foodhub-8926.azurewebsites.net/api',
 };

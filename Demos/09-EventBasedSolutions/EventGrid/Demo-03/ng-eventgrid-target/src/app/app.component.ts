@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as SignalR from '@microsoft/signalr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent {
   constructor() {
     // Create connection
     this.hubConnection = new SignalR.HubConnectionBuilder()
-      .withUrl('https://foodhub-dev.azurewebsites.net/api')
+      .withUrl(environment.signalr)
       .build();
 
     // Start connection. This will call negotiate endpoint
@@ -23,6 +24,7 @@ export class AppComponent {
 
     // Handle incoming events for the specific target
     this.hubConnection.on('newEvent', (event: any) => {
+      console.log('received event', event);
       this.events.push(event);
     });
   }

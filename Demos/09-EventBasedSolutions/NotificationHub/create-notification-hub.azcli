@@ -6,10 +6,10 @@ hub=demohub-$rnd
 
 az group create --name $grp --location $loc
 
+az notification-hub namespace list -g $grp
+
 az notification-hub namespace check-availability --name $hubnsp
 
 az notification-hub namespace create -g $grp -n $hubnsp  -l $loc --sku Free
 
 az notification-hub create -l $loc -n $hub --namespace-name $hubnsp -g $grp
-
-az notification-hub namespace list -g $grp
