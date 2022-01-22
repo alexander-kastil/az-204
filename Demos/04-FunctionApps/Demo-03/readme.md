@@ -1,6 +1,8 @@
 # Bindings
 
-[Azurite. An open source Azure Storage API compatible server (emulator)](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite)
+[Triggers & Binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
+
+[Register Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register)
 
 ## Demo
 
@@ -12,7 +14,7 @@ Azurite
 
 Provision function app by executing `create-bindings-app.azcli`
 
-## Function Extensions
+## Managing Function Extensions
 
 Install [function extensions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register#access-extensions-in-non-net-languages):
 

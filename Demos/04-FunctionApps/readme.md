@@ -6,12 +6,6 @@
 
 [Azure Functions Reference](https://docs.microsoft.com/en-gb/azure/azure-functions/functions-reference)
 
-
-
-[Triggers & Binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
-
-[Register Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register)
-
 ## Demos
 
 -   Create Hello World Function App using Portal using Portal Designer
