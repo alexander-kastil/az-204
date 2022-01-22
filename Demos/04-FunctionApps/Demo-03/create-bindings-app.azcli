@@ -15,7 +15,7 @@ conStr=$(az storage account show-connection-string -n $storage -g $grp --query c
 az storage container create -n $source --account-name $storage --account-key $key
 az storage container create -n $target --account-name $storage --account-key $key
 
-az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3
 az functionapp config appsettings set -n $app -g $grp --settings "AzureWebJobsStorage=$conStr"
 
 # Deploy app
