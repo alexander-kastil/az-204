@@ -24,7 +24,3 @@ echo "storage-connectionString: " $conStr
 
 # Upload pictures for local debugging
 az storage blob upload-batch --account-name $storage --account-key $key -s $path -d $source
-
-# Deploy app
-cd pic-processor
-func azure functionapp publish $app

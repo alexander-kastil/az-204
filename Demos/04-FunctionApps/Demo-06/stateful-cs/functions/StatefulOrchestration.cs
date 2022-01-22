@@ -33,24 +33,21 @@ namespace Integrations
             var food = context.GetInput<List<FoodModel>>() ?? new List<FoodModel>();
             // Define Events
             var addFoodTask = context.WaitForExternalEvent<FoodModel>("AddFood");            
-            var getFoodTask = context.WaitForExternalEvent<FoodModel>("GetFood");
             var isCompleteTask = context.WaitForExternalEvent<bool>("CompleteFoodOrchestration");
 
-            var resultingEvent = await Task.WhenAny(addFoodTask, getFoodTask, isCompleteTask);
+            var resultingEvent = await Task.WhenAny(addFoodTask,  isCompleteTask);
             
             if(resultingEvent == addFoodTask){
                 food.Add(addFoodTask.Result);
                 log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");                
             } 
-            else if(resultingEvent == addFoodTask){
-                log.LogInformation($"Getting food");                
-            } 
-            else if(resultingEvent == isCompleteTask && isCompleteTask.Result){
+            if(resultingEvent == isCompleteTask && isCompleteTask.Result){
                 log.LogInformation($"Foodlist orchestration completed");
             }
             else{
                 context.ContinueAsNew(food);
             }
+
             return food;
         }       
     }

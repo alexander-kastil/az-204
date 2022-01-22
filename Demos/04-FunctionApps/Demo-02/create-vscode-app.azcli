@@ -12,8 +12,3 @@ url=$(az functionapp create -n $app -g $grp -s $storage --consumption-plan-locat
 
 echo "Funtions app created: $app at $url"
 
-# Stop here
-# Deploy app
-cd vscode-func
-func azure functionapp publish $app
-
