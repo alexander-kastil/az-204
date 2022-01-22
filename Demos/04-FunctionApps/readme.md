@@ -18,9 +18,8 @@
 -   Azure Function Core Tools & Visual Studio Code
 -   Introduction to Bindings using Blob Storage
 -   Using App Settings in Java Script projects (optional)
--   Azure Functions REST Api  (optional)
+-   Azure Functions REST Api (optional)
 -   Durable Functions
--   Azure Functions & Webhooks (optional)
 
 ### Azurite Storage Emulator
 

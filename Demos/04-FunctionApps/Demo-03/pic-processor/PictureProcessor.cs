@@ -14,7 +14,7 @@ namespace Integrations
     public class PictureProcessor
     {
         [FunctionName("PictureProcessor")]
-        public void Run([BlobTrigger("drop/{name}", Connection = "PICS_STORAGE")]Stream image, string name, [Blob("processed/{name}", FileAccess.Write)] Stream imageSmall, ILogger log)
+        public void Run([BlobTrigger("drop/{name}", Connection = "AzureWebJobsStorage")]Stream image, string name, [Blob("processed/{name}", FileAccess.Write)] Stream imageSmall, ILogger log)
         {
              IImageFormat format;
 

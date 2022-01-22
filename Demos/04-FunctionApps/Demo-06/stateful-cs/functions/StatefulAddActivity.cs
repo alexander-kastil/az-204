@@ -8,22 +8,22 @@ using Microsoft.Extensions.Logging;
 
 namespace Integrations
 {
-    public static class StatefulUpdateActivity
+    public static class StatefulAddActivity
     {
-        [FunctionName(nameof(StatefulUpdateActivity))]
+        [FunctionName(nameof(StatefulAddActivity))]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", "delete", Route = "food/update")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "food/add")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient orchclient,
             ILogger logger)
         {
             
             var eventData = await req.Content.ReadAsAsync<FoodModel>();
-            string eventName = req.Method == HttpMethod.Delete ? "RemoveFood" : "AddFood";
+            string eventName = "AddFood";
             await orchclient.RaiseEventAsync(
                 eventData.OrchestrationInstanceId,
                 eventName,
                 eventData);
             return req.CreateResponse(HttpStatusCode.OK);
-        }    
+        }                 
     }
 }    
