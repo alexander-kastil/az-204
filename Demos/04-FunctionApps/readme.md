@@ -1,10 +1,10 @@
 # Function Apps
 
-[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-java)
-
 [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
 
 [Azure Functions Reference](https://docs.microsoft.com/en-gb/azure/azure-functions/functions-reference)
+
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-java)
 
 ## Demos
 
