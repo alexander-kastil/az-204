@@ -21,23 +21,6 @@
 -   Azure Functions REST Api (optional)
 -   Durable Functions
 
-### Azurite Storage Emulator
-
-Installation:
-
-```bash
-npm install -g azurite
-```
-
-Start Emulator from Console:
-
-```bash
-azurite
-```
-
-## Readings
-
-
 ## CLI Reference
 
 [az functionapp](https://docs.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest)
