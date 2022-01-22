@@ -21,4 +21,4 @@ echo '** Key: ' $key
 
 az storage account  create -n $storage -g $grp
 
-az functionapp create -n $app -g $grp --storage-account $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3

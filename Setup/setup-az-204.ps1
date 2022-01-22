@@ -31,7 +31,6 @@ choco install dotnet-5.0-sdk -y
 choco install dotnet-6.0-sdk -y
 choco install nodejs-lts --version=14.18.0 -y
 choco install azure-cli -y
-choco install azure-functions-core-tools --params="'/x64:true'" -y
 choco install azurestorageemulator -y
 choco install azurepowershell -y
 choco install microsoftazurestorageexplorer -y
@@ -70,12 +69,12 @@ code --install-extension mdickin.markdown-shortcuts
 code --install-extension mhutchie.git-graph 
 code --install-extension humao.rest-client
 
-# Azurite Storage Emulator
+# Azurite Storage Emulator & Function Core Tools v4
+npm install -g azure-functions-core-tools@4 --unsafe-perm true
 npm install -g azurite
 
 # Install Angular
 Write-Host "Installing Angular - 6/6" -ForegroundColor yellow
-
 npx @angular/cli@latest analytics off
 npm i -g @angular/cli
 

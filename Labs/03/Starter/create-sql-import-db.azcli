@@ -24,7 +24,7 @@ az sql server firewall-rule create -g $grp -s $server -n current-client-ip --sta
 
 az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 
-key=$(az storage account keys list -n $acct --query "[0].[value][0]")
+key=$(az storage account keys list -n $acct --query "[0].value")
 
 az storage container create -n $container --account-key $key --account-name $acct
 

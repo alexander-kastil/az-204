@@ -6,7 +6,7 @@
 
 [Azure Functions Reference](https://docs.microsoft.com/en-gb/azure/azure-functions/functions-reference)
 
-[host.json Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json)
+
 
 [Triggers & Binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
 
@@ -18,9 +18,8 @@
 -   Azure Function Core Tools & Visual Studio Code
 -   Introduction to Bindings using Blob Storage
 -   Using App Settings in Java Script projects (optional)
--   Azure Functions REST Api  (optional)
+-   Azure Functions REST Api (optional)
 -   Durable Functions
--   Azure Functions & Webhooks (optional)
 
 ### Azurite Storage Emulator
 

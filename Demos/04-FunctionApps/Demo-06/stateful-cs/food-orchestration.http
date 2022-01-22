@@ -1,16 +1,10 @@
 ### Start orchestration 
-
 # @name orch
 GET  http://localhost:7071/api/food/start HTTP/1.1
 content-type: application/json
 
-###
-# -> make rest call to statusQueryGetUri
-
-GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{orch.response.body.id}}?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
-
 ### Add chips
-POST   http://localhost:7071/api/food/update HTTP/1.1
+POST   http://localhost:7071/api/food/add HTTP/1.1
 content-type: application/json
 
 {
@@ -22,8 +16,11 @@ content-type: application/json
     "OrchestrationInstanceId": "{{orch.response.body.id}}"
 }
 
+### Get Orchestration State using statusQueryGetUri
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{orch.response.body.id}}?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
+
 ### Add fish
-POST   http://localhost:7071/api/food/update HTTP/1.1
+POST   http://localhost:7071/api/food/add HTTP/1.1
 content-type: application/json
 
 {

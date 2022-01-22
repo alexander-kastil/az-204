@@ -2,20 +2,31 @@
 
 [Azurite. An open source Azure Storage API compatible server (emulator)](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite)
 
-## Commands
+## Demo
 
-Install all extensions
+Start Azurite im command prompt:
+
+```
+Azurite
+```
+
+Provision function app by executing `create-bindings-app.azcli`
+
+## Function Extensions
+
+Install [function extensions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register#access-extensions-in-non-net-languages):
 
 ```
 func extensions install
 ```
 
-Install Azure Functions Extensions in project 'Bindings'
+Install Azure Functions Extensions:
 
 ```
-dotnet add package Microsoft.Azure.Functions.Extensions --version 1.0.0
+dotnet add package Microsoft.Azure.Functions.Extensions --version 4.0.5
+```
+Install a specific extension
 
-or
-
-func extensions install --package Microsoft.Azure.WebJobs.Extensions.Storage --version 4.0.2
+```
+func extensions install --package Microsoft.Azure.WebJobs.Extensions.Storage --version 4.0.5
 ```
