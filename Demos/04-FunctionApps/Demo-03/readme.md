@@ -1,4 +1,4 @@
-# Bindings
+# Introduction to Bindings using Blob Storage
 
 [Azure Functions triggers and bindings concepts](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
 
