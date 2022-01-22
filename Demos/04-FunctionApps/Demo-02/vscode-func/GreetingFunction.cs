@@ -10,11 +10,11 @@ using Newtonsoft.Json;
 
 namespace Integrations
 {
-    public static class vsCodeTrigger
+    public static class GreetingFunction
     {
-        [FunctionName("vsCodeTrigger")]
+        [FunctionName("GreetingFunction")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "greetme")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");

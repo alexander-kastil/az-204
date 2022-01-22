@@ -1,75 +1,91 @@
 # Azure Function Core Tools
 
-[Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2)
+[Work with Azure Functions Core Tools v3](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Cwindows%2Ccsharp%2Cportal%2Cbash)
+
+[host.json Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json)
+
+## Demo
+
+### Environment Setup
 
 Install azure-function-tools:
 
 ```
-npm i -g azure-functions-core-tools
 npm i -g azure-functions-core-tools@3 --unsafe-perm true
 ```
 
-> Note: Documentaion can be found on [Github](https://github.com/Azure/azure-functions-core-tools) or on [Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash)
+Install [Azurite Storage Emulation](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio):
 
-Scaffold Project:
-
-```
-func init vscode-functs --dotnet
-cd vscode-functs
+```bash
+npm install -g azurite
 ```
 
-> Note: Choose "yes" in init for VS Code Popup
+Run Azurite in console:
 
-![init-vscode](../_images/init-vscode.png)
+```bash
+azurite
+```
 
-## Testing
+Install [Azure Function - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
+
+>Note: azure-functions-core-tools@4 is the current version. V3 is used in this demos to avoid configuration issues when severalt dotnet sdks are installed on the same machine. Samples will be upgraded when the dev experience is smoother.
+
+### Testing Options
 
 To Execute REST Calls you could use:
 
--   httprepl
+-   [REST Client - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) with [instructions](https://github.com/Huachao/vscode-restclient/blob/master/README.md)
 -   [az rest](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_rest)
--   Postman
+-   [Postman](https://www.postman.com/)
+-   [httprepl](https://docs.microsoft.com/en-us/aspnet/core/web-api/http-repl/?view=aspnetcore-6.0&tabs=windows)
 
-Install httprepl:
+Install httprepl which used in labs:
 
 ```
 dotnet tool install -g Microsoft.dotnet-httprepl
 ```
 
-For [Storage Account Testing and Emulation](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator) download the [Local Storage Account Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)
-
 ## Demo VS Code Function Apps
 
-Provision required Services:
+Create Funtion App in Azure by executing `create-vscode-app.azcli`
 
-Create Funtion App in Azure manually or using `create-func-app.azcli`
+Create a function project:
+
+```
+func init vscode-func --dotnet
+```
 
 Create a new Function:
 
 ```
-func new --name MyHttpTrigger --template "HttpTrigger"
+func templates list
+func new -n GreetingFunctions --template "Http Trigger"
 ```
 
 Run function locally:
 
 ```
-func start --build
+func start
 ```
 
-or use host keyword requried in v1
-
-```
-func host start --build
-```
-
-Execute in another terminal:
+Use az rest in another terminaln instance:
 
 ```bash
 az rest -m post -u http://localhost:7071/api/MyHttpTrigger -b "{'name':'Azure Rocks'}"
 ```
 
-Publish App to Azure using CLI
+Use `REST Client` and execute `send-greeting.http`:
 
+```bash
+@baseurl=localhost:7071
+
+### Greet Hubertus using GET
+GET  http://{{baseurl}}/api/greetme?name=Hubertus HTTP/1.1
+content-type: application/json
 ```
-func azure functionapp publish vscodeapp-7179
+
+Publish App to Azure using CLI:
+
+```bash
+func azure functionapp publish $app
 ```

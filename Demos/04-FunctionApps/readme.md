@@ -6,7 +6,7 @@
 
 [Azure Functions Reference](https://docs.microsoft.com/en-gb/azure/azure-functions/functions-reference)
 
-[host.json Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json)
+
 
 [Triggers & Binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
 

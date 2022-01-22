@@ -1,0 +1,13 @@
+@baseurl=localhost:7071
+
+### Greet Hubertus using GET
+GET  http://{{baseurl}}/api/greetme?name=Hubertus HTTP/1.1
+content-type: application/json
+
+### Greet Max using POST
+POST  http://{{baseurl}}/api/greetme HTTP/1.1
+
+content-type: application/json
+{
+    "name": "Max"
+}
