@@ -1,6 +1,6 @@
 # Bindings
 
-[Triggers & Binding](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
+[Azure Functions triggers and bindings concepts](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
 
 [Register Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register)
 
