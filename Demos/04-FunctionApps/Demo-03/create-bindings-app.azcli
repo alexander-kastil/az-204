@@ -27,5 +27,6 @@ echo "storage-acct: $storage"
 echo "storage-key: $key"
 echo "storage-connectionString: " $conStr
 
+# Wait for the app to be running
 # Upload pictures
 az storage blob upload-batch --account-name $storage --account-key $key -s $path -d $source
