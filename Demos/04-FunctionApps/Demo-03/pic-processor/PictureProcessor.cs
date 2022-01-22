@@ -26,7 +26,6 @@ namespace Integrations
         public static void ResizeImage(Image<Rgba32> input, Stream output, ImageSize size, IImageFormat format)
         {
             var dimensions = imageDimensionsTable[size];
-
             input.Mutate(x => x.Resize(dimensions.Item1, dimensions.Item2));
             input.Save(output, format);
         }
