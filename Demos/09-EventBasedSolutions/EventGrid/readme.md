@@ -2,11 +2,11 @@
 
 [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview)
 
-[az eventgrid](https://docs.microsoft.com/en-us/cli/azure/eventgrid?view=azure-cli-latest)
-
 [Azure Event Grid bindings for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-grid)
 
 [Event Filtering](https://docs.microsoft.com/en-us/azure/event-grid/event-filtering)
+
+[az eventgrid](https://docs.microsoft.com/en-us/cli/azure/eventgrid?view=azure-cli-latest)
 
 # Lab
 
