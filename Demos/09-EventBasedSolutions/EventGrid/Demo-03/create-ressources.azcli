@@ -1,8 +1,8 @@
-rnd=$RANDOM
+rnd=dev
 grp=az204-m09-evtgrid-signalr-$rnd
 loc=westeurope
-storage=foodhub$rnd
-app=foodhub-$rnd
+storage=foodep$rnd
+app=foodep-$rnd
 topic=foodtopic-$rnd
 ngurl=http://localhost:4200
 
@@ -47,5 +47,3 @@ echo "*** Topic Url: "$topicurl
 echo "*** Topic Key: "$topickey
 
 # to post to topic - execute post-topic.http
-
-

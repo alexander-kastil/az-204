@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  Actions
+</mat-toolbar>
+
+<button mat-raised-button (click)="addFood()">
+  <mat-icon>add_circle</mat-icon><span>Add</span>
+</button>
+
+<button mat-raised-button (click)="logout()">
+  <mat-icon>logout</mat-icon><span>Logout</span>
+</button>
+
+<div>
+  {{user | async}}
+</div>
