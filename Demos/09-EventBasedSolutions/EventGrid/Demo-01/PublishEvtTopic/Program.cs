@@ -32,11 +32,14 @@ namespace FoodApp
                 eventsList.Add (new EventGridEvent () {
                     Id = Guid.NewGuid ().ToString (),
                         EventType = "FoodApp.Orders.OrderDelivered",
-                        Data = new OrderDeliveredEventData () {
-                            OrderNumber = i.ToString()
+                        Data = new FoodEventData () {
+                            id = i,
+                            type = FoodEventType.Create.ToString(),
+                            quantity = 1
+
                         },
                         EventTime = DateTime.Now,
-                        Subject = "Delivery of Order Complete",
+                        Subject = "Food Item Added",
                         DataVersion = "2.0"
                 });
             }

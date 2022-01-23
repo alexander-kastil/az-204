@@ -5,14 +5,12 @@ app=foodutil-$rnd
 storage=az204foodutil$rnd
 
 az group create --name $grp --location $loc
-
 az storage account  create -n $storage -g $grp 
-
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime node --runtime-version 12 --functions-version 3
-
-echo "Funtions app created: $app"
-
-# Set Application Settings
 # Get Fixer Key at fixer.io
-
 az functionapp config appsettings set -n $app -g $grp --settings "FixerKey=<YOUR API KEY>"
+
+# Deploy to function app
+cd foodutil-functs-js
+func azure functionapp publish $app 
+cd ..
