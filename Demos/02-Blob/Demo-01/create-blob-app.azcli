@@ -3,7 +3,7 @@ grp=az204-m02-foodpics-$rnd
 loc=westeurope
 acct=foodpics$rnd
 container="food"
-blob_name="shrimp-vindaloo.jpg"
+blob_name=shrimp-vindaloo.jpg
 file_to_upload="./food-pics/shrimp-vindaloo.jpg"
 destination_file="./downloaded/shrimp-vindaloo.jpg"
 
@@ -12,10 +12,6 @@ az group create -n $grp -l $loc
 az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 
 key=$(az storage account keys list -n $acct --query "[0].value")
-
-# Export vars to env so that they are taken by default instead of passing params
-# export AZURE_STORAGE_ACCOUNT=$acct
-# export AZURE_STORAGE_KEY=$key
 
 az storage container create -n $container --account-key $key --account-name $acct
 
@@ -27,6 +23,4 @@ az storage blob download --container-name $container --name $blob_name --file $d
 
 conStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
 
-echo "Export ConnectionString to Windows Env to use in .NET Demo:
-echo $conStr
-
+echo "storage connection string: " $conStr

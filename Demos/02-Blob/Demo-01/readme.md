@@ -1,13 +1,7 @@
-# Blob Storage Demos
+# Provision and use Blob Storage
 
-## Upload File to Blob Storage
+[Azure Storage client libraries for .NET](https://docs.microsoft.com/en-us/dotnet/api/overview/azure/storage)
 
-When executing in Cloud Shell upload \*.jpg in advance
+## Demo
 
-## Use Blob Storage in .NET 5
-
-Set env variable:
-
-```
-setx /m AZURE_STORAGE_CONNECTION_STRING "DefaultEndpointsProtocol=https;AccountName=az203storageacct10010;AccountKey=..."
-```
+Execute `create-blob-app.azcli` to create the demo
