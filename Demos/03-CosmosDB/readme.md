@@ -4,7 +4,7 @@
 
 [Azure Cosmos DB](https://docs.microsoft.com/de-at/azure/cosmos-db/)
 
-[Cosmos DB Playground](https://www.documentdb.com/sql/demo)
+[Getting started with SQL queries](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-query-getting-started)
 
 [Cosmos DB Samples](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-dotnet-v3sdk-samples)
 
