@@ -1,8 +1,12 @@
 # Durable Functions
 
-## Demos 
+[Azure Durable Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable/)
 
-- Stateful Durable Function
+[Durable Function HTTP API reference](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-http-api)
+
+[Developer's guide to durable entities in .NET](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-entities)
+
+## Demos 
 
 ### Stateful Durable Function
 
@@ -21,16 +25,7 @@ Functions in project `stateful-cs`:
     "FUNCTIONS_V2_COMPATIBILITY_MODE": true
   }
 }
-
 ```
-
-## Readings
-
-[Azure Durable Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/durable/)
-
-[Durable Function HTTP API reference](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-http-api)
-
-[Developer's guide to durable entities in .NET](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-dotnet-entities)
 
 ## Durable Prerequisites
 
