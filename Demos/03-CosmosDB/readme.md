@@ -29,6 +29,8 @@
 
 ## Additional Labs & Walkthroughs
 
+[Query the Azure Cosmos DB SQL API](https://docs.microsoft.com/en-us/learn/modules/query-azure-cosmos-db-sql-api/)
+
 [Learning Path - Work with NoSQL data in Azure Cosmos DB](https://docs.microsoft.com/en-us/learn/paths/work-with-nosql-data-in-azure-cosmos-db/)
 
 [Build a real-time event-driven Java solution in Azure](https://docs.microsoft.com/en-us/learn/modules/deploy-real-time-event-driven-app/?WT.mc_id=java-11777-judubois&source=learn)
