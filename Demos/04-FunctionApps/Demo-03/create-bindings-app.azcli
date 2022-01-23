@@ -22,5 +22,10 @@ echo $app" provisioned"
 echo "storage-acct: $storage"
 echo "storage-connectionString: " $conStr
 
+# Deploy to function app
+cd pic-processor
+func azure functionapp publish $app --csharp
+cd ..
+
 # Upload pictures for local debugging
 az storage blob upload-batch --account-name $storage --account-key $key -s $path -d $source
