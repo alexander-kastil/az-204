@@ -4,8 +4,6 @@
 
 [Blob Redundany](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy)
 
-[Blob service REST API](https://docs.microsoft.com/en-us/rest/api/storageservices/blob-service-rest-api)
-
 [Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-java?tabs=powershell)
 
 ## Demos
