@@ -1,0 +1,11 @@
+rnd=$RANDOM
+grp=az204-m01-wacontainers-$rnd
+loc=westeurope
+plan=foodapp-wac$rnd
+app=foodapi-wac-$rnd
+img=arambazamba/foodapi
+
+az group create --name $grp --location $loc
+
+az appservice plan create --name $plan -g $grp --sku B1 --is-linux --number-of-workers 1
+az webapp create -g $grp -p $plan -n $app -i $img

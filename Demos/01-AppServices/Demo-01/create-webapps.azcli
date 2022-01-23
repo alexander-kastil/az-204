@@ -24,5 +24,7 @@ echo "PublishSiteName: $pubprofileapp"
 echo "UserName: $user"
 echo "Password: $pwd"
 
-# create and upload blazor app using az webapp up - execute from within ./blazor-skills
+# create and upload blazor app using az webapp up - execute from within ./blazor-skils
+cd blazor-skills
 az webapp up -n blazor-skills-$rnd -g $grp -p $appPlan -l $loc -r "DOTNET|6.0"
+cd ..
