@@ -1,31 +1,24 @@
-function getRecords() {
-  $.get(
-    "api/PatientRecords",
-    function (data) {
-      $("#result").empty();
-      $.each(data, function (i, v) {
-        $("#result").html(
-          `${$("#result").html()}<p onclick='getBlobSAS("${
-            v.name
-          }")' style='cursor:pointer'>${v.name}<p/>`
-        );
-      });
-      $("#result").addClass("alert alert-success");
-    },
-    "json"
-  );
+async function getRecords() {
+  axios.get("api/PatientRecords").then(response=>{
+    let div = document.getElementById("result");
+    if (div) {
+      div.innerHTML = "";
+      for (const item of response.data) {
+        div.insertAdjacentHTML('afterend',`${$("#result").html()}<div onclick='getBlobSAS("${
+          item.name
+        }")' style='cursor:pointer; margin:1rem;text-decoration:underline'>${item.name}<div/>`)
+      }      
+    }
+  })
 }
 
 function getBlobSAS(name) {
   const qry = "api/PatientRecords/" + name;
-  console.log("Requesting SAS from Api:", qry);
-
-  $.get(qry).then((data) => {
-    console.log("SAS for Blob", data);
-    const url = data.imageURI + data.sasToken;
-    console.log("Full SAS for Blob", url);
+  axios.get(qry).then((resp) => {
+    const url = resp.data.imageURI + resp.data.sasToken;
     var div = document.querySelector('#sasToken');
-    div.innerHTML=url;
-
+    if(div){
+      div.innerHTML=url;
+    }
   });
 }
