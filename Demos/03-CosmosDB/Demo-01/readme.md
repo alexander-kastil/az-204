@@ -2,8 +2,6 @@
 
 [Getting started with SQL queries](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-query-getting-started)
 
-[Cosmos DB Samples](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-dotnet-v3sdk-samples)
-
 ## Demo
 
 -   Create SQL DB in Portal
