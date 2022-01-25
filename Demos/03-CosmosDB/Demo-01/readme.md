@@ -108,3 +108,11 @@ FROM
 JOIN
     v IN p.Variations   
 ```
+
+JOIN expressions can also include correlated subqueries to narrow the result
+
+```sql
+SELECT VALUE v
+FROM v IN p.Variations
+WHERE v.NAME = "super-fancy"
+```
