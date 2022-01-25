@@ -95,6 +95,8 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 
 1.  Select **Create** to create the SQL Database server by using your specified configuration.
 
+    > **Note**: Please [update the firewall](https://docs.microsoft.com/de-de/azure/azure-sql/database/firewall-create-server-level-portal-quickstart) rules of SQL Server to allow connections from Azure ressources.
+
     > **Note**: At this point in the lab, we are only creating the Azure SQL logical server. We will create the Azure SQL database instance later in the lab.
 
     > **Note**: Wait for the creation task to complete before you move forward with this lab.

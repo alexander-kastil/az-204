@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace CosmosReader {
@@ -89,7 +88,7 @@ namespace CosmosReader {
                 Promotion = true
             };
 
-            Product discontitem = await container.CreateItemAsync(discont, null,new ItemRequestOptions{ PreTriggers = new List<string>{
+            Product discontitem = await container.CreateItemAsync(discont, null, new ItemRequestOptions{ PreTriggers = new List<string>{
                 "DiscontinuedTrigger"
             }});
 

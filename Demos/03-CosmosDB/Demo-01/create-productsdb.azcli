@@ -7,7 +7,7 @@ container=products
 
 az group create --name $grp --location $loc
 
-az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp
+az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp # -> sql api
 
 az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
 
@@ -30,5 +30,5 @@ cs=$(az cosmosdb keys list --type connection-strings --name $acct --resource-gro
 
 echo "Connection String to use for command below:" $cs
 
-dt.exe /s:JsonFile /s.Files:.\products.json /t:DocumentDB /t.ConnectionString:"AccountEndpoint=https://az204-cosmos-31049.documents.azure.com:443/;AccountKey=hBJcrGr1ZNzFNJ1do6yFJ1iIAhmEBI5ZwofqoOojoOdNQzyemVIFmNBy1LwdlTBk4sUpc4cfxDdvJeGEKYht7Q==;Database=productsdb;" /t.Collection:products /t.PartitionKey:/id /t.CollectionThroughput:1000 /ErrorLog:H:\import.csv /OverwriteErrorLog /ErrorDetails:All 
+dt.exe /s:JsonFile /s.Files:.\products.json /t:DocumentDB /t.ConnectionString:"$cs" /t.Collection:products /t.PartitionKey:/id /t.CollectionThroughput:1000 /ErrorLog:H:\import.csv /OverwriteErrorLog /ErrorDetails:All 
 
