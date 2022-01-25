@@ -1,18 +1,14 @@
 # CosmosDB
 
-[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-java?tabs=sync)
-
 [Azure Cosmos DB](https://docs.microsoft.com/de-at/azure/cosmos-db/)
-
-[Getting started with SQL queries](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-query-getting-started)
-
-[Cosmos DB Samples](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-dotnet-v3sdk-samples)
 
 [Consistency levels in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)
 
 [Partitioning and horizontal scaling in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview)
 
 [Use Data migration tool to migrate your data to Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#JSON)
+
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-java?tabs=sync)
 
 ## Demos
 

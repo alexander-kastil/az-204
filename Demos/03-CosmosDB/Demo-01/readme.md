@@ -1,10 +1,16 @@
 # Getting Started with Cosmos DB
 
+[Getting started with SQL queries](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-query-getting-started)
+
+[Cosmos DB Samples](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-dotnet-v3sdk-samples)
+
+## Demo
+
 -   Create SQL DB in Portal
 -   Upload `persons.json`
 -   Show Queries, Stats, Indexing
 
-## Basic Query Syntax
+### Basic Query Syntax
 
 Sample entity:
 
