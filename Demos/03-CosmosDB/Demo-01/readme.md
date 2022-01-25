@@ -91,3 +91,16 @@ SELECT DISTINCT VALUE
 FROM
     products p
 ```
+
+Joins are scoped to a single item. A JOIN creates a cross-product between different sections of a single item
+
+```sql
+SELECT
+    p.Name,
+    p.Color,
+    c.Name AS CategoryName
+FROM 
+    products p
+JOIN
+    c IN p.Category   
+```
