@@ -30,7 +30,11 @@ Sample entity:
     "Weight": 1016.04,
     "SellStartDate": "2002-06-01T00:00:00",
     "SellEndDate": null,
-    "Promotion": true
+    "Promotion": true,
+    "Variations": [
+      {"Name": "regular"},
+      {"Name": "super-fancy"}
+    ]
 }
 ```
 
@@ -98,9 +102,9 @@ Joins are scoped to a single item. A JOIN creates a cross-product between differ
 SELECT
     p.Name,
     p.Color,
-    c.Name AS CategoryName
+    v.Name AS Variation
 FROM 
     products p
 JOIN
-    c IN p.Category   
+    v IN p.Variations   
 ```

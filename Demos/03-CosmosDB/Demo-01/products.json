@@ -20,7 +20,11 @@
     "Weight": 1016.04,
     "SellStartDate": "2002-06-01T00:00:00",
     "SellEndDate": null,
-    "Promotion": true
+    "Promotion": true,
+    "Variations": [
+      {"Name": "regular"},
+      {"Name": "super-fancy"}
+    ]
   },
   {
     "id": "706",
