@@ -6,8 +6,8 @@ content-type: application/json
 
 ### Greet Max using POST
 POST  http://{{baseurl}}/api/greetme HTTP/1.1
-
 content-type: application/json
+
 {
     "name": "Max"
 }
