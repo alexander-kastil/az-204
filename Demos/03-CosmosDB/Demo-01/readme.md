@@ -4,7 +4,7 @@
 -   Upload `persons.json`
 -   Show Queries, Stats, Indexing
 
-## Basic Syntax
+## Basic Query Syntax
 
 Sample entity:
 
