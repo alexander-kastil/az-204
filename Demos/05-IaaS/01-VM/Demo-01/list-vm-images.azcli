@@ -4,6 +4,7 @@ az vm image list-publishers --location westeurope -o table
 
 # Get a list of all offers for the MicrosoftWindowsServer publisher
 az vm image list-offers --location westeurope --publisher MicrosoftWindowsServer -o table
+az vm image list -f "Windows-10" --location westeurope --all -o table
 
 # Get a list of SKUs for the WindowsServer offer
 az vm image list-skus --location westeurope --publisher MicrosoftWindowsServer --offer WindowsServer -o table
