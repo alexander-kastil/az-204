@@ -7,7 +7,6 @@ az group create -n $grp -l westeurope
 az acr create -g $grp --name $acr --sku Basic
 
 # Login to Container Registry & get loginServer
-
 az acr login --name $acr
 az acr update -n $acr --admin-enabled true
 
@@ -15,9 +14,7 @@ az acr list --query "[].loginServer" -o tsv #for info only
 az acr credential show -n $acr --query "passwords[0].value" #for info only
 
 # Tag img & upload to ACR
-
-docker tag foodui $acr.azurecr.io/foodui
+docker tag foodapi $acr.azurecr.io/foodapi
 
 # Upload Image
-
-docker push $acr.azurecr.io/foodui
+docker push $acr.azurecr.io/foodapi
