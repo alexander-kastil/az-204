@@ -23,7 +23,7 @@
 
 - [az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)    
 
-### Create 2 App Registrations
+### App Registrations
 
 - Requires two app registrations: one for the api - one for the ng ui.
 
