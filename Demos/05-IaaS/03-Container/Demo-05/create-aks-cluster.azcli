@@ -14,22 +14,19 @@ app=foodui
 az group create -n $grp -l $loc
 
 # Create AKS cluster:
-
 az aks create -g $grp -n $aks --node-count 1 --generate-ssh-keys
 
 # Get credentials for the Kubernets cluster:
-
 az aks get-credentials -g $grp -n $aks
 
 # Get a list of cluster nodes:
-
 kubectl get nodes
 
 # Create a namespace
-
 kubectl create namespace $ns
 
 # Apply the yaml - Make sure you uploaded foodui.yaml to CloudShell or use WSL
+kubectl apply -f foodapi.yaml --namespace $ns
 kubectl apply -f $ui --namespace $ns
 
 # Get some metadata
@@ -40,7 +37,7 @@ kubectl get pods -n $ns
 kubectl get pods -l app=foodui -n $ns
 
 # Get the serive IP and use it on the assigned port
-kubectl get service $app -n $ns
+kubectl get service foodapi -n $ns
 
 # port taken from yaml
-# ie: http://20.93.247.9:8081
+# ie: http://20.103.3.162:8081

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: foodapi
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: foodapi

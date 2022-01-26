@@ -33,7 +33,6 @@ async function doAuth() {
 
     //Get AccessToken
     const tokenResponse = await client.acquireTokenSilent(scopes);
-
     console.log("Token Response", tokenResponse);
 
     //Read Profile

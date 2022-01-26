@@ -1,3 +1,13 @@
+app=token-flow-node
+uri=http://localhost:8080
+
+id=$(az ad app create --display-name $app --required-resource-accesses @manifest.json \
+    --oauth2-allow-implicit-flow true \
+    --reply-urls $uri --query appId -o tsv)
+
+az ad app permission admin-consent --id $id
+
+
 # List all registered apps
 az ad app list --all --query "[][displayName, appId]" -o table
 
@@ -7,13 +17,3 @@ az ad app list --all --query "[?displayName=='msal-token-flow']"
 # Get Api permissions from this app
 perm=$(az ad app list --all --query "[?displayName=='msal-token-flow'][requiredResourceAccess]")
 echo 'app permissions: ' $perm
-
-# Create a new app reg with name 'cli-app' and api permission specified in file manifest.json
-app=token-flow-node
-uri=http://localhost:8080
-
-id=$(az ad app create --display-name $app --required-resource-accesses @manifest.json \
-    --oauth2-allow-implicit-flow true \
-    --reply-urls $uri --query appId -o tsv)
-
-az ad app permission admin-consent --id $id

@@ -2,6 +2,8 @@
 
 [Azure App Registrations](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-apps)
 
+[MSAL Authentication Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
+
 [az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)
 
 ## Demos
