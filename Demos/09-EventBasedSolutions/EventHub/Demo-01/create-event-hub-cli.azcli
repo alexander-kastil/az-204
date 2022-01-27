@@ -9,22 +9,14 @@ container=messages
 az group create --name $grp --location $loc
 
 # Create Group & Hub, List permissions
-
 az eventhubs namespace create -n $namespace -g $grp -l $loc --sku Basic
-
 nsconStr=$(az eventhubs namespace authorization-rule keys list --name RootManageSharedAccessKey --namespace-name $namespace -g $grp | jq .primaryConnectionString)
-
-# Create Event Hub
-
 az eventhubs eventhub create -n $hub -g $grp --namespace-name $namespace --partition-count 2 --message-retention 1
 
 # Create Storage Acct
-
 az storage account create --name $storage -g $grp --sku Standard_RAGRS --encryption-services blob
 az storage account keys list --account-name $storage
-
 conStr=$(az storage account show-connection-string -n $storage | jq .connectionString)
-
 az storage container create -n $container --connection-string $conStr
 
 echo "*** primaryConnectionString to use for .NET Core project: $nsconStr"

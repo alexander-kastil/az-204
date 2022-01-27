@@ -35,7 +35,7 @@ az cdn profile create -g $grp --name $profile --sku Standard_Microsoft
 az cdn endpoint create -g $grp --name $epname --profile-name $profile --origin $host --origin-host-header $host
 
 # Url ReWrite
-az cdn endpoint rule add -n $epname -g $grp --profile-name $profile --rule-name sparewrite --order 1 --action-name "UrlRewrite" --source-pattern '/' --destination /index.html --preserve-unmatched-path false --match-variable UrlFileExtension --operator LessThan --match-value 1
+az cdn endpoint rule add -n $epname -g $grp --profile-name $profile --rule-name urlrewrite --order 1 --action-name "UrlRewrite" --source-pattern '/' --destination /index.html --preserve-unmatched-path false --match-variable UrlFileExtension --operator LessThan --match-value 1
 
 # Enforce Https
 az cdn endpoint rule add -n $epname -g $grp --profile-name $profile --rule-name enforcehttps --order 2 --action-name "UrlRedirect"  --redirect-type Found --redirect-protocol HTTPS --match-variable RequestScheme --operator Equal --match-value HTTP
