@@ -11,7 +11,7 @@ Execute `create-ressources.azcli`. It creates:
 - Azure SignalR Service
 - Event Grid Topic
 - Publishes Function app with that acts as an endpoint for the event grid topic webhook subscription
-- In the CORS Settings of the function app, set `Enable Access-Control-Allow-Credentials` to true
+- In the `CORS Settings` of the function app, set `Enable Access-Control-Allow-Credentials` to true
 - A food log Angular UI
 
 Update signalr config in environment.ts and environment.prod.ts of `ng-food-log`:
