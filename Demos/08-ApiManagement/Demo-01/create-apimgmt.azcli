@@ -5,7 +5,7 @@ appPlan=apimgmt-$rnd
 netapp=foodapi-$rnd
 fxapp=foodutil-$rnd
 storage=az204foodutil$rnd
-apimgmt=fancy-food-apim-$rnd
+apimgmt=fooddealer-apim-$rnd
 mail="alexander.pajer@integrations.at"
 publisher="integrationsonline"
 
