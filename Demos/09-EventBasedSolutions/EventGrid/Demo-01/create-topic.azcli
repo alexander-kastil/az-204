@@ -17,5 +17,10 @@ key=$(az eventgrid topic key list --name $topic -g $grp --query "key1" --output 
 az storage account  create -n $storage -g $grp
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3
 
+# Deploy to function app
+cd OrderProcessorAzFunct
+func azure functionapp publish $app 
+cd ..
+
 echo '** Topic Endpoint: ' $endpoint
 echo '** Topic Key: ' $key
