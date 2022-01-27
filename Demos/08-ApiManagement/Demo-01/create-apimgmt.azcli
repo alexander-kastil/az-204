@@ -12,19 +12,13 @@ publisher="integrationsonline"
 az group create -n $grp -l $loc
 
 cd food-api
-
 az webapp up -n $netapp -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
-
 cd ..
 
 az storage account  create -n $storage -g $grp 
-
 az functionapp create -n $fxapp -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 12 --functions-version 3
-
 cd foodutil-functs-js
-
 func azure functionapp publish $fxapp
-
 cd ..
 
 az apim create -n $apimgmt -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Consumption
