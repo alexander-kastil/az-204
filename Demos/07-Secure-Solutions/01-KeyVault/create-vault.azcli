@@ -23,5 +23,4 @@ az keyvault secret list --vault-name $vault -o table
 # Do not execute
 
 az keyvault delete -n $vault
-
 az keyvault purge -n $vault

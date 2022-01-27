@@ -12,13 +12,12 @@ namespace AppConfigConsole
             var builder = new ConfigurationBuilder();
             
             // Update Connection String
-            var cs = "Endpoint=https://foodconfig-040.azconfig.io;Id=CmbS-l9-s0:WO2JsvkyX1ls499JMlOg;Secret=jCi77pbz+HXGKg15iEsoKpFFiki9HJWD0OQgf54nb6Q=";
-
+            var cs = "<App Config Service ConnectionString>";
             builder.AddAzureAppConfiguration(options =>
             {
                 options.Connect(cs)
                         // Uncomment if you want to use a specific label
-                        .Select(KeyFilter.Any, "Production") 
+                        .Select(KeyFilter.Any, "prod") 
                         .ConfigureKeyVault(kv =>
                         {
                             kv.SetCredential(new DefaultAzureCredential());

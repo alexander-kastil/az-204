@@ -12,17 +12,16 @@ az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Foo
 
 
 # key-vault binding
-az appconfig identity assign -g $grp -n $cfg
-cfgmi=$(az appconfig identity show  -g $grp -n $cfg --query principalId -o tsv)
+cfgmi=$(az appconfig identity assign -g $grp -n $cfg --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $cfgmi --secret-permissions get list
 
 az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLite" -y
-az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y --label Production 
+az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y --label prod 
 
 # alternative: keyvault policy assignment using service principal
 # principal=http://foodprincipal
 # az ad sp create-for-rbac -n $principal --sdk-auth
-# az keyvault set-policy -n $vault --spn $principal --secret-permissions get list set
+# az keyvault set-policy -n $vault --spn $principal --secret-permissions get list
 
 # create a feature flag and turn it on
 

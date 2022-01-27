@@ -7,12 +7,12 @@ app=foodapi-$rnd
 
 # az appservice plan create -n $plan  -g $grp --sku FREE
 # az webapp create -g $grp --plan $plan --name $app --runtime "DOTNET|6.0"
+cd FoodApiWithMI
 az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|6.0" 
+cd ..
 
-# System assigned identity
-az webapp identity assign -g $grp -n $app
-
-mi=$(az webapp identity show  -g $grp -n $app --query principalId -o tsv)
+# Use system assigned identity and add policy to kv
+mi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
 
 az webapp config appsettings set -g $grp -n $app --settings AppSettings:KevVault=$vault.vault.azure.net
