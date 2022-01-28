@@ -9,13 +9,9 @@ subs=console-topic-subs
 az group create -n $grp -l $loc
 
 az servicebus namespace create -g $grp -n $namespace -l $loc
-
 az servicebus queue create -g $grp -n $q --namespace-name $namespace 
-
 az servicebus topic create -g $grp -n $topic --namespace-name $namespace
-
 az servicebus topic subscription create -n $subs --namespace-name $namespace --topic-name $topic -g $grp
-
 cs=$(az servicebus namespace authorization-rule keys list --resource-group $grp --namespace-name $namespace --name RootManageSharedAccessKey --query primaryConnectionString -o tsv)
 
 echo '***Queue Connection String: ' $cs
