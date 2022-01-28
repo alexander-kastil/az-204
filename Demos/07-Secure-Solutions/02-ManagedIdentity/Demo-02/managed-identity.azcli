@@ -4,38 +4,17 @@ loc=westeurope
 identity=ua-identity-$rnd
 vm=identityvm-$rnd
 admin=az204admin
-
-# use key vault from prev demo - change vault name in script
 vault=foodvault-$rnd
 
 az group create -n $grp -l $loc
 
 # create an identity
 
-az identity create -g $grp -l $loc -n $identity 
-
-mi=$(az identity show -n $identity -g $grp | jq .principalId)
-
-clientId=$(az identity show -n $identity -g $grp | jq .clientId)
-
+mi=$(az identity create -g $grp -l $loc -n $identity --query principalId)
 echo "managed identity object id: $mi"
 
-echo "managed identity client id: $clientId"
-
 # create a vm
-
 az vm create -n $vm -g $grp --image UbuntuLTS --size Standard_B1ms --generate-ssh-keys --admin-username $admin
-
-# list assigned identities
-
 az vm identity show -g $grp -n $vm
-
-ip=$(az vm show -d -g $grp -n $vm --query publicIps)
-
-echo "ip address: $ip"
-
-# assign identity to vm & kv ... might have to take val from ui
-
 az vm identity assign -g $grp -n $vm --identities $identity
-
 az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get

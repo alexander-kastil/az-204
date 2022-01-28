@@ -20,7 +20,7 @@ namespace FoodApi {
 
         public IConfiguration Configuration { get; }
         private readonly IWebHostEnvironment env;
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices (IServiceCollection services) {
 
             //Config
@@ -28,7 +28,6 @@ namespace FoodApi {
             var cfg = Configuration.Get<FoodConfig>();
 
             //EF
-            var conStrLite = Configuration["ConnectionStrings:SQLiteDBConnection"];
             services.AddDbContext<FoodDBContext> (options => options.UseSqlite (cfg.ConnectionStrings.SqLiteDbConnection));
 
             //Swagger

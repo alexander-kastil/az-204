@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.Azure.KeyVault;
+using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Microsoft.Azure.KeyVault;
-using Microsoft.Azure.Services.AppAuthentication;
 
 namespace FoodApi {
     public class Startup {
@@ -22,26 +22,21 @@ namespace FoodApi {
 
         public IConfiguration Configuration { get; }
         private readonly IWebHostEnvironment env;
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices (IServiceCollection services) {
+
             //Config
-            services.AddSingleton < IConfiguration > (Configuration); 
+            services.AddSingleton<IConfiguration>(Configuration);
+            var cfg = Configuration.Get<FoodConfig>();
 
             //Use MI to get DB Con Str
-            string kv = env.IsDevelopment() ? Configuration["Azure:KevVault"] : Configuration["AppSettings:KevVault"];
-            Console.WriteLine($"KeyVault: {kv}");
-
+            Console.WriteLine($"Using KeyVault: {cfg.Azure.KevVault}");            
             var azureServiceTokenProvider = new AzureServiceTokenProvider();
             var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));            
-            string dbconstring = (kvClient.GetSecretAsync($"https://{kv}", "conSQLite").Result).Value;
+            string dbconstring = (kvClient.GetSecretAsync($"https://{cfg.Azure.KevVault}", "conSQLite").Result).Value;
 
             //EF
-            //We dont need the conStrLite anymore - just there for comparison
-            //var conStrLite = Configuration["ConnectionStrings:SQLiteDBConnection"];
-            services.AddEntityFrameworkSqlite ().AddDbContext<FoodDBContext> (options => options.UseSqlite (dbconstring));
-
-            //AI
-            services.AddApplicationInsightsTelemetry (Configuration["Azure:ApplicationInsights:InstrumentationKey"]);
+            services.AddDbContext<FoodDBContext> (options => options.UseSqlite (cfg.ConnectionStrings.SqLiteDbConnection));
 
             //Swagger
             services.AddSwaggerGen (c => {
@@ -80,9 +75,6 @@ namespace FoodApi {
             app.UseHttpsRedirection ();
 
             app.UseRouting ();
-
-            // app.UseAuthorization ();
-
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllers ();
             });

@@ -11,8 +11,7 @@ az group create -n $grp -l $loc
 
 # application insights
 az extension add --name application-insights
-az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --retention-time 30
-aikey=$(az monitor app-insights component show --app $ai -g $grp --query instrumentationKey -o tsv)
+aikey=$(az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --retention-time 30 --query instrumentationKey -o tsv)
 
 # api
 az appservice plan create -n $plan -g $grp --sku FREE
