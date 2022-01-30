@@ -1,4 +1,4 @@
-# Debugging & Overwriting Config with Environment Variables in Containers
+# Debugging Containers & Overwriting Config with Environment Variables in ACI
 
 Create a `debug.dockerfile`:
 

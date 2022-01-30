@@ -3,8 +3,8 @@
 -   Docker Basics & Multistage Build
 -   Publish Image to Azure Container Registry
 -   Use Azure Container Registry Build Task
--   Azure Container Instances & Web Apps for Containers
--   Debugging & Overwriting Config with Environment Variables in Containers using ACI (optional)
+-   Azure Container Instances (ACI) & Web Apps for Containers
+-   Debugging Containers & Overwriting Config with Environment Variables in ACI (optional)
 -   Kubernetes Intro (optional)
 
 ## Tools & Extensions
