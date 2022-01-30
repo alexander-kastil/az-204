@@ -4,6 +4,7 @@
 -   Publish Image to Azure Container Registry
 -   Use Azure Container Registry Build Task
 -   Azure Container Instances & Web Apps for Containers
+-   Debugging & Overwriting Config with Environment Variables in Containers using ACI (optional)
 -   Kubernetes Intro (optional)
 
 ## Tools & Extensions

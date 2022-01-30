@@ -1,41 +1,146 @@
-# Azure Kubernetes Service
+# Debugging & Overwriting Config with Environment Variables in Containers
 
-[Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/)
+Create a `debug.dockerfile`:
 
-[Bridge to Kubernetes](https://docs.microsoft.com/en-us/visualstudio/bridge/)
+```yml
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
 
-[az aks Commands Overview](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
+ENV ASPNETCORE_URLS=http://+:80
 
-#### Create AKS Cluster
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY ["net-env-vars.csproj", "./"]
+RUN dotnet restore "net-env-vars.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "net-env-vars.csproj" -c Release -o /app/build
 
-> Note: Use FoodApp from Demo-01
+FROM build AS publish
+RUN dotnet publish "net-env-vars.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-Install kubectl command line client locally:
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "net-env-vars.dll"]
+```
 
-`az aks install-cli`
+Use the [Docker - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) to create a Docker Debug Configuration:
 
-> Note: You might need to set a path to your system env variables
+![docker-ext](_images/docker-ext.png)
 
-Create resource group:
+Update the `docker-build` task `dockerfile` prop to use `debug.dockerfile`:
 
-`az group create -name az-204 --location westeurope`
+```json
+{
+    "type": "docker-build",
+    "label": "docker-build: debug",
+    "dependsOn": [
+        "build"
+    ],
+    "dockerBuild": {
+        "tag": "netenvvars:dev",
+        "target": "base",
+        "dockerfile": "${workspaceFolder}/debug.dockerfile",
+        "context": "${workspaceFolder}",
+        "pull": true,
+    },
+    "netCore": {
+        "appProject": "${workspaceFolder}/net-env-vars.csproj"
+    },
+},
+```
 
-Create AKS cluster:
+For container debugging customize `docker-run: debug` in `.vscode/tasks.json`:
 
-`az aks create --resource-group az-204 --name foodcluster --node-count 1 --enable-addons monitoring --generate-ssh-keys`
+```json
+{
+    "type": "docker-run",
+    "label": "docker-run: debug",
+    "dependsOn": [
+        "docker-build: debug"
+    ],
+    "dockerRun": {
+        "ports": [{"hostPort": 5050, "containerPort": 80}],
+        "env": {            
+            "App__UseEnv":"true",
+            "Azure__TenantId":"d92b0000-90e0-4469-a129-6a32866c0d0a"
+        }
+    },
+    "netCore": {
+        "appProject": "${workspaceFolder}/net-env-vars.csproj",
+        "enableDebugging": true
+    }
+},
+```
 
-Get credentials for the Kubernets cluster:
+Set container environment variables:
 
-`az aks get-credentials --resource-group az-204 --name foodcluster`
+```json
+"env": {            
+    "App__UseEnv":"true",
+    "Azure__TenantId":"d92b0000-90e0-4469-a129-6a32866c0d0a"
+}
+```
 
-Get a list of cluster nodes:
+>Note: `Azure__TenantId` mimics the structure of `appsettings.json`:
 
-`kubectl get nodes`
+```json
+{ 
+  "Azure": {
+  "TenantId": "d92b247e-90e0-4469-a129-6a32866c0d0a",
+```
 
-Apply the yaml
+Set the port mapping:
 
-`kubectl apply -f foodui.yaml`
+```json
+"ports": [{"hostPort": 5050, "containerPort": 80}],
+```
 
-Get the serive IP and use it on the assigned port
+Set your startup url in `launch.json` to route to the `SettingsController` using `%s://localhost:%s/settings`:
 
-kubectl get service foodui --watch
+```json
+{
+    "name": "Docker Debug",
+    "type": "docker",
+    "request": "launch",
+    "preLaunchTask": "docker-run: debug",
+    "netCore": {
+        "appProject": "${workspaceFolder}/net-env-vars.csproj"
+    },
+    "dockerServerReadyAction": {
+        "uriFormat": "%s://localhost:%s/settings"
+    }
+}
+```
+
+Notice that the overrided value for the `TenantId` is returned:
+
+![tenantid](_images/tenantid.png)
+
+`Attach to shell` and use `printenv` to show the variables in the container:
+
+![attach](_images/attach.png)
+
+Build and publish image:
+
+```bash
+docker build --rm -f dockerfile -t net-env-vars:debug .
+docker tag net-env-vars:debug arambazamba/net-env-vars:debug
+docker push arambazamba/net-env-vars:debug
+```
+
+Test in [Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/) by executing `../deploy-to-aci.azcli`:
+
+```bash
+rnd=$RANDOM
+grp=az204-m05-ci-env-$rnd
+loc=westeurope
+app=net-env-vars-$RANDOM
+img=arambazamba/net-env-vars:debug
+
+az group create -n $grp -l $loc
+
+az container create -g $grp -l $loc -n $app --image $img --cpu 1 --memory 1 --dns-name-label $app --port 80 --environment-variables 'App__UseEnv'='true' 'Azure__TenantId'='d9101010-90e0-4469-a129-6a32866c0d0a' --query ipAddress.fqdn -o tsv
+```
