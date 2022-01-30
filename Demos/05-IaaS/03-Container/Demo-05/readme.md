@@ -98,7 +98,7 @@ Set the port mapping:
 "ports": [{"hostPort": 5050, "containerPort": 80}],
 ```
 
-Set your startup url in `launch.json` to route to the `SettingsController` using `%s://localhost:%s/settings`:
+Set your startup url in `launch.json` to route to the `SettingsController` using `dockerServerReadyAction`:
 
 ```json
 {
