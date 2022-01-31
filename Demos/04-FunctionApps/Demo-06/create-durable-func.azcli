@@ -16,4 +16,7 @@ az functionapp config appsettings  set -n $app -g $grp --settings "WEBSITE_NODE_
 
 echo "Funtions app created: $app"
 
-az functionapp list
+# Deploy to function app
+cd stateful-cs
+func azure functionapp publish $app 
+cd ..
