@@ -1,8 +1,8 @@
 rnd=$RANDOM
-grp=az204-m04-basicwf-$rnd
+grp=az204-m04-statefulapp-$rnd
 loc=westeurope
-app=basicwf-$rnd
-storage=basicwf$rnd
+app=statefulapp-$rnd
+storage=statefulapp$rnd
 
 az group create --name $grp --location $loc
 
