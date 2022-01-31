@@ -3,7 +3,7 @@ grp=az204-m09-evtgrid-signalr-$rnd
 loc=westeurope
 storage=foodep$rnd
 app=food-ep-$rnd
-topic=foodtopic-$rnd
+topic=foodevents-$rnd
 ngurl=http://localhost:4200
 
 # base ressources
