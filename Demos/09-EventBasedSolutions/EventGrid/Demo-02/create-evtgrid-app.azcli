@@ -18,6 +18,7 @@ az storage account  create -n $storage -g $grp
 funcappid=$(az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 3 --app-insights $app --query id -o tsv)
 az functionapp config appsettings set -n $app -g $grp --settings "AzureSignalRConnectionString=$conStrSignalR"
 az functionapp cors add -g $grp -n $app --allowed-origins $ngurl
+az resource update --ids $funcappid/config/web --set properties.cors.supportCredentials="true"
 webhookEP=$(az functionapp show -n $app -g $grp --query "hostNames" --output tsv)
 
 # Deploy food-ep-func to function app

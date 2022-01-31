@@ -6,12 +6,12 @@ Demo is an updated and modernized version of [https://github.com/DavidGSola/serv
 
 ## Demo
 
-Execute `create-ressources.azcli`. It creates:
+Execute `create-evtgrid-app.azcli`. It creates:
 
 - Azure SignalR Service
 - Event Grid Topic
 - Publishes Function app with that acts as an endpoint for the event grid topic webhook subscription
-- In the `CORS Settings` of the function app, set `Enable Access-Control-Allow-Credentials` to true
+- Adds the Angular Url to CORS and sets `Enable Access-Control-Allow-Credentials` to true
 - A food log Angular UI
 
 Update signalr config in environment.ts and environment.prod.ts of `ng-food-log`:
