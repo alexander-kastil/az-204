@@ -89,7 +89,7 @@ Set container environment variables:
 ```json
 { 
   "Azure": {
-  "TenantId": "d92b247e-90e0-4469-a129-6a32866c0d0a",
+        "TenantId": "d92b247e-90e0-4469-a129-6a32866c0d0a",
 ```
 
 Set the port mapping:
