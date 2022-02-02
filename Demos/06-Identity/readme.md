@@ -6,10 +6,10 @@
 
 ## Demos
 
+- Implement Role based Access Control (RBAC)
 - Managing App Registrations & Understanding Microsoft Identity Authentication Flows
 - MSAL secured Mail Daemon Service with Microsoft Graph
 - MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
-- Implement Role based Access Control
 
 ## Additional Labs & Walkthroughs
 

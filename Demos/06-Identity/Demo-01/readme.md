@@ -1,60 +1,15 @@
-# Microsoft Identity Getting Started
+# Implement Role based Access Control
 
-[Azure App Registrations](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-apps)
+[RBAC for Azure](https://docs.microsoft.com/en-us/azure/role-based-access-control/)
 
-[MSAL Authentication Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
-
-[az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)
+[Grant limited access to Azure Storage resources using shared access signatures](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview)
 
 ## Demos
 
-- App Registration MSAL-Token-Flow-App
-- Create App Registration using Azure CLI
+- Role Based Access Control Basics
 
-### App Registration MSAL-Token-Flow-App
+## CLI Reference
 
-![appreg](_images/app-reg.jpg)
+[az ad](https://docs.microsoft.com/en-us/cli/azure/ad?view=azure-cli-latest)
 
-![appreg2](_images/app-reg2.jpg)
-
-### Run Demo
-
-Replace tanant id und client id in `index.js`:
-
-```javascript
-async function doAuth() {
-  const spTenant = "integrationsonline";
-  const config = {
-    auth: {
-      clientId: "a2d2aa7-c9dc-47ef-899a-2258409bc7c4",
-      authority: "https://login.microsoftonline.com/common/",
-      redirectUri: "http://localhost:8080",
-    },
-  };
-```
-
-Install http-server:
-
-```
-npm i -g http-server
-```
-
-> Note: Requires [Note.js](https://nodejs.org/download/release/v10.23.0/)
-
-Run project:
-
-```
-cd ./token-flow-node
-npm i
-http-server
-```
-
-> Note: Use http://localhost:8080/ as this is used in the App Registation
-
-Consent Screen:
-
-![consent](_images/consent.jpg)
-
-### Create App Registration using Azure CLI
-
-Examine and execute `create-appreg.azcli`
+[az role](https://docs.microsoft.com/en-us/cli/azure/role?view=azure-cli-latest)
