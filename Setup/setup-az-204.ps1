@@ -27,11 +27,9 @@ Write-Host "*****" -ForegroundColor red
 Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
 
 choco install dotnetcore-sdk -y
-choco install dotnet-5.0-sdk -y
 choco install dotnet-6.0-sdk -y
 choco install nodejs-lts --version=14.18.0 -y
 choco install azure-cli -y
-choco install azurestorageemulator -y
 choco install azurepowershell -y
 choco install microsoftazurestorageexplorer -y
 choco install azure-data-studio -y
@@ -41,7 +39,6 @@ choco install curl -y
 
 # Refresh Path Env
 Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
-
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
 # Install httprepl
@@ -57,20 +54,18 @@ code --install-extension ms-vscode.azurecli
 code --install-extension ms-vscode.azure-account
 code --install-extension ms-azuretools.vscode-azureappservice
 code --install-extension ms-azuretools.vscode-docker
-code --install-extension ms-azuretools.vscode-cosmosdb
 code --install-extension ms-azuretools.vscode-azurefunctions
 code --install-extension ms-azuretools.vscode-azurestaticwebapps
 code --install-extension GitHub.vscode-pull-request-github
 code --install-extension redhat.vscode-yaml
 code --install-extension bencoleman.armview
 code --install-extension msazurermtools.azurerm-vscode-tools
-code --install-extension CoenraadS.bracket-pair-colorizer-2
 code --install-extension mdickin.markdown-shortcuts
 code --install-extension mhutchie.git-graph 
 code --install-extension humao.rest-client
 
-# Azurite Storage Emulator & Function Core Tools v4
-npm install -g azure-functions-core-tools@4 --unsafe-perm true
+# Azurite Storage Emulator & Function Core Tools v3
+npm install -g azure-functions-core-tools@3 --unsafe-perm true
 npm install -g azurite
 
 # Install Angular
