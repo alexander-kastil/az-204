@@ -1,7 +1,6 @@
-rnd=dev
-grp=az204-m05-aks-$rnd
+grp=az204-m05-containers
 loc=westeurope
-aks=foodcluster-$rnd
+aks=foodcluster-$RANDOM
 ns=staging
 ui=foodui.yaml
 app=foodui
