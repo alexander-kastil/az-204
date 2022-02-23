@@ -11,7 +11,7 @@ az acr login --name $acr
 az acr update -n $acr --admin-enabled true
 
 az acr list --query "[].loginServer" -o tsv #for info only
-az acr credential show -n $acr --query "passwords[0].value" #for info only
+pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv) #for info only
 
 # Tag img & upload to ACR
 docker tag foodapi $acr.azurecr.io/foodapi
