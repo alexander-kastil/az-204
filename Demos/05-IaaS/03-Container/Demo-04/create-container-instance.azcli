@@ -8,5 +8,4 @@ pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
 
 az group create -n $grp -l $loc
 
-
 az container create -g $grp -l $loc -n $app --image $img --cpu 1 --memory 1 --dns-name-label $app --port 80 --registry-username $usr --registry-password $pwd --environment-variables 'ENV_API_URL'='https://food-api-staging-4591.azurewebsites.net'
