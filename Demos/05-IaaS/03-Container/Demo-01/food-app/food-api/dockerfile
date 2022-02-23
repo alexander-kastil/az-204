@@ -13,8 +13,9 @@ COPY --from=build /app .
 ENTRYPOINT ["dotnet", "food-api.dll"]
 
 # Build Image
-# docker build --rm -f Dockerfile -t foodapi .
-# docker build --rm -f Dockerfile -t foodapi-env .
+
+docker build --rm -f Dockerfile -t foodapi .
+docker build --rm -f Dockerfile -t foodapi-env .
 
 # Run Image
 # docker run -it --rm -p 5051:80 foodapi
