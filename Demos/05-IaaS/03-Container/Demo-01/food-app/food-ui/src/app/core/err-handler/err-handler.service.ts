@@ -9,6 +9,6 @@ export class ErrHandlerService extends ErrorHandler {
     super();
   }
   override handleError(error: Error) {
-    this.ai.logException(error);
+    // this.ai.logException(error);
   }
 }

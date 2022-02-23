@@ -7,7 +7,7 @@
   <app-login></app-login>
 </div>
 <div
-  *ngIf="authenticated"
+  *ngIf="authenticated "
   gdAreas="navbar | mainrow"
   gdAreas.lt-md="navbar  | mainrow"
   gdRows="80px auto"
@@ -27,7 +27,6 @@
   </div>
 </div>
 
-<div style="display: none">
-  <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+<!-- <div style="display: none">
   <router-outlet *ngIf="!isIframe"></router-outlet>
-</div>
+</div> -->

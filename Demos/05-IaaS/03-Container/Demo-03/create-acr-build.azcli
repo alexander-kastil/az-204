@@ -1,4 +1,5 @@
-acr=integrationsonline.azurecr.io
+env=food
+acr=az204acr$env
 
 az acr login --name $acr
-az acr build --image food-ui:2.0.0 --registry $acr --file Dockerfile .
+az acr build --image ng-config:env --registry $acr --file Dockerfile .

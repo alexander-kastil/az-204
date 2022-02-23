@@ -23,6 +23,10 @@ import { metaReducers, reducers } from './state/state';
 
 registerLocaleData(localeDe);
 
+const bootstrap = environment.authEnabled
+  ? [AppComponent, MsalRedirectComponent]
+  : [AppComponent];
+
 @NgModule({
   declarations: [AppComponent, AboutComponent, HomeComponent],
   imports: [
@@ -50,6 +54,6 @@ registerLocaleData(localeDe);
     { provide: ErrorHandler, useClass: ErrHandlerService },
     { provide: LOCALE_ID, useValue: 'de' },
   ],
-  bootstrap: [AppComponent, MsalRedirectComponent],
+  bootstrap: bootstrap,
 })
 export class AppModule {}

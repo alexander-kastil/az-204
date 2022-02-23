@@ -15,13 +15,15 @@ export class AppInsightsService implements OnDestroy {
   }
 
   initAppInsights() {
-    this.appInsights = new ApplicationInsights({
-      config: {
-        instrumentationKey: environment.azure.applicationInsights,
-        enableAutoRouteTracking: true,
-      },
-    });
-    this.appInsights.loadAppInsights();
+    if (environment.azure.applicationInsights != '') {
+      this.appInsights = new ApplicationInsights({
+        config: {
+          instrumentationKey: environment.azure.applicationInsights,
+          enableAutoRouteTracking: true,
+        },
+      });
+      this.appInsights.loadAppInsights();
+    }
   }
 
   ngOnDestroy(): void {
