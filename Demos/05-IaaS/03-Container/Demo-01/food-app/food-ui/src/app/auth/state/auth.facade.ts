@@ -20,6 +20,7 @@ import { MsalAuthResponse } from '../auth.model';
 import { loginSuccess, logout } from './auth.actions';
 import { MsalAuthState } from './auth.reducer';
 import { getUser, isAuthenticated } from './auth.selectors';
+import { MsalBroadcastServiceMock } from '../mocks/MsalBroadcastService.mock';
 
 @Injectable()
 export class MsalAuthFacade {
@@ -30,10 +31,6 @@ export class MsalAuthFacade {
     this.handleLoginSuccess(this.msalBC);
   }
 
-  getAuthState() {
-    return !environment.authEnabled;
-  }
-
   getUser() {
     return this.store.select(getUser);
   }
@@ -42,7 +39,9 @@ export class MsalAuthFacade {
     return this.store.select(isAuthenticated);
   }
 
-  handleLoginSuccess = (broadcast: MsalBroadcastService) => {
+  handleLoginSuccess = (
+    broadcast: MsalBroadcastService | MsalBroadcastServiceMock
+  ) => {
     return broadcast.msalSubject$
       .pipe(
         filter(

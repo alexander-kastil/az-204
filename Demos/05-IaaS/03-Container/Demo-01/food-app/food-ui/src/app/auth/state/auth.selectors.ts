@@ -6,7 +6,7 @@ export const getAuthState =
 
 export const isAuthenticated = createSelector(
   getAuthState,
-  (state) => state.authResponse != null
+  (state) => state.authenticated
 );
 
 export const getUser = createSelector(

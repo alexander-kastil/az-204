@@ -1,10 +1,11 @@
 using System;
 using FoodApp;
 using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,6 @@ namespace FoodApi
 {
     public class Startup
     {
-
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,11 +24,11 @@ namespace FoodApi
         }
 
         public IConfiguration Configuration { get; }
-
         private readonly IWebHostEnvironment env;
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Config
             services.AddSingleton<IConfiguration>(Configuration);
             var cfg = Configuration.Get<FoodConfig>();
 
@@ -36,6 +36,9 @@ namespace FoodApi
             services.AddApplicationInsightsTelemetry(cfg.Azure.ApplicationInsights);
             services.AddSingleton<ITelemetryInitializer, FoodTelemetryInitializer>();
             services.AddSingleton<AILogger>();
+
+            //EventGrid
+            services.AddSingleton<EventGridPublisher>();
 
             //Database
             if (cfg.App.UseSQLite)
@@ -47,37 +50,50 @@ namespace FoodApi
                 services.AddDbContext<FoodDBContext>(opts => opts.UseSqlServer(cfg.App.ConnectionStrings.SQLiteDBConnection));
             }
 
-            //Microsoft Identity Auth     
+            //Microsoft Identity auth
             var az = Configuration.GetSection("Azure");
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            if (cfg.App.AuthEnabled && az != null)
+            {
+                services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApi(az)
                 .EnableTokenAcquisitionToCallDownstreamApi()
                 .AddInMemoryTokenCaches();
-            services.AddAuthorization();
+                services.AddAuthorization();
+
+                //Add auth policy instead of Autorize Attribute on Controllers
+                services.AddControllers(obj =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build();
+                    obj.Filters.Add(new AuthorizeFilter(policy));
+                });
+            }
+            else
+            {
+                services.AddControllers();
+            }
 
             //Swagger
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Food API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Food-Api", Version = "v1" });
             });
-            services.AddControllers();
 
             // Cors
             services.AddCors(o => o.AddPolicy("nocors", builder =>
-            {
-                builder
-                    .SetIsOriginAllowed(host => true)
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
-            }));
+                {
+                    builder
+                        .SetIsOriginAllowed(host => true)
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                }));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             var cfg = Configuration.Get<FoodConfig>();
-            Console.WriteLine("Environment: " + env.EnvironmentName);
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -87,7 +103,7 @@ namespace FoodApi
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food-Api");
                 c.RoutePrefix = string.Empty;
             });
 
@@ -98,6 +114,7 @@ namespace FoodApi
 
             if (cfg.App.AuthEnabled)
             {
+                Console.WriteLine($"Using auth with App Reg: {cfg.Azure.ClientId}");
                 app.UseAuthentication();
                 app.UseAuthorization();
             }

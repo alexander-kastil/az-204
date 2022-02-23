@@ -9,6 +9,7 @@ namespace FoodApi
     //dotnet restore
     //dotnet-ef migrations add MIGRATION-NAME
     //dotnet-ef database update
+
     public class FoodDBContext : DbContext //Use DbContext if not using Identity
     {
         public FoodDBContext(DbContextOptions<FoodDBContext> options) : base(options)

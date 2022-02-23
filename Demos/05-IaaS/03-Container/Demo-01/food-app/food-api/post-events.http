@@ -1,0 +1,20 @@
+@topicurl=foodevents-staging.westeurope-1.eventgrid.azure.net
+@topickey=lqBnk0ovuzG5xRhjM21zvxVrotgcEikp1iBOWUpGfk0=
+
+POST  https://{{topicurl}}//api/events HTTP/1.1
+content-type: application/cloudevents+json; charset=utf-8
+aeg-sas-key: {{topickey}}
+
+{
+   "specversion":"1.0",
+   "type":"at.integrations.foodapp",
+   "source":"foodapp",
+   "id":"A234-1234-1234",
+   "time":"2022-01-01T12:00:00Z",
+   "datacontenttype":"application/json",
+   "data":{
+      "id": 1,
+      "type": "create",
+      "quantity": 10
+   }
+}
