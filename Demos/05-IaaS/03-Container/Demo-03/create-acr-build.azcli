@@ -1,5 +1,4 @@
-env=food
-acr=az204acr$env
+acr=az204foodacr
 
 az acr login --name $acr
 az acr build --image ng-config:env --registry $acr --file Dockerfile .
