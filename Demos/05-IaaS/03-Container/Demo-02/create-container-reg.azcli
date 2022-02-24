@@ -1,5 +1,5 @@
 grp=az204-m05-containers
-acr=az204foodacr
+acr=foodacr
 
 az group create -n $grp -l westeurope
 

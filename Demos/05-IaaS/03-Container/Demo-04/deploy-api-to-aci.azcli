@@ -1,6 +1,6 @@
 grp=az204-m05-containers
 loc=westeurope
-acr=az204foodacr
+acr=foodacr
 fqdn=azurecr.io
 app=net-config
 img=$acr.$fqdn/$app

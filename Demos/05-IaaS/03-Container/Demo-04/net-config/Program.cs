@@ -16,6 +16,15 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
+builder.Services.AddCors(o => o.AddPolicy("nocors", builder =>
+{
+    builder
+        .SetIsOriginAllowed(host => true)
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
+}));
+
 // Open Api
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -28,6 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseCors("nocors");
 app.UseSwagger();
 
 app.UseHttpsRedirection();
