@@ -8,7 +8,7 @@
 
 ## Azure Container Instances
 
-To read Angular Config from Environments Vars, open project `ng-config-env` and examine `./src/assets` and `./src/environments`
+To read Angular Config from Environments Vars, open project `ng-config` and examine `./src/assets` and `./src/environments`
 
 `env.js` is referenced in `index.html`:
 ```typescript
@@ -49,17 +49,17 @@ CMD ["/bin/sh", "-c", "envsubst < /usr/share/nginx/html/assets/env.template.js >
 Build image and run container:
 
 ```bash
-docker build --rm -f "dockerfile" -t ng-config-env .
-docker tag ng-config-env arambazamba/ng-config-env
-docker push arambazamba/ng-config-env
+docker build --rm -f "dockerfile" -t ng-config:env .
+docker tag ng-config:env arambazamba/ng-config:env
+docker push arambazamba/ng-config:env
 ```
 
->Note: We will use the `arambazamba/ng-config-env`-image for the rest of this module. Update your Docker Hub username.
+>Note: We will use the `arambazamba/ng-config:env`-image for the rest of this module. Update your Docker Hub username.
 
 Run container:
 
 ```bash
-docker run -d --rm -p 5052:80 ng-config-env --env ENV_API_URL="https://food-api-staging-4591.azurewebsites.net"
+docker run -d --rm -p 5052:80 ng-config:env --env ENV_API_URL="https://food-api-staging-4591.azurewebsites.net"
 http://localhost:5052
 ```
 
@@ -70,7 +70,7 @@ rnd=$RANDOM
 grp=az204-m05-ci-$rnd
 loc=westeurope
 app=ng-config-env-$RANDOM
-img="arambazamba/ng-config-env"
+img="arambazamba/ng-config:env"
 
 az group create -n $grp -l $loc
 

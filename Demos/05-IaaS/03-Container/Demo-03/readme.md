@@ -8,5 +8,5 @@ Execute `create-acr-build.azcli`:
 acr=integrationsonline.azurecr.io
 
 az acr login --name $acr
-az acr build --image food-ui:2.0.0 --registry $acr --file ./food-ui/dockerfile .
+az acr build --image ng-config:env --registry $acr --file Dockerfile .
 ```

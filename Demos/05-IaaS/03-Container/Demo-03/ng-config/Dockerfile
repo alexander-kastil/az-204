@@ -12,7 +12,7 @@ FROM nginx:alpine
 VOLUME /var/cache/nginx
 
 # Take from node-build
-COPY --from=node /app/dist/config-env /usr/share/nginx/html
+COPY --from=node /app/dist/ng-config /usr/share/nginx/html
 # Take from project folder
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
