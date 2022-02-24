@@ -30,7 +30,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8088
+  - port: 8081
     targetPort: 80
   selector:
     app: foodapi
