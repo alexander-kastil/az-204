@@ -19,6 +19,8 @@ kubectl get nodes
 kubectl create namespace $ns
 kubectl apply -f foodapi.yaml --namespace $ns
 kubectl apply -f foodui.yaml --namespace $ns
+kubectl apply -f netconfig.yaml --namespace $ns
+kubectl apply -f ngconfig.yaml --namespace $ns
 
 # Get some metadata
 kubectl get deployment $app -n $ns

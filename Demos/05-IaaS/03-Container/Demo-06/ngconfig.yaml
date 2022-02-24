@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ngconfig
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ngconfig
+  template:
+    metadata:
+      labels:
+        app: ngconfig                 
+    spec:
+      containers:
+      - name: ngconfig
+        image: arambazamba/ng-config
+        env: 
+          - name: ENV_API_URL
+            value: 'http://fakeapi'
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80        
+        resources:
+          limits:            
+            cpu: "500m"
+            memory: "128Mi" 
+      imagePullSecrets:
+      - name: W+I0mZoRYW+mkeTvytZu2w2SOqjr=KoB       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngconfig-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: ngconfig
+---  

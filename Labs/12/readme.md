@@ -179,6 +179,8 @@ In this exercise, you created an Azure Storage account and an Azure Web App that
 
 #### Task 2: Register the Microsoft.CDN provider
 
+>Note: This labguide was written some time ago ... It is very likely that the provider is already registered
+
 1.  At the **Cloud Shell** command prompt in the portal, perform the following actions:
 
     1.  Enter the following command, and then select Enter to get a list of subgroups and commands at the root level of the Azure CLI:

@@ -3,7 +3,7 @@ grp=az204-m12-cdn-$rnd
 loc=westeurope
 acct=staticwebsite$rnd
 path='./FoodUI/dist/FoodUI'
-profile=ngapp
+profile=ngfoodapp$rnd
 epname=ngendpoint
 
 az group create -n $grp -l $loc
