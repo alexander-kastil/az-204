@@ -8,7 +8,7 @@ vault=foodvault-$rnd
 
 az group create -n $grp -l $loc
 
-# create an identity
+# create an user assigned managed identity
 mi=$(az identity create -g $grp -l $loc -n $identity --query principalId)
 echo "managed identity object id: $mi"
 
