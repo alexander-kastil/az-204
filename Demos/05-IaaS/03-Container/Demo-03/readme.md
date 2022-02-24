@@ -8,5 +8,5 @@ Execute `create-acr-build.azcli`:
 acr=integrationsonline.azurecr.io
 
 az acr login --name $acr
-az acr build --image ng-config:env --registry $acr --file Dockerfile .
+az acr build --image ng-config --registry $acr --file Dockerfile .
 ```

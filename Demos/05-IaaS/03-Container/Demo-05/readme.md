@@ -1,148 +1,82 @@
-# Debugging Containers & Overwriting Config with Environment Variables in ACI
+# Azure Container Instances & Web Apps for Containers
 
-Create a `debug.dockerfile`:
+[Web App for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/)
 
-```yml
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
+[Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/)
 
-ENV ASPNETCORE_URLS=http://+:80
+[Deploy to Azure Container Instances from Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-using-azure-container-registry)
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["net-env-vars.csproj", "./"]
-RUN dotnet restore "net-env-vars.csproj"
-COPY . .
-WORKDIR "/src/."
-RUN dotnet build "net-env-vars.csproj" -c Release -o /app/build
+## Azure Container Instances
 
-FROM build AS publish
-RUN dotnet publish "net-env-vars.csproj" -c Release -o /app/publish /p:UseAppHost=false
+To read Angular Config from Environments Vars, open project `ng-config` and examine `./src/assets` and `./src/environments`
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "net-env-vars.dll"]
+`env.js` is referenced in `index.html`:
+```typescript
+(function (window) {
+  window["env"] = window["env"] || {};
+  window["env"].API_URL = "http://localhost:5001/food";
+})(this);
 ```
 
-Use the [Docker - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) to create a Docker Debug Configuration:
-
-![docker-ext](_images/docker-ext.png)
-
-Update the `docker-build` task `dockerfile` prop to use `debug.dockerfile`:
-
-```json
-{
-    "type": "docker-build",
-    "label": "docker-build: debug",
-    "dependsOn": [
-        "build"
-    ],
-    "dockerBuild": {
-        "tag": "netenvvars:dev",
-        "target": "base",
-        "dockerfile": "${workspaceFolder}/debug.dockerfile",
-        "context": "${workspaceFolder}",
-        "pull": true,
-    },
-    "netCore": {
-        "appProject": "${workspaceFolder}/net-env-vars.csproj"
-    },
-},
-```
-
-For container debugging customize `docker-run: debug` in `.vscode/tasks.json`:
-
-```json
-{
-    "type": "docker-run",
-    "label": "docker-run: debug",
-    "dependsOn": [
-        "docker-build: debug"
-    ],
-    "dockerRun": {
-        "ports": [{"hostPort": 5050, "containerPort": 80}],
-        "env": {            
-            "App__UseEnv":"true",
-            "Azure__TenantId":"d92b0000-90e0-4469-a129-6a32866c0d0a"
-        }
-    },
-    "netCore": {
-        "appProject": "${workspaceFolder}/net-env-vars.csproj",
-        "enableDebugging": true
-    }
-},
-```
-
-Set container environment variables:
-
-```json
-"env": {            
-    "App__UseEnv":"true",
-    "Azure__TenantId":"d92b0000-90e0-4469-a129-6a32866c0d0a"
+`environment.ts` references `window['env']`-variables:
+```typescript
+declare global {
+  interface Window {
+    env: any;
+  }
 }
+
+export const environment = {
+  production: false,
+  apiUrl: window['env'].API_URL,
+};
 ```
 
->Note: `Azure__TenantId` mimics the structure of `appsettings.json`:
-
-```json
-{ 
-  "Azure": {
-        "TenantId": "d92b247e-90e0-4469-a129-6a32866c0d0a",
-```
-
-Set the port mapping:
-
-```json
-"ports": [{"hostPort": 5050, "containerPort": 80}],
-```
-
-Set your startup url in `launch.json` to route to the `SettingsController` using `dockerServerReadyAction`:
-
-```json
-{
-    "name": "Docker Debug",
-    "type": "docker",
-    "request": "launch",
-    "preLaunchTask": "docker-run: debug",
-    "netCore": {
-        "appProject": "${workspaceFolder}/net-env-vars.csproj"
-    },
-    "dockerServerReadyAction": {
-        "uriFormat": "%s://localhost:%s/settings"
-    }
-}
-```
-
-Notice that the overrided value for the `TenantId` is returned:
-
-![tenantid](_images/tenantid.png)
-
-`Attach to shell` and use `printenv` to show the variables in the container:
-
-![attach](_images/attach.png)
-
-Build and publish image:
+`dockerfile` calls `env.transform.js` to update `env.js` with current environment variables:
 
 ```bash
-docker build --rm -f dockerfile -t net-env-vars:debug .
-docker tag net-env-vars:debug arambazamba/net-env-vars:debug
-docker push arambazamba/net-env-vars:debug
+CMD ["/bin/sh", "-c", "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
 ```
 
-Test in [Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/) by executing `../deploy-to-aci.azcli`:
+`env.transform.js`:
+```typescript
+(function (window) {
+  window["env"] = window["env"] || {};
+  window["env"].API_URL = "${ENV_API_URL}";
+})(this);
+```
+
+Build image and run container:
+
+```bash
+docker build --rm -f "dockerfile" -t ng-config:env .
+docker tag ng-config:env arambazamba/ng-config:env
+docker push arambazamba/ng-config:env
+```
+
+>Note: We will use the `arambazamba/ng-config:env`-image for the rest of this module. Update your Docker Hub username.
+
+Run container:
+
+```bash
+docker run -d --rm -p 5052:80 ng-config:env --env ENV_API_URL="https://food-api-staging-4591.azurewebsites.net"
+http://localhost:5052
+```
+
+Execute `create-container-instance.azcli`:
 
 ```bash
 rnd=$RANDOM
-grp=az204-m05-ci-env-$rnd
+grp=az204-m05-ci-$rnd
 loc=westeurope
-app=net-env-vars-$RANDOM
-img=arambazamba/net-env-vars:debug
+app=ng-config-env-$RANDOM
+img="arambazamba/ng-config:env"
 
 az group create -n $grp -l $loc
 
-az container create -g $grp -l $loc -n $app --image $img --cpu 1 --memory 1 --dns-name-label $app --port 80 \
-    --environment-variables 'App__UseEnv'='true' 'Azure__TenantId'='d9101010-90e0-4469-a129-6a32866c0d0a' \
-    --query ipAddress.fqdn -o tsv
+az container create -g $grp -l $loc -n $app --image $img --cpu 1 --memory 1 --dns-name-label $app --port 80 --environment-variables 'API_URL'='https://food-api-staging-4591.azurewebsites.net'
 ```
+
+To check the env variables connect to ACI and enter `printenv`: 
+
+![check-env](_images/check-env.png)
