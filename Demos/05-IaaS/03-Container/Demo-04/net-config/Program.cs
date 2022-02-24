@@ -39,6 +39,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("nocors");
 app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

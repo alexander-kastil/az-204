@@ -23,7 +23,7 @@ spec:
         - containerPort: 80        
         resources:
           limits:            
-            cpu: "500m"
+            cpu: "0.2"
             memory: "128Mi" 
       imagePullSecrets:
       - name: W+I0mZoRYW+mkeTvytZu2w2SOqjr=KoB       
@@ -31,7 +31,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ngconfig-service
+  name: ngconfig-load-balancer
 spec:
   type: LoadBalancer
   ports:

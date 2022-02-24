@@ -15,6 +15,9 @@ az aks get-credentials -g $grp -n $aks
 # Get a list of cluster nodes:
 kubectl get nodes
 
+# Create static ip addresses
+az network public-ip create -g $grp -n netconfig --dns-name netconfigapi --allocation-method Static
+
 # Create a namespace
 kubectl create namespace $ns
 kubectl apply -f foodapi.yaml --namespace $ns
