@@ -18,12 +18,9 @@ Update signalr config in environment.ts and environment.prod.ts of `ng-food-log`
 
 ```typescript
 export const environment = {
-  production: true,
-  authEnabled: false,
-  apiUrl: 'https://localhost:5001/',
-  azure: {
-    applicationInsights: 'a196d36f-1782-4da4-8f95-a80585361df7',
-    signalr: 'https://foodhub-8926.azurewebsites.net/api',
+  production: false,
+  signalrEP: 'https://food-ep-prod.azurewebsites.net/api',
+};
 ```
 
 Test using `post-events.http` by updating `@topicurl` and `@topickey`:
