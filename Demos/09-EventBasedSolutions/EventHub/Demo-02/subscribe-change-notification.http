@@ -1,12 +1,20 @@
-## Create change notification for your own mailbox
-## Update with NotificationUrl from capture-graph-events.azcli and update expirationDateTime
+# @name auth
+POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
+Content-type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientId}}
+&client_secret={{clientSecret}}
+&scope={{scope}}
 
 POST https://graph.microsoft.com/v1.0/subscriptions HTTP/1.1
+Authorization: Bearer {{auth.response.body.access_token}}
 Content-Type: application/json
+
 {
   "changeType": "created,updated",
-  "notificationUrl": "EventHub:https://m10-graphevents.vault.azure.net/secrets/grapheventsconnectionstring?tenantId=integrations.at",
+  "notificationUrl": "EventHub:https://m10-graphevents-30097.vault.azure.net/secrets/graphConStr?tenantId=integrations.at",
   "resource": "/me/mailfolders('inbox')/messages",
-  "expirationDateTime": "2021-09-20T11:00:00.0000000Z",
+  "expirationDateTime": "2022-02-26T11:00:00.0000000Z",
   "clientState": "SecretClientState"
 }
