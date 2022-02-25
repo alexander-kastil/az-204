@@ -1,6 +1,6 @@
 rnd=$RANDOM
 loc=westeurope
-grp=az204-m08-apimgmt-$rnd
+grp=az204-m08-apim-$rnd
 appPlan=apimgmt-$rnd
 netapp=foodapi-$rnd
 fxapp=foodutil-$rnd

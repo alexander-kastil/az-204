@@ -5,7 +5,7 @@ ai=foodai$rnd
 plan=insights-$rnd
 api=foodapi-$rnd
 acct=foodapp$rnd
-path='./FoodApp/FoodUI/dist/food-ui'
+path='./food-ui/dist/food-ui'
 
 az group create -n $grp -l $loc
 

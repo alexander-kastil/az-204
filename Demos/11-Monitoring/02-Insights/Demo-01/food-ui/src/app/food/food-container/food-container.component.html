@@ -1,0 +1,13 @@
+<app-food-list
+  [food]="food | async"
+  (onEditSelected)="this.ff.selectFood($event)"
+  (onDeleteSelected)="this.ff.deleteFood($event)"
+  (onAddNew)="this.ff.addNewFood()"
+></app-food-list>
+
+
+<app-food-edit   
+  *ngIf="selected | async as item"
+  [food]="item"
+  (onSaveFood)="saveFood($event)"
+></app-food-edit>

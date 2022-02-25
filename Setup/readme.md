@@ -2,10 +2,10 @@
 
 ## <a id="basics">Create VM</a>
 
-Execute `create-lab-vm.sh` or run the following remote script in Cloud Shell
+Execute `create-lab-vm.azcli` or run the following remote script in Cloud Shell
 
 ```bash
-curl https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Setup/create-lab-vm.sh | bash
+curl https://raw.githubusercontent.com/arambazamba/az-204/main/Setup/create-lab-vm.azcli | bash
 ```
 
 ![create-labvm](_images/create-lab-vm.jpg)
@@ -22,12 +22,8 @@ pwd=Lab@dmin1234
 
 az group create -n $grp -l $loc
 
-az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image  MicrosoftWindowsDesktop:Windows-10:21h1-pro:19043.1288.2110060459 --size Standard_E2s_v3 --public-ip-sku Standard
-
-az vm auto-shutdown -g $grp -n $vmname --time 1830
+az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image MicrosoftWindowsDesktop:Windows-10:win10-21h2-pro-g2:latest --size Standard_E2s_v3 --public-ip-sku Standard
 ```
-
-Note: The image name of the Windows 10:20h2 image changes frequently. You might have to update the image name. Get a list of all Windows 10 images: `az vm image list -f "Windows-10" --location westeurope --all -o table`. Remember to support WSL2 you must have at least patch level `20h2`
 
 ## Connect to VM
 
