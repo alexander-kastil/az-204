@@ -11,4 +11,6 @@ az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --i
 
 az vm run-command invoke --command-id RunPowerShellScript -n $vmname -g $grp --scripts @setup-az-204.ps1
 
+az vm run-command invoke --command-id RunPowerShellScript -n $vmname -g $grp --scripts @setup-az-204.ps1
+
 az vm auto-shutdown -g $grp -n $vmname --time 1830

@@ -2,7 +2,7 @@ rnd=$RANDOM
 grp=az204-m12-cdn-$rnd
 loc=westeurope
 acct=staticwebsite$rnd
-path='./FoodUI/dist/FoodUI'
+path='./food-ui/dist/food-ui'
 profile=ngfoodapp$rnd
 epname=ngendpoint
 
