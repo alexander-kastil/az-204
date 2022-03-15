@@ -49,7 +49,7 @@ namespace MSALDaemon
 
             GraphServiceClient graphClient = new GraphServiceClient(authProvider);
             
-            //POST /users/{id | userPrincipalName}/messages/{id}/send
+            //POST /users/{id | userPrincipalName}/sendMail
             graphClient.Users[gconfig.mailSender].SendMail(msg, false).Request().PostAsync();
             
             List<QueryOption> options = new List<QueryOption> {
