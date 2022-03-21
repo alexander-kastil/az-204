@@ -14,31 +14,33 @@ Sample entity:
 
 ```json
 {
-    "id": "680",
-    "Name": "HL Road Frame - Black, 58",
-    "Description": "Our lightest and best quality aluminum ...",
-    "ProductNumber": "FR-R92B-58",
-    "Color": "Black",
-    "Model": {
-        "Id": 6,
-        "Name": "HL Road Frame",
-        "Description": null
-    },
-    "Category": {
-        "ParentId": 2,
-        "ParentName": "Components",
-        "Id": 18,
-        "Name": "Road Frames"
-    },
-    "Size": "58",
-    "Weight": 1016.04,
-    "SellStartDate": "2002-06-01T00:00:00",
-    "SellEndDate": null,
-    "Promotion": true,
-    "Variations": [
-      {"Name": "regular"},
-      {"Name": "super-fancy"}
-    ]
+    "id": "9",
+    "name": "Kaeng Masaman",
+    "amount": 16,
+    "pictureUrl": null,
+    "code": "mmc",
+    "date": "2022-03-19T00:00:00",
+    "kitchen": "Thai",
+    "tags": [
+        "Mild",
+        "Asia",
+        "Curry"
+    ],
+    "protein": [
+        "beef",
+        "chicken"
+    ],
+    "servings" : [
+        {
+            "type": "starter",
+            "size": "300ml"
+        },
+        {
+            "type": "full",
+            "size": "500ml"
+        }
+    ],
+    "reviews": 0
 }
 ```
 
@@ -46,77 +48,75 @@ Execute query for id:
 
 ```sql
 SELECT *
-FROM products p
-WHERE p.id = '680'
+FROM food f
+WHERE f.id = '1'
 ```
 
-Execute query for Color:
+Execute query for kitchen:
 
 ```sql
 SELECT *
-FROM p
-WHERE p.Color = "Red"
-ORDER by p.Size DESC
+FROM f
+WHERE f.kitchen = "Russia"
+ORDER by f.amount DESC
 ```
 
 Using alias:
 
 ```sql
 SELECT
-    p.Name,
-    (p.Weight * 2.2) AS WeightInPound
-FROM products p
+    f.name,
+    (f.amount * 1.2) AS Brutto
+FROM food f
 ```
 
-Products to those that have a weight that is between 1000 and 1020:
+Products to those that have a price that is 10 and 20:
 
 ```sql
 SELECT
-    p.Name,
-    p.Category,
-    p.Size
+    f.name,
+    f.kitchen
 FROM
-    products p
+    food f
 WHERE
-    p.Weight >= 1000 AND
-    p.Weight <= 1020
+    f.amount >= 10 AND
+    f.amount <= 20
 ```
 
-Get all colors in a distinct list:
+Get all kitchens in a distinct list:
 
 ```sql
-SELECT DISTINCT
-    p.Color
+SELECT DISTINCT VALUE
+    f.kitchen
 FROM
-    products p
+    ood f
 ```
 
 VALUE operator flattens the result nesting:
 
 ```sql
 SELECT DISTINCT VALUE
-    p.Category.Name
+    f.servings.type
 FROM
-    products p
+    food f
 ```
 
 Joins are scoped to a single item. A JOIN creates a cross-product between different sections of a single item
 
 ```sql
 SELECT
-    p.Name,
-    p.Color,
-    v.Name AS Variation
+    f.name,
+    s.type as Type
 FROM 
-    products p
+    food f
 JOIN
-    v IN p.Variations   
+    s IN f.servings  
 ```
 
 JOIN expressions can also include correlated subqueries to narrow the result
 
 ```sql
 SELECT VALUE v
-FROM v IN p.Variations
-WHERE v.NAME = "super-fancy"
+FROM v IN f.servings
+WHERE v.type = "starter"
 ```

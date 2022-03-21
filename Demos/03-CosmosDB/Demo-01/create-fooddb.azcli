@@ -1,0 +1,34 @@
+rnd=$RANDOM
+loc=westeurope
+grp=az204-m03-cosmosdb-$rnd
+acct=az204-cosmos-$rnd
+dbname=fooddb
+container=food
+
+az group create --name $grp --location $loc
+
+az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp # -> sql api
+
+az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
+
+# Create a container with even partitioning
+
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name $container --partition-key-path "/id"  --throughput 1000 -g $grp
+
+echo "container $container created in $acct"
+
+# Create a container with 'hot' partition
+
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name hot-$container --partition-key-path "/kitchen"  --throughput 1000 -g $grp
+    
+echo "container hot-$container created in $acct"    
+
+# Make sure Cosmos DB Migration tool is installed to import products.json to collections
+# https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#JSON
+
+cs=$(az cosmosdb keys list --type connection-strings --name $acct --resource-group $grp --query "connectionStrings[0].connectionString" -o tsv)
+
+echo "Connection String to use for command below:" $cs
+
+dt.exe /s:JsonFile /s.Files:.\food.json /t:DocumentDB /t.ConnectionString:"$cs" /t.Collection:food /t.PartitionKey:/id /t.CollectionThroughput:1000 /ErrorLog:H:\import.csv /OverwriteErrorLog /ErrorDetails:All 
+
