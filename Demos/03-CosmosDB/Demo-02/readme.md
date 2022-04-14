@@ -17,13 +17,11 @@ Trigger Source:
 function trigger() {
   var context = getContext();
   var request = context.getRequest();
-  // this is the current request
-  var itemToCreate = request.getBody();
-  // item might need attention
-  if ("Promotion" in itemToCreate) {
-    itemToCreate["Discontinued"] = true;
+  var item = request.getBody();
+
+  if (!("kitchen" in item)) {
+    item["kitchen"] = "unspecified";
   }
-  // update the current request
-  request.setBody(itemToCreate);
+  request.setBody(item);
 }
 ```

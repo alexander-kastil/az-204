@@ -1,22 +1,20 @@
-using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 
-namespace CosmosReader {
-    public class ProductCosmosDbContext : DbContext
+public class FoodDbContext : DbContext
     {
         private string key;
         private string ep;
         private string db;
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Food> Food { get; set; }
     
-        public ProductCosmosDbContext(string endpoint, string acctkey, string database){
+        public FoodDbContext(string endpoint, string acctkey, string database){
             key = acctkey;
             ep = endpoint;
             db = database;
         }
 
-        public ProductCosmosDbContext(DbContextOptions<ProductCosmosDbContext> options)
+        public FoodDbContext(DbContextOptions<FoodDbContext> options)
             : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)  
@@ -29,4 +27,3 @@ namespace CosmosReader {
             
         }  
     }
-}

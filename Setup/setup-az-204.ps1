@@ -39,6 +39,7 @@ choco install azure-cli -y
 choco install azure-functions-core-tools@3 --params="'/x64:true'" -y
 choco install gh -y
 choco install curl -y
+choco install python --version=3.9.0
 
 # Refresh Path Env
 Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
@@ -69,6 +70,7 @@ code --install-extension ms-azure-devops.azure-pipelines
 code --install-extension ms-azuretools.vscode-azureterraform
 code --install-extension vs-publisher-1448185.keyoti-changeallendoflinesequence
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+code --install-extension ms-python.python
 
 # Azurite Storage Emulator & Function Core Tools v3
 npm install -g azure-functions-core-tools@3 --unsafe-perm true
