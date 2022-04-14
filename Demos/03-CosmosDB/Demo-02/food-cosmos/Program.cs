@@ -23,7 +23,7 @@ database = cclient.GetDatabase(db);
 container = database.GetContainer(collection);
 
 // Read from Cosmos DB
-var sqlQueryText = "SELECT * FROM c WHERE c.Color = 'Red'";
+var sqlQueryText = "SELECT * FROM f WHERE f.kitchen = 'Russia' ORDER by f.amount DESC";
 QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
 FeedIterator<Food> queryResultSetIterator = container.GetItemQueryIterator<Food>(queryDefinition);
 
@@ -42,16 +42,16 @@ while (queryResultSetIterator.HasMoreResults)
 // Write to Cosmos DB
 Food orangeSoda = new Food
 {
-    id = "9996",
+    id = "9994",
     name = "Orange Soda",
     amount = 10
 };
 
-Food item = await container.CreateItemAsync(orangeSoda);
+// Food item = await container.CreateItemAsync(orangeSoda);
 
 // Update item
 orangeSoda.name = "Fish and Chips";
-item = await container.UpsertItemAsync(orangeSoda);
+// item = await container.UpsertItemAsync(orangeSoda);
 
 // Linq Queries
 using (FeedIterator<Food> setIterator = container.GetItemLinqQueryable<Food>()
@@ -72,23 +72,22 @@ using (FeedIterator<Food> setIterator = container.GetItemLinqQueryable<Food>()
 // Entity Framework
 var context = new FoodDbContext(accountEndpoint, accountKey, db);
 context.Database.EnsureCreated();
-context.Food.Add(new Food() { id = "8888", Name = "Hazelenut Protein", FoodNumber = "Whey HZ", Promotion = false });
+context.Food.Add(new Food() { id = "2222", name = "Hazelenut Protein", amount = 1 });
 context.SaveChanges();
 
 // Discontinued Trigger
 Food discont = new Food
 {
-    id = "9999",
-    Name = "Orange Soda Bitter",
-    FoodNumber = "ABC",
-    Promotion = true
+    id = "1111",
+    name = "Orange Soda Bitter",
+    amount = 2
 };
 
-Food discontitem = await container.CreateItemAsync(discont, null, new ItemRequestOptions
+Food triggerItem = await container.CreateItemAsync(discont, null, new ItemRequestOptions
 {
-    PreTriggers = new List<string>{
-                "DiscontinuedTrigger"
+    PostTriggers = new List<string>{
+                "KitchenTrigger"
             }
 });
 
-Console.WriteLine("\tDiscontinued: {0}\n", discontitem.Discontinued);
+Console.WriteLine("\tDiscontinued: {0}\n", triggerItem.kitchen);
