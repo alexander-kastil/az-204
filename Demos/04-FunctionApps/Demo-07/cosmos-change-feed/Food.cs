@@ -1,12 +1,10 @@
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-    public class Serving
-    {
-        public string type { get; set; }
-        public string size { get; set; }
-    }
+using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
-    public class Food
+public class Food
     {
+        [JsonProperty("id")]
         public string id { get; set; }
         public string name { get; set; }
         public int amount { get; set; }
