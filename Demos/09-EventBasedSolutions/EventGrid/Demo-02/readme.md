@@ -1,10 +1,14 @@
 # Real-time EventGrid viewer with serverless SignalR
 
+[CloudEvent schema](https://docs.microsoft.com/en-us/azure/event-grid/cloudevents-schema)
+
+[SignalR](https://docs.microsoft.com/en-us/azure/azure-signalr)
+
+## Demo
+
 Demo is an updated and modernized version of [https://github.com/DavidGSola/serverless-eventgrid-viewer](https://github.com/DavidGSola/serverless-eventgrid-viewer)
 
 ![architecture](_images/architecture.png)
-
-## Demo
 
 Execute `create-foodorder-app.azcli`. It creates:
 
@@ -19,7 +23,7 @@ Update signalr config in environment.ts and environment.prod.ts of `ng-food-log`
 ```typescript
 export const environment = {
   production: false,
-  signalrEP: 'https://food-ep-prod.azurewebsites.net/api',
+  fxEndpoint: 'https://foodorders-7325.azurewebsites.net/api',
 };
 ```
 
