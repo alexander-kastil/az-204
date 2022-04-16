@@ -1,0 +1,29 @@
+@topicurl=foodevents-7325.westeurope-1.eventgrid.azure.net
+@topickey=01lorRxlNFJh7NzhZX4Qt1pKKl+AIAYvyu+tJRyawcc=
+
+POST  https://{{topicurl}}//api/events HTTP/1.1
+content-type: application/cloudevents+json; charset=utf-8
+aeg-sas-key: {{topickey}}
+
+{
+   "specversion":"1.0",
+   "type":"foodapp.order",
+   "source":"foodapp",
+   "id":"9785ca51-df85-48c8-9db9-3cf2b581978f",
+   "time":"2022-04-01T12:00:00Z",
+   "datacontenttype":"application/json",
+   "data":{
+      "type": "create",
+      "customer": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
+      "food": [
+         {
+            "name": "butter chicken",
+            "quantity": 1
+         },
+         {
+            "name": "badam kheer",
+            "quantity": 2
+         }
+      ]
+   }
+}

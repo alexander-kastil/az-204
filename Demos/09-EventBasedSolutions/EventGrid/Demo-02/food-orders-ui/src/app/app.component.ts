@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'viewer-app';
+  title = 'food-orders-ui';
   events: string[] = [];
 
   private hubConnection: SignalR.HubConnection;
@@ -16,7 +16,7 @@ export class AppComponent {
   constructor() {
     // Create connection
     this.hubConnection = new SignalR.HubConnectionBuilder()
-      .withUrl(environment.signalrEP)
+      .withUrl(environment.fxEndpoint)
       .build();
 
     // Start connection. This will call negotiate endpoint
