@@ -27,7 +27,7 @@ export const environment = {
 };
 ```
 
-Test using `post-events.http` by updating `@topicurl` and `@topickey`:
+Test using `post-order.http` by updating `@topicurl` and `@topickey`:
 
 ```
 @topicurl=foodtopic-prod.westeurope-1.eventgrid.azure.net
