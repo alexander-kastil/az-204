@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-eventgrid-target": {
+    "food-orders-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-eventgrid-target",
+            "outputPath": "dist/food-orders-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-eventgrid-target:build:production"
+              "browserTarget": "food-orders-ui:build:production"
             },
             "development": {
-              "browserTarget": "ng-eventgrid-target:build:development"
+              "browserTarget": "food-orders-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-eventgrid-target:build"
+            "browserTarget": "food-orders-ui:build"
           }
         },
         "test": {
@@ -110,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "ng-eventgrid-target"
+  "defaultProject": "food-orders-ui"
 }

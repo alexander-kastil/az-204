@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'viewer-app';
+  title = 'food-orders-ui';
   events: string[] = [];
 
   private hubConnection: SignalR.HubConnection;
