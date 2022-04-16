@@ -6,7 +6,7 @@ Demo is an updated and modernized version of [https://github.com/DavidGSola/serv
 
 ## Demo
 
-Execute `create-evtgrid-app.azcli`. It creates:
+Execute `create-foodorder-app.azcli`. It creates:
 
 - Azure SignalR Service
 - Event Grid Topic

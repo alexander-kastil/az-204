@@ -7,14 +7,19 @@ aeg-sas-key: {{topickey}}
 
 {
    "specversion":"1.0",
-   "type":"at.integrations.foodapp",
+   "type":"foodapp.order",
    "source":"foodapp",
-   "id":"A234-1234-1234",
-   "time":"2022-01-01T12:00:00Z",
+   "id":"9785ca51-df85-48c8-9db9-3cf2b581978f",
+   "time":"2022-04-01T12:00:00Z",
    "datacontenttype":"application/json",
    "data":{
-      "id": 1,
       "type": "create",
-      "quantity": 10
+      "customer": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
+      "food": [
+         {
+            "name": "butter chicken",
+            "quantity": 1
+         }
+      ]
    }
 }
