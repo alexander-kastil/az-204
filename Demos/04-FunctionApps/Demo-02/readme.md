@@ -62,6 +62,8 @@ func templates list
 func new -n GreetingFunctions --template "Http Trigger"
 ```
 
+>  **Note**: If you get an `No templates found matching: 'HTTPtrigger'` error this can be caused by multible versions of the .NET SDK being installed on your machien. You can fix this issue by creating a `global.json` using `dotnet new globaljson` an by setting the correct framework version.
+
 Run function locally:
 
 ```
