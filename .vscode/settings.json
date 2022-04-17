@@ -1,7 +1,0 @@
-{
-    "azureFunctions.deploySubpath": "Demos\\04-FunctionApps\\Demo-03\\pic-processor-v4/bin/Release/net6.0/publish",
-    "azureFunctions.projectLanguage": "C#",
-    "azureFunctions.projectRuntime": "~4",
-    "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "publish (functions)"
-}
