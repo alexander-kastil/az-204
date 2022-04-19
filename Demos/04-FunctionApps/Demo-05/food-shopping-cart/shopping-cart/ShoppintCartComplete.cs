@@ -12,7 +12,7 @@ namespace Integrations
     {
         [FunctionName("ShoppingCartCompletion")]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "food/complete")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "foodcart/complete")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient orchclient,
             ILogger logger)
         {

@@ -41,6 +41,10 @@ namespace Integrations
                 food.Add(addFoodTask.Result);
                 log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");                
             } 
+            if(evt == removeFoodTask){
+                food.RemoveAll(f=>f.ID == removeFoodTask.Result.ID);
+                log.LogInformation($"Removed food {addFoodTask.Result.Name} from foodlist");                
+            } 
             if(evt == completeTask && completeTask.Result){
                 log.LogInformation($"Foodlist orchestration completed");
             }

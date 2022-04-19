@@ -10,10 +10,7 @@
 				"/consoleloggerparameters:NoSummary"
 			],
 			"type": "process",
-			"problemMatcher": "$msCompile",
-			"options": {
-				"cwd": "${workspaceFolder}/Demos\\04-FunctionApps\\Demo-05\\food-shopping-cart"
-			}
+			"problemMatcher": "$msCompile"
 		},
 		{
 			"label": "build (functions)",
@@ -29,10 +26,7 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"problemMatcher": "$msCompile",
-			"options": {
-				"cwd": "${workspaceFolder}/Demos\\04-FunctionApps\\Demo-05\\food-shopping-cart"
-			}
+			"problemMatcher": "$msCompile"
 		},
 		{
 			"label": "clean release (functions)",
@@ -45,10 +39,7 @@
 				"/consoleloggerparameters:NoSummary"
 			],
 			"type": "process",
-			"problemMatcher": "$msCompile",
-			"options": {
-				"cwd": "${workspaceFolder}/Demos\\04-FunctionApps\\Demo-05\\food-shopping-cart"
-			}
+			"problemMatcher": "$msCompile"
 		},
 		{
 			"label": "publish (functions)",
@@ -62,17 +53,11 @@
 			],
 			"type": "process",
 			"dependsOn": "clean release (functions)",
-			"problemMatcher": "$msCompile",
-			"options": {
-				"cwd": "${workspaceFolder}/Demos\\04-FunctionApps\\Demo-05\\food-shopping-cart"
-			}
+			"problemMatcher": "$msCompile"
 		},
 		{
 			"type": "func",
-			"dependsOn": "build (functions)",
-			"options": {
-				"cwd": "${workspaceFolder}/Demos\\04-FunctionApps\\Demo-05\\food-shopping-cart/bin/Debug/net6.0"
-			},
+			"dependsOn": "build (functions)",			
 			"command": "host start",
 			"isBackground": true,
 			"problemMatcher": "$func-dotnet-watch"

@@ -32,6 +32,19 @@ content-type: application/json
     "OrchestrationInstanceId": "{{orch.response.body.id}}"
 }
 
+### Remove chips
+DELETE    http://localhost:7071/api/foodcart/delete HTTP/1.1
+content-type: application/json
+
+{
+    "ID": 1,
+    "Name": "Chips",
+    "Amount": 5,
+    "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/chips.jpeg",
+    "Enabled": true,
+    "OrchestrationInstanceId": "{{orch.response.body.id}}"
+}
+
 ### Complete 
 POST   http://localhost:7071/api/foodcart/complete HTTP/1.1
 content-type: application/json
