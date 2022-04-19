@@ -1,6 +1,6 @@
 # Azure Function Core Tools
 
-[Work with Azure Functions Core Tools v3](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Cwindows%2Ccsharp%2Cportal%2Cbash)
+[Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Cwindows%2Ccsharp%2Cportal%2Cbash)
 
 [host.json Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json)
 
