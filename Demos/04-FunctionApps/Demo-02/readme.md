@@ -11,7 +11,7 @@
 Install azure-function-tools:
 
 ```
-npm i -g azure-functions-core-tools@3 --unsafe-perm true
+npm i -g azure-functions-core-tools@4 --unsafe-perm true
 ```
 
 Install [Azurite Storage Emulation](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio):
