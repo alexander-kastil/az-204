@@ -5,18 +5,10 @@ app=statefulapp-$rnd
 storage=statefulapp$rnd
 
 az group create --name $grp --location $loc
-
 az storage account  create -n $storage -g $grp 
-
-az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime node --functions-version 2
-
-az functionapp config appsettings list --name $app --resource-group $grp | jq '.[] | select(.name == "WEBSITE_NODE_DEFAULT_VERSION")'
-
-az functionapp config appsettings  set -n $app -g $grp --settings "WEBSITE_NODE_DEFAULT_VERSION=~10"
-
-echo "Funtions app created: $app"
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
 
 # Deploy to function app
-cd stateful-cs
+cd food-shopping-cart
 func azure functionapp publish $app 
 cd ..

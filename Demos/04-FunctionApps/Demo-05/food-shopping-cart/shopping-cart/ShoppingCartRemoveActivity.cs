@@ -8,17 +8,17 @@ using Microsoft.Extensions.Logging;
 
 namespace Integrations
 {
-    public static class StatefulAddActivity
+    public static class ShoppingCartRemoveActivity
     {
-        [FunctionName(nameof(StatefulAddActivity))]
+        [FunctionName(nameof(ShoppingCartRemoveActivity))]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "food/add")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "foodcart/delete")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient orchclient,
             ILogger logger)
         {
             
             var eventData = await req.Content.ReadAsAsync<FoodModel>();
-            string eventName = "AddFood";
+            string eventName = "RemoveFood";
             await orchclient.RaiseEventAsync(
                 eventData.OrchestrationInstanceId,
                 eventName,

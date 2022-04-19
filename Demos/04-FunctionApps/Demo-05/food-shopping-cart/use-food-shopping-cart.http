@@ -1,10 +1,10 @@
 ### Start orchestration 
 # @name orch
-GET  http://localhost:7071/api/food/start HTTP/1.1
+GET  http://localhost:7071/api/foodcart/start HTTP/1.1
 content-type: application/json
 
 ### Add chips
-POST   http://localhost:7071/api/food/add HTTP/1.1
+POST   http://localhost:7071/api/foodcart/add HTTP/1.1
 content-type: application/json
 
 {
@@ -20,7 +20,7 @@ content-type: application/json
 GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{orch.response.body.id}}?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
 
 ### Add fish
-POST   http://localhost:7071/api/food/add HTTP/1.1
+POST   http://localhost:7071/api/foodcart/add HTTP/1.1
 content-type: application/json
 
 {
@@ -32,8 +32,21 @@ content-type: application/json
     "OrchestrationInstanceId": "{{orch.response.body.id}}"
 }
 
+### Remove chips
+DELETE    http://localhost:7071/api/foodcart/delete HTTP/1.1
+content-type: application/json
+
+{
+    "ID": 1,
+    "Name": "Chips",
+    "Amount": 5,
+    "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/chips.jpeg",
+    "Enabled": true,
+    "OrchestrationInstanceId": "{{orch.response.body.id}}"
+}
+
 ### Complete 
-POST   http://localhost:7071/api/food/complete HTTP/1.1
+POST   http://localhost:7071/api/foodcart/complete HTTP/1.1
 content-type: application/json
 
 {"OrchestrationInstanceId": "{{orch.response.body.id}}"}

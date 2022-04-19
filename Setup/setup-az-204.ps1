@@ -36,7 +36,6 @@ choco install gitextensions -y
 choco install git-lfs.install -y
 choco install nodejs-lts --version=14.18.0 -y
 choco install azure-cli -y
-choco install azure-functions-core-tools@3 --params="'/x64:true'" -y
 choco install gh -y
 choco install curl -y
 choco install python --version=3.9.0
@@ -73,7 +72,7 @@ code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-python.python
 
 # Azurite Storage Emulator & Function Core Tools v3
-npm install -g azure-functions-core-tools@3 --unsafe-perm true
+npm install -g azure-functions-core-tools@4 --unsafe-perm true
 npm install -g azurite
 
 # Install Angular

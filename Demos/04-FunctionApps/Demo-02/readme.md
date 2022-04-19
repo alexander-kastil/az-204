@@ -26,9 +26,14 @@ Run Azurite in console:
 azurite
 ```
 
+### Selecting Runtime Version
+
 Install [Azure Function - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 
->Note: azure-functions-core-tools@4 is the current version. V3 is used in this demos to avoid configuration issues when severalt dotnet sdks are installed on the same machine. Samples will be upgraded when the dev experience is smoother.
+![change-version](_images/change-version.jpg)
+
+![select-net-version](_images/select-net-version.jpg)
+
 
 ### Testing Options
 
@@ -61,6 +66,8 @@ Create a new Function:
 func templates list
 func new -n GreetingFunctions --template "Http Trigger"
 ```
+
+>  **Note**: If you get an `No templates found matching: 'HTTPtrigger'` error this can be caused by multible versions of the .NET SDK being installed on your machien. You can fix this issue by creating a `global.json` using `dotnet new globaljson` an by setting the correct framework version.
 
 Run function locally:
 

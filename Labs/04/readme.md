@@ -176,6 +176,8 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 
     > **Note**: You can review the documentation to [create a new function][azure-functions-core-tools-new-function] using the **Azure Functions Core Tools**.
 
+    >  **Note**: If you get an `No templates found matching: 'HTTPtrigger'` error this can be caused by multible versions of the .NET SDK being installed on your machien. You can fix this issue by creating a `global.json` using `dotnet new globaljson` an by setting the correct framework version.
+
 1. Close the currently running **Windows Terminal** application.
 
 #### Task 2: Write HTTP-triggered function code

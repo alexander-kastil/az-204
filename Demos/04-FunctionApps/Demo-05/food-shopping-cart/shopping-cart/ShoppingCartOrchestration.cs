@@ -1,47 +1,51 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
 namespace Integrations
 {
-    public static class StatefulOrchestration
+    public static class ShoppingCartOrchestration
     {
-        [FunctionName("StatefulStarter")]
+        [FunctionName("ShoppingCartStarter")]
         public static async Task<HttpResponseMessage> HttpStart(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "food/start")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "foodcart/start")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient starter,
             ILogger log)
         {
-            string instanceId = await starter.StartNewAsync("StatefulOrch", null);
-
-            log.LogInformation($"Started orchestration with ID = '{instanceId}'.");
-
+            // Function input comes from the request content.
+            string instanceId = await starter.StartNewAsync("ShoppingCartOrchestration", null);
+            log.LogInformation($"Started shop orchestration with ID = '{instanceId}'.");
             return starter.CreateCheckStatusResponse(req, instanceId);
         }
 
-
-        [FunctionName("StatefulOrch")]
+        [FunctionName("ShoppingCartOrchestration")]
         public static async Task<List<FoodModel>> RunOrchestrator(
             [OrchestrationTrigger] IDurableOrchestrationContext context,
             ILogger log)
         {
             var food = context.GetInput<List<FoodModel>>() ?? new List<FoodModel>();
-            // Define Events
-            var addFoodTask = context.WaitForExternalEvent<FoodModel>("AddFood");            
-            var isCompleteTask = context.WaitForExternalEvent<bool>("CompleteFoodOrchestration");
 
-            var resultingEvent = await Task.WhenAny(addFoodTask,  isCompleteTask);
-            
-            if(resultingEvent == addFoodTask){
+            //define activities and get current activity
+            var addFoodTask = context.WaitForExternalEvent<FoodModel>("AddFood");            
+            var removeFoodTask = context.WaitForExternalEvent<FoodModel>("RemoveFood");
+            var completeTask = context.WaitForExternalEvent<bool>("CompleteShopping");
+            var evt = await Task.WhenAny(addFoodTask,  removeFoodTask, completeTask);
+
+            //handle activity
+            if(evt == addFoodTask){
                 food.Add(addFoodTask.Result);
                 log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");                
             } 
-            if(resultingEvent == isCompleteTask && isCompleteTask.Result){
+            if(evt == removeFoodTask){
+                food.RemoveAll(f=>f.ID == removeFoodTask.Result.ID);
+                log.LogInformation($"Removed food {addFoodTask.Result.Name} from foodlist");                
+            } 
+            if(evt == completeTask && completeTask.Result){
                 log.LogInformation($"Foodlist orchestration completed");
             }
             else{
@@ -49,6 +53,6 @@ namespace Integrations
             }
 
             return food;
-        }       
+        }
     }
 }

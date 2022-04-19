@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Integrations
 {
-    public static class StatefulCompletion
+    public static class ShoppingCartCompletion
     {
-        [FunctionName("StatefulCompletion")]
+        [FunctionName("ShoppingCartCompletion")]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "food/complete")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "foodcart/complete")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient orchclient,
             ILogger logger)
         {
@@ -21,7 +21,7 @@ namespace Integrations
 
             await orchclient.RaiseEventAsync(
                 eventData.OrchestrationInstanceId,
-                "CompleteFoodOrchestration",
+                "CompleteShopping",
                 eventData);
 
             return req.CreateResponse(orchclient);
