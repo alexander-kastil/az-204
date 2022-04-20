@@ -6,15 +6,13 @@ using Microsoft.Azure.ServiceBus;
 
 namespace ServiceBus {
     class Program {
-        const string ServiceBusConnectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SxLHsPCPL6uQXA+BNdVY1wUUUjFfl7TBMRSlPmIHWwo=";
-        const string QueueName = "console-queue";
+        const string conSB = "Endpoint=sb://foodappdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=txqwKdActAoXwS+bY/FVl10W8LRqwMdZykIDezWiD44=";
+        const string queue = "food-queue";
         static IQueueClient queueClient;
 
         public static async Task Main (string[] args) {
             const int numberOfMessages = 10;
-            queueClient = new QueueClient (ServiceBusConnectionString, QueueName);
-
-            // Send messages.
+            queueClient = new QueueClient (conSB, queue);
             await SendMessagesAsync (numberOfMessages);
             await queueClient.CloseAsync ();
             Console.WriteLine ("Sending completed");            
@@ -23,14 +21,9 @@ namespace ServiceBus {
         static async Task SendMessagesAsync (int numberOfMessagesToSend) {
             try {
                 for (var i = 0; i < numberOfMessagesToSend; i++) {
-                    // Create a new message to send to the queue.
-                    string messageBody = $"Message {i}";
-                    var message = new Message (Encoding.UTF8.GetBytes (messageBody));
-
-                    // Write the body of the message to the console.
-                    Console.WriteLine ($"Sending message: {messageBody}");
-
-                    // Send the message to the queue.
+                    string msg = $"Food Message {i}";
+                    var message = new Message (Encoding.UTF8.GetBytes (msg));
+                    Console.WriteLine ($"Sending message: {msg}");
                     await queueClient.SendAsync (message);
                 }
             } catch (Exception exception) {
