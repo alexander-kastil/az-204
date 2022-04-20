@@ -2,33 +2,46 @@
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Azure.ServiceBus;
+using Azure.Messaging.ServiceBus;
 
-namespace ServiceBus {
-    class Program {
+namespace ServiceBus
+{
+    class Program
+    {
         const string conSB = "Endpoint=sb://foodappdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=txqwKdActAoXwS+bY/FVl10W8LRqwMdZykIDezWiD44=";
         const string queue = "food-queue";
-        static IQueueClient queueClient;
+        static ServiceBusClient client;
 
-        public static async Task Main (string[] args) {
-            const int numberOfMessages = 10;
-            queueClient = new QueueClient (conSB, queue);
-            await SendMessagesAsync (numberOfMessages);
-            await queueClient.CloseAsync ();
-            Console.WriteLine ("Sending completed");            
-        }
+        public static async Task Main(string[] args)
+        {
+            const int msgs = 10;
+            client = new ServiceBusClient(conSB);
+            var sender = client.CreateSender(queue);
 
-        static async Task SendMessagesAsync (int numberOfMessagesToSend) {
-            try {
-                for (var i = 0; i < numberOfMessagesToSend; i++) {
-                    string msg = $"Food Message {i}";
-                    var message = new Message (Encoding.UTF8.GetBytes (msg));
-                    Console.WriteLine ($"Sending message: {msg}");
-                    await queueClient.SendAsync (message);
+            // create a batch 
+            using ServiceBusMessageBatch messageBatch = await sender.CreateMessageBatchAsync();
+
+            for (int i = 1; i <= msgs; i++)
+            {
+                if (!messageBatch.TryAddMessage(new ServiceBusMessage($"Message {i}")))
+                {
+                    // if it is too large for the batch
+                    throw new Exception($"The message {i} is too large to fit in the batch.");
                 }
-            } catch (Exception exception) {
-                Console.WriteLine ($"{DateTime.Now} :: Exception: {exception.Message}");
             }
+
+            try
+            {
+                await sender.SendMessagesAsync(messageBatch);
+                Console.WriteLine($"A batch of {msgs} messages has been published to the queue.");
+            }
+            finally
+            {
+                await sender.DisposeAsync();
+                await client.DisposeAsync();
+            }
+
+            Console.WriteLine("Sending completed");
         }
     }
 }
