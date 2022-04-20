@@ -18,14 +18,12 @@ namespace ServiceBus
             client = new ServiceBusClient(conSB);
             var sender = client.CreateSender(queue);
 
-            // create a batch 
             using ServiceBusMessageBatch messageBatch = await sender.CreateMessageBatchAsync();
 
             for (int i = 1; i <= msgs; i++)
             {
                 if (!messageBatch.TryAddMessage(new ServiceBusMessage($"Message {i}")))
                 {
-                    // if it is too large for the batch
                     throw new Exception($"The message {i} is too large to fit in the batch.");
                 }
             }
