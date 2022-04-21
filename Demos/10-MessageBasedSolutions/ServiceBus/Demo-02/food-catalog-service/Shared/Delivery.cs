@@ -1,4 +1,4 @@
-namespace FoodApi
+namespace FoodApp.CatalogService
 {
     public class Delivery{
         private decimal baseRate = 0.23M;

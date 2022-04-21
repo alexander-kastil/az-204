@@ -15,7 +15,7 @@ using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using HealthChecks.UI.Client;
 
-namespace FoodApi
+namespace FoodApp.CatalogService
 {
     public class Startup
     {

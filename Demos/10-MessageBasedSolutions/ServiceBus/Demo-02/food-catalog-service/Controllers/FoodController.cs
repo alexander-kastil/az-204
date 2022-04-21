@@ -5,9 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using Microsoft.Identity.Web.Resource;
 using Microsoft.Extensions.Configuration;
-using FoodApp;
 
-namespace FoodApi
+namespace FoodApp.CatalogService
 {
     [Route("[controller]")]
     [ApiController]

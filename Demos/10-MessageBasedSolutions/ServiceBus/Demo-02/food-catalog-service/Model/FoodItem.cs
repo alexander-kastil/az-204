@@ -1,6 +1,6 @@
 using System;
 
-namespace FoodApi
+namespace FoodApp.CatalogService
 {
     public class FoodItem
     {

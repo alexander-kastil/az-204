@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodApi
+namespace FoodApp.CatalogService
 {
     //To manage Migrations & create the DB go to console:
     //Add EF Core Tools: dotnet tool install --global dotnet-ef

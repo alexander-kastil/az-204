@@ -1,7 +1,7 @@
 using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.Extensibility;
 
-namespace FoodApp
+namespace FoodApp.CatalogService
 {
     public class FoodTelemetryInitializer : ITelemetryInitializer{
 
