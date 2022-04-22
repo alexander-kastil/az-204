@@ -3,7 +3,6 @@ namespace FoodApp.CatalogService
     public class FoodConfig    {
         public AppConfig App { get; set; } 
         public Azure Azure { get; set; } 
-        public FeatureManagement FeatureManagement { get; set; } 
         public Logging Logging { get; set; } 
     }
 
@@ -12,7 +11,8 @@ namespace FoodApp.CatalogService
         public bool UseSQLite {get;set;}
         public bool UseAppConfig {get;set;}
         public bool UseKubernetes {get;set;}
-        public ConnectionStrings ConnectionStrings { get; set; } 
+        public ConnectionStrings ConnectionStrings { get; set; }     
+        public ServiceBusConfig ServiceBus {get;set;}
     }
    
     public class Azure    {
@@ -20,12 +20,7 @@ namespace FoodApp.CatalogService
         public string ClientId { get; set; } 
         public string Instance {get;set;}
         public string cacheLocation { get; set; } 
-        public string ApplicationInsights { get; set; } 
-        public string AppConfiguration { get; set; } 
-        public string KeyVault { get; set; } 
-        public string EventGridKey { get; set; }
-        public string EventGridEP { get; set; }
-        public string SignalREndpoint { get; set; }
+        public string ApplicationInsights { get; set; }        
         public string SignalRConString { get; set; }
     }    
 

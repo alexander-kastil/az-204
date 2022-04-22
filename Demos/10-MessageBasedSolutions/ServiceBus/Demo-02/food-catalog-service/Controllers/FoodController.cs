@@ -12,13 +12,13 @@ namespace FoodApp.CatalogService
     [ApiController]
     public class FoodController : ControllerBase
     {
-        public FoodController(FoodDBContext context, IConfiguration config)
+        public FoodController(FoodCatalogDBContext context, IConfiguration config)
         {
             ctx = context;
             cfg = config.Get<FoodConfig>();
         }
 
-        FoodDBContext ctx;
+        FoodCatalogDBContext ctx;
         FoodConfig cfg;
 
         // http://localhost:PORT/food

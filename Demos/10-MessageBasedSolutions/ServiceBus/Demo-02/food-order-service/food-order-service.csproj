@@ -10,5 +10,6 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+		<ProjectReference Include="../food-service-bus/food-service-bus.csproj"/>
 	</ItemGroup>
 </Project>

@@ -6,9 +6,9 @@ namespace FoodApp.CatalogService
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public decimal Amount { get; set; }
+        public decimal BasePrice { get; set; }
+        public int StockAmount {get;set;}
         public string PictureUrl { get; set; }
         public string Code { get; set; }
-        public DateTime Date { get; set; }
     }
 }

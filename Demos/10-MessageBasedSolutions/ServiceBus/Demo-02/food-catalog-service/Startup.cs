@@ -42,11 +42,11 @@ namespace FoodApp.CatalogService
             //Database
             if (cfg.App.UseSQLite)
             {
-                services.AddDbContext<FoodDBContext>(opts => opts.UseSqlite(cfg.App.ConnectionStrings.SQLiteDBConnection));
+                services.AddDbContext<FoodCatalogDBContext>(opts => opts.UseSqlite(cfg.App.ConnectionStrings.SQLiteDBConnection));
             }
             else
             {
-                services.AddDbContext<FoodDBContext>(opts => opts.UseSqlServer(cfg.App.ConnectionStrings.SQLiteDBConnection));
+                services.AddDbContext<FoodCatalogDBContext>(opts => opts.UseSqlServer(cfg.App.ConnectionStrings.SQLiteDBConnection));
             }
 
             //Microsoft Identity auth

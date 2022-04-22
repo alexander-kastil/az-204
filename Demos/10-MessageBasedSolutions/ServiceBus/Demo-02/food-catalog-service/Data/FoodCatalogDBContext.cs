@@ -10,9 +10,9 @@ namespace FoodApp.CatalogService
     //dotnet-ef migrations add MIGRATION-NAME
     //dotnet-ef database update
 
-    public class FoodDBContext : DbContext //Use DbContext if not using Identity
+    public class FoodCatalogDBContext : DbContext 
     {
-        public FoodDBContext(DbContextOptions<FoodDBContext> options) : base(options)
+        public FoodCatalogDBContext(DbContextOptions<FoodCatalogDBContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
@@ -22,9 +22,9 @@ namespace FoodApp.CatalogService
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             List<FoodItem> list = new List<FoodItem>();
-            list.Add(new FoodItem { ID = 1, Name = "Butter Chicken", Amount = 12, Code = "btc", Date = DateTime.Now });
-            list.Add(new FoodItem { ID = 2, Name = "Blini with Salmon", Amount = 9, Code = "bls", Date = DateTime.Now });
-            list.Add(new FoodItem { ID = 3, Name = "Wiener Schnitzel", Amount = 18, Code = "ws",Date = DateTime.Now });
+            list.Add(new FoodItem { ID = 1, Name = "Butter Chicken", BasePrice = 12, Code = "btc", StockAmount = 43 });
+            list.Add(new FoodItem { ID = 2, Name = "Blini with Salmon", BasePrice = 9, Code = "bls",StockAmount = 22});
+            list.Add(new FoodItem { ID = 3, Name = "Wiener Schnitzel", BasePrice = 18, Code = "ws", StockAmount = 55 });
             modelBuilder.Entity<FoodItem>().HasData(list.ToArray());
         }
     }

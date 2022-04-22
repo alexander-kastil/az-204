@@ -22,5 +22,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 		</PackageReference>
+		<ProjectReference Include="../food-service-bus/food-service-bus.csproj"/>
 	</ItemGroup>
 </Project>
