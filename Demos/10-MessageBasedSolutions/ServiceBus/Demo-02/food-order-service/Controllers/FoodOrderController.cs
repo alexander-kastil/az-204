@@ -1,6 +1,7 @@
 using System;
 using FoodApp.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodApp.OrderService;
 
@@ -16,15 +17,15 @@ public class FoodOrderController : ControllerBase
     FoodOrderDBContext ctx;
 
     [HttpGet]
-    public IEnumerable<object> Get()
+    public async Task<IEnumerable<FoodOrder>> Get()
     {
-        return ctx.Orders;
+        return await ctx.Orders.ToListAsync<FoodOrder>();
     }
 
     [HttpPost()]
-    public FoodOrder AddOrder(FoodOrder order){
-        ctx.Orders.Add(order);
-        ctx.SaveChanges();
+    public async Task<FoodOrder> AddOrder(FoodOrder order){
+        await ctx.Orders.AddAsync(order);
+        await ctx.SaveChangesAsync();
         return order;
     }
 }

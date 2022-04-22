@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using Microsoft.Identity.Web.Resource;
 using Microsoft.Extensions.Configuration;
+using FoodApp.Common;
+using System.Threading.Tasks;
 
 namespace FoodApp.CatalogService
 {
@@ -23,28 +25,28 @@ namespace FoodApp.CatalogService
 
         // http://localhost:PORT/food
         [HttpGet()]
-        public IEnumerable<FoodItem> GetFood()
+        public async Task<IEnumerable<FoodItem>> GetFood()
         {
             verfiyScope(); // could be implemented using a custom filter
-            return ctx.Food.ToArray();
+            return await ctx.Food.ToListAsync<FoodItem>();
         }
 
         // http://localhost:PORT/food/3
         [HttpGet("{id}")]
-        public FoodItem GetById(int id)
+        public async Task<FoodItem> GetById(int id)
         {
             verfiyScope();
-            return ctx.Food.FirstOrDefault(v => v.ID == id);
+            return await ctx.Food.FirstOrDefaultAsync(v => v.ID == id);
         }
 
         // http://localhost:PORT/food
         [HttpPost()]
-        public FoodItem SaveFood(FoodItem item)
+        public async Task<FoodItem> SaveFood(FoodItem item)
         {
             verfiyScope();
             if (item.ID == 0)
             {
-                ctx.Food.Add(item);
+                await ctx.Food.AddAsync(item);
             }
             else
             {
@@ -52,32 +54,22 @@ namespace FoodApp.CatalogService
                 ctx.Entry(item).State = EntityState.Modified;
             }            
 
-            ctx.SaveChanges();        
+            await ctx.SaveChangesAsync();        
             return item;
         }
 
         // http://localhost:PORT/food
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             verfiyScope();
-            var v = GetById(id);
+            var v = await GetById(id);
             if (v != null)
             {
                 ctx.Remove(v);
-                ctx.SaveChanges();
+                await ctx.SaveChangesAsync();
             }
             return Ok();
-        }
-
-        // http://localhost:PORT/food/env
-        [HttpGet()]
-        [Route("env")]
-        public object GetConfig()
-        {
-            verfiyScope();
-            var val = Environment.GetEnvironmentVariables();
-            return val;
         }
 
         //TODO: Refactor to filter

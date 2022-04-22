@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using HealthChecks.UI.Client;
+using FoodApp.Common;
 
 namespace FoodApp.CatalogService
 {
