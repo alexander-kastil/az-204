@@ -1,4 +1,5 @@
 using System;
+using FoodApp.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodApp.OrderService;
@@ -6,23 +7,24 @@ namespace FoodApp.OrderService;
 [ApiController]
 [Route("[controller]")]
 public class FoodOrderController : ControllerBase
-{
-    private static readonly string[] Summaries = new[]
+{    
+    public FoodOrderController(FoodOrderDBContext dbcontext)
     {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    private readonly ILogger<FoodOrderController> _logger;
-
-    public FoodOrderController(ILogger<FoodOrderController> logger)
-    {
-        _logger = logger;
+        ctx = dbcontext;
     }
 
+    FoodOrderDBContext ctx;
+
     [HttpGet]
-    [Route("get")]
     public IEnumerable<object> Get()
     {
-        return null;
+        return ctx.Orders;
+    }
+
+    [HttpPost()]
+    public FoodOrder AddOrder(FoodOrder order){
+        ctx.Orders.Add(order);
+        ctx.SaveChanges();
+        return order;
     }
 }

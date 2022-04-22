@@ -1,4 +1,4 @@
-namespace FoodApp.CatalogService
+namespace FoodApp.Common
 {
     public class FoodConfig    {
         public AppConfig App { get; set; } 

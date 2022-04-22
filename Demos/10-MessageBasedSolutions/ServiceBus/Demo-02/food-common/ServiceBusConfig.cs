@@ -1,4 +1,4 @@
-namespace FoodApp.ServiceBus
+namespace FoodApp.Common
 {
     public class ServiceBusConfig
     {

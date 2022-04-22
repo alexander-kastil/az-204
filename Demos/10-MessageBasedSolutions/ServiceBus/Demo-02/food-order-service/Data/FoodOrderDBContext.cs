@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FoodApp.OrderService;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodApp.CatalogService
+namespace FoodApp.OrderService
 {
     //To manage Migrations & create the DB go to console:
     //Add EF Core Tools: dotnet tool install --global dotnet-ef
@@ -18,7 +18,7 @@ namespace FoodApp.CatalogService
             Database.EnsureCreated();
         }
 
-        public DbSet<FoodOrder> Food { get; set; }
+        public DbSet<FoodOrder> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

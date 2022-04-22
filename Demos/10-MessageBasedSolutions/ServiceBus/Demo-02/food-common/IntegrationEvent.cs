@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace FoodApp.ServiceBus
+namespace FoodApp.Common
 {
     public abstract record IntegrationEvent
     {
