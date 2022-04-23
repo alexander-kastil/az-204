@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using Microsoft.Identity.Web.Resource;
 using Microsoft.Extensions.Configuration;
 using FoodApp.Common;
-using System.Threading.Tasks;
 
 namespace FoodApp.CatalogService
 {
@@ -72,7 +70,6 @@ namespace FoodApp.CatalogService
             return Ok();
         }
 
-        //TODO: Refactor to filter
         [NonAction]
         public void verfiyScope()
         {
