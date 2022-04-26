@@ -4,6 +4,8 @@
 
 [MSAL Authentication Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
 
+[Decode Token](http://jwt.ms/)
+
 [az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)
 
 ## Demos
