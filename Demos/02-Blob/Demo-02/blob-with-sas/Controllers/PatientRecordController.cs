@@ -7,8 +7,9 @@ using Azure.Storage.Sas;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using patientrecords;
 
-namespace patientrecords.Controllers
+namespace blob_with_sas.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
