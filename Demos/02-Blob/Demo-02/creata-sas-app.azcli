@@ -7,7 +7,7 @@ path="./patient-images/"
 blob="patient-32589.jpg"
 
 ## Update expiry
-expiry=2022-01-25
+expiry=2022-05-25
 
 az group create -n $grp -l $loc
 
@@ -19,7 +19,7 @@ az storage container create -n $container --account-name $acct --account-key $ke
 
 az storage blob upload-batch --account-name $acct --account-key $key -s $path -d $container
 
-conStr=$(az storage account show-connection-string -n $acct | jq .connectionString)
+conStr=$(az storage account show-connection-string -n $acct --query .connectionString)
 
 sas=$(az storage blob generate-sas --account-key $key --account-name $acct --container-name $container --name $blob --expiry $expiry --permissions r -o tsv)
 
