@@ -5,7 +5,7 @@
 ## Demo
 
 -   Create SQL DB in Portal
--   Upload `persons.json`
+-   Upload `food.json`
 -   Show Queries, Stats, Indexing
 
 ### Basic Query Syntax

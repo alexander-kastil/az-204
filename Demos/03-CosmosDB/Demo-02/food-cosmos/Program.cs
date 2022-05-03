@@ -27,14 +27,14 @@ var sqlQueryText = "SELECT * FROM f WHERE f.kitchen = 'Russia' ORDER by f.amount
 QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
 FeedIterator<Food> queryResultSetIterator = container.GetItemQueryIterator<Food>(queryDefinition);
 
-List<Food> redFoods = new List<Food>();
+List<Food> russianFood = new List<Food>();
 
 while (queryResultSetIterator.HasMoreResults)
 {
     FeedResponse<Food> currentResultSet = queryResultSetIterator.ReadNextAsync().Result;
     foreach (Food Food in currentResultSet)
     {
-        redFoods.Add(Food);
+        russianFood.Add(Food);
         Console.WriteLine("\tRead {0}\n", Food.name);
     }
 }
@@ -47,11 +47,11 @@ Food orangeSoda = new Food
     amount = 10
 };
 
-// Food item = await container.CreateItemAsync(orangeSoda);
+Food item = await container.CreateItemAsync(orangeSoda);
 
 // Update item
 orangeSoda.name = "Fish and Chips";
-// item = await container.UpsertItemAsync(orangeSoda);
+item = await container.UpsertItemAsync(orangeSoda);
 
 // Linq Queries
 using (FeedIterator<Food> setIterator = container.GetItemLinqQueryable<Food>()
