@@ -1,6 +1,6 @@
 grp=az204-m05-containers
 loc=westeurope
-aks=foodcluster-$RANDOM
+aks=foodcluster-3710
 ns=staging
 ui=foodui.yaml
 app=foodui
@@ -26,11 +26,11 @@ kubectl apply -f netconfig.yaml --namespace $ns
 kubectl apply -f ngconfig.yaml --namespace $ns
 
 # Get some metadata
-kubectl get deployment $app -n $ns
+kubectl get deployment foodui -n $ns
 kubectl get pods -n $ns
 kubectl get pods -l app=foodapi -n $ns
 # Get the serive IP and use it on the assigned port
-kubectl get service $app -n $ns
+kubectl get service foodapi -n $ns
 
 # browse deployment - port taken from yaml
-# ie: http://20.93.247.200:8081
+# ie: http://20.126.197.63:8081

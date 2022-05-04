@@ -30,7 +30,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8082
+  - port: 80
     targetPort: 80
   selector:
     app: foodui
