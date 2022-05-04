@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configui
+  template:
+    metadata:
+      labels:
+        app: configui                 
+    spec:
+      containers:
+      - name: configui
+        image: arambazamba/config-ui
+        env: 
+          - name: ENV_API_URL
+            value: 'http://20.101.229.69'
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80        
+        resources:
+          limits:            
+            cpu: "0.2"
+            memory: "128Mi" 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: configui-load-balancer
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: configui
+---  

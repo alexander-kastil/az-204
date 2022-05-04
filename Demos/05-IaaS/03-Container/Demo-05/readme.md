@@ -1,82 +1,41 @@
-# Azure Container Instances & Web Apps for Containers
+# Azure Kubernetes Service
 
-[Web App for Containers](https://docs.microsoft.com/en-us/azure/app-service/containers/)
+[Azure Kubernetes Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/)
 
-[Azure Container Instances](https://docs.microsoft.com/en-us/azure/container-instances/)
+[Bridge to Kubernetes](https://docs.microsoft.com/en-us/visualstudio/bridge/)
 
-[Deploy to Azure Container Instances from Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-using-azure-container-registry)
+[az aks Commands Overview](https://docs.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
 
-## Azure Container Instances
+#### Create AKS Cluster
 
-To read Angular Config from Environments Vars, open project `ng-config` and examine `./src/assets` and `./src/environments`
+> Note: Use FoodApp from Demo-01
 
-`env.js` is referenced in `index.html`:
-```typescript
-(function (window) {
-  window["env"] = window["env"] || {};
-  window["env"].API_URL = "http://localhost:5001/food";
-})(this);
-```
+Install kubectl command line client locally:
 
-`environment.ts` references `window['env']`-variables:
-```typescript
-declare global {
-  interface Window {
-    env: any;
-  }
-}
+`az aks install-cli`
 
-export const environment = {
-  production: false,
-  apiUrl: window['env'].API_URL,
-};
-```
+> Note: You might need to set a path to your system env variables
 
-`dockerfile` calls `env.transform.js` to update `env.js` with current environment variables:
+Create resource group:
 
-```bash
-CMD ["/bin/sh", "-c", "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
-```
+`az group create -name az-204 --location westeurope`
 
-`env.transform.js`:
-```typescript
-(function (window) {
-  window["env"] = window["env"] || {};
-  window["env"].API_URL = "${ENV_API_URL}";
-})(this);
-```
+Create AKS cluster:
 
-Build image and run container:
+`az aks create --resource-group az-204 --name foodcluster --node-count 1 --enable-addons monitoring --generate-ssh-keys`
 
-```bash
-docker build --rm -f "dockerfile" -t ng-config:env .
-docker tag ng-config:env arambazamba/ng-config:env
-docker push arambazamba/ng-config:env
-```
+Get credentials for the Kubernets cluster:
 
->Note: We will use the `arambazamba/ng-config:env`-image for the rest of this module. Update your Docker Hub username.
+`az aks get-credentials --resource-group az-204 --name foodcluster`
 
-Run container:
+Get a list of cluster nodes:
 
-```bash
-docker run -d --rm -p 5052:80 ng-config:env --env ENV_API_URL="https://food-api-staging-4591.azurewebsites.net"
-http://localhost:5052
-```
+`kubectl get nodes`
 
-Execute `create-container-instance.azcli`:
+Apply the yaml
 
-```bash
-rnd=$RANDOM
-grp=az204-m05-ci-$rnd
-loc=westeurope
-app=ng-config-env-$RANDOM
-img="arambazamba/ng-config:env"
+`kubectl apply -f foodui.yaml`
 
-az group create -n $grp -l $loc
+Get the serive IP and use it on the assigned port
 
-az container create -g $grp -l $loc -n $app --image $img --cpu 1 --memory 1 --dns-name-label $app --port 80 --environment-variables 'API_URL'='https://food-api-staging-4591.azurewebsites.net'
-```
-
-To check the env variables connect to ACI and enter `printenv`: 
-
-![check-env](_images/check-env.png)
+kubectl get service foodui --watch

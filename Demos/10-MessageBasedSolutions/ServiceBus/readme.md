@@ -4,8 +4,8 @@
 
 ## Demos
 
-- Send msg using queue
-- Use a topic and subscription
+- Using Service Bus Queues 
+- Connecting Microservices using Integration Events and Service Bus Topics
 
 ## CLI Reference
 

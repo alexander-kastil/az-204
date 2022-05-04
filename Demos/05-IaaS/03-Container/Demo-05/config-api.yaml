@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configapi
+  template:
+    metadata:
+      labels:
+        app: configapi                 
+    spec:
+      containers:
+      - name: configapi
+        image: arambazamba/config-api
+        env: 
+          - name: App__UseSQLite
+            value: 'false'
+          - name: App__UseEnv
+            value: 'true'
+          - name: Azure__TenantId
+            value: 'd9101020-90e0-4469-a129-6a32866c0d0a'
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80        
+        resources:
+          limits:            
+            cpu: "0.2"
+            memory: "128Mi"     
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: configapi-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: configapi
+---  

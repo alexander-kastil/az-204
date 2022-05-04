@@ -1,0 +1,36 @@
+grp=az204-m05-containers
+loc=westeurope
+aks=az204cluster-$RANDOM
+ns=staging
+ui=foodui.yaml
+app=foodui
+
+# Install kubectl command line client locally:
+# az aks install-cli
+
+az group create -n $grp -l $loc
+az aks create -g $grp -n $aks --node-count 2 --generate-ssh-keys 
+az aks get-credentials -g $grp -n $aks
+
+# Get a list of cluster nodes:
+kubectl get nodes
+
+# Create static ip addresses
+az network public-ip create -g $grp -n netconfig --dns-name netconfigapi --allocation-method Static
+
+# Create a namespace
+kubectl create namespace $ns
+kubectl apply -f foodapi.yaml --namespace $ns
+kubectl apply -f foodui.yaml --namespace $ns
+kubectl apply -f config-api.yaml --namespace $ns
+kubectl apply -f config-ui.yaml --namespace $ns
+
+# Get some metadata
+kubectl get deployment configapi -n $ns
+kubectl get pods -n $ns
+kubectl get pods -l app=configapi -n $ns
+# Get the serive IP and use it on the assigned port
+kubectl get service configapi-service -n $ns
+
+# browse deployment - port taken from yaml
+# ie: http://20.101.229.69

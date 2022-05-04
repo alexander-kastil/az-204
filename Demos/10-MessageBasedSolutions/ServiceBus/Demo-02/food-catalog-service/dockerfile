@@ -1,0 +1,28 @@
+# Build Image
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
+WORKDIR /build
+
+COPY . .
+RUN dotnet restore "food-catalog.csproj"
+RUN dotnet publish -c Release -o /app
+
+# Runtime Image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "food-catalog.dll"]
+
+# Build Image
+# docker build --rm -f Dockerfile -t foodcatalog-service .
+# docker run -it --rm -p 5051:80 foodcatalog-service
+# docker tag foodcatalog-service arambazamba/foodcatalog-service
+# docker push arambazamba/foodcatalog-service
+
+# docker build --rm -f Dockerfile -t foodcatalog-service:env .
+# docker run -it --rm -p 5051:80 foodcatalog-service:env -e "Azure__0__TenantId"="d92b247e-90e0-4469-a129-6a32866c0d0a" "Azure__0__ApplicationInsights"="da2aaf3f-cfcd-4741-a0f0-b6b15a0ff47c"
+# docker tag foodcatalog-service:env arambazamba/foodcatalog-service:env
+# docker push arambazamba/foodcatalog-service:env
+
+# Browse using: 
+# http://localhost:5051/food
+# http://localhost:5051/env
