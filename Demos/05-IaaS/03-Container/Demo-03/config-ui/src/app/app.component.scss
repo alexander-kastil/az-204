@@ -190,8 +190,9 @@
     text-indent: 4px;
   }
 
-  .terminal pre {
+  pre {
     font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+    background-color: black;
     color: white;
     padding: 0 1rem 1rem;
     margin: 0;
@@ -289,4 +290,12 @@
       display: none;
       visibility: hidden;
     }
+  }
+
+  .settings{
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
   }

@@ -96,7 +96,7 @@
       </g>
     </svg>
 
-    <span>{{ title }} app is running and using api url: {{ apiUrl }}</span>
+    <span>{{ title }} app is running and using api url: {{ apiUrl }}. Getting settings:</span>
 
     <svg
       id="rocket-smoke"
@@ -116,8 +116,7 @@
     </svg>
   </div>
 
-  <div>
-    <h3>Settings from Api:</h3>
+  <div class="settings">
     <pre>
       {{cfg  | json}}
     </pre>
