@@ -14,15 +14,15 @@ ENTRYPOINT ["dotnet", "food-api.dll"]
 
 # Build Image
 
-docker build --rm -f Dockerfile -t foodapi .
-docker build --rm -f Dockerfile -t foodapi-env .
+# docker build --rm -f Dockerfile -t foodapi .
+# docker build --rm -f Dockerfile -t foodapi-env .
 
 # Run Image
 # docker run -it --rm -p 5051:80 foodapi
 # docker run -it --rm -p 5051:80 foodapi-env -e "Azure__0__TenantId"="d92b247e-90e0-4469-a129-6a32866c0d0a" "Azure__0__ApplicationInsights"="da2aaf3f-cfcd-4741-a0f0-b6b15a0ff47c"
 
 # Browse using: 
-# http://localhost:5051/food
+# http://localhost:5051
 # http://localhost:5051/env
 
 # Publish Image to dockerhub

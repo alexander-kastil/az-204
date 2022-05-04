@@ -1,0 +1,16 @@
+grp=az204-m05-containers
+loc=westeurope
+acr=configacr
+img=config-ui
+
+az acr login --name $acr
+az acr update -n $acr --admin-enabled true
+
+# Execute in ng-config folder
+cd config-api
+az acr build --image config-api --registry $acr --file Dockerfile .
+cd ..
+
+cd config-ui
+az acr build --image config-ui --registry $acr --file Dockerfile .
+cd ..
