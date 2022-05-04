@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: configui
+  name: ngconfig
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: configui
+      app: ngconfig
   template:
     metadata:
       labels:
-        app: configui                 
+        app: ngconfig                 
     spec:
       containers:
-      - name: configui
-        image: arambazamba/config-ui
+      - name: ngconfig
+        image: arambazamba/ng-config
         env: 
           - name: ENV_API_URL
-            value: 'http://20.101.229.69'
+            value: 'http://fakeapi'
         imagePullPolicy: Always
         ports:
         - containerPort: 80        
@@ -25,16 +25,18 @@ spec:
           limits:            
             cpu: "0.2"
             memory: "128Mi" 
+      imagePullSecrets:
+      - name: W+I0mZoRYW+mkeTvytZu2w2SOqjr=KoB       
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: configui-load-balancer
+  name: ngconfig-load-balancer
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: configui
+    app: ngconfig
 ---  

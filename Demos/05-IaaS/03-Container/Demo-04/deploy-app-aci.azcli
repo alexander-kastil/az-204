@@ -5,7 +5,7 @@ fqdn=azurecr.io
 apiapp=config-api
 uiapp=config-ui
 apiimg=$acr.$fqdn/$apiapp
-ngimg=$acr.$fqdn/$app
+ngimg=$acr.$fqdn/$uiapp
 
 az acr login --name $acr
 az acr update -n $acr --admin-enabled true

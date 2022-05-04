@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: netconfig
+  name: configapi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: netconfig
+      app: configapi
   template:
     metadata:
       labels:
-        app: netconfig                 
+        app: configapi                 
     spec:
       containers:
-      - name: netconfig
-        image: arambazamba/net-config
+      - name: configapi
+        image: arambazamba/config-api
         env: 
           - name: App__UseSQLite
             value: 'false'
@@ -28,19 +28,17 @@ spec:
         resources:
           limits:            
             cpu: "0.2"
-            memory: "128Mi" 
-      imagePullSecrets:
-      - name: W+I0mZoRYW+mkeTvytZu2w2SOqjr=KoB       
+            memory: "128Mi"     
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: netconfig-service
+  name: configapi-service
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: netconfig
+    app: configapi
 ---  
