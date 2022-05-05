@@ -1,6 +1,7 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "FUNCTIONS_WORKER_RUNTIME": "node"
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FixerKey": "0064265a8a966e9d7fb23d49856ace84"
   }
 }

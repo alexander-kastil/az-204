@@ -1,24 +1,33 @@
-rnd=$RANDOM
+rnd=12626
 loc=westeurope
 grp=az204-m08-apim-$rnd
-appPlan=apimgmt-$rnd
-netapp=foodapi-$rnd
-fxapp=foodutil-$rnd
-storage=az204foodutil$rnd
-apimgmt=fooddealer-apim-$rnd
+appPlan=fooddealer-$rnd
+catalog=foodcatalogapi-$rnd
+utils=foodutil-$rnd
+cart=foodcart-$rnd
+storage=fooddealer$rnd
+apimgmt=fooddealer-$rnd
 mail="alexander.pajer@integrations.at"
 publisher="integrationsonline"
 
 az group create -n $grp -l $loc
 
+az apim create -n $apimgmt -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Developer 
+
 cd food-api
-az webapp up -n $netapp -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
+az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
 cd ..
 
 az storage account  create -n $storage -g $grp 
-az functionapp create -n $fxapp -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 12 --functions-version 3
+
+# utils
+az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
 cd foodutil-functs-js
-func azure functionapp publish $fxapp
+func azure functionapp publish $utils
 cd ..
 
-az apim create -n $apimgmt -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Consumption
+# shopping cart
+az functionapp create -n $cart -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
+cd food-shopping-cart
+func azure functionapp publish $cart 
+cd ..
