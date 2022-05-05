@@ -28,6 +28,8 @@ public class FoodOrderController : ControllerBase
     public async Task<FoodOrder> AddOrder(FoodOrder order){
         await ctx.Orders.AddAsync(order);
         await ctx.SaveChangesAsync();
+        var ie = new FoodOrderEvent(order);
+        sbp.AddEvent(ie);
         return order;
     }
 }

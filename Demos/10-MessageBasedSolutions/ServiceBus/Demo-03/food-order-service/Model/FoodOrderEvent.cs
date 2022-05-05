@@ -7,6 +7,8 @@ namespace FoodApp.OrderService
 
         public FoodOrderEvent(FoodOrder order){
             Data = order;
+            EventId = Guid.NewGuid();
+            CreationDate = DateTime.Now;
         }
 
         [JsonPropertyName("data")]
