@@ -1,0 +1,46 @@
+rnd=12626
+loc=westeurope
+grp=az204-m08-apim-$rnd
+apimgmt=fooddealer-$rnd
+ai=fooddealer-$rnd
+storage=fooddealer$rnd
+appPlan=fooddealer-$rnd
+catalog=foodcatalogapi-$rnd
+utils=foodutil-$rnd
+cart=foodcart-$rnd
+payment=payment-$rnd
+mail="alexander.pajer@integrations.at"
+publisher="fooddealer"
+
+az group create -n $grp -l $loc
+
+az extension add --name application-insights
+
+az monitor log-analytics workspace create -g $grp --workspace-name $publisher
+
+aikey=$(az monitor app-insights component create --app $ai --location $loc -- --kind web -g $grp --application-type web --retention-time 30 --query instrumentationKey -o tsv)
+
+az apim create -n $apimgmt -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Developer 
+
+cd food-api
+az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
+# connect the web app to application insights instance
+az monitor app-insights component connect-webapp -g $grp --app $ai --web-app $catalog --enable-debugger false --enable-profiler false
+
+cd ..
+
+az storage account  create -n $storage -g $grp 
+# payment - used for in portal function
+az functionapp create -n $payment -g $grp --storage-account $storage --app-insights-key $aikey --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
+
+# utils
+az functionapp create -n $utils -g $grp --storage-account $storage --app-insights-key $aikey --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
+cd foodutil-functs-js
+func azure functionapp publish $utils
+cd ..
+
+# shopping cart
+az functionapp create -n $cart -g $grp -s $storage --app-insights-key $aikey   --consumption-plan-location $loc --functions-version 4 
+cd food-shopping-cart
+func azure functionapp publish $cart 
+cd ..
