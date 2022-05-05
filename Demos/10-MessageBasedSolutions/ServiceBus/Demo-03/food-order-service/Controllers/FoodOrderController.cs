@@ -9,12 +9,14 @@ namespace FoodApp.OrderService;
 [Route("[controller]")]
 public class FoodOrderController : ControllerBase
 {    
-    public FoodOrderController(FoodOrderDBContext dbcontext)
+    FoodOrderDBContext ctx;
+    ServiceBusProxy sbp;
+
+    public FoodOrderController(FoodOrderDBContext dbcontext, ServiceBusProxy proxy)
     {
         ctx = dbcontext;
+        sbp = proxy;
     }
-
-    FoodOrderDBContext ctx;
 
     [HttpGet]
     public async Task<IEnumerable<FoodOrder>> Get()

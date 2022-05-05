@@ -9,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 var cfg = builder.Configuration.Get<FoodConfig>();
 
 // Service Bus
-builder.Services.Configure<ServiceBusConfig>(builder.Configuration.GetSection("ServiceBusConfig"));
+var sbp = new ServiceBusProxy(cfg.App.ServiceBus.ConnectionString, cfg.App.ServiceBus.Topic);
+builder.Services.AddSingleton<ServiceBusProxy>(sbp);
+// builder.Services.Configure<ServiceBusConfig>(builder.Configuration.GetSection("ServiceBusConfig"));
 
 // Entity Framework
 builder.Services.AddDbContext<FoodOrderDBContext>(opts => opts.UseSqlite(cfg.App.ConnectionStrings.SQLiteDBConnection));
