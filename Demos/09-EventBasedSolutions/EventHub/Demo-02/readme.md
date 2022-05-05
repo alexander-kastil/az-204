@@ -4,7 +4,9 @@
 
 ## Demo
 
-Provision Environment using `capture-graph-events.azcli` and update notificationUrl in subscription post.
+Provision Environment using `capture-graph-events.azcli`.
+
+Update notificationUrl in subscription post.
 
 Subscribe using [Microsoft Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer) in an authenticated session.
 
@@ -19,3 +21,4 @@ Content-Type: application/json
     "clientState": "SecretClientState"
 }
 ```
+- F5 Debug graphProcessor. If time permist re-create it.
