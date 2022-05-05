@@ -1,5 +1,7 @@
 # Using Azure Event Hubs to receive change notifications
 
+[Use the Microsoft Graph API to get change notifications](https://docs.microsoft.com/en-us/graph/api/resources/webhooks?view=graph-rest-1.0)
+
 [Using Azure Event Hubs to receive change notifications](https://docs.microsoft.com/en-us/graph/change-notifications-delivery)
 
 ## Demo
