@@ -10,12 +10,12 @@ namespace ReceiveEvents
 {
     class Program
     {
-        private const string connectionString = "Endpoint=sb://evthubns-17605.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=NY6OBKyN59Gp8hF7pefM4jY6MQ1jUIQdoHCH2IljqIQ=";
-        private const string eventHubName = "evthub-17605";
+        private const string connectionString = "Endpoint=sb://evthubns-23852.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=zkkEqrZuSCArTbI+RWjHCJP17m71ZsPhjuKQtkWK8vw=";
+        private const string eventHubName = "evthub-23852";
 
-        private const string blobStorageConnectionString = "DefaultEndpointsProtocol=https;AccountName=eventhub17605;AccountKey=VxUK3Mkm0PZBDlzC+ORca9PsU8BRPOZI7lVjrPiUZoRHJjZrKmkB9S+sUU4DaFj9erA1a+ARlz4LmzA4sHfEpQ==;EndpointSuffix=core.windows.net";
+        private const string blobStorageConnectionString = "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=eventhub23852;AccountKey=oYSMCdLToZHdQyfSzkeV3yYBOTKqG0k+BHBE9wQXT6WgWM6L3N+b3Qvkr7JD5RzytWBdHmYXPZZA5jWBt4dU0A==";
 
-        private const string blobContainerName = "messages";
+        private const string blobContainerName = "evthubcheckpoints";
         static async Task Main()
         {
             string consumerGroup = EventHubConsumerClient.DefaultConsumerGroupName;

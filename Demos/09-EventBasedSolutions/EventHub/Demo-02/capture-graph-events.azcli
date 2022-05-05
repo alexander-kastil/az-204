@@ -1,6 +1,6 @@
 rnd=$RANDOM
 loc=westeurope
-grp=az204-m10-graphevents-$rnd
+grp=az204-m10-graphchanges-eventhub-$rnd
 evns=graphevents-ns-$rnd
 hub=graphevents-hub-$rnd
 storage=graphevents$rnd
@@ -27,4 +27,4 @@ keyvaulturi=$(az keyvault show --name $kv -g $grp --query "properties.vaultUri" 
 
 domain=$(az ad signed-in-user show --query 'userPrincipalName' | cut -d '@' -f 2 | sed 's/\"//')
 notificationUrl="EventHub:${keyvaulturi}secrets/${kvsecret}?tenantId=${domain}"
-echo "NotificationUrl: ${notificationUrl}"
+echo "Use NotificationUrl when subscribing: ${notificationUrl}"
