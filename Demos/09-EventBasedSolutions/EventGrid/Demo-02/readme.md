@@ -1,4 +1,4 @@
-# Real-time EventGrid viewer with serverless SignalR
+# Real-time Angular UI connected to serverless SignalR responding to Events publisehd to EventGrid Topic
 
 [CloudEvent schema](https://docs.microsoft.com/en-us/azure/event-grid/cloudevents-schema)
 
