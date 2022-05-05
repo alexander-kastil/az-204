@@ -40,6 +40,10 @@ namespace FoodApp.CatalogService
             services.AddSingleton<ITelemetryInitializer, FoodTelemetryInitializer>();
             services.AddSingleton<AILogger>();
 
+            //Service Bus
+            var sbp = new ServiceBusProxy(cfg.App.ServiceBus.ConnectionString, cfg.App.ServiceBus.Topic);
+            services.AddSingleton<ServiceBusProxy>(sbp);
+
             //Database
             if (cfg.App.UseSQLite)
             {

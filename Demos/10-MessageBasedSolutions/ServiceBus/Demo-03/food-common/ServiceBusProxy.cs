@@ -15,7 +15,7 @@ namespace FoodApp.Common
             connectionString = ConnectionString;
             topic = Topic;
         }
-        public async void AddEvent(IntegrationEvent evt)
+        public async void AddEvent(IntegrationEvent evt)        
         {
             ServiceBusClient client = new ServiceBusClient(connectionString);
             ServiceBusSender Sender = client.CreateSender(topic);
@@ -26,6 +26,16 @@ namespace FoodApp.Common
                 throw new Exception($"The message is too large to fit in the batch.");
             }
             await Sender.SendMessagesAsync(messageBatch);
+        }
+
+        public delegate Task MessageHandler(ProcessMessageEventArgs args);
+
+        public async void Subscribe(MessageHandler handler){
+
+            ServiceBusClient client = new ServiceBusClient(connectionString);
+            ServiceBusProcessor processor = client.CreateProcessor(topic);
+
+            processor.ProcessMessageAsync += handler;
         }
     }
 }
