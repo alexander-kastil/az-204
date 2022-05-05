@@ -16,7 +16,7 @@ Execute `create-foodorder-app.azcli`. It creates:
 - Event Grid Topic
 - Publishes Function app with that acts as an endpoint for the event grid topic webhook subscription
 - Adds the Angular Url to CORS and sets `Enable Access-Control-Allow-Credentials` to true
-- A food log Angular UI
+- A real time FoodOrders UI implemented in Angular
 
 Update signalr config in environment.ts and environment.prod.ts of `ng-food-log`:
 
