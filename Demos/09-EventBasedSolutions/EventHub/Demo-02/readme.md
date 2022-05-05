@@ -10,6 +10,8 @@ Update notificationUrl in subscription post.
 
 Subscribe using [Microsoft Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer) in an authenticated session.
 
+![subscription](_images/subscription.jpg)
+
 ```json
 POST https://graph.microsoft.com/v1.0/subscriptions
 Content-Type: application/json
