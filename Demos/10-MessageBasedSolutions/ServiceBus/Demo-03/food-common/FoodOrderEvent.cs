@@ -3,8 +3,8 @@ using FoodApp.Common;
 
 namespace FoodApp.OrderService
 {
-    internal record FoodOrderEvent : IntegrationEvent{
-
+    public class FoodOrderEvent : IntegrationEvent{
+ 
         public FoodOrderEvent(FoodOrder order){
             Data = order;
             EventId = Guid.NewGuid();
