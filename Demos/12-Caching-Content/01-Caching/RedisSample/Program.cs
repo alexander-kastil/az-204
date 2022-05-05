@@ -9,7 +9,7 @@ namespace RedisSample
         {
             Lazy<ConnectionMultiplexer> conRedis = new Lazy<ConnectionMultiplexer>(() =>
             {
-                var conStr = "<Redis-ConStr>";
+                var conStr = "az204-redis-demo-1564.redis.cache.windows.net:6380,password=AKN5wGvJHFCEmpPbqiwGAL6nuGsNMk4YUAzCaEFTBcI=,ssl=True,abortConnect=False";
                 return ConnectionMultiplexer.Connect(conStr);
             });
 
