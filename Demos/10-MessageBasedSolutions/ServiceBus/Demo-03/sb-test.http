@@ -1,0 +1,9 @@
+POST https://localhost:5003/foodorder HTTP/1.1
+content-type: application/json
+
+{
+  "customerID": 200,
+  "foodItemID": 1,
+  "amount": 1,
+  "price": 5.7
+}
