@@ -28,14 +28,21 @@ namespace FoodApp.Common
             await Sender.SendMessagesAsync(messageBatch);
         }
 
-        public delegate Task MessageHandler(ProcessMessageEventArgs args);
+        // public delegate Task MessageHandler(ProcessMessageEventArgs args);
 
-        public async void Subscribe(MessageHandler handler){
+        // static async Task MessageHandler(ProcessMessageEventArgs args)
+        // {
+        //     string body = args.Message.Body.ToString();
+        //     Console.WriteLine($"Received: {body} from subscription: {subs}");
+        //     await args.CompleteMessageAsync(args.Message);
+        // }
 
-            ServiceBusClient client = new ServiceBusClient(connectionString);
-            ServiceBusProcessor processor = client.CreateProcessor(topic);
+        // public async void Subscribe(){
 
-            processor.ProcessMessageAsync += handler;
-        }
+        //     ServiceBusClient client = new ServiceBusClient(connectionString);
+        //     ServiceBusProcessor processor = client.CreateProcessor(topic);
+
+        //     processor.ProcessMessageAsync += new Task(delegate {MessageHandler});
+        // }
     }
 }
