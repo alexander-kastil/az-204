@@ -1,4 +1,4 @@
-rnd=$RANDOM
+rnd=dev
 grp=az204-m10-service-bus
 loc=westeurope
 nsp=foodapp$rnd

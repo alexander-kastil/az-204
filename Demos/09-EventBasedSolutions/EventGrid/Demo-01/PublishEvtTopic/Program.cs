@@ -39,7 +39,7 @@ namespace FoodApp
 
                         },
                         EventTime = DateTime.Now,
-                        Subject = "Food Item Added",
+                        Subject = "Food Order Added",
                         DataVersion = "2.0"
                 });
             }

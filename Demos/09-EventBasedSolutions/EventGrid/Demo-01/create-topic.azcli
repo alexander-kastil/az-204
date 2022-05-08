@@ -8,7 +8,6 @@ app=order-processor-$rnd
 az group create --name $grp --location $loc
 
 # create topic
-
 az eventgrid topic create --resource-group $grp --name $topic --location $loc
 endpoint=$(az eventgrid topic show --name $topic -g $grp --query "endpoint" --output tsv)
 key=$(az eventgrid topic key list --name $topic -g $grp --query "key1" --output tsv)
