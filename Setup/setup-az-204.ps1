@@ -71,8 +71,8 @@ code --install-extension vs-publisher-1448185.keyoti-changeallendoflinesequence
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-python.python
 
-# Azurite Storage Emulator & Function Core Tools v3
-npm install -g azure-functions-core-tools@4 --unsafe-perm true
+# Azurite Storage Emulator & Function Core Tools v4
+npm install -g azure-functions-core-tools@4 --unsafe-perm true --force
 npm install -g azurite
 
 # Install Angular
