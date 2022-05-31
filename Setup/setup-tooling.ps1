@@ -18,18 +18,18 @@ choco install ngrok -y
 choco install microsoft-windows-terminal -y
 choco install sql-server-management-studio -y
 
-# General Software
-
-# choco install microsoft-teams -y
-# choco install telegram -y
-# choco install signal -y
-# choco install googlephotos -y
+# Tooling
 choco install 7zip -y
 choco install adobereader -y
 choco install displayfusion -y
 choco install onedrive -y 
 choco install snagit -y 
 choco install filezilla -y
+
+# Social
+# choco install telegram -y
+# choco install signal -y
+# choco install googlephotos -y
 
 # Refresh Path Env
 Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
