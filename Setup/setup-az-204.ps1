@@ -70,6 +70,7 @@ code --install-extension ms-azuretools.vscode-azureterraform
 code --install-extension vs-publisher-1448185.keyoti-changeallendoflinesequence
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-python.python
+code --install-extension alex-pattison.theme-cobalt3
 
 # Azurite Storage Emulator & Function Core Tools v4
 npm install -g azure-functions-core-tools@4 --unsafe-perm true --force
