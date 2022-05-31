@@ -67,6 +67,12 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az config set extension.use_dynamic_install=yes
 ```
 
+#### Azure Function Core Tools V4
+
+```
+sudo npm install -g azure-functions-core-tools@4 --unsafe-perm true
+```
+
 ## Create Lab VM - Optional
 
 Execute `create-lab-vm.azcli` or run the following remote script in Cloud Shell
