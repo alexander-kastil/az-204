@@ -79,7 +79,7 @@ sudo npm install -g azure-functions-core-tools@4 --unsafe-perm true
 Install Docker Desktop using [Chocolatey](https://chocolatey.org/) on the Windows Host in an elevated prompt:
 
 ```
-choco install docker-desktop
+choco install docker-desktop -y
 ```
 
 Configure Docker Desktop:
