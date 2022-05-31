@@ -4,4 +4,4 @@
 
 [Visual Studio Code Keybindings](https://code.visualstudio.com/docs/getstarted/keybindings)
 
-Please find my personal keybindings and settings as a reference
+Please find my personal keybindings (`keybindings.json`) and settings (`settings.json`) as a reference
