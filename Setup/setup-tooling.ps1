@@ -16,6 +16,7 @@ choco install azure-cosmosdb-emulator -y
 choco install azure-data-studio -y
 choco install ngrok -y
 choco install microsoft-windows-terminal -y
+choco install sql-server-express -y
 choco install sql-server-management-studio -y
 
 # Tooling

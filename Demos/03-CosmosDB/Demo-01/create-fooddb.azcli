@@ -7,7 +7,7 @@ container=food
 
 az group create --name $grp --location $loc
 
-az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp # -> sql api
+az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp # -> account with sql api
 az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
 
 # Create a container with even partitioning

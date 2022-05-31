@@ -55,7 +55,7 @@ item = await container.UpsertItemAsync(orangeSoda);
 
 // Linq Queries
 using (FeedIterator<Food> setIterator = container.GetItemLinqQueryable<Food>()
-.Where(f => f.kitchen == "Red")
+.Where(f => f.kitchen == "India")
 .ToFeedIterator<Food>())
 {
     while (setIterator.HasMoreResults)
@@ -63,7 +63,7 @@ using (FeedIterator<Food> setIterator = container.GetItemLinqQueryable<Food>()
         foreach (var Food in await setIterator.ReadNextAsync())
         {
             {
-                Console.WriteLine(Food.name);
+                Console.WriteLine("Indian Food: " + Food.name);
             }
         }
     }
