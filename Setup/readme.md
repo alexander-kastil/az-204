@@ -2,6 +2,7 @@
 
 - Install Software
 - Install Windows Subsystem Linux - Optional
+- Docker Support
 - Create Lab VM - Optional
 
 ## Install Software
@@ -72,6 +73,44 @@ az config set extension.use_dynamic_install=yes
 ```
 sudo npm install -g azure-functions-core-tools@4 --unsafe-perm true
 ```
+
+## Docker Support
+
+Install Docker Desktop using [Chocolatey](https://chocolatey.org/) on the Windows Host in an elevated prompt:
+
+```
+choco install docker-desktop
+```
+
+Configure Docker Desktop:
+
+![docker-desktop](_images/docker-desktop.png)
+
+Signin to Docker
+
+![docker-signin](_images/docker-signin.png)
+
+Configure Cocker:
+
+![wsl-engine](_images/wsl-engine.png)
+
+![wsl-engine-resources](_images/wsl-engine-resources.png)
+
+Enable Kubernetes:
+
+![kubernetes](_images/kubernetes.png)
+
+Press Appy & Restart to complete Docker Setup
+
+## Test Installation
+
+In the console window execute:
+
+```
+docker run hello-world
+```
+
+![docker-test](_images/docker-test.png)
 
 ## Create Lab VM - Optional
 
