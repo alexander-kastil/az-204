@@ -86,7 +86,7 @@ Configure Docker Desktop:
 
 ![docker-desktop](_images/docker-desktop.png)
 
-Signin to Docker
+Create an account at [Docker Hub](https://hub.docker.com/) and signin to Docker
 
 ![docker-signin](_images/docker-signin.png)
 
