@@ -18,6 +18,7 @@ function getBlobSAS(name) {
     const url = resp.data.imageURI + resp.data.sasToken;
     var div = document.querySelector('#sasToken');
     if(div){
+      div.innerHTML = "";
       var tag = document.createElement('a');
       tag.setAttribute('href',url);
       tag.innerText = "Click to see img with SAS";
