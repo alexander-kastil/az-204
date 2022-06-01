@@ -109,7 +109,7 @@ namespace FoodApi
 
             //Cors and Routing
             app.UseCors("nocors");
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseRouting();
 
             if (cfg.App.AuthEnabled)
