@@ -17,10 +17,6 @@ az group create -n $grp -l $loc
 
 az apim create -n $apimgmt -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Developer 
 
-cd food-api
-az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
-cd ..
-
 az storage account  create -n $storage -g $grp 
 
 # utils
@@ -32,7 +28,11 @@ az functionapp create -n $cart -g $grp --storage-account $storage --consumption-
 # payment - used for in portal function
 az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
 
-# publish function apps
+# publish api & function apps
+cd food-api
+az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
+cd ..
+
 cd foodutil-functs-js
 func azure functionapp publish $utils
 cd ..
