@@ -7,8 +7,8 @@ vault=foodvault-$rnd
 # create appconfig and add a value
 az appconfig create -g $grp -n $cfg -l $loc --sku free
 az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App Dev" -y
-az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y --label prod
 az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App Staging" -y --label staging
+az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y --label prod
 
 
 # key-vault binding
@@ -25,5 +25,5 @@ az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-
 
 # create a feature flag and turn it on
 
-az appconfig feature set -n $cfg --feature AdminFeature -y
-az appconfig feature enable -n $cfg --feature AdminFeature -y
+az appconfig feature set -n $cfg --feature PremiumFeature -y
+az appconfig feature enable -n $cfg --feature PremiumFeature -y
