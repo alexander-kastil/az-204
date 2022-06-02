@@ -29,6 +29,8 @@ az functionapp create -n $cart -g $grp --storage-account $storage --consumption-
 az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
 
 # publish api & function apps
+
+# catalog
 cd food-api
 az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
 cd ..
