@@ -1,15 +1,15 @@
-rnd=12626
+env=staging
 loc=westeurope
-grp=az204-m08-apim-$rnd
-apimgmt=fooddealer-$rnd
-ai=fooddealer-$rnd
-storage=fooddealer$rnd
-appPlan=fooddealer-$rnd
-catalog=foodcatalogapi-$rnd
-utils=foodutil-$rnd
-cart=foodcart-$rnd
-payment=payment-$rnd
-workspace=fooddealer-$rnd
+grp=az204-m08-apim-$env
+apimgmt=fooddealer-$env
+ai=fooddealer-$env
+storage=fooddealer$env
+appPlan=fooddealer-$env
+catalog=foodcatalogapi-$env
+utils=foodutil-$env
+cart=foodcart-$env
+payment=foodpayment-$env
+workspace=fooddealer-$env
 mail="alexander.pajer@integrations.at"
 publisher="fooddealer"
 
@@ -22,17 +22,21 @@ az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
 cd ..
 
 az storage account  create -n $storage -g $grp 
-# payment - used for in portal function
-az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
 
 # utils
 az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
+
+# shopping cart
+az functionapp create -n $cart -g $grp --storage-account $storage --consumption-plan-location $loc --functions-version 4 
+
+# payment - used for in portal function
+az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
+
+# publish function apps
 cd foodutil-functs-js
 func azure functionapp publish $utils
 cd ..
 
-# shopping cart
-az functionapp create -n $cart -g $grp -s $storage --app-insights-key $aikey   --consumption-plan-location $loc --functions-version 4 
 cd food-shopping-cart
 func azure functionapp publish $cart 
 cd ..
