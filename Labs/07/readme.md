@@ -109,7 +109,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
    1. In the **Function app name** text box, enter **securefunc[yourname]**.
    1. In the **Publish** section, select **Code**.
    1. In the **Runtime stack** drop-down list, select **.NET Core**.
-   1. In the **Version** drop-down list, select **3.1**.
+   1. In the **Version** drop-down list, select **6**.
    1. In the **Region** drop-down list, select the **East US** region.
    1. Select **Next: Hosting**.
 1. From the **Hosting** tab, perform the following actions:
