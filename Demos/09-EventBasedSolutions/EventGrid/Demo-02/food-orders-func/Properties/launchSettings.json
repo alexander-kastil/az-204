@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "food_orders_func": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7181",
+      "launchBrowser": false
+    }
+  }
+}

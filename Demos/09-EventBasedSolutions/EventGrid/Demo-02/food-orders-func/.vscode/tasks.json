@@ -2,23 +2,6 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "shell",
-			"label": "npm install",
-			"command": "npm install",
-			"options": {
-				"cwd": "${workspaceFolder}/Demos\\03-FunctionApps\\Demo-05\\durable-wf"
-			}
-		},
-		{
-			"type": "shell",
-			"label": "npm prune",
-			"command": "npm prune --production",
-			"problemMatcher": [],
-			"options": {
-				"cwd": "${workspaceFolder}/Demos\\03-FunctionApps\\Demo-05\\durable-wf"
-			}
-		},
-		{
 			"label": "clean (functions)",
 			"command": "dotnet",
 			"args": [
@@ -76,7 +59,7 @@
 			"type": "func",
 			"dependsOn": "build (functions)",
 			"options": {
-				"cwd": "${workspaceFolder}/bin/Debug/netcoreapp3.1"
+				"cwd": "${workspaceFolder}/bin/Debug/net6.0"
 			},
 			"command": "host start",
 			"isBackground": true,
