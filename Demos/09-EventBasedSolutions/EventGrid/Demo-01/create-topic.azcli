@@ -17,7 +17,7 @@ az storage account  create -n $storage -g $grp
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4
 
 # Deploy to function app
-cd OrderProcessorAzFunct
+cd order-processor
 func azure functionapp publish $app --csharp
 cd ..
 
