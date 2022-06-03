@@ -103,7 +103,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
     | **Resource group** drop-down list      |Select **MonitoredAssets**. |
     | **Name** text box     | Enter **smpapi**_[yourname]_ |
     | **Publish** section       | Select **Code**. |
-    | **Runtime stack** drop-down list | Select **.NET Core 3.1 (LTS)**.|
+    | **Runtime stack** drop-down list | Select **.NET 6**.|
     | **Operating System** section |  Select **Windows**.|
     | **Region** drop-down list |  Select the same region you chose as the location of the **Application Instance** resource. |
     | **App Service Plan** section |  Select **Create new**. |
