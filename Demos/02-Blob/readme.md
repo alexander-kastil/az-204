@@ -1,16 +1,18 @@
 # Develop solutions that use Microsoft Azure Storage
 
-[Azure Storage](https://docs.microsoft.com/en-us/azure/storage/)
-
-[Blob Redundany](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy)
-
-[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-java?tabs=powershell)
-
 ## Demos
 
 - Provision and use Blob Storage
 - Use Shared Access Signature
 - Use files shares provided by the core Azure Storage platform (optional)
+
+## Readings
+
+[Azure Storage](https://docs.microsoft.com/en-us/azure/storage/)
+
+[Blob Redundancy](https://docs.microsoft.com/en-us/azure/storage/common/storage-redundancy)
+
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-java?tabs=powershell)
 
 ## CLI Reference
 

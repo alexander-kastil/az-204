@@ -4,6 +4,7 @@
 
 - ARM Template Basics & deployment
 - Deploy to Azure Button
+- Introduction to Bicep (optional)
 
 ## Readings
 
