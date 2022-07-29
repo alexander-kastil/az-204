@@ -1,8 +1,8 @@
 ---
 lab:
     title: "Lab: Implement task processing logic by using Azure Functions"
-    az204Module: "Module 03: Implement Azure Functions"
-    az020Module: "Module 03: Implement Azure Functions"
+    az204Module: "Module 04: Implement Azure Functions"
+    az020Module: "Module 04: Implement Azure Functions"
     type: "Answer Key"
 ---
 
@@ -22,19 +22,9 @@ Microsoft updates this training course when the community brings needed changes 
 
 Sign in to your Windows 10 virtual machine (VM) by using the following credentials:
 
--   Username: **Admin**
--   Password: **Pa55w.rd**
-
 > **Note**: Instructions to connect to the virtual lab environment will be provided by your instructor.
 
-#### Review the installed applications
-
-Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for the applications that you'll use in this lab:
-
--   Microsoft Edge
--   File Explorer
--   Windows Terminal
--   Visual Studio Code
+![Architecture diagram depicting a user constructing a polyglot data solution by creating an Azure storage account and an Azure Cosmos DB account.](_images/Lab04-Diagram.png)
 
 ### Exercise 1: Create Azure resources
 
@@ -110,10 +100,10 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 >Note: Make sure you have installed the Azure Function Core Tools in your env: `npm i -g azure-functions-core-tools@3 --unsafe-perm true`
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd \Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to use the **Azure Functions Core Tools** to create a new local Azure Functions project in the current directory using the **dotnet** runtime:
@@ -130,7 +120,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 
 1. On the **Start** screen, select the **Visual Studio Code** tile.
 1. From the **File** menu, select **Open Folder**.
-1. In the **File Explorer** window that opens, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func**, and then select **Select Folder**.
+1. In the **File Explorer** window that opens, browse to **Labs\\04\\Starter\\func**, and then select **Select Folder**.
 1. In the Explorer pane of the **Visual Studio Code** window, open the **local.settings.json** file.
 1. Observe the current value of the **AzureWebJobsStorage** setting:
 
@@ -143,10 +133,10 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 #### Task 3: Build and validate a project
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to **build** the .NET Core 3.1 project:
@@ -162,10 +152,10 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 #### Task 1: Create an HTTP-triggered function
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to use the **Azure Functions Core Tools** to create a new function named **Echo** using the **HTTP trigger** template:
@@ -184,7 +174,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 
 1. On the **Start** screen, select the **Visual Studio Code** tile.
 1. From the **File** menu, select **Open Folder**.
-1. In the **File Explorer** window that opens, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func**, and then select **Select Folder**.
+1. In the **File Explorer** window that opens, browse to **Labs\\04\\Starter\\func**, and then select **Select Folder**.
 1. In the Explorer pane of the **Visual Studio Code** window, open the **Echo.cs** file.
 1. In the code editor, observe the example implementation:
 
@@ -340,10 +330,10 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 #### Task 3: Test the HTTP-triggered function by using az rest
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd \Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to run the function app project:
@@ -370,10 +360,10 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 #### Task 1: Create a schedule-triggered function
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to use the **Azure Functions Core Tools** to create a new function named **Recurring** using the **Timer trigger** template:
@@ -390,7 +380,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 
 1. On the **Start** screen, select the **Visual Studio Code** tile.
 1. From the **File** menu, select **Open Folder**.
-1. In the **File Explorer** window that opens, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func**, and then select **Select Folder**.
+1. In the **File Explorer** window that opens, browse to **Labs\\04\\Starter\\func**, and then select **Select Folder**.
 1. In the Explorer pane of the **Visual Studio Code** window, open the **Recurring.cs** file.
 1. In the code editor, observe the implementation:
 
@@ -416,10 +406,10 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 #### Task 3: Observe function runs
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to run the function app project:
@@ -437,7 +427,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 
 1. On the **Start** screen, select the **Visual Studio Code** tile.
 1. From the **File** menu, select **Open Folder**.
-1. In the **File Explorer** window that opens, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func**, and then select **Select Folder**.
+1. In the **File Explorer** window that opens, browse to **Labs\\04\\Starter\\func**, and then select **Select Folder**.
 1. In the Explorer pane of the **Visual Studio Code** window, open the **Recurring.cs** file.
 1. In the code editor, observe the existing **Run** method signature:
 
@@ -458,10 +448,10 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 #### Task 5: Observe function runs
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to run the function app project:
@@ -494,17 +484,17 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 1. On the **Container** blade, select **Upload**.
 1. In the **Upload blob** window, perform the following actions:
     1. In the **Files** section, select the **Folder** icon.
-    1. In the **File Explorer** window, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter**, select the **settings.json** file, and then select **Open**.
+    1. In the **File Explorer** window, browse to **Labs\\04\\Starter**, select the **settings.json** file, and then select **Open**.
     1. Ensure that the **Overwrite if files already exist** check box is selected, and then select **Upload**.
         > **Note**: Wait for the blob to upload before you continue with this lab.
 
 #### Task 2: Create a Blob-triggered function
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to use the **Azure Functions Core Tools** to create a new function named **GetSettingInfo** using the **Blob trigger** template:
@@ -521,7 +511,7 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 
 1. On the **Start** screen, select the **Visual Studio Code** tile.
 1. From the **File** menu, select **Open Folder**.
-1. In the **File Explorer** window that opens, browse to **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func**, and then select **Select Folder**.
+1. In the **File Explorer** window that opens, browse to **Labs\\04\\Starter\\func**, and then select **Select Folder**.
 1. In the Explorer pane of the **Visual Studio Code** window, open the **GetSettingInfo.cs** file.
 1. In the code editor, observe the example implementation:
 
@@ -646,10 +636,10 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 #### Task 4: Test the Blob-inputted function by using httprepl
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to run the function app project:
@@ -718,10 +708,10 @@ az rest --method post --url "http://localhost:7071/api/echo" --body "{\"displayN
 #### Task 1: Deploy using the Azure Functions Core Tools
 
 1. On the taskbar, select the **Windows Terminal** icon.
-1. Enter the following command, and then select Enter to change the current directory to the **Allfiles (F):\\Allfiles\\Labs\\04\\Starter\\func** empty directory:
+1. Enter the following command, and then select Enter to change the current directory to the **Labs\\04\\Starter\\func** empty directory:
 
     ```powershell
-    cd F:\Allfiles\Labs\04\Starter\func
+    cd Labs\04\Starter\func
     ```
 
 1. When you receive the open command prompt, enter the following command, and then select Enter to login to the Azure Command-Line Interface (CLI):

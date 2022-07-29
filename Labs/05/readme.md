@@ -21,20 +21,12 @@ Microsoft updates this training course when the community brings needed changes 
 #### Sign in to the lab virtual machine
 
 Sign in to your Windows 10 virtual machine (VM) by using the following credentials:
-    
--   Username: **Admin**
-
--   Password: **Pa55w.rd**
 
 > **Note**: Instructions to connect to the virtual lab environment will be provided by your instructor.
 
-#### Review the installed applications
+## Architecture diagram
 
-Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for the applications that you'll use in this lab:
-    
--   Microsoft Edge
-
--   File Explorer
+![Architecture diagram depicting the deployment of compute workloads by using images and containers](_images/Lab05-Diagram.png)
 
 ### Exercise 1: Create a VM by using the Azure Command-Line Interface (CLI)
 
@@ -293,7 +285,7 @@ In this exercise, you used Cloud Shell to create a VM as part of an automated sc
 1.  Copy and paste the following code into the **Dockerfile** file:
 
     ```
-    # Start using the .NET Core 3.1 SDK container image
+    # Start using the .NET 6 SDK container image
     FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
     # Change current working directory

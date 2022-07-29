@@ -1,11 +1,5 @@
 # Function Apps
 
-[Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
-
-[Azure Functions Reference](https://docs.microsoft.com/en-gb/azure/azure-functions/functions-reference)
-
-[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-java)
-
 ## Demos
 
 -   Create Hello World Function App using Portal using Portal Designer
@@ -15,6 +9,14 @@
 -   Durable Functions
 -   Azure Functions REST Api (optional)
 -   Cosmos DB Change Feed (optional)
+
+## Readings
+
+[Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
+
+[Azure Functions Reference](https://docs.microsoft.com/en-gb/azure/azure-functions/functions-reference)
+
+[Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-java)
 
 ## CLI Reference
 

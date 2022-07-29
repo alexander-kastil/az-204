@@ -22,24 +22,12 @@ Microsoft updates this training course when the community brings needed changes 
 #### Sign in to the lab virtual machine
 
 Sign in to your Windows 10 virtual machine (VM) by using the following credentials:
-    
--   Username: **Admin**
-    
--   Password: **Pa55w.rd**
 
 > **Note**: Instructions to connect to the virtual lab environment will be provided by your instructor.
 
-#### Review the installed applications
+## Architecture diagram
 
-Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for the applications that you'll use in this lab:
-    
--   Microsoft Edge
-
--   File Explorer
-
--   Windows PowerShell
-
--   Visual Studio Code
+![Architecture diagram depicting a user building a web application on Azure platform as a service offering.](./_images/Lab01-Diagram.png)
 
 ### Exercise 1: Build a back-end API by using Azure Storage and the Web Apps feature of Azure App Service
 
@@ -217,7 +205,7 @@ Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for 
 
 1.  From the **File** menu, select **Open Folder**.
 
-1.  In the **File Explorer** window, browse to **Allfiles (F):\\Allfiles\\Labs\\01\\Starter\\API**, and then select **Select Folder**.
+1.  In the **File Explorer** window, browse to **Labs\\01\\Starter\\API**, and then select **Select Folder**.
 
 1.  In the Explorer pane of the **Visual Studio Code** window, expand the **Controllers** folder, and then select the **ImagesController.cs** file to open the file in the editor.
 

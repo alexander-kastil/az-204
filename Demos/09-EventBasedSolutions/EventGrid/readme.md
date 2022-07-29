@@ -1,5 +1,12 @@
 # Event Grid
 
+## Demos
+
+- Console Publisher / Az Funct Subscriber
+- Real Time connected Angular UI
+
+## Readings
+
 [Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/overview)
 
 [Azure Event Grid bindings for Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-grid)

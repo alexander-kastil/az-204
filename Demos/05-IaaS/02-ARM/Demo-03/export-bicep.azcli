@@ -1,0 +1,5 @@
+grp=az204-m08-apim-staging
+file=ressource-export.json
+
+az group export -n $grp > $file
+az bicep decompile --file ./$file

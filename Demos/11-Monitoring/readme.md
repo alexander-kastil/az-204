@@ -1,8 +1,7 @@
 # Monitoring
 
-[Azure Monitor](https://docs.microsoft.com/en-us/azure/azure-monitor/)
-
-[Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)
+- Azure Monitor
+- Application Insights
 
 ## CLI Reference
 

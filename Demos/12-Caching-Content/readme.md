@@ -1,8 +1,7 @@
 # Caching
 
-[Redis Cache](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/)
-
-[Azure CDN](https://docs.microsoft.com/en-us/azure/cdn/)
+- Redis Cache
+- Azure CDN / Front Door
 
 ## CLI Reference
 

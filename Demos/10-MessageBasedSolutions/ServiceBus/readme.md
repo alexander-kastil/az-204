@@ -1,11 +1,13 @@
 # Azure Service Bus
 
-[Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/)
-
 ## Demos
 
 - Using Service Bus Queues 
 - Connecting Microservices using Integration Events and Service Bus Topics
+
+## Readings
+
+[Azure Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/)
 
 ## CLI Reference
 

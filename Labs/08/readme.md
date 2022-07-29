@@ -22,18 +22,12 @@ Microsoft updates this training course when the community brings needed changes 
 #### Sign in to the lab virtual machine
 
 Sign in to your Windows 10 virtual machine (VM) by using the following credentials:
-    
--   Username: **Admin**
-
--   Password: **Pa55w.rd**
 
 > **Note**: Instructions to connect to the virtual lab environment will be provided by your instructor.
 
-#### Review the installed applications
+## Architecture diagram
 
-Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for the applications that you'll use in this lab:
-    
--   Microsoft Edge
+![Architecture diagram depicting the creation of a multi-tier application by using Azure services.](_images/Lab08-Diagram.png)
 
 ### Exercise 1: Creating an Azure App Service resource by using a Docker container image
 

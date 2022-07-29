@@ -1,5 +1,12 @@
 # CosmosDB
 
+## Demos
+
+-   Create and use Cosmos DB
+-   Use Cosmos DB in .NET Core
+
+## Readings
+
 [Azure Cosmos DB](https://docs.microsoft.com/de-at/azure/cosmos-db/)
 
 [Consistency levels in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)
@@ -11,11 +18,6 @@
 [Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21)
 
 [Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-java?tabs=sync)
-
-## Demos
-
--   Create and use Cosmos DB
--   Use Cosmos DB in .NET Core
 
 ## CLI Reference
 
