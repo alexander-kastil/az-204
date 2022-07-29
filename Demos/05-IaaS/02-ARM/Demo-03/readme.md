@@ -1,4 +1,10 @@
-# Bicep
+# Introduction to Bicep
+
+## Demos
+
+- Export Bicep from existing Ressource
+
+## Readings
 
 [Bicep Documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
 
