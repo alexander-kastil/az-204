@@ -1,8 +1,7 @@
 # Message Based Solution
 
-[Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview)
-
-[Azure Queue Storage](https://docs.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction)
+- Azure Queue Storage
+- Service Bus
 
 [Service Bus vs Queue Storage](https://www.c-sharpcorner.com/UploadFile/fe6121/deep-dive-into-azure-storage-queue-vs-azure-service-bus-queu/)
 
