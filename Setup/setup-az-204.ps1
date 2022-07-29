@@ -38,7 +38,8 @@ choco install nodejs-lts --version=14.15.0 -y
 choco install azure-cli -y
 choco install azurepowershell -y
 choco install curl -y
-choco install python --version=3.9.0
+choco install python --version=3.9.0 -y
+choco install azure-data-studio -y 
 
 # Refresh Path Env
 Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
@@ -72,6 +73,7 @@ code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-python.python
 code --install-extension alex-pattison.theme-cobalt3
 code --install-extension savranweb.cosmosdbsqlapi
+code --install-extension ms-kubernetes-tools.vscode-aks-tools
 
 # Azurite Storage Emulator & Function Core Tools v4
 npm install -g azure-functions-core-tools@4 --unsafe-perm true --force
