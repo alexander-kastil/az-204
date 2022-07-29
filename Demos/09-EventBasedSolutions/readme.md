@@ -4,8 +4,6 @@
 
 [Event Hubs](https://docs.microsoft.com/en-us/azure/event-hubs/)
 
-[Notification Hub](https://docs.microsoft.com/en-us/azure/notification-hubs/)
-
 [Choose between Azure messaging services - Event Grid, Event Hubs, and Service Bus](https://docs.microsoft.com/en-us/azure/event-grid/compare-messaging-services)
 
 ## Real Time Solutions
