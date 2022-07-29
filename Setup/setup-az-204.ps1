@@ -71,6 +71,7 @@ code --install-extension vs-publisher-1448185.keyoti-changeallendoflinesequence
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension ms-python.python
 code --install-extension alex-pattison.theme-cobalt3
+code --install-extension savranweb.cosmosdbsqlapi
 
 # Azurite Storage Emulator & Function Core Tools v4
 npm install -g azure-functions-core-tools@4 --unsafe-perm true --force
