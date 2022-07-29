@@ -20,17 +20,7 @@ Microsoft updates this training course when the community alerts us to needed ch
 
 Sign in to your Windows 10 virtual machine (VM) by using the following credentials:
 
-- Username: **Admin**
-
-- Password: **Pa55w.rd**
-
 > **Note**: Your instructor will provide instructions to connect to the virtual lab environment.
-
-#### Review the installed applications
-
-Find the taskbar on your Windows 10 desktop. The taskbar contains the icon for the application that you'll use in this lab:
-
-- Microsoft Edge
 
 ## Architecture diagram
 

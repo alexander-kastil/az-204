@@ -24,10 +24,6 @@ Microsoft updates this training course when the community brings needed changes 
 
 Sign in to your Windows 10 virtual machine (VM) by using the following credentials:
 
--   Username: **Admin**
-
--   Password: **Pa55w.rd**
-
 > **Note**: Instructions to connect to the virtual lab environment will be provided by your instructor.
 
 ## Architecture diagram

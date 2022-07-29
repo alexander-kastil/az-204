@@ -22,20 +22,20 @@ Microsoft updates this training course when the community brings needed changes 
 #### Sign in to the lab virtual machine
 
 Sign in to your Windows 10 virtual machine (VM) by using the following credentials:
-    
--   Username: **Admin**
-
--   Password: **Pa55w.rd**
 
 > **Note**: Instructions to connect to the virtual lab environment will be provided by your instructor.
 
-#### Review the installed applications
+## Ensure that your lab environment has its time set properly (no delay, according to your timezone)
 
-Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for the applications that you'll use in this lab:
-    
--   Microsoft Edge
+>**Note:** If you notice that your lab environment has its time delayed, please adjust its local time by using the following powershell command to increase the time by 15 minutes
 
--   Visual Studio Code
+```powershell
+  Set-Date -Adjust (New-TimeSpan -Minutes 15)
+```
+
+## Architecture diagram
+
+![Architecture diagram depicting a user authenticating by using OpenID Connect, MSAL, and .NET SDKs.](_images/Lab06-Diagram.png)
 
 ### Exercise 1: Create an Azure Active Directory (Azure AD) application registration
 

@@ -22,19 +22,11 @@ Microsoft updates this training course when the community brings needed changes 
 
 Sign in to your Windows 10 virtual machine (VM) by using the following credentials:
 
-- Username: **Admin**
-- Password: **Pa55w.rd**
-
 > **Note**: Instructions to connect to the virtual lab environment will be provided by your instructor.
 
-#### Review the installed applications
+## Architecture diagram
 
-Find the taskbar on your Windows 10 desktop. The taskbar contains the icons for the applications that you'll use in this lab:
-
-- Microsoft Edge
-- File Explorer
-- Windows Terminal
-- Visual Studio Code
+![Architecture diagram depicting a user accessing resource secrets more securely across services.](_images/Lab07-Diagram.png)
 
 ### Exercise 1: Create Azure resources
 
