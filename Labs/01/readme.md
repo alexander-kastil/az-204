@@ -117,7 +117,7 @@ Sign in to your Windows 10 virtual machine (VM) by using the following credentia
 
     1.  In the **Files** section, select the **Folder** icon.
 
-    1.  In the **File Explorer** window, browse to **Allfiles (F):\\Allfiles\\Labs\\01\\Starter\\Images**, select the **grilledcheese.jpg** file, and then select **Open**.
+    1.  In the **File Explorer** window, browse to **Labs\\01\\Starter\\Images**, select the **grilledcheese.jpg** file, and then select **Open**.
 
     1.  Ensure that the **Overwrite if files already exist** check box is selected, and then select **Upload**. Wait for the blob to upload before you continue with this lab.
 
