@@ -16,6 +16,7 @@ choco install googlechrome -y
 choco install vscode -y
 choco install git -y
 choco install gitextensions -y
+choco install git-lfs.install -y
 choco install gh -y
 
 Write-Host "*****" -ForegroundColor red
@@ -31,9 +32,6 @@ choco install googlechrome -y
 choco install vscode -y
 choco install dotnetcore-sdk -y
 choco install dotnet-6.0-sdk -y
-choco install git -y
-choco install gitextensions -y
-choco install git-lfs.install -y
 choco install nodejs-lts --version=14.15.0 -y
 choco install azure-cli -y
 choco install azurepowershell -y
