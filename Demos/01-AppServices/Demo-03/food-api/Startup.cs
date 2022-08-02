@@ -30,11 +30,6 @@ namespace FoodApi
 
             services.AddSingleton<IConfiguration>(Configuration);
 
-            //Aplication Insights
-            services.AddApplicationInsightsTelemetry(Configuration["Azure:ApplicationInsights"]);
-            services.AddSingleton<ITelemetryInitializer, FoodTelemetryInitializer>();
-            services.AddSingleton<AILogger>();
-
             //Database
             bool useSQLite = bool.Parse(Configuration["App:UseSQLite"]);
             if (useSQLite)

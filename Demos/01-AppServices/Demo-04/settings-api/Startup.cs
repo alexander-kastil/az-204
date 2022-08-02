@@ -31,11 +31,12 @@ namespace AppSettingsWebApi
             //add the config to the .net IOC container
             services.AddSingleton < IConfiguration > (Configuration);  
 
-            services.AddControllers();
+            //Swagger
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppSettingsWebApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Settings-Api", Version = "v1" });
             });
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,8 +46,13 @@ namespace AppSettingsWebApi
                 app.UseDeveloperExceptionPage();                
             }
 
+            // Swagger
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AppSettingsWebApi v1"));
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Settings-Api");
+                c.RoutePrefix = string.Empty;
+            });
 
             // app.UseHttpsRedirection();
 

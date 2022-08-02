@@ -1,13 +1,13 @@
 rnd=$RANDOM
 grp=az204-m01-appsettings-$rnd
 plan=appsettings-$rnd
-app=settings-app-$rnd
+app=settings-api-$rnd
 loc=westeurope
 
 az group create -n $grp -l $loc
 
 # create and deploy app
-cd AppSettingsWebApi
+cd settings-api
 az webapp up -n $app -g $grp -p $plan -l $loc -r "DOTNET|6.0"
 cd ..
 
