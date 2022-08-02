@@ -3,8 +3,6 @@
 - Using VS Extension
 - Publishing Profile
 - az webapp up
-- [Use Azure Dev Ops (optional)](https://github.com/arambazamba/mvc-devops/blob/master/az-pipelines/build-provision-deploy.yml)
-- GitHub Actions  (optional)
 
 ## Scaffold App & Deploy using Azure App Service Extensions
 

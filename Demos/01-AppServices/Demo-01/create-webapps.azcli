@@ -2,7 +2,7 @@ rnd=$RANDOM
 grp=az204-m01-appservices-$rnd
 loc=westeurope
 appPlan=appservices-$rnd
-pubprofileapp=publishing-profile-$rnd
+mvcapp=mvcapp-$rnd
 
 # create a resource group
 az group create -n $grp -l $loc
@@ -16,11 +16,11 @@ az webapp create -n cli-api-$rnd -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 # create mvc app used with  publshing profile
 az webapp create -n pubprofileapp -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 
-user=$(az webapp deployment list-publishing-profiles -g $grp -n $pubprofileapp --query [1].userName -o tsv)
-pwd=$(az webapp deployment list-publishing-profiles -g $grp -n $pubprofileapp --query [1].userPWD -o tsv)
+user=$(az webapp deployment list-publishing-profiles -g $grp -n $mvcapp --query [1].userName -o tsv)
+pwd=$(az webapp deployment list-publishing-profiles -g $grp -n $mvcapp --query [1].userPWD -o tsv)
 
 echo "Update your publishing Profile:"
-echo "PublishSiteName: $pubprofileapp"
+echo "PublishSiteName: $mvcapp"
 echo "UserName: $user"
 echo "Password: $pwd"
 
