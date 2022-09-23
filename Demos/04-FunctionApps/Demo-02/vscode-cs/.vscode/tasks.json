@@ -57,7 +57,10 @@
 		},
 		{
 			"type": "func",
-			"dependsOn": "build (functions)",			
+			"dependsOn": "build (functions)",
+			"options": {
+				"cwd": "${workspaceFolder}/bin/Debug/net6.0"
+			},
 			"command": "host start",
 			"isBackground": true,
 			"problemMatcher": "$func-dotnet-watch"
