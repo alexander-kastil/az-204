@@ -2,11 +2,12 @@
 
 ## Demos
 
--   Docker Basics & Multistage Build
--   Publish Image to Azure Container Registry
--   Use Azure Container Registry Build Task
--   Azure Container Instances (ACI) & Web Apps for Containers - Angular
--   Kubernetes Intro (optional)
+- Docker Basics & Multistage Build
+- Publish Image to Azure Container Registry
+- Use Azure Container Registry Build Task
+- Web Apps for Containers - Angular
+- Azure Container Instances (ACI) & 
+- Kubernetes Intro (optional)
 
 ## Tools & Extensions
 

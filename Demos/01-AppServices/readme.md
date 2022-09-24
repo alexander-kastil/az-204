@@ -4,13 +4,9 @@
 
 - Create and Deploy Web App
     - Using VS Extension
-    - Publishing Profile
     - az webapp up
-    - [Use Azure Dev Ops (optional)](https://github.com/arambazamba/mvc-devops/blob/master/az-pipelines/build-provision-deploy.yml)
-    - GitHub Actions  (optional)
-- Deploy Static HTML App using Git
-- Web Apps for Containers
-- Config Mgmt using App Settings and Environment
+- Deploy Static HTML App using GitHub Actions
+- App Settings and Environment
 - Using Easy Authentication
 - Geo Routing with Traffic Manager
 - Deployment Slots
