@@ -1,5 +1,5 @@
-# AppSettings
+# Easy Authentication
 
-[Configuration in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-6.0)
+[Authentication and authorization in Azure App Service and Azure Functions](https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization)
 
-[Setx](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/setx)
+- Enable Easy Auth on Git Deployment App

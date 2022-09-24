@@ -1,5 +1,7 @@
-# Easy Authentication
+# Azure Traffic Manager
 
-[Authentication and authorization in Azure App Service and Azure Functions](https://docs.microsoft.com/en-us/azure/app-service/overview-authentication-authorization)
+[Controlling Azure App Service traffic with Azure Traffic Manager](https://docs.microsoft.com/en-us/azure/app-service/web-sites-traffic-manager)
 
-- Enable Easy Auth on Git Deployment App
+- Execute `traffic-manager.azcli`
+- Modifiy Start Pages using Kudu
+- Call from within the VM to demonstrate Traffice Manager to hit corresponding Start Page

@@ -8,23 +8,15 @@ mvcapp=mvcapp-$rnd
 az group create -n $grp -l $loc
 
 # create an App Service plan
-az appservice plan create -n $appPlan -g $grp --sku F1
+az appservice plan create -n $appPlan -g $grp --sku S1
 
 # create cliapp
 az webapp create -n cli-api-$rnd -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 
-# create mvc app used with  publshing profile
-az webapp create -n pubprofileapp -g $grp --plan $appPlan --runtime "DOTNET|6.0"
+# create mvcapp
+az webapp create -n $mvcapp -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 
-user=$(az webapp deployment list-publishing-profiles -g $grp -n $mvcapp --query [1].userName -o tsv)
-pwd=$(az webapp deployment list-publishing-profiles -g $grp -n $mvcapp --query [1].userPWD -o tsv)
-
-echo "Update your publishing Profile:"
-echo "PublishSiteName: $mvcapp"
-echo "UserName: $user"
-echo "Password: $pwd"
-
-# create and upload blazor app using az webapp up - execute from within ./blazor-skils
+# create and upload blazor app using az webapp up
 cd blazor-skills
 az webapp up -n blazor-skills-$rnd -g $grp -p $appPlan -l $loc -r "DOTNET|6.0"
 cd ..
