@@ -6,8 +6,6 @@
 
 [Git Graph VS Code](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 
-[Git History Diff](https://marketplace.visualstudio.com/items?itemName=huizhou.githd)
-
 # Git / Github Essentials
 
 ## Configuration
@@ -128,6 +126,50 @@ git branch save-detached-head
 ```
 
 > Note: You will have to switch to the branch you saved to afterwards
+
+## Changing Branches
+
+Saving work befor switching the branch - alternative to stage and commit:
+
+```
+git stash | git stash push
+```
+
+List stashes:
+
+```
+git stash list
+```
+
+Use a stash:
+
+```
+git stash apply | git stash apply stash@{2}
+```
+
+Switch to Branch:
+
+```
+git checkout [name_of_your_branch]
+```
+
+Cleaning up after branch switches - ie to remove untracked files from other branches on local disk:
+
+-n flag is used to perform dry run.
+-f flag is used to remove untracked files.
+-fd flag is used to remove untracked files and folders.
+-fx flag is used to remove untracked and ignored files.
+
+```
+git clean -fd | git clean -f folderpath 
+```
+
+Update a Branch from master / main:
+
+```
+git fetch
+git rebase origin/master
+```
 
 ## Tags
 
@@ -302,6 +344,6 @@ git flow release finish  RELEASE
 
 ## Additional Labs & Walkthroughs
 
-[Introduction to Git](https://docs.microsoft.com/en-us/learn/modules/intro-to-git/)
-
 [Learning Path - Introduction to version control with Git](https://docs.microsoft.com/en-us/learn/paths/intro-to-vc-git/)
+
+[Learning Path - Manage Source Control (GitHub)](https://learn.microsoft.com/en-us/training/paths/az-400-manage-source-control/)
