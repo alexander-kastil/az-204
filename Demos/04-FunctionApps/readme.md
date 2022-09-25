@@ -16,6 +16,8 @@
 
 [Azure Functions Reference](https://docs.microsoft.com/en-gb/azure/azure-functions/functions-reference)
 
+[Event-driven scaling in Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/event-driven-scaling)
+
 [Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-java)
 
 ## CLI Reference

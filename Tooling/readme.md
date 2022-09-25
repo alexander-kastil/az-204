@@ -2,7 +2,7 @@
 
 - [Getting Started](./00-GettingStarted)
 - [Azure Pass](./05-AzurePass)
-- [GitHub](./01-Github)
+- [Git & GitHub](./01-Git)
 - [Visual Studio Code](./02-VSCode)
 - [Markdown](./03-Markdown)
 - [Azure CLI](./04-CLI)

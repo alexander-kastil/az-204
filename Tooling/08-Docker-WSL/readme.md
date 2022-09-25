@@ -18,26 +18,13 @@ Check Docker Settings:
 
 #### <a id="wsl">Install WSL2</a>
 
-Execute script `setup-wsl2.ps1` multible times to setup WSL2. 
+Open PowerShell as Administrator and run:
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force;
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/arambazamba/az-204/main/Tooling/08-Docker-WSL/setup-wsl2.ps1'))
+wsl --install
 ```
 
-First Run:
-
-![finish-sw](_images/finish-sw.jpg)
-
->Note: Reboot between first and second run.
-
-Second Run:
-
-![select-distro](_images/select-distro.jpg)
-
-After the second run your selected linux distro will be opened an you can set your username:
-
-> Note: You can take the same credntials just like on the Windows VM
+Reboot your machine & open WSL and set your root user & password:
 
 ```
 user=azlabadmin
