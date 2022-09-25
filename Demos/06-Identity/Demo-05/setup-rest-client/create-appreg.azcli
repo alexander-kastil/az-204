@@ -1,0 +1,4 @@
+app=vscode-rest-client
+id=$(az ad app create --display-name $app --enable-access-token-issuance true --enable-id-token-issuance true --query appId -o tsv) 
+
+az ad app credential reset --id $id --append
