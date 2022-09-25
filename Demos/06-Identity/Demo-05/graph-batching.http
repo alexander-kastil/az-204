@@ -1,0 +1,41 @@
+# @name auth
+POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
+Content-type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientId}}
+&client_secret={{clientSecret}}
+&scope={{scope}}
+
+### get all users
+# @name users
+GET https://graph.microsoft.com/v1.0/users
+Authorization: Bearer {{auth.response.body.access_token}}
+
+
+### get profile
+GET https://graph.microsoft.com/v1.0/users/{{users.response.body.value[0].userPrincipalName }}/
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### batch request
+POST https://graph.microsoft.com/v1.0/$batch
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+{
+    "requests": [
+        {
+            "url": "/users/{{users.response.body.value[0].userPrincipalName }}/",
+            "method": "GET",
+            "id": "1"
+        },
+        {
+            "url": "/users/{{users.response.body.value[3].userPrincipalName }}/events",
+            "method": "GET",
+            "id": "2"
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+### Set base vars
+@graph=https://graph.microsoft.com/v1.0
+
+### Authenticate
+# @name auth
+POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
+Content-type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientId}}
+&client_secret={{clientSecret}}
+&scope={{scope}}
+
+### get a specific user
+# @name user
+GET {{graph}}/users/alexander.pajer@integrations.at
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### get a specific user photo
+# @name photo
+GET {{graph}}/users/{{user.response.body.id}}/photo/$value
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Get groups
+# @name grps
+GET {{graph}}/groups
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Get group owner
+GET {{graph}}/groups/{{grps.response.body.value[0].id}}/owners
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Get the list of groups where a user is an owner
+GET {{graph}}/users/{{user.response.body.id}}/ownedObjects
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### list groups
+# @name grps
+GET {{graph}}/groups
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### create grp
+# @name grp
+POST {{graph}}/groups/
+Content-type: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+{
+  "description": "a dynamic group for ms-600",
+  "displayName": "ms600-dynamic",
+  "groupTypes": [
+    "Unified"
+  ],
+  "mailEnabled": false,
+  "mailNickname": "ms600-dynamic",
+  "securityEnabled": true
+}
+
+### add dynamic members - requires Azure AD Premium P1 or higher
+PATCH https://graph.microsoft.com/v1.0/groups/{{grp.response.body.id}}
+Content-type: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+{
+    "groupTypes": 
+    ["Unified", "DynamicMembership"],
+    "membershipRule": "user.department -eq 'IT'","membershipRuleProcessingState": "on"
+}

@@ -1,15 +1,21 @@
-# REST Client
+# Graph Samples
+
+- graph-batching.http
+- usr-grp-mgmt.http
+- use-teamwork.http
+
+## Use REST Client with Microsoft Graph
 
 [REST Client VS Code Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
-To support Auth create an app registration in Azure AD using `create-appreg.azcli`.
+To support Auth create an app registration in Azure AD using `setup-rest-client/create-appreg.azcli`.
 
-Persist the output into your VS Code `settings.json`:
+Persist the output into `settings.json` of Visual Studio Code:
 
 ```json
 "rest-client.environmentVariables": {
         "$shared": {},
-        "blogdemo":{
+        "dev":{
             "tenantId":"<<your aad tenant>>",
             "clientId":"<<your client id>>",
             "clientSecret":"<<your client secret>>",
@@ -25,7 +31,7 @@ Assign the `User.ReadAll` permissions for out test as an Application Permission
 
 >Note: If you need additional permission you will have to assign them using the app registrations "API Permissions" tab
 
-To test choose "F1" -> "REST Clien: Switch Environment" and execute `get-token.http`. 
+To test choose "F1" -> "REST Clien: Switch Environment", chose environment `dev` and execute `get-auth-token.http`. 
 
 ```json
 # @name auth
