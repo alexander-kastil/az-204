@@ -29,7 +29,7 @@
 
 ## Additional Labs & Walkthroughs
 
-[Execute queries in Azure Cosmos DB SQL API](https://docs.microsoft.com/en-us/learn/paths/execute-queries-azure-cosmos-db-sql-api/)
+[Learning Path - Execute queries in Azure Cosmos DB SQL API](https://docs.microsoft.com/en-us/learn/paths/execute-queries-azure-cosmos-db-sql-api/)
 
 [Learning Path - Work with NoSQL data in Azure Cosmos DB](https://docs.microsoft.com/en-us/learn/paths/work-with-nosql-data-in-azure-cosmos-db/)
 

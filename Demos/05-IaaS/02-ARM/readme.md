@@ -32,8 +32,6 @@
 
 ## Additional Labs & Walkthroughs
 
-[Deploy and manage resources in Azure by using ARM templates](https://docs.microsoft.com/en-us/learn/paths/deploy-manage-resource-manager-templates/)
-
-[Build Azure Resource Manager templates](https://docs.microsoft.com/en-us/learn/modules/build-azure-vm-templates/)
+[Learning Path - Deploy and manage resources in Azure by using ARM templates](https://docs.microsoft.com/en-us/learn/paths/deploy-manage-resource-manager-templates/)
 
 [Build your first Bicep template](https://docs.microsoft.com/en-us/learn/modules/build-first-bicep-template/)

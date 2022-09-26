@@ -15,9 +15,10 @@
 
 ## Additional Labs & Walkthroughs
 
-[Implement user authentication and authorization](https://docs.microsoft.com/en-us/learn/paths/az-204-implement-authentication-authorization/)
+[Learning Path - Implement user authentication and authorization](https://docs.microsoft.com/en-us/learn/paths/az-204-implement-authentication-authorization/)
 
 [Getting Started with Microsoft Identity](https://docs.microsoft.com/en-us/learn/modules/getting-started-identity/)
 
 [Secure custom APIs with Microsoft Identity](https://docs.microsoft.com/en-us/learn/modules/identity-secure-custom-api/)
 
+[Sign in users with Azure Active Directory in a Java web app](https://learn.microsoft.com/en-us/training/modules/azure-java-app-enable-authentication-authorization/)
