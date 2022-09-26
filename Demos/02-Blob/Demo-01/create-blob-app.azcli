@@ -17,7 +17,7 @@ az storage container create -n $container --account-key $key --account-name $acc
 
 az storage blob upload --container-name $container --file $file_to_upload --name $blob_name --account-key $key --account-name $acct
 
-az storage blob list --container-name $container --output table --account-name $acct
+az storage blob list --container-name $container --output table --account-name $acct --account-key $key
 
 az storage blob download --container-name $container --name $blob_name --file $destination_file --output table --account-key $key --account-name $acct
 
