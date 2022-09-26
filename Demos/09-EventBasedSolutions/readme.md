@@ -25,3 +25,5 @@
 [React to state changes in your Azure services by using Event Grid](https://docs.microsoft.com/en-us/learn/modules/react-to-state-changes-using-event-grid/)
 
 [Enable reliable messaging for Big Data applications using Azure Event Hubs](https://docs.microsoft.com/en-us/learn/modules/enable-reliable-messaging-for-big-data-apps-using-event-hubs/)
+
+[How to create a Spring Cloud Stream Binder application with Azure Event Hubs - Java](https://learn.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-azure-event-hub?source=recommendations)

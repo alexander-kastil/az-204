@@ -17,4 +17,4 @@
 
 [Optimize your web applications by caching read-only data with Redis](https://docs.microsoft.com/en-us/learn/modules/optimize-your-web-apps-with-redis/)
 
-[Accelerate and scale a Spring Boot application with Azure Cache for Redis](https://docs.microsoft.com/en-us/learn/modules/accelerate-scale-spring-boot-application-azure-cache-redis/?WT.mc_id=java-11777-judubois&source=learn)
+[Accelerate and scale a Spring Boot application with Azure Cache for Redis](https://docs.microsoft.com/en-us/learn/modules/accelerate-scale-spring-boot-application-azure-cache-redis/)
