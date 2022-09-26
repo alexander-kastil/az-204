@@ -32,7 +32,7 @@
 
 ## Additional Labs & Walkthroughs
 
-[Create serverless applications](https://docs.microsoft.com/en-us/learn/paths/create-serverless-applications/)
+[Learning Path - Create serverless applications](https://docs.microsoft.com/en-us/learn/paths/create-serverless-applications/)
 
 [Build a real-time event-driven Java solution in Azure](https://docs.microsoft.com/en-us/learn/modules/deploy-real-time-event-driven-app/?WT.mc_id=java-11777-judubois&source=learn)
 

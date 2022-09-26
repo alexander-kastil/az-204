@@ -18,5 +18,5 @@ az webapp create -n $mvcapp -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 
 # create and upload blazor app using az webapp up
 cd blazor-skills
-az webapp up -n blazor-skills-$rnd -g $grp -p $appPlan -l $loc -r "DOTNET|6.0"
+az webapp up -n blazor-skills-$rnd -g $grp -p skillsplan --sku F1 -l $loc -r "DOTNET|6.0"
 cd ..

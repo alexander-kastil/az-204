@@ -24,4 +24,4 @@
 
 ## Additional Labs & Walkthroughs
 
-[Store application data with Azure Blob storage](https://docs.microsoft.com/en-us/learn/modules/store-app-data-with-azure-blob-storage/)
+[Store application data with Azure Blob storage - Java option](https://docs.microsoft.com/en-us/learn/modules/store-app-data-with-azure-blob-storage/)
