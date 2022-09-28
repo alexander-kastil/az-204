@@ -321,7 +321,7 @@ In this exercise, you used Cloud Shell to create a VM as part of an automated sc
 
     1.  In the **Registry name** text box, give your registry a globally unique name.
 
-        >  **Note**: The blade will automatically check the name for uniqueness and inform you if you're required to choose a different name.
+        >  **Note**: The blade will automatically check the name for uniqueness and inform you if you're required to choose a different name. Please use lowercase characters.
 
     1.  Leave the **Subscription** text box set to its default value.
 
