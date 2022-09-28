@@ -1,5 +1,5 @@
 grp=az204-m05-containers
-acr=configacr
+acr=configacr$RANDOM
 
 az group create -n $grp -l westeurope
 
