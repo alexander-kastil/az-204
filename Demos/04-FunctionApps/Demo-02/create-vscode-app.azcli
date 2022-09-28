@@ -8,7 +8,7 @@ az group create -n $grp -l $loc
 
 az storage account  create -n $storage -g $grp 
 
-url=$(az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version ~4 --query defaultHostName -o tsv)
+url=$(az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4 --query defaultHostName -o tsv)
 
 echo "Funtions app created: $app at $url"
 

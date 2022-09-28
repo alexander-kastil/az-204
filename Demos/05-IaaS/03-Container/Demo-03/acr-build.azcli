@@ -1,6 +1,7 @@
+rnd=16857
 grp=az204-m05-containers
 loc=westeurope
-acr=configacr
+acr=configacr$rnd
 img=config-ui
 
 az acr login --name $acr

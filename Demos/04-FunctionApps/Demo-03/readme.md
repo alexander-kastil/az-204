@@ -32,3 +32,14 @@ Install a specific extension
 ```
 func extensions install --package Microsoft.Azure.WebJobs.Extensions.Storage --version 4.0.5
 ```
+
+local.settings.json:
+```
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "AzureWebJobsStorage": "<Storage Connection String>"
+  }
+}
+```
