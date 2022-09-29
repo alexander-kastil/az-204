@@ -10,25 +10,26 @@ namespace FoodApp
     {
         static void Main(string[] args)
         {
-            var topic = "foodorder-topic-11762";
+            var events = 20;
+            // TODO: Enter value for topic from echo '** Topic: ' $topic
+            var topic = "foodorder-topic-11705";
             var region = "westeurope";
 
-            // TODO: Enter value for topic-key from create script
-            string topicKey = "dbMRok6KyJFfBuZxFNnaGVj7LqklU05pT5ivJcJsCP0=";
+            // TODO: Enter value for topicKey from echo '** Topic Key: ' $key
+            string topicKey = "y5Vi2+3j+Yz50xViCa9ki4bplPzoAkBqZRA/Wp0le5A=";
             string topicEndpoint = $"https://{topic}.{region}-1.eventgrid.azure.net/api/events";
             string topicHostname = new Uri (topicEndpoint).Host;
-
             TopicCredentials topicCredentials = new TopicCredentials (topicKey);
             EventGridClient client = new EventGridClient (topicCredentials);
-            var evts = GetEventsList ();
+            var evts = GetEventsList (events);
             client.PublishEventsAsync (topicHostname, evts).GetAwaiter ().GetResult ();
-            Console.Write ("Published events to Event Grid topic.");
+            Console.Write ($"Published {events} events to Event Grid topic.");
         }
 
-        static IList<EventGridEvent> GetEventsList () {
+        static IList<EventGridEvent> GetEventsList (int evts) {
             List<EventGridEvent> eventsList = new List<EventGridEvent> ();
 
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < evts; i++) {
                 eventsList.Add (new EventGridEvent () {
                     Id = Guid.NewGuid ().ToString (),
                         EventType = "FoodApp.Orders.OrderDelivered",

@@ -34,6 +34,7 @@ namespace FoodApi {
             var azureServiceTokenProvider = new AzureServiceTokenProvider();
             var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));            
             string dbconstring = (kvClient.GetSecretAsync($"https://{cfg.Azure.KevVault}", "conSQLite").Result).Value;
+            Console.WriteLine($"dbconstring from vault: {dbconstring}");           
 
             //EF
             services.AddDbContext<FoodDBContext> (options => options.UseSqlite (cfg.ConnectionStrings.SqLiteDbConnection));

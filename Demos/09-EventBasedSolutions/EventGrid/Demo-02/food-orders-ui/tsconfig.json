@@ -19,8 +19,8 @@
     "target": "es2020",
     "module": "es2020",
     "lib": [
-      "dom",
-      "es2020"
+      "es2020",
+      "dom"
     ]
   },
   "angularCompilerOptions": {

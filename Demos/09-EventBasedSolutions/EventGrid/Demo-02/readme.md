@@ -6,19 +6,22 @@
 
 ## Demo
 
-Demo is an updated and modernized version of [https://github.com/DavidGSola/serverless-eventgrid-viewer](https://github.com/DavidGSola/serverless-eventgrid-viewer)
+- Event Grid Topic wich is the event bus triggered by `post-order.http`
+- Azure SignalR Service providing real-time communication between ui and az function that describes the event
+- A function app with that:
+  - Acts as an endpoint for the event grid topic webhook subscription using a binding
+  - Communicates with the SignalR service
+- A real time Micro Frontend `food-orders-ui` implemented in Angular
 
-![architecture](_images/architecture.png)
+  ![architecture](_images/architecture.png)
 
-Execute `create-foodorder-app.azcli`. It creates:
+  > Note: The demo is an updated and modernized version of [https://github.com/DavidGSola/serverless-eventgrid-viewer](https://github.com/DavidGSola/serverless-eventgrid-viewer)
 
-- Azure SignalR Service
-- Event Grid Topic
-- Publishes Function app with that acts as an endpoint for the event grid topic webhook subscription
-- Adds the Angular Url to CORS and sets `Enable Access-Control-Allow-Credentials` to true
-- A real time FoodOrders UI implemented in Angular
+### Setup & Steps
 
-Update signalr config in environment.ts and environment.prod.ts of `ng-food-log`:
+Execute `create-foodorder-app.azcli` to provision the environment.
+
+Update SignalR config in environment.ts and environment.prod.ts of `food-orders-ui`:
 
 ```typescript
 export const environment = {

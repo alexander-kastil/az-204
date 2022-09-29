@@ -1,3 +1,5 @@
+@notificationUrl="https://m10-graphevents-23196.vault.azure.net/secrets/graphConStr?tenantId=integrations.at"
+
 # @name auth
 POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
 Content-type: application/x-www-form-urlencoded
@@ -13,7 +15,7 @@ Content-Type: application/json
 
 {
     "changeType": "created,updated",
-    "notificationUrl": "EventHub:https://m10-graphevents-25954.vault.azure.net/secrets/graphConStr?tenantId=integrations.at",
+    "notificationUrl": {{notificationUrl}},
     "resource": "/me/mailfolders('inbox')/messages",
     "expirationDateTime": "2022-05-07T11:00:00.0000000Z",
     "clientState": "SecretClientState"

@@ -17,11 +17,11 @@ az storage account  create -n $storage -g $grp
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4
 
 # Deploy to function app
-cd order-processor
+cd order-processor-func
 func azure functionapp publish $app --csharp
 cd ..
 
-echo '** Update in PublishEvtTopic:'
-echo '** Topic Endpoint: ' $endpoint
+echo '** Update in publish-order-topic/Program.cs:'
+echo '** Topic: ' $topic
 echo '** Topic Key: ' $key
-echo '** rnd: ' $rnd
+# echo '** rnd: ' $rnd

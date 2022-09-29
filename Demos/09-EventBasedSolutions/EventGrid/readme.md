@@ -2,7 +2,7 @@
 
 ## Demos
 
-- Console Publisher / Az Funct Subscriber
+- Console Publisher / Az Func Subscriber
 - Real Time connected Angular UI
 
 ## Readings

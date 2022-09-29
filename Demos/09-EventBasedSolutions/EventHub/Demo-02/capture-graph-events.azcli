@@ -1,6 +1,6 @@
 rnd=$RANDOM
 loc=westeurope
-grp=az204-m10-graphchanges-eventhub-$rnd
+grp=az204-m09-graphchanges-eventhub-$rnd
 evns=graphevents-ns-$rnd
 hub=graphevents-hub-$rnd
 storage=graphevents$rnd
@@ -15,7 +15,6 @@ az eventhubs eventhub create --name $hub --namespace-name $evns -g $grp --partit
 az eventhubs eventhub authorization-rule create --name $evhpolicyname --eventhub-name $hub --namespace-name $evns -g $grp --rights Send
 
 evtHubConStr=`az eventhubs eventhub authorization-rule keys list --name $evhpolicyname --eventhub-name $hub --namespace-name $evns -g $grp --query "primaryConnectionString" --output tsv`
-echo $evtHubConStr
 
 az keyvault create --name $kv -g $grp -l $loc --sku standard --retention-days 90
 az keyvault secret set --name $kvsecret --value $evtHubConStr --vault-name $kv
@@ -27,4 +26,6 @@ keyvaulturi=$(az keyvault show --name $kv -g $grp --query "properties.vaultUri" 
 
 domain=$(az ad signed-in-user show --query 'userPrincipalName' | cut -d '@' -f 2 | sed 's/\"//')
 notificationUrl="EventHub:${keyvaulturi}secrets/${kvsecret}?tenantId=${domain}"
-echo "Use NotificationUrl when subscribing: ${notificationUrl}"
+
+echo "Update in subscribe-change-notification.http: ${notificationUrl}"
+echo "Update in EventHubKey of local.settings.json in graph-processor: ${evtHubConStr}"
