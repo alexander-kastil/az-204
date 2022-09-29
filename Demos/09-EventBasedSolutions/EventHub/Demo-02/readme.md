@@ -6,23 +6,42 @@
 
 ## Demo
 
-Provision Environment using `capture-graph-events.azcli`.
+- Provision Environment using `capture-graph-events.azcli`.
 
-Update notificationUrl in subscription post.
+- Update notificationUrl in subscribe-change-notification.http:
 
-Subscribe using [Microsoft Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer) in an authenticated session.
+    ```json
+    @notificationUrl="https://m10-graphevents-23196.vault.azure.net/secrets/graphConStr?tenantId=integrations.at"
+    ...
+    POST https://graph.microsoft.com/v1.0/subscriptions HTTP/1.1
+    Authorization: Bearer {{auth.response.body.access_token}}
+    Content-Type: application/json
 
-![subscription](_images/subscription.jpg)
+    {
+        "changeType": "created,updated",
+        "notificationUrl": {{notificationUrl}},
+        "resource": "/me/mailfolders('inbox')/messages",
+        "expirationDateTime": "2022-05-07T11:00:00.0000000Z",
+        "clientState": "SecretClientState"
+    }
+    ```
+    >Note: As alternative to REST Client subscribe using [Microsoft Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer) in an authenticated session.
 
-```json
-POST https://graph.microsoft.com/v1.0/subscriptions
-Content-Type: application/json
-{
-    "changeType": "created,updated",
-    "notificationUrl": "EventHub:https://m10-graphevents-25954.vault.azure.net/secrets/graphConStr?tenantId=integrations.at",
-    "resource": "/me/mailfolders('inbox')/messages",
-    "expirationDateTime": "2022-05-07T11:00:00.0000000Z",
-    "clientState": "SecretClientState"
-}
-```
-- F5 Debug graphProcessor. If time permist re-create it.
+    ![subscription](_images/subscription.jpg)
+
+- Update in EventHubKey of local.settings.json in graph-processor: 
+
+    ```json
+    {
+        "IsEncrypted": false,
+        "Values": {
+            "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+            "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+            "EventHubKey": "<KEY>"
+        }
+    }
+    ```
+
+- F5 Debug the function app `graph-processor` in a new code instance.
+
+- Send yourself an email.

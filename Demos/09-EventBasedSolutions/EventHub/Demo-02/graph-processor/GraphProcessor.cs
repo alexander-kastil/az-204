@@ -12,7 +12,7 @@ namespace Integrations
     public class GraphProcessor
     {
         [FunctionName("GraphProcessor")]
-        public async Task Run([EventHubTrigger("graphevents-hub-25954", Connection = "grapheventsns25954_RootManageSharedAccessKey_EVENTHUB")] EventData[] events, ILogger log)
+        public async Task Run([EventHubTrigger("graphevents-hub-25954", Connection = "EventHubKey")] EventData[] events, ILogger log)
         {
             var exceptions = new List<Exception>();
 
@@ -35,7 +35,6 @@ namespace Integrations
             }
 
             // Once processing of the batch is complete, if any messages in the batch failed processing throw an exception so that there is a record of the failure.
-
             if (exceptions.Count > 1)
                 throw new AggregateException(exceptions);
 
