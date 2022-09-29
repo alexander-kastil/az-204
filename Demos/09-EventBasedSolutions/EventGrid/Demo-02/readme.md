@@ -14,12 +14,6 @@ Demo is an updated and modernized version of [https://github.com/DavidGSola/serv
 - Azure SignalR Service providing real-time communication between ui and az function that describes the event
 - A function app with that:
   - Acts as an endpoint for the event grid topic webhook subscription using a binding
-    ```c#
-    [FunctionName("negotiate")]
-    public static SignalRConnectionInfo GetSignalRInfo(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req,
-        [SignalRConnectionInfo(HubName = "cloudEventSchemaHub")] SignalRConnectionInfo connectionInfo)
-    ```
   - Communicates with the SignalR service
 - A real time FoodOrders UI implemented in Angular
 
