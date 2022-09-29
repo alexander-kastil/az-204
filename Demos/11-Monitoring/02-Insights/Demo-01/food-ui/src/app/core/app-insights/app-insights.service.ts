@@ -43,7 +43,7 @@ export class AppInsightsService implements OnDestroy {
   }
 
   logEvent(name: string, properties?: { [key: string]: any }) {
-    this.appInsights.trackEvent({ name: name }, properties);
+    this.appInsights.trackEvent({ name }, properties);
   }
 
   logMetric(
@@ -51,7 +51,7 @@ export class AppInsightsService implements OnDestroy {
     average: number,
     properties?: { [key: string]: any }
   ) {
-    this.appInsights.trackMetric({ name: name, average: average }, properties);
+    this.appInsights.trackMetric({ name, average }, properties);
   }
 
   logException(exception: Error, severityLevel?: number) {
