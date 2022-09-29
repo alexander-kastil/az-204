@@ -14,4 +14,4 @@ mi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)
 # assign permission to the mi on the key vault
 az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
 
-az webapp config appsettings set -g $grp -n $app --settings AppSettings:KevVault=$vault.vault.azure.net
+az webapp config appsettings set -g $grp -n $app --settings Azure:KevVault=$vault.vault.azure.net
