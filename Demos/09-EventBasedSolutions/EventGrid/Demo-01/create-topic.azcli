@@ -12,16 +12,12 @@ az eventgrid topic create --resource-group $grp --name $topic --location $loc
 endpoint=$(az eventgrid topic show --name $topic -g $grp --query "endpoint" --output tsv)
 key=$(az eventgrid topic key list --name $topic -g $grp --query "key1" --output tsv)
 
-#
-# stop here and update config in program.cs
-#
-
 # create function app which will host the consumer
 az storage account  create -n $storage -g $grp
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4
 
 # Deploy to function app
-cd order-processor
+cd order-processor-func
 func azure functionapp publish $app --csharp
 cd ..
 
