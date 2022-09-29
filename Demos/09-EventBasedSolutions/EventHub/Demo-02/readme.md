@@ -10,7 +10,7 @@
 
 - Update notificationUrl in subscribe-change-notification.http:
 
-    ```json
+    ```
     @notificationUrl="https://m10-graphevents-23196.vault.azure.net/secrets/graphConStr?tenantId=integrations.at"
     ...
     POST https://graph.microsoft.com/v1.0/subscriptions HTTP/1.1
