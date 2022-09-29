@@ -1,5 +1,5 @@
 env=$RANDOM
-grp=az204-m09-signalr-foodorders
+grp=az204-m09-signalr-foodorders-$env
 loc=westeurope
 storage=foodorders
 app=foodorders-$env
@@ -33,16 +33,17 @@ func azure functionapp publish $app --csharp
 cd ..
 
 # subscribe event grid topc
-az eventgrid event-subscription create --name $app --source-resource-id $topicid --endpoint https://$webhookEP/api/evtsubscription --endpoint-type webhook --event-delivery-schema cloudeventschemav1_0
+az eventgrid event-subscription create --name $app --source-resource-id $topicid --endpoint https://$webhookEP/api/orderSubscription --endpoint-type webhook --event-delivery-schema cloudeventschemav1_0
 
 # status
 fxEndpoint=$(az functionapp list --query "[?name=='$app'].{defaultHostName:defaultHostName}[0].defaultHostName" -o tsv)
 
 topicurl=$(az eventgrid topic show -n $topic -g $grp --query "endpoint" --output tsv)
 topickey=$(az eventgrid topic key list -n $topic -g $grp --query "key1" --output tsv)
-echo "*** Provisioning Complete"
+
 echo "*** Update vars food-orders-ui"
 echo "*** fxEndpoint: " $fxEndpoint
+
 echo "*** Update vars in post-order.http"
 echo "*** Topic Url: "$topicurl
 echo "*** Topic Key: "$topickey

@@ -10,15 +10,22 @@ Demo is an updated and modernized version of [https://github.com/DavidGSola/serv
 
 ![architecture](_images/architecture.png)
 
-Execute `create-foodorder-app.azcli`. It creates:
-
-- Azure SignalR Service
-- Event Grid Topic
-- Publishes Function app with that acts as an endpoint for the event grid topic webhook subscription
-- Adds the Angular Url to CORS and sets `Enable Access-Control-Allow-Credentials` to true
+- Event Grid Topic wich is the event bus triggered by `post-order.http`
+- Azure SignalR Service providing real-time communication between ui and az function that describes the event
+- A function app with that:
+  - Acts as an endpoint for the event grid topic webhook subscription using a binding
+    ```c#
+    [FunctionName("negotiate")]
+    public static SignalRConnectionInfo GetSignalRInfo(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req,
+        [SignalRConnectionInfo(HubName = "cloudEventSchemaHub")] SignalRConnectionInfo connectionInfo)
+    ```
+  - Communicates with the SignalR service
 - A real time FoodOrders UI implemented in Angular
 
-Update signalr config in environment.ts and environment.prod.ts of `ng-food-log`:
+Execute `create-foodorder-app.azcli`. It creates:
+
+Update signalr config in environment.ts and environment.prod.ts of `food-orders-ui`:
 
 ```typescript
 export const environment = {

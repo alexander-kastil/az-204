@@ -25,17 +25,16 @@ namespace Integrations
             return connectionInfo;
         }
 
-
-        [FunctionName("evtsubscription")]
+        // Handle EventGrid subscription validation for CloudEventSchema v1.0.
+        // It sets the header response `Webhook-Allowed-Origin` with the value from 
+        // the header request `Webhook-Request-Origin` 
+        // (see: https://docs.microsoft.com/en-us/azure/event-grid/cloudevents-schema#use-with-azure-functions)
+        [FunctionName("orderSubscription")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "options", "post", Route = null)] HttpRequest req,
             [SignalR(HubName = "cloudEventSchemaHub")] IAsyncCollector<SignalRMessage> signalRMessages,
             ILogger log)
         {
-            // Handle EventGrid subscription validation for CloudEventSchema v1.0.
-            // It sets the header response `Webhook-Allowed-Origin` with the value from 
-            // the header request `Webhook-Request-Origin` 
-            // (see: https://docs.microsoft.com/en-us/azure/event-grid/cloudevents-schema#use-with-azure-functions)
             if (HttpMethods.IsOptions(req.Method))
             {
                 if(req.Headers.TryGetValue("Webhook-Request-Origin", out var headerValues))
