@@ -10,15 +10,6 @@ grant_type=client_credentials
 &client_secret={{clientSecret}}
 &scope={{scope}}
 
-### Ensure Microsoft Graph Change Tracking application in Graph Explorer
-POST https://graph.microsoft.com/v1.0/servicePrincipals
-Authorization: Bearer {{auth.response.body.access_token}}
-Content-Type: application/json
-
-{
-    "appId": "0bf30f3b-4a52-48df-9a82-234910c4a086"
-}
-
 ### subscribe change notifications
 POST https://graph.microsoft.com/v1.0/subscriptions HTTP/1.1
 Authorization: Bearer {{auth.response.body.access_token}}

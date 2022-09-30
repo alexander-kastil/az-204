@@ -6,6 +6,15 @@
 
 ## Demo
 
+- Ensure Microsoft Graph Change Tracking application in online Graph Explorer
+    ```
+    POST https://graph.microsoft.com/v1.0/servicePrincipals
+    Content-Type: application/json
+
+    {
+        "appId": "0bf30f3b-4a52-48df-9a82-234910c4a086"
+    }
+    ```
 - Provision Environment using `capture-graph-events.azcli`.
 
 - Update notificationUrl in subscribe-change-notification.http:
