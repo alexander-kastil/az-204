@@ -42,7 +42,7 @@ topicurl=$(az eventgrid topic show -n $topic -g $grp --query "endpoint" --output
 topickey=$(az eventgrid topic key list -n $topic -g $grp --query "key1" --output tsv)
 
 echo "*** Update vars food-orders-ui"
-echo "*** fxEndpoint: " $fxEndpoint
+echo "*** funcEP: " $fxEndpoint
 
 echo "*** Update vars in post-order.http"
 echo "*** Topic Url: "$topicurl

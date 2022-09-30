@@ -57,7 +57,7 @@ namespace Integrations
                 string @event = await new StreamReader(req.Body).ReadToEndAsync();
                 await signalRMessages.AddAsync(new SignalRMessage
                 {
-                    Target = "newEvent",
+                    Target = "foodapp.order",
                     Arguments = new[] { @event }
                 });
             }
