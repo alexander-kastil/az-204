@@ -25,7 +25,7 @@ export class AppComponent {
     this.hubConnection.start();
 
     // Handle incoming events for the specific target
-    this.hubConnection.on('newEvent', (event: CloudEvent<FoodOrder>) => {
+    this.hubConnection.on('foodapp.order', (event: CloudEvent<FoodOrder>) => {
       console.log('received event', event);
       this.events.push(event);
     });
