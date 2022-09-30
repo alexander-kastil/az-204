@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { outputAst } from '@angular/compiler';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { CloudEvent } from '@azure/eventgrid';
 import { FoodOrder } from '../order.model';
 
@@ -9,6 +17,7 @@ import { FoodOrder } from '../order.model';
 })
 export class OrderListComponent implements OnInit {
   @Input() events: CloudEvent<FoodOrder>[] = [];
+  @Output() onStatusChanged: EventEmitter<string> = new EventEmitter<string>();
   od: FoodOrder[] = [];
 
   constructor() {}
@@ -19,5 +28,9 @@ export class OrderListComponent implements OnInit {
     this.od = changes['events'].currentValue.map(
       (o: CloudEvent<FoodOrder>) => o.data
     );
+  }
+
+  changeStatus(status: string) {
+    this.onStatusChanged.emit(status);
   }
 }

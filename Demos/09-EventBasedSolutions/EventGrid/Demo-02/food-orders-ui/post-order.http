@@ -16,6 +16,7 @@ aeg-sas-key: {{topickey}}
       "customerId": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
       "customerName": "John Doe",
       "address": "123 Main Street, Seattle, WA 98101",
+      "status": "incoming",
       "items": [
          {
             "name": "butter chicken",
