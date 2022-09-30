@@ -1,4 +1,5 @@
-@notificationUrl="https://m10-graphevents-23196.vault.azure.net/secrets/graphConStr?tenantId=integrations.at"
+@user="alexander.pajer@integrations.at"
+@notificationUrl="EventHub:https://m10-graphevents-23196.vault.azure.net/secrets/graphConStr?tenantId=integrations.at"
 
 # @name auth
 POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
@@ -9,6 +10,7 @@ grant_type=client_credentials
 &client_secret={{clientSecret}}
 &scope={{scope}}
 
+### subscribe change notifications
 POST https://graph.microsoft.com/v1.0/subscriptions HTTP/1.1
 Authorization: Bearer {{auth.response.body.access_token}}
 Content-Type: application/json
@@ -16,7 +18,7 @@ Content-Type: application/json
 {
     "changeType": "created,updated",
     "notificationUrl": {{notificationUrl}},
-    "resource": "/me/mailfolders('inbox')/messages",
-    "expirationDateTime": "2022-05-07T11:00:00.0000000Z",
+    "resource": "/users/alexander.pajer@integrations.at/mailfolders('inbox')/messages",
+    "expirationDateTime": "2022-10-07T11:00:00.0000000Z",
     "clientState": "SecretClientState"
 }

@@ -12,7 +12,7 @@ namespace Integrations
     public class GraphProcessor
     {
         [FunctionName("GraphProcessor")]
-        public async Task Run([EventHubTrigger("graphevents-hub-25954", Connection = "EventHubKey")] EventData[] events, ILogger log)
+        public async Task Run([EventHubTrigger("graphevents-hub-23196", Connection = "EventHubKey")] EventData[] events, ILogger log)
         {
             var exceptions = new List<Exception>();
 

@@ -13,20 +13,22 @@ namespace FoodApp
             var events = 20;
             // TODO: Enter value for topic from echo '** Topic: ' $topic
             var topic = "foodorder-topic-11705";
-            var region = "westeurope";
-
             // TODO: Enter value for topicKey from echo '** Topic Key: ' $key
             string topicKey = "y5Vi2+3j+Yz50xViCa9ki4bplPzoAkBqZRA/Wp0le5A=";
+            
+            var region = "westeurope";
             string topicEndpoint = $"https://{topic}.{region}-1.eventgrid.azure.net/api/events";
             string topicHostname = new Uri (topicEndpoint).Host;
+
             TopicCredentials topicCredentials = new TopicCredentials (topicKey);
             EventGridClient client = new EventGridClient (topicCredentials);
-            var evts = GetEventsList (events);
+            var evts = generateEvents (events);
             client.PublishEventsAsync (topicHostname, evts).GetAwaiter ().GetResult ();
+            
             Console.Write ($"Published {events} events to Event Grid topic.");
         }
 
-        static IList<EventGridEvent> GetEventsList (int evts) {
+        static IList<EventGridEvent> generateEvents (int evts) {
             List<EventGridEvent> eventsList = new List<EventGridEvent> ();
 
             for (int i = 0; i < evts; i++) {
@@ -44,7 +46,6 @@ namespace FoodApp
                         DataVersion = "2.0"
                 });
             }
-
             return eventsList;
         }
     }    
