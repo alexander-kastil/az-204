@@ -6,7 +6,7 @@
           <mat-card-title>{{ evt.customerName }}, {{ evt.address }}</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-            <div *ngFor="let el of evt.items">
+            <div *ngFor="let el of evt.items" class="item">
                 {{el.name}}
             </div>
       </mat-card-content>

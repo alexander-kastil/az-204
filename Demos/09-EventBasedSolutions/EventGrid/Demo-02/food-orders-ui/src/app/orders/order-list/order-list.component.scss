@@ -27,4 +27,21 @@
 .mat-card{
   width: 90%;
   background-color: #808080;
+  margin-bottom: 1rem;
+}
+
+.mat-card-content{
+  padding-top: 1rem;
+  padding-left: 1.5rem;
+}
+
+.mat-card-actions{
+  padding-bottom: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+.item{
+  height: 1.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
