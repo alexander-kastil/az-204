@@ -1,4 +1,3 @@
 # Using Service Bus Queues 
 
-- Console based publish
-- Azure Function consumer
+- Console based publisher / Azure Function as consumer
