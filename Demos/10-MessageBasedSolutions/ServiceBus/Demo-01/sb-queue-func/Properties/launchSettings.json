@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "sb_queue_func": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7069",
+      "launchBrowser": false
+    }
+  }
+}
