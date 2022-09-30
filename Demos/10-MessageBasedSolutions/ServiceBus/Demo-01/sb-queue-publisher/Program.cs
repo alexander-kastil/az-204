@@ -8,7 +8,7 @@ namespace ServiceBus
 {
     class Program
     {
-        const string conSB = "Endpoint=sb://foodappdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=txqwKdActAoXwS+bY/FVl10W8LRqwMdZykIDezWiD44=";
+        const string conSB = "Endpoint=sb://foodappdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=UrIbrSVfIkXMKCtwHW5mYVbNwmNY8e3TwuerEXcO2qs=";
         const string queue = "food-queue";
         static ServiceBusClient client;
 
