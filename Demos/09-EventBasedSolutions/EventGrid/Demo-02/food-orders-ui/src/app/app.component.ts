@@ -16,7 +16,7 @@ export class AppComponent {
   constructor() {
     // Create connection
     this.hubConnection = new SignalR.HubConnectionBuilder()
-      .withUrl(environment.fxEndpoint)
+      .withUrl(environment.funcEP)
       .build();
 
     // Start connection. This will call negotiate endpoint
