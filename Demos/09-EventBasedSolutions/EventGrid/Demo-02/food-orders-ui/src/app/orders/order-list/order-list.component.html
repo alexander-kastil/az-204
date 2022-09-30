@@ -1,7 +1,19 @@
 <div class="content" role="main">
   <h2>Orders received {{ events.length }}</h2>
 
-  <div class="card" *ngFor="let evt  of od">
-    <div>{{ evt.customerName }}, {{ evt.address }}</div>
-  </div>
+  <mat-card *ngFor="let evt of od">
+      <mat-card-header>
+          <mat-card-title>{{ evt.customerName }}, {{ evt.address }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+            <div *ngFor="let el of evt.items">
+                {{el.name}}
+            </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+            <button mat-raised-button color="primary" >Reject</button>
+            <button mat-raised-button color="primary" >Start</button>          
+            <button mat-raised-button color="primary" >Start</button>
+      </mat-card-actions>
+  </mat-card>
 </div>
