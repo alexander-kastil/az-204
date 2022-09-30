@@ -1,0 +1,30 @@
+@topicurl=foodevents-28791.westeurope-1.eventgrid.azure.net
+@topickey=xR9JDq+BGD+Pixo9eijVRjAPev1J9xOJgGr7qHHNiiw=
+
+POST  https://{{topicurl}}//api/events HTTP/1.1
+content-type: application/cloudevents+json; charset=utf-8
+aeg-sas-key: {{topickey}}
+
+{
+   "specversion":"1.0",
+   "type":"foodapp.order.accepted",
+   "source":"foodapp",
+   "id":"9785ca51-df85-48c8-9db9-3cf2b581978f",
+   "time":"2022-04-01T12:00:00Z",
+   "datacontenttype":"application/json",
+   "data":{
+      "customerId": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
+      "customerName": "John Doe",
+      "address": "123 Main Street, Seattle, WA 98101",
+      "items": [
+         {
+            "name": "butter chicken",
+            "quantity": 1
+         },
+         {
+            "name": "badam kheer",
+            "quantity": 2
+         }
+      ]
+   }
+}

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { CloudEvent } from '@azure/eventgrid';
 import { FoodOrder } from '../order.model';
 
@@ -8,9 +8,16 @@ import { FoodOrder } from '../order.model';
   styleUrls: ['./order-list.component.scss'],
 })
 export class OrderListComponent implements OnInit {
-  @Input() orders: CloudEvent<FoodOrder>[] = [];
+  @Input() events: CloudEvent<FoodOrder>[] = [];
+  od: FoodOrder[] = [];
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.od = changes['events'].currentValue.map(
+      (o: CloudEvent<FoodOrder>) => o.data
+    );
+  }
 }

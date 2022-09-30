@@ -25,9 +25,10 @@ export class AppComponent {
     this.hubConnection.start();
 
     // Handle incoming events for the specific target
-    this.hubConnection.on('foodapp.order', (event: CloudEvent<FoodOrder>) => {
-      console.log('received event', event);
-      this.events.push(event);
+    this.hubConnection.on('foodapp.order', (event: string) => {
+      let evt = JSON.parse(event) as CloudEvent<FoodOrder>;
+      console.log('received event', evt);
+      this.events = [...this.events, evt];
     });
   }
 }

@@ -1,7 +1,7 @@
 <div class="content" role="main">
-  <h2>Orders received {{ orders.length }}</h2>
+  <h2>Orders received {{ events.length }}</h2>
 
-  <div class="card" *ngFor="let event of orders">
-    <span>{{ event }}</span>
+  <div class="card" *ngFor="let evt  of od">
+    <div>{{ evt.customerName }}, {{ evt.address }}</div>
   </div>
 </div>
