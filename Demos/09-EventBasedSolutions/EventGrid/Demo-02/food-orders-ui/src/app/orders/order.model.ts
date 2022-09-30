@@ -1,11 +1,11 @@
-export interface orderItem {
+export interface OrderItem {
   name: string;
   quantity: number;
 }
 
-export interface foodOrder {
+export interface FoodOrder {
   customerId: string;
   customerName: string;
   address: string;
-  items: orderItem[];
+  items: OrderItem[];
 }

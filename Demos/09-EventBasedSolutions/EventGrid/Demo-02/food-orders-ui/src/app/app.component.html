@@ -1,7 +1,4 @@
-<div class="content" role="main">
-  <h2>Orders received {{ events.length }}</h2>
-
-  <div class="card" *ngFor="let event of events">
-    <span>{{ event }}</span>
-  </div>
-</div>
+<mat-toolbar color="primary">
+    <span>Food Order ToDo:</span>
+</mat-toolbar>
+<app-order-list [orders]="events"></app-order-list>

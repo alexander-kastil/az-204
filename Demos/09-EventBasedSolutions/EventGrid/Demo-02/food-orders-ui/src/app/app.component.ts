@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CloudEvent } from '@azure/eventgrid';
 import * as SignalR from '@microsoft/signalr';
 import { environment } from 'src/environments/environment';
-import { foodOrder } from './food/food-order.model';
+import { FoodOrder } from './orders/order.model';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { foodOrder } from './food/food-order.model';
 })
 export class AppComponent {
   title = 'food-orders-ui';
-  events: CloudEvent<foodOrder>[] = [];
+  events: CloudEvent<FoodOrder>[] = [];
 
   private hubConnection: SignalR.HubConnection;
 
@@ -25,7 +25,7 @@ export class AppComponent {
     this.hubConnection.start();
 
     // Handle incoming events for the specific target
-    this.hubConnection.on('newEvent', (event: CloudEvent<foodOrder>) => {
+    this.hubConnection.on('newEvent', (event: CloudEvent<FoodOrder>) => {
       console.log('received event', event);
       this.events.push(event);
     });
