@@ -17,20 +17,17 @@ import { FoodOrder } from '../order.model';
 })
 export class OrderListComponent implements OnInit {
   @Input() events: CloudEvent<FoodOrder>[] = [];
-  @Output() onStatusChanged: EventEmitter<string> = new EventEmitter<string>();
-  od: FoodOrder[] = [];
+  @Output() onStatusChanged: EventEmitter<CloudEvent<FoodOrder>> =
+    new EventEmitter<CloudEvent<FoodOrder>>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.od = changes['events'].currentValue.map(
-      (o: CloudEvent<FoodOrder>) => o.data
-    );
-  }
-
-  changeStatus(status: string) {
-    this.onStatusChanged.emit(status);
+  changeStatus(event: CloudEvent<FoodOrder>, status: string) {
+    if (event.data) {
+      event.data.address = 'delivered';
+      this.onStatusChanged.emit(event);
+    }
   }
 }

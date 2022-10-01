@@ -32,5 +32,5 @@ export class AppComponent {
     });
   }
 
-  changeStatus(status: string) {}
+  changeStatus(status: CloudEvent<FoodOrder>) {}
 }

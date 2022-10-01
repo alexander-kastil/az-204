@@ -20,11 +20,11 @@ aeg-sas-key: {{topickey}}
       "items": [
          {
             "name": "butter chicken",
-            "quantity": 1
+            "quantity": 2
          },
          {
             "name": "badam kheer",
-            "quantity": 2
+            "quantity": 1
          }
       ]
    }
