@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CloudEvent } from '@azure/eventgrid';
-import { FoodOrder } from '../order.model';
 import * as SignalR from '@microsoft/signalr';
+import { map, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { FoodOrder } from '../order.model';
+import { OrdersStore } from '../orders.store';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
+  providers: [OrdersStore],
 })
 export class OrdersComponent {
-  events: CloudEvent<FoodOrder>[] = [];
+  orderevents = this.store.orders$.pipe(
+    tap((events) => localStorage.setItem('orders', JSON.stringify(events)))
+  );
   private hubConnection: SignalR.HubConnection;
 
-  constructor() {
+  constructor(private store: OrdersStore) {
     // Create connection
     this.hubConnection = new SignalR.HubConnectionBuilder()
       .withUrl(environment.funcEP)
@@ -25,10 +30,11 @@ export class OrdersComponent {
     // Handle incoming events for the specific target
     this.hubConnection.on('foodapp.order', (event: string) => {
       let evt = JSON.parse(event) as CloudEvent<FoodOrder>;
-      console.log('received event', evt);
-      this.events = [...this.events, evt];
+      this.store.addOrder(evt);
     });
   }
 
-  changeStatus(status: CloudEvent<FoodOrder>) {}
+  changeStatus(status: CloudEvent<FoodOrder>) {
+    this.store.updateOrder(status);
+  }
 }

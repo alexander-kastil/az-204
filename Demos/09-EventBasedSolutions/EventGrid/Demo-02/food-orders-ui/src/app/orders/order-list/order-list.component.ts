@@ -16,7 +16,7 @@ import { FoodOrder } from '../order.model';
   styleUrls: ['./order-list.component.scss'],
 })
 export class OrderListComponent implements OnInit {
-  @Input() events: CloudEvent<FoodOrder>[] = [];
+  @Input() events: CloudEvent<FoodOrder>[] | null = [];
   @Output() onStatusChanged: EventEmitter<CloudEvent<FoodOrder>> =
     new EventEmitter<CloudEvent<FoodOrder>>();
 

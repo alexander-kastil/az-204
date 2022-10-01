@@ -1,1 +1,1 @@
-<app-order-list [events]="events" (onStatusChanged)="changeStatus($event)"></app-order-list>
+<app-order-list [events]="orderevents | async" (onStatusChanged)="changeStatus($event)"></app-order-list>

@@ -1,5 +1,5 @@
 <div class="content" role="main">
-  <h2>Orders received {{ events.length }}</h2>
+  <h2>Orders received {{ events?.length }}</h2>
 
   <mat-card *ngFor="let evt of events">
       <mat-card-header>
@@ -8,7 +8,7 @@
       </mat-card-header>
       <mat-card-content>
             <div *ngFor="let el of evt.data?.items" class="item">
-                quantity: {{el.quantity}} food: {{el.name}}
+                {{el.quantity}} stk: {{el.name}}
             </div>
       </mat-card-content>
       <mat-card-actions align="end">
