@@ -4,6 +4,7 @@ export interface OrderItem {
 }
 
 export interface FoodOrder {
+  id: string;
   customerId: string;
   customerName: string;
   address: string;

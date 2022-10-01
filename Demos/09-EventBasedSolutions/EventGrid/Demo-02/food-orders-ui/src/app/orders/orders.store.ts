@@ -24,6 +24,10 @@ export class OrdersStore extends ComponentStore<OrdersState> {
     this.loadOrdersFromStorage();
   }
 
+  resetOrders() {
+    this.setState(initialState);
+  }
+
   addOrder(order: CloudEvent<FoodOrder>) {
     this.setState((state) => ({
       ...state,
