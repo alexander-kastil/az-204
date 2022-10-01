@@ -11,7 +11,7 @@ import { filter, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { FoodOrder, orderstatus } from '../order.model';
 import { OrdersStore } from '../orders.store';
-import { combineLatestWith, map } from 'rxjs/operators';
+import { combineLatestWith, map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-orders',
@@ -32,7 +32,7 @@ export class OrdersComponent {
   showAll = new FormControl(false);
   orderevents = this.store.orders$.pipe(
     tap((events) => localStorage.setItem('orders', JSON.stringify(events))),
-    combineLatestWith(this.showAll.valueChanges),
+    combineLatestWith(this.showAll.valueChanges.pipe(startWith(false))),
     map(([events, showAll]) =>
       showAll
         ? events
