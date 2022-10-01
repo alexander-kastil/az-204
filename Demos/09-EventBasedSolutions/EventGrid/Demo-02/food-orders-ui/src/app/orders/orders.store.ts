@@ -40,6 +40,10 @@ export class OrdersStore extends ComponentStore<OrdersState> {
       ...state,
       orders: state.orders.map((o) => (o.id == order.id ? order : o)),
     }));
+
+    if ((order.data?.status == 'ready', order.data?.status == 'rejected')) {
+      console.log('New order event', order);
+    }
   }
 
   loadOrdersFromStorage = this.effect((trigger$) => {
