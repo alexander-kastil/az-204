@@ -31,4 +31,6 @@ export class AppComponent {
       this.events = [...this.events, evt];
     });
   }
+
+  changeStatus(status: string) {}
 }

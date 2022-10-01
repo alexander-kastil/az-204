@@ -11,9 +11,9 @@
             </div>
       </mat-card-content>
       <mat-card-actions align="end">
-            <button mat-raised-button color="primary" >Reject</button>
-            <button mat-raised-button color="primary" >Start</button>          
-            <button mat-raised-button color="primary" >Start</button>
+            <button mat-raised-button color="primary" (click)="changeStatus('rejected')" >Reject</button>
+            <button mat-raised-button color="primary" (click)="changeStatus('preparing')" >Start</button>          
+            <button mat-raised-button color="primary" (click)="changeStatus('ready')">Ready</button>
       </mat-card-actions>
   </mat-card>
 </div>
