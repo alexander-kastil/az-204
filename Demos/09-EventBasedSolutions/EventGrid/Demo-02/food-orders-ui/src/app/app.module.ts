@@ -6,14 +6,16 @@ import { AppComponent } from './app.component';
 import { OrderListComponent } from './orders/order-list/order-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
-  declarations: [AppComponent, OrderListComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    OrdersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
