@@ -1,13 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { CloudEvent } from '@azure/eventgrid';
 import * as SignalR from '@microsoft/signalr';
-import { map, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { FoodOrder } from '../order.model';
+import { FoodOrder, orderstatus } from '../order.model';
 import { OrdersStore } from '../orders.store';
 
 @Component({
   selector: 'app-orders',
+  standalone: true,
+  imports: [CommonModule, MatCardModule, MatToolbarModule, MatButtonModule],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
   providers: [OrdersStore],
@@ -16,9 +22,15 @@ export class OrdersComponent {
   orderevents = this.store.orders$.pipe(
     tap((events) => localStorage.setItem('orders', JSON.stringify(events)))
   );
-  private hubConnection: SignalR.HubConnection;
+
+  private hubConnection: SignalR.HubConnection | null = null;
 
   constructor(private store: OrdersStore) {
+    this.store.init();
+    this.initSignalR();
+  }
+
+  initSignalR() {
     // Create connection
     this.hubConnection = new SignalR.HubConnectionBuilder()
       .withUrl(environment.funcEP)
@@ -34,7 +46,12 @@ export class OrdersComponent {
     });
   }
 
-  changeStatus(status: CloudEvent<FoodOrder>) {
-    this.store.updateOrder(status);
+  changeStatus(item: CloudEvent<FoodOrder>, status: orderstatus) {
+    if (item.data) {
+      item.data.status = status;
+      this.store.updateOrder(item);
+    }
   }
+
+  resetOrders() {}
 }

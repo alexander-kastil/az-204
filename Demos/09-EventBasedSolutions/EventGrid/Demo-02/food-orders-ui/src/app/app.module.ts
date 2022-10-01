@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
-import { OrdersModule } from './orders/orders.module';
+import { OrdersComponent } from './orders/orders/orders.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,8 +11,7 @@ import { OrdersModule } from './orders/orders.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    OrdersModule,
+    OrdersComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

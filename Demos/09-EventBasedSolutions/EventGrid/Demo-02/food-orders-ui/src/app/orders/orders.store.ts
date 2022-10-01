@@ -20,6 +20,10 @@ export class OrdersStore extends ComponentStore<OrdersState> {
     super(initialState);
   }
 
+  init() {
+    this.loadOrdersFromStorage();
+  }
+
   addOrder(order: CloudEvent<FoodOrder>) {
     this.setState((state) => ({
       ...state,
@@ -30,18 +34,19 @@ export class OrdersStore extends ComponentStore<OrdersState> {
   updateOrder(order: CloudEvent<FoodOrder>) {
     this.setState((state) => ({
       ...state,
-      orders: state.orders.map((o) => (o.id === order.id ? order : o)),
+      orders: state.orders.map((o) => (o.id == order.id ? order : o)),
     }));
   }
 
   loadOrdersFromStorage = this.effect((trigger$) => {
     return trigger$.pipe(
       map(() => {
-        const orders = localStorage.getItem('orders');
-        if (orders) {
+        let strOrders = localStorage.getItem('orders');
+        if (strOrders) {
+          const orders = JSON.parse(strOrders);
           this.setState((state) => ({
             ...state,
-            orders: JSON.parse(orders),
+            orders: [...orders],
           }));
         }
       })
