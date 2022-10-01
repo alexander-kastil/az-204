@@ -4,11 +4,17 @@ export interface OrderItem {
 }
 
 export interface FoodOrder {
+  id: string;
   customerId: string;
   customerName: string;
   address: string;
   items: OrderItem[];
-  status: status;
+  status: orderstatus;
 }
 
-type status = 'incoming' | 'preparing' | 'ready' | 'delivered' | 'rejected';
+export declare type orderstatus =
+  | 'incoming'
+  | 'preparing'
+  | 'ready'
+  | 'delivered'
+  | 'rejected';

@@ -1,0 +1,56 @@
+<mat-toolbar color="primary" class="toolbar">
+  <div>
+    <h2>Orders in queue: {{ (orderevents | async)?.length }}</h2>
+  </div>
+  <div>
+    <mat-slide-toggle [formControl]="showAll" color="accent">
+      Show all
+    </mat-slide-toggle>
+  </div>
+  <div><button mat-raised-button (click)="resetOrders()">Reset</button></div>
+</mat-toolbar>
+<div class="content" role="main">
+  <mat-card
+    *ngFor="let evt of orderevents | async"
+    [ngStyle]="
+      evt.data?.status == 'preparing'
+        ? { 'background-color': '#16680f' }
+        : { 'background-color': '#808080' }
+    "
+  >
+    <mat-card-header>
+      <mat-card-title
+        >{{ evt.data?.customerName }}, {{ evt.data?.address }}</mat-card-title
+      >
+      <mat-card-subtitle>{{ evt.time | date: "medium" }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let el of evt.data?.items" class="item">
+        {{ el.quantity }} serving(s): {{ el.name }}
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="changeStatus(evt, 'rejected')"
+      >
+        Reject
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="changeStatus(evt, 'preparing')"
+      >
+        Start
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="changeStatus(evt, 'ready')"
+      >
+        Ready
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

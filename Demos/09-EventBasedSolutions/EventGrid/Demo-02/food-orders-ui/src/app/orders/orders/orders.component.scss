@@ -1,0 +1,33 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
+  margin: 32px auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-card {
+  width: 95%;
+  margin-bottom: 1rem;
+}
+
+.mat-card-content {
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
+.mat-card-actions {
+  padding-bottom: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.item {
+  height: 1.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px dotted wheat;
+}
