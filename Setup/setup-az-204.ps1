@@ -32,7 +32,7 @@ choco install googlechrome -y
 choco install vscode -y
 choco install dotnetcore-sdk -y
 choco install dotnet-6.0-sdk -y
-choco install nodejs-lts --version=14.15.0 -y
+choco install nodejs-lts --version=16.10.0 -y
 choco install azure-cli -y
 choco install azurepowershell -y
 choco install curl -y
@@ -76,6 +76,9 @@ code --install-extension ms-kubernetes-tools.vscode-aks-tools
 # Azurite Storage Emulator & Function Core Tools v4
 npm install -g azure-functions-core-tools@4 --unsafe-perm true --force
 npm install -g azurite
+
+# Azure Developer CLI
+powershell -ex AllSigned -c "Invoke-RestMethod 'https://aka.ms/install-azd.ps1' | Invoke-Expression"
 
 # Install Angular
 Write-Host "Installing Angular - 6/6" -ForegroundColor yellow
