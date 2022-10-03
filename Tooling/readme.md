@@ -7,4 +7,3 @@
 - [Markdown](./03-Markdown)
 - [Using Azure CLI & Cloud Shell](./04-CLI)
 - [Docker and WSL Setup](./08-Docker-WSL)
-- [Configure VS Code REST Client Extension](./07-REST-Client)
