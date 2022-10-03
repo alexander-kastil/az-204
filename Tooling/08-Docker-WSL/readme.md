@@ -6,17 +6,7 @@ There are two options to configure Docker support. WSL2 recommended
 
 In order for Docker to work on a Windows 10 VM you need to install Hyper-V or use Windows Subsystem for Linux 2 (WSL2). Therefore you must use hardware that supports [Nested Virtualization](https://docs.microsoft.com/en-us/azure/lab-services/how-to-enable-nested-virtualization-template-vm). A detailed Setup Guide can be found [here](https://github.com/ARambazamba/ClassSetup).
 
-### Option 1 - Install Docker with Hyper-V
-
-Install Hyper-V using `setup-docker.ps1` and restart after execution.
-
-Check Docker Settings:
-
-![docker-test](_images/docker-settings.jpg)
-
-### Option 2 - Install Docker with WSL2
-
-#### <a id="wsl">Install WSL2</a>
+### Install Docker with WSL2
 
 Open PowerShell as Administrator and run:
 
@@ -24,7 +14,7 @@ Open PowerShell as Administrator and run:
 wsl --install
 ```
 
-Reboot your machine & open WSL and set your root user & password:
+Reboot your machine & open WSL and set your root user & password. I.e.:
 
 ```
 user=azlabadmin
@@ -32,8 +22,6 @@ pwd=Lab@dmin1234
 ```
 
 ![ubuntu-setup](_images/ubuntu-setup.jpg)
-
-#### <a id="docker-wsl">Install Docker using WSL2</a>
 
 Install Docker Desktop using an elevated Powershell:
 
