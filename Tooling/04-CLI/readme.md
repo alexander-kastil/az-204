@@ -1,4 +1,4 @@
-# Implement solutions that use virtual machines
+# Using Azure CLI & Cloud Shell
 
 ## Azure CLI
 
@@ -24,7 +24,7 @@ Chose Bash and your subscription
 
 ![chose-bash](_images/chose-bash.jpg)
 
-Optional: Give a meaningfull name to your Clould Shell Storage using Advanced Settings:
+>Note: Optional you can provide a meaningfull name to your Clould Shell Storage using Advanced Settings:
 
 ![set-storage](_images/set-storage.jpg)
 
@@ -38,7 +38,7 @@ Install Azure CLI in an elevated PowerShell prompt:
 Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
 ```
 
-> Note: To install Azure CLI in Linux (ie. WSL) execute `install-az-cli-linux.sh` from Setup/Linux folder
+> Note: To install Azure CLI in Linux (ie. WSL) execute `install-az-cli.sh` from Setup/windows-subsystem-linux folder
 
 ## Azure CLI getting started
 
