@@ -7,6 +7,7 @@
 - MSAL secured Mail Daemon Service with Microsoft Graph
 - MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
 - Graph REST Samples
+- Post to Microsoft Teams using Graph REST API and Azure Function
 ## Readings
 
 [Microsoft Identity Platform Docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/)
