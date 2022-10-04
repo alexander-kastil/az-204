@@ -1,0 +1,6 @@
+POST http://localhost:7071/api/postToTeams
+Content-Type: application/json
+
+{
+    "message": "Hello World"
+}
