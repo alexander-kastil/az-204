@@ -10,8 +10,6 @@ pwd=Pa$$w0rd1234!
 az group create -g $eugrp -l westeurope
 az group create -g $usgrp -l eastus2
 
-az vm create -g $usgrp -n usvm --location eastus2 --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2ms 
-
 # Create WebApps in two regions
 az appservice plan create -n $euplan -g $eugrp -l westeurope --sku S1 
 az webapp create -n tmapp-$euplan -g $eugrp -p $euplan
@@ -32,3 +30,7 @@ az network traffic-manager endpoint create --name ep-$euplan -g $eugrp  --profil
 
 az network traffic-manager endpoint create --name ep-$usplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-NA \
     --type azureEndpoints --target-resource-id $usid --endpoint-status Enabled 
+
+# Create a vm in the US to access the webapp with an us ip address
+
+az vm create -g $usgrp -n usvm --location eastus2 --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2ms     

@@ -14,10 +14,13 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
     - [Configure VS Code REST Client Extension](./Tooling/07-REST-Client)
   - [Lab VM Setup](./Setup)
     - [Base Dev Environment Setup inkluding Visual Studio Code Extensions](./Setup/#basics)
-  - [Labs](./Labs)
+  - [Labs](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)
 
-> Note: Labs are taken from the official repo [AZ-204: Developing solutions for Microsoft Azure](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)
+> Note: Labs are taken from the official repo [AZ-204: Developing solutions for Microsoft Azure](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure). Please clone the repo to your local machine and follow the instructions in 'Instructions/'
 
+```
+git clone https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure
+```
 ## Required Cloud Ressources
 
 - [Github User Account](https://github.com/)
