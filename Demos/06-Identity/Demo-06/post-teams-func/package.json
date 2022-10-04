@@ -9,7 +9,9 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "@azure/msal-node": "^1.14.1"
+  },
   "devDependencies": {
     "@azure/functions": "^3.0.0",
     "@types/node": "16.x",
