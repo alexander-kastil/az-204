@@ -8,6 +8,7 @@
 - Web Apps for Containers - Angular
 - Azure Container Instances (ACI) & 
 - Kubernetes Intro (optional)
+- Azure Container Apps (optional)
 
 ## Tools & Extensions
 

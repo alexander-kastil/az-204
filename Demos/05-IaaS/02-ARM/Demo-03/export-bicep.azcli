@@ -1,4 +1,4 @@
-grp=az204-m08-apim-staging
+grp=az204-m04-binding-19555
 file=ressource-export.json
 
 az group export -n $grp > $file
