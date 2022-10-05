@@ -3,7 +3,7 @@ eugrp=az204-tm-eu-$rnd
 usgrp=az204-tm-us-$rnd
 euplan=tm-westeur-$rnd
 usplan=tm-eastus-$rnd
-gitrepo="https://github.com/ARambazamba/GitDeployApp"
+gitrepo="https://github.com/arambazamba/git-deploy-app"
 user=labadmin
 pwd=Pa$$w0rd1234!
 
