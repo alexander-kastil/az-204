@@ -9,5 +9,4 @@ az group create --name $grp --location $loc
 
 az containerapp env create --name $caenv --resource-group $grp --location $loc
 
-az containerapp create -n my-container-app -g $grp --location $loc --image mcr.microsoft.com/az204/foodapi:latest \ 
-    --environment $caenv --image $img --target-port 80 --ingress 'external --query properties.configuration.ingress.fqdn
+fqdn=$(az containerapp create -n $ca -g $grp --image $img --environment $caenv --image $img --target-port 80 --ingress external --query properties.configuration.ingress.fqdn)

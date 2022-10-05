@@ -9,4 +9,3 @@ az extension add --name containerapp --upgrade
 az provider register -n Microsoft.App --wait
 az provider register --namespace Microsoft.OperationalInsights --wait
 ```
-
