@@ -1,0 +1,73 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "managedEnvironments_cne_name": {
+            "type": "String"
+        },
+        "loganalytics_key": {
+            "type": "String"
+        },
+        "loganalytics_customerid": {
+            "type": "String"
+        },
+        "queueconnection": {
+            "defaultValue": "",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.App/managedEnvironments",
+            "apiVersion": "2022-03-01",
+            "name": "[parameters('managedEnvironments_cne_name')]",
+            "location": "eastus",
+            "properties": {
+                "appLogsConfiguration": {
+                    "destination": "log-analytics",
+                    "logAnalyticsConfiguration": {
+                        "customerId": "[parameters('loganalytics_customerid')]",
+                        "sharedKey": "[parameters('loganalytics_key')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "queuereader",
+            "type": "Microsoft.App/containerApps",
+            "apiVersion": "2022-03-01",
+            "kind": "containerapp",
+            "location": "East US",
+            "dependsOn": [
+                "[resourceId('Microsoft.App/managedEnvironments', parameters('managedEnvironments_cne_name'))]"
+            ],
+            "properties": {
+                "managedEnvironmentId": "[resourceId('Microsoft.App/managedEnvironments', parameters('managedEnvironments_cne_name'))]",
+                "configuration": {
+                    "activeRevisionsMode": "single",
+                    "secrets": [
+                        {
+                            "name": "queueconnection",
+                            "value": "[parameters('queueconnection')]"
+                        }
+                    ]
+                },
+                "template": {
+                    "containers": [
+                        {
+                            "image": "kamalrathnayake/backgroundprocessingapp:latest",
+                            "name": "queuereader",
+                            "env": [
+                                {
+                                    "name": "connectionString",
+                                    "secretref": "queueconnection"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
