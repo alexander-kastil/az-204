@@ -23,4 +23,7 @@ az storage blob download --container-name $container --name $blob_name --file $d
 
 conStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
 
+# update appsettings.json
+sed -i "s/<BLOB_CONNECTION_STRING>/$key/g"  ./blob-console/appsettings.json
+
 echo "storage connection string: " $conStr

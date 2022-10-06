@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Azure.Storage;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace BlobStorageConsole
 {
@@ -12,15 +12,15 @@ namespace BlobStorageConsole
     {
         static async Task Main(string[] args)
         {
-            string connectionString = "DefaultEndpointsProtocol=https;AccountName=foodpics31257;AccountKey=6jNoGM3UfnTOD9MSMJKobP5Wf7wLt4t1olE0Wn1Sf5mSQWQY9SRpADsgEXEuGup1ibJngaBdRDEGqSexn2SZ6g==;EndpointSuffix=core.windows.net";
-            string containerName = "food";
-
-            // In real live you would take the conStr from an env var
-            // setx AZURE_STORAGE_CONNECTION_STRING "DefaultEndpointsProtocol=https;AccountName=az203storageacct10010;AccountKey=..."
-            // string connectionString = Environment.GetEnvironmentVariable("AZURE_STORAGE_CONNECTION_STRING");
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfigurationRoot configuration = builder.Build();
+            var connectionString = configuration["blobConnectionString"];
+            string blobContainerName = configuration["blobContainerName"];
 
             BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
-            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
+            BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(blobContainerName);
 
             Dictionary<string,string> metadata = new Dictionary<string, string>();
             metadata.Add("restaurant", "fusion");
@@ -32,12 +32,12 @@ namespace BlobStorageConsole
                 Console.WriteLine("\t" + blobItem.Name + " " + blobItem.Properties.ETag);
             }
 
-            string localPath = "../food-pics/";
-            string fileName = "falaffel.jpg";
-            string localFilePath = Path.Combine(localPath, fileName);
+            string picFolder = configuration["pictureFolder"];
+            string pic = configuration["pic"];
+            string localFilePath = Path.Combine(picFolder, pic);
 
             // Get a reference to a blob
-            BlobClient blobClient = containerClient.GetBlobClient(fileName);
+            BlobClient blobClient = containerClient.GetBlobClient(pic);
 
             Console.WriteLine("Uploading to pic:\n\t {0}\n", blobClient.Uri);
 

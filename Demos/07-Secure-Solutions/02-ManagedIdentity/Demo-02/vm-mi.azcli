@@ -9,7 +9,7 @@ vault=foodvault-$rnd
 az group create -n $grp -l $loc
 
 # create an user assigned managed identity
-mi=$(az identity create -g $grp -l $loc -n $identity --query principalId)
+mi=$(az identity create -g $grp -l $loc -n $identity --query principalId -o tsv)
 echo "managed identity object id: $mi"
 
 # create a vm

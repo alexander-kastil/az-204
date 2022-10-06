@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.Azure.EventGrid;
 using Microsoft.Azure.EventGrid.Models;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace FoodApp
@@ -9,13 +11,16 @@ namespace FoodApp
     class Program
     {
         static void Main(string[] args)
-        {
-            var events = 20;
-            // TODO: Enter value for topic from echo '** Topic: ' $topic
-            var topic = "foodorder-topic-11705";
-            // TODO: Enter value for topicKey from echo '** Topic Key: ' $key
-            string topicKey = "y5Vi2+3j+Yz50xViCa9ki4bplPzoAkBqZRA/Wp0le5A=";
+        {   
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfigurationRoot configuration = builder.Build();
             
+            var topic = configuration["topic"];
+            var topicKey = configuration["topicKey"];
+
+            var events = 20;
             var region = "westeurope";
             string topicEndpoint = $"https://{topic}.{region}-1.eventgrid.azure.net/api/events";
             string topicHostname = new Uri (topicEndpoint).Host;
