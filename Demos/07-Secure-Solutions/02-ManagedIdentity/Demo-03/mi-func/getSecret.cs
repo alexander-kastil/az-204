@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.Azure.KeyVault;
+using Microsoft.Extensions.Configuration;
+
 
 namespace Company.Function
 {
@@ -16,26 +18,34 @@ namespace Company.Function
     {
         [FunctionName("getSecret")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
+            ILogger log, ExecutionContext context)
         {
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             string secret = data?.secret;
-            log.LogInformation($"Obtaining secret {secret}.");
+            string dbconstring = "";
 
-            var serviceTokenProvider = new AzureServiceTokenProvider();
+            if(string.IsNullOrEmpty(secret)==false){
+                var config = new ConfigurationBuilder()
+                .SetBasePath(context.FunctionAppDirectory)
+                .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .Build();
 
-            var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(serviceTokenProvider.KeyVaultTokenCallback));
+                var kvName = config["KeyVaultName"];
+                var kvUri = $"https://{kvName}.vault.azure.net/";
 
-            // var secretUri = SecretUri(secretRequest.Secret);
+                log.LogInformation($"Obtaining secret {secret} from {kvUri}");
 
+                var serviceTokenProvider = new AzureServiceTokenProvider();
+                var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(serviceTokenProvider.KeyVaultTokenCallback));
+                dbconstring = (keyVaultClient.GetSecretAsync(kvUri, secret).Result).Value;
+            }
 
-            var val = "";
-
-            string responseMessage = string.IsNullOrEmpty(val)
-                ? "This HTTP triggered function executed successfully. Pass a secret name in the request body."
-                : $"Value of {secret} is {val}.";
+            string responseMessage = string.IsNullOrEmpty(secret)
+                ? "Param Missing. Pass a secret name in the request body."
+                : $"Value of {secret} is {dbconstring}.";
 
             return new OkObjectResult(responseMessage);
         }

@@ -1,5 +1,5 @@
-rnd=dev
-grp=az204-m07-func-mi-$rnd
+env=dev
+grp=az204-m07-use-mi-$rnd
 loc=westeurope
 app=func-mi-$rnd
 storage=funcmi$rnd
