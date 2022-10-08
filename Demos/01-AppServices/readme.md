@@ -8,7 +8,7 @@
 - Deploy Static HTML App using GitHub Actions
 - App Settings and Environment
 - Using Easy Authentication
-- Geo Routing with Traffic Manager
+- Geo Routing with Traffic Manager (optional)
 - Deployment Slots
 
 ## Readings

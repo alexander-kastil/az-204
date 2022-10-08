@@ -1,0 +1,30 @@
+@url=https://vscodeapp-19657.azurewebsites.net
+@adminKey=PKIOK4rLjILxyykid2W5unTAQ4bpAXYYw-XT1gdfITk4AzFuNHumww==
+@funcKey=k5zuflQuwjLDs3350bum6yGTgZllU_J0KtnCIE7FAjPYAzFuwfuxzw==
+
+### Use anonymous function
+POST  {{url}}/api/greetAnonymous HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Alois"
+}
+
+### Use function with funcKey oder adminKey
+POST  {{url}}/api/greetFuncKey HTTP/1.1
+content-type: application/json
+x-functions-key: {{funcKey}}
+
+{
+    "name": "Alois"
+}
+
+
+### Use function with admin key
+POST  {{url}}/api/greetAdminKey HTTP/1.1
+content-type: application/json
+x-functions-key: {{adminKey}}
+
+{
+    "name": "Alois"
+}

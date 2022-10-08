@@ -86,13 +86,21 @@ Use `REST Client` and execute `send-greeting.http`:
 ```bash
 @baseurl=localhost:7071
 
-### Greet Hubertus using GET
-GET  http://{{baseurl}}/api/greetme?name=Hubertus HTTP/1.1
+### Greet Hubertus using POST
+POST  {{url}}/api/greetAnonymous HTTP/1.1
 content-type: application/json
+
+{
+    "name": "Alois"
+}
 ```
+
+TO create Function App Host in Azure execute `create-vscode-app.azcli`
 
 Publish App to Azure using CLI:
 
 ```bash
+cd vscode-cs
 func azure functionapp publish $app
+cd ..
 ```
