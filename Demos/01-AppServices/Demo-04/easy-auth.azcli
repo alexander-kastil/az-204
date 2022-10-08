@@ -1,0 +1,21 @@
+rnd=$RANDOM
+grp=az204-m01-easy-auth-$rnd
+appPlan=easyauth-$rnd
+app=easyauth-website-$rnd
+appregName=easyauth-app
+gitrepo="https://github.com/arambazamba/git-deploy-app"
+tenantID=d92b247e-90e0-4469-a129-6a32866c0d0a
+
+az group create -n $grp -l westeurope
+
+az appservice plan create -n $appPlan -g $grp --sku F1
+
+az webapp create -g $grp -p $appPlan -n $app
+
+az webapp deployment source config -n $app -g $grp -u $gitrepo --branch master
+
+clientID=$(az ad app list --query "[?displayName=='$appregName'].appId" -o tsv)
+
+az webapp auth microsoft update -g $grp -n $app --client-id $clientID --tenant-id $tenantID
+
+# Update redirect URI in App Registration

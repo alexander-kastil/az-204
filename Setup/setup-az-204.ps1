@@ -43,6 +43,9 @@ choco install azure-data-studio -y
 Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
+# Install Azure CLI Extensions without prompt
+az config set extension.use_dynamic_install=yes_without_prompt
+
 # Install httprepl
 dotnet tool install -g Microsoft.dotnet-httprepl
 
