@@ -23,6 +23,10 @@ Unset Credentials
 git config --global --unset credential.helper
 ```
 
+## Configure ignored files
+
+To Configure ignored files add a `.gitignore` file to the root of your project. A valid `.gitignore` file can be generated at https://www.gitignore.io/
+
 ## Basic Git Commands
 
 Init Git:
@@ -97,7 +101,7 @@ git merge [branch_to_merge]
 
 > Note: You might have to switch to the branch that you might want to merge into befor executing merge
 
-## Checkout Commits
+## Checkout specific Commits
 
 Get a spcific Commit:
 
@@ -214,10 +218,6 @@ Checkout tag:
 ```
 git checkout 2.0.1
 ```
-
-## Configure ignored files
-
-To Configure ignored files add a `.gitignore` file to the root of your project. A valid `.gitignore` file can be generated at https://www.gitignore.io/
 
 ## Remotes
 

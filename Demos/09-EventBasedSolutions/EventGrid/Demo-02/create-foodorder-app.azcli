@@ -1,5 +1,5 @@
 env=$RANDOM
-grp=az204-m09-signalr-foodorders-$env
+grp=az204-m09-realtime-foodorders-$env
 loc=westeurope
 storage=foodorders
 app=foodorders-$env
