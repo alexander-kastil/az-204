@@ -7,11 +7,11 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CloudEvent } from '@azure/eventgrid';
 import * as SignalR from '@microsoft/signalr';
-import { filter, tap } from 'rxjs';
+import { tap } from 'rxjs';
+import { combineLatestWith, map, startWith } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { FoodOrder, orderstatus } from '../order.model';
 import { OrdersStore } from '../orders.store';
-import { combineLatestWith, map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-orders',
