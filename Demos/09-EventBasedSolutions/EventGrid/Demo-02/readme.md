@@ -53,4 +53,8 @@ Food orders kitchen Dashboard `food-orders-ui` imlplemented as Angular Microfron
     { ...
     ```
 
+
+https://user-images.githubusercontent.com/16348023/201038870-7420343a-f847-443d-9b25-2df2f71c44e5.mp4
+
+
 > Credits: The demo is an updated and modernized version of [https://github.com/DavidGSola/serverless-eventgrid-viewer](https://github.com/DavidGSola/serverless-eventgrid-viewer)
