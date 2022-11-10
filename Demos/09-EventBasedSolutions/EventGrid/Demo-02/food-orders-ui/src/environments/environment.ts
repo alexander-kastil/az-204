@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  funcEP: 'https://foodorders-28791.azurewebsites.net/api',
+  funcEP: 'https://foodorders-10454.azurewebsites.net/api',
 };
