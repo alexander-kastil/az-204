@@ -1,0 +1,63 @@
+rnd=10949
+grp=cloudborn-keda-scaling-$rnd
+loc=westeurope
+contaienrenv=scaling-app-env
+acct=msgqueue$rnd
+queue=scaling-queue
+
+az group create -n $grp -l $loc
+
+# create storage queue
+az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
+key=$(az storage account keys list -n $acct --query "[0].value")
+az storage queue create -n $queue --account-key $key --account-name $acct
+queueConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
+
+# put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
+messageOne=$(echo "Hello Queue Reader App" | base64)
+az storage message put --content $messageOne --queue-name $queue --connection-string $queueConStr
+
+# start container locally and show how it fetches the message
+cd queue-processor
+docker run -d --rm -p 5052:80 -e "QueueConnectionString="$queueConStr queueprocessor
+
+# Add another message to the queue and see the logs again
+messageTwo=$(echo "Another Hello to Queue Reader App" | base64)
+az storage message put --content $messageTwo --queue-name $queue --connection-string $queueConStr  
+
+# Terminate the local container & publish the image to dockerhub
+docker tag queueprocessor arambazamba/queueprocessor
+docker push arambazamba/queueprocessor
+
+# Create container app environment and deploy a container to it
+cd ..
+az containerapp env create -n $contaienrenv -g $grp --location $loc
+
+az deployment group create -g $grp --template-file ./background-reader.json --parameters \
+    environment_name=$contaienrenv \
+    queueconnection=$queueConStr \
+    location=$loc
+
+# Add another message to the queue and see the logs again
+messageThree=$(echo "Third Hello to Queue Reader App" | base64)
+az storage message put --content $messageThree --queue-name $queue --connection-string $queueConStr      
+
+logClientId=`az containerapp env show -n $contaienrenv -g $grp --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`
+
+az monitor log-analytics query --workspace $logClientId \
+  --analytics-query "ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'queuereader' and Log_s contains 'Message ID' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 5" --out table    
+
+# Send a bunch of messages to the queue
+i=0
+while [ $i -ne 1000 ]
+do
+    i=$(($i+1))
+    msg=$(echo "Hello Queue Reader App $i" | base64)
+
+    az storage message put --content $msg --queue-name $queue --connection-string $queueConStr  
+done
+
+# stop container app
+
+az containerapp revision deactivate -g $grp -n $contaienrenv --revision --name queuereader--o2qbdtq
+                                    
