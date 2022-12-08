@@ -1,0 +1,7 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "QueueConnectionString": "DefaultEndpointsProtocol=https;AccountName=msgqueue10949;AccountKey=AVL5+aRkH8SO66WfIDFKPEYcFvpPpJEkqVSCNSGvh2khTSO6P3Oskcjk/ZBYqGdrmmqaFUazzlxf+ASt8olW2w==;EndpointSuffix=core.windows.net"
+  }
+}

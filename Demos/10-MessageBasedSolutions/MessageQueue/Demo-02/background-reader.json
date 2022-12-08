@@ -1,0 +1,75 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "defaultValue": "westeurope",
+            "type": "String"
+        },
+        "environment_name": {
+            "defaultValue": "",
+            "type": "String"
+        },
+        "queueconnection": {
+            "defaultValue": "",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+    {
+        "name": "queuereader",
+        "type": "Microsoft.App/containerApps",
+        "apiVersion": "2022-03-01",
+        "kind": "containerapp",
+        "location": "[parameters('location')]",
+        "properties": {
+            "managedEnvironmentId": "[resourceId('Microsoft.App/managedEnvironments', parameters('environment_name'))]",
+            "configuration": {
+                "activeRevisionsMode": "single",
+                "secrets": [
+                {
+                    "name": "queueconnection",
+                    "value": "[parameters('queueconnection')]"
+                }]
+            },
+            "template": {
+                "containers": [
+                    {
+                        "image": "arambazamba/queueprocessor",
+                        "name": "queuereader",
+                        "env": [
+                            {
+                                "name": "QueueName",
+                                "value": "scaling-queue"
+                            },
+                            {
+                                "name": "QueueConnectionString",
+                                "secretRef": "queueconnection"
+                            }
+                        ]
+                    }
+                ],
+                "scale": {
+                    "minReplicas": 1,
+                    "maxReplicas": 10,
+                    "rules": [
+                        {
+                            "name": "queuescalerule",
+                            "azureQueue": {
+                                "queueName": "scaling-queue",
+                                "queueLength": 10,
+                                "auth": [
+                                    {
+                                        "secretRef": "queueconnection",
+                                        "triggerParameter": "connection"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }]
+}
