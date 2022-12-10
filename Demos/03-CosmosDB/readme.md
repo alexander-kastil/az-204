@@ -2,8 +2,9 @@
 
 ## Demos
 
--   Create and use Cosmos DB
--   Use Cosmos DB in .NET Core
+- Create and use Cosmos DB
+- Use Cosmos DB in .NET Core
+- Use Cosmos DB Emulator (optional)
 
 ## Readings
 
