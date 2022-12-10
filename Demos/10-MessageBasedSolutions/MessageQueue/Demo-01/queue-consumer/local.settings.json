@@ -1,8 +1,0 @@
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "msgqueue14315_STORAGE": "DefaultEndpointsProtocol=https;AccountName=msgqueue14315;AccountKey=46vwHF1ING+pbJ1oX+rGPBSl0NPUMHU+NCnDY9WInCMj+xGwrixMmsuCe4Or6EA1U5hWGTgaumTT+AStsyDwIg==;EndpointSuffix=core.windows.net"
-  }
-}
