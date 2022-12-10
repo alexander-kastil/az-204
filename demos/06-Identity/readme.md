@@ -2,12 +2,12 @@
 
 ## Demos
 
-1. Implement Role based Access Control (RBAC)
-2. Managing App Registrations & Understanding Microsoft Identity Authentication Flows
-3. MSAL secured Mail Daemon Service with Microsoft Graph
-4. MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
-5. Graph REST Samples
-
+- Implement Role based Access Control (RBAC)
+- Managing App Registrations using CLI & Understanding Microsoft Identity Authentication Flows
+- MSAL secured Mail Daemon Service with Microsoft Graph
+- MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
+- Graph REST Samples
+- Post to Microsoft Teams using Graph REST API and Azure Function
 ## Readings
 
 [Microsoft Identity Platform Docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/)

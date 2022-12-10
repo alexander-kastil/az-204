@@ -1,18 +1,19 @@
-app=token-flow-node
+app=msal-token-flow
 uri=http://localhost:8080
 
-id=$(az ad app create --display-name $app --required-resource-accesses @manifest.json \
+# List all app registrations
+az ad app list --all --query "[][displayName, appId]" -o table
+az ad sp list --query [].{Name:displayName}  -o table
+az ad app list --all --query "[?displayName=='msal-token-flow']"
+
+id=$(az ad app create --display-name $app --required-resource-accesses @app-manifest.json \
     --oauth2-allow-implicit-flow true \
     --reply-urls $uri --query appId -o tsv)
 
 az ad app permission admin-consent --id $id
 
-
 # List all registered apps
 az ad app list --all --query "[][displayName, appId]" -o table
-
-# Get App with displayName 
-az ad app list --all --query "[?displayName=='msal-token-flow']"
 
 # Get Api permissions from this app
 perm=$(az ad app list --all --query "[?displayName=='msal-token-flow'][requiredResourceAccess]")

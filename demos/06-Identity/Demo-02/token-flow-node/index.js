@@ -1,7 +1,5 @@
 async function doAuth() {
     //Sharepoint Tenant
-    const spTenant = "integrationsonline";
-
     const config = {
         auth: {
             clientId: "eeb155cb-d4c6-4864-9184-cf10a6e02715",

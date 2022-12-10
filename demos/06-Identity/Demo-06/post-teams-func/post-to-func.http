@@ -1,0 +1,26 @@
+### Set the graph base url
+@graph=https://graph.microsoft.com/v1.0
+@tenanat=integrationsonline
+@splistapp=6a04eb4c-afa8-4673-829a-19ca38640abb
+
+# Autenticate User
+# @name auth
+POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
+Content-type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientId}}
+&client_secret={{clientSecret}}
+&scope={{scope}}
+
+GET https://graph.microsoft.com/v1.0/me/joinedTeams
+Content-Type: application/json
+
+
+###
+POST http://localhost:7071/api/postToTeams
+Content-Type: application/json
+
+{
+    "message": "Hello World"
+}
