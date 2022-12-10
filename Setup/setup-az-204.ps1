@@ -12,10 +12,8 @@ Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://cho
 Write-Host "Installing VSCode & Git Related Software" -ForegroundColor yellow
 Write-Host "Refresh Path Env - 2/6" -ForegroundColor yellow
 
-choco install googlechrome -y
 choco install vscode -y
 choco install git -y
-choco install gitextensions -y
 choco install git-lfs.install -y
 choco install gh -y
 
@@ -27,7 +25,6 @@ Write-Host "*****" -ForegroundColor red
 # Install Software
 Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
 
-choco install microsoft-edge -y
 choco install googlechrome -y
 choco install vscode -y
 choco install dotnetcore-sdk -y
@@ -38,6 +35,7 @@ choco install azurepowershell -y
 choco install curl -y
 choco install python --version=3.9.0 -y
 choco install azure-data-studio -y 
+choco install azure-cosmosdb-emulator -y
 
 # Refresh Path Env
 Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow

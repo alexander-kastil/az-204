@@ -2,12 +2,17 @@
 
 ## Demos
 
--   Create and use Cosmos DB
--   Use Cosmos DB in .NET Core
+- Create and use Cosmos DB
+- Use Cosmos DB in .NET Core
+- Use Cosmos DB Emulator (optional)
 
 ## Readings
 
 [Azure Cosmos DB](https://docs.microsoft.com/de-at/azure/cosmos-db/)
+
+[Azure Cosmos DB free tier](https://learn.microsoft.com/en-us/azure/cosmos-db/free-tier)
+
+[Azure Cosmos DB Emulator](https://learn.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21)
 
 [Consistency levels in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)
 
