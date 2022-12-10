@@ -25,9 +25,9 @@ Assign the `User.ReadAll` permissions for out test as an Application Permission
 
 >Note: If you need additional permission you will have to assign them using the app registrations "API Permissions" tab
 
-To test choose "F1" -> "REST Clien: Switch Environment" and execute `get-token.http`. 
+To test choose "F1" -> "REST Clien: Switch Environment" and execute `get-token.http`. The response is stored in the `auth` variable.
 
-```json
+```
 # @name auth
 POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
 Content-type: application/x-www-form-urlencoded
@@ -40,9 +40,9 @@ grant_type=client_credentials
 
 ![rest-client.png](_images/rest-client.png)
 
-List all users in the tenant
+Use `auth` variable from prev. step and list all users in the tenant
 
-```json
+```
 GET https://graph.microsoft.com/v1.0/me
 Authorization: Bearer {{auth.response.body.access_token}}
 ```
