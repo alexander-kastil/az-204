@@ -9,6 +9,8 @@
 
 [Azure Cosmos DB](https://docs.microsoft.com/de-at/azure/cosmos-db/)
 
+[Azure Cosmos DB free tier](https://learn.microsoft.com/en-us/azure/cosmos-db/free-tier)
+
 [Consistency levels in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)
 
 [Partitioning and horizontal scaling in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview)
