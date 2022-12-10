@@ -2,14 +2,7 @@
 
 - Redis Cache
 - Azure CDN / Front Door
-
-## CLI Reference
-
-[az redis](https://docs.microsoft.com/en-us/cli/azure/redis?view=azure-cli-latest)
-
-[az cdn](https://docs.microsoft.com/en-us/cli/azure/cdn?view=azure-cli-latest)
-
-[az staticwebapp](https://docs.microsoft.com/en-us/cli/azure/staticwebapp?view=azure-cli-latest)
+- Static Web Apps (optional)
 
 ## Additional Labs & Walkthroughs
 
