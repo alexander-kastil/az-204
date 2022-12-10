@@ -20,8 +20,6 @@
 
 [Use Data migration tool to migrate your data to Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#JSON)
 
-[Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator?tabs=ssl-netstd21)
-
 [Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-java?tabs=sync)
 
 ## CLI Reference
