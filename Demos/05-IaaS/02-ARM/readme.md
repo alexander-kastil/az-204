@@ -1,10 +1,10 @@
-# ARM Templates
+# Infrastructure as Code (IaC)
 
 ## Demos
 
-- ARM Template Basics & deployment
-- Deploy to Azure Button
-- Introduction to Bicep (optional)
+1. ARM Template Basics & deployment
+2. Deploy to Azure Button
+3. Introduction to Bicep (optional)
 
 ## Readings
 
