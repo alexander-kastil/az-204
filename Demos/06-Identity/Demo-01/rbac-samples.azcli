@@ -3,6 +3,7 @@ grp=az204-m06-rbac-$rnd
 loc=westeurope
 acct=rbac$RANDOM
 user=alexander.pajer@integrations.at
+app=msal-token-flow
 
 # Get a specific user
 az ad user show --id $user
@@ -15,5 +16,8 @@ az ad group member list --group AZAdmins --query [].{Name:displayName}  -o table
 az group create -n $grp -l $loc
 id=$(az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS --query id -o tsv)
 
-# Assign permissions with RBAC to Storage
+# Assign user permission permissions with RBAC to Storage
 az role assignment create --role "Storage Blob Data Contributor" --assignee $user --scope $id
+
+# Assign app permissions with RBAC to Storage
+az ad sp create-for-rbac -n $app --role Contributor --scopes $id
