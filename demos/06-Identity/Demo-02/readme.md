@@ -10,10 +10,11 @@
 
 ## Demos
 
-- App Registration MSAL-Token-Flow-App
-- Create App Registration using Azure CLI
+- Manage App Registration using Azure CLI 
+  - Examine `manage-appregs.azcli`
+- Explain Token Types
 
-### App Registration MSAL-Token-Flow-App
+### Explain Token Types
 
 ![appreg](_images/app-reg.jpg)
 
@@ -25,7 +26,6 @@ Replace tanant id und client id in `index.js`:
 
 ```javascript
 async function doAuth() {
-  const spTenant = "integrationsonline";
   const config = {
     auth: {
       clientId: "a2d2aa7-c9dc-47ef-899a-2258409bc7c4",

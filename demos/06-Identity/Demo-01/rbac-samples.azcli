@@ -1,19 +1,23 @@
-# Get the object for an Azure AD user
-# Use Storage acct from before
+rnd=$RANDOM
+grp=az204-m06-rbac-$rnd
+loc=westeurope
+acct=rbac$RANDOM
+user=alexander.pajer@integrations.at
+app=msal-token-flow
 
-az ad user show --id "alexander.pajer@integrations.at" 
+# Get a specific user
+az ad user show --id $user
 
-# Get a group
-
+# Get a group - AZAdmins is a custom group
 az ad group member list --group AZAdmins 
 az ad group member list --group AZAdmins --query [].{Name:displayName}  -o table
 
-# List all applications
+# Create storage account and get its id
+az group create -n $grp -l $loc
+id=$(az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS --query id -o tsv)
 
-az ad sp list --query [].{Name:displayName}  -o table
+# Assign user permission permissions with RBAC to Storage
+az role assignment create --role "Storage Blob Data Contributor" --assignee $user --scope $id
 
-# Assign permissions with RBAC to Storage
-
-# az role assignment create --role "Storage Blob Data Contributor" --assignee <email> --scope "/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account>"
-
-az role assignment create --role "Storage Blob Data Contributor" --assignee alexander.pajer@integrations.at --scope "/subscriptions/78033352-805c-4acd-af80-f8f95083268d/resourceGroups/az204-sas-12204/providers/Microsoft.Storage/storageAccounts/medicalrecords12204"
+# Assign app permissions with RBAC to Storage
+az ad sp create-for-rbac -n $app --role Contributor --scopes $id
