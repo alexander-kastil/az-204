@@ -1,10 +1,10 @@
 # Getting Started
 
-- [Register your Azure Pass](../05-AzurePass)
-- [Configure CloudShell for first use in your Azure Tenant](../04-CLI/#configure-cloud-shell)
+- [Register your Azure Pass](../05-azurepass)
+- [Configure CloudShell for first use in your Azure Tenant](../04-cli/#configure-cloud-shell)
 - [Register GitHub Account](https://github.com/)
 - Activate your Lab Environment by using the Access Code provided by the instructor
-    - You can also work on your own machine by execute [setup-az-204.ps1](../../Setup/setup-az-204.ps1) to install the required Software on a Windows machine, or [Setup a Lab Machine in Azure & install required Software using Script - optional](../../Setup)
+    - You can also work on your own machine by execute [setup-az-204.ps1](../../setup/setup-az-204.ps1) to install the required Software on a Windows machine, or [Setup a Lab Machine in Azure & install required Software using Script - optional](../../setup)
 - Configure Git on the Lab VM
 - Setup Git and Fork the class repo
 
