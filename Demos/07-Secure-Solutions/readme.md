@@ -1,8 +1,8 @@
 # Secure Data Solutions
 
-- Azure Key Vault
-- Managed Identity
-- App Configuration Services
+1. Azure Key Vault
+2. Managed Identity
+3. App Configuration Services
 
 ## Additional Labs & Walkthroughs
 

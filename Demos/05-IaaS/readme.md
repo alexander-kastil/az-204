@@ -1,5 +1,5 @@
 # Infrastructure-as-a-Service
 
-- Virtual Machines
-- ARM Templates
-- Azure Container Technologies
+1. Virtual Machines
+2. Infrastructure as Code (IaC)
+3. Azure Container Technologies

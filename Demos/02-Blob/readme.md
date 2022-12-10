@@ -2,9 +2,9 @@
 
 ## Demos
 
-- Provision and use Blob Storage
-- Use Shared Access Signature
-- Use files shares provided by the core Azure Storage platform (optional)
+1. Provision and use Blob Storage
+2. Use Shared Access Signature
+3. Use files shares provided by the core Azure Storage platform (optional)
 
 ## Readings
 

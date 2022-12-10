@@ -1,14 +1,14 @@
-# Create containerized solutions
+# Containerized Solutions
 
 ## Demos
 
-- Docker Basics & Multistage Build
-- Publish Image to Azure Container Registry
-- Use Azure Container Registry Build Task
-- Web Apps for Containers - Angular
-- Azure Container Instances (ACI) & 
-- Kubernetes Intro (optional)
-- Azure Container Apps (optional)
+1. Docker Basics & Multistage Build
+2. Publish Image to Azure Container Registry
+3. Use Azure Container Registry Build Task
+4. Web Apps for Containers - Angular
+5. Azure Container Instances (ACI) & 
+6. Kubernetes Intro (optional)
+7. Azure Container Apps (optional)
 
 ## Tools & Extensions
 

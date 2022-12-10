@@ -2,13 +2,13 @@
 
 ## Demos
 
--   Create Hello World Function App using Portal using Portal Designer
--   Azure Function Core Tools & Visual Studio Code
--   Introduction to Bindings using Blob Storage
--   Using App Settings in Java Script projects
--   Durable Functions
--   Azure Functions REST Api (optional)
--   Cosmos DB Change Feed (optional)
+1. Create Hello World Function App using Portal using Portal Designer
+2. Azure Function Core Tools & Visual Studio Code
+3. Introduction to Bindings using Blob Storage
+4. Using App Settings in Java Script projects
+5. Durable Functions
+6. Azure Functions REST Api (optional)
+7. Cosmos DB Change Feed (optional)
 
 ## Readings
 
