@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
+import { NavigationEnd, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { filter, map, startWith, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { MsalAuthFacade } from './auth/state/auth.facade';
-import { FoodFacade } from './food/state/food.facade';
 import { MenuFacade } from './state/menu/menu.facade';
 
 @Component({
@@ -9,40 +12,54 @@ import { MenuFacade } from './state/menu/menu.facade';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  title = 'Passion for Food!';
-  authenticated: boolean = false;
+export class AppComponent implements OnDestroy {
+  title = environment.title;
   sidenavMode: MatDrawerMode = 'side';
   sidenavVisible = this.mf.sideNavVisible;
   isIframe = window !== window.parent && !window.opener;
 
+  authenticated = this.af.isAuthenticated();
+  publicRoute = this.router.events.pipe(
+    startWith(false),
+    filter((e) => e instanceof NavigationEnd),
+    map((event) => {
+      return event instanceof NavigationEnd && event.url.includes('about');
+    }),
+    tap((result) => {
+      console.log('publicRoute', result);
+    })
+  );
+
+  private destroy$ = new Subject();
+
   constructor(
     private af: MsalAuthFacade,
     public mf: MenuFacade,
-    public ff: FoodFacade
-  ) {}
+    private router: Router
+  ) {
+    this.mf.sideNavPosition
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((mode: string) => {
+        this.sidenavMode = mode as MatDrawerMode;
+      });
+  }
 
-  ngOnInit(): void {
-    this.mf.sideNavPosition.subscribe(
-      (mode) => (this.sidenavMode = mode as MatDrawerMode)
-    );
-
-    this.af.isInitAndAuthenticated().subscribe((proceed) => {
-      if (proceed) {
-        this.authenticated = proceed;
-      }
-    });
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
   getWorbenchStyle() {
     let result = {};
-    this.mf.sideNavVisible.subscribe((visible) => {
-      result = visible
-        ? {
-            'padding-left': '10px',
-          }
-        : {};
-    });
+    this.mf.sideNavVisible
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((visible: boolean) => {
+        result = visible
+          ? {
+              'padding-left': '10px',
+            }
+          : {};
+      });
     return result;
   }
 }

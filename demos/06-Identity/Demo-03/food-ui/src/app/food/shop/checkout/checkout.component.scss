@@ -1,0 +1,33 @@
+.mat-toolbar-row, .mat-toolbar-single-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;    
+}
+
+.mat-form-field{
+    padding: 0 1rem;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    flex-basis: 300px;
+    justify-content: space-between;
+}
+
+.sum{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+mat-list-item span{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

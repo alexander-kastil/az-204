@@ -6,6 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  entryPic = '/assets/images/burger.png';
+  entryPic = '/assets/images/food.png';
   constructor() {}
 }

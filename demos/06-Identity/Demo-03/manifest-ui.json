@@ -1,0 +1,39 @@
+[
+    {
+        "additionalProperties": null,
+        "resourceAccess": [
+            {
+                "additionalProperties": null,
+                "id": "89fe6a52-be36-487e-b7d8-d061c450a026",
+                "type": "Scope"
+            },
+            {
+                "additionalProperties": null,
+                "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+                "type": "Scope"
+            },
+            {
+                "additionalProperties": null,
+                "id": "b4e74841-8e56-480b-be8b-910348b18b4c",
+                "type": "Scope"
+            },
+            {
+                "additionalProperties": null,
+                "id": "205e70e5-aba6-4c52-a976-6d2d46c48043",
+                "type": "Scope"
+            }
+        ],
+        "resourceAppId": "00000003-0000-0000-c000-000000000000"
+    },
+    {
+        "additionalProperties": null,
+        "resourceAccess": [
+            {
+                "additionalProperties": null,
+                "id": "4e0d77b0-96ba-4398-af14-3baa780278f4",
+                "type": "Scope"
+            }
+        ],
+        "resourceAppId": "00000003-0000-0ff1-ce00-000000000000"
+    }
+]

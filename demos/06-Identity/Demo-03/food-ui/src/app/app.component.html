@@ -1,5 +1,5 @@
 <div
-  *ngIf="!authenticated"
+  *ngIf="(authenticated |async) === false && (publicRoute | async) === false"
   fxLayout="column"
   fxLayoutAlign="center center"
   class="loginsplash"
@@ -7,7 +7,7 @@
   <app-login></app-login>
 </div>
 <div
-  *ngIf="authenticated"
+  *ngIf="(authenticated |async) === true || (publicRoute | async) === true"
   gdAreas="navbar | mainrow"
   gdAreas.lt-md="navbar  | mainrow"
   gdRows="80px auto"
@@ -27,7 +27,7 @@
   </div>
 </div>
 
-<div style="display: none">
-  <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+<!-- used for token refresh on F5 or revisit using cached credentials -->
+<!-- <div style="display: none">
   <router-outlet *ngIf="!isIframe"></router-outlet>
-</div>
+</div> -->

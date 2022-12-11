@@ -1,10 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  changeSideNavPosition,
-  changeSideNavVisible,
-  setSideNavEnabled,
-  toggleSideNav,
-} from './menu.actions';
+import { SideNavActions } from './menu.actions';
 
 export interface MenuState {
   sideNavEnabled: boolean;
@@ -20,20 +15,20 @@ const initialState: MenuState = {
 
 export const reducer = createReducer(
   initialState,
-  on(toggleSideNav, (state) => ({
+  on(SideNavActions.togglesidenav, (state) => ({
     ...state,
     sideNavVisible: !state.sideNavVisible,
   })),
-  on(setSideNavEnabled, (state, action) => ({
+  on(SideNavActions.setsidenavenabled, (state, action) => ({
     ...state,
     sideNavEnabled: action.enabled,
     sideNavVisible: action.enabled,
   })),
-  on(changeSideNavVisible, (state) => ({
+  on(SideNavActions.setsidenavvisible, (state, action) => ({
     ...state,
-    sideNavVisible: !state.sideNavVisible,
+    sideNavVisible: action.visible,
   })),
-  on(changeSideNavPosition, (state, action) => ({
+  on(SideNavActions.setsidenavposition, (state, action) => ({
     ...state,
     sideNavPosition: action.position,
   }))

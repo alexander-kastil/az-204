@@ -1,9 +1,11 @@
 export const environment = {
   production: false,
-  authEnabled: true,
-  apiUrl: 'https://localhost:5001/',
+  title: 'Passion for Food!',
+  authEnabled: false,
+  api: 'https://localhost:5001/',
   azure: {
-    applicationInsights: 'a196d36f-1782-4da4-8f95-a80585361df7',
+    applicationInsights: '0a945124-73ac-4295-98b0-5116df276b7d',
+    signalREndpoint: '',
     appReg: {
       clientId: 'd23642f7-9ccf-4165-92e7-919f625a5acc',
       authority:
@@ -18,4 +20,10 @@ export const environment = {
       ],
     },
   },
+  features: {
+    reactive: false,
+    logging: true,
+    persistCart: false,
+  },
+  testuser: 'alexander.pajer@integrations.at',
 };

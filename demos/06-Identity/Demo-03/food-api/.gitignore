@@ -8,6 +8,8 @@
 
 # Database
 *.db
+food.db-shm
+food.db-wal
 
 # User-specific files
 *.suo

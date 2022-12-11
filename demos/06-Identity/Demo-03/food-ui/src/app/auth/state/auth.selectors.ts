@@ -4,9 +4,14 @@ import { authFeatureKey, MsalAuthState } from './auth.reducer';
 export const getAuthState =
   createFeatureSelector<MsalAuthState>(authFeatureKey);
 
-export const isAuthenticated = createSelector(
+export const getAuthEnabled = createSelector(
   getAuthState,
-  (state) => state.authResponse != null
+  (state) => state.authEnabled
+);
+
+export const getLoggedIn = createSelector(
+  getAuthState,
+  (state) => state.authResponse !== null
 );
 
 export const getUser = createSelector(

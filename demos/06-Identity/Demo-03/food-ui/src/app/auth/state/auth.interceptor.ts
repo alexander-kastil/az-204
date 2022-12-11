@@ -11,6 +11,7 @@ import { first, mergeMap } from 'rxjs/operators';
 import { MsalAuthState } from './auth.reducer';
 import { getToken } from './auth.selectors';
 
+//TODO: Not used here
 @Injectable({
   providedIn: 'root',
 })

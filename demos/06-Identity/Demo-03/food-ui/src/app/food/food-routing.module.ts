@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FoodEditComponent } from './food-edit/food-edit.component';
-import { FoodContainerComponent } from './food-container/food-container.component';
+import { FoodContainerComponent } from './catalog/catalog-container/food-container.component';
+import { CheckoutComponent } from './shop/checkout/checkout.component';
+import { FoodShopContaienerComponent } from './shop/shop-container/food-shop-container.component';
 
 const routes: Routes = [
-  { path: '', component: FoodContainerComponent },
-  { path: 'edit', component: FoodEditComponent },
+  { path: '', component: FoodShopContaienerComponent },
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'catalog', component: FoodContainerComponent },
 ];
 
 @NgModule({

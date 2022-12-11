@@ -6,50 +6,103 @@
 
 ## Demo
 
-- Requirements
-- Create 2 App Registrations
+- Create App Registrations
 - Configure Angular MSAL Auth
-- Configure Api MSAL
+- Configure Api MSAL 
 
-### Requirements
+### Create App Registrations
 
-- [Azure Trial Account](https://azure.microsoft.com/en-us/free/)
+- Requires two app registrations. One for `food-api`, one for `food-ui`.
 
-- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+  ![app-reg](./_images/msal-app.png)
 
-- [Getting Started with Azure CLI](https://github.com/arambazamba/ng-adv/tree/feature/msal-auth/Tooling/04-CLI)
+- To create API App Registration execute `create-api-appreg.azcli`
 
-    > Note: For Visual Studio Code integration install [Azure CLI Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli) and [Azure Account](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account)
+  ![api-auth](./_images/api-auth.png)
 
-- [az ad app](https://docs.microsoft.com/en-us/cli/azure/ad/app?view=azure-cli-latest)    
+  ![api-expose](./_images/api-expose.png)
 
-### App Registrations
+  ![api-scope](./_images/api-scope.png)
 
-- Requires two app registrations: one for the api - one for the ng ui.
+- To create UI App Registration execute `create-ui-appreg.azcli`
 
-![app-reg](./_images/msal-app.png)
+  ![ui-auth](./_images/ui-auth.png)
 
-Create app registration base using `create-msal-app-reg.azcli`.
+  ![ui-permissions](./_images/ui-permissions.png)
 
->Note: The current state of Azure CLI does not allow setting all props of the app registration. Please check and complete them manually
+---
+### Configure .NET Api MSAL Auth
 
-API App Registration:
+`appsettings.json` allows enabling / disabling of auth and stores `TenantId` and `ClientId` of the Api App Registration:
 
-![api-auth](./_images/api-auth.png)
+```json
+"App": {
+    "Title": "",
+    "AuthEnabled": true,
+    "UseSQLite": true,
+    "ConnectionStrings": {
+        "SQLiteDBConnection": "Data Source=./food.db",
+        "SQLServerConnection": "..."
+    }
+},
+"Azure": {
+    "TenantId": "d92b247e-90e0-4469-a129-6a32866c0d0a",
+    "ClientId": "b509d389-361a-447b-afb2-97cc8131dad6",
+    "Instance": "https://login.microsoftonline.com/",
+    "cacheLocation": "localStorage",
+```
 
-![api-expose](./_images/api-expose.png)
+`Program.cs` registeres OpenIDConnect Authentication for the [On-Behalf-Of-Auth-Flow](https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow) and assigns an Authorization policy on the Controllers:
 
-![api-scope](./_images/api-scope.png)
+```c#
+var az = Configuration.GetSection("Azure");
+if (cfg.App.AuthEnabled && az != null)
+{
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(az)
+    .EnableTokenAcquisitionToCallDownstreamApi()
+    .AddInMemoryTokenCaches();
+    builder.Services.AddAuthorization();
 
-UI App Registration:
+    //Add auth policy instead of Autorize Attribute on Controllers
+    builder.Services.AddControllers(obj =>
+    {
+        var policy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+        obj.Filters.Add(new AuthorizeFilter(policy));
+    });
+}
+```
 
-![ui-auth](./_images/ui-auth.png)
+You can test the Api and its auth with `foodapi-tests.http` and the REST Client extension in VS Code:
 
-![ui-permissions](./_images/ui-permissions.png)
+```
+# @name auth
+POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
+Content-type: application/x-www-form-urlencoded
 
+grant_type=client_credentials
+&client_id={{clientId}}
+&client_secret={{clientSecret}}
+&scope={{scope}}
+
+### Get all food
+GET https://localhost:5001/food HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+```
+---
 ### Configure Angular MSAL Auth
 
-Update `environment.ts`:
+MSAL Auth Code Grant will be using the following libraries:
+
+```
+"@azure/msal-angular": "^2.4.5",
+"@azure/msal-browser": "^2.30.0",
+```
+
+Update `environment.ts` and notice the custom scopes for the Api using `https://localhost:5001/food` and `access_as_user`:
 
 ```typescript
 export const environment = {
@@ -75,187 +128,75 @@ export const environment = {
 };
 ```
 
-`package.json`:
-
-```
-"@azure/msal-angular": "^2.0.6",
-"@azure/msal-browser": "^2.20.0",
-```
-
-To keep the root module clean, most of the msal activity is implemented in `auth.module.ts` and `auth.facade.ts`. auth.module.ts is imported into `app.module.ts`:
+To keep the root module clean, most of the msal activity is implemented in `auth/msal-auth-util.module.ts` and `auth.facade.ts`. auth.module.ts is imported into `app.module.ts`:
 
 ```typescript
 @NgModule({
   declarations: [...],
   imports: [
     ...
-    MsalAuthHelperModule,
+    MsalAuthUtilModule,
   ],
 ```
 
-`MsalAuthHelperModule`:
 
-![ng-layout.png](./_images/ng-layout.png)
-
-`auth.module.ts`:
+`msal-auth-util.module.ts` conditionally registers Interceptors and Guards depending on the `environment.authEnabled` flag:
 
 ```typescript
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    MsalModule,
-    StoreModule.forFeature(authFeatureKey, authReducer),
-  ],
-  providers: [
-    MsalAuthFacade,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: MsalInterceptor,
-      multi: true,
-    },
-    {
-      provide: MSAL_INSTANCE,
-      useFactory: MSALInstanceFactory,
-    },
-    {
-      provide: MSAL_GUARD_CONFIG,
-      useFactory: MSALGuardConfigFactory,
-    },
-    {
-      provide: MSAL_INTERCEPTOR_CONFIG,
-      useFactory: MSALInterceptorConfigFactory,
-    },
-    MsalService,
-    MsalGuard,
-    MsalBroadcastService,
-  ],
-})
-export class MsalAuthHelperModule {}
+const providers = environment.authEnabled
+  ? [
+      MsalAuthFacade,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: MsalInterceptor,
+        multi: true,
+      },
+      {
+        provide: MSAL_INSTANCE,
+        useFactory: MSALInstanceFactory,
+      },
+      {
+        provide: MSAL_GUARD_CONFIG,
+        useFactory: MSALGuardConfigFactory,
+      },
+      {
+        provide: MSAL_INTERCEPTOR_CONFIG,
+        useFactory: MSALInterceptorConfigFactory,
+      },
+      MsalService,
+      MsalGuard,
+      MsalBroadcastService,
+    ]
+  : [
+      MsalAuthFacade,
+      { provide: MsalBroadcastService, useClass: MsalBroadcastServiceMock },
+    ];
 ```
 
-`auth.facade.ts`:
+`auth.facade.ts` is the main entry point for the auth flow. Its MSALInstanceFactory creates the Public Client Application:
 
 ```typescript
-@Injectable()
-export class MsalAuthFacade {
-  constructor(
-    @Inject(forwardRef(() => ConfigService)) private cs: ConfigService,
-    private msalBC: MsalBroadcastService,
-    private store: Store<MsalAuthState>
-  ) {
-    this.handleLoginSuccess(this.msalBC);
-  }
-   
-  getUser() {...
-
-  cfgInitAndAuthenticated() {...
-
-  handleLoginSuccess = (broadcast: MsalBroadcastService) => {...
-
-  logout() {...
-}
-
-// factories used in module
 export function MSALInstanceFactory(): IPublicClientApplication {
-  // update clientId and authority from ui app registration
   let config = {
     auth: {
-      clientId: 'd23642f7-...',
-      authority: 'https://login.microsoftonline.com/d92b247e-...',
+      clientId: environment.azure.appReg.clientId,
+      authority: environment.azure.appReg.authority,
       redirectUri: '/',
     },
-    ...
+    cache: {
+      cacheLocation: BrowserCacheLocation.LocalStorage,
+      storeAuthStateInCookie: isIE, // set to true for IE 11
+    },
+    system: {
+      loggerOptions: {
+        loggerCallback,
+        logLevel: LogLevel.Info,
+        piiLoggingEnabled: false,
+      },
+    },
   };
   return new PublicClientApplication(config);
 }
-
-export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
-  const protectedResourceMap = new Map<string, Array<string>>();
-  protectedResourceMap.set('https://graph.microsoft.com/v1.0/me', ['user.read',]);
-  // custom scope taken from api app registration
-  protectedResourceMap.set('https://localhost:5001/food', ['api://b509d389-.../access_as_user',]);
-  return {interactionType: InteractionType.Redirect, protectedResourceMap,};
-}
-...
 ```
 
-`MSALInterceptorConfigFactory` is used to configure the MSAL Interceptor. `MSALGuardConfigFactory` defines `InteractionType` and is used in the Route Guard:
-
-```typescript
-export declare enum InteractionType {
-    Redirect = "redirect",
-    Popup = "popup",
-    Silent = "silent"
-}
-
-...
-
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'about', component: AboutComponent, canActivate: [MsalGuard] },
-  {
-    path: 'food',
-    loadChildren: () => import('./food/food.module').then((m) => m.FoodModule),
-    canLoad: [MsalGuard],
-  },
-];
-```
-
->Note: Additional docs [https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/configuration.md](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/configuration.md).
-
-### Configure .NET Api MSAL Auth
-
-`appsettings.json`:
-
-```json
-{
-  "AzureAd": {
-      "TenantId": "d92b247e-...",
-      "ClientId": "b509d389-...",
-      "Instance": "https://login.microsoftonline.com/",
-      "cacheLocation": "localStorage",
-  },
-```
-
-`Startup.cs`:
-
-```c#
-public void ConfigureServices(IServiceCollection services)
-
-  services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-      .AddMicrosoftIdentityWebApi(Configuration)
-      .EnableTokenAcquisitionToCallDownstreamApi()
-      .AddInMemoryTokenCaches();
-
-  services.AddAuthorization();
-```
-
-```c#
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-
-  app.UseCors("default");
-  app.UseHttpsRedirection();
-  app.UseRouting();
-  app.UseAuthentication();
-  app.UseAuthorization();
-```
-
-`FoodController.cs`:
-
-```c#
-[Authorize]
-[Route ("[controller]")]
-[ApiController]
-public class FoodController : ControllerBase {
-
-  static readonly string[] scopeRequiredByApi = new string[] { "access_as_user" };
-
-  [HttpGet ()]
-  public IEnumerable<FoodItem> GetFood () {
-      HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
-      return ctx.Food.ToArray ();
-  }
-```
+>Note: Additional docs on [dynamic MSAL configuration can be found here](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/configuration.md).
