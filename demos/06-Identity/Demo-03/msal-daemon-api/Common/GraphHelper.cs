@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Graph;
-using Microsoft.Graph.Auth;
 using Microsoft.Identity.Client;
 
 namespace MSALDaemon
 {
     public class GraphHelper
     {
+        public static GraphServiceClient GetAuthenticatedGraphClient(GraphCfg config)
+        {
+            var authenticationProvider = MsalAuthenticationProvider.CreateAuthorizationProvider(config.tenantId, config.clientId, config.clientSecret);
+            return new GraphServiceClient(authenticationProvider);
+        }
+
         public static bool SendMail(string Subject, string Message, string[] Recipient, GraphCfg config)
         {
             var result = false;
@@ -39,15 +45,7 @@ namespace MSALDaemon
         }       
         private static void sendMail(GraphCfg gconfig, Message msg)
         {
-            IConfidentialClientApplication confidentialClientApplication = ConfidentialClientApplicationBuilder
-                .Create(gconfig.clientId)
-                .WithTenantId(gconfig.tenantId)
-                .WithClientSecret(gconfig.clientSecret)
-                .Build();
-
-            ClientCredentialProvider authProvider = new ClientCredentialProvider(confidentialClientApplication);
-
-            GraphServiceClient graphClient = new GraphServiceClient(authProvider);
+            GraphServiceClient graphClient = GraphHelper.GetAuthenticatedGraphClient(gconfig);
             
             //POST /users/{id | userPrincipalName}/sendMail
             graphClient.Users[gconfig.mailSender].SendMail(msg, false).Request().PostAsync();
