@@ -1,0 +1,20 @@
+app=food-api
+replyuri=http://localhost:5001
+supportedAcctTypes=AzureADMyOrg
+
+clientId=$(az ad app create --display-name $app \
+    --sign-in-audience $supportedAcctTypes \
+    --enable-id-token-issuance true \
+    --enable-access-token-issuance  false \
+    --web-redirect-uris $replyuri \
+    --required-resource-accesses @manifest-api.json \
+    --query appId -o tsv)
+
+identifierUri="api//${clientId}"
+
+# Expose an Api 
+az ad app update --id $clientId --identifier-uris $identifierUri
+
+echo "Use / Replace the $identifierUri value in manifest-ui.json"
+echo "clientId: {$clientId}" 
+echo "identifierUri: {$identifierUri}"

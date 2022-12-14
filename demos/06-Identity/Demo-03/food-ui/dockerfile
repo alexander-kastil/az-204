@@ -1,0 +1,28 @@
+##### Stage 1 - Create the build-image -> SDK, more vulnerabel, bigger
+FROM node:16 as node
+LABEL author="Alexander Pajer"
+WORKDIR /app
+COPY package.json package.json
+RUN npm install
+COPY . .
+RUN npm run build -- -c production
+
+##### Stage 2 - Create the run-time-image  -> no SDK, less vulnerabel (less tool), smaller
+FROM nginx:alpine
+VOLUME /var/cache/nginx
+
+# Copy the build output
+COPY --from=node /app/dist/food-shop-ui /usr/share/nginx/html 
+# NGINX config with URLRewrite for SPAs
+COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
+
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
+
+# docker build --rm -f dockerfile -t food-shop-ui .
+# docker run -d --rm -p 5052:80 food-shop-ui
+
+# docker tag food-shop-ui arambazamba/food-shop-ui
+# docker push arambazamba/food-shop-ui
+
+# Browse using: 
+# http://localhost:5052/
