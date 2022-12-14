@@ -1,18 +1,15 @@
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
 import * as msal from '@azure/msal-node';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     const GRAPH_DEFAULT_SCOPE = 'https://graph.microsoft.com/.default';
+    const user = req.body && req.body.user;
 
-    const teamsId = req.body && req.body.teamsId;
-    const channelId = req.body && req.body.channelId;
-    const msg = req.body && req.body.message;
-
-    if (!teamsId || !msg) {
+    if (!user) {
         context.res = {
             status: 400,
-            body: 'Please pass a teamid and message in the request body',
+            body: 'Please pass a user upn in the request body',
         };
         return;
     }
@@ -20,7 +17,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     const msalConfig = {
         auth: {
             clientId: process.env['clientID'],
-            authority: 'https://login.microsoftonline.com/' + process.env['tenantID'],
+            authority: `https://login.microsoftonline.com/${process.env['tenantID']}`,
             clientSecret: process.env['secret'],
         },
     };
@@ -36,45 +33,23 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         };
 
         const token = await app.acquireTokenByClientCredential(clientCredentialRequest);
+        const url = `https://graph.microsoft.com/v1.0/users/${user}`;
 
-        const req = {
-            body: {
-                content: msg,
-            },
+        const resp = await axios
+            .get(url, {
+                headers: {
+                    Authorization: `Bearer ${token.accessToken}`,
+                },
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        context.res = {
+            status: 200,
+            body: await (resp as AxiosResponse).data,
         };
-
-        const url = 'https://graph.microsoft.com/v1.0/teams/' + teamsId + '/channels/' + channelId + '/messages';
-
-        const resp = await axios.post(url, req, {
-            headers: {
-                Authorization: `Bearer ${token.accessToken}`,
-            },
-        });
-
-        // let resp = await app.getAuthCodeUrl(authCodeUrlParameters).catch((error) => console.log(JSON.stringify(error)));
-
-        // console.log('response', resp);
-
-        // const tokenRequest = {
-        //     code: 'authorization_code',
-        //     redirectUri: redirectUri,
-        //     scopes: [GRAPH_DEFAULT_SCOPE],
-        // };
-
-        // app.acquireTokenByCode(tokenRequest)
-        //     .then((response) => {
-        //         console.log('\nResponse: \n:', response);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
-
-        // console.log('token', token);
     }
-
-    context.res = {
-        status: 200,
-    };
 };
 
 export default httpTrigger;
