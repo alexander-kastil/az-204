@@ -1,16 +1,21 @@
-app=msal-token-flow
-uri=http://localhost:8080
+app=msal-implicit-token-flow
+replyuri=http://localhost:8080
+supportedAcctTypes=AzureADMyOrg
 
 # List all app registrations
 az ad app list --all --query "[][displayName, appId]" -o table
 az ad sp list --query [].{Name:displayName}  -o table
 az ad app list --all --query "[?displayName=='msal-token-flow']"
 
-id=$(az ad app create --display-name $app --required-resource-accesses @app-manifest.json \
-    --oauth2-allow-implicit-flow true \
-    --reply-urls $uri --query appId -o tsv)
+clientId=$(az ad app create --display-name $app \
+    --sign-in-audience $supportedAcctTypes \
+    --enable-id-token-issuance true \
+    --enable-access-token-issuance  true \
+    --web-redirect-uris $replyuri \
+    --required-resource-accesses @app-manifest.json \
+    --query appId -o tsv)
 
-az ad app permission admin-consent --id $id
+az ad app permission admin-consent --id $clientId
 
 # List all registered apps
 az ad app list --all --query "[][displayName, appId]" -o table

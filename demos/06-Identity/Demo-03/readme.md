@@ -24,7 +24,7 @@
 
   ![api-scope](./_images/api-scope.png)
 
-- To create UI App Registration execute `create-ui-appreg.azcli`
+- To create UI App Registration use the User Interface. `create-ui-appreg.azcli` is a draft. Not all required pros can be set using Azure CLI.
 
   ![ui-auth](./_images/ui-auth.png)
 

@@ -1,5 +1,14 @@
-app=foodapp
+app=food-ui
 uri=http://localhost:5001
-az ad app create --display-name $app --required-resource-accesses @create-app-reg.manifest.json \
-    --available-to-other-tenants false --oauth2-allow-implicit-flow true \
-    --reply-urls $uri
+supportedAcctTypes=AzureADMyOrg
+
+clientId=$(az ad app create --display-name $app \
+    --sign-in-audience $supportedAcctTypes \
+    --enable-id-token-issuance true \
+    --enable-access-token-issuance  false \
+    --web-redirect-uris $replyuri \
+    --required-resource-accesses @manifest-ui.json \
+    --query appId -o tsv)
+
+
+az ad app list --all --query "[?displayName=='food-ui'][requiredResourceAccess]"
