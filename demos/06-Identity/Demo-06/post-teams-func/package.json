@@ -10,7 +10,8 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@azure/msal-node": "^1.14.1"
+    "@azure/msal-node": "^1.14.1",
+    "axios": "^1.2.1"
   },
   "devDependencies": {
     "@azure/functions": "^3.0.0",

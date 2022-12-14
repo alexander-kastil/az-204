@@ -1,7 +1,7 @@
 ### Set the graph base url
 @graph=https://graph.microsoft.com/v1.0
 @tenanat=integrationsonline
-@splistapp=6a04eb4c-afa8-4673-829a-19ca38640abb
+@user=alexander.pajer@integrations.at
 
 # Autenticate User
 # @name auth
@@ -13,7 +13,21 @@ grant_type=client_credentials
 &client_secret={{clientSecret}}
 &scope={{scope}}
 
-GET https://graph.microsoft.com/v1.0/me/joinedTeams
+### Get the list of all teams you are a member of
+# @name teams
+GET https://graph.microsoft.com/v1.0/users/{{user}}/joinedTeams
+Authorization: Bearer {{auth.response.body.access_token}}
+Content-Type: application/json
+
+### Get the list of channels in a team
+GET https://graph.microsoft.com/v1.0/teams/{{teams.response.body.value[0].id}}/channels
+Authorization: Bearer {{auth.response.body.access_token}}
+Content-Type: application/json
+
+
+### Post a message to a channel
+POST https://graph.microsoft.com/v1.0/teams/{{teams.response.body.value[0].id}}/channels/19:3b24bc6a4480445a9fa6e4b7fcca122b@thread.skype/messages'
+Authorization: Bearer {{auth.response.body.access_token}}
 Content-Type: application/json
 
 
@@ -22,5 +36,7 @@ POST http://localhost:7071/api/postToTeams
 Content-Type: application/json
 
 {
+    "teamsId": "{{teams.response.body.value[0].id}}",
+    "channelId": "19:3b24bc6a4480445a9fa6e4b7fcca122b@thread.skype",
     "message": "Hello World"
 }
