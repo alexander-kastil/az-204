@@ -1,4 +1,4 @@
-app=vscode-rest-client-x
+app=vscode-rest-client
 clientId=$(az ad app create --display-name $app --enable-access-token-issuance true --enable-id-token-issuance true --query appId -o tsv) 
 
 secret=$(az ad app credential reset --id $clientId --append --query password -o tsv)
