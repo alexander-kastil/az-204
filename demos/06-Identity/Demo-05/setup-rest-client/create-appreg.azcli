@@ -1,4 +1,12 @@
 app=vscode-rest-client
-id=$(az ad app create --display-name $app --enable-access-token-issuance true --enable-id-token-issuance true --query appId -o tsv) 
+clientId=$(az ad app create --display-name $app --enable-access-token-issuance true --enable-id-token-issuance true --query appId -o tsv) 
 
-az ad app credential reset --id $id --append
+secret=$(az ad app credential reset --id $clientId --append --query password -o tsv)
+tenantId=$(az account show --query tenantId -o tsv)
+
+cat << EOF
+    echo "add this to vscode settings.json"
+    echo "tenantId: $tenantId"
+    echo "clientId: $clientId"
+    echo "secret: $secret"
+EOF
