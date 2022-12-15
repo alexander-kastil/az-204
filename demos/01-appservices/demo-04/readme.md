@@ -4,7 +4,7 @@
 
 ## Demos
 
-- Enable Easy Auth on [git-deploy-app](https://github.com/arambazamba/git-deploy-app)
+- Enable Easy Auth on [git-deploy-app](https://github.com/arambazamba/git-deploy-app) from [demo-02](../demo-02/readme.md) or execute `deploy-easy-auth.azcli` to redeploy
 
 - Explain `index.js`:
 
