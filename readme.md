@@ -12,7 +12,7 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
     - [Using Azure CLI & Cloud Shell](./tooling/04-cli)
     - [Docker and WSL Setup](./tooling/08-docker-wsl)
     - [Configure VS Code REST Client Extension](./tooling/07-rest-client)
-  - [Lab VM Setup](./Setup)
+  - [Lab VM Setup](./setup)
     - [Base Dev Environment Setup inkluding Visual Studio Code Extensions](./setup/#basics)
   - [Labs](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)
 
