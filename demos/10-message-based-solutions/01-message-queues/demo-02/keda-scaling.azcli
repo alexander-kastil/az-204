@@ -1,9 +1,10 @@
-rnd=10949
-grp=cloudborn-keda-scaling-$rnd
+rnd=$RANDOM
+grp=az204-m10-keda-scaling-$rnd
 loc=westeurope
 contaienrenv=scaling-app-env
 acct=msgqueue$rnd
 queue=scaling-queue
+arm=./queue-processor.json
 
 az group create -n $grp -l $loc
 
@@ -33,7 +34,7 @@ docker push arambazamba/queueprocessor
 cd ..
 az containerapp env create -n $contaienrenv -g $grp --location $loc
 
-az deployment group create -g $grp --template-file ./background-reader.json --parameters \
+az deployment group create -g $grp --template-file $arm --parameters \
     environment_name=$contaienrenv \
     queueconnection=$queueConStr \
     location=$loc
