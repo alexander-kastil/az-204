@@ -40,7 +40,7 @@
 
     >Note: You can check the state of the queue using the Azure Portal or the Azure CLI
 
-- Create container app environment and deploy a container to it
+- Create container app environment and deploy a container to it:
 
     ```bash
     az containerapp env create -n $contaienrenv -g $grp --location $loc
@@ -51,8 +51,10 @@
         location=$loc
     ```
 
-Log Query:
+- Send a bunch of messages to the queue using `./queue-prducer`. Wait until all messages have been processed before proceeding to the next step.
+   
+- Create a Log Query and exmaine the behavior of the container app instances:
 
-```
-ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'queuereader' and Log_s contains 'Message ID' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 5
-```
+    ```sql
+    ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'queuereader' and Log_s contains 'Message ID' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 5
+    ```

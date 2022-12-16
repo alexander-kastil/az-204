@@ -1,12 +1,17 @@
 rnd=$RANDOM
 grp=az204-m10-keda-scaling-$rnd
 loc=westeurope
+ai=kedascaling$rnd
 contaienrenv=scaling-app-env
 acct=msgqueue$rnd
 queue=scaling-queue
 arm=./queue-processor.json
 
 az group create -n $grp -l $loc
+
+# application insights
+az extension add --name application-insights
+aikey=$(az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --retention-time 30 --query instrumentationKey -o tsv)
 
 # create storage queue
 az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS

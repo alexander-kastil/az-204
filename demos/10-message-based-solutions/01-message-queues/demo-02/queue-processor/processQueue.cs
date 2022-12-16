@@ -12,6 +12,9 @@ namespace Integrations
         {
             System.Threading.Thread.Sleep(500);
             log.LogInformation($"C# Queue trigger function processed: {item}");
+
+            //TODO: Add application insights
+            // https://learn.microsoft.com/en-us/azure/azure-functions/configure-monitoring?tabs=v2
         }
     }
 }
