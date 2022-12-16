@@ -6,6 +6,7 @@ using System;
 using Microsoft.Identity.Web.Resource;
 using Microsoft.Extensions.Configuration;
 using FoodApp;
+using Microsoft.Extensions.Caching.Distributed;
 
 namespace FoodApi
 {
@@ -13,21 +14,34 @@ namespace FoodApi
     [ApiController]
     public class FoodController : ControllerBase
     {
-        public FoodController(FoodDBContext context, IConfiguration config)
+        public FoodController(FoodDBContext context, IConfiguration config, IDistributedCache redis)
         {
             ctx = context;
             cfg = config.Get<FoodConfig>();
+            cache = redis;
         }
 
         FoodDBContext ctx;
         FoodConfig cfg;
+        IDistributedCache cache;
 
         // http://localhost:PORT/food
         [HttpGet()]
         public IEnumerable<FoodItem> GetFood()
         {
             verfiyScope(); // could be implemented using a custom filter
-            return ctx.Food.ToArray();
+            var chachedFood = cache.GetString("food");
+            if (!string.IsNullOrEmpty(chachedFood))
+            {
+                Console.WriteLine("Using cached food");
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<FoodItem[]>(chachedFood);
+            }
+            else
+            {
+                var arr = ctx.Food.ToArray();
+                cache.SetString("food", Newtonsoft.Json.JsonConvert.SerializeObject(arr));
+                return arr;
+            }
         }
 
         // http://localhost:PORT/food/3
