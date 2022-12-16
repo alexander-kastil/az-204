@@ -1,7 +1,19 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Security.AccessControl;
+using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
+using StackExchange.Redis;
+
+
+IConfiguration config = new ConfigurationBuilder()   
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .Build();   
+
+// See https://aka.ms/new-console-template for more information
 Lazy<ConnectionMultiplexer> conRedis = new Lazy<ConnectionMultiplexer>(() =>
 {
-    var conStr = "az204-redis-demo-1564.redis.cache.windows.net:6380,password=AKN5wGvJHFCEmpPbqiwGAL6nuGsNMk4YUAzCaEFTBcI=,ssl=True,abortConnect=False";
+    var conStr = config["RedisConnection"];
     return ConnectionMultiplexer.Connect(conStr);
 });
 
