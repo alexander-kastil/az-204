@@ -7,5 +7,5 @@
 ## Demos
 
 1. Redis Hello-World Console
-2. RRedis data caching in a .NET Api
+2. Redis data caching in a .NET Api
 3. Redis Pub / Sub (optional)
