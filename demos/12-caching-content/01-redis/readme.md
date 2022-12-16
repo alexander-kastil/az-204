@@ -4,6 +4,7 @@
 
 [az redis](https://docs.microsoft.com/en-us/cli/azure/redis?view=azure-cli-latest)
 
-## Demo
+## Demos
 
-Create Cache using `create-redis.azcli`
+- Using Redis as a cache for an application
+- Redis Pub / Sub
