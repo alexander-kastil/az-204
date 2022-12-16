@@ -6,5 +6,6 @@
 
 ## Demos
 
-- Using Redis for data caching
-- Redis Pub / Sub (optional)
+1. Redis Hello-World Console
+2. Redis for data caching 
+3. Redis Pub / Sub (optional)
