@@ -6,5 +6,5 @@
 
 ## Demos
 
-- Using Redis as a cache for an application
-- Redis Pub / Sub
+- Using Redis for data caching
+- Redis Pub / Sub (optional)
