@@ -7,7 +7,7 @@ contaienrenv=scaling-app-env
 acct=foodpayment$rnd
 blobcontainer=invoices
 queue=food-orders
-arm=./queue-processor.json
+arm=./food-payments.json
 
 az group create -n $grp -l $loc
 
@@ -23,19 +23,19 @@ az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
 key=$(az storage account keys list -n $acct --query "[0].value")
 az storage container create --account-name $acct --account-key $key --name $blobcontainer
 az storage queue create -n $queue --account-key $key --account-name $acct
-queueConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
+storageConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
 
 # put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
 messageOne=$(echo "Hello Queue Reader App" | base64)
-az storage message put --content $messageOne --queue-name $queue --connection-string $queueConStr
+storageorage message put --content $messageOne --queue-name $queue --connection-string $queueConStr
 
 # start container locally and show how it fetches the message
 cd queue-processor
-docker run -d --rm -p 5052:80 -e "QueueConnectionString="$queueConStr queueprocessor
+storager run -d --rm -p 5052:80 -e "PaymentConnectionString="$queueConStr -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY="$aikey queueprocessor
 
 # Add another message to the queue and see the logs again
 messageTwo=$(echo "Another Hello to Queue Reader App" | base64)
-az storage message put --content $messageTwo --queue-name $queue --connection-string $queueConStr  
+storageorage message put --content $messageTwo --queue-name $queue --connection-string $queueConStr  
 
 # Terminate the local container & publish the image to dockerhub
 docker tag queueprocessor arambazamba/queueprocessor
@@ -47,12 +47,12 @@ az containerapp env create -n $contaienrenv -g $grp --location $loc
 
 az deployment group create -g $grp --template-file $arm --parameters \
     environment_name=$contaienrenv \
-    queueconnection=$queueConStr \
+    storageconnection=$queueConStr \
     location=$loc
 
 # Add another message to the queue and see the logs again
 messageThree=$(echo "Third Hello to Queue Reader App" | base64)
-az storage message put --content $messageThree --queue-name $queue --connection-string $queueConStr      
+az storage message put --content $messageThree --queue-name $queue --connection-string storageeConStr      
 
 logClientId=`az containerapp env show -n $contaienrenv -g $grp --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`
 
@@ -66,7 +66,7 @@ do
     i=$(($i+1))
     msg=$(echo "Hello Queue Reader App $i" | base64)
 
-    az storage message put --content $msg --queue-name $queue --connection-string $queueConStr  
+    storageorage message put --content $msg --queue-name $queue --connection-string $queueConStr  
 done
 
 # stop container app

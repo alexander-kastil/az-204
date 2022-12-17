@@ -1,9 +1,0 @@
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "QueueConnectionString": "DefaultEndpointsProtocol=https;AccountName=foodpayment18854;AccountKey=Se7kbwJh1aA36+kHSyEBhws+23kk0X5OVbvN/+l11CBhnsb/PKJJtbkI9wwt7WxtEfxZHcKXa/MZ+ASt/6Z2UQ==;EndpointSuffix=core.windows.net",
-    "Sleep": 0
-  }
-}

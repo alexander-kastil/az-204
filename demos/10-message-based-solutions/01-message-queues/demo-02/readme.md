@@ -8,25 +8,32 @@
 
 - `keda-scaling.azcli` contains all required steps to deploy the demo
 
-- Examine `./queue-processor` Azure Function that will run in a container. It mocks a long running process by sleeping for 500ms and is triggered by a message in a queue.
+- Examine `./food-payments` Azure Function that will run in a container. It mocks a long running process by sleeping for 500ms and is triggered by a message in a queue.
 
     ```c#
-    [FunctionName("processQueue")]
-    public void Run([QueueTrigger("scaling-queue", Connection = "QueueConnectionString")]string item, ILogger log)
+    [FunctionName("processPayment")]
+    public static async Task RunAsync([QueueTrigger("food-orders", Connection = "PaymentConnectionString")] string item, Binder binder, ILogger log)
     {
-        System.Threading.Thread.Sleep(500);
-        log.LogInformation($"C# Queue trigger function processed: {item}");
+        log.LogInformation($"Processing Payment for item: {item}");
+        // Delay mock to simulate complex processing
+        var sleep = Int32.Parse(Environment.GetEnvironmentVariable("Sleep"));
+        if (sleep > 0)
+        {
+            System.Threading.Thread.Sleep(sleep);
+        }
+        ...
     }
     ```
-    >Note: You can also examin the `./queue-processor/Dockerfile` to understand details of the container image creation.
+    >Note: You can also examin the `./food-payments/Dockerfile` to understand details of the container image creation. You have to provide a valid connection string
 
-- Create queue and get its connection string
+- Create a storage account with a queue, a container for the generated invoices and get its connection string
 
     ```bash
     az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
     key=$(az storage account keys list -n $acct --query "[0].value")
+    az storage container create --account-name $acct --account-key $key --name $blobcontainer
     az storage queue create -n $queue --account-key $key --account-name $acct
-    queueConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
+    storageConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
     ```
 
 - Test the container localy    
@@ -35,7 +42,7 @@
     messageOne=$(echo "Hello Queue Reader App" | base64)
     az storage message put --content $messageOne --queue-name $queue 
         \--connection-string $queueConStr
-    docker run -d --rm -p 5052:80 -e "QueueConnectionString="$queueConStr queueprocessor
+    docker run -d --rm -p 5052:80 -e "PaymentConnectionString=<CONNECTION_STRING>" -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=<AI_Key>" food-payments
     ```
 
     >Note: You can check the state of the queue using the Azure Portal or the Azure CLI

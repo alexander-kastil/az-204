@@ -44,7 +44,7 @@
                                 "value": "scaling-queue"
                             },
                             {
-                                "name": "QueueConnectionString",
+                                "name": "PaymentConnectionString",
                                 "secretRef": "queueconnection"
                             }
                         ]

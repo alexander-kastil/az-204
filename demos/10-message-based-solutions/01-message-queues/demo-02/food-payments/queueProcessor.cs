@@ -13,7 +13,7 @@ namespace Integrations
     public class queueProcessor
     {
         [FunctionName("processPayment")]
-        public static async Task RunAsync([QueueTrigger("food-orders", Connection = "QueueConnectionString")] string item, Binder binder, ILogger log)
+        public static async Task RunAsync([QueueTrigger("food-orders", Connection = "PaymentConnectionString")] string item, Binder binder, ILogger log)
         {
             log.LogInformation($"Processing Payment for item: {item}");
             // Delay mock to simulate complex processing

@@ -16,8 +16,8 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
 
 COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
 
-# docker build --rm -f Dockerfile -t queueprocessor .
-# docker run -d --rm -p 5052:80 -e "QueueConnectionString=DefaultEndpointsProtocol=https;AccountName=msgqueue10949;AccountKey=AVL5+aRkH8SO66WfIDFKPEYcFvpPpJEkqVSCNSGvh2khTSO6P3Oskcjk/ZBYqGdrmmqaFUazzlxf+ASt8olW2w==;EndpointSuffix=core.windows.net" queueprocessor
+# docker build --rm -f Dockerfile -t food-payments .
+# docker run -d --rm -p 5052:80 -e "PaymentConnectionString=DefaultEndpointsProtocol=https;AccountName=foodpayment27404;AccountKey=c8b3/fvrP6uDVsAlYQzvzMX9pvKNazmmidICZW/cj10imcYyIIDuJz6VbzJUzObw+sIjKqFSiHFs+AStEPXFkw==;EndpointSuffix=core.windows.net" -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=80fe34b9-dae6-4532-9d81-7ee056098c81" food-payments
 
-# docker tag queueprocessor arambazamba/queueprocessor
-# docker push arambazamba/queueprocessor
+# docker tag food-payments arambazamba/food-payments
+# docker push arambazamba/food-payments
