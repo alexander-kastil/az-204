@@ -16,7 +16,8 @@ logid=$(az monitor log-analytics workspace create -g $grp -n $logs --query id -o
 
 # application insights
 az extension add --name application-insights
-aikey=$(az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --workspace $logid --query instrumentationKey -o tsv)
+aikey=$(az monitor app-insights component create --app $ai --location $loc --kind web -g $grp \
+  --application-type web --workspace $logid --query instrumentationKey -o tsv)
 
 # create storage queue
 az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
@@ -30,16 +31,17 @@ messageOne=$(echo "Hello Queue Reader App" | base64)
 storageorage message put --content $messageOne --queue-name $queue --connection-string $queueConStr
 
 # start container locally and show how it fetches the message
-cd queue-processor
-storager run -d --rm -p 5052:80 -e "PaymentConnectionString="$queueConStr -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY="$aikey queueprocessor
+cd food-processor
+docker run -d --rm -p 5052:80 -e "PaymentConnectionString="$queueConStr -e "Sleep=500" \
+  -e "APPINSIGHTS_INSTRUMENTATIONKEY="$aikey queueprocessor
 
 # Add another message to the queue and see the logs again
 messageTwo=$(echo "Another Hello to Queue Reader App" | base64)
 storageorage message put --content $messageTwo --queue-name $queue --connection-string $queueConStr  
 
 # Terminate the local container & publish the image to dockerhub
-docker tag queueprocessor arambazamba/queueprocessor
-docker push arambazamba/queueprocessor
+docker tag food-payments arambazamba/food-payments
+docker push arambazamba/food-payments
 
 # Create container app environment and deploy a container to it
 cd ..
@@ -54,7 +56,8 @@ az deployment group create -g $grp --template-file $arm --parameters \
 messageThree=$(echo "Third Hello to Queue Reader App" | base64)
 az storage message put --content $messageThree --queue-name $queue --connection-string storageeConStr      
 
-logClientId=`az containerapp env show -n $contaienrenv -g $grp --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`
+logClientId=`az containerapp env show -n $contaienrenv -g $grp \
+  --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`
 
 az monitor log-analytics query --workspace $logClientId \
   --analytics-query "ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'queuereader' and Log_s contains 'Message ID' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 5" --out table    

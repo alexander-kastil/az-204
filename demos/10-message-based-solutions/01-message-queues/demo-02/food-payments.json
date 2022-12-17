@@ -13,6 +13,14 @@
         "queueconnection": {
             "defaultValue": "",
             "type": "String"
+        },
+        "appInsights": {
+            "defaultValue": "",
+            "type": "String"
+        },
+        "sleepTime": {
+            "defaultValue": 0,
+            "type": "int"
         }
     },
     "variables": {},
@@ -31,7 +39,16 @@
                 {
                     "name": "queueconnection",
                     "value": "[parameters('queueconnection')]"
-                }]
+                },
+                {
+                    "name": "aikey",
+                    "value": "[parameters('appInsights')]"
+                },
+                {
+                    "name": "sleeptime",
+                    "value": "[parameters('sleepTime')]"
+                }
+                ]
             },
             "template": {
                 "containers": [
@@ -40,12 +57,16 @@
                         "name": "queuereader",
                         "env": [
                             {
-                                "name": "QueueName",
-                                "value": "scaling-queue"
-                            },
-                            {
                                 "name": "PaymentConnectionString",
                                 "secretRef": "queueconnection"
+                            },
+                            {
+                                "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+                                "secretRef": "aikey"
+                            },
+                            {
+                                "name": "Sleep",
+                                "secretRef": "sleeptime"
                             }
                         ]
                     }
@@ -57,7 +78,7 @@
                         {
                             "name": "queuescalerule",
                             "azureQueue": {
-                                "queueName": "scaling-queue",
+                                "queueName": "food-orders",
                                 "queueLength": 10,
                                 "auth": [
                                     {

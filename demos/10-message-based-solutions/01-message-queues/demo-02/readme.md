@@ -12,7 +12,9 @@
 
     ```c#
     [FunctionName("processPayment")]
-    public static async Task RunAsync([QueueTrigger("food-orders", Connection = "PaymentConnectionString")] string item, Binder binder, ILogger log)
+    public static async Task RunAsync([QueueTrigger("food-orders", 
+        Connection = "PaymentConnectionString")] string item, 
+        Binder binder, ILogger log)
     {
         log.LogInformation($"Processing Payment for item: {item}");
         // Delay mock to simulate complex processing
@@ -33,7 +35,8 @@
     key=$(az storage account keys list -n $acct --query "[0].value")
     az storage container create --account-name $acct --account-key $key --name $blobcontainer
     az storage queue create -n $queue --account-key $key --account-name $acct
-    storageConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
+    storageConStr=$(az storage account show-connection-string -n $acct -g $grp \
+        --query connectionString -o tsv)
     ```
 
 - Test the container localy    
@@ -42,7 +45,8 @@
     messageOne=$(echo "Hello Queue Reader App" | base64)
     az storage message put --content $messageOne --queue-name $queue 
         \--connection-string $queueConStr
-    docker run -d --rm -p 5052:80 -e "PaymentConnectionString=<CONNECTION_STRING>" -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=<AI_Key>" food-payments
+    docker run -d --rm -p 5052:80 -e "PaymentConnectionString=<CONNECTION_STRING>" \
+        -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=<AI_Key>" food-payments
     ```
 
     >Note: You can check the state of the queue using the Azure Portal or the Azure CLI
