@@ -6,7 +6,7 @@
 
 ## Demo
 
-- `keda-scaling.azcli` contains all required steps to deploy the demo
+- `create-food-payments.azcli` contains all required steps to deploy the demo
 
 - Examine `./food-payments` Azure Function that will run in a container. It mocks a long running process by sleeping for 500ms and is triggered by a message in a queue.
 
