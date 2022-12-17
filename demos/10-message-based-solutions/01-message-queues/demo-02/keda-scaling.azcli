@@ -1,21 +1,27 @@
 rnd=$RANDOM
 grp=az204-m10-keda-scaling-$rnd
 loc=westeurope
-ai=kedascaling$rnd
+logs=foodapp-$rnd
+ai=foodapp-$rnd
 contaienrenv=scaling-app-env
-acct=msgqueue$rnd
-queue=scaling-queue
+acct=foodpayment$rnd
+blobcontainer=invoices
+queue=food-orders
 arm=./queue-processor.json
 
 az group create -n $grp -l $loc
 
+# create log analytics workspace
+logid=$(az monitor log-analytics workspace create -g $grp -n $logs --query id -o tsv)
+
 # application insights
 az extension add --name application-insights
-aikey=$(az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --retention-time 30 --query instrumentationKey -o tsv)
+aikey=$(az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --workspace $logid --query instrumentationKey -o tsv)
 
 # create storage queue
 az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
 key=$(az storage account keys list -n $acct --query "[0].value")
+az storage container create --account-name $acct --account-key $key --name $blobcontainer
 az storage queue create -n $queue --account-key $key --account-name $acct
 queueConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
 

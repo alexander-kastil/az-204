@@ -8,7 +8,7 @@ namespace Integrations
     public class processQueue
     {
         [FunctionName("processQueue")]
-        public void Run([QueueTrigger("scaling-queue", Connection = "QueueConnectionString")]string item, ILogger log)
+        public void Run([QueueTrigger("food-orders", Connection = "QueueConnectionString")]string item, ILogger log)
         {
             System.Threading.Thread.Sleep(500);
             log.LogInformation($"C# Queue trigger function processed: {item}");
