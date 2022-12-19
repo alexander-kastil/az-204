@@ -58,14 +58,15 @@ az containerapp env create -n $contaienrenv -g $grp --location $loc
 
 az deployment group create -g $grp --template-file $arm --parameters \
     environment_name=$contaienrenv \
-    storageconnection=$queueConStr \
+    storageconnection=$storageConStr \
     appInsights=$aikey \
-    sleepTime=500
+    sleepTime="500"
     location=$loc
 
 # Add another message to the queue and see the logs again
 messageThree=$(echo "Third Hello to Queue Reader App" | base64)
-az storage message put --content $messageThree --queue-name $queue --connection-string storageeConStr      
+az storage message put --content $messageThree --queue-name $queue \
+  --connection-string $storageConStr      
 
 logClientId=`az containerapp env show -n $contaienrenv -g $grp \
   --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`

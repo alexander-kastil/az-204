@@ -19,14 +19,14 @@
             "type": "String"
         },
         "sleepTime": {
-            "defaultValue": 0,
-            "type": "int"
+            "defaultValue": "0",
+            "type": "String"
         }
     },
     "variables": {},
     "resources": [
     {
-        "name": "queuereader",
+        "name": "food-payments",
         "type": "Microsoft.App/containerApps",
         "apiVersion": "2022-03-01",
         "kind": "containerapp",
