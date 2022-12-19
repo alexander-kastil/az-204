@@ -1,9 +1,9 @@
-rnd=$RANDOM
+rnd=18347
 grp=az204-m10-keda-scaling-$rnd
 loc=westeurope
-logs=foodapp-$rnd
-ai=foodapp-$rnd
-contaienrenv=scaling-app-env
+logs=food-app-$rnd
+ai=food-app-$rnd
+contaienrenv=food-app-env
 acct=foodpayment$rnd
 blobcontainer=invoices
 queue=food-orders
@@ -13,18 +13,22 @@ az group create -n $grp -l $loc
 
 # create log analytics workspace
 logid=$(az monitor log-analytics workspace create -g $grp -n $logs --query id -o tsv)
+logkey=$(az monitor log-analytics workspace get-shared-keys -n $logs -g $grp --query primarySharedKey -o tsv)
+
+az monitor log-analytics workspace list -g $grp
 
 # application insights
 az extension add --name application-insights
-aikey=$(az monitor app-insights component create --app $ai --location $loc --kind web -g $grp \
-  --application-type other --workspace $logid --query instrumentationKey -o tsv)
+aikey=$(az monitor app-insights component create --app $ai --location $loc -g $grp \
+  --kind web --application-type other --workspace $logid --query instrumentationKey -o tsv)
 
 # create storage queue
 az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
 key=$(az storage account keys list -n $acct --query "[0].value")
 az storage container create --account-name $acct --account-key $key --name $blobcontainer
 az storage queue create -n $queue --account-key $key --account-name $acct
-storageConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
+storageConStr=$(az storage account show-connection-string -n $acct -g $grp \
+  --query connectionString -o tsv)
 
 # put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
 messageOne=$(echo "Hello Queue Reader App" | base64)
@@ -55,6 +59,8 @@ az containerapp env create -n $contaienrenv -g $grp --location $loc
 az deployment group create -g $grp --template-file $arm --parameters \
     environment_name=$contaienrenv \
     storageconnection=$queueConStr \
+    appInsights=$aikey \
+    sleepTime=500
     location=$loc
 
 # Add another message to the queue and see the logs again

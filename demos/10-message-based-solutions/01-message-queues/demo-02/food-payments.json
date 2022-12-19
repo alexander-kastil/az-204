@@ -10,7 +10,7 @@
             "defaultValue": "",
             "type": "String"
         },
-        "queueconnection": {
+        "storageconnection": {
             "defaultValue": "",
             "type": "String"
         },
@@ -36,29 +36,29 @@
             "configuration": {
                 "activeRevisionsMode": "single",
                 "secrets": [
-                {
-                    "name": "queueconnection",
-                    "value": "[parameters('queueconnection')]"
-                },
-                {
-                    "name": "aikey",
-                    "value": "[parameters('appInsights')]"
-                },
-                {
-                    "name": "sleeptime",
-                    "value": "[parameters('sleepTime')]"
-                }
+                    {
+                        "name": "storageconnection",
+                        "value": "[parameters('storageconnection')]"
+                    },
+                    {
+                        "name": "aikey",
+                        "value": "[parameters('appInsights')]"
+                    },
+                    {
+                        "name": "sleeptime",
+                        "value": "[parameters('sleepTime')]"
+                    }
                 ]
             },
             "template": {
                 "containers": [
                     {
-                        "image": "arambazamba/queueprocessor",
-                        "name": "queuereader",
+                        "image": "arambazamba/food-payments",
+                        "name": "foodpayments",
                         "env": [
                             {
                                 "name": "PaymentConnectionString",
-                                "secretRef": "queueconnection"
+                                "secretRef": "storageconnection"
                             },
                             {
                                 "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
@@ -82,7 +82,7 @@
                                 "queueLength": 10,
                                 "auth": [
                                     {
-                                        "secretRef": "queueconnection",
+                                        "secretRef": "storageconnection",
                                         "triggerParameter": "connection"
                                     }
                                 ]
