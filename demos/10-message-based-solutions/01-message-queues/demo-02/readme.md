@@ -8,23 +8,14 @@
 
 - `create-food-payments.azcli` contains all required steps to deploy the demo
 
-- Examine `./food-payments` Azure Function that will run in a container. It mocks a long running process by sleeping for 500ms and is triggered by a message in a queue.
+- Examine `./food-payments/functions/generateInvoice.cs` Azure Function that will run in a container. It mocks a long running process by sleeping for 500ms and is triggered by a message in a queue.
 
     ```c#
-    [FunctionName("processPayment")]
-    public static async Task RunAsync([QueueTrigger("food-orders", 
-        Connection = "PaymentConnectionString")] string item, 
-        Binder binder, ILogger log)
+    [FunctionName("generateInvoice")]
+    public static async Task RunAsync([QueueTrigger("food-orders", Connection = "PaymentConnectionString")] string item, Binder binder, ILogger log)
     {
-        log.LogInformation($"Processing Payment for item: {item}");
-        // Delay mock to simulate complex processing
-        var sleep = Int32.Parse(Environment.GetEnvironmentVariable("Sleep"));
-        if (sleep > 0)
-        {
-            System.Threading.Thread.Sleep(sleep);
-        }
-        ...
-    }
+        log.LogInformation($"Processing Payment for item: {item}");            
+        Util.CheckThrottle();
     ```
     >Note: You can also examin the `./food-payments/Dockerfile` to understand details of the container image creation. You have to provide a valid connection string
 
