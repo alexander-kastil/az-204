@@ -17,7 +17,7 @@ logid=$(az monitor log-analytics workspace create -g $grp -n $logs --query id -o
 # application insights
 az extension add --name application-insights
 aikey=$(az monitor app-insights component create --app $ai --location $loc --kind web -g $grp \
-  --application-type web --workspace $logid --query instrumentationKey -o tsv)
+  --application-type other --workspace $logid --query instrumentationKey -o tsv)
 
 # create storage queue
 az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
@@ -28,16 +28,21 @@ storageConStr=$(az storage account show-connection-string -n $acct -g $grp --que
 
 # put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
 messageOne=$(echo "Hello Queue Reader App" | base64)
-storageorage message put --content $messageOne --queue-name $queue --connection-string $queueConStr
+az storage message put --content $messageOne --queue-name $queue \
+ --connection-string $storageConStr
+
+# create the function app container
+cd food-payments
+docker build --rm -f Dockerfile -t food-payments .
 
 # start container locally and show how it fetches the message
-cd food-processor
-docker run -d --rm -p 5052:80 -e "PaymentConnectionString="$queueConStr -e "Sleep=500" \
-  -e "APPINSIGHTS_INSTRUMENTATIONKEY="$aikey queueprocessor
+docker run -d --rm -p 5052:80 -e "PaymentConnectionString="$storageConStr -e "Sleep=500" \
+  -e "APPINSIGHTS_INSTRUMENTATIONKEY="$aikey food-payments
 
 # Add another message to the queue and see the logs again
 messageTwo=$(echo "Another Hello to Queue Reader App" | base64)
-storageorage message put --content $messageTwo --queue-name $queue --connection-string $queueConStr  
+az storage message put --content $messageOne --queue-name $queue \
+  --connection-string $storageConStr
 
 # Terminate the local container & publish the image to dockerhub
 docker tag food-payments arambazamba/food-payments

@@ -3,20 +3,21 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.html.simpleparser;
 using iTextSharp.text.pdf;
-
-public class Util
+namespace Integrations
 {
-    // Delay mock to simulate complex processing and allow scaling
-    public static void CheckThrottle()
+    public class Util
     {
-        var sleep = Int32.Parse(Environment.GetEnvironmentVariable("Sleep"));
-        if (sleep > 0)
+        // Delay mock to simulate complex processing and allow scaling
+        public static void CheckThrottle()
         {
-            System.Threading.Thread.Sleep(sleep);
+            var sleep = Int32.Parse(Environment.GetEnvironmentVariable("Sleep"));
+            if (sleep > 0)
+            {
+                System.Threading.Thread.Sleep(sleep);
+            }
         }
-    }
 
-    public static MemoryStream CreatePDF(string html)
+        public static MemoryStream CreatePDF(string html)
         {
             var styles = new StyleSheet();
             var pdfStream = new MemoryStream();
@@ -26,13 +27,13 @@ public class Util
             doc.Open();
             doc.NewPage();
             var p = new Paragraph(30f);
-            
+
             PdfPCell pdfCell = new PdfPCell
             {
                 Border = 0,
                 RunDirection = PdfWriter.RUN_DIRECTION_LTR
             };
-            
+
             using (var reader = new StringReader(html))
             {
                 var parsedHtmlElements = HtmlWorker.ParseToList(reader, styles);

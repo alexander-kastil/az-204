@@ -12,7 +12,7 @@ namespace Integrations
         [FunctionName("generateInvoice")]
         public static async Task RunAsync([QueueTrigger("food-orders", Connection = "PaymentConnectionString")] string item, Binder binder, ILogger log)
         {
-            log.LogInformation($"Processing Payment for item: {item}");            
+            log.LogInformation($"Processing Payment for item: {item}");
             Util.CheckThrottle();
             var pdfStream = Util.CreatePDF(item);
 
@@ -21,14 +21,13 @@ namespace Integrations
             var attributes = new Attribute[]
               {
                 new BlobAttribute($"invoices/{fileName}", FileAccess.Write),
-                new StorageAccountAttribute("QueueConnectionString")
+                new StorageAccountAttribute("PaymentConnectionString")
               };
 
             using (var writer = await binder.BindAsync<Stream>(attributes))
             {
                 writer.Write(pdfStream.ToArray());
             };
-        }        
-
-        
+        }
+    }
 }
