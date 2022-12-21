@@ -8,6 +8,8 @@
 
 ## Demos
 
+Demo use `food-app` from `/app`-folder
+
 - Ceate and publish .NET 6 Api image
 - Ceate and publish Angular UI image
 
