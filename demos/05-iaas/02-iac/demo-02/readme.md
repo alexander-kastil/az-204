@@ -1,9 +1,7 @@
 # Deploy to Azure Button
 
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FARambazamba%2FAZ-204%2Fmain%2FDemos%2F05-IaaS%2F02-ARM%2FDemo-02%2Fazuredeploy.json)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Farambazamba%2Faz-204%2Fmain%2Fdemos%2F05-iaas%2F02-iac%2Fdemo-02%2Fazuredeploy.json)
 
-
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/<URL>)
 
 Click the button to deploy the ressource to Azure:
 
@@ -34,5 +32,5 @@ https%3A%2F%2Fraw.githubusercontent.com%2FARambazamba%2FAZ-204%2Fmaster%2FDemos%
 Compose the complete Url:
 
 ```
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/FULL-URL-HERE)
+[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https://portal.azure.com/#create/Microsoft.Template/uri/<GITHUB-RAW-PATH>)
 ```
