@@ -1,7 +1,8 @@
 rnd=$RANDOM
 loc=westeurope
 grp=az204-m05-deploy-arm-$rnd
+acctname=armstorage$rnd
 
 az group create -n $grp -l $loc
 
-az deployment group create -g $grp -n storage$rnd --template-uri "https://raw.githubusercontent.com/ARambazamba/AZ-204/main/Demos/05-IaaS/02-ARM/Demo-01/azuredeploy.json" 
+az deployment group create -g $grp -n storage$rnd --template-uri "https://raw.githubusercontent.com/arambazamba/az-204/main/demos/05-iaas/02-iac/demo-01/azuredeploy.json" --parameters storageAcctName=$acctname 
