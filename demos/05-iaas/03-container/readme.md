@@ -6,7 +6,7 @@
 2. Publish Image to Azure Container Registry
 3. Use Azure Container Registry Build Task
 4. Web Apps for Containers - Angular
-5. Azure Container Instances (ACI) & 
+5. Azure Container Instances (ACI)
 6. Kubernetes Intro (optional)
 7. Azure Container Apps (optional)
 

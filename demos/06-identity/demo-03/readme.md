@@ -10,6 +10,8 @@
 - Configure Angular MSAL Auth
 - Configure Api MSAL 
 
+Demo use `food-app` from `/app`-folder
+
 ### Create App Registrations
 
 - Requires two app registrations. One for `food-api`, one for `food-ui`.
