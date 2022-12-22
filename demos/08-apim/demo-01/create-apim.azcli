@@ -36,7 +36,7 @@ az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
 cd ..
 
 cd foodutil-functs-js
-func azure functionapp publish $utils
+func azure functionapp publish $utils --javascript
 cd ..
 
 cd food-shopping-cart
