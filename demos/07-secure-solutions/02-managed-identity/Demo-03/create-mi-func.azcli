@@ -16,5 +16,5 @@ az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
 
 # Deploy to function app
 cd mi-func
-func azure functionapp publish $app 
+func azure functionapp publish $app --csharp
 cd ..
