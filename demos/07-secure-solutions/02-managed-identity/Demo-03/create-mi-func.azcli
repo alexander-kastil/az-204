@@ -1,9 +1,9 @@
 env=dev
-grp=az204-m07-use-mi-$rnd
+grp=az204-m07-use-mi-$env
 loc=westeurope
-app=func-mi-$rnd
-storage=funcmi$rnd
-vault=foodvault-$rnd
+app=func-mi-$env
+storage=funcmi$env
+vault=foodvault-$env
 
 az group create -n $grp -l $loc
 
@@ -11,5 +11,10 @@ az storage account  create -n $storage -g $grp
 
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
 
-az functionapp identity assign -n $app -g $grp
+mi=$(az functionapp identity assign -n $app -g $grp --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
+
+# Deploy to function app
+cd mi-func
+func azure functionapp publish $app --csharp
+cd ..
