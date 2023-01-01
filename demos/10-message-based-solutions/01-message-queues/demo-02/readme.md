@@ -40,23 +40,58 @@
         -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=<AI_Key>" food-payments
     ```
 
-    >Note: You can check the state of the queue using the Azure Portal or the Azure CLI
+    >Note: You can check the state of the queue using the Azure Portal or the Azure CLI:
+
+    ```
+    az storage blob list --container-name $blobcontainer --output table --account-name $acct --account-key $key
+    ```
 
 - Create container app environment and deploy a container to it:
 
     ```bash
     az containerapp env create -n $contaienrenv -g $grp --location $loc
 
-    az deployment group create -g $grp --template-file $arm --parameters \
-        environment_name=$contaienrenv \
-        queueconnection=$queueConStr \
-        location=$loc
+    az containerapp create -n $acaname -g $grp --environment $contaienrenv \
+    --image arambazamba/food-payments \
+    --secrets "storageconstring=$storageConStr" \
+    --env-vars Sleep=500 PaymentConnectionString=secretref:storageconstring
     ```
 
-- Send a bunch of messages to the queue using `./queue-prducer`. Wait until all messages have been processed before proceeding to the next step.
-   
+    Set a scaling rule for the container app:
+
+    ```bash
+    az containerapp update -n $acaname -g $grp \
+    --scale-rule-name queue-scale-rule \
+    --scale-rule-type azure-queue \
+    --scale-rule-metadata queueName=food-orders queueLength=10 \
+    --scale-rule-auth secretRef=storageconstring triggerParameter=PaymentConnectionString
+    ```
+
+    ![scaling](_images/scaling.png)
+
+- Send a single message to the queue and check the logs of the container app instance:
+
+    ```bash
+    messageOne=$(echo "Hello Queue Reader App" | base64)
+    az storage message put --content $messageOne --queue-name $queue 
+        \--connection-string $queueConStr
+    ```
+
+    ```bash
+    az containerapp logs -n $acaname -g $grp
+    ```
+
+- Send a bunch of messages to the queue using `./event-creator`. Wait until all messages have been processed before proceeding to the next step.
+
+- Get the log client ID
+
+    ```bash
+    logClientId=`az containerapp env show -n $contaienrenv -g $grp \
+    --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`
+    ```
+
 - Create a Log Query and exmaine the behavior of the container app instances:
 
     ```sql
-    ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'queuereader' and Log_s contains 'Message ID' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 5
+    ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'foodpayments' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 20
     ```

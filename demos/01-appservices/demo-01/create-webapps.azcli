@@ -16,7 +16,7 @@ az webapp create -n cli-api-$rnd -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 # create mvcapp
 az webapp create -n $mvcapp -g $grp --plan $appPlan --runtime "DOTNET|6.0"
 
-# create and upload blazor app using az webapp up
+# create and upload mvcapp app using az webapp up
 cd mvc-app
 az webapp up -n $mvcapp -g $grp -p $appPlan --sku F1 -l $loc -r "DOTNET|6.0"
 cd ..

@@ -1,13 +1,14 @@
-rnd=18347
-grp=az204-m10-keda-scaling-$rnd
+env=$RANDOM
+grp=az204-m10-keda-scaling-$env
 loc=westeurope
-logs=food-app-$rnd
-ai=food-app-$rnd
+logs=food-app-$env
+ai=food-app-$env
 contaienrenv=food-app-env
-acct=foodpayment$rnd
+acct=foodpayment$env
 blobcontainer=invoices
 queue=food-orders
 arm=./food-payments.json
+acaname=foodpayments
 
 az group create -n $grp -l $loc
 
@@ -44,35 +45,56 @@ docker run -d --rm -p 5052:80 -e "PaymentConnectionString="$storageConStr -e "Sl
   -e "APPINSIGHTS_INSTRUMENTATIONKEY="$aikey food-payments
 
 # Add another message to the queue and see the logs again
-messageTwo=$(echo "Another Hello to Queue Reader App" | base64)
+messageTwo=$(echo "Another Hello to Queue Reader App" | base64) 
 az storage message put --content $messageOne --queue-name $queue \
   --connection-string $storageConStr
+
+## Check if an invoice has been created in the blob container
+
+az storage blob list --container-name $blobcontainer --output table --account-name $acct --account-key $key
 
 # Terminate the local container & publish the image to dockerhub
 docker tag food-payments arambazamba/food-payments
 docker push arambazamba/food-payments
 
+# Optional - if you want you could also test the contaienr using Azure Container Instances
+
+az container create -g $grp -l $loc -n foodpayment$env --image arambazamba/food-payments --cpu 1 --memory 1 --dns-name-label foodpayment$env --environment-variables \
+  PaymentConnectionString=$storageConStr Sleep=500 --no-wait
+
+az container delete -g $grp -n foodpayment$env --yes
+
 # Create container app environment and deploy a container to it
 cd ..
 az containerapp env create -n $contaienrenv -g $grp --location $loc
 
-az deployment group create -g $grp --template-file $arm --parameters \
-    environment_name=$contaienrenv \
-    storageconnection=$storageConStr \
-    appInsights=$aikey \
-    sleepTime="500"
-    location=$loc
+az containerapp create -n $acaname -g $grp --environment $contaienrenv \
+  --image arambazamba/food-payments \
+  --secrets "storageconstring=$storageConStr" \
+  --env-vars Sleep=500 PaymentConnectionString=secretref:storageconstring
+
+az containerapp update -n $acaname -g $grp \
+  --scale-rule-name queue-scale-rule \
+  --scale-rule-type azure-queue \
+  --scale-rule-metadata queueName=food-orders queueLength=10 \
+  --scale-rule-auth secretRef=storageconstring triggerParameter=PaymentConnectionString
 
 # Add another message to the queue and see the logs again
 messageThree=$(echo "Third Hello to Queue Reader App" | base64)
 az storage message put --content $messageThree --queue-name $queue \
   --connection-string $storageConStr      
 
+# Get the logs using Azure CLI
+
+az containerapp logs show --name $acaname -g $grp
+
+# Get the logs using Azure Log Analytics
+
 logClientId=`az containerapp env show -n $contaienrenv -g $grp \
   --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`
 
 az monitor log-analytics query --workspace $logClientId \
-  --analytics-query "ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'queuereader' and Log_s contains 'Message ID' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 5" --out table    
+  --analytics-query "ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'foodpayments' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 20" --out table    
 
 # Send a bunch of messages to the queue
 i=0
@@ -83,8 +105,3 @@ do
 
     storageorage message put --content $msg --queue-name $queue --connection-string $queueConStr  
 done
-
-# stop container app
-
-az containerapp revision deactivate -g $grp -n $contaienrenv --revision --name queuereader--o2qbdtq
-                                    
