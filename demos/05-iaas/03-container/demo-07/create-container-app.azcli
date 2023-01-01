@@ -11,9 +11,9 @@ az containerapp env create -n $caenv -g $grp -l $loc
 
 apifqdn=$(az containerapp create -n foodapi-$env -g $grp --image $apiimg --environment $caenv \
     --target-port 80 --ingress external \
-    --query properties.configuration.ingress.fqdn)
+    --query properties.configuration.ingress.fqdn -o tsv)
 
 uifqdn=$(az containerapp create -n foodui-$env -g $grp --image $uiimg --environment $caenv \
     --target-port 80 --ingress external \
-    --env-vars ENV_API_URL=$apifqdn \
+    --env-vars ENV_API_URL=https://$apifqdn/ \
     --query properties.configuration.ingress.fqdn)
