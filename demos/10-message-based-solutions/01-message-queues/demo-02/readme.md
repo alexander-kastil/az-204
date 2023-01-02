@@ -93,5 +93,6 @@
 - Create a Log Query and exmaine the behavior of the container app instances:
 
     ```sql
-    ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'foodpayments' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 20
+    ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'foodpayments' | project Time=TimeGenerated, AppName=ContainerAppName_s, 
+    Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 20
     ```
