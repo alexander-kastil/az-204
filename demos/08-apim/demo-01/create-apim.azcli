@@ -30,7 +30,7 @@ az functionapp create -n $payment -g $grp --storage-account $storage --consumpti
 # create a key vault
 az keyvault create -l $loc -n $vault -g $grp --sku Standard
 
-az keyvault secret set --vault-name $vault --name "apimsecret" --value "apimsecret!QAZ2wsx"
+az keyvault secret set --vault-name $vault --name "apimsecret" --value "apimsecretQAZ2wsx"
 
 # api management
 az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Developer 
