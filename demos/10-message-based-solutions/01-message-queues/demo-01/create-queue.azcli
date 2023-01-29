@@ -2,7 +2,7 @@ rnd=$RANDOM
 loc=westeurope
 grp=az204-m10-msgqueue-$rnd
 acct=msgqueue$rnd
-queue=az-204-queue
+queue=orders
 
 az group create -n $grp -l $loc
 

@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "queue_consumer": {
+    "queue_consumer_func": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7164",
+      "commandLineArgs": "--port 7215",
       "launchBrowser": false
     }
   }

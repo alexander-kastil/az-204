@@ -1,28 +1,10 @@
-# Api Management
+# Api Management Deployment & Products
 
-- Create & Deploy Api & Azure Function using `create-apimgmt.azcli`
-- Create Api Management Instance `create-apim.azcli`
-- Apply outgoing [Json Policy](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/api-management/api-management-transformation-policies.md#ConvertXMLtoJSON)
+- Create & Deploy APIM, Api & Azure Function using `create-apim.azcli`
 
+Use Subscription Key:
 
-## Demo
-
-Payment Function:
-
-```typescript
-module.exports = async function (context, req) {
-    context.log('Executing payment');   
-    const responseMessage = { "paymentRequest": "pending", "transactionID": '0284e06a-47f3-42cb-85a8-ae2fa0075132'}
-    context.res = {
-        body: responseMessage
-    };
-}
 ```
-Mock Payment Status:
-
-```json
-{
-    "trainsactionID": "0284e06a-47f3-42cb-85a8-ae2fa0075132",
-    "status": "completed"
-}
+curl --header "Ocp-Apim-Subscription-Key: <key string>" https://<apim gateway>.azure-api.net/api/path
+curl https://<apim gateway>.azure-api.net/api/path?subscription-key=<key string>
 ```

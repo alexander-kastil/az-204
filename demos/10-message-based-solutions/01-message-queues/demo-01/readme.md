@@ -3,7 +3,19 @@
 ## Demo
 
 - Execute `create-queue.azcli` to create a storage account and queue
-- Explain QueueApp
+- Explain `queue-producer` and `queue-consumer`
+- Update local.settings.json with the connection string
+
+    ```json
+    {
+        "IsEncrypted": false,
+        "Values": {
+            "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+            "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+            "QueueConnectionString": "<QueueConnectionString>"
+        }
+    }
+    ```
 
 ## Readings
 
