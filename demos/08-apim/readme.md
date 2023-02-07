@@ -11,7 +11,7 @@
 - Api Management Deployment & Products
 - Outgoing XML to JSON Transformation using Policy
 - Sending Mock Responses using Policies
-- Using Managed Identity to access Backend Services
+- Assign MI to Apim Service to access Key Vault (optional)
 
 ### Additional Labs & Walkthroughs
 

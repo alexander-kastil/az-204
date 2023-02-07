@@ -1,21 +1,20 @@
 env=staging
 loc=westeurope
 grp=az204-m08-apim-$env
-apimgmt=fooddealer-$env
-ai=fooddealer-$env
-storage=fooddealer$env
-appPlan=fooddealer-$env
+apim=food-$env
+ai=food-$env
+storage=foodfx$env
+appPlan=food-$env
 catalog=foodcatalogapi-$env
 utils=foodutil-$env
 cart=foodcart-$env
 payment=foodpayment-$env
-workspace=fooddealer-$env
+workspace=food-$env
 mail="alexander.pajer@integrations.at"
-publisher="fooddealer"
+publisher="food"
+vault=foodvault-$env
 
 az group create -n $grp -l $loc
-
-az apim create -n $apimgmt -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Developer 
 
 az storage account  create -n $storage -g $grp 
 
@@ -28,8 +27,20 @@ az functionapp create -n $cart -g $grp --storage-account $storage --consumption-
 # payment - used for in portal function
 az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
 
-# publish api & function apps
+# create a key vault
+# az keyvault purge -n $vault
 
+az keyvault create -l $loc -n $vault -g $grp --sku Standard
+az keyvault secret set --vault-name $vault --name "apimsecret" --value "apimsecretQAZ2wsx"
+
+# api management
+az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Developer 
+
+# asign managed identity to apim and grant access to keyvault
+mi=$(az apim update -n $apim -g $grp --enable-managed-identity true --query identity.principalId -o tsv)
+az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
+
+# publish api & function apps
 # catalog
 cd food-api
 az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"

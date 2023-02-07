@@ -4,3 +4,13 @@
 
 ## Demo	
 
+- Use `getXML` of `foodutil-staging` to test the policy
+- Test to show XML result
+- Add the following policy to outbound:
+
+    ```xml
+    <outbound>
+        <base />
+        <xml-to-json kind="direct" apply="always" consider-accept-header="false" />
+    </outbound>
+    ```
