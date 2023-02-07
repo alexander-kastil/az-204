@@ -16,9 +16,9 @@
         </send-request>
         <set-variable name="secretVar" value="@{
             var secret = ((IResponse)context.Variables["secretResponse"]).Body.As<JObject>();
-            return "/people/" + secret["value"].ToString() + "/";
+            return "/getsecret/" + secret["value"].ToString() + "/";
         }" />
-        <rewrite-uri template="@((string)context.Variables["secretVar"])" />
+        <rewrite-uri template="@((string)context.Variables["apimsecret"])" />
     </inbound>
     ```
 
