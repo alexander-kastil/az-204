@@ -7,6 +7,7 @@ public class AppSettings
     public bool UseSQLite { get; set; }
     public bool UseAppConfig { get; set; }
     public string ConnectionStrings { get; set; }
+    public string KeyVault { get; set; }
 }
 
 public class FeatureManagement

@@ -1,4 +1,8 @@
+using System.Threading.Tasks;
+using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace config_service_api.Controllers;
 
@@ -7,15 +11,15 @@ namespace config_service_api.Controllers;
 public class ConfigController : ControllerBase
 {
     IConfiguration cfg;
-    IWebHostEnvironment env;
+    SecretClient sc;
 
-    private readonly ILogger<ConfigController> _logger;
+    private readonly ILogger<ConfigController> logger;
 
-    public ConfigController(ILogger<ConfigController> logger, IConfiguration config, IWebHostEnvironment environment)
+    public ConfigController(ILogger<ConfigController> ilogger, IConfiguration config, SecretClient secretClient)
     {
         cfg = config;
-        env = environment;
-        _logger = logger;
+        logger = ilogger;
+        sc = secretClient;
     }
 
     [HttpGet(Name = "GetConfig")]
@@ -35,10 +39,9 @@ public class ConfigController : ControllerBase
     }
 
     [HttpGet("GetSecretFromVault")]
-    public ActionResult GetSecretFromVault()
+    public async Task<string> GetSecretFromVault()
     {
-        //get string typed config
-        var config = cfg.Get<AppConfig>();
-        return Ok(config);
+        var response =  await sc.GetSecretAsync("conSQLite");     
+        return response.Value.Value;
     }
 }

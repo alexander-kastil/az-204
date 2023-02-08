@@ -1,7 +1,7 @@
-rnd=dev
-grp=az204-m07-secure-solutions-$rnd
+env=dev
+grp=az204-m07-secure-solutions-$env
 loc=westeurope
-vault=foodvault-$rnd
+vault=foodvault-$env
 
 az group create -n $grp -l $loc
 
