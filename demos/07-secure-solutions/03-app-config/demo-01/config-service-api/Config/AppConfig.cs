@@ -8,6 +8,8 @@ public class AppSettings
     public bool UseAppConfig { get; set; }
     public string ConnectionStrings { get; set; }
     public string KeyVault { get; set; }
+    public string AppConfig { get; set; }
+    public string DynamicValue { get; set; }
 }
 
 public class FeatureManagement
@@ -31,7 +33,6 @@ public class AppConfig
 {
     public Logging Logging { get; set; }
     public string AllowedHosts { get; set; }
-    public string TestKey { get; set; }
     public AppSettings AppSettings { get; set; }
     public FeatureManagement FeatureManagement { get; set; }
 }

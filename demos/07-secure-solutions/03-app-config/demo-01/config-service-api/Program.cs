@@ -3,11 +3,22 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+string connectionString = "Endpoint=https://foodconfig-dev.azconfig.io;Id=ssJq-l9-s0:kcBy2fb28Z9g1Jo6xA7J;Secret=4pVAt4fMYU8pVZFDXy569EW4sq2/gw+j1uTgUh6EvP4=";
+
+builder.Configuration.AddAzureAppConfiguration(options =>
+{
+    options.Connect(connectionString)
+           .Select("AppSettings:*", "production")
+           .ConfigureRefresh(refreshOptions =>
+                refreshOptions.Register("AppSettings:DynamicValue", refreshAll: true));
+});
 
 // Add services to the container.
 

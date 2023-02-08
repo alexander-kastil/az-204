@@ -1,7 +1,7 @@
 env=dev
 grp=az204-m07-secure-solutions-$env
 loc=westeurope
-cfg=$cfg-$env
+cfg=foodconfig-$env
 vault=foodvault-$env
 app=config-serice-api-$env
 plan=foodplan-$env
@@ -11,6 +11,8 @@ az appconfig create -g $grp -n $cfg -l $loc --sku free
 az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo Dev" -y
 az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo Staging" -y --label staging
 az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo" -y --label production
+
+az appconfig kv set -n $cfg --key "AppSettings:ChangingVal" --value "Original" -y
 
 # app config key-vault binding
 cfgmi=$(az appconfig identity assign -g $grp -n $cfg --query principalId -o tsv)
