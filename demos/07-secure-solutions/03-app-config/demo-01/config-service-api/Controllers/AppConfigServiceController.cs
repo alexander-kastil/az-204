@@ -25,7 +25,6 @@ public class AppConfigServiceController : ControllerBase
     [HttpGet(Name = "GetConfig")]
     public ActionResult Get()
     {
-        //get string typed config
         var config = cfg.Get<AppConfig>();
         return Ok(config);
     }
