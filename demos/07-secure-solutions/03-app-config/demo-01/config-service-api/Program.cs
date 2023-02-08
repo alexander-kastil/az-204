@@ -15,9 +15,13 @@ string connectionString = "Endpoint=https://foodconfig-dev.azconfig.io;Id=ssJq-l
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
     options.Connect(connectionString)
-           .Select("AppSettings:*", "production")
-           .ConfigureRefresh(refreshOptions =>
-                refreshOptions.Register("AppSettings:DynamicValue", refreshAll: true));
+        .ConfigureKeyVault(kv =>
+        {
+            kv.SetCredential(new DefaultAzureCredential());
+        })
+        .Select("*", "production")        
+        .ConfigureRefresh(refreshOptions =>
+            refreshOptions.Register("AppSettings:DynamicValue", refreshAll: true));
 });
 
 // Add services to the container.

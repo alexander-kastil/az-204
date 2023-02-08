@@ -1,12 +1,10 @@
-using Microsoft.Extensions.Configuration;
-
 public class AppSettings
 {
     public string Title { get; set; }
     public bool AuthEnabled { get; set; }
     public bool UseSQLite { get; set; }
     public bool UseAppConfig { get; set; }
-    public string ConnectionStrings { get; set; }
+    public string ConnectionString { get; set; }
     public string KeyVault { get; set; }
     public string AppConfig { get; set; }
     public string DynamicValue { get; set; }

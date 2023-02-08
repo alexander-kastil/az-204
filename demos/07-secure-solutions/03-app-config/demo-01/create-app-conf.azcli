@@ -12,7 +12,7 @@ az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo D
 az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo Staging" -y --label staging
 az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo" -y --label production
 
-az appconfig kv set -n $cfg --key "AppSettings:ChangingVal" --value "Original" -y
+az appconfig kv set -n $cfg --key "AppSettings:DynamicValue" --value "Original" -y --label production
 
 # app config key-vault binding
 cfgmi=$(az appconfig identity assign -g $grp -n $cfg --query principalId -o tsv)
