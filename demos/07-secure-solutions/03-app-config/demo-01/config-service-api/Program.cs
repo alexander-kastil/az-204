@@ -26,7 +26,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "App-Config-Api", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "App-Config-Service-Api", Version = "v1" });
 });
 
 // Cors
@@ -51,7 +51,7 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food-Api");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "App-Config-Service-Api");
     c.RoutePrefix = string.Empty;
 });
 
