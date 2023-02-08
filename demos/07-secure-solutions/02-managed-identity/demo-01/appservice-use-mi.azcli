@@ -6,7 +6,7 @@ plan=foodplan-$rnd
 app=foodapi-$rnd
 
 cd food-api-mi
-az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|6.0" 
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|7.0" 
 cd ..
 
 # activate system assigned identity on web app

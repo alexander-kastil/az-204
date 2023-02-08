@@ -1,22 +1,23 @@
-rnd=dev
-grp=az204-m07-secure-solutions-$rnd
+env=dev
+grp=az204-m07-secure-solutions-$env
 loc=westeurope
-cfg=foodconfig-$rnd
-vault=foodvault-$rnd
+cfg=$cfg-$env
+vault=foodvault-$env
+app=config-serice-api-$env
+plan=foodplan-$env
 
 # create appconfig and add a value
 az appconfig create -g $grp -n $cfg -l $loc --sku free
-az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App Dev" -y
-az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App Staging" -y --label staging
-az appconfig kv set -n foodconfig-$rnd --key "Settings:Title" --value "Fancy Food App" -y --label prod
+az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo Dev" -y
+az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo Staging" -y --label staging
+az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo" -y --label production
 
-
-# key-vault binding
+# app config key-vault binding
 cfgmi=$(az appconfig identity assign -g $grp -n $cfg --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $cfgmi --secret-permissions get list
 
-az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLite" -y
-az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y --label prod 
+az appconfig kv set-keyvault -n $cfg --key "AppSettings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLite" -y
+az appconfig kv set-keyvault -n $cfg --key "AppSettings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y --label production
 
 # alternative: keyvault policy assignment using service principal
 # principal=http://foodprincipal
@@ -26,4 +27,12 @@ az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-
 # create a feature flag and turn it on
 
 az appconfig feature set -n $cfg --feature PremiumFeature -y
+az appconfig feature set -n $cfg --feature PremiumFeature -y --label production
 az appconfig feature enable -n $cfg --feature PremiumFeature -y
+
+az appservice plan create -n $plan -g $grp --sku FREE
+az webapp create -n $app -g $grp --plan $plan --runtime "DOTNET|6.0" --assign-identity
+
+cd config-service-api
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|6.0" 
+cd ..
