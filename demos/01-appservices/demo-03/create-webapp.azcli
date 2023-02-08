@@ -1,7 +1,7 @@
-rnd=$RANDOM
-grp=az204-m01-appsettings-$rnd
-plan=appsettings-$rnd
-app=settings-api-$rnd
+env=$RANDOM
+grp=az204-m01-appsettings-$env
+plan=appsettings-$env
+app=settings-api-$env
 loc=westeurope
 
 az group create -n $grp -l $loc

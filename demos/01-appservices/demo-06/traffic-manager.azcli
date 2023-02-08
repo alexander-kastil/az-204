@@ -1,8 +1,8 @@
-rnd=$RANDOM
-eugrp=az204-tm-eu-$rnd
-usgrp=az204-tm-us-$rnd
-euplan=tm-westeur-$rnd
-usplan=tm-eastus-$rnd
+env=$RANDOM
+eugrp=az204-tm-eu-$env
+usgrp=az204-tm-us-$env
+euplan=tm-westeur-$env
+usplan=tm-eastus-$env
 gitrepo="https://github.com/arambazamba/git-deploy-app"
 user=labadmin
 pwd=Pa$$w0rd1234!
@@ -22,13 +22,13 @@ az webapp deployment source config -n tmapp-$usplan -g $usgrp -u $gitrepo --bran
 usid=$(az webapp show -n tmapp-$usplan -g $usgrp --query id -o tsv)
   
 # Create TM Profile & Add Endpoints  
-az network traffic-manager profile create -g $eugrp -n tmprofile$rnd --routing-method Geographic \
-    --unique-dns-name tmapp-$rnd --ttl 30 --protocol HTTP --port 80 --path "/"
+az network traffic-manager profile create -g $eugrp -n tmprofile$env --routing-method Geographic \
+    --unique-dns-name tmapp-$env --ttl 30 --protocol HTTP --port 80 --path "/"
 
-az network traffic-manager endpoint create --name ep-$euplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-EU \
+az network traffic-manager endpoint create --name ep-$euplan -g $eugrp  --profile-name tmprofile$env  --geo-mapping GEO-EU \
     --type azureEndpoints --target-resource-id $euid --endpoint-status Enabled 
 
-az network traffic-manager endpoint create --name ep-$usplan -g $eugrp  --profile-name tmprofile$rnd  --geo-mapping GEO-NA \
+az network traffic-manager endpoint create --name ep-$usplan -g $eugrp  --profile-name tmprofile$env  --geo-mapping GEO-NA \
     --type azureEndpoints --target-resource-id $usid --endpoint-status Enabled 
 
 # Create a vm in the US to access the webapp with an us ip address

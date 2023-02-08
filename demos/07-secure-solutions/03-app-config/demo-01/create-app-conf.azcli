@@ -33,8 +33,10 @@ az appconfig feature set -n $cfg --feature PremiumFeature -y --label production
 az appconfig feature enable -n $cfg --feature PremiumFeature -y
 
 az appservice plan create -n $plan -g $grp --sku FREE
-az webapp create -n $app -g $grp --plan $plan --runtime "DOTNET|6.0" --assign-identity
+webmi=$(az webapp create -n $app -g $grp --plan $plan --runtime "DOTNET|6.0" --assign-identity --query identity.principalId -o tsv)
+az keyvault set-policy -n $vault --object-id $webmi --secret-permissions get list
+
 
 cd config-service-api
-az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|6.0" 
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free --runtime "DOTNET|6.0" 
 cd ..

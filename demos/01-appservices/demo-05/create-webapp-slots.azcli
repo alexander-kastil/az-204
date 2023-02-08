@@ -1,7 +1,7 @@
-rnd=$RANDOM
-grp=az204-m01-deployment-slots-$rnd
-appPlan=deployment-slots-$rnd
-app=deployment-slots-app-$rnd
+env=$RANDOM
+grp=az204-m01-deployment-slots-$env
+appPlan=deployment-slots-$env
+app=deployment-slots-app-$env
 loc=westeurope
 slot=staging
 

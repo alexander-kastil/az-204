@@ -25,7 +25,6 @@ builder.Configuration.AddAzureAppConfiguration(options =>
 });
 
 // Add services to the container.
-
 // Configuration
 IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(Configuration);
