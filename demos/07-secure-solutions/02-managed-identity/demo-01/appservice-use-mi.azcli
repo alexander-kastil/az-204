@@ -1,12 +1,12 @@
-rnd=dev
-grp=az204-m07-secure-solutions-$rnd
+env=dev
+grp=az204-m07-secure-solutions-$env
 loc=westeurope
-vault=foodvault-$rnd
-plan=foodplan-$rnd
-app=foodapi-$rnd
+vault=foodvault-$env
+plan=foodplan-$env
+app=foodapi-$env
 
 cd food-api-mi
-az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|7.0" 
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "DOTNET|6.0" 
 cd ..
 
 # activate system assigned identity on web app
