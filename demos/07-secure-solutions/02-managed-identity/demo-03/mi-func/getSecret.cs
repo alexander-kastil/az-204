@@ -7,10 +7,9 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Microsoft.Azure.Services.AppAuthentication;
-using Microsoft.Azure.KeyVault;
 using Microsoft.Extensions.Configuration;
-
+using Azure.Security.KeyVault.Secrets;
+using Azure.Identity;
 
 namespace Company.Function
 {
@@ -34,13 +33,12 @@ namespace Company.Function
                 .Build();
 
                 var kvName = config["KeyVaultName"];
-                var kvUri = $"https://{kvName}.vault.azure.net/";
 
-                log.LogInformation($"Obtaining secret {secret} from {kvUri}");
+                log.LogInformation($"Obtaining secret {secret} from {kvName}");
 
-                var serviceTokenProvider = new AzureServiceTokenProvider();
-                var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(serviceTokenProvider.KeyVaultTokenCallback));
-                dbconstring = (keyVaultClient.GetSecretAsync(kvUri, secret).Result).Value;
+                var client = new SecretClient(new Uri($"https://{kvName}.vault.azure.net/"), new DefaultAzureCredential());
+                var response = await client.GetSecretAsync("conSQLite");     
+                dbconstring = response.Value.Value;
             }
 
             string responseMessage = string.IsNullOrEmpty(secret)
