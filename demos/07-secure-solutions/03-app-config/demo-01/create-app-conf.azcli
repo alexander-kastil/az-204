@@ -3,13 +3,12 @@ grp=az204-m07-secure-solutions-$env
 loc=westeurope
 cfg=foodconfig-$env
 vault=foodvault-$env
-app=config-serice-api-$env
-plan=foodplan-$env
+app=config-api-$env
+plan=config-plan-$env
 
 # create appconfig and add a value
 az appconfig create -g $grp -n $cfg -l $loc --sku free
 az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo Dev" -y
-az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo Staging" -y --label staging
 az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo" -y --label production
 
 az appconfig kv set -n $cfg --key "Settings:Sentinel" --value 1 -y 
@@ -28,16 +27,15 @@ az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-
 # az keyvault set-policy -n $vault --spn $principal --secret-permissions get list
 
 # create a feature flag and turn it on
-
 az appconfig feature set -n $cfg --feature PremiumFeature -y
 az appconfig feature set -n $cfg --feature PremiumFeature -y --label production
 az appconfig feature enable -n $cfg --feature PremiumFeature -y
 
-az appservice plan create -n $plan -g $grp --sku FREE
-webmi=$(az webapp create -n $app -g $grp --plan $plan --runtime "DOTNET|6.0" --assign-identity --query identity.principalId -o tsv)
-az keyvault set-policy -n $vault --object-id $webmi --secret-permissions get list
-
-
+# create hosting webapp and add keyvault permissions to managed identity
 cd config-service-api
 az webapp up -n $app -g $grp -p $plan -l $loc --sku Free --runtime "DOTNET|6.0" 
 cd ..
+webmi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)
+
+az keyvault set-policy -n $vault --object-id $webmi --secret-permissions get list
+az webapp restart -g $grp -n $app
