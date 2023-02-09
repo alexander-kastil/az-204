@@ -2,11 +2,9 @@ public class Settings
 {
     public string Title { get; set; }
     public bool AuthEnabled { get; set; }
-    public bool UseSQLite { get; set; }
-    public bool UseAppConfig { get; set; }
     public string ConnectionString { get; set; }
     public string KeyVault { get; set; }
-    public string AppConfig { get; set; }
+    public string AppConfigEndpoint { get; set; }
     public string Sentinel { get; set; }
 }
 

@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 string connectionString = "Endpoint=https://foodconfig-dev.azconfig.io;Id=B1kS-l9-s0:O8WiC3kXo8OKaABKcK4y;Secret=dlCIR0ybMLVX1czEyI9AlaKOcVaINQbZZkkek8uKS88=";
 
 builder.Configuration.AddAzureAppConfiguration(options =>
-{
+{    
     options.Connect(connectionString)
         .ConfigureKeyVault(kv =>
         {

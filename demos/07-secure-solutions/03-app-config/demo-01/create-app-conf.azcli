@@ -7,7 +7,7 @@ app=config-api-$env
 plan=config-plan-$env
 
 # create appconfig and add a value
-az appconfig create -g $grp -n $cfg -l $loc --sku free
+appconfigid=$(az appconfig create -g $grp -n $cfg -l $loc --sku free --query id -o tsv)
 az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo Dev" -y
 az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo" -y --label production
 
@@ -36,6 +36,9 @@ cd config-service-api
 az webapp up -n $app -g $grp -p $plan -l $loc --sku Free --runtime "DOTNET|6.0" 
 cd ..
 webmi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)
-
 az keyvault set-policy -n $vault --object-id $webmi --secret-permissions get list
+
+# add app config reader permissions to managed identity
+az role assignment create --role "App Configuration Data Reader" --assignee $webmi --scope $appconfigid
+
 az webapp restart -g $grp -n $app
