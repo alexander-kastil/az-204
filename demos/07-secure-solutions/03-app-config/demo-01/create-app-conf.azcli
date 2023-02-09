@@ -8,18 +8,19 @@ plan=foodplan-$env
 
 # create appconfig and add a value
 az appconfig create -g $grp -n $cfg -l $loc --sku free
-az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo Dev" -y
-az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo Staging" -y --label staging
-az appconfig kv set -n $cfg --key "AppSettings:Title" --value "App Config Demo" -y --label production
+az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo Dev" -y
+az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo Staging" -y --label staging
+az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo" -y --label production
 
-az appconfig kv set -n $cfg --key "AppSettings:DynamicValue" --value "Original" -y --label production
+az appconfig kv set -n $cfg --key "Settings:Sentinel" --value 1 -y 
+az appconfig kv set -n $cfg --key "Settings:Sentinel" --value 1 -y --label production
 
 # app config key-vault binding
 cfgmi=$(az appconfig identity assign -g $grp -n $cfg --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $cfgmi --secret-permissions get list
 
-az appconfig kv set-keyvault -n $cfg --key "AppSettings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLite" -y
-az appconfig kv set-keyvault -n $cfg --key "AppSettings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y --label production
+az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLite" -y
+az appconfig kv set-keyvault -n $cfg --key "Settings:ConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y --label production
 
 # alternative: keyvault policy assignment using service principal
 # principal=http://foodprincipal

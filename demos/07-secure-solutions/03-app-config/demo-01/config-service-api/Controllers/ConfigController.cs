@@ -8,14 +8,14 @@ namespace config_service_api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AppConfigServiceController : ControllerBase
+public class ConfigController : ControllerBase
 {
     IConfiguration cfg;
     SecretClient sc;
 
-    private readonly ILogger<AppConfigServiceController> logger;
+    private readonly ILogger<ConfigController> logger;
 
-    public AppConfigServiceController(ILogger<AppConfigServiceController> ilogger, IConfiguration config, SecretClient secretClient)
+    public ConfigController(ILogger<ConfigController> ilogger, IConfiguration config, SecretClient secretClient)
     {
         cfg = config;
         logger = ilogger;

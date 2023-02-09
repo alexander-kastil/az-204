@@ -1,4 +1,4 @@
-public class AppSettings
+public class Settings
 {
     public string Title { get; set; }
     public bool AuthEnabled { get; set; }
@@ -7,7 +7,7 @@ public class AppSettings
     public string ConnectionString { get; set; }
     public string KeyVault { get; set; }
     public string AppConfig { get; set; }
-    public string DynamicValue { get; set; }
+    public string Sentinel { get; set; }
 }
 
 public class FeatureManagement
@@ -31,6 +31,6 @@ public class AppConfig
 {
     public Logging Logging { get; set; }
     public string AllowedHosts { get; set; }
-    public AppSettings AppSettings { get; set; }
+    public Settings AppSettings { get; set; }
     public FeatureManagement FeatureManagement { get; set; }
 }
