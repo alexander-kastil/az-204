@@ -10,7 +10,7 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connectionString = "Endpoint=https://foodconfig-dev.azconfig.io;Id=ssJq-l9-s0:kcBy2fb28Z9g1Jo6xA7J;Secret=4pVAt4fMYU8pVZFDXy569EW4sq2/gw+j1uTgUh6EvP4=";
+string connectionString = "Endpoint=https://foodconfig-dev.azconfig.io;Id=B1kS-l9-s0:O8WiC3kXo8OKaABKcK4y;Secret=dlCIR0ybMLVX1czEyI9AlaKOcVaINQbZZkkek8uKS88=";
 
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
