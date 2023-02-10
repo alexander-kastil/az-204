@@ -3,35 +3,32 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string connectionString = "Endpoint=https://foodconfig-dev.azconfig.io;Id=B1kS-l9-s0:O8WiC3kXo8OKaABKcK4y;Secret=dlCIR0ybMLVX1czEyI9AlaKOcVaINQbZZkkek8uKS88=";
+// Access Base Configuration
+IConfiguration Configuration = builder.Configuration;
+builder.Services.AddSingleton<IConfiguration>(Configuration);
+var cfg = Configuration.Get<AppConfig>();
 
 builder.Configuration.AddAzureAppConfiguration(options =>
 {    
-    options.Connect(connectionString)
+    options.Connect(cfg.Settings.AppConfigConnection)
         .ConfigureKeyVault(kv =>
         {
             kv.SetCredential(new DefaultAzureCredential());
         })
-        .Select("*", "production")        
+        .Select("*", cfg.Settings.Environment)        
         .ConfigureRefresh(refreshOptions =>
             refreshOptions.Register("Settings:Sentinel", refreshAll: true));
 });
 
 // Add services to the container.
-// Configuration
-IConfiguration Configuration = builder.Configuration;
-builder.Services.AddSingleton<IConfiguration>(Configuration);
-var cfg = Configuration.Get<AppConfig>();
-
 // Key Vault Client
-var client = new SecretClient(new Uri($"https://{cfg.AppSettings.KeyVault}"), new DefaultAzureCredential());
+var client = new SecretClient(new Uri($"https://{cfg.Settings.KeyVault}"), new DefaultAzureCredential());
 builder.Services.AddSingleton<SecretClient>(client);
 
 builder.Services.AddControllers();
