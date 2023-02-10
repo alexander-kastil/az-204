@@ -1,22 +1,22 @@
-rnd=$RANDOM
-grp=az204-m01-appservices-$rnd
+env=$RANDOM
+grp=az204-m01-appservices-$env
 loc=westeurope
-appPlan=appservices-$rnd
-mvcapp=mvcapp-$rnd
+plan=appservices-$env
+mvcapp=mvcapp-$env
 
 # create a resource group
 az group create -n $grp -l $loc
 
 # create an App Service plan
-az appservice plan create -n $appPlan -g $grp --sku S1
+az appservice plan create -n $plan -g $grp --sku S1
 
 # create cliapp
-az webapp create -n cli-api-$rnd -g $grp --plan $appPlan --runtime "DOTNET|6.0"
+az webapp create -n cli-api-$env -g $grp --plan $plan --runtime "DOTNET|6.0"
 
 # create mvcapp
-az webapp create -n $mvcapp -g $grp --plan $appPlan --runtime "DOTNET|6.0"
+az webapp create -n $mvcapp -g $grp --plan $plan --runtime "DOTNET|6.0"
 
 # create and upload mvcapp app using az webapp up
 cd mvc-app
-az webapp up -n $mvcapp -g $grp -p $appPlan --sku F1 -l $loc -r "DOTNET|6.0"
+az webapp up -n $mvcapp -g $grp -p $plan --sku F1 -l $loc -r "DOTNET|6.0"
 cd ..

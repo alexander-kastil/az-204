@@ -65,6 +65,12 @@ az extension list-available --output table
 az extension add --name <extension-name>
 ```
 
+Set Azrue CLI to auto-update:
+
+```bash
+az config set extension.use_dynamic_install=yes_without_prompt
+```
+
 ### List and set Subscriptions
 
 List Subscriptions:

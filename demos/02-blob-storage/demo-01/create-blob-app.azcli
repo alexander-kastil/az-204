@@ -1,7 +1,7 @@
-rnd=$RANDOM
-grp=az204-m02-foodpics-$rnd
+env=$RANDOM
+grp=az204-m02-foodpics-$env
 loc=westeurope
-acct=foodpics$rnd
+acct=foodpics$env
 container="food"
 blob_name=shrimp-vindaloo.jpg
 file_to_upload="./food-pics/shrimp-vindaloo.jpg"

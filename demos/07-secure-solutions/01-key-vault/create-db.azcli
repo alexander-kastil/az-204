@@ -1,9 +1,9 @@
-rnd=dev
-grp=az204-m07-secure-solutions-$rnd
+env=dev
+grp=az204-m07-secure-solutions-$env
 loc=westeurope
-server=foodserver$rnd
-db=foodb$rnd
-vault=foodvault-$rnd
+server=foodserver$env
+db=foodb$env
+vault=foodvault-$env
 
 user=$(az keyvault secret show --name "DBUser" --vault-name $vault --query value -o tsv)
 pwd=$(az keyvault secret show --name "DBPassword" --vault-name $vault --query value -o tsv)

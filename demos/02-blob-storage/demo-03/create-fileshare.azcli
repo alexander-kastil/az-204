@@ -1,7 +1,7 @@
-rnd=$RANDOM
+env=$RANDOM
 grp=az-lab
 loc=westeurope
-acct=labvm$rnd
+acct=labvm$env
 
 az group create -n $grp -l $loc
 

@@ -1,7 +1,7 @@
-rnd=$RANDOM
+env=$RANDOM
 loc=westeurope
-grp=az204-m02-sas-$rnd
-acct=medicalrecords$rnd
+grp=az204-m02-sas-$env
+acct=medicalrecords$env
 container="patient-images"
 path="./patient-images/"
 blob="patient-32589.jpg"

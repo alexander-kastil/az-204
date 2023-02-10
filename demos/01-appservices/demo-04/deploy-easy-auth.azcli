@@ -1,7 +1,7 @@
-rnd=$RANDOM
-grp=az204-m01-easy-auth-$rnd
-appPlan=easyauth-$rnd
-app=easyauth-website-$rnd
+env=$RANDOM
+grp=az204-m01-easy-auth-$env
+appPlan=easyauth-$env
+app=easyauth-website-$env
 appregName=easyauth-app
 gitrepo="https://github.com/arambazamba/git-deploy-app"
 tenantID=d92b247e-90e0-4469-a129-6a32866c0d0a

@@ -1,7 +1,7 @@
-rnd=dev
-grp=az204-m07-secure-solutions-$rnd
+env=dev
+grp=az204-m07-secure-solutions-$env
 loc=westeurope
-vault=foodvault-$rnd
+vault=foodvault-$env
 
 az group create -n $grp -l $loc
 
@@ -16,6 +16,9 @@ az keyvault secret set --vault-name $vault --name "DBPassword" --value "Lab@dmin
 az keyvault secret show --vault-name $vault --name "DBUser" 
 
 user=$(az keyvault secret show --vault-name $vault --name "DBUser" --query value)
+pwd=$(az keyvault secret show --vault-name $vault --name "DBPassword" --query value -o tsv)
+
+az keyvault secret set --vault-name $vault --name "conSQLServer" --value "Server=tcp:$server.database.windows.net,1433;Database=$db;User ID=$user;Password='$pwd';Encrypt=true;Connection Timeout=30;"
 
 az keyvault secret list --vault-name $vault -o table
 
