@@ -1,7 +1,3 @@
-# Using Managed Idenity
+# Use System assigned Managed Identities to access Key Vault
 
-Sample uses Managed Identity App from [GitHub](https://github.com/ARambazamba/ManagedIdentityApp)
-
-- Explanin Microsoft.Azure.Services.AppAuthentication
-- Explain .NET 5 support
-- Show Deployment using GitHub Actions
+- Execute `appservice-use-mi.azcli`. It deploys `food-api-mi`.
