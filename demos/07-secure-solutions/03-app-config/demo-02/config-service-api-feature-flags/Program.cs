@@ -6,22 +6,24 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Access Base Configuration
 IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(Configuration);
-var cfg = Configuration.Get<AppConfig>();
+AppConfig cfg = Configuration.Get<AppConfig>();
 
 builder.Configuration.AddAzureAppConfiguration(options =>
-{    
-    options.Connect(new Uri(cfg.Settings.AppConfigEndpoint), new DefaultAzureCredential())
+{
+    options.Connect(cfg.Settings.AppConfigConnection)
+        .UseFeatureFlags()
         .ConfigureKeyVault(kv =>
         {
             kv.SetCredential(new DefaultAzureCredential());
         })
-        .Select("*", cfg.Settings.Environment)        
+        .Select("*", cfg.Settings.Environment)
         .ConfigureRefresh(refreshOptions =>
             refreshOptions.Register("Settings:Sentinel", refreshAll: true));
 });
@@ -30,6 +32,9 @@ builder.Configuration.AddAzureAppConfiguration(options =>
 // Key Vault Client
 var client = new SecretClient(new Uri($"https://{cfg.Settings.KeyVault}"), new DefaultAzureCredential());
 builder.Services.AddSingleton<SecretClient>(client);
+
+// Feature Management
+builder.Services.AddFeatureManagement();
 
 builder.Services.AddControllers();
 

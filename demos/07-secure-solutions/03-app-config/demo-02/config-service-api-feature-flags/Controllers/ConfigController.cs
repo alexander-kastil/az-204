@@ -3,6 +3,7 @@ using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.FeatureManagement;
 
 namespace config_service_api.Controllers;
 
@@ -12,14 +13,16 @@ public class ConfigController : ControllerBase
 {
     IConfiguration cfg;
     SecretClient sc;
+    IFeatureManager fm;
 
     private readonly ILogger<ConfigController> logger;
 
-    public ConfigController(ILogger<ConfigController> ilogger, IConfiguration config, SecretClient secretClient)
+    public ConfigController(ILogger<ConfigController> ilogger, IConfiguration config, SecretClient secretClient, IFeatureManager featureManager)
     {
         cfg = config;
         logger = ilogger;
         sc = secretClient;
+        fm = featureManager;
     }
 
     [HttpGet(Name = "GetConfig")]
@@ -30,11 +33,10 @@ public class ConfigController : ControllerBase
     }
 
     [HttpGet("GetPremiumFeatureEnabled")]
-    public ActionResult GetPremium()
+    public async Task<ActionResult> GetPremium()
     {
-        //get string typed config
-        var config = cfg.Get<AppConfig>();
-        return Ok(config);
+        var premiumEnabled = await fm.IsEnabledAsync("PremiumFeature");
+        return Ok(premiumEnabled);
     }
 
     [HttpGet("GetSecretFromVault")]

@@ -29,14 +29,6 @@ public class ConfigController : ControllerBase
         return Ok(config);
     }
 
-    [HttpGet("GetPremiumFeatureEnabled")]
-    public ActionResult GetPremium()
-    {
-        //get string typed config
-        var config = cfg.Get<AppConfig>();
-        return Ok(config);
-    }
-
     [HttpGet("GetSecretFromVault")]
     public async Task<string> GetSecretFromVault()
     {
