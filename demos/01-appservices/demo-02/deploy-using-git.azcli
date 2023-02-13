@@ -8,6 +8,8 @@ az group create -n $grp -l westeurope
 
 az appservice plan create -n $appPlan -g $grp --sku F1
 
+az webapp create -n $app -g $grp -p $appPlan
+
 az webapp deployment source config -n $app -g $grp -u $gitrepo --branch master
 
 fqdn=$(az webapp create -g $grp -p $appPlan -n $app --query defaultHostName -o tsv)
