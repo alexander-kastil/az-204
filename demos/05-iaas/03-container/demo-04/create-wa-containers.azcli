@@ -1,8 +1,8 @@
-rnd=$RANDOM
-grp=az204-m01-wacontainers-$rnd
+env=$RANDOM
+grp=az204-m01-wacontainers-$env
 loc=westeurope
-plan=foodapp-wac$rnd
-app=foodapi-wac-$rnd
+plan=foodapp-wac$env
+app=foodapi-wac-$env
 img=arambazamba/foodapi
 
 az group create --name $grp --location $loc

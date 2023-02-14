@@ -6,9 +6,9 @@ Install-Module -Name Az -AllowClobber
 # Login - run this from class ps to see the popup
 Connect-AzAccount
 
-$rnd = Get-Random
+$env = Get-Random
 $VMSize = "Standard_B1ms"
-$grp = "az-204-m05-vm-$rnd"
+$grp = "az-204-m05-vm-$env"
 
 # The credential of the designated Windows Admin - Not your credential :-)
 # Use: az204admin PWD: P@$$w0rd1234!
