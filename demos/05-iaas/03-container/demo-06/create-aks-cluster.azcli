@@ -1,6 +1,7 @@
+env=$RANDOM
 grp=az204-m05-k8s
 loc=westeurope
-aks=az204cluster-$RANDOM
+aks=az204cluster-$env
 ns=staging
 ui=foodui.yaml
 app=foodui

@@ -1,8 +1,8 @@
-rnd=$RANDOM
-grp=az204-m04-foodutil-js-$rnd
+env=$RANDOM
+grp=az204-m04-foodutil-js-$env
 loc=westeurope
-app=foodutil-$rnd
-storage=az204foodutil$rnd
+app=foodutil-$env
+storage=az204foodutil$env
 
 az group create --name $grp --location $loc
 az storage account  create -n $storage -g $grp 

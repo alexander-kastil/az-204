@@ -1,8 +1,8 @@
-rnd=$RANDOM
-grp=az204-m04-statefulapp-$rnd
+env=$RANDOM
+grp=az204-m04-statefulapp-$env
 loc=westeurope
-app=statefulapp-$rnd
-storage=statefulapp$rnd
+app=statefulapp-$env
+storage=statefulapp$env
 
 az group create --name $grp --location $loc
 az storage account  create -n $storage -g $grp 

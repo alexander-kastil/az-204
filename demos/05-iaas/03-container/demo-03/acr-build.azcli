@@ -1,7 +1,7 @@
-rnd=16857
+env=<Take from prev script>
 grp=az204-m05-containers
 loc=westeurope
-acr=configacr$rnd
+acr=configacr$env
 img=config-ui
 
 az acr login --name $acr
