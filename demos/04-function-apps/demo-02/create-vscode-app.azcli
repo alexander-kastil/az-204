@@ -1,8 +1,8 @@
-rnd=$RANDOM
-grp=az204-m04-vscode-$rnd
+env=$RANDOM
+grp=az204-m04-vscode-$env
 loc=westeurope
-app=vscodeapp-$rnd
-storage=vscodeapp$rnd
+app=vscodeapp-$env
+storage=vscodeapp$env
 
 az group create -n $grp -l $loc
 
