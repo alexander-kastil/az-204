@@ -1,19 +1,18 @@
-env=$RANDOM
+env=30159
 loc=westeurope
 grp=az204-m02-sas-$env
 acct=medicalrecords$env
 container="patient-images"
 path="./patient-images/"
 blob="patient-32589.jpg"
-
 ## Update expiry
-expiry=2022-08-02
+expiry=2023-02-15
 
 az group create -n $grp -l $loc
 
 url=$(az storage account create -n $acct --access-tier hot --kind StorageV2 -g $grp --query primaryEndpoints.blob)
 
-key=$(az storage account keys list -n $acct --query "[0].value")
+key=$(az storage account keys list -n $acct --query "[0].value" -o tsv)
 
 az storage container create -n $container --account-name $acct --account-key $key
 
