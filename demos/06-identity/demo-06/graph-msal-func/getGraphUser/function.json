@@ -6,6 +6,7 @@
       "direction": "in",
       "name": "req",
       "methods": [
+        "get",
         "post"
       ]
     },
@@ -15,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/postToTeams/index.js"
+  "scriptFile": "../dist/getGraphUser/index.js"
 }
