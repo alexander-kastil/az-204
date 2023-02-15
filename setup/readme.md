@@ -24,23 +24,28 @@ Congratulations you have completed the base setup of your class vm.
 
 Requires Windows 10 - May 2020 Update or higher. To Update use this [link](https://www.microsoft.com/de-de/software-download/windows10).
 
-[Install WSL 2](https://docs.microsoft.com/en-us/windows/wsl/install)
+[Install WSL 2](https://docs.microsoft.com/en-us/windows/wsl/install) in a Powershell Prompt:
 
-```
+```powershell
 wsl --install
+Restart-Computer
 ```
 
-### Frameworks & Runtimes
+Finish installation of Ubuntu 20.04 LTS from the Microsoft Store:
+
+![wsl-finish](_images/wsl-finish.png)
+
+### WSL Frameworks & Runtimes
 
 [Introduction to Bash Scripting](https://www.taniarascia.com/how-to-create-and-use-bash-scripts/)
 
 #### Node
 
-Install Node 14.x on WSL
+Install Node 16.x on WSL
 
-```
+```bash
 sudo apt update
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash
+sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash
 sudo apt-get install -y nodejs
 ```
 
@@ -74,13 +79,17 @@ az config set extension.use_dynamic_install=yes
 sudo npm install -g azure-functions-core-tools@4 --unsafe-perm true
 ```
 
-## Docker Support
+## Install Docker Support
 
-Download & Install [Docker Desktop for Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header)
+This requires prev step - WSL Installation
 
-Configure Docker Desktop:
+Download & Install [Docker Desktop for Windows](https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) or execute:
 
-![docker-desktop](_images/docker-desktop.png)
+```powershell
+choco install docker-desktop -y
+```
+
+Double Click on Docker Desktop to start the installation. After installation you will be asked to log out and log in again.
 
 Create an account at [Docker Hub](https://hub.docker.com/) and signin to Docker
 

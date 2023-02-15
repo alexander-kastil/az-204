@@ -29,11 +29,10 @@ choco install googlechrome -y
 choco install vscode -y
 choco install dotnetcore-sdk -y
 choco install dotnet-6.0-sdk -y
-choco install nodejs-lts --version=16.10.0 -y
+choco install nodejs-lts --version=16.15.0 -y
 choco install azure-cli -y
 choco install azurepowershell -y
 choco install curl -y
-choco install python --version=3.9.0 -y
 choco install azure-data-studio -y 
 choco install azure-cosmosdb-emulator -y
 
@@ -66,10 +65,8 @@ code --install-extension bencoleman.armview
 code --install-extension mdickin.markdown-shortcuts
 code --install-extension mhutchie.git-graph 
 code --install-extension ms-azure-devops.azure-pipelines		
-code --install-extension ms-azuretools.vscode-azureterraform
 code --install-extension vs-publisher-1448185.keyoti-changeallendoflinesequence
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
-code --install-extension ms-python.python
 code --install-extension alex-pattison.theme-cobalt3
 code --install-extension savranweb.cosmosdbsqlapi
 code --install-extension ms-kubernetes-tools.vscode-aks-tools
