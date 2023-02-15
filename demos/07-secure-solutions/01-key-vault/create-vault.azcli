@@ -7,11 +7,8 @@ server=foodserver-$env
 az group create -n $grp -l $loc
 
 az keyvault create -l $loc -n $vault -g $grp --sku Standard
-
 az keyvault secret set --vault-name $vault --name "conSQLite" --value "Data Source=./food.db"
-
 az keyvault secret set --vault-name $vault --name "DBUser" --value "azlabadmin"
-
 az keyvault secret set --vault-name $vault --name "DBPassword" --value "Lab@dmin1234"
 
 az keyvault secret show --vault-name $vault --name "DBUser" 
