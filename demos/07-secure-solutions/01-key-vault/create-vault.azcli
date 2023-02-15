@@ -2,20 +2,18 @@ env=dev
 grp=az204-m07-secure-solutions-$env
 loc=westeurope
 vault=foodvault-$env
+server=foodserver-$env
 
 az group create -n $grp -l $loc
 
 az keyvault create -l $loc -n $vault -g $grp --sku Standard
-
 az keyvault secret set --vault-name $vault --name "conSQLite" --value "Data Source=./food.db"
-
 az keyvault secret set --vault-name $vault --name "DBUser" --value "azlabadmin"
-
 az keyvault secret set --vault-name $vault --name "DBPassword" --value "Lab@dmin1234"
 
 az keyvault secret show --vault-name $vault --name "DBUser" 
 
-user=$(az keyvault secret show --vault-name $vault --name "DBUser" --query value)
+user=$(az keyvault secret show --vault-name $vault --name "DBUser" --query value -o tsv)
 pwd=$(az keyvault secret show --vault-name $vault --name "DBPassword" --query value -o tsv)
 
 az keyvault secret set --vault-name $vault --name "conSQLServer" --value "Server=tcp:$server.database.windows.net,1433;Database=$db;User ID=$user;Password='$pwd';Encrypt=true;Connection Timeout=30;"
