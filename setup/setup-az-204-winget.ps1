@@ -63,6 +63,8 @@ code --install-extension savranweb.cosmosdbsqlapi
 code --install-extension ms-kubernetes-tools.vscode-aks-tools
 
 # Azurite Storage Emulator & Function Core Tools v4
+nvm install 16.15.0
+nvm use 16.15.0
 npm install -g azure-functions-core-tools@4 --unsafe-perm true --force
 npm install -g azurite
 
