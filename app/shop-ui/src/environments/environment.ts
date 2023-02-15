@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   title: 'Passion for Food!',
-  authEnabled: true,
+  authEnabled: false,
   api: 'https://localhost:5001/',
   azure: {
     applicationInsights: '',

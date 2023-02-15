@@ -1,15 +1,27 @@
 .loginsplash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 
-.grid {
+.maingrid {
   display: grid;
+  grid-template-rows: 80px auto;
+  grid-template-columns: auto;
+  grid-template-areas:
+    "navbar"
+    "mainrow";
   height: 100vh;
   width: 100%;
 }
 
-.main{
-  height: calc(100vh - 100px);
+.gdNavbar{
+  grid-area: navbar;
+}
+
+.gdMainrow{
+  grid-area: mainrow;
 }
 
 mat-sidenav{

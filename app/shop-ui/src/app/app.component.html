@@ -1,23 +1,21 @@
 <div
-  *ngIf="(authenticated |async) === false && (publicRoute | async) === false"
-  fxLayout="column"
-  fxLayoutAlign="center center"
+  *ngIf="(authenticated | async) === false && (publicRoute | async) === false"
   class="loginsplash"
 >
   <app-login></app-login>
 </div>
 <div
-  *ngIf="(authenticated |async) === true || (publicRoute | async) === true"
-  gdAreas="navbar | mainrow"
-  gdAreas.lt-md="navbar  | mainrow"
-  gdRows="80px auto"
-  gdColumns="auto"
-  class="grid"
+  *ngIf="(authenticated | async) === true || (publicRoute | async) === true"
+  class="maingrid"
 >
-  <div gdArea="navbar"><app-navbar></app-navbar></div>
-  <div gdArea="mainrow" class="main">
+  <div class="gdNavbar"><app-navbar></app-navbar></div>
+  <div class="gdMainrow">
     <mat-sidenav-container>
-      <mat-sidenav #sidenav [opened]="sidenavVisible | async" [mode]="sidenavMode">
+      <mat-sidenav
+        #sidenav
+        [opened]="sidenavVisible | async"
+        [mode]="sidenavMode"
+      >
         <app-sidebar></app-sidebar>
       </mat-sidenav>
       <mat-sidenav-content [ngStyle]="getWorbenchStyle()">
@@ -28,6 +26,6 @@
 </div>
 
 <!-- used for token refresh on F5 or revisit using cached credentials -->
-<!-- <div style="display: none">
+<div style="display: none">
   <router-outlet *ngIf="!isIframe"></router-outlet>
-</div> -->
+</div>

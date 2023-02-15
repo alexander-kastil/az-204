@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   EntityDataService,
@@ -44,7 +43,6 @@ import { FoodEntityService } from './state/catalog/food-entity.service';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    FlexLayoutModule,
     UtilsModule,
     StoreModule.forFeature(cartFeatureKey, cartReducer),
     EffectsModule.forFeature([CartEffects]),

@@ -2,7 +2,7 @@
     <button mat-raised-button (click)="addFood()" color="accent">Add Food</button>
 </mat-toolbar>
 
-<mat-card>
+<mat-card appearance="outlined">
   <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef>Id</th>

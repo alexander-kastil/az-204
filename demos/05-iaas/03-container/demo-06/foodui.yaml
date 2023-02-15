@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: foodui
+  name: food-shop-ui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: foodui
+      app: food-shop-ui
   template:
     metadata:
       labels:
-        app: foodui                 
+        app: food-shop-ui                 
     spec:
       containers:
       - name: foodui
-        image: arambazamba/foodui
+        image: arambazamba/food-shop-ui
         imagePullPolicy: Always
         ports:
         - containerPort: 80        
@@ -26,12 +26,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: foodui
+  name: food-shop-ui
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: foodui
+    app: food-shop-ui
 ---

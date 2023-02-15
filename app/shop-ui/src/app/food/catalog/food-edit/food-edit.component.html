@@ -1,9 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="saveForm(form)" novalidate>
-<mat-card>
+<mat-card appearance="outlined">
   <mat-card-header>
     <mat-card-title>Edit</mat-card-title>
   </mat-card-header>
-  <mat-card-content fxLayout="column" fxLayoutAlign="center start">
+  <mat-card-content class="cardContent">
       <mat-form-field>
         <input matInput type="text" placeholder="Name" formControlName="name" />
       </mat-form-field>

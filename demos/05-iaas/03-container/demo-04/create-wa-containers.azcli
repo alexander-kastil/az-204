@@ -3,7 +3,7 @@ grp=az204-m01-wacontainers-$env
 loc=westeurope
 plan=foodapp-wac$env
 app=foodapi-wac-$env
-img=arambazamba/foodapi
+img=arambazamba/food-catalog-api
 
 az group create --name $grp --location $loc
 

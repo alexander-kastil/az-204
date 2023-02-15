@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: foodapi
+  name: food-catalog-api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: foodapi
+      app: food-catalog-api
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: foodapi
-        image: arambazamba/foodapi
+        image: arambazamba/food-catalog-api
         imagePullPolicy: Always
         ports:
         - containerPort: 80        
@@ -26,12 +26,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: foodapi
+  name: food-catalog-api
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: foodapi
+    app: food-catalog-api
 ---
