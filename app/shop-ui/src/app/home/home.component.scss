@@ -1,4 +1,7 @@
-div{
+.mainDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 80vh;
 }
 
@@ -6,29 +9,35 @@ div{
   width: 250px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-title {
   text-align: center;
   width: 400px;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-subtitle {
   text-align: center;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-content {
   height: 550px;
   background-color: lavender;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-footer {
   margin-top: 1rem;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card {
   margin-bottom: 0.5rem;
   width: 50%;
 }
 
+/* TODO(mdc-migration): The following rule targets internal classes of card that may no longer apply for the MDC version. */
 mat-card-footer {
   min-height: 3.5rem;
   vertical-align: middle;

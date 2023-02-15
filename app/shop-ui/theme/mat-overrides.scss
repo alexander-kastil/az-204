@@ -43,25 +43,25 @@ $medium-toolbar: 45px;
 }
 
 //Card
-.mat-card {
+.mat-mdc-card {
 //   background-color: mat.get-color-from-palette($primary);
   margin-bottom: $big-gap;
   padding: 0 !important;
 }
 
-.mat-card-header {
+.mat-mdc-card-header {
   background-color: mat.get-color-from-palette($primary);
   color: whitesmoke;
   min-height: $medium-toolbar;
   padding-top: $small-gap;
 }
 
-.mat-card-content {
+.mat-mdc-card-content {
   padding: $medium-gap;
   margin-bottom: 0 !important;
 }
 
-.mat-card-actions {
+.mat-mdc-card-actions {
   padding: $medium-gap;
   margin-left: $medium-gap !important;
   margin-right: $medium-gap !important;
