@@ -8,10 +8,8 @@
 
 ## Demos
 
-Demo use `food-app` from `/app`-folder
-
-- Ceate and publish .NET 6 Api image
-- Ceate and publish Angular UI image
+- Ceate and publish .NET 6 Api image from `/app/catalog-api/api/`
+- Ceate and publish Angular UI image from `/app/shop-ui/`
 
 ### Setup Requirements on Windows and Linux
 
