@@ -8,7 +8,7 @@ vault=vmvault-$env
 
 az group create -n $grp -l $loc
 
-az vm create -g $grp -n $vm --admin-username $user --admin-password $pwd --image Win2019Datacenter --size Standard_B2ms --public-ip-sku Standard
+az vm create -g $grp -n $vm --admin-username $user --admin-password $pwd --image Win2022Datacenter --size Standard_B2ms --public-ip-sku Standard
 
 # Create KeyVault
 
