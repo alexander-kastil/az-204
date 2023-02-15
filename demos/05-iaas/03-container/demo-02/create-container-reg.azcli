@@ -12,7 +12,7 @@ az acr list --query "[].loginServer" -o tsv #for info only
 pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv) #for info only
 
 # Tag img & upload to ACR
-docker tag foodapi $acr.azurecr.io/foodapi
+docker tag food-catalog-api $acr.azurecr.io/food-catalog-api
 
 # Upload Image
-docker push $acr.azurecr.io/foodapi
+docker push $acr.azurecr.io/food-catalog-api
