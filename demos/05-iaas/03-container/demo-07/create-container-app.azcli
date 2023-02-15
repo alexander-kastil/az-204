@@ -1,4 +1,4 @@
-env=$RANDOM
+env=19100
 grp=az204-m05-containerapps-$env
 loc=westeurope
 caenv=az204-m05-food-$env
@@ -9,11 +9,12 @@ az group create -n $grp -l $loc
 
 az containerapp env create -n $caenv -g $grp -l $loc
 
-apifqdn=$(az containerapp create -n foodapi-$env -g $grp --image $apiimg --environment $caenv \
+apifqdn=$(az containerapp create -n foodapi-$env -g $grp --image $apiimg \
+    --environment $caenv \
     --target-port 80 --ingress external \
     --query properties.configuration.ingress.fqdn -o tsv)
 
-uifqdn=$(az containerapp create -n foodui-$env -g $grp --image $uiimg --environment $caenv \
+az containerapp create -n foodui-$env -g $grp --image $uiimg \
+    --environment $caenv \
     --target-port 80 --ingress external \
-    --env-vars ENV_API_URL=https://$apifqdn/ \
-    --query properties.configuration.ingress.fqdn)
+    --env-vars ENV_API_URL=https://$apifqdn/ 

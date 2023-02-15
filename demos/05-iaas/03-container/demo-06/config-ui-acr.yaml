@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ngconfig
+  name: configui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ngconfig
+      app: configui
   template:
     metadata:
       labels:
-        app: ngconfig                 
+        app: configui                 
     spec:
       containers:
-      - name: ngconfig
+      - name: configui
         image: arambazamba/ng-config
         env: 
           - name: ENV_API_URL
@@ -31,12 +31,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ngconfig-load-balancer
+  name: configui-load-balancer
 spec:
   type: LoadBalancer
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: ngconfig
+    app: configui
 ---  

@@ -13,7 +13,7 @@ To install Software run the script `setup-az-204.ps1` from an elevated PowerShel
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force;
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/ARambazamba/AZ-204/master/Setup/setup-az-204.ps1'))
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/arambazamba/az-204/main/setup/setup-az-204.ps1'))
 ```
 
 > Note: This script will run for approx 20 min. No need to wait! In the meantime you can continue to fork and clone my repo as described in the next section.
@@ -113,7 +113,7 @@ docker run hello-world
 Execute `create-lab-vm.azcli` or run the following remote script in Cloud Shell
 
 ```bash
-curl https://raw.githubusercontent.com/arambazamba/az-204/main/Setup/create-lab-vm.azcli | bash
+curl https://raw.githubusercontent.com/arambazamba/az-204/main/setup/create-lab-vm.azcli | bash
 ```
 
 ![create-labvm](_images/create-lab-vm.jpg)

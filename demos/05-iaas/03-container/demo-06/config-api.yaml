@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: configapi
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: configapi
@@ -33,7 +33,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: configapi-service
+  name: configapi-load-balancer
 spec:
   type: LoadBalancer
   ports:
