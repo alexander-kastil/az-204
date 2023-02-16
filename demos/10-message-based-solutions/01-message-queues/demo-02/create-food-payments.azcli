@@ -31,6 +31,9 @@ az storage queue create -n $queue --account-key $key --account-name $acct
 storageConStr=$(az storage account show-connection-string -n $acct -g $grp \
   --query connectionString -o tsv)
 
+# azure container app environment
+az containerapp env create -n $contaienrenv -g $grp --location $loc  
+
 # put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
 messageOne=$(echo "Hello Queue Reader App" | base64)
 az storage message put --content $messageOne --queue-name $queue \
@@ -66,7 +69,6 @@ az container delete -g $grp -n foodpayment$env --yes
 
 # Create container app environment and deploy a container to it
 cd ..
-az containerapp env create -n $contaienrenv -g $grp --location $loc
 
 az containerapp create -n $acaname -g $grp --environment $contaienrenv \
   --image arambazamba/food-payments \
