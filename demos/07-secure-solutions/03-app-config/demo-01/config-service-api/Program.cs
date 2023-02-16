@@ -16,7 +16,7 @@ var cfg = Configuration.Get<AppConfig>();
 
 builder.Configuration.AddAzureAppConfiguration(options =>
 {    
-    options.Connect(new Uri(cfg.Settings.AppConfigEndpoint))
+    options.Connect(cfg.Settings.AppConfigConnection)
         .ConfigureKeyVault(kv =>
         {
             kv.SetCredential(new DefaultAzureCredential());

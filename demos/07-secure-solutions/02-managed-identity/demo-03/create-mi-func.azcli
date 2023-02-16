@@ -1,5 +1,5 @@
 env=dev
-grp=az204-m07-use-mi-$env
+grp=az204-m07-secure-solutions-$env
 loc=westeurope
 app=func-mi-$env
 storage=funcmi$env
