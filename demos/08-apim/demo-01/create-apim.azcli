@@ -13,6 +13,9 @@ workspace=food-$env
 mail="alexander.pajer@integrations.at"
 publisher="food"
 vault=foodvault-$env
+acaenv=foodacaenv-$env
+apiimg=arambazamba/food-catalog-api
+uiimg=arambazamba/food-shop-ui
 
 az group create -n $grp -l $loc
 
@@ -24,8 +27,21 @@ az functionapp create -n $utils -g $grp --storage-account $storage --consumption
 # shopping cart
 az functionapp create -n $cart -g $grp --storage-account $storage --consumption-plan-location $loc --functions-version 4 
 
-# payment - used for in portal function
+# payment - used for mocking in portal function
 az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
+
+# catalog api
+az containerapp env create -n $acaenv -g $grp -l $loc
+
+apifqdn=$(az containerapp create -n foodapi-$env -g $grp --image $apiimg \
+    --environment $acaenv \
+    --target-port 80 --ingress external \
+    --query properties.configuration.ingress.fqdn -o tsv)
+
+az containerapp create -n foodui-$env -g $grp --image $uiimg \
+    --environment $acaenv \
+    --target-port 80 --ingress external \
+    --env-vars ENV_API_URL=https://$apifqdn/ 
 
 # create a key vault
 # az keyvault purge -n $vault
