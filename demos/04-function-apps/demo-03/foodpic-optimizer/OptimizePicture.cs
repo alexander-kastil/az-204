@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
@@ -10,10 +11,10 @@ using SixLabors.ImageSharp.Processing;
 
 namespace Integrations
 {
-    public class PictureProcessor
+    public class OptimizePicture
     {
-        [FunctionName("PictureProcessor")]
-        public void Run([BlobTrigger("drop/{name}", Connection = "AzureWebJobsStorage")]Stream image, string name, [Blob("processed/{name}", FileAccess.Write)] Stream imageSmall, ILogger log)
+        [FunctionName("OptimizePicture")]
+        public void Run([BlobTrigger("drop/{name}", Connection = "AzureWebJobsStorage")]Stream image, string name, ILogger log, [Blob("processed/{name}", FileAccess.Write)] Stream imageSmall)
         {
             IImageFormat format;
             using (Image<Rgba32> input = Image.Load<Rgba32>(image, out format))
