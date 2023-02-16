@@ -1,7 +1,7 @@
-rnd=$RANDOM
+env=$RANDOM
 grp=az204-m12-redis
 loc=westeurope
-cacheName=az204-redis-$rnd
+cacheName=az204-redis-$env
 
 az group create -n $grp -l $loc
 
