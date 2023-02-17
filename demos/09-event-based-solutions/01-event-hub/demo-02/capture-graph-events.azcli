@@ -1,11 +1,11 @@
-rnd=$RANDOM
+env=$RANDOM
 loc=westeurope
-grp=az204-m09-graphchanges-eventhub-$rnd
-evns=graphevents-ns-$rnd
-hub=graphevents-hub-$rnd
-storage=graphevents$rnd
+grp=az204-m09-graphchanges-eventhub-$env
+evns=graphevents-ns-$env
+hub=graphevents-hub-$env
+storage=graphevents$env
 evhpolicyname=grapheventspolicy
-kv=m10-graphevents-$rnd
+kv=m10-graphevents-$env
 kvsecret=graphConStr
 
 az group create -l $loc -n $grp

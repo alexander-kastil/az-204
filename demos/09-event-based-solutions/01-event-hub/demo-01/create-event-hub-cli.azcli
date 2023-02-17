@@ -1,9 +1,9 @@
-rnd=$RANDOM
+env=$RANDOM
 loc=westeurope
-grp=az204-m09-evthub-send-receive-$rnd
-namespace=evthubns-$rnd
-hub=evthub-$rnd
-storage=eventhub$rnd
+grp=az204-m09-evthub-send-receive-$env
+namespace=evthubns-$env
+hub=evthub-$env
+storage=eventhub$env
 container=evthubcheckpoints
 
 az group create --name $grp --location $loc

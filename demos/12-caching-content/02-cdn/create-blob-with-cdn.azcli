@@ -1,9 +1,9 @@
-rnd=$RANDOM
-grp=az204-m12-cdn-$rnd
+env=$RANDOM
+grp=az204-m12-cdn-$env
 loc=westeurope
-acct=staticwebsite$rnd
+acct=staticwebsite$env
 path='./food-ui/dist/food-ui'
-profile=ngfoodapp$rnd
+profile=ngfoodapp$env
 epname=ngendpoint
 
 az group create -n $grp -l $loc

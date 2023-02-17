@@ -1,9 +1,9 @@
-rnd=$RANDOM
+env=$RANDOM
 loc=westeurope
-grp=az204-m09-evtgrid-customevt-$rnd
-topic=foodorder-topic-$rnd
-storage=orderprocessor$rnd
-app=order-processor-$rnd
+grp=az204-m09-evtgrid-customevt-$env
+topic=foodorder-topic-$env
+storage=orderprocessor$env
+app=order-processor-$env
 
 az group create --name $grp --location $loc
 
@@ -27,4 +27,4 @@ sed -i "s/<TOPIC_KEY>/$key/g"  ./publish-order-topic/appsettings.json
 echo '** Update in publish-order-topic/Program.cs:'
 echo '** Topic: ' $topic
 echo '** Topic Key: ' $key
-# echo '** rnd: ' $rnd
+# echo '** env: ' $env
