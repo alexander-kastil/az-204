@@ -6,6 +6,10 @@
 
 ## Demo
 
+- Add listen Claims to Event Hub
+
+    ![listen](_images/listen-claims.png)
+
 - Ensure Microsoft Graph Change Tracking application in online Graph Explorer
     ```
     POST https://graph.microsoft.com/v1.0/servicePrincipals
