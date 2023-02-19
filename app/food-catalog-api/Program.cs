@@ -1,12 +1,12 @@
 using System;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using FoodApi;
 using FoodApp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.Azure.KeyVault;
-using Microsoft.Azure.Services.AppAuthentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,10 +36,9 @@ if (cfg.App.UseSQLite)
 
     if (cfg.FeatureManagement.UseKeyVaultWithMI)
     {
-        var azureServiceTokenProvider = new AzureServiceTokenProvider();
-        var kvClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-        dbconstring = (kvClient.GetSecretAsync(cfg.Azure.KeyVault, "conSQLite").Result).Value;
-        Console.WriteLine($"Using SQLLite with connection string from KeyVault: {cfg.Azure.KeyVault}");
+        var client = new SecretClient(new Uri($"https://{cfg.Azure.KeyVault}"), new DefaultAzureCredential());
+        dbconstring =  client.GetSecret("conSQLite").Value?.Value;     
+        Console.WriteLine($"Using SQLLite with connection string from KeyVault: {dbconstring}");
     }
     else
     {

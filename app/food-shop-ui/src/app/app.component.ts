@@ -18,6 +18,7 @@ export class AppComponent implements OnDestroy {
   sidenavVisible = this.mf.sideNavVisible;
   isIframe = window !== window.parent && !window.opener;
 
+  authEnabled = environment.authEnabled;
   authenticated = this.af.isAuthenticated();
   publicRoute = this.router.events.pipe(
     startWith(false),
