@@ -1,11 +1,12 @@
 .content {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
 .imgContainer {
-  min-width: 25%;
+  width: 160;
+  height: 120;
+  flex-grow: 0;
 }
 
 img {
@@ -15,8 +16,9 @@ img {
 }
 
 .textContainer {
-  padding-left: 100px;
+  padding-left: 2rem;
   padding-top: 1rem;
+  text-align: left;
 }
 
 .mat-mdc-card-actions {

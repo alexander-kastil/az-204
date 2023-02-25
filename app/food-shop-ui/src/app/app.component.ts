@@ -20,6 +20,7 @@ export class AppComponent implements OnDestroy {
 
   authEnabled = environment.authEnabled;
   authenticated = this.af.isAuthenticated();
+
   publicRoute = this.router.events.pipe(
     startWith(false),
     filter((e) => e instanceof NavigationEnd),
@@ -43,6 +44,10 @@ export class AppComponent implements OnDestroy {
       .subscribe((mode: string) => {
         this.sidenavMode = mode as MatDrawerMode;
       });
+
+    if (this.authEnabled === false) {
+      this.router.navigate(['food']);
+    }
   }
 
   ngOnDestroy() {
@@ -57,8 +62,8 @@ export class AppComponent implements OnDestroy {
       .subscribe((visible: boolean) => {
         result = visible
           ? {
-              'padding-left': '10px',
-            }
+            'padding-left': '10px',
+          }
           : {};
       });
     return result;

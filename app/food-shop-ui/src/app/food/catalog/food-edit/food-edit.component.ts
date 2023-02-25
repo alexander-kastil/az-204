@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CatalogItem } from '../../food-catalog.model';
+import { FoodItem } from "../../food-item.model";
 
 @Component({
   selector: 'app-food-edit',
@@ -15,8 +15,8 @@ import { CatalogItem } from '../../food-catalog.model';
   styleUrls: ['./food-edit.component.scss'],
 })
 export class FoodEditComponent implements OnChanges {
-  @Input() food: CatalogItem = new CatalogItem();
-  @Output() saveFood: EventEmitter<CatalogItem> = new EventEmitter();
+  @Input() food: FoodItem = new FoodItem();
+  @Output() saveFood: EventEmitter<FoodItem> = new EventEmitter();
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {

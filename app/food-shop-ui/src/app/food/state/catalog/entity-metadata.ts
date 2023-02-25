@@ -1,14 +1,14 @@
 import { EntityMetadataMap, EntityDataModuleConfig } from '@ngrx/data';
-import { CatalogItem } from '../../food-catalog.model';
+import { FoodItem } from "../../food-item.model";
 
-export function sortByName(a: CatalogItem, b: CatalogItem): number {
+export function sortByName(a: FoodItem, b: FoodItem): number {
   let comp = a.name.localeCompare(b.name);
   return comp;
 }
 
 export const entityMetadata: EntityMetadataMap = {
   Food: {
-    selectId: (food: CatalogItem) => food.id,
+    selectId: (food: FoodItem) => food.id,
     sortComparer: sortByName,
   },
 };

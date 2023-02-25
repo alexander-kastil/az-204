@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -44,6 +44,7 @@ import { FoodEntityService } from './state/catalog/food-entity.service';
     ReactiveFormsModule,
     FormsModule,
     UtilsModule,
+    NgOptimizedImage,
     StoreModule.forFeature(cartFeatureKey, cartReducer),
     EffectsModule.forFeature([CartEffects]),
   ],
