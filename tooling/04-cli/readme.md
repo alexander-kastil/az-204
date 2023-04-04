@@ -134,13 +134,19 @@ az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --i
 
 > Note: We are using this image and vm size because it supports nested virtualization
 
-### Troubleshoot CLI
+## Reset Cloud Shell
 
-Select Directory:
+To reset Cloud Shell you can use the following command:
 
-https://shell.azure.com/
+```bash
+couddrive unmount
+```
 
-In my case issue resolved by reverting Azure Account extension version to 0.8.11.
+or
+
+```powershell
+Dismount-Clouddrive
+```
 
 ## Additional Labs & Walkthroughs
 
