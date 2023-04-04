@@ -4,8 +4,8 @@ using Microsoft.Azure.Cosmos.Linq;
 using Microsoft.Extensions.Configuration;
 
 var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 IConfigurationRoot configuration = builder.Build();
 
 var accountEndpoint = configuration["accountEndpoint"];
@@ -14,13 +14,9 @@ var db = configuration["DBName"];
 var collection = configuration["Collection"];
 var conStr = $"AccountEndpoint={accountEndpoint};AccountKey={accountKey};";
 
-CosmosClient cclient;
-Database database;
-Container container;
-
-cclient = new CosmosClient(conStr);
-database = cclient.GetDatabase(db);
-container = database.GetContainer(collection);
+CosmosClient cclient = new CosmosClient(conStr);
+Database database = cclient.GetDatabase(db);
+Container container = database.GetContainer(collection);
 
 // Read from Cosmos DB
 var sqlQueryText = "SELECT * FROM f WHERE f.kitchen = 'Russia' ORDER by f.amount DESC";

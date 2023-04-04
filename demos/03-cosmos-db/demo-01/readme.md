@@ -89,7 +89,7 @@ Get all kitchens in a distinct list:
 SELECT DISTINCT VALUE
     f.kitchen
 FROM
-    ood f
+    food f
 ```
 
 VALUE operator flattens the result nesting:
