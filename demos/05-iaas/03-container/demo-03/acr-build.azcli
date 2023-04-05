@@ -1,4 +1,4 @@
-env=<Take from prev script>
+env=32294
 grp=az204-m05-containers
 loc=westeurope
 acr=configacr$env

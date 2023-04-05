@@ -1,4 +1,4 @@
-env=13673
+env=$RANDOM
 grp=az204-m05-k8s
 loc=westeurope
 aks=az204cluster-$env

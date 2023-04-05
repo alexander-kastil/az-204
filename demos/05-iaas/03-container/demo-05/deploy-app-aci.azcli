@@ -1,11 +1,11 @@
-env=<Take from prev script>
+env=32294
 grp=az204-m05-containers
 loc=westeurope
 acr=configacr$env
 fqdn=azurecr.io
 apiapp=config-api
 uiapp=config-ui
-apiimg=$acr.$fqdn/$apiapp
+apiimg=arambazamba/$apiapp
 ngimg=$acr.$fqdn/$uiapp
 
 az acr login --name $acr
@@ -14,7 +14,4 @@ az acr update -n $acr --admin-enabled true
 pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
 
 # net api
-az container create -g $grp -l $loc -n $apiapp --image $apiimg --cpu 1 --memory 1 --dns-name-label $apiapp --port 80 --registry-username $acr --registry-password $pwd --no-wait
-
-# angular ui
-az container create -g $grp -l $loc -n $uiapp --image $ngimg --cpu 1 --memory 1 --dns-name-label $uiapp --port 80 --registry-username $acr --registry-password $pwd --environment-variables ENV_API_URL="http://$apiapp.westeurope.azurecontainer.io" 
+az container create -g $grp -l $loc -n configapi --image arambazamba/config-api --cpu 1 --memory 1 --dns-name-label configapi --port 80 
