@@ -31,13 +31,13 @@ gh auth login
 Fork the class repository:
 
 ```bash
-gh repo fork https://github.com/arambazamba/az-400/
+gh repo fork https://github.com/arambazamba/az-204/
 ```
 
 Download the forked repository:
 
 ```bash 
-gh repo clone https://github.com/<USERNAME>/az-400/
+gh repo clone https://github.com/<USERNAME>/az-204/
 ```
 
 Set User and E-Mail:
