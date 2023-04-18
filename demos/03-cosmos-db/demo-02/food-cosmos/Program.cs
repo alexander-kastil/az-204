@@ -15,6 +15,11 @@ var collection = configuration["Collection"];
 var conStr = $"AccountEndpoint={accountEndpoint};AccountKey={accountKey};";
 
 CosmosClient cclient = new CosmosClient(conStr);
+
+AccountProperties account = await client.ReadAccountAsync();
+Console.WriteLine($"Account Name:\t{account.Id}");
+Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
+
 Database database = cclient.GetDatabase(db);
 Container container = database.GetContainer(collection);
 
