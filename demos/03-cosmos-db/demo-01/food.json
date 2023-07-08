@@ -2,7 +2,7 @@
     {
       "id": "1",
       "name": "Butter Chicken",
-      "amount": 12,
+      "price": 12,
       "pictureUrl": null,
       "code": "btc",
       "date": "2022-03-19T00:00:00",
@@ -16,7 +16,7 @@
     {
       "id": "2",
       "name": "Blini with Salmon",
-      "amount": 9,
+      "price": 9,
       "pictureUrl": null,
       "code": "bls",
       "date": "2022-03-19T00:00:00",
@@ -26,7 +26,7 @@
     {
       "id": "3",
       "name": "Wiener Schnitzel",
-      "amount": 18,
+      "price": 18,
       "pictureUrl": null,
       "code": "ws",
       "date": "2022-03-19T00:00:00",
@@ -36,7 +36,7 @@
     {
         "id": "4",
         "name": "Pad Kra Pao",
-        "amount": 18,
+        "price": 18,
         "pictureUrl": null,
         "code": "pkp",
         "date": "2022-03-19T00:00:00",
@@ -50,7 +50,7 @@
     {
         "id": "5",
         "name": "Borschtsch",
-        "amount": 9,
+        "price": 9,
         "pictureUrl": null,
         "code": "bor",
         "date": "2022-03-19T00:00:00",
@@ -61,7 +61,7 @@
     {
         "id": "6",
         "name": "Tafelspitz",
-        "amount": 22,
+        "price": 22,
         "pictureUrl": null,
         "code": "tfl",
         "date": "2022-03-19T00:00:00",
@@ -71,7 +71,7 @@
     {
         "id": "7",
         "name": "Curry Wurst",
-        "amount": 7,
+        "price": 7,
         "pictureUrl": null,
         "code": "cws",
         "date": "2022-03-19T00:00:00",
@@ -81,7 +81,7 @@
     {
         "id": "8",
         "name": "Malai Kofta",
-        "amount": 12,
+        "price": 12,
         "pictureUrl": null,
         "code": "btc",
         "date": "2022-03-19T00:00:00",
@@ -95,7 +95,7 @@
       {
         "id": "9",
         "name": "Kaeng Masaman",
-        "amount": 16,
+        "price": 16,
         "pictureUrl": null,
         "code": "mmc",
         "date": "2022-03-19T00:00:00",

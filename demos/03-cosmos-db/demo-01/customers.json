@@ -1,0 +1,5 @@
+[
+    { "customerId": 1, "name": "John", "age": 20, "address": "123 Main St" },
+    { "customerId": 2, "name": "Mary", "age": 30, "address": "456 Main St" },
+    { "customerId": 3, "name": "Bob", "age": 40, "address": "789 Main St" }
+]

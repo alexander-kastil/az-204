@@ -1,0 +1,21 @@
+[
+    {
+        "orderID": "1",
+        "orderDate": "2019-01-01",
+        "customerId": "1",
+        "orderTotal": "100.00",
+        "orderStatus": "placed",
+        "details": [
+            {
+                "item": "Butter Chicken",
+                "quantity": "1",
+                "unitPrice": 12
+            },
+            {
+                "item": "Curry Wurst",
+                "quantity": "1",
+                "unitPrice": 7
+            }
+        ]
+    }
+]
