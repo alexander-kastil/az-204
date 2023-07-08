@@ -57,7 +57,7 @@ Execute query for kitchen:
 ```sql
 SELECT *
 FROM f
-WHERE f.kitchen = "Russia"
+WHERE f.kitchen = "Thai"
 ORDER by f.amount DESC
 ```
 

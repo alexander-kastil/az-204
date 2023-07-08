@@ -3,7 +3,6 @@ loc=westeurope
 grp=az204-m03-cosmosdb-$env
 acct=az204-cosmos-$env
 dbname=fooddb
-container=food
 
 az group create --name $grp --location $loc
 
@@ -12,9 +11,9 @@ az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp --enable-free-ti
 az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
 
 # Create a container with even partitioning
-az cosmosdb sql container create --account-name $acct --database-name $dbname --name $container --partition-key-path "/id"  --throughput 1000 -g $grp
-echo "container $container created in $acct"
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name food --partition-key-path "/id"  --throughput 1000 -g $grp
+echo "container food created in $acct"
 
 # Create a container with 'hot' partition
-az cosmosdb sql container create --account-name $acct --database-name $dbname --name hot-$container --partition-key-path "/kitchen"  --throughput 1000 -g $grp
-echo "container hot-$container created in $acct"    
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name orders --partition-key-path "/customerId"  --throughput 1000 -g $grp
+echo "container orders created in $acct"    

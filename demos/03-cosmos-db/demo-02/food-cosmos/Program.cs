@@ -14,28 +14,32 @@ var db = configuration["DBName"];
 var collection = configuration["Collection"];
 var conStr = $"AccountEndpoint={accountEndpoint};AccountKey={accountKey};";
 
-CosmosClient cclient = new CosmosClient(conStr);
+CosmosClientOptions options = new CosmosClientOptions() { 
+    ConsistencyLevel = ConsistencyLevel.Strong, 
+    ConnectionMode = ConnectionMode.Direct 
+};
+CosmosClient client = new CosmosClient(conStr, options);
 
 AccountProperties account = await client.ReadAccountAsync();
 Console.WriteLine($"Account Name:\t{account.Id}");
 Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
 
-Database database = cclient.GetDatabase(db);
+Database database = client.GetDatabase(db);
 Container container = database.GetContainer(collection);
 
 // Read from Cosmos DB
-var sqlQueryText = "SELECT * FROM f WHERE f.kitchen = 'Russia' ORDER by f.amount DESC";
+var sqlQueryText = "SELECT * FROM f WHERE f.kitchen = 'Thai' ORDER by f.amount DESC";
 QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
 FeedIterator<Food> queryResultSetIterator = container.GetItemQueryIterator<Food>(queryDefinition);
 
-List<Food> russianFood = new List<Food>();
+List<Food> thaiFood = new List<Food>();
 
 while (queryResultSetIterator.HasMoreResults)
 {
     FeedResponse<Food> currentResultSet = queryResultSetIterator.ReadNextAsync().Result;
     foreach (Food Food in currentResultSet)
     {
-        russianFood.Add(Food);
+        thaiFood.Add(Food);
         Console.WriteLine("\tRead {0}\n", Food.name);
     }
 }
