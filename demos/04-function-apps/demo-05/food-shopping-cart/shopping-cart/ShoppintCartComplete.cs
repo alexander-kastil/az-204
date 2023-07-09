@@ -16,9 +16,8 @@ namespace Integrations
             [DurableClient] IDurableOrchestrationClient orchclient,
             ILogger logger)
         {
-            
-            var eventData = await req.Content.ReadAsAsync<FoodCompleteData>();
 
+            var eventData = await req.Content.ReadAsAsync<FoodCompleteModel>();
             await orchclient.RaiseEventAsync(
                 eventData.OrchestrationInstanceId,
                 "CompleteShopping",

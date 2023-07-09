@@ -31,24 +31,39 @@ namespace Integrations
             var food = context.GetInput<List<FoodModel>>() ?? new List<FoodModel>();
 
             //define activities and get current activity
-            var addFoodTask = context.WaitForExternalEvent<FoodModel>("AddFood");            
-            var removeFoodTask = context.WaitForExternalEvent<FoodModel>("RemoveFood");
-            var completeTask = context.WaitForExternalEvent<bool>("CompleteShopping");
-            var evt = await Task.WhenAny(addFoodTask,  removeFoodTask, completeTask);
+            var addFoodTask = context.WaitForExternalEvent<FoodModel>("AddFood");
+            var removeFoodTask = context.WaitForExternalEvent<FoodRemoveModel>("RemoveFood");
+            var completeTask = context.WaitForExternalEvent<FoodCompleteModel>("CompleteShopping");
+            
+            var evt = await Task.WhenAny(addFoodTask, removeFoodTask, completeTask);
 
-            //handle activity
-            if(evt == addFoodTask){
-                food.Add(addFoodTask.Result);
-                log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");                
-            } 
-            if(evt == removeFoodTask){
-                food.RemoveAll(f=>f.ID == removeFoodTask.Result.ID);
-                log.LogInformation($"Removed food {addFoodTask.Result.Name} from foodlist");                
-            } 
-            if(evt == completeTask && completeTask.Result){
+            //handle activities
+            if (evt == addFoodTask)
+            {
+                var exists = food.Find(f => f.ID == addFoodTask.Result.ID);
+                if (exists != null)
+                {
+                    exists.Amount += addFoodTask.Result.Amount;
+                    log.LogInformation($"Food {addFoodTask.Result.Name} already exists in foodlist updating quantity");
+                }
+                else
+                {
+                    food.Add(addFoodTask.Result);
+                    log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");
+                }
+            }
+            
+            if (evt == removeFoodTask)
+            {
+                food.RemoveAll(f => f.ID == removeFoodTask.Result.ID);
+            }
+            
+            if (evt == completeTask )
+            {
                 log.LogInformation($"Foodlist orchestration completed");
             }
-            else{
+            else
+            {
                 context.ContinueAsNew(food);
             }
 

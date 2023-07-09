@@ -16,7 +16,7 @@ namespace Integrations
             [DurableClient] IDurableOrchestrationClient orchclient,
             ILogger logger)
         {
-            
+
             var eventData = await req.Content.ReadAsAsync<FoodModel>();
             string eventName = "AddFood";
             await orchclient.RaiseEventAsync(
@@ -24,6 +24,6 @@ namespace Integrations
                 eventName,
                 eventData);
             return req.CreateResponse(HttpStatusCode.OK);
-        }    
+        }
     }
-}    
+}
