@@ -23,7 +23,7 @@ namespace Integrations
                 "CompleteShopping",
                 eventData);
 
-            return req.CreateResponse(orchclient);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
     }
 }
