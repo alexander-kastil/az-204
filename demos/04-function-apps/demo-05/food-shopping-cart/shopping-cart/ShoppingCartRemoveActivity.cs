@@ -23,7 +23,7 @@ namespace Integrations
                 eventData.OrchestrationInstanceId,
                 eventName,
                 eventData);
-            return req.CreateResponse(HttpStatusCode.OK);
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }    
     }
 }    
