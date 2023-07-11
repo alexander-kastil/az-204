@@ -7,7 +7,6 @@ let { endpoint, key, databaseName, containerName } = yargs.argv;
 
 // create the cosmos client
 const client = new Cosmos.CosmosClient({ endpoint, key });
-
 const database = client.database(databaseName);
 const container = database.container(containerName);
 
