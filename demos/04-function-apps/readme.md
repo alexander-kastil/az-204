@@ -9,6 +9,7 @@
 5. Durable Functions
 6. Azure Functions REST Api (optional)
 7. Cosmos DB Change Feed (optional)
+8. Azure Functions as Container & Configuration Injection (optional)
 
 ## Readings
 
