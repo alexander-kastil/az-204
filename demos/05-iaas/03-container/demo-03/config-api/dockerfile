@@ -16,9 +16,7 @@ ENTRYPOINT ["dotnet", "config-api.dll"]
 # docker build --rm -f dockerfile -t config-api .
 
 # Run Image without env vars
-# docker run -it --rm -p 5051:80 config-api
-# Run Image with env vars
-# docker run -it --rm -p 5051:80 config-api -e "App__UseEnv"="true" "Azure__TenantId"="d92b0000-90e0-4469-a129-6a32866c0d0a" 
+# docker run -it --rm -p 5051:80 config-api -e "App:UseEnv=true" 
 
 # Browse using: 
 # http://localhost:5051/
