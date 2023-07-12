@@ -21,7 +21,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/config-ui",
             "index": "src/index.html",
@@ -109,6 +109,5 @@
         }
       }
     }
-  },
-  "defaultProject": "config-ui"
+  }
 }

@@ -5,7 +5,6 @@ namespace AppSettingsWebApi
     public class AppConfig
     {
         public AppSettings App { get; set; } 
-        public Azure Azure { get; set; } 
         public Logging Logging { get; set; }
         public string AllowedHosts { get; set; }
     }
@@ -25,16 +24,6 @@ namespace AppSettingsWebApi
         public bool UseEnv {get;set;}
         public ConnectionStrings ConnectionStrings { get; set; }
     }
-
-    public class Azure    {
-        public string TenantId { get; set; } 
-        public string ClientId { get; set; } 
-        public string Instance {get;set;}
-        public string cacheLocation { get; set; } 
-        public string ApplicationInsights { get; set; } 
-        public string AppConfiguration { get; set; } 
-        public string KeyVault { get; set; } 
-    }   
     
     public class LogLevel
     {

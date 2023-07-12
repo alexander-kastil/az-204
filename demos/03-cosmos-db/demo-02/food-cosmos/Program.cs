@@ -14,9 +14,10 @@ var db = configuration["DBName"];
 var collection = configuration["Collection"];
 var conStr = $"AccountEndpoint={accountEndpoint};AccountKey={accountKey};";
 
-CosmosClientOptions options = new CosmosClientOptions() { 
-    ConsistencyLevel = ConsistencyLevel.Strong, 
-    ConnectionMode = ConnectionMode.Direct 
+CosmosClientOptions options = new CosmosClientOptions()
+{
+    ConsistencyLevel = ConsistencyLevel.Session,
+    ConnectionMode = ConnectionMode.Direct
 };
 CosmosClient client = new CosmosClient(conStr, options);
 
@@ -91,8 +92,8 @@ Food discont = new Food
 Food triggerItem = await container.CreateItemAsync(discont, null, new ItemRequestOptions
 {
     PostTriggers = new List<string>{
-                "KitchenTrigger"
-            }
+        "KitchenTrigger"
+    }
 });
 
 Console.WriteLine("\tDiscontinued: {0}\n", triggerItem.kitchen);

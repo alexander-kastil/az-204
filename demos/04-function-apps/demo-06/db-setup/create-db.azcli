@@ -1,19 +1,15 @@
-rnd=$RANDOM
+env=$RANDOM
 loc=westeurope
-grp=az204-m04-rest-$rnd
+grp=az204-m04-rest-$env
 acct=productsapi-$RANDOM
 databaseName=productsdb
 containerName=products
 endpoint=https://$acct.documents.azure.com:443
 
 az group create -n $grp -l $loc
-
 az cosmosdb create -n $acct -g $grp 
-
 az cosmosdb sql database create -a $acct -g $grp -n $databaseName -o none
-
 az cosmosdb sql container create -g $grp -a $acct -d $databaseName -n $containerName -p /brand/name -o none
-
 key=$(az cosmosdb keys list -g $grp -n $acct --type keys --query "primaryMasterKey" -o json)
 
 # silent npm install
@@ -21,9 +17,7 @@ npm install > "/dev/null" 2>&1
 
 # run populate-db.js
 node ./populate-db.js --endpoint $endpoint --key $key --databaseName $databaseName --containerName $containerName
-
 echo "This is your connection string. Copy it to your clipboard..."
-
 az cosmosdb keys list -n $acct -g $grp --type connection-strings --query "connectionStrings[0].connectionString" -o tsv
 
 
