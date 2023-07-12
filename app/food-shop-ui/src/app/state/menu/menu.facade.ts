@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-// import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Store } from '@ngrx/store';
-import { combineLatest } from 'rxjs';
-import { filter, map, combineLatestWith, tap } from 'rxjs/operators';
+import { combineLatestWith, tap } from 'rxjs/operators';
 import { SideNavActions } from './menu.actions';
 import { MenuState } from './menu.reducer';
 import {
@@ -27,43 +25,26 @@ export class MenuFacade {
   watchScreen = this.breakpointObserver
     .observe([Breakpoints.XSmall, Breakpoints.Small])
     .pipe(
-      combineLatestWith(this.sideNavEnabled),
+      combineLatestWith(this.getSideNavEnabled()),
       tap(([point, enabled]) => {
         console.log(point);
       })
     );
 
-  get sideNavEnabled() {
+  getSideNavEnabled() {
     return this.store.select(getSideNavEnabled);
   }
 
-  get sideNavVisible() {
+  getSideNavVisible() {
     return this.store.select(getSideNavVisible);
   }
 
-  get sideNavPosition() {
+  getSideNavPosition() {
     return this.store.select(getSideNavPosition);
   }
 
-  private init() {
-    // combineLatest([
-    //   this.mediaObserver.asObservable().pipe(
-    //     filter((changes: MediaChange[]) => changes.length > 0),
-    //     map((changes: MediaChange[]) => changes[0])
-    //   ),
-    //   this.sideNavEnabled,
-    // ]).subscribe(([change, enabled]) => {
-    //   const visible = this.adjustSidenavToScreen(change.mqAlias);
-    //   const position = this.adjustSidenavToScreen(change.mqAlias)
-    //     ? 'side'
-    //     : 'over';
-    //   this.store.dispatch(SideNavActions.setsidenavvisible({ visible }));
-    //   this.store.dispatch(SideNavActions.setsidenavposition({ position }));
-    // });
-  }
-
   setSideNavEnabled(val: boolean) {
-    this.store.dispatch(SideNavActions.setsidenavenabled({ enabled: val }));
+    this.store.dispatch(SideNavActions.setSideNavEnabled({ enabled: val }));
   }
 
   adjustSidenavToScreen(mq: string): boolean {
@@ -71,6 +52,6 @@ export class MenuFacade {
   }
 
   toggleMenuVisibility() {
-    this.store.dispatch(SideNavActions.togglesidenav());
+    this.store.dispatch(SideNavActions.toggleSideNav());
   }
 }

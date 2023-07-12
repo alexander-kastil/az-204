@@ -15,20 +15,20 @@ const initialState: MenuState = {
 
 export const reducer = createReducer(
   initialState,
-  on(SideNavActions.togglesidenav, (state) => ({
+  on(SideNavActions.toggleSideNav, (state) => ({
     ...state,
     sideNavVisible: !state.sideNavVisible,
   })),
-  on(SideNavActions.setsidenavenabled, (state, action) => ({
+  on(SideNavActions.setSideNavEnabled, (state, action) => ({
     ...state,
     sideNavEnabled: action.enabled,
     sideNavVisible: action.enabled,
   })),
-  on(SideNavActions.setsidenavvisible, (state, action) => ({
+  on(SideNavActions.setSideNavVisible, (state, action) => ({
     ...state,
     sideNavVisible: action.visible,
   })),
-  on(SideNavActions.setsidenavposition, (state, action) => ({
+  on(SideNavActions.setSideNavPosition, (state, action) => ({
     ...state,
     sideNavPosition: action.position,
   }))

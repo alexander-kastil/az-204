@@ -16,7 +16,7 @@ const initialState: CartState = {
 
 export const cartReducer = createReducer(
   initialState,
-  on(CartActions.toogglepersist, (state) => ({
+  on(CartActions.toogglePersist, (state) => ({
     ...state,
     persist: !state.persist,
   })),
@@ -24,11 +24,11 @@ export const cartReducer = createReducer(
     ...state,
     items: [],
   })),
-  on(CartActions.loadfromstoragesuccess, (state, action) => ({
+  on(CartActions.loadFromStorageSuccess, (state, action) => ({
     ...state,
     items: action.items || [],
   })),
-  on(CartActions.updatecart, (state, action) => {
+  on(CartActions.updateCart, (state, action) => {
     let cart: CartItem[] = updateCart(state.items, action.item);
     return { ...state, items: [...cart] };
   })
