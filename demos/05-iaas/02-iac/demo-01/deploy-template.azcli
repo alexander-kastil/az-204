@@ -4,5 +4,4 @@ grp=az204-m05-deploy-arm-$env
 acctname=armstorage$env
 
 az group create -n $grp -l $loc
-
 az deployment group create -g $grp -n rollout-$acctname  --template-file azuredeploy.json --parameters storageAcctName=$acctname 

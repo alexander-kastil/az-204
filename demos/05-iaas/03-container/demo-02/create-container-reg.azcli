@@ -4,8 +4,8 @@ acr=configacr$env
 
 az group create -n $grp -l westeurope
 
-az acr create -g $grp --name $acr --sku Basic
-az acr login --name $acr
+az acr create -g $grp -n $acr --sku Basic
+az acr login -n $acr
 az acr update -n $acr --admin-enabled true
 
 az acr list --query "[].loginServer" -o tsv #for info only
