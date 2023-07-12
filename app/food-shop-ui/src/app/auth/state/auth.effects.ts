@@ -8,7 +8,7 @@ import { AuthActions } from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private msal: MsalService) {}
+  constructor(private actions$: Actions, private msal: MsalService) { }
 
   req: SilentRequest = {
     scopes: ['user.read'],
@@ -17,11 +17,11 @@ export class AuthEffects {
 
   tryLoginSilent$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.tryloginsilent),
+      ofType(AuthActions.tryLoginSilent),
       mergeMap(() =>
         this.msal.acquireTokenSilent(this.req).pipe(
-          map((resp) => AuthActions.loginsuccess({ authResponse: resp })),
-          catchError((err) => of(AuthActions.autherror({ err })))
+          map((resp) => AuthActions.loginSuccess({ authResponse: resp })),
+          catchError((err) => of(AuthActions.authError({ err })))
         )
       )
     )
@@ -32,8 +32,8 @@ export class AuthEffects {
       ofType(AuthActions.logout),
       mergeMap(() =>
         this.msal.logout().pipe(
-          map((resp) => AuthActions.logoutsuccess()),
-          catchError((err) => of(AuthActions.autherror({ err })))
+          map((resp) => AuthActions.logoutSuccess()),
+          catchError((err) => of(AuthActions.authError({ err })))
         )
       )
     )

@@ -17,12 +17,12 @@ const initialState: MsalAuthState = {
 
 export const authReducer = createReducer(
   initialState,
-  on(AuthActions.loginsuccess, (state, action) => ({
+  on(AuthActions.loginSuccess, (state, action) => ({
     ...state,
     authResponse: action.authResponse,
     authenticated: true,
   })),
-  on(AuthActions.logoutsuccess, (state, action) => ({
+  on(AuthActions.logoutSuccess, (state, action) => ({
     ...state,
     authResponse: null,
     authenticated: false,

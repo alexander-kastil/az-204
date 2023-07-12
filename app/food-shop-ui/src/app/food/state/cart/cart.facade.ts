@@ -11,20 +11,20 @@ import { getItems, getPersist } from './cart.selector';
   providedIn: 'root',
 })
 export class CartFacade {
-  constructor(private store: Store<CartState>) {}
+  constructor(private store: Store<CartState>) { }
 
   clear() {
     this.store.dispatch(CartActions.clear());
-    this.store.dispatch(CartActions.clearstorage());
+    this.store.dispatch(CartActions.clearStorage());
   }
 
   set(item: CartItem) {
-    this.store.dispatch(CartActions.updatecart({ item }));
+    this.store.dispatch(CartActions.updateCart({ item }));
   }
 
   togglePersist(persist: boolean) {
     if (!persist) {
-      this.store.dispatch(CartActions.clearstorage());
+      this.store.dispatch(CartActions.clearStorage());
     }
   }
 
@@ -61,10 +61,10 @@ export class CartFacade {
   }
 
   saveToStorage(cart: CartItem[]) {
-    this.store.dispatch(CartActions.savetostorage({ cart }));
+    this.store.dispatch(CartActions.saveToStorage({ cart }));
   }
 
   loadFromStorage() {
-    this.store.dispatch(CartActions.loadfromstorage());
+    this.store.dispatch(CartActions.loadFromStorage());
   }
 }
