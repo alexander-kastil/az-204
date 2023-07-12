@@ -1,6 +1,6 @@
 # Azure Container Registry Build Task
 
-Remove `node_modules` and `.angular` if presen to avoid large package upload to acr
+Remove existing `node_modules` and `.angular` folders in `config-ui`, if present to reduce upload time to Azrue container registry.
 
 Execute `create-acr-build.azcli`:
 
