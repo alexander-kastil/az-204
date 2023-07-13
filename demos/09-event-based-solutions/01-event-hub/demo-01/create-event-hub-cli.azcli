@@ -11,7 +11,7 @@ az group create --name $grp --location $loc
 # Create Group & Hub, List permissions
 az eventhubs namespace create -n $namespace -g $grp -l $loc --sku Basic
 nsconStr=$(az eventhubs namespace authorization-rule keys list --name RootManageSharedAccessKey --namespace-name $namespace -g $grp --query primaryConnectionString -o tsv)
-az eventhubs eventhub create -n $hub -g $grp --namespace-name $namespace --partition-count 2 --message-retention 1
+az eventhubs eventhub create -n $hub -g $grp --namespace-name $namespace --cleanup-policy Delete --partition-count 2 --retention-time 1 
 
 # Create Storage Acct
 az storage account create --name $storage -g $grp --sku Standard_RAGRS --encryption-services blob
