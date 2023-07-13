@@ -7,7 +7,7 @@ declare global {
 export const environment = {
   production: true,
   title: 'Passion for Food!',
-  authEnabled: window['env'].AUTH_ENABLED,
+  authEnabled: true,
   api: window['env'].API_URL,
   azure: {
     applicationInsights: '',
