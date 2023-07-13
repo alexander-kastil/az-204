@@ -3,7 +3,7 @@ loc=westeurope
 grp=az204-m08-apim-$env
 apim=food-$env
 ai=food-$env
-storage=foodfx$env
+storage=foodfiles$env
 appPlan=food-$env
 catalog=foodcatalogapi-$env
 utils=foodutil-$env
@@ -13,6 +13,7 @@ workspace=food-$env
 mail="alexander.pajer@integrations.at"
 publisher="food"
 vault=foodvault-$env
+acr=foodcontainers$env
 acaenv=foodacaenv-$env
 apiimg=arambazamba/food-catalog-api
 uiimg=arambazamba/food-shop-ui
@@ -20,6 +21,11 @@ uiimg=arambazamba/food-shop-ui
 az group create -n $grp -l $loc
 
 az storage account  create -n $storage -g $grp 
+
+# acr
+az acr create -g $grp -n $acr --sku Basic
+az acr login -n $acr
+az acr update -n $acr --admin-enabled true
 
 # utils
 az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
@@ -44,8 +50,7 @@ az containerapp create -n foodui-$env -g $grp --image $uiimg \
     --env-vars ENV_API_URL=https://$apifqdn/ 
 
 # create a key vault
-# az keyvault purge -n $vault
-
+# execute if present: az keyvault purge -n $vault
 az keyvault create -l $loc -n $vault -g $grp --sku Standard
 az keyvault secret set --vault-name $vault --name "apimsecret" --value "apimsecretQAZ2wsx"
 
