@@ -9,7 +9,7 @@ az acr login --name $acr
 az acr update -n $acr --admin-enabled true
 
 cd food-catalog-api
-az acr build --image $apiimg --registry $acr --file dockerfile .
+az acr build --image $apiimg --registry $acr --file Dockerfile .
 cd ..
 
 cd food-shop-ui
