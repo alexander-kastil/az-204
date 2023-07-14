@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="toolbar">
   <div>
-    <h2>Orders in queue: {{ (orderevents | async)?.length }}</h2>
+    <h2>Orders in queue: {{ (view | async)?.length }}</h2>
   </div>
   <div>
     <mat-slide-toggle [formControl]="showAll" color="accent">
@@ -11,7 +11,8 @@
 </mat-toolbar>
 <div class="content" role="main">
   <mat-card
-    *ngFor="let evt of orderevents | async"
+    appearance="outlined"
+    *ngFor="let evt of view | async"
     [ngStyle]="
       evt.data?.status == 'preparing'
         ? { 'background-color': '#16680f' }
@@ -33,21 +34,21 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="changeStatus(evt, 'rejected')"
+        (click)="changeOrderStatus(evt, 'rejected')"
       >
         Reject
       </button>
       <button
         mat-raised-button
         color="primary"
-        (click)="changeStatus(evt, 'preparing')"
+        (click)="changeOrderStatus(evt, 'preparing')"
       >
         Start
       </button>
       <button
         mat-raised-button
         color="primary"
-        (click)="changeStatus(evt, 'ready')"
+        (click)="changeOrderStatus(evt, 'ready')"
       >
         Ready
       </button>
