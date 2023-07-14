@@ -38,7 +38,7 @@ export class OrdersStore extends ComponentStore<OrdersState> {
   updateOrder(order: CloudEvent<FoodOrder>) {
     this.setState((state) => ({
       ...state,
-      orders: state.orders.map((o) => (o.id == order.id ? order : o)),
+      orders: state.orders.map((o) => o.id == order.id ? order : o),
     }));
 
     if ((order.data?.status == 'ready', order.data?.status == 'rejected')) {

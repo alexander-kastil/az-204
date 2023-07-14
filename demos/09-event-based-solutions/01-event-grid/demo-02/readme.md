@@ -36,7 +36,7 @@ Food orders kitchen Dashboard `food-orders-ui` imlplemented as Angular Microfron
     };
     ```
 
--   Start the microfrontend using `ng serve` in `food-orders-ui` and open [http://localhost:4200](http://localhost:4200). Open the F12 Dev tools and check that the SignalR connection is established.
+-   Start the microfrontend using `ng serve` in `food-orders-dashboard` and open [http://localhost:4200](http://localhost:4200). Open the F12 Dev tools and check that the SignalR connection is established.
 
     ![websocket](_images/websocket.png)
 
