@@ -77,22 +77,4 @@
         \--connection-string $queueConStr
     ```
 
-    ```bash
-    az containerapp logs -n $acaname -g $grp
-    ```
-
 - Send a bunch of messages to the queue using `./event-creator`. Wait until all messages have been processed before proceeding to the next step.
-
-- Get the log client ID
-
-    ```bash
-    logClientId=`az containerapp env show -n $contaienrenv -g $grp \
-    --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`
-    ```
-
-- Create a Log Query and exmaine the behavior of the container app instances:
-
-    ```sql
-    ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'foodpayments' | project Time=TimeGenerated, AppName=ContainerAppName_s, 
-    Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 20
-    ```
