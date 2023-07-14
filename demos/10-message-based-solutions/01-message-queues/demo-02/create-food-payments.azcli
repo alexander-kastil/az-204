@@ -1,8 +1,10 @@
-env=$RANDOM
+env=staging
 grp=az204-m10-keda-scaling-$env
 loc=westeurope
 logs=food-app-$env
 ai=food-app-$env
+acr=configacr$env
+img=food-payments
 contaienrenv=food-app-env
 acct=foodpayment$env
 blobcontainer=invoices
@@ -12,16 +14,8 @@ acaname=foodpayments
 
 az group create -n $grp -l $loc
 
-# create log analytics workspace
-logid=$(az monitor log-analytics workspace create -g $grp -n $logs --query id -o tsv)
-logkey=$(az monitor log-analytics workspace get-shared-keys -n $logs -g $grp --query primarySharedKey -o tsv)
-
-az monitor log-analytics workspace list -g $grp
-
-# application insights
-az extension add --name application-insights
-aikey=$(az monitor app-insights component create --app $ai --location $loc -g $grp \
-  --kind web --application-type other --workspace $logid --query instrumentationKey -o tsv)
+# azure container app environment
+az containerapp env create -n $contaienrenv -g $grp --location $loc --no-wait
 
 # create storage queue
 az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
@@ -31,47 +25,52 @@ az storage queue create -n $queue --account-key $key --account-name $acct
 storageConStr=$(az storage account show-connection-string -n $acct -g $grp \
   --query connectionString -o tsv)
 
-# azure container app environment
-az containerapp env create -n $contaienrenv -g $grp --location $loc  
-
 # put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
 messageOne=$(echo "Hello Queue Reader App" | base64)
 az storage message put --content $messageOne --queue-name $queue \
  --connection-string $storageConStr
 
-# create the function app container
+# create container registry 
+az acr create -g $grp -n $acr --sku Basic
+az acr login -n $acr
+az acr update -n $acr --admin-enabled true
+acrpwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv) 
+
+# create the function app container  & publish the image to azure container registry
 cd food-payments
-docker build --rm -f Dockerfile -t food-payments .
+docker build --rm -f Dockerfile -t $img .
+docker tag $img $acr.azurecr.io/$img
+docker push $acr.azurecr.io/$img
+cd ..
 
 # start container locally and show how it fetches the message
-docker run -d --rm -p 5052:80 -e "PaymentConnectionString="$storageConStr -e "Sleep=500" \
-  -e "APPINSIGHTS_INSTRUMENTATIONKEY="$aikey food-payments
+docker run -d --rm -p 5052:80 -e "PaymentConnectionString="$storageConStr -e "Sleep=500" food-payments
 
 # Add another message to the queue and see the logs again
 messageTwo=$(echo "Another Hello to Queue Reader App" | base64) 
-az storage message put --content $messageOne --queue-name $queue \
+az storage message put --content $messageTwo --queue-name $queue \
   --connection-string $storageConStr
 
 ## Check if an invoice has been created in the blob container
-
 az storage blob list --container-name $blobcontainer --output table --account-name $acct --account-key $key
 
-# Terminate the local container & publish the image to dockerhub
-docker tag food-payments arambazamba/food-payments
-docker push arambazamba/food-payments
-
-# Optional - if you want you could also test the contaienr using Azure Container Instances
-
+# Optional - if you want you could also test the container using Azure Container Instances
 az container create -g $grp -l $loc -n foodpayment$env --image arambazamba/food-payments --cpu 1 --memory 1 --dns-name-label foodpayment$env --environment-variables \
   PaymentConnectionString=$storageConStr Sleep=500 --no-wait
 
 az container delete -g $grp -n foodpayment$env --yes
 
-# Create container app environment and deploy a container to it
-cd ..
+# Add a third message to the queue 
+messageThree=$(echo "Third Hello to Queue Reader App" | base64)
+az storage message put --content $messageThree --queue-name $queue \
+  --connection-string $storageConStr      
 
+# Create container app environment and deploy a container to it
 az containerapp create -n $acaname -g $grp --environment $contaienrenv \
-  --image arambazamba/food-payments \
+  --registry-server $acr.azurecr.io \
+  --registry-username $acr \
+  --registry-password $acrpwd \
+  --image $acr.azurecr.io/$img \
   --secrets "storageconstring=$storageConStr" \
   --env-vars Sleep=500 PaymentConnectionString=secretref:storageconstring
 
@@ -81,29 +80,11 @@ az containerapp update -n $acaname -g $grp \
   --scale-rule-metadata queueName=food-orders queueLength=10 \
   --scale-rule-auth secretRef=storageconstring triggerParameter=PaymentConnectionString
 
-# Add another message to the queue and see the logs again
-messageThree=$(echo "Third Hello to Queue Reader App" | base64)
-az storage message put --content $messageThree --queue-name $queue \
-  --connection-string $storageConStr      
-
-# Get the logs using Azure CLI
-
-az containerapp logs show --name $acaname -g $grp
-
-# Get the logs using Azure Log Analytics
-
-logClientId=`az containerapp env show -n $contaienrenv -g $grp \
-  --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId --out tsv`
-
-az monitor log-analytics query --workspace $logClientId \
-  --analytics-query "ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'foodpayments' | project Time=TimeGenerated, AppName=ContainerAppName_s, Revision=RevisionName_s, Container=ContainerName_s, Message=Log_s | take 20" --out table    
-
 # Send a bunch of messages to the queue
 i=0
 while [ $i -ne 1000 ]
 do
     i=$(($i+1))
     msg=$(echo "Hello Queue Reader App $i" | base64)
-
-    storageorage message put --content $msg --queue-name $queue --connection-string $queueConStr  
+    az storage message put --content $msg --queue-name $queue --connection-string $storageConStr  
 done
