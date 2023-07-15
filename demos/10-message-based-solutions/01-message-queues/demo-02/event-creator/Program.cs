@@ -19,7 +19,7 @@ namespace QueueApp
             var q = configuration["queueName"];
             QueueClient queue = new QueueClient(connectionString, q);
             
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 1500; i++)
             {
                 var value = "${'id': " + i + ", 'name': 'name" + i + "'}";
                 await InsertMessageAsync(queue, value);

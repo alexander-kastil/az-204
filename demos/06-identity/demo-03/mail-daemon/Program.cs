@@ -1,8 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using FoodApp.MailDeamon;
 using Microsoft.OpenApi.Models;
-using MSALDaemon;
 
 var builder = WebApplication.CreateBuilder(args);
 

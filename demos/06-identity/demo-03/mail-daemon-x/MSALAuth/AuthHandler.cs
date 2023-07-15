@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Graph;
 
-namespace Helpers
+namespace FoodApp.MailDeamon
 {
   public class AuthHandler : DelegatingHandler
   {

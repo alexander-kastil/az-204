@@ -1,4 +1,4 @@
-namespace MSALDaemon
+namespace FoodApp.MailDeamon
 {
     public class MailModel
     {
