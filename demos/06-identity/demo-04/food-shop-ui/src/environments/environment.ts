@@ -6,12 +6,11 @@ declare global {
 
 export const environment = {
   production: true,
-  title: 'Passion for Food!',
+  title: 'Food App',
   authEnabled: true,
-  api: window['env'].API_URL,
+  api: window['env'].API_URL || 'https://localhost:5001',
   azure: {
-    applicationInsights: '',
-    signalREndpoint: '',
+    applicationInsights: '7e9e5dc9-5621-44fb-9bd6-ce7db2a37a13',
     appReg: {
       clientId: window['env'].CLIENT_ID,
       authority:

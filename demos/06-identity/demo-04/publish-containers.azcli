@@ -5,6 +5,7 @@ acr=foodcontainers$env
 apiimg=food-catalog-api
 uiimg=food-shop-ui
 
+az group create -n $grp -l $loc
 az acr create -g $grp -n $acr --sku Basic
 az acr login --name $acr
 az acr update -n $acr --admin-enabled true

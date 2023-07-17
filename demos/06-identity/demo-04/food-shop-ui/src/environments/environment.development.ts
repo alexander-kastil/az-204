@@ -1,11 +1,10 @@
 export const environment = {
   production: false,
-  title: 'Passion for Food!',
-  authEnabled: false,
+  title: 'Food App',
+  authEnabled: true,
   api: 'https://localhost:5001/',
   azure: {
-    applicationInsights: '',
-    signalREndpoint: '',
+    applicationInsights: '7e9e5dc9-5621-44fb-9bd6-ce7db2a37a13',
     appReg: {
       clientId: 'd23642f7-9ccf-4165-92e7-919f625a5acc',
       authority:
