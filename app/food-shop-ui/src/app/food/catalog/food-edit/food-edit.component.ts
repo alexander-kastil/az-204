@@ -5,6 +5,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  inject,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CatalogItem } from '../../food-catalog.model';
@@ -17,16 +18,13 @@ import { CatalogItem } from '../../food-catalog.model';
 export class FoodEditComponent implements OnChanges {
   @Input() food: CatalogItem = new CatalogItem();
   @Output() saveFood: EventEmitter<CatalogItem> = new EventEmitter();
-  form: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      id: this.food.id,
-      name: [this.food.name, [Validators.required, Validators.minLength(3)]],
-      inStock: [this.food.inStock, [Validators.required, Validators.min(1)]],
-      price: this.food.price,
-    });
-  }
+  fb = inject(FormBuilder);
+  form = this.fb.group({
+    id: this.food.id,
+    name: [this.food.name, [Validators.required, Validators.minLength(3)]],
+    inStock: [this.food.inStock, [Validators.required, Validators.min(1)]],
+    price: this.food.price,
+  });
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['food']) {
@@ -34,7 +32,7 @@ export class FoodEditComponent implements OnChanges {
     }
   }
 
-  saveForm(form: any) {
+  saveForm(form: FormGroup) {
     this.saveFood.emit(form.value);
   }
 }

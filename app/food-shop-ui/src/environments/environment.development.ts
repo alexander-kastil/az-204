@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   title: 'Food App',
-  authEnabled: true,
+  authEnabled: false,
   api: 'https://localhost:5001/',
   azure: {
     applicationInsights: '7e9e5dc9-5621-44fb-9bd6-ce7db2a37a13',

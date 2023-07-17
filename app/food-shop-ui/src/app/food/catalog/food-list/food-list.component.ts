@@ -32,8 +32,6 @@ export class FoodListComponent implements OnChanges {
   ];
   dataSource = new MatTableDataSource([]);
 
-  constructor() {}
-
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(changes['food'].currentValue);
   }

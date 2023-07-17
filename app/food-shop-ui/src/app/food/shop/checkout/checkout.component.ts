@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CartFacade } from '../../state/cart/cart.facade';
 import { OrderItem } from './order-item.model';
@@ -9,7 +9,9 @@ import { OrderItem } from './order-item.model';
   styleUrls: ['./checkout.component.scss'],
 })
 export class CheckoutComponent implements OnInit {
-  items = this.cart.getItems();
+  fb = inject(FormBuilder);
+  cart = inject(CartFacade);
+  cartItems = this.cart.getItems();
   order: OrderItem = new OrderItem();
   mockCheckout: FormControl = new FormControl(false);
   total = this.cart.getSumTotal();
@@ -25,14 +27,12 @@ export class CheckoutComponent implements OnInit {
     items: this.fb.array([]),
   });
 
-  constructor(private cart: CartFacade, private fb: FormBuilder) {}
-
   ngOnInit(): void {
     this.mockCheckout.valueChanges.subscribe((isMock) => {
       if (isMock) {
-        this.order.name = 'John Doe';
+        this.order.name = 'Alexander Pajer';
         this.order.email = 'alexander.pajer@integrations.at';
-        this.order.address = '123 Main St';
+        this.order.address = 'Hauptstraße 1, Wien, Austria';
         this.order.payment = 'PayPal, abcd...';
         this.checkoutForm.patchValue(this.order);
       }
@@ -40,7 +40,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   completeCheckout() {
-    this.items.subscribe((items) => {
+    this.cartItems.subscribe((items) => {
       this.order.items = items;
       this.cart.checkout(this.order);
     });
