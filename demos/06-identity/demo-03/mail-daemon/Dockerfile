@@ -13,7 +13,7 @@ COPY --from=build /app .
 ENTRYPOINT ["dotnet", "mail-daemon.dll"]
 
 # Build Image
-# docker build --rm -f Dockerfile -t mail-daemon .
+# docker build --rm -f dockerfile -t mail-daemon .
 # docker run -it --rm -p 5051:80 mail-daemon
 
 # docker tag mail-daemon arambazamba/mail-daemon

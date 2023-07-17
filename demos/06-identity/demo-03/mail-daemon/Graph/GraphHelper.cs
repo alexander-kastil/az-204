@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using Azure.Identity;
 using Microsoft.Graph;
 
 namespace FoodApp.MailDeamon
 {
     public class GraphHelper
     {
-        public static GraphServiceClient GetAuthenticatedGraphClient(GraphCfg config)
+        public static void SendMail(string Subject, string Message, string[] Recipient, GraphCfg config)
         {
-            var authenticationProvider = MsalAuthenticationProvider.CreateAuthorizationProvider(config.TenantId, config.ClientId, config.ClientSecret);
-            return new GraphServiceClient(authenticationProvider);
-        }
-
-        public static bool SendMail(string Subject, string Message, string[] Recipient, GraphCfg config)
-        {
-            var result = false;
             var recipients = new List<Recipient>();
 
             foreach (var r in Recipient)
@@ -34,13 +28,19 @@ namespace FoodApp.MailDeamon
                 Body = body,
                 ToRecipients = recipients,
             };
-            SendMailUsingGraph(config, message);
-            result = true;
-            return result;
+            SendMailUsingGraph(config, message);            
         }       
         private static void SendMailUsingGraph(GraphCfg gconfig, Message msg)
         {
-            GraphServiceClient graphClient = GraphHelper.GetAuthenticatedGraphClient(gconfig);        
+            //Get Graph Client
+            var gOptions = new ClientSecretCredentialOptions
+            {
+                AuthorityHost = AzureAuthorityHosts.AzurePublicCloud,
+            };  
+            var clientSecretCredential = new ClientSecretCredential(gconfig.TenantId, gconfig.ClientId, gconfig.ClientSecret, gOptions);
+            var graphClient = new GraphServiceClient(clientSecretCredential);
+            
+            //Send mail
             //POST /users/{id | userPrincipalName}/sendMail
             graphClient.Users[gconfig.MailSender].SendMail(msg, false).Request().PostAsync();            
             List<QueryOption> options = new List<QueryOption> {

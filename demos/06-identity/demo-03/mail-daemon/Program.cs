@@ -8,10 +8,8 @@ IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(Configuration);
 var cfg = Configuration.Get<AppConfig>();
 
-
 builder.Services.AddControllers();
-
-// Swaggger
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -30,7 +28,7 @@ builder.Services.AddCors(o => o.AddPolicy("nocors", builder =>
 
 var app = builder.Build();
 
-// Swagger
+// Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
