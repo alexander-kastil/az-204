@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
       - name: configui
-        image: arambazamba/config-ui
+        image: configacrdev.azurecr.io/config-ui:latest
         env: 
           - name: ENV_API_URL
-            value: 'http://20.101.229.69'
+            value: 'http://20.103.180.102'
         imagePullPolicy: Always
         ports:
         - containerPort: 80        

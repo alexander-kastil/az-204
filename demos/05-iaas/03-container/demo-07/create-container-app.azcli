@@ -1,15 +1,33 @@
-env=$RANDOM
-grp=az204-m05-containerapps-$env
-loc=eastus
-acaenv=az204-m05-food-$env
-apiimg=arambazamba/config-api
-uiimg=arambazamba/config-ui
+env=dev
+grp=az204-m05-containers
+loc=westeurope
+acr=configacr$env
+env=food-$env
+apiApp=config-api
+uiApp=config-ui
+apiImg=$acr.azurecr.io/$apiapp
+uiImg=$acr.azurecr.io/$uiapp
 
 az group create -n $grp -l $loc
 
-az containerapp env create -n $acaenv -g $grp -l $loc
+az containerapp env create -n $env -g $grp -l $loc
 
-az containerapp create -n configapi-$env -g $grp --image $apiimg \
-    --environment $acaenv \
+pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
+loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
+
+apiUrl=$(az containerapp create -n $apiApp-$env -g $grp --image $apiImg \
+    --environment $env \
     --target-port 80 --ingress external \
-    --query properties.configuration.ingress.fqdn -o tsv
+    --registry-server $loginSrv \
+    --registry-username $acr \
+    --registry-password $pwd \
+    --query properties.configuration.ingress.fqdn -o tsv)
+
+uiUrl=$(az containerapp create -n $uiApp-$env -g $grp --image $uiImg \
+    --environment $env \
+    --target-port 80 --ingress external \
+    --registry-server $loginSrv \
+    --registry-username $acr \
+    --registry-password $pwd \
+    --env-vars ENV_API_URL=https://$apiUrl \
+    --query properties.configuration.ingress.fqdn -o tsv)    

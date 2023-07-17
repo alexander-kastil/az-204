@@ -1,17 +1,21 @@
-env=32294
+env=dev
 grp=az204-m05-containers
 loc=westeurope
 acr=configacr$env
-fqdn=azurecr.io
 apiapp=config-api
 uiapp=config-ui
-apiimg=arambazamba/$apiapp
-ngimg=$acr.$fqdn/$uiapp
+apiImg=$acr.azurecr.io/$apiapp
+uiImg=$acr.azurecr.io/$uiapp
 
-az acr login --name $acr
-az acr update -n $acr --admin-enabled true
 pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
+loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
 
 # net api
-url=$(az container create -g $grp -l $loc -n configapi --image arambazamba/config-api  --cpu 1 --memory 1 --dns-name-label configapi --port 80 --query ipAddress.fqdn -o tsv)
-echo $url
+apiUrl=$(az container create -g $grp -l $loc -n $apiapp --image $apiImg  --cpu 1 --memory 1 --dns-name-label $apiapp --port 80 --registry-password $pwd --registry-username $acr --registry-login-server $loginSrv --query ipAddress.fqdn -o tsv)
+
+echo "ENV_API_URL=https://$apiUrl"
+
+# angular ui
+# docker run -d --rm -p 5052:80 --env ENV_API_URL="https://localhost:5051" 
+
+uiUrl=$(az container create -g $grp -l $loc -n $uiapp --image $uiImg  --cpu 1 --memory 1 --dns-name-label $uiapp --port 80 --registry-password $pwd --registry-username $acr --registry-login-server $loginSrv --environment-variables ENV_API_URL=https://$apiUrl --query ipAddress.fqdn -o tsv)
