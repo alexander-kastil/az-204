@@ -1,8 +1,5 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+using FoodApp.MailDeamon;
 using Microsoft.OpenApi.Models;
-using MSALDaemon;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +8,8 @@ IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(Configuration);
 var cfg = Configuration.Get<AppConfig>();
 
-
 builder.Services.AddControllers();
-
-// Swaggger
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -33,7 +28,7 @@ builder.Services.AddCors(o => o.AddPolicy("nocors", builder =>
 
 var app = builder.Build();
 
-// Swagger
+// Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

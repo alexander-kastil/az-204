@@ -1,0 +1,12 @@
+env=staging
+loc=westeurope
+grp=food-app
+acr=foodcontainers$env
+img=mail-daemon
+
+az acr login --name $acr
+az acr update -n $acr --admin-enabled true
+
+cd $img
+az acr build --image $img --registry $acr --file Dockerfile .
+cd ..

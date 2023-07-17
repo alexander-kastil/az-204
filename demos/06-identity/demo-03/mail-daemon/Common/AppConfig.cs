@@ -1,14 +1,9 @@
-using Newtonsoft.Json;
-
-namespace MSALDaemon
+namespace FoodApp.MailDeamon
 {
     public class LogLevel
     {
         public string Default { get; set; }
         public string Microsoft { get; set; }
-        
-        [JsonProperty("Microsoft.Hosting.Lifetime")]
-        public string MicrosoftHostingLifetime { get; set; }
     }
 
     public class Logging
@@ -28,18 +23,18 @@ namespace MSALDaemon
 
        public class GraphCfg
     {
-        public string tenantId { get; set; }
-        public string clientId { get; set; }
-        public string clientSecret { get; set; }
-        public string cacheLocation { get; set; }
-        public Endpoints endpoints { get; set; }
-        public string returnUrl { get; set; }
-        public string mailSender { get; set; }
+        public string TenantId { get; set; }
+        public string ClientId { get; set; }
+        public string ClientSecret { get; set; }
+        public string CacheLocation { get; set; }
+        public Endpoints Endpoints { get; set; }
+        public string ReturnUrl { get; set; }
+        public string MailSender { get; set; }
     }
 
     public class Endpoints
     {
-        public string graphApiUri { get; set; }
+        public string GraphApiUri { get; set; }
     }
 
     public class AppConfig
