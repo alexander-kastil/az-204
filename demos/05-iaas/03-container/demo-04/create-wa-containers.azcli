@@ -1,11 +1,14 @@
-env=$RANDOM
+env=dev
 grp=az204-m01-wacontainers-$env
 loc=westeurope
-plan=config-api-wac$env
+plan=config-api-wac-$env
 app=config-api-wac-$env
-img=arambazamba/config-api
+acr=configacr$env
+img=$acr.azurecr.io/config-api
 
 az group create --name $grp --location $loc
 
+pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
+
 az appservice plan create --name $plan -g $grp --sku B1 --is-linux --number-of-workers 1
-az webapp create -g $grp -p $plan -n $app -i $img
+az webapp create -g $grp -p $plan -n $app -i $img --docker-registry-server-user $acr --docker-registry-server-password $pwd

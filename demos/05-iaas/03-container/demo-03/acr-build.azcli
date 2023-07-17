@@ -1,16 +1,17 @@
-env=32294
+env=dev
 grp=az204-m05-containers
 loc=westeurope
 acr=configacr$env
-img=config-ui
+imgApi=config-api
+imgUI=config-ui
 
 az acr login --name $acr
 az acr update -n $acr --admin-enabled true
 
-cd config-api
-az acr build --image config-api --registry $acr --file Dockerfile .
+cd $imgApi
+az acr build --image $imgApi --registry $acr --file Dockerfile .
 cd ..
 
-cd config-ui
-az acr build --image config-ui --registry $acr --file Dockerfile .
+cd $imgUI
+az acr build --image $imgUI --registry $acr --file Dockerfile .
 cd ..

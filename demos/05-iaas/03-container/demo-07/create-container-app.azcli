@@ -1,6 +1,6 @@
-env=$RANDOM
+env=dev
 grp=az204-m05-containerapps-$env
-loc=eastus
+loc=westeurope
 acaenv=az204-m05-food-$env
 apiimg=arambazamba/config-api
 uiimg=arambazamba/config-ui
