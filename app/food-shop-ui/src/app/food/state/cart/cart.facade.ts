@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, startWith } from 'rxjs/operators';
 import { CartItem } from '../../shop/cart-item.model';
@@ -11,7 +11,7 @@ import { getItems, getPersist } from './cart.selector';
   providedIn: 'root',
 })
 export class CartFacade {
-  constructor(private store: Store<CartState>) { }
+  store = inject(Store<CartState>);
 
   clear() {
     this.store.dispatch(CartActions.clear());

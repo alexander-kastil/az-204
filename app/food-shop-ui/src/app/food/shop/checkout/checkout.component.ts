@@ -12,8 +12,8 @@ export class CheckoutComponent implements OnInit {
   fb = inject(FormBuilder);
   cart = inject(CartFacade);
   cartItems = this.cart.getItems();
-  order: OrderItem = new OrderItem();
-  mockCheckout: FormControl = new FormControl(false);
+  order = new OrderItem();
+  mockCheckout = new FormControl(false);
   total = this.cart.getSumTotal();
 
   checkoutForm = this.fb.group({
@@ -28,7 +28,7 @@ export class CheckoutComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.mockCheckout.valueChanges.subscribe((isMock) => {
+    this.mockCheckout.valueChanges.pipe().subscribe((isMock) => {
       if (isMock) {
         this.order.name = 'Alexander Pajer';
         this.order.email = 'alexander.pajer@integrations.at';

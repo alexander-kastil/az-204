@@ -11,14 +11,6 @@
   </ng-container>
 
   <ng-container *ngIf="this.cart.getItems() | async as items">
-    <button
-      mat-raised-button
-      (click)="doCheckout()"
-      [disabled]="items.length === 0"
-    >
-      <mat-icon>shopping_cart_checkout</mat-icon><span>Checkout</span>
-    </button>
-
     <h3>{{ ct | async }} items in cart</h3>
     <h3>Sum Total: {{ total | async | toEuro }}</h3>
     <mat-slide-toggle
@@ -27,5 +19,12 @@
       color="accent"
       >Keep cart
     </mat-slide-toggle>
+    <button
+    mat-raised-button
+    (click)="doCheckout()"
+    [disabled]="items.length === 0"
+  >
+    <mat-icon>shopping_cart_checkout</mat-icon><span>Checkout</span>
+  </button>
   </ng-container>
 </div>

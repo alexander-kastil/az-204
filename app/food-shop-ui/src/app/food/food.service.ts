@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FoodService {
-  constructor(private http: HttpClient) {}
+  http = inject(HttpClient);
 
   execCheckout() {
     let checkoutitem = {};
-    return this.http.post('http://localhost:3000/checkout', checkoutitem);
+    return this.http.post(`${environment.checkoutApi}orders`, checkoutitem);
   }
 }
