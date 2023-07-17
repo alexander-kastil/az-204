@@ -2,11 +2,10 @@ env=dev
 grp=az204-m05-containers
 loc=westeurope
 acr=configacr$env
-fqdn=azurecr.io
 apiapp=config-api
 uiapp=config-ui
-apiImg=$acr.$fqdn/$apiapp
-uiImg=$acr.$fqdn/$uiapp
+apiImg=$acr.azurecr.io/$apiapp
+uiImg=$acr.azurecr.io/$uiapp
 
 pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
 loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
