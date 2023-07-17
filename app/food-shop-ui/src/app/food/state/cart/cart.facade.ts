@@ -6,12 +6,14 @@ import { OrderItem } from '../../shop/checkout/order-item.model';
 import { CartActions } from './cart.actions';
 import { CartState } from './cart.reducer';
 import { getItems, getPersist } from './cart.selector';
+import { OrdersService } from '../../orders.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartFacade {
   store = inject(Store<CartState>);
+  orders = inject(OrdersService);
 
   clear() {
     this.store.dispatch(CartActions.clear());
@@ -57,7 +59,10 @@ export class CartFacade {
   }
 
   checkout(order: OrderItem) {
-    this.store.dispatch(CartActions.checkout({ item: order }));
+    // this.store.dispatch(CartActions.checkout({ item: order }));
+    this.orders.checkout(order).subscribe(() => {
+      console.log('Order placed successfully');
+    });
   }
 
   saveToStorage(cart: CartItem[]) {

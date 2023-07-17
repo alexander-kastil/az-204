@@ -4,7 +4,7 @@ export const environment = {
   authEnabled: false,
   mockCheckout: true,
   catalogApi: 'https://localhost:5001/',
-  checkoutApi: 'http://localhost:3000/',
+  ordersApi: 'http://localhost:3000/',
   azure: {
     applicationInsights: '7e9e5dc9-5621-44fb-9bd6-ce7db2a37a13',
     appReg: {
