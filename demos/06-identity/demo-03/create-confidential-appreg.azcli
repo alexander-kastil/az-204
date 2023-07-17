@@ -1,8 +1,8 @@
-app=msal-mail-daemon-dev
+app=msal-mail-daemon
 replyuri=https://localhost:5001
 supportedAcctTypes=AzureADMyOrg
 
-az ad app list --all --query "[?displayName=='msal-mail-daemon-dev']"
+az ad app list --all --query "[?displayName=='msal-mail-daemon']"
 
 clientId=$(az ad app create --display-name $app \
     --sign-in-audience $supportedAcctTypes \

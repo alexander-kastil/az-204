@@ -13,14 +13,14 @@ COPY --from=build /app .
 ENTRYPOINT ["dotnet", "mail-daemon.dll"]
 
 # Build Image
-# docker build --rm -f dockerfile -t mail-daemon .
+# docker build --rm -f Dockerfile -t mail-daemon .
 # docker run -it --rm -p 5051:80 mail-daemon
 
 # docker tag mail-daemon arambazamba/mail-daemon
 # docker push arambazamba/mail-daemon
 
 # Injecting environment variables into the container
-# docker run -it --rm -p 5051:80 mail-daemon -e "GraphCfg:ClientSecret=zKp8Q~PLMspIKMJTewwrItChBvgVeM4FynR.~ajr"
+# docker run -it --rm -p 5051:80 mail-daemon -e "GraphCfg:ClientSecret=cez8Q~YN3BCUROOC35.FmYiixCgxtalUISBy3dyc"
 
 # Browse using: 
 # http://localhost:5051
