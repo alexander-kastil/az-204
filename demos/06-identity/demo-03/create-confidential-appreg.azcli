@@ -1,0 +1,25 @@
+app=msal-mail-daemon-dev
+replyuri=https://localhost:5001
+supportedAcctTypes=AzureADMyOrg
+
+az ad app list --all --query "[?displayName=='msal-mail-daemon-dev']"
+
+clientId=$(az ad app create --display-name $app \
+    --sign-in-audience $supportedAcctTypes \
+    --enable-id-token-issuance false \
+    --enable-access-token-issuance  false \
+    --web-redirect-uris $replyuri \
+    --required-resource-accesses @mail-daemon.manifest.json \
+    --query appId -o tsv)
+
+az ad app permission admin-consent --id $clientId
+
+secret=$(az ad app credential reset --id $clientId --append --query password -o tsv)
+tenantId=$(az account show --query tenantId -o tsv)
+
+cat << EOF
+    echo "update appsettings.json with the following values:"
+    echo "TenantId: $tenantId"
+    echo "ClientId: $clientId"
+    echo "ClientSecret: $secret"
+EOF

@@ -42,12 +42,7 @@ namespace FoodApp.MailDeamon
             
             //Send mail
             //POST /users/{id | userPrincipalName}/sendMail
-            graphClient.Users[gconfig.MailSender].SendMail(msg, false).Request().PostAsync();            
-            List<QueryOption> options = new List<QueryOption> {
-                    new QueryOption ("$top", "1")
-                };
-
-            var graphResult = graphClient.Users.Request(options).GetAsync().Result;
+            graphClient.Users[gconfig.MailSender].SendMail(msg, false).Request().PostAsync();                        
         }
 
         private static void AddReciepient(List<Recipient> toRecipientsList, string r)
