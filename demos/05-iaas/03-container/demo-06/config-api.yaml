@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
       - name: configapi
-        image: arambazamba/config-api
+        image: configacrdev.azurecr.io/config-api:latest
         env: 
           - name: App__UseSQLite
-            value: 'false'
+            value: 'true'
           - name: App__UseEnv
             value: 'true'
         imagePullPolicy: Always
