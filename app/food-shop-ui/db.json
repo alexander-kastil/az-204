@@ -1,0 +1,25 @@
+{
+  "orders": [
+    {
+      "customer": "Alexander Pajer",
+      "email": "alexander.pajer@integrations.at",
+      "payment": "PayPal, abcd...",
+      "address": "Hauptstraße 1, Wien, Austria",
+      "items": [
+        {
+          "id": 2,
+          "name": "Blini with Salmon",
+          "price": 9,
+          "quantity": 2
+        },
+        {
+          "id": 1,
+          "name": "Butter Chicken",
+          "price": 12,
+          "quantity": 1
+        }
+      ],
+      "id": 2
+    }
+  ]
+}

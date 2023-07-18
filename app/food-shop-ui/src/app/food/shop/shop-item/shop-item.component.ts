@@ -12,10 +12,7 @@ export class ShopItemComponent {
   @Input() food: CatalogItem = new CatalogItem();
   @Input() inCart: number | null = 0;
   @Output() amountChange: EventEmitter<CartItem> = new EventEmitter<CartItem>();
-
-  nbrPicker: FormControl = new FormControl(this.inCart);
-
-  constructor() {}
+  nbrPicker = new FormControl(this.inCart);
 
   ngOnChanges() {
     this.nbrPicker.setValue(this.inCart);

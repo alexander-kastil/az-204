@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CatalogItem } from '../../food-catalog.model';
 import { FoodEntityService } from '../../state/catalog/food-entity.service';
 
@@ -8,15 +8,14 @@ import { FoodEntityService } from '../../state/catalog/food-entity.service';
   styleUrls: ['./food-container.component.scss'],
 })
 export class FoodContainerComponent implements OnInit {
-  food = this.foodService.entities$;
+  foodES = inject(FoodEntityService);
+  food = this.foodES.entities$;
   selected: CatalogItem | null = null;
 
-  constructor(private foodService: FoodEntityService) {}
-
   ngOnInit() {
-    this.foodService.loaded$.subscribe((loaded) => {
+    this.foodES.loaded$.subscribe((loaded) => {
       if (!loaded) {
-        this.foodService.getAll();
+        this.foodES.getAll();
       }
     });
   }
@@ -30,14 +29,14 @@ export class FoodContainerComponent implements OnInit {
   }
 
   deleteFood(f: CatalogItem) {
-    this.foodService.delete(f.id);
+    this.foodES.delete(f.id);
   }
 
   foodSaved(f: CatalogItem) {
     if (f.id == 0) {
-      this.foodService.add(f);
+      this.foodES.add(f);
     } else {
-      this.foodService.update(f);
+      this.foodES.update(f);
     }
   }
 }

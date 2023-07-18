@@ -6,7 +6,6 @@ import { CartItem } from './cart-item.model';
   providedIn: 'root',
 })
 export class StorageService {
-  constructor() {}
 
   clearStorage() {
     localStorage.clear();

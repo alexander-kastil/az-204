@@ -14,7 +14,7 @@ export class FoodDataService extends DefaultDataService<CatalogItem> {
   // .NET App PUT has a different signature than the default
   // PUT http://localhost:PORT/food
   override update(skill: Update<CatalogItem>) {
-    return this.http.put<CatalogItem>(`${environment.api}food`, {
+    return this.http.put<CatalogItem>(`${environment.catalogApi}food`, {
       ...skill.changes,
     });
   }

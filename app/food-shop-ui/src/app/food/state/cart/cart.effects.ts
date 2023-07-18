@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { CartItem } from '../../shop/cart-item.model';
@@ -7,7 +7,8 @@ import { CartActions } from './cart.actions';
 
 @Injectable()
 export class CartEffects {
-  constructor(private actions$: Actions, private service: StorageService) { }
+  actions$ = inject(Actions);
+  service = inject(StorageService);
 
   clearStorage$ = createEffect(() =>
     this.actions$.pipe(

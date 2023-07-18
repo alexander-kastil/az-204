@@ -1,8 +1,10 @@
 export const environment = {
   production: false,
   title: 'Food App',
-  authEnabled: true,
-  api: 'https://localhost:5001/',
+  authEnabled: false,
+  mockCheckout: true,
+  catalogApi: 'https://localhost:5001/',
+  ordersApi: 'http://localhost:3000/',
   azure: {
     applicationInsights: '7e9e5dc9-5621-44fb-9bd6-ce7db2a37a13',
     appReg: {
@@ -20,8 +22,8 @@ export const environment = {
     },
   },
   features: {
-    reactive: false,
     logging: false,
+    remoteCart: false,
     persistCart: false,
   },
   testuser: 'alexander.pajer@integrations.at',
