@@ -1,48 +1,46 @@
 ### Start orchestration 
 # @name orch
-GET  http://localhost:7071/api/foodcart/start HTTP/1.1
+GET  http://localhost:7071/api/cart/start HTTP/1.1
 content-type: application/json
 
-### Add chips
-POST   http://localhost:7071/api/foodcart/add HTTP/1.1
+### Add Blini with Salmon
+POST   http://localhost:7071/api/cart/add HTTP/1.1
 content-type: application/json
 
 {
-    "ID": 1,
-    "Name": "Chips",
-    "Amount": 5,
-    "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/chips.jpeg",
-    "Enabled": true,
+    "id": 2,
+    "name": "Blini with Salmon",
+    "price": 9,
+    "quantity": 2,
     "OrchestrationInstanceId": "{{orch.response.body.id}}"
 }
 
 ### Get Orchestration State using statusQueryGetUri
 GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{orch.response.body.id}}?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
 
-### Add fish
-POST   http://localhost:7071/api/foodcart/add HTTP/1.1
+### Add Butter Chicken
+POST   http://localhost:7071/api/cart/add HTTP/1.1
 content-type: application/json
 
 {
-    "ID": 2,
-    "Name": "Fish",
-    "Amount": 3,
-    "PictureUrl": "https://foodpics6743.blob.core.windows.net/processed/fish.jpeg",
-    "Enabled": false,
+    "id": 1,
+    "name": "Butter Chicken",
+    "price": 12,
+    "quantity": 1,
     "OrchestrationInstanceId": "{{orch.response.body.id}}"
 }
 
-### Remove chips
-DELETE    http://localhost:7071/api/foodcart/remove HTTP/1.1
+### Remove Blini with Salmon
+DELETE    http://localhost:7071/api/cart/remove HTTP/1.1
 content-type: application/json
 
 {
-    "ID": 1,
+    "id": 2,
     "OrchestrationInstanceId": "{{orch.response.body.id}}"
 }
 
 ### Complete 
-POST   http://localhost:7071/api/foodcart/complete HTTP/1.1
+POST   http://localhost:7071/api/cart/complete HTTP/1.1
 content-type: application/json
 
 {
