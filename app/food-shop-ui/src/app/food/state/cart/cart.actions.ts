@@ -1,5 +1,5 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
-import { OrderItem } from '../../shop/checkout/order-item.model';
+import { Order } from '../../shop/order/order.model';
 import { CartItem } from '../../shop/cart-item.model';
 
 export const CartActions = createActionGroup({
@@ -7,7 +7,7 @@ export const CartActions = createActionGroup({
   events: {
     clear: emptyProps(),
     updateCart: props<{ item: CartItem }>(),
-    checkout: props<{ item: OrderItem }>(),
+    checkout: props<{ item: Order }>(),
     toogglePersist: emptyProps(),
     loadFromStorage: emptyProps(),
     loadFromStorageSuccess: props<{ items: CartItem[] | null }>(),

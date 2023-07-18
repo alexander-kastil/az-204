@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CartFacade } from '../../state/cart/cart.facade';
-import { OrderItem } from './order-item.model';
+import { Order } from '../order/order.model';
 
 @Component({
   selector: 'app-checkout',
@@ -12,12 +12,12 @@ export class CheckoutComponent implements OnInit {
   fb = inject(FormBuilder);
   cart = inject(CartFacade);
   cartItems = this.cart.getItems();
-  order = new OrderItem();
+  order = new Order();
   mockCheckout = new FormControl(false);
   total = this.cart.getSumTotal();
 
   checkoutForm = this.fb.group({
-    name: [this.order.name, { validators: [Validators.required] }],
+    customer: [this.order.customer, { validators: [Validators.required] }],
     email: [
       this.order.email,
       { validators: [Validators.email, Validators.required] },
@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.mockCheckout.valueChanges.pipe().subscribe((isMock) => {
       if (isMock) {
-        this.order.name = 'Alexander Pajer';
+        this.order.customer = 'Alexander Pajer';
         this.order.email = 'alexander.pajer@integrations.at';
         this.order.address = 'Hauptstraße 1, Wien, Austria';
         this.order.payment = 'PayPal, abcd...';

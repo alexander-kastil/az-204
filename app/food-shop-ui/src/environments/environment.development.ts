@@ -22,8 +22,8 @@ export const environment = {
     },
   },
   features: {
-    reactive: false,
     logging: false,
+    remoteCart: false,
     persistCart: false,
   },
   testuser: 'alexander.pajer@integrations.at',

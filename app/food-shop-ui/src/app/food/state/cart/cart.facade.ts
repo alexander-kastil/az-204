@@ -2,11 +2,11 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, startWith } from 'rxjs/operators';
 import { CartItem } from '../../shop/cart-item.model';
-import { OrderItem } from '../../shop/checkout/order-item.model';
+import { Order } from '../../shop/order/order.model';
 import { CartActions } from './cart.actions';
 import { CartState } from './cart.reducer';
 import { getItems, getPersist } from './cart.selector';
-import { OrdersService } from '../../orders.service';
+import { OrdersService } from '../../shop/order/orders.service';
 
 @Injectable({
   providedIn: 'root',
@@ -58,7 +58,7 @@ export class CartFacade {
     );
   }
 
-  checkout(order: OrderItem) {
+  checkout(order: Order) {
     // this.store.dispatch(CartActions.checkout({ item: order }));
     this.orders.checkout(order).subscribe(() => {
       console.log('Order placed successfully');

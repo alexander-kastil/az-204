@@ -4,27 +4,11 @@ import { catchError, map, mergeMap, of } from 'rxjs';
 import { CartItem } from '../../shop/cart-item.model';
 import { StorageService } from '../../shop/storage.service';
 import { CartActions } from './cart.actions';
-import { OrdersService } from '../../orders.service';
 
 @Injectable()
 export class CartEffects {
   actions$ = inject(Actions);
   service = inject(StorageService);
-  orders = inject(OrdersService);
-
-  // checkout$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(CartActions.checkout),
-  //     mergeMap(() =>
-  //       this.orders.Checkout().pipe(
-  //         map((resp: boolean) =>
-  //           CartActions.storageActionSuccess({ status: resp })
-  //         ),
-  //         catchError((err) => of(CartActions.storageActionFailure({ err })))
-  //       )
-  //     )
-  //   )
-  // );
 
   clearStorage$ = createEffect(() =>
     this.actions$.pipe(
