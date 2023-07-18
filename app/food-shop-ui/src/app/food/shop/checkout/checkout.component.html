@@ -6,19 +6,26 @@
     </mat-slide-toggle>
   </mat-toolbar>
 
-  <form class="form" [formGroup]="checkoutForm">
-    <mat-form-field>
-      <input matInput placeholder="Name" formControlName="customer" />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="E-Mail" formControlName="email" />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Address" formControlName="address" />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Payment" formControlName="payment" />
-    </mat-form-field>
+  <form class="col" [formGroup]="orderForm">
+    <div formGroupName="customer" class="col">
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="E-Mail" formControlName="email" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="address" />
+      </mat-form-field>
+    </div>
+    <div formGroupName="payment" class="col">
+      <mat-form-field>
+        <input matInput placeholder="Payment type" formControlName="type" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Account" formControlName="account" />
+      </mat-form-field>
+    </div>
 
     <div formArrayName="items">
       <mat-list>
@@ -27,12 +34,12 @@
             <div><mat-icon mat-list-icon>shopping_cart</mat-icon></div>
             <div>{{ item.name }}</div>
             <div>Quantity: {{ item.quantity }}</div>
-            <div>Price: {{ item.price | toEuro}}</div>
-            <div>Total: {{( item.price * item.quantity)| toEuro }}</div>
+            <div>Price: {{ item.price | toEuro }}</div>
+            <div>Total: {{ item.price * item.quantity | toEuro }}</div>
           </div>
         </mat-list-item>
         <mat-list-item mat-line class="sum">
-          <div>Total: {{ total | async | toEuro}}</div>
+          <div>Total: {{ total | async | toEuro }}</div>
         </mat-list-item>
       </mat-list>
     </div>
@@ -41,7 +48,8 @@
       mat-raised-button
       (click)="completeCheckout()"
       color="primary"
-      [disabled]="!checkoutForm.valid"
+      [disabled]="!orderForm.valid"
+      type="submit"
     >
       Complete Checkout
     </button>

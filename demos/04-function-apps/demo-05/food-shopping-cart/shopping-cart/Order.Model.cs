@@ -4,6 +4,7 @@ namespace FoodApp
 
         public Order(){
             Items = new OrderItem []{};
+            Status = OrderStatus.cart;
         }
 
         public string Customer {get;set;}
@@ -11,6 +12,7 @@ namespace FoodApp
         public string Payment {get;set;}
         public string Address {get;set;}
         public OrderItem[] Items {get;set;}
+        public OrderStatus Status {get;set;}
     }
 
     public class OrderItem
@@ -31,5 +33,16 @@ namespace FoodApp
     public class OrderCompleteModel
     {
         public string OrchestrationInstanceId { get; set; }
+    }
+
+    public enum OrderStatus
+    {
+        cart,
+        placed,
+        paid,
+        preparing,
+        ready_for_delivery,
+        delivered,
+        rejcted
     }
 }

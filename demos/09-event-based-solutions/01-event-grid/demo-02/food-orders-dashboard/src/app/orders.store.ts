@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { CloudEvent } from '@azure/eventgrid';
 import { ComponentStore } from '@ngrx/component-store';
 import { map } from 'rxjs/operators';
-import { FoodOrder } from './order.model';
+import { Order } from './order.model';
 
 export interface OrdersState {
-  orders: CloudEvent<FoodOrder>[];
+  orders: CloudEvent<Order>[];
 }
 
 export const initialState: OrdersState = {
@@ -28,20 +28,20 @@ export class OrdersStore extends ComponentStore<OrdersState> {
     this.setState(initialState);
   }
 
-  addOrder(order: CloudEvent<FoodOrder>) {
+  addOrder(order: CloudEvent<Order>) {
     this.setState((state) => ({
       ...state,
       orders: [...state.orders, order],
     }));
   }
 
-  updateOrder(order: CloudEvent<FoodOrder>) {
+  updateOrder(order: CloudEvent<Order>) {
     this.setState((state) => ({
       ...state,
       orders: state.orders.map((o) => o.id == order.id ? order : o),
     }));
 
-    if ((order.data?.status == 'ready', order.data?.status == 'rejected')) {
+    if ((order.data?.status == 'ready_for_delivery', order.data?.status == 'rejected')) {
       console.log('New order event', order);
     }
   }

@@ -14,10 +14,17 @@ aeg-sas-key: {{topickey}}
    "datacontenttype":"application/json",
    "data":{
       "id": "5c60fe1d-9851-47ca-aab9-622ca857ea29",
-      "customerId": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
-      "customerName": "John Doe",
-      "address": "123 Main Street, Seattle, WA 98101",
-      "status": "incoming",
+      "customer": {
+         "id": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
+         "name": "John Doe",
+         "address": "123 Main Street, Seattle, WA 98101",
+         "email": "alexander.pajer@integrations.at"
+      },      
+      "payment": {
+         "type": "Paypal",
+         "account": "abcdsdfsdf"
+      },         
+      "status": "paid",
       "items": [
          {
             "name": "butter chicken",
