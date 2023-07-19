@@ -6,7 +6,7 @@ export const environment = {
   catalogApi: 'https://localhost:5001/',
   ordersApi: 'http://localhost:3000/',
   azure: {
-    applicationInsights: '7e9e5dc9-5621-44fb-9bd6-ce7db2a37a13',
+    applicationInsights: '18d6c30e-592e-413a-a371-d0c610a4204b',
     appReg: {
       clientId: 'd23642f7-9ccf-4165-92e7-919f625a5acc',
       authority:

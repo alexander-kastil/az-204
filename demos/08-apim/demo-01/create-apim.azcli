@@ -1,4 +1,4 @@
-env=staging
+env=dev
 loc=westeurope
 grp=az204-m08-apim-$env
 apim=food-$env

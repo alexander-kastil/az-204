@@ -1,0 +1,26 @@
+env=dev
+loc=westeurope
+grp=foodapp-$env
+ws=foodlogs-$env
+acr=foodcontainers$env
+ai=foodai-$env
+acaenv=food-$env
+
+az group create -n $grp -l $loc
+
+az acr create -g $grp -n $acr --sku Basic
+az acr login --name $acr
+az acr update -n $acr --admin-enabled true
+
+wsId=$(az monitor log-analytics workspace create -g $grp --workspace-name $ws --query  id -o tsv)
+wsKey=$(az monitor log-analytics workspace get-shared-keys -g $grp --workspace-name $ws --query primarySharedKey -o tsv)
+
+az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --workspace $ws
+
+aiKey=$(az monitor app-insights component show --app $ai -g $grp --query instrumentationKey -o tsv)                                    
+aiConString=$(az monitor app-insights component show --app $ai -g $grp --query connectionString -o tsv) 
+
+echo "AppInsights Key: $aiKey"
+echo "AppInsights Connection String: $aiConString"
+
+# az containerapp env create -n $acaenv -g $grp -l $loc --logs-workspace-id $wsId --logs-workspace-key $wsKey

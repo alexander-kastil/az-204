@@ -4,7 +4,7 @@
 
 ## Demo	
 
-- Use `getXML` of `foodutil-staging` to test the policy
+- Use `getXML` of `foodutil-dev` to test the policy
 - Test to show XML result
 - Add the following policy to outbound:
 

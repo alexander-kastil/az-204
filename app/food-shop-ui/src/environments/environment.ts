@@ -12,7 +12,7 @@ export const environment = {
   catalogApi: window['env'].API_URL || 'https://localhost:5001',
   ordersApi: 'http://localhost:3000/',
   azure: {
-    applicationInsights: '7e9e5dc9-5621-44fb-9bd6-ce7db2a37a13',
+    applicationInsights: window['env'].APPLICATION_INSIGHTS || '18d6c30e-592e-413a-a371-d0c610a4204b',
     appReg: {
       clientId: window['env'].CLIENT_ID,
       authority:

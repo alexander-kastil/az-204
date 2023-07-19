@@ -5,5 +5,6 @@
   window["env"].CLIENT_ID = "${ENV_CLIENT_ID}";
   window["env"].AUTHORITY = "${ENV_AUTHORITY}";
   window["env"].REDIRECT_URI = "${ENV_REDIRECT_URI}";
+  window["env"].APPLICATION_INSIGHTS = "${ENV_APPLICATION_INSIGHTS}";
 })(this);
 

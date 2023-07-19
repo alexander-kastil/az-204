@@ -1,0 +1,11 @@
+env=dev
+loc=westeurope
+grp=foodapp-$env
+plan=foodplan-$env
+app=food-catalog-api-web-$env
+
+az group create -n $grp -l $loc
+
+cd cli-app
+az webapp up -n $app -g $grp -p $plan --sku F1 -l $loc 
+cd ..

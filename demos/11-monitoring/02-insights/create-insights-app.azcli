@@ -1,4 +1,4 @@
-env=monitoring
+env=dev
 grp=az204-m11-$env
 loc=westeurope
 ai=foodapp$env

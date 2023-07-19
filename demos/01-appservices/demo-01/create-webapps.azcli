@@ -1,4 +1,4 @@
-env=staging
+env=dev
 grp=az204-m01-appservices-$env
 loc=westeurope
 plan=appservices-$env
