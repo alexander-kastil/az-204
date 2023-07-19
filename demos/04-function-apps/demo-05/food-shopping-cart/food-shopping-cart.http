@@ -1,7 +1,18 @@
 ### Start orchestration 
 # @name orch
-GET  http://localhost:7071/api/cart/start HTTP/1.1
+POST http://localhost:7071/api/cart/init HTTP/1.1
 content-type: application/json
+
+{
+    "Id": "5c60fe1d-9851-47ca-aab9-622ca857ea29",
+    "Total": 0,
+    "Customer": {
+        "Name": "John Doe",
+        "Address": "123 Main Street, Seattle, WA 98101",
+        "EMail": "alexander.pajer@integrations.at"
+    },
+    "Items": []              
+}
 
 ### Add Blini with Salmon
 POST   http://localhost:7071/api/cart/add HTTP/1.1
@@ -16,7 +27,7 @@ content-type: application/json
 }
 
 ### Get Orchestration State using statusQueryGetUri
-GET http://localhost:7071/runtime/webhooks/durabletask/instances/{{orch.response.body.id}}?taskHub=TestHubName&connection=Storage&code=HMgEzb81Rwgw2QttmMQQHTXTHxrlBPE06wt8FyW7WpsOMxgS6pP0Yw== HTTP/1.1
+GET {{orch.response.body.statusQueryGetUri}} HTTP/1.1
 
 ### Add Butter Chicken
 POST   http://localhost:7071/api/cart/add HTTP/1.1

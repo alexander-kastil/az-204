@@ -17,10 +17,10 @@ namespace FoodApp
             ILogger logger)
         {
 
-            var eventData = await req.Content.ReadAsAsync<OrderCompleteModel>();
+            var eventData = await req.Content.ReadAsAsync<CheckoutCartModel>();
             await orchclient.RaiseEventAsync(
                 eventData.OrchestrationInstanceId,
-                "CompleteShopping",
+                "CheckoutCart",
                 eventData);
 
             return new HttpResponseMessage(HttpStatusCode.OK);

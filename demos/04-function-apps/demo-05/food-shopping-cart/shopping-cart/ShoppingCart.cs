@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -5,6 +6,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace FoodApp
 {
@@ -12,61 +14,64 @@ namespace FoodApp
     {
         [FunctionName("ShoppingCartStarter")]
         public static async Task<HttpResponseMessage> HttpStart(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "cart/start")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "cart/init")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient starter,
             ILogger log)
         {
-            // Function input comes from the request content.
-            string instanceId = await starter.StartNewAsync("ShoppingCartOrchestration",null);
-            log.LogInformation($"Started shop orchestration with ID = '{instanceId}'.");
+            var order = await req.Content.ReadAsAsync<CartMetadata>();
+            // log.LogInformation($"Received new cart data: '{order}'.");
+            string instanceId = await starter.StartNewAsync("ShoppingCartOrchestration", order);
+            log.LogInformation($"Started cart orchestration with ID = '{instanceId}'.");
             return starter.CreateCheckStatusResponse(req, instanceId);
         }
 
         [FunctionName("ShoppingCartOrchestration")]
-        public static async Task<List<OrderItem>> RunOrchestrator(
+        public static async Task<CartMetadata> RunOrchestrator(
             [OrchestrationTrigger] IDurableOrchestrationContext context,
             ILogger log)
         {
-            var food = context.GetInput<List<OrderItem>>() ?? new List<OrderItem>();
+            CartMetadata cart = context.GetInput<CartMetadata>();
 
             //define activities and get current activity
-            var addFoodTask = context.WaitForExternalEvent<OrderItem>("AddFood");
-            var removeFoodTask = context.WaitForExternalEvent<OrderRemoveModel>("RemoveFood");
-            var completeTask = context.WaitForExternalEvent<OrderCompleteModel>("CompleteShopping");
+            var addToCart = context.WaitForExternalEvent<OrderItem>("AddToCart");
+            var removeFromCart = context.WaitForExternalEvent<OrderRemoveModel>("RemovFromCart");
+            var checkoutCart = context.WaitForExternalEvent<CheckoutCartModel>("CheckoutCart");
             
-            var evt = await Task.WhenAny(addFoodTask, removeFoodTask, completeTask);
+            var evt = await Task.WhenAny(addToCart, removeFromCart, checkoutCart);
 
             //handle activities
-            if (evt == addFoodTask)
+            if (evt == addToCart)
             {
-                var exists = food.Find(f => f.ID == addFoodTask.Result.ID);
+                var exists = cart.Items.FirstOrDefault(f => f.Id == addToCart.Result.Id);
                 if (exists != null)
                 {
-                    exists.Quantity += addFoodTask.Result.Quantity;
-                    log.LogInformation($"Food {addFoodTask.Result.Name} already exists in foodlist updating quantity");
+                    exists.Quantity += addToCart.Result.Quantity;
+                    log.LogInformation($"Food {addToCart.Result.Name} already exists in foodlist updating quantity");
                 }
                 else
                 {
-                    food.Add(addFoodTask.Result);
-                    log.LogInformation($"Added food {addFoodTask.Result.Name} to foodlist");
+                    cart.Items.Add(addToCart.Result);
+                    log.LogInformation($"Added food {addToCart.Result.Name} to foodlist");
                 }
             }
             
-            if (evt == removeFoodTask)
+            if (evt == removeFromCart)
             {
-                food.RemoveAll(f => f.ID == removeFoodTask.Result.ID);
+                var idx = Array.FindIndex(cart.Items.ToArray(), f => f.Id == removeFromCart.Result.Id);
+                cart.Items.RemoveAt(idx);
             }
             
-            if (evt == completeTask )
+            if (evt == checkoutCart )
             {
                 log.LogInformation($"Foodlist orchestration completed");
+                return cart;
             }
             else
             {
-                context.ContinueAsNew(food);
+                context.ContinueAsNew(cart);
             }
 
-            return food;
+            return cart;
         }
     }
 }
