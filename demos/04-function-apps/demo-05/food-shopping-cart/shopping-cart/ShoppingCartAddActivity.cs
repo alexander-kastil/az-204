@@ -18,7 +18,7 @@ namespace FoodApp
         {
 
             var eventData = await req.Content.ReadAsAsync<OrderItem>();
-            string eventName = "AddFood";
+            string eventName = "AddToCart";
             await orchclient.RaiseEventAsync(
                 eventData.OrchestrationInstanceId,
                 eventName,

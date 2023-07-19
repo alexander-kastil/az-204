@@ -1,36 +1,37 @@
+using Newtonsoft.Json;
+using System.Collections.Generic;
+
 namespace FoodApp
 {
-    public class Order{
-
-        public Order(){
-            Items = new OrderItem []{};
-            Status = OrderStatus.cart;
-        }
-
-        public string Customer {get;set;}
-        public string EMail {get;set;}
-        public string Payment {get;set;}
-        public string Address {get;set;}
-        public OrderItem[] Items {get;set;}
-        public OrderStatus Status {get;set;}
+    public class CartMetadata{
+        public string Id {get;set;}
+        public decimal Total {get;set;}
+        public Customer Customer {get;set;}
+        public List<OrderItem> Items {get;set;}
     }
 
+    public class Customer{
+        public string Name {get;set;}
+        public string EMail {get;set;}
+        public string Address {get;set;}
+    }
+    
     public class OrderItem
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public string Quantity { get; set; }
+        public int Quantity { get; set; }
         public string OrchestrationInstanceId { get; set; }
     }
 
     public class OrderRemoveModel
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string OrchestrationInstanceId { get; set; }
     }
 
-    public class OrderCompleteModel
+    public class CheckoutCartModel
     {
         public string OrchestrationInstanceId { get; set; }
     }
