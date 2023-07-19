@@ -1,11 +1,7 @@
 <div class="mainDiv">
   <mat-toolbar>
     <span>Checkout</span>
-    <mat-slide-toggle [formControl]="mockCheckout"
-      >Mock Checkout
-    </mat-slide-toggle>
   </mat-toolbar>
-
   <form class="col" [formGroup]="orderForm">
     <div formGroupName="customer" class="col">
       <mat-form-field>
@@ -38,6 +34,7 @@
             <div>Total: {{ item.price * item.quantity | toEuro }}</div>
           </div>
         </mat-list-item>
+
         <mat-list-item mat-line class="sum">
           <div>Total: {{ total | async | toEuro }}</div>
         </mat-list-item>

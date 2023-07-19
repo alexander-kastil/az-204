@@ -1,11 +1,19 @@
 import { CartItem } from '../cart-item.model';
 
 export class Order {
+  constructor() {
+    this.customer = new Customer();
+    this.payment = new Payment();
+    this.items = [];
+    this.status = 'cart';
+  }
+
   id = 0;
-  customer: Customer = new Customer();
-  payment: Payment = new Payment();
-  items: CartItem[] = [];
-  status: orderstatus = 'cart';
+  customer: Customer;
+  payment: Payment;
+  items: CartItem[];
+  Total = 0;
+  status: orderstatus;
 }
 
 export class Payment {

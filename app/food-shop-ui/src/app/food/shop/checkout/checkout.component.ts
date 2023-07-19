@@ -1,20 +1,21 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { CartFacade } from '../../state/cart/cart.facade';
+import { mockOrder } from '../../state/cart/mock-data';
 import { Order } from '../order/order.model';
-import { mockCustomer } from './mock-data';
+import { map } from 'rxjs';
+import { combineLatestWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent {
   fb = inject(FormBuilder);
   cart = inject(CartFacade);
   cartItems = this.cart.getItems();
-  order = mockCustomer;
-  mockCheckout = new FormControl(false);
+  order: Order = new Order();
   total = this.cart.getSumTotal();
 
   orderForm = this.fb.group(
@@ -34,21 +35,17 @@ export class CheckoutComponent implements OnInit {
       items: this.fb.array([]),
     });
 
-  ngOnInit(): void {
-    this.mockCheckout.valueChanges.pipe().subscribe((isMock) => {
-      if (isMock) {
-        this.order = mockCustomer;
-        console.log('Mocking checkout');
-        this.orderForm.patchValue(this.order);
-      }
-    });
+  constructor() {
+    this.orderForm.patchValue(Object.assign(new Order(), mockOrder));
   }
 
   completeCheckout() {
-    console.log('Completing checkout', this.orderForm.value);
-    // this.cartItems.subscribe((items) => {
-    //   this.order.items = items;
-    //   this.cart.checkout(this.order);
-    // });
+    this.cartItems.pipe(
+      combineLatestWith(this.total),
+      map(([items, total]) => {
+        const o = Object.assign(new Order(), this.orderForm.value, { items }, { Total: total }, { status: 'placed' })
+        this.cart.checkout(o);
+      })
+    ).subscribe();
   }
 }
