@@ -11,7 +11,7 @@ import * as SignalR from '@microsoft/signalr';
 import { tap } from 'rxjs';
 import { combineLatestWith, map, startWith } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { FoodOrder, orderstatus } from './order.model';
+import { Order, orderstatus } from './order.model';
 import { OrdersStore } from './orders.store';
 
 @Component({
@@ -44,7 +44,7 @@ export class OrdersComponent {
         ? orders
         : orders.filter(
           (evt) =>
-            evt.data?.status == 'incoming' || evt.data?.status == 'preparing'
+            evt.data?.status == 'paid' || evt.data?.status == 'preparing'
         )
     )
   );
@@ -65,12 +65,13 @@ export class OrdersComponent {
 
     // Handle incoming orders for the specific target
     this.hubConnection.on('foodapp.order', (event: string) => {
-      let evt = JSON.parse(event) as CloudEvent<FoodOrder>;
+      console.log('Received order', event)
+      let evt = JSON.parse(event) as CloudEvent<Order>;
       this.store.addOrder(evt);
     });
   }
 
-  changeOrderStatus(item: CloudEvent<FoodOrder>, status: orderstatus) {
+  changeOrderStatus(item: CloudEvent<Order>, status: orderstatus) {
     if (item.data) {
       item.data.status = status;
       this.store.updateOrder(item);

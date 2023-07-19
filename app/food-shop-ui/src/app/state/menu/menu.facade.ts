@@ -18,7 +18,6 @@ export class MenuFacade {
     private breakpointObserver: BreakpointObserver,
     private store: Store<MenuState>
   ) {
-    // this.init();
     this.watchScreen.subscribe();
   }
 

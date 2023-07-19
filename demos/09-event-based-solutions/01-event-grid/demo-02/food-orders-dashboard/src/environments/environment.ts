@@ -5,5 +5,5 @@ declare global {
 }
 
 export const environment = {
-  funcWebhookEP: window['env']["FUNC_EP"] || 'https://foodorders-15743.azurewebsites.net/api',
+  funcWebhookEP: window['env']["FUNC_EP"] || 'https://foodorders-28324.azurewebsites.net/api',
 };
