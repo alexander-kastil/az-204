@@ -1,6 +1,8 @@
+# Set base URL as global variable
+@cartUrl = http://localhost:7071/api
 ### Start orchestration 
-# @name orch
-POST http://localhost:7071/api/cart/init HTTP/1.1
+# @name cartOrch
+POST {{cartUrl}}/cart/init HTTP/1.1
 content-type: application/json
 
 {
@@ -15,7 +17,7 @@ content-type: application/json
 }
 
 ### Add Blini with Salmon
-POST   http://localhost:7071/api/cart/add HTTP/1.1
+POST   {{cartUrl}}/cart/add HTTP/1.1
 content-type: application/json
 
 {
@@ -23,14 +25,14 @@ content-type: application/json
     "name": "Blini with Salmon",
     "price": 9,
     "quantity": 2,
-    "OrchestrationInstanceId": "{{orch.response.body.id}}"
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
 }
 
 ### Get Orchestration State using statusQueryGetUri
-GET {{orch.response.body.statusQueryGetUri}} HTTP/1.1
+GET {{cartOrch.response.body.statusQueryGetUri}} HTTP/1.1
 
 ### Add Butter Chicken
-POST   http://localhost:7071/api/cart/add HTTP/1.1
+POST   {{cartUrl}}/cart/add HTTP/1.1
 content-type: application/json
 
 {
@@ -38,22 +40,22 @@ content-type: application/json
     "name": "Butter Chicken",
     "price": 12,
     "quantity": 1,
-    "OrchestrationInstanceId": "{{orch.response.body.id}}"
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
 }
 
 ### Remove Blini with Salmon
-DELETE    http://localhost:7071/api/cart/remove HTTP/1.1
+DELETE    {{cartUrl}}/cart/remove HTTP/1.1
 content-type: application/json
 
 {
     "id": 2,
-    "OrchestrationInstanceId": "{{orch.response.body.id}}"
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
 }
 
 ### Complete 
-POST   http://localhost:7071/api/cart/complete HTTP/1.1
+POST   {{cartUrl}}/cart/complete HTTP/1.1
 content-type: application/json
 
 {
-    "OrchestrationInstanceId": "{{orch.response.body.id}}"
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
 }

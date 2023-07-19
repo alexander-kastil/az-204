@@ -2,13 +2,18 @@ env=dev
 loc=westeurope
 grp=foodapp-$env
 acr=foodcontainers$env
-img=food-shopping-cart
+imgApi=food-catalog-api
+imgUI=food-shop-ui
 
 az group create -n $grp -l $loc
 az acr create -g $grp -n $acr --sku Basic
 az acr login --name $acr
 az acr update -n $acr --admin-enabled true
 
-cd $img
-az acr build --image $img --registry $acr --file Dockerfile .
+cd $imgUI
+az acr build --image $imgUI --registry $acr --file Dockerfile .
+cd ..
+
+cd $imgApi
+az acr build --image $imgApi --registry $acr --file dockerfile .
 cd ..

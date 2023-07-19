@@ -1,4 +1,4 @@
-env=staging
+env=dev
 loc=westeurope
 grp=foodapp-$env
 acr=foodcontainers$env

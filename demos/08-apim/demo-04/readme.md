@@ -10,7 +10,7 @@
     <inbound>
         <base />
         <send-request mode="new" response-variable-name="secretResponse" timeout="20" ignore-error="false">
-            <set-url>https://foodvault-staging.azure.net/secrets/apimsecret/?api-version=7.3</set-url>
+            <set-url>https://foodvault-dev.azure.net/secrets/apimsecret/?api-version=7.3</set-url>
             <set-method>GET</set-method>
             <authentication-managed-identity resource="https://vault.azure.net" />
         </send-request>

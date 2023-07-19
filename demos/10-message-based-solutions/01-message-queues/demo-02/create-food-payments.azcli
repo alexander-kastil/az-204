@@ -1,4 +1,4 @@
-env=staging
+env=dev
 grp=az204-m10-keda-scaling-$env
 loc=westeurope
 logs=food-app-$env

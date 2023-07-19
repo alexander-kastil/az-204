@@ -4,7 +4,7 @@
 
 ## Demo
 
-- Create an in-portal http-trigger `execPayment` function on `foodpayments-staging` and add it to apim:
+- Create an in-portal http-trigger `execPayment` function on `foodpayments-dev` and add it to apim:
 
     ```typescript
     module.exports = async function (context, req) {
@@ -22,7 +22,7 @@
     ```xml
     <inbound>
         <base />
-        <set-backend-service id="apim-generated-policy" backend-id="foodpayment-staging" />
+        <set-backend-service id="apim-generated-policy" backend-id="foodpayment-dev" />
         <mock-response status-code="200" content-type="application/json" />
     </inbound>
     ```
