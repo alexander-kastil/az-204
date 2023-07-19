@@ -1,0 +1,89 @@
+name: cd static webapp
+
+# trigger:
+#   branches:
+#     include:
+#       - master
+
+trigger: none
+pr: none
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  nodeVer: '18.10.0'
+  dist: angular-devops
+  apiUrl: 'https://mockapi.azurewebsites.net'
+  # apploc could be someting like /apps/ngapp in a monorepo
+  apploc: '/'
+  # add the deployment token as pipeline variable
+
+stages:
+- stage: Build
+  displayName: Build Angular
+
+  jobs:
+    - job: Build
+      steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: $(nodeVer)
+        displayName: Install Node $(nodeVer)
+
+      - task: replacetokens@5
+        displayName: Update Config
+        inputs:
+          rootDirectory: '$(System.DefaultWorkingDirectory)$(apploc)'
+          targetFiles: '**/*.prod.ts'
+          encoding: 'auto'
+          tokenPattern: 'doublebraces'
+          writeBOM: true
+          actionOnMissing: 'warn'
+          keepToken: false
+          actionOnNoFiles: 'continue'
+          enableTransforms: false
+          enableRecursion: false
+          useLegacyPattern: false
+          enableTelemetry: true
+
+      - task: Cache@2
+        inputs:
+            key: '$(System.DefaultWorkingDirectory)$(apploc)package-lock.json'
+            path: '$(System.DefaultWorkingDirectory)$(apploc)node_modules'
+            cacheHitVar: 'npmCache'
+
+      - script: npm install
+        displayName: 'npm i'
+        workingDirectory: $(apploc)
+        condition: eq(variables['npmCache'],False)
+
+      - script: npm run build-prod
+        displayName: 'Build App'
+        workingDirectory: $(apploc)
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: $(apploc)dist/$(dist)
+          ArtifactName: 'ngapp'
+          publishLocation: 'Container'
+        displayName: 'Publish Artifacts'
+
+- stage: Deploy
+  displayName: Deploy to static WA
+  jobs:
+    - job: Deploy
+      steps:
+        - checkout: self
+          submodules: true
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            buildType: 'current'
+        - task: AzureStaticWebApp@0
+          inputs:
+            workingDirectory: '$(Pipeline.Workspace)'
+            app_location: 'ngapp'
+            config_file_location: 'ngapp/assets/'
+            skip_app_build: true
+            skip_api_build: true
+            azure_static_web_apps_api_token: '$(token)'
