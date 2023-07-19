@@ -7,5 +7,5 @@ app=food-catalog-api-web-$env
 az group create -n $grp -l $loc
 
 cd food-catalog-api
-az webapp up -n $app -g $grp -p $plan --sku F1 -l $loc 
+az webapp up -n $app -g $grp -p $plan --sku F1 -l $loc --runtime "DOTNET|6.0"
 cd ..
