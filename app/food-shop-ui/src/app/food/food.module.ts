@@ -25,6 +25,9 @@ import { FoodDataService } from './state/catalog/food-data.service';
 import { CustomurlHttpGenerator } from './state/custom-url-generator';
 import { StatusComponent } from './shop/status/status.component';
 import { FoodEntityService } from './state/catalog/food-entity.service';
+import { CheckoutFormComponent } from './shop/checkout/checkout-form/checkout-form.component';
+import { CheckoutConfirmedComponent } from './shop/checkout/checkout-confirmed/checkout-confirmed.component';
+import { BorderDirective, BoxedDirective, ColumnDirective, RowDirective } from './formatting-directives';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,8 @@ import { FoodEntityService } from './state/catalog/food-entity.service';
     ShopItemComponent,
     CheckoutComponent,
     StatusComponent,
+    CheckoutFormComponent,
+    CheckoutConfirmedComponent,
   ],
 
   imports: [
@@ -44,6 +49,10 @@ import { FoodEntityService } from './state/catalog/food-entity.service';
     ReactiveFormsModule,
     FormsModule,
     UtilsModule,
+    ColumnDirective,
+    RowDirective,
+    BoxedDirective,
+    BorderDirective,
     StoreModule.forFeature(cartFeatureKey, cartReducer),
     EffectsModule.forFeature([CartEffects]),
   ],
