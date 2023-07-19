@@ -29,6 +29,7 @@ export class OrdersStore extends ComponentStore<OrdersState> {
   }
 
   addOrder(order: CloudEvent<Order>) {
+    console.log('New order event', order)
     this.setState((state) => ({
       ...state,
       orders: [...state.orders, order],

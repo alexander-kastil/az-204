@@ -21,7 +21,7 @@
   >
     <mat-card-header>
       <mat-card-title
-        >{{ evt.data?.customerName }}, {{ evt.data?.address }}</mat-card-title
+        >{{ evt.data?.customer?.name }}, {{ evt.data?.customer?.address }}</mat-card-title
       >
       <mat-card-subtitle>{{ evt.time | date: "medium" }}</mat-card-subtitle>
     </mat-card-header>

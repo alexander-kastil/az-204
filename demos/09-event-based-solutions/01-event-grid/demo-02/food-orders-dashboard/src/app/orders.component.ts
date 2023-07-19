@@ -44,7 +44,7 @@ export class OrdersComponent {
         ? orders
         : orders.filter(
           (evt) =>
-            evt.data?.status == 'placed' || evt.data?.status == 'preparing'
+            evt.data?.status == 'paid' || evt.data?.status == 'preparing'
         )
     )
   );
@@ -65,6 +65,7 @@ export class OrdersComponent {
 
     // Handle incoming orders for the specific target
     this.hubConnection.on('foodapp.order', (event: string) => {
+      console.log('Received order', event)
       let evt = JSON.parse(event) as CloudEvent<Order>;
       this.store.addOrder(evt);
     });
