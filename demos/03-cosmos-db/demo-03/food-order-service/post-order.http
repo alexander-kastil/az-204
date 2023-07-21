@@ -1,0 +1,26 @@
+@ordersUrl = https://localhost:5002
+
+POST {{ordersUrl}}/orders/add HTTP/1.1
+content-type: application/json
+
+{
+    "id": 0,
+    "Total": 18,
+    "customer": {
+        "name": "Alexander Pajer",
+        "email": "alexander.pajer@integrations.at",
+        "address": "Hauptstraße 1, Wien, Austria"
+    },
+    "payment": {
+        "type": "Credit Card",
+        "account": "**** **** **** 1234"
+    },
+    "items": [
+        {
+            "id": 2,
+            "name": "Blini with Salmon",
+            "price": 9,
+            "quantity": 2
+        }
+    ]
+}
