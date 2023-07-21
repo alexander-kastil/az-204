@@ -1,7 +1,8 @@
 [
   {
-    "id": 1,
-    "Total": 48,
+    "id": "1",
+    "type": "order",
+    "total": 48,
     "customerId": 1,
     "customer": {
         "name": "Alexander Pajer",
@@ -35,8 +36,9 @@
     "status": "cart"
   },
   {
-    "id": 2,
-    "Total": 30,
+    "id": "2",
+    "type": "order",
+    "total": 30,
     "customerId": 1,
     "customer": {
         "name": "Alexander Pajer",
@@ -64,8 +66,9 @@
     "status": "cart"
   },
   {
-    "id": 1,
-    "Total": 48,
+    "id": "1",
+    "type": "order",
+    "total": 48,
     "customerId": 2,
     "customer": {
         "name": "Giro Galgo",

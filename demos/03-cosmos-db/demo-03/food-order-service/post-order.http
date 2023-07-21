@@ -4,8 +4,9 @@ POST {{ordersUrl}}/orders/add HTTP/1.1
 content-type: application/json
 
 {
-    "id": 0,
+    "id": "0",
     "Total": 18,
+    "customerId": 1,
     "customer": {
         "name": "Alexander Pajer",
         "email": "alexander.pajer@integrations.at",

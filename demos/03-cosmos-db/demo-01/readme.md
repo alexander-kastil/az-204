@@ -136,3 +136,11 @@ SELECT VALUE v
 FROM v IN f.servings
 WHERE v.type = "starter"
 ```
+
+Query different documents that are stored in the same collection. This would allow you to query for all orders for a specific customer with a single query
+
+```sql
+SELECT * 
+FROM customer_orders c 
+WHERE c.customerId = 1
+```
