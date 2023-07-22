@@ -1,6 +1,6 @@
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
-import { AILoggerService } from '../log/ailogger.service';
+import { AILoggerService } from '../logger/ailogger.service';
 import * as fromMenu from './menu/menu.reducer';
 import { environment } from '../../environments/environment';
 
