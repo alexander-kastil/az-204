@@ -1,5 +1,5 @@
 import { ErrorHandler, Injectable } from '@angular/core';
-import { AILoggerService } from '../../log/ailogger.service';
+import { AILoggerService } from '../../logger/ailogger.service';
 
 @Injectable({
   providedIn: 'root',
