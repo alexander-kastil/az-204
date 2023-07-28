@@ -52,7 +52,7 @@ ENTRYPOINT ["dotnet", "catalog-api.dll"]
 Build & Run Image:
 
 ```
-docker build --rm -f dockerfile -t food-catalog-api .
+docker build --rm -f Dockerfile -t food-catalog-api .
 docker run -it --rm -p 5051:80 food-catalog-api
 ```
 
@@ -91,7 +91,7 @@ CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js
 Build & Run Image:
 
 ```
-docker build --rm -f dockerfile -t food-shop-ui .
+docker build --rm -f Dockerfile -t food-shop-ui .
 docker run -d --rm -p 5052:80 food-shop-ui
 ```
 

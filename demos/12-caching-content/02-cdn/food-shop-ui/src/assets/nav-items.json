@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Home",
+        "url": "/"
+    },
+    {
+        "title": "Food",
+        "url": "/food"
+    },
+    {
+        "title": "Catalog",
+        "url": "/food/catalog"
+    },
+    {
+        "title": "About",
+        "url": "/about"
+    }
+]
