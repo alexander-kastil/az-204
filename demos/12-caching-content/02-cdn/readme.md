@@ -6,12 +6,12 @@
 
 ## Demo Steps
 
-Build Angular Project:
+Build [food-shop-ui](/app/food-shop-ui/):
 
 ```
-cd foodui
+cd food-shop-ui
 npm i
-ng build --prod
+ng build -c production
 ```
 
-Create Storage Account, Upload ngApp Create CDN with URL Rewrite: `create-blob-with-cdn.azcli`
+- Execute `create-blob-with-cdn.azcli`. 
