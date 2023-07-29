@@ -10,7 +10,7 @@ POST {{ordersUrl}}/orders/add HTTP/1.1
 content-type: application/json
 
 {
-    "id": "0",
+    "Id": "1",
     "Total": 18,
     "customerId": 1,
     "customer": {

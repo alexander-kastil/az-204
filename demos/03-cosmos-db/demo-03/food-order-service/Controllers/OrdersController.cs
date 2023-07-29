@@ -40,7 +40,7 @@ namespace FoodApp.Orders
             Database database = client.GetDatabase(cfg.CosmosDB.DBName);
             Container container = database.GetContainer(cfg.CosmosDB.Container);
 
-            var sqlQueryText = "SELECT * FROM customer_orders o where o.type='order'";
+            var sqlQueryText = "SELECT * FROM orders o where o.type='order'";
             QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
             FeedIterator<Order> queryResultSetIterator = container.GetItemQueryIterator<Order>(queryDefinition);
 
@@ -55,17 +55,10 @@ namespace FoodApp.Orders
                 }
             }
 
-            var result = await container.UpsertItemAsync<Order>(order);
+            var result = await container.CreateItemAsync<Order>(order);
 
             return result.Resource;
         }
-
-        // [HttpGet()]
-        // [Route("get")]
-        // public async Task<Order[]> GetAllOrders(){
-        //     var context = new FoodDbContext(cfg.CosmosDB.AccountEndpoint, cfg.CosmosDB.AccountKey, cfg.CosmosDB.DBName);
-        //     return await context.CustomerOrders.ToArrayAsync<Order>();
-        // }
 
         [HttpGet()]
         [Route("get")]
@@ -76,7 +69,7 @@ namespace FoodApp.Orders
             Database database = client.GetDatabase(cfg.CosmosDB.DBName);
             Container container = database.GetContainer(cfg.CosmosDB.Container);
 
-            var sql = "SELECT * FROM customer_orders o where o.type='order'";
+            var sql = "SELECT * FROM orders o where o.type='order'";
             QueryDefinition qry = new QueryDefinition(sql);
             FeedIterator<Order> feed = container.GetItemQueryIterator<Order>(qry);
 

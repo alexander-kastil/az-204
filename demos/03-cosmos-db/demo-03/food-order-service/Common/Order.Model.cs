@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace FoodApp.Orders
 {
     public class Order{
+        [JsonProperty(PropertyName = "id")]
         public string Id {get;set;}
         public decimal Total {get;set;}
         public int CustomerId {get;set;}
