@@ -19,7 +19,7 @@ az appservice plan create --name $appPlan -g $grp --sku B1 --is-linux --number-o
 az webapp create -g $grp -p $appPlan -n $app -i $img
 ```
 
-Examine `./food-app/food-api/dockerfile`:
+Examine `./food-app/food-api/Dockerfile`:
 
 ```yaml
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
@@ -38,7 +38,7 @@ ENTRYPOINT ["dotnet", "food-api.dll"]
 Build and publish docker image:
 
 ```bash
-docker build --rm -f dockerfile -t foodapi .
+docker build --rm -f Dockerfile -t foodapi .
 docker tag foodapi arambazamba/foodapi
 docker push arambazamba/foodapi
 ```
