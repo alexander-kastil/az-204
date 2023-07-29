@@ -139,8 +139,18 @@ WHERE v.type = "starter"
 
 Query different documents that are stored in the same collection. This would allow you to query for all orders for a specific customer with a single query
 
+Query all entries for a specific customer:
+
 ```sql
 SELECT * 
-FROM customer_orders c 
-WHERE c.customerId = 1
+FROM customer_orders co 
+WHERE co.customerId = 1
+```
+
+Query all orders:
+
+```sql
+SELECT * 
+FROM customer_orders o 
+where type=order
 ```
