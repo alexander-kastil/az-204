@@ -1,5 +1,21 @@
 # Getting Started with Cosmos DB
 
+## Use Cosmos DB Emulator
+
+Install Cosmos DB Emulator using Chocolatey:
+
+```
+choco install azure-cosmosdb-emulator -y
+```
+
+Run the emulator using the start menu:
+
+![Cosmos DB Emulator](_images/emulator.png)  
+
+> Note: As an alternative you could also use the container version of the emulator [Run the emulator on Docker for Linux](https://learn.microsoft.com/en-us/azure/cosmos-db/docker-emulator-linux?tabs=sql-api%2Cssl-netstd21)
+
+## Run Queries on Cosmos DB
+
 [Getting started with SQL queries](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/sql-query-getting-started)
 
 ## Demo
@@ -119,4 +135,22 @@ JOIN expressions can also include correlated subqueries to narrow the result
 SELECT VALUE v
 FROM v IN f.servings
 WHERE v.type = "starter"
+```
+
+Query different documents that are stored in the same collection. This would allow you to query for all orders for a specific customer with a single query
+
+Query all entries for a specific customer:
+
+```sql
+SELECT * 
+FROM customer_orders co 
+WHERE co.customerId = 1
+```
+
+Query all orders:
+
+```sql
+SELECT * 
+FROM customer_orders o 
+where type=order
 ```

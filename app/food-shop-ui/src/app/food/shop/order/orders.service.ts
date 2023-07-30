@@ -18,6 +18,6 @@ export class OrdersService {
   }
 
   checkout(order: any) {
-    return this.http.post(`${environment.ordersApi}orders`, order);
+    return this.http.post(`${environment.ordersApi}orders/add`, order);
   }
 }

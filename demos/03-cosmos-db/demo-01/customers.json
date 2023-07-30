@@ -1,5 +1,5 @@
 [
-    { "customerId": 1, "name": "John", "age": 20, "address": "123 Main St" },
-    { "customerId": 2, "name": "Mary", "age": 30, "address": "456 Main St" },
-    { "customerId": 3, "name": "Bob", "age": 40, "address": "789 Main St" }
+    { "customerId": 1, "type": "customer", "name": "Alexander Pajer", "age": 53, "address": "Hauptstraße 1, Wien, Austria" },
+    { "customerId": 2, "type": "customer", "name": "Giro the Galgo", "age": 13, "address": "Hauptstraße 1, Wien, Austria" },
+    { "customerId": 3, "type": "customer", "name": "Princess Soi", "age": 10, "address": "Castle in the cloud" }
 ]

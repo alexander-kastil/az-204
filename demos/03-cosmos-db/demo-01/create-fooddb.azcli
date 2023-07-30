@@ -1,8 +1,8 @@
-env=$RANDOM
+env=dev
 loc=westeurope
-grp=az204-m03-cosmosdb-$env
-acct=az204-cosmos-$env
-dbname=fooddb
+grp=foodapp-$env
+acct=food-cosmos-$env
+dbname=fooddb-$env
 
 az group create --name $grp --location $loc
 
