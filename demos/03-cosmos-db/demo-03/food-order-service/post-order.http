@@ -11,8 +11,8 @@ content-type: application/json
 
 {
     "Id": "1",
-    "Total": 18,
     "customerId": 1,
+    "total": 18,
     "customer": {
         "name": "Alexander Pajer",
         "email": "alexander.pajer@integrations.at",

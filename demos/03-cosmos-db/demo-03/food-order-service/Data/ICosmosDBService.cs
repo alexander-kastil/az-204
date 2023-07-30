@@ -9,6 +9,6 @@ namespace FoodApp.Orders
         Task<Order> GetOrderAsync(string id);
         Task AddOrderAsync(Order Order);
         Task UpdateOrderAsync(string id, Order Order);
-        Task DeleteOrderAsync(string id);
+        Task DeleteOrderAsync(Order Order);
     }
 }

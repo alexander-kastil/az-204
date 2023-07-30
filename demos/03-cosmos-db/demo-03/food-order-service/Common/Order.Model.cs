@@ -2,21 +2,24 @@ using Newtonsoft.Json;
 
 namespace FoodApp.Orders
 {
-    public class Order{
+    public class Order
+    {
         [JsonProperty(PropertyName = "id")]
-        public string Id {get;set;}
-        public decimal Total {get;set;}
-        public int CustomerId {get;set;}
-        public Customer Customer {get;set;}
-        public List<OrderItem> Items {get;set;}
+        public string Id { get; set; }
+        [JsonProperty(PropertyName = "customerId")]
+        public int CustomerId { get; set; }
+        public decimal Total { get; set; }
+        public Customer Customer { get; set; }
+        public List<OrderItem> Items { get; set; }
     }
 
-    public class Customer{
-        public string Name {get;set;}
-        public string EMail {get;set;}
-        public string Address {get;set;}
+    public class Customer
+    {
+        public string Name { get; set; }
+        public string EMail { get; set; }
+        public string Address { get; set; }
     }
-    
+
     public class OrderItem
     {
         public int Id { get; set; }
