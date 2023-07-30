@@ -3,8 +3,8 @@
 ## Demos
 
 1. Create and use Cosmos DB
-2. Use Cosmos DB in .NET Core
-3. Use Cosmos DB Emulator (optional)
+2. Use Cosmos DB in .NET Core - Code Snippets
+3. Orders Api using Cosmos DB
 
 ## Readings
 
