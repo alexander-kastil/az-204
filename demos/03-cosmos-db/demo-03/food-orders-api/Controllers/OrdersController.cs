@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Cosmos;
-using System.Drawing.Imaging;
-using Microsoft.EntityFrameworkCore;
 
 namespace FoodApp.Orders
 {
@@ -38,9 +36,9 @@ namespace FoodApp.Orders
         }
 
         // use cosmos client
-        // http://localhost:5002/orders/getOrderType
+        // http://localhost:5002/orders/getOrders
         [HttpGet()]
-        [Route("getOrderType")]
+        [Route("getOrders")]
         public Order[] GetAllOrders()
         {
             Database database = client.GetDatabase(cfg.CosmosDB.DBName);

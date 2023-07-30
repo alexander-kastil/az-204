@@ -15,5 +15,5 @@ az cosmosdb sql container create --account-name $acct --database-name $dbname --
 echo "container food created in $acct"
 
 # Create a container with read optimized partitioning: orders.json, customers.json
-az cosmosdb sql container create --account-name $acct --database-name $dbname --name customer_orders --partition-key-path "/customerId"  --throughput 1000 -g $grp
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name orders --partition-key-path "/customerId"  --throughput 1000 -g $grp
 echo "container orders created in $acct"    

@@ -5,8 +5,6 @@ namespace FoodApp.Orders
     public class CosmosDbService : ICosmosDbService
     {
         private Container _container;
-        private readonly ICosmosDbService _cosmosDbService;
-
         public CosmosDbService(
                 CosmosClient dbClient,
                 string databaseName,
