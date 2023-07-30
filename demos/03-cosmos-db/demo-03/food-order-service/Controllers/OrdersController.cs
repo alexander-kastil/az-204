@@ -18,54 +18,31 @@ namespace FoodApp.Orders
         IWebHostEnvironment env;
         CosmosClient client;
         AILogger logger;
+        ICosmosDbService service;
 
-        public OrdersController(IConfiguration config, IWebHostEnvironment environment, CosmosClient cosmosClient, AILogger aILogger)
+        public OrdersController(IConfiguration config, IWebHostEnvironment environment, CosmosClient cosmosClient, ICosmosDbService cs,  AILogger aILogger)
         {
             cfg = config.Get<AppConfig>(); ;
             env = environment;
             client = cosmosClient;
             logger = aILogger;
+            service = cs;
         }
 
         // http://localhost:PORT/orders/add
         [HttpPost()]
         [Route("add")]
-        public async Task<Order> AddOrder(Order order)
+        public async Task AddOrder(Order order)
         {
-            var opt = new JsonSerializerOptions() { WriteIndented = true };
-            string strJson = JsonSerializer.Serialize<Order>(order, opt);
-
-            var conStr = $"AccountEndpoint={cfg.CosmosDB.AccountEndpoint};AccountKey={cfg.CosmosDB.AccountKey};";
-            CosmosClient client = new CosmosClient(conStr);
-            Database database = client.GetDatabase(cfg.CosmosDB.DBName);
-            Container container = database.GetContainer(cfg.CosmosDB.Container);
-
-            var sqlQueryText = "SELECT * FROM orders o where o.type='order'";
-            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
-            FeedIterator<Order> queryResultSetIterator = container.GetItemQueryIterator<Order>(queryDefinition);
-
-            List<Order> thaiFood = new List<Order>();
-
-            while (queryResultSetIterator.HasMoreResults)
-            {
-                FeedResponse<Order> currentResultSet = queryResultSetIterator.ReadNextAsync().Result;
-                foreach (Order od in currentResultSet)
-                {
-                    Console.WriteLine("\tRead {0}\n", od.CustomerId);
-                }
-            }
-
-            var result = await container.CreateItemAsync<Order>(order);
-
-            return result.Resource;
+            await service.AddOrderAsync(order);
         }
 
+        // use cosmos client
+        // http://localhost:5002/orders/getOrderType
         [HttpGet()]
-        [Route("get")]
+        [Route("getOrderType")]
         public Order[] GetAllOrders()
         {
-            var conStr = $"AccountEndpoint={cfg.CosmosDB.AccountEndpoint};AccountKey={cfg.CosmosDB.AccountKey};";
-            CosmosClient client = new CosmosClient(conStr);
             Database database = client.GetDatabase(cfg.CosmosDB.DBName);
             Container container = database.GetContainer(cfg.CosmosDB.Container);
 

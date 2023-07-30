@@ -15,16 +15,14 @@ builder.Services.AddApplicationInsightsTelemetry();
 builder.Services.AddSingleton<AILogger>();
 
 // Add cosmos client
-CosmosClientOptions options = new CosmosClientOptions()
-{
-    ConsistencyLevel = ConsistencyLevel.Session,
-    ConnectionMode = ConnectionMode.Direct
-};
-CosmosClient client = new CosmosClient(cfg.CosmosDB.GetConnectionString(), options);
+CosmosClient client = new CosmosClient(cfg.CosmosDB.GetConnectionString());
 builder.Services.AddSingleton(client);
 
+// Add cosmos db service
+CosmosDbService cosmosDbService = new CosmosDbService(client, cfg.CosmosDB.DBName, cfg.CosmosDB.Container);
+builder.Services.AddSingleton<ICosmosDbService>(cosmosDbService);
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -58,9 +56,6 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
