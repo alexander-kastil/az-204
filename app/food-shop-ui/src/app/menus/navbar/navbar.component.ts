@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { MenuFacade } from '../../state/menu/menu.facade';
+import { SidenavFacade } from '../../state/sidenav/sidenav.facade';
 import { NavItem } from './nav-item.model';
 
 @Component({
@@ -9,7 +9,7 @@ import { NavItem } from './nav-item.model';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent {
-  constructor(private mf: MenuFacade, private http: HttpClient) {}
+  constructor(private mf: SidenavFacade, private http: HttpClient) { }
 
   menuItems = this.http.get<NavItem[]>('/assets/nav-items.json');
 

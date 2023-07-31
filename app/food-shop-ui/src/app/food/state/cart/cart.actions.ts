@@ -2,7 +2,7 @@ import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { Order } from '../../shop/order/order.model';
 import { CartItem } from '../../shop/cart-item.model';
 
-export const CartActions = createActionGroup({
+export const cartActions = createActionGroup({
   source: 'Shopping Cart',
   events: {
     clear: emptyProps(),

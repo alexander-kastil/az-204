@@ -3,22 +3,22 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap, of } from 'rxjs';
 import { CartItem } from '../../shop/cart-item.model';
 import { StorageService } from '../../shop/storage.service';
-import { CartActions } from './cart.actions';
+import { cartActions } from './cart.actions';
 
 @Injectable()
-export class CartEffects {
+export class cartEffects {
   actions$ = inject(Actions);
   service = inject(StorageService);
 
   clearStorage$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CartActions.clearStorage),
+      ofType(cartActions.clearStorage),
       mergeMap(() =>
         this.service.clearStorage().pipe(
           map((resp: boolean) =>
-            CartActions.storageActionSuccess({ status: resp })
+            cartActions.storageActionSuccess({ status: resp })
           ),
-          catchError((err) => of(CartActions.storageActionFailure({ err })))
+          catchError((err) => of(cartActions.storageActionFailure({ err })))
         )
       )
     )
@@ -26,13 +26,13 @@ export class CartEffects {
 
   loadFromStorage$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CartActions.loadFromStorage),
+      ofType(cartActions.loadFromStorage),
       mergeMap(() =>
         this.service.loadFromStorage().pipe(
           map((resp: CartItem[] | null) =>
-            CartActions.loadFromStorageSuccess({ items: resp })
+            cartActions.loadFromStorageSuccess({ items: resp })
           ),
-          catchError((err) => of(CartActions.storageActionFailure({ err })))
+          catchError((err) => of(cartActions.storageActionFailure({ err })))
         )
       )
     )
@@ -40,13 +40,13 @@ export class CartEffects {
 
   saveToStorage$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CartActions.saveToStorage),
+      ofType(cartActions.saveToStorage),
       mergeMap((action) =>
         this.service.saveToStorage(action.cart).pipe(
           map((resp: boolean) =>
-            CartActions.storageActionSuccess({ status: resp })
+            cartActions.storageActionSuccess({ status: resp })
           ),
-          catchError((err) => of(CartActions.storageActionFailure({ err })))
+          catchError((err) => of(cartActions.storageActionFailure({ err })))
         )
       )
     )
