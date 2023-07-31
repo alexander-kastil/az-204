@@ -57,4 +57,4 @@ const bootstrap = environment.authEnabled
   ],
   bootstrap: bootstrap,
 })
-export class AppModule {}
+export class AppModule { }
