@@ -2,7 +2,6 @@ env=dev
 grp=az204-m01-appservices-$env
 loc=westeurope
 plan=appservices-$env
-mvcapp=mvcapp-$env
 
 # create a resource group
 az group create -n $grp -l $loc
@@ -18,5 +17,5 @@ az webapp create -n cli-api-$env -g $grp --plan $plan -r "dotnet:6"
 
 # create ressources and upload mvc-app app using az webapp up
 cd mvc-app
-az webapp up -n mvc-app -g $grp -p $plan --sku F1 -l $loc -r "dotnet:6"
+az webapp up -n mvc-app-$env -g $grp -p $plan --sku F1 -l $loc -r "dotnet:6"
 cd ..
