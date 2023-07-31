@@ -29,7 +29,7 @@ namespace AppSettingsWebApi
         public void ConfigureServices(IServiceCollection services)        
         {
             //add the config to the .net IOC container
-            services.AddSingleton < IConfiguration > (Configuration);  
+            services.AddSingleton<IConfiguration>(Configuration);  
 
             //Swagger
             services.AddSwaggerGen(c =>
