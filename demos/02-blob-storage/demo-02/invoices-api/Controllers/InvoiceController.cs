@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FoodApp
 {
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     [ApiController]
     public class InvoicesController : ControllerBase
     {
@@ -31,8 +31,7 @@ namespace FoodApp
             foreach (var blob in blobs)
             {
                 BlobClient blobClient = client.GetBlobClient(blob.Name);
-                var url = client.Uri.AbsoluteUri + "/" + blob.Name +  "/" + GetBlobSas(client.GetBlobClient(blob.Name));
-
+                var url = $"{client.Uri.AbsoluteUri}/{blob.Name}{GetBlobSas(client.GetBlobClient(blob.Name))}";
                 blobList.Add(new InvoiceItem{Name = blob.Name, Url = url });
             }
             return blobList;
