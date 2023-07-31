@@ -8,7 +8,7 @@ az group create -n $grp -l $loc
 
 # create and deploy app
 cd settings-api
-az webapp up -n $app -g $grp -p $plan -l $loc -r "DOTNET|6.0"
+az webapp up -n $app -g $grp -p $plan -l $loc -r "dotnet:6"
 cd ..
 
 # set app settings

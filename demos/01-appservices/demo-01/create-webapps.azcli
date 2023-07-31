@@ -2,7 +2,6 @@ env=dev
 grp=az204-m01-appservices-$env
 loc=westeurope
 plan=appservices-$env
-mvcapp=mvcapp-$env
 
 # create a resource group
 az group create -n $grp -l $loc
@@ -10,13 +9,13 @@ az group create -n $grp -l $loc
 # create an App Service plan
 az appservice plan create -n $plan -g $grp --sku S1
 
-# create cliapp
-az webapp create -n cli-api-$env -g $grp --plan $plan -runtime "DOTNET|6.0"
+# create the cli-api using:
+# dotnet new webapi -n cli-api -f net6.0
 
-# create mvcapp
-az webapp create -n $mvcapp -g $grp --plan $plan -r "DOTNET|6.0"
+# create cli-api and deploy using app service extension
+az webapp create -n cli-api-$env -g $grp --plan $plan -r "dotnet:6"
 
-# create and upload mvcapp app using az webapp up
-cd cli-app
-az webapp up -n cli-app -g $grp -p $plan --sku F1 -l $loc -r "DOTNET|6.0"
+# create ressources and upload mvc-app app using az webapp up
+cd mvc-app
+az webapp up -n mvc-app-$env -g $grp -p $plan --sku F1 -l $loc -r "dotnet:6"
 cd ..

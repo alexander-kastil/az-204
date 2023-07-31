@@ -28,7 +28,7 @@ az appconfig kv set-keyvault -n $cfg --key "Settings:DBConnectionString" --secre
 
 # create hosting webapp and add keyvault permissions to managed identity
 cd config-service-api
-az webapp up -n $app -g $grp -p $plan -l $loc --sku Free --runtime "DOTNET|6.0" 
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free --runtime "dotnet:6" 
 cd ..
 webmi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $webmi --secret-permissions get list

@@ -64,7 +64,7 @@ az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
 # publish api & function apps
 # catalog
 cd food-api
-az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|6.0"
+az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "dotnet:6"
 cd ..
 
 cd foodutil-functs-js
