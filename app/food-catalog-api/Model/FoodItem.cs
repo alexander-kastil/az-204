@@ -1,5 +1,3 @@
-using System;
-
 namespace FoodApi
 {
     public class FoodItem

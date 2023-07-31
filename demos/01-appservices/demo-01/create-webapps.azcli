@@ -11,12 +11,12 @@ az group create -n $grp -l $loc
 az appservice plan create -n $plan -g $grp --sku S1
 
 # create cliapp
-az webapp create -n cli-api-$env -g $grp --plan $plan --runtime "DOTNET|6.0"
+az webapp create -n cli-api-$env -g $grp --plan $plan -runtime "DOTNET|6.0"
 
 # create mvcapp
-az webapp create -n $mvcapp -g $grp --plan $plan --runtime "DOTNET|6.0"
+az webapp create -n $mvcapp -g $grp --plan $plan -r "DOTNET|6.0"
 
 # create and upload mvcapp app using az webapp up
 cd cli-app
-az webapp up -n cli-app -g $grp -p $plan --sku F1 -l $loc --runtime "DOTNET|6.0"
+az webapp up -n cli-app -g $grp -p $plan --sku F1 -l $loc -r "DOTNET|6.0"
 cd ..
