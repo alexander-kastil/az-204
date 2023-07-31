@@ -8,6 +8,7 @@
 
 # Database
 *.db
+.azure
 
 # User-specific files
 *.suo

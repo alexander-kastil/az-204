@@ -5,9 +5,7 @@ app=gitdeploy-website-$env
 gitrepo="https://github.com/arambazamba/git-deploy-app"
 
 az group create -n $grp -l westeurope
-
 az appservice plan create -n $appPlan -g $grp --sku F1
-
 az webapp create -n $app -g $grp -p $appPlan
 
 az webapp deployment source config -n $app -g $grp -u $gitrepo --branch master
