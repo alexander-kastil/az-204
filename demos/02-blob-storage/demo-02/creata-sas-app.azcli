@@ -1,12 +1,12 @@
-env=30159
+env=dev
 loc=westeurope
 grp=az204-m02-sas-$env
-acct=medicalrecords$env
-container="patient-images"
-path="./patient-images/"
-blob="patient-32589.jpg"
+acct=foodapp$env
+container=invoices
+path="./invoices/"
+blob=invoice-kunz.pdf
 ## Update expiry
-expiry=2023-02-15
+expiry=2023-09-01
 
 az group create -n $grp -l $loc
 
@@ -18,17 +18,7 @@ az storage container create -n $container --account-name $acct --account-key $ke
 
 az storage blob upload-batch --account-name $acct --account-key $key -s $path -d $container
 
-conStr=$(az storage account show-connection-string -n $acct --query connectionString)
-
 sas=$(az storage blob generate-sas --account-key $key --account-name $acct --container-name $container --name $blob --expiry $expiry --permissions r -o tsv)
 
-## Open Url with $sas
-
-echo "account name: " $acct
-
-echo "account key: " $key
-
-echo "connectionString: " $conStr
-
-echo "url with sas: https://$acct.blob.core.windows.net/patient-images/patient-32589.jpg?$sas"
+echo "url with sas: https://$acct.blob.core.windows.net/$container/$blob?$sas"
 
