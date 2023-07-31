@@ -1,20 +1,20 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { SideNavActions } from './menu.actions';
+import { SideNavActions } from './sidenav.actions';
 
-export interface MenuState {
+export interface SidenavState {
   sideNavEnabled: boolean;
   sideNavVisible: boolean;
   sideNavPosition: string;
 }
 
-const initialState: MenuState = {
+const initialState: SidenavState = {
   sideNavEnabled: true,
   sideNavVisible: true,
   sideNavPosition: 'side',
 };
 
-export const menuFeature = createFeature({
-  name: 'menu',
+export const sidenavFeature = createFeature({
+  name: 'sidenav',
   reducer: createReducer(
     initialState,
     on(SideNavActions.toggleSideNav, (state) => ({

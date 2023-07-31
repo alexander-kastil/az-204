@@ -1,20 +1,17 @@
-import { Injectable } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatestWith, tap } from 'rxjs/operators';
-import { SideNavActions } from './menu.actions';
-import { MenuState, menuFeature } from './menu.state';
+import { SideNavActions } from './sidenav.actions';
+import { SidenavState, sidenavFeature } from './sidenav.state';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MenuFacade {
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private store: Store<MenuState>
-  ) {
-    this.watchScreen.subscribe();
-  }
+export class SidenavFacade {
+  breakpointObserver = inject(BreakpointObserver);
+  store = inject(Store<SidenavState>);
+  constructor() { this.watchScreen.subscribe(); }
 
   watchScreen = this.breakpointObserver
     .observe([Breakpoints.XSmall, Breakpoints.Small])
@@ -26,15 +23,15 @@ export class MenuFacade {
     );
 
   getSideNavEnabled() {
-    return this.store.select(menuFeature.selectSideNavEnabled);
+    return this.store.select(sidenavFeature.selectSideNavEnabled);
   }
 
   getSideNavVisible() {
-    return this.store.select(menuFeature.selectSideNavVisible);
+    return this.store.select(sidenavFeature.selectSideNavVisible);
   }
 
   getSideNavPosition() {
-    return this.store.select(menuFeature.selectSideNavPosition);
+    return this.store.select(sidenavFeature.selectSideNavPosition);
   }
 
   setSideNavEnabled(val: boolean) {

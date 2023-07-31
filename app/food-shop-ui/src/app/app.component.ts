@@ -5,7 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { MsalAuthFacade } from './auth/state/auth.facade';
-import { MenuFacade } from './state/menu/menu.facade';
+import { SidenavFacade } from './state/sidenav/sidenav.facade';
 
 @Component({
   selector: 'app-root',
@@ -35,7 +35,7 @@ export class AppComponent implements OnDestroy {
 
   constructor(
     private af: MsalAuthFacade,
-    public mf: MenuFacade,
+    public mf: SidenavFacade,
     private router: Router
   ) {
     this.mf.getSideNavPosition()
