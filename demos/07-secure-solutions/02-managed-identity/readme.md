@@ -3,8 +3,7 @@
 ## Demos
 
 1. Use System assigned Managed Identities to access Key Vault
-2. Use User Assigned Managed Identities to in VM to access Key Vault
-3. Use MI in Function App to access Key Vault (optional)
+2. Use MI in Function App to access Key Vault (optional)
 
 ## Readings
 
