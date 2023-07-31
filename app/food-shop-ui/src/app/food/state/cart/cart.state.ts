@@ -2,8 +2,6 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 import { CartItem } from '../../shop/cart-item.model';
 import { cartActions } from './cart.actions';
 
-export const cartFeatureKey = 'cart';
-
 export interface CartState {
   items: CartItem[];
   persist: boolean;
