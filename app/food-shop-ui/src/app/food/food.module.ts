@@ -9,25 +9,25 @@ import {
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { MaterialModule } from '../material.module';
 import { UtilsModule } from '../extensions/utils.module';
+import { MaterialModule } from '../material.module';
 import { FoodContainerComponent } from './catalog/catalog-container/food-container.component';
 import { FoodEditComponent } from './catalog/food-edit/food-edit.component';
 import { FoodListComponent } from './catalog/food-list/food-list.component';
 import { FoodRoutingModule } from './food-routing.module';
+import { BorderDirective, BoxedDirective, ColumnDirective, RowDirective } from './formatting-directives';
+import { CheckoutConfirmedComponent } from './shop/checkout/checkout-confirmed/checkout-confirmed.component';
+import { CheckoutFormComponent } from './shop/checkout/checkout-form/checkout-form.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { FoodShopContaienerComponent } from './shop/shop-container/food-shop-container.component';
 import { ShopItemComponent } from './shop/shop-item/shop-item.component';
-import { CartEffects } from './state/cart/cart.effects';
-import { cartFeatureKey, cartReducer } from './state/cart/cart.reducer';
+import { StatusComponent } from './shop/status/status.component';
+import { cartEffects } from './state/cart/cart.effects';
+import { cartFeature } from './state/cart/cart.state';
 import { entityMetadata } from './state/catalog/entity-metadata';
 import { FoodDataService } from './state/catalog/food-data.service';
-import { CustomurlHttpGenerator } from './state/custom-url-generator';
-import { StatusComponent } from './shop/status/status.component';
 import { FoodEntityService } from './state/catalog/food-entity.service';
-import { CheckoutFormComponent } from './shop/checkout/checkout-form/checkout-form.component';
-import { CheckoutConfirmedComponent } from './shop/checkout/checkout-confirmed/checkout-confirmed.component';
-import { BorderDirective, BoxedDirective, ColumnDirective, RowDirective } from './formatting-directives';
+import { CustomurlHttpGenerator } from './state/custom-url-generator';
 
 @NgModule({
   declarations: [
@@ -53,8 +53,8 @@ import { BorderDirective, BoxedDirective, ColumnDirective, RowDirective } from '
     RowDirective,
     BoxedDirective,
     BorderDirective,
-    StoreModule.forFeature(cartFeatureKey, cartReducer),
-    EffectsModule.forFeature([CartEffects]),
+    StoreModule.forFeature(cartFeature),
+    EffectsModule.forFeature([cartEffects]),
   ],
   providers: [
     {
