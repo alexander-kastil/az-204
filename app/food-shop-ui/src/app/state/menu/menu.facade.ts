@@ -3,12 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Store } from '@ngrx/store';
 import { combineLatestWith, tap } from 'rxjs/operators';
 import { SideNavActions } from './menu.actions';
-import { MenuState } from './menu.reducer';
-import {
-  getSideNavEnabled,
-  getSideNavPosition,
-  getSideNavVisible,
-} from './menu.selectors';
+import { MenuState, menuFeature } from './menu.reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -31,15 +26,15 @@ export class MenuFacade {
     );
 
   getSideNavEnabled() {
-    return this.store.select(getSideNavEnabled);
+    return this.store.select(menuFeature.selectSideNavEnabled);
   }
 
   getSideNavVisible() {
-    return this.store.select(getSideNavVisible);
+    return this.store.select(menuFeature.selectSideNavVisible);
   }
 
   getSideNavPosition() {
-    return this.store.select(getSideNavPosition);
+    return this.store.select(menuFeature.selectSideNavPosition);
   }
 
   setSideNavEnabled(val: boolean) {
