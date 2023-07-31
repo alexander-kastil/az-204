@@ -29,28 +29,30 @@ if (cfg.FeatureManagement.UseApplicationInsights)
     builder.Services.AddSingleton<AILogger>();
 }
 
+
+// Connection String
+string conString = cfg.App.UseSQLite? cfg.App.ConnectionStrings.SQLiteDBConnection : cfg.App.ConnectionStrings.SQLServerConnection;
+
+if(cfg.App.UseKeyVaultWithManagedIdentity){
+    Console.WriteLine($"Using KeyVault: {cfg.Azure.KeyVault}");            
+    var client = new SecretClient(new Uri(cfg.Azure.KeyVault), new DefaultAzureCredential());
+   
+    if(cfg.App.UseSQLite){
+        conString = client.GetSecret("conSQLite").Value?.Value;
+    }
+    else{
+        conString = client.GetSecret("conSQLServer").Value?.Value;
+    }
+}
+
 //Database
 if (cfg.App.UseSQLite)
-{
-    string dbconstring = cfg.App.ConnectionStrings.SQLiteDBConnection;
-
-    if (cfg.FeatureManagement.UseKeyVaultWithMI)
-    {
-        var client = new SecretClient(new Uri($"https://{cfg.Azure.KeyVault}"), new DefaultAzureCredential());
-        dbconstring =  client.GetSecret("conSQLite").Value?.Value;     
-        Console.WriteLine($"Using SQLLite with connection string from KeyVault: {dbconstring}");
-    }
-    else
-    {
-        Console.WriteLine($"Using SQLite with connection string: {dbconstring}");
-    }
-
-    builder.Services.AddDbContext<FoodDBContext>(options => options.UseSqlite(dbconstring));
+{   
+    builder.Services.AddDbContext<FoodDBContext>(options => options.UseSqlite(conString));
 }
 else
 {
-    Console.WriteLine("Using SQL Server");
-    builder.Services.AddDbContext<FoodDBContext>(opts => opts.UseSqlServer(cfg.App.ConnectionStrings.SQLServerConnection));
+    builder.Services.AddDbContext<FoodDBContext>(opts => opts.UseSqlServer(conString));
 }
 
 //Microsoft Identity auth
