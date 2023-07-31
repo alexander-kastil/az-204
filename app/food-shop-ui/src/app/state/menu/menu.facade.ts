@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Store } from '@ngrx/store';
 import { combineLatestWith, tap } from 'rxjs/operators';
 import { SideNavActions } from './menu.actions';
-import { MenuState, menuFeature } from './menu.reducer';
+import { MenuState, menuFeature } from './menu.state';
 
 @Injectable({
   providedIn: 'root',
