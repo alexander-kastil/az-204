@@ -27,7 +27,6 @@ public class AppConfig
     public class AppSettings
     {
         public bool AuthEnabled { get; set; }
-        public bool UseSQLite { get; set; }
-        public bool UseAppConfig { get; set; }
+        public bool EnableCors { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
     }
