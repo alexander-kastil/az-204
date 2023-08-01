@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Azure.Storage;
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Azure.Storage.Sas;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,19 +22,18 @@ namespace FoodApp
             client = bclient;
         }
 
-
         [HttpGet]
         public ActionResult<IEnumerable<InvoiceItem>> Get()
         {
             var blobs = client.GetBlobs();
-            var blobList = new List<InvoiceItem>();
-            foreach (var blob in blobs)
+            var result = new List<InvoiceItem>();
+            foreach (BlobItem blob in blobs)
             {
                 BlobClient blobClient = client.GetBlobClient(blob.Name);
                 var url = $"{client.Uri.AbsoluteUri}/{blob.Name}{GetBlobSas(client.GetBlobClient(blob.Name))}";
-                blobList.Add(new InvoiceItem{Name = blob.Name, Url = url });
+                result.Add(new InvoiceItem{Name = blob.Name, Url = url });
             }
-            return blobList;
+            return result;
         }
 
         private string GetBlobSas(BlobClient blob)
@@ -45,7 +44,7 @@ namespace FoodApp
                 BlobContainerName = blob.BlobContainerName,
                 BlobName = blob.Name,
                 Resource = "b",
-                ExpiresOn = DateTimeOffset.UtcNow.AddDays(2)
+                ExpiresOn = DateTimeOffset.UtcNow.AddDays(7)
             };
             // Allow read access
             sas.SetPermissions(BlobSasPermissions.Read);

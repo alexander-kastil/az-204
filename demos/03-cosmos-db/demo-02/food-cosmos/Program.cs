@@ -11,7 +11,7 @@ IConfigurationRoot configuration = builder.Build();
 var accountEndpoint = configuration["accountEndpoint"];
 var accountKey = configuration["accountKey"];
 var db = configuration["DBName"];
-var collection = configuration["Collection"];
+var containerName = configuration["Collection"];
 var conStr = $"AccountEndpoint={accountEndpoint};AccountKey={accountKey};";
 
 CosmosClientOptions options = new CosmosClientOptions()
@@ -19,14 +19,14 @@ CosmosClientOptions options = new CosmosClientOptions()
     ConsistencyLevel = ConsistencyLevel.Session,
     ConnectionMode = ConnectionMode.Direct
 };
-CosmosClient client = new CosmosClient(conStr, options);
+CosmosClient client = new CosmosClient(conStr);
 
 AccountProperties account = await client.ReadAccountAsync();
 Console.WriteLine($"Account Name:\t{account.Id}");
 Console.WriteLine($"Primary Region:\t{account.WritableRegions.FirstOrDefault()?.Name}");
 
 Database database = client.GetDatabase(db);
-Container container = database.GetContainer(collection);
+Container container = database.GetContainer(containerName);
 
 // Read from Cosmos DB
 var sqlQueryText = "SELECT * FROM f WHERE f.kitchen = 'Thai' ORDER by f.amount DESC";

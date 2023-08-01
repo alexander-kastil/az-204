@@ -1,7 +1,5 @@
 # MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular version 3-beta`
 
-[.NET Core Authentication Snippets](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/microsoft-logins?view=aspnetcore-6.0)
-
 [Tutorial: Sign in users and call the Microsoft Graph API from an Angular single-page application (SPA) using auth code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-angular-auth-code)
 
 ## Demo

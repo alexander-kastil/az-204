@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace FoodApp.Orders
+﻿namespace FoodApp.Orders
 {
     public interface ICosmosDbService
     {

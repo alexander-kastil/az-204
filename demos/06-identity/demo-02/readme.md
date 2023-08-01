@@ -1,7 +1,5 @@
 # Microsoft Identity Getting Started
 
-[Azure App Registrations](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-apps)
-
 [MSAL Authentication Flows](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-authentication-flows)
 
 [Decode Token](http://jwt.ms/)
