@@ -143,7 +143,7 @@ Query all entries for a specific customer:
 
 ```sql
 SELECT * 
-FROM customer_orders co 
+FROM orders co 
 WHERE co.customerId = 1
 ```
 
@@ -151,6 +151,6 @@ Query all orders:
 
 ```sql
 SELECT * 
-FROM customer_orders o 
-where type=order
+FROM orders o 
+where o.type='order'
 ```

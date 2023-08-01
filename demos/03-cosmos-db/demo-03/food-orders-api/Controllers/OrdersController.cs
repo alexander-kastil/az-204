@@ -32,6 +32,7 @@ namespace FoodApp.Orders
         [Route("add")]
         public async Task AddOrder(Order order)
         {
+            // using a repository pattern
             await service.AddOrderAsync(order);
         }
 
@@ -41,6 +42,7 @@ namespace FoodApp.Orders
         [Route("getOrders")]
         public Order[] GetAllOrders()
         {
+            // using cosmos client with no service behind
             Database database = client.GetDatabase(cfg.CosmosDB.DBName);
             Container container = database.GetContainer(cfg.CosmosDB.Container);
 
