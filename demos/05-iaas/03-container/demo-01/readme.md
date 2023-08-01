@@ -33,9 +33,12 @@ Create Images for .NET Core Api & Angular UI using `*.dockerfile`
 
 #### .NET 6 Api
 
-Examine `/app/catalog-api/api/dockerfile`:
+Examine [/app/food-catalog-api/Dockerfile](/app/food-catalog-api/Dockerfile):
+
+```docker
 
 ```yaml
+# Build Image
 FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
 WORKDIR /build
 
@@ -43,6 +46,7 @@ COPY . .
 RUN dotnet restore "catalog-api.csproj"
 RUN dotnet publish -c Release -o /app
 
+# Runtime Image
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
 WORKDIR /app
 COPY --from=build /app .
@@ -67,24 +71,26 @@ docker push arambazamba/food-catalog-api
 
 ### Angular UI
 
-Examine `/app/shop-ui/dockerfile`:
+Examine Examine [/app/food-shop-ui/Dockerfile](/app/food-shop-ui/Dockerfile)::
 
 ```docker
-FROM node:16 as node
+FROM node:18-alpine as build
 LABEL author="Alexander Pajer"
-WORKDIR /app
-COPY package.json package.json
-RUN npm install
-COPY . .
-RUN npm run build -- -c production
 
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+##### Stage 2 - Create the run-time-image
 FROM nginx:alpine
 VOLUME /var/cache/nginx
 
-COPY --from=node /app/dist/food-shop-ui /usr/share/nginx/html 
-# NGINX config with URLRewrite for SPAs
+# Take output from node build
+COPY --from=build /app/dist/food-shop-ui/ /usr/share/nginx/html
+# Add nginx url rewriteconfig
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
-
+# Substitute environment vars
 CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
 ```
 
@@ -92,7 +98,7 @@ Build & Run Image:
 
 ```
 docker build --rm -f Dockerfile -t food-shop-ui .
-docker run -d --rm -p 5052:80 food-shop-ui
+docker run -d --rm -p 5052:80 --env ENV_API_URL="https://localhost:5051" 
 ```
 
 Browse using `http://localhost:5052`

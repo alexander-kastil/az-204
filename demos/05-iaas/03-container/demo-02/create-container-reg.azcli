@@ -1,6 +1,7 @@
 env=dev
-grp=az204-m05-containers
-acr=configacr$env
+loc=westeurope
+grp=foodapp-$env
+acr=foodcontainers$env
 
 az group create -n $grp -l westeurope
 

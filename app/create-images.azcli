@@ -18,17 +18,17 @@ az acr build --image $imgShopUI --registry $acr --file Dockerfile .
 cd ..
 
 cd $imgCatalog
-az acr build --image $imgCatalog --registry $acr --file dockerfile .
+az acr build --image $imgCatalog --registry $acr --file Dockerfile .
 cd ..
 
 cd $imgOrders
-az acr build --image $imgOrders --registry $acr --file dockerfile .
+az acr build --image $imgOrders --registry $acr --file Dockerfile .
 cd ..
 
 cd $imgPicOptimizer
-az acr build --image $imgPicOptimizer --registry $acr --file dockerfile .
+az acr build --image $imgPicOptimizer --registry $acr --file Dockerfile .
 cd ..
 
 cd $imgUtils
-az acr build --image $imgUtils --registry $acr --file dockerfile .
+az acr build --image $imgUtils --registry $acr --file Dockerfile .
 cd ..
