@@ -7,6 +7,7 @@ imgShopUI=food-shop-ui
 imgOrders=food-orders-api
 imgPicOptimizer=food-pic-optimizer-api
 imgUtils=food-utils-api
+imgDaemon=mail-daemon-api
 
 az group create -n $grp -l $loc
 az acr create -g $grp -n $acr --sku Basic
@@ -31,4 +32,8 @@ cd ..
 
 cd $imgUtils
 az acr build --image $imgUtils --registry $acr --file Dockerfile .
+cd ..
+
+cd $imgDaemon
+az acr build --image $imgDaemon --registry $acr --file Dockerfile .
 cd ..

@@ -8,9 +8,9 @@
 
 ## Demos
 
-- Explain Daemon App using Credential Flow & Secret
-- Explain MS Graph
+- Microsoft Graph Essentials
+- MSAL Client Credential Flow using [/app/mail-daemon-api](/app/mail-daemon-api)
 
-Permissions for Daemon App:
+    >Note: App Registration & Required permissions for mail daemon service can be created by executing `create-confidential-appreg.azcli`:
 
-![msal](_images/daemon-permissions.png)
+    ![msal](_images/daemon-permissions.png)
