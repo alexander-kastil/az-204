@@ -11,6 +11,7 @@ IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(Configuration);
 
 // Get a strongly typed configuration object just in case you need it
+// Below we use it for the nocors policy
 var cfg = Configuration.Get<AppConfig>();
 
 builder.Services.AddControllers();

@@ -26,17 +26,24 @@ namespace AppSettingsWebApi.Controllers
         // https://localhost:5001/settings
         [HttpGet]
         public ActionResult GetSettings()
-        {
-           //access a single key
-           var useSQLite = cfg.GetValue<string>("AppSettings:UseSQLite");
-           
+        {          
            //get string typed config
            var config = cfg.Get<AppConfig>();
            return Ok(config);  
         }
 
-        // https://localhost:5001/settings/getEnv
-        [HttpGet("getEnv")]
+                // https://localhost:5001/getCorsSettings
+        [HttpGet("getCorsSettings")]
+        public ActionResult GetCorsSettings()
+        {
+           //access a single key - untyped
+           var cors = cfg.GetValue<string>("AppSettings:EnableCors");           
+           return Ok(cors);  
+        }
+
+        // Access environment variables
+        // https://localhost:5001/settings/getWindir
+        [HttpGet("getWindir")]
         public ActionResult GetEnv()
         {
             var val = Environment.GetEnvironmentVariable("windir");
