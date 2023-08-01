@@ -10,9 +10,12 @@
 - Consume Graph REST API in Azure Function using MSAL
 ## Readings
 
-[Microsoft Identity Platform Docs](https://docs.microsoft.com/en-us/azure/active-directory/develop/)
+[Microsoft Identity Platform Docs](https://learn.microsoft.com/en-us/azure/active-directory/develop/)
 
-[Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis)
+[Azure Active Directory](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-whatis)
+
+[Facebook, Google, and external provider authentication in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-6.0&tabs=visual-studio)
+
 
 ## Additional Labs & Walkthroughs
 
