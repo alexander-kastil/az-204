@@ -11,7 +11,7 @@ Use [.NET Core CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/).
 Scaffold and run App:
 
 ```bash
-dotnet new webapi -n cli-api --framework net6.0
+dotnet new webapi -n cli-api -f net6.0
 dotnet run
 ```
 
