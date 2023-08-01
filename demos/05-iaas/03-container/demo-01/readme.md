@@ -8,8 +8,8 @@
 
 ## Demos
 
-- Ceate and publish .NET 6 Api image from `/app/catalog-api/api/`
-- Ceate and publish Angular UI image from `/app/shop-ui/`
+- Ceate and publish .NET 6 Api image from [/app/food-catalog-api/](/app/food-catalog-api/)
+- Ceate and publish Angular UI image from [/app/food-shop-ui/](/app/food-shop-ui/)
 
 ### Setup Requirements on Windows and Linux
 
