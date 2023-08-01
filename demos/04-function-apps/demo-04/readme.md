@@ -1,6 +1,10 @@
-# JavaScript Functions
+# Node based Functions
 
-> Note: Using Node 12.x
+[/app/food-utils/](/app/food-utils/) is a utility service that provides the following functions:
+
+- Currency Converter
+- Simple Interest Calculator
+- A mock function that returns an xml array of mock food items
 
 ## Http-Trigger - Simple Interest
 
