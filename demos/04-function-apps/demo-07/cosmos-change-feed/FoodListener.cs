@@ -11,7 +11,7 @@ namespace Integrations
     {
         [FunctionName("FoodListener")]
         public static void Run([CosmosDBTrigger(
-            databaseName: "fooddb",
+            databaseName: "fooddb-dev",
             collectionName: "food",
             ConnectionStringSetting = "conCosmosDB",
             CreateLeaseCollectionIfNotExists = true,

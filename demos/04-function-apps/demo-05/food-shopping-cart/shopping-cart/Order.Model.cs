@@ -3,6 +3,17 @@ using System.Collections.Generic;
 
 namespace FoodApp
 {
+    
+    public class OrderItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        public string OrchestrationInstanceId { get; set; }
+    }
+
+
     public class CartMetadata{
         public string Id {get;set;}
         public decimal Total {get;set;}
@@ -14,15 +25,6 @@ namespace FoodApp
         public string Name {get;set;}
         public string EMail {get;set;}
         public string Address {get;set;}
-    }
-    
-    public class OrderItem
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Quantity { get; set; }
-        public string OrchestrationInstanceId { get; set; }
     }
 
     public class OrderRemoveModel

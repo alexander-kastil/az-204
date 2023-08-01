@@ -6,6 +6,6 @@
 
 ## Demo
 
-[/app/food-pic-optimizer/](/app/food-pic-optimizer/) is a utility service that optimizes pictures stored in an Azure Storage account after upload.
+[/app/food-pic-optimizer-api/](/app/food-pic-optimizer-api/) is a utility service that optimizes pictures stored in an Azure Storage account after upload.
 
 Provision function app by executing `create-bindings-app.azcli`
