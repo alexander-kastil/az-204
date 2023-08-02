@@ -1,14 +1,15 @@
 # MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular version 3-beta`
 
-[Tutorial: Sign in users and call the Microsoft Graph API from an Angular single-page application (SPA) using auth code flow](https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-angular-auth-code)
-
 ## Demo
+
+This demo uses:
+
+- [/app/food-catalog-api](/app/food-catalog-api) - .NET Api  
+- [/app/food-shop-ui](/app/food-shop-ui) - Angular UI
 
 - Create App Registrations
 - Configure Angular MSAL Auth
 - Configure Api MSAL 
-
-Demo use `food-app` from `/app`-folder
 
 ### Create App Registrations
 
