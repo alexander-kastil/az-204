@@ -13,10 +13,10 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
 
 COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
 
-# docker build --rm -f Dockerfile -t func-app-config .
-# docker run -d --rm -p 5053:80 -e "MyEnvVar=Changed" func-app-config
+# docker build --rm -f Dockerfile -t func-app-docker .
+# docker run -d --rm -p 5053:80 -e "MyEnvVar=Changed" func-app-docker
 
-# docker tag func-app-config arambazamba/func-app-config
-# docker push arambazamba/func-app-config
+# docker tag func-app-config arambazamba/func-app-docker
+# docker push arambazamba/func-app-docker
 
 # Browse: http://localhost:5053/api/getEnvValue

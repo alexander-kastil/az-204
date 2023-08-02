@@ -20,7 +20,7 @@ ENTRYPOINT ["dotnet", "catalog-api.dll"]
 # docker push arambazamba/food-catalog-api
 
 # Injecting environment variables into the container
-# docker run -it --rm -p 5051:80 food-catalog-api -e "App__2__AuthEnabled"="false"
+# docker run -it --rm -p 5051:80 food-catalog-api -e "App:AuthEnabled"="false"
 
 # Browse using: 
 # http://localhost:5051

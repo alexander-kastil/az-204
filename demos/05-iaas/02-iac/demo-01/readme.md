@@ -1,5 +1,9 @@
 # Using ARM Templates
 
+[Use Azure Key Vault to pass secure parameter value during deployment](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/key-vault-parameter?tabs=azure-cli)
+
+## Demo
+
 - Show Templates in Azure Portal
 - Show Deployment
 
