@@ -1,0 +1,3 @@
+{
+    "dotnet.defaultSolution": "app/food-catalog-api/food-catalog-api.sln"
+}

@@ -6,9 +6,7 @@ storage=funcmi$env
 vault=foodvault-$env
 
 az group create -n $grp -l $loc
-
 az storage account  create -n $storage -g $grp 
-
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
 
 mi=$(az functionapp identity assign -n $app -g $grp --query principalId -o tsv)
