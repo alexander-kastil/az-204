@@ -23,7 +23,7 @@ builder.Services.AddSingleton<IConfiguration>(Configuration);
 var cfg = Configuration.Get<FoodConfig>();
 
 // App insights using Feature Flag
-if (cfg.FeatureManagement.UseApplicationInsights)
+if (cfg.App.UseApplicationInsights)
 {
     builder.Services.AddApplicationInsightsTelemetry();
     builder.Services.AddSingleton<AILogger>();
@@ -33,7 +33,7 @@ if (cfg.FeatureManagement.UseApplicationInsights)
 // Connection String
 string conString = cfg.App.UseSQLite? cfg.App.ConnectionStrings.SQLiteDBConnection : cfg.App.ConnectionStrings.SQLServerConnection;
 
-if(cfg.App.UseKeyVaultWithManagedIdentity){
+if(cfg.App.UseManagedIdentity){
     Console.WriteLine($"Using KeyVault: {cfg.Azure.KeyVault}");            
     var client = new SecretClient(new Uri(cfg.Azure.KeyVault), new DefaultAzureCredential());
    
