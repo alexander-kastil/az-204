@@ -15,7 +15,7 @@ publisher="food"
 vault=foodvault-$env
 acr=foodcontainers$env
 acaenv=foodacaenv-$env
-apiimg=arambazamba/food-catalog-api
+apiimg=arambazamba/food-catalog-api:1.1.0
 uiimg=arambazamba/food-shop-ui
 
 az group create -n $grp -l $loc
@@ -44,22 +44,15 @@ apifqdn=$(az containerapp create -n foodapi-$env -g $grp --image $apiimg \
     --target-port 80 --ingress external \
     --query properties.configuration.ingress.fqdn -o tsv)
 
+az containerapp ingress cors enable -n foodapi-$env -g $grp --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins $apifqdn
+
 az containerapp create -n foodui-$env -g $grp --image $uiimg \
     --environment $acaenv \
     --target-port 80 --ingress external \
     --env-vars ENV_API_URL=https://$apifqdn/ 
 
-# create a key vault
-# execute if present: az keyvault purge -n $vault
-az keyvault create -l $loc -n $vault -g $grp --sku Standard
-az keyvault secret set --vault-name $vault --name "apimsecret" --value "apimsecretQAZ2wsx"
-
 # api management
 az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Developer 
-
-# asign managed identity to apim and grant access to keyvault
-mi=$(az apim update -n $apim -g $grp --enable-managed-identity true --query identity.principalId -o tsv)
-az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
 
 # publish api & function apps
 # catalog

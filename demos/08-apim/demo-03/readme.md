@@ -4,7 +4,7 @@
 
 ## Demo
 
-- Create an in-portal http-trigger `execPayment` function on `foodpayments-dev` and add it to apim:
+- Create an in-portal http-trigger `execPayment` function on `foodpayment-dev` and add it to apim:
 
     ```typescript
     module.exports = async function (context, req) {
@@ -27,7 +27,7 @@
     </inbound>
     ```
 
-- To add the mock response select the `POST` operation, select the `Design` tab and in Frontend chose the `Form-based editor`. In the `Responses` tab add a `200 OK` response with the following body:
+- To add the mock response select the `POST` operation, select the `Design` tab and in Frontend chose the `Form-based editor`. In the `Responses` tab add a `200 OK` response of type `application/json` with the following body:
   
     ```json
     {
