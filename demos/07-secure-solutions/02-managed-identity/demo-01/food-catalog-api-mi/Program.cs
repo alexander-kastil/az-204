@@ -1,3 +1,5 @@
+using System.Data;
+using Internal;
 using System;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
@@ -31,23 +33,30 @@ if (cfg.FeatureManagement.UseApplicationInsights)
 
 
 // Connection String
-string conString = cfg.App.UseSQLite? cfg.App.ConnectionStrings.SQLiteDBConnection : cfg.App.ConnectionStrings.SQLServerConnection;
-
-if(cfg.App.UseKeyVaultWithManagedIdentity){
-    Console.WriteLine($"Using KeyVault: {cfg.Azure.KeyVault}");            
+string conString = "";
+if (cfg.App.UseKeyVaultWithManagedIdentity)
+{
+    Console.WriteLine($"Using KeyVault: {cfg.Azure.KeyVault}");
     var client = new SecretClient(new Uri(cfg.Azure.KeyVault), new DefaultAzureCredential());
-   
-    if(cfg.App.UseSQLite){
+
+    if (cfg.App.UseSQLite)
+    {
         conString = client.GetSecret("conSQLite").Value?.Value;
     }
-    else{
+    else
+    {
         conString = client.GetSecret("conSQLServer").Value?.Value;
     }
 }
+else
+{
+    conString = cfg.App.UseSQLite? cfg.App.ConnectionStrings.SQLiteDBConnection : cfg.App.ConnectionStrings.SQLServerConnection;
+}
+Console.WriteLine($"Using Connection String: {conString}");
 
 //Database
 if (cfg.App.UseSQLite)
-{   
+{
     builder.Services.AddDbContext<FoodDBContext>(options => options.UseSqlite(conString));
 }
 else
