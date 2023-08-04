@@ -55,6 +55,7 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty;
 });
 
+app.UseCors("nocors");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

@@ -2,7 +2,7 @@ env=$RANDOM
 grp=az204-m12-cdn-$env
 loc=westeurope
 acct=staticwebsite$env
-path='./food-ui/dist/food-ui'
+path='./food-shop-ui/dist/food-shop-ui'
 profile=ngfoodapp$env
 epname=ngendpoint
 
