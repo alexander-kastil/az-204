@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "queue_consumer_funct": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7034",
-      "launchBrowser": false
-    }
-  }
-}
