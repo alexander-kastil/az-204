@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "receive_events_func": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7030",
+      "launchBrowser": false
+    }
+  }
+}
