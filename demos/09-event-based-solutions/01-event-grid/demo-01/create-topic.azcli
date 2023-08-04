@@ -21,9 +21,6 @@ cd order-processor-func
 func azure functionapp publish $app --csharp
 cd ..
 
-sed -i "s/<TOPIC_NAME>/$topic/g"  ./publish-order-topic/appsettings.json
-sed -i "s/<TOPIC_KEY>/$key/g"  ./publish-order-topic/appsettings.json
-
 echo '** Update in publish-order-topic/Program.cs:'
 echo '** Topic: ' $topic
 echo '** Topic Key: ' $key
