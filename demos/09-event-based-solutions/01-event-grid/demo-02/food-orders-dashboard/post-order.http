@@ -1,5 +1,5 @@
-@topicurl=https://foodevents-28324.westeurope-1.eventgrid.azure.net/api/events
-@topickey=M7gHesQ8WR+BCgn2CoHLs3+fdU79iNsMYVEbCKPnenM=
+@topicurl=https://foodevents-8248.westeurope-1.eventgrid.azure.net/api/events
+@topickey=AdMe4XsnwNpxzKy/W6Z+Ur3UkizjgGV5+aIdUmVTAdg=
 
 POST  {{topicurl}} HTTP/1.1
 content-type: application/cloudevents+json; charset=utf-8

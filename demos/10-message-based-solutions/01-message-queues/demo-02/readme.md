@@ -6,6 +6,8 @@
 
 ## Demo
 
+>Note: This demos uses [/app/food-payments](/app/food-payments/).
+
 - `create-food-payments.azcli` contains all required steps to deploy the demo
 
 - Examine `./food-payments/functions/generateInvoice.cs` Azure Function that will run in a container. It mocks a long running process by sleeping for 500ms and is triggered by a message in a queue.
@@ -52,7 +54,10 @@
     az containerapp env create -n $contaienrenv -g $grp --location $loc
 
     az containerapp create -n $acaname -g $grp --environment $contaienrenv \
-    --image arambazamba/food-payments \
+    --registry-server $acr.azurecr.io \
+    --registry-username $acr \
+    --registry-password $acrpwd \
+    --image $acr.azurecr.io/$img \
     --secrets "storageconstring=$storageConStr" \
     --env-vars Sleep=500 PaymentConnectionString=secretref:storageconstring
     ```

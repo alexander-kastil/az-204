@@ -12,7 +12,7 @@ az group create -l $loc -n $grp
 
 az eventhubs namespace create --name $evns -g $grp --sku Basic -l $loc
 az eventhubs eventhub create --name $hub --namespace-name $evns -g $grp --cleanup-policy Delete --partition-count 2 --retention-time 1 
-az eventhubs eventhub authorization-rule create --name $evhpolicyname --eventhub-name $hub --namespace-name $evns -g $grp --rights Send
+az eventhubs eventhub authorization-rule create --name $evhpolicyname --eventhub-name $hub --namespace-name $evns -g $grp --rights Send Listen
 
 evtHubConStr=`az eventhubs eventhub authorization-rule keys list --name $evhpolicyname --eventhub-name $hub --namespace-name $evns -g $grp --query "primaryConnectionString" --output tsv`
 
