@@ -25,6 +25,7 @@ export class CheckoutComponent {
 
   completeCheckout(o: Order) {
     console.log(o);
+
     this.cart.checkout(o);
   }
 }

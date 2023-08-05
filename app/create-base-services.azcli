@@ -3,8 +3,11 @@ loc=westeurope
 grp=foodapp-$env
 ws=foodlogs-$env
 acr=foodcontainers$env
+ace=foodace-$env
 ai=foodai-$env
 acaenv=food-$env
+dbacct=food-$env
+dbname=fooddb-$env
 
 az group create -n $grp -l $loc
 
@@ -15,7 +18,7 @@ az acr update -n $acr --admin-enabled true
 wsId=$(az monitor log-analytics workspace create -g $grp --workspace-name $ws --query  id -o tsv)
 wsKey=$(az monitor log-analytics workspace get-shared-keys -g $grp --workspace-name $ws --query primarySharedKey -o tsv)
 
-az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --workspace $ws
+az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --workspace $wsId
 
 aiKey=$(az monitor app-insights component show --app $ai -g $grp --query instrumentationKey -o tsv)                                    
 aiConString=$(az monitor app-insights component show --app $ai -g $grp --query connectionString -o tsv) 
@@ -23,4 +26,7 @@ aiConString=$(az monitor app-insights component show --app $ai -g $grp --query c
 echo "AppInsights Key: $aiKey"
 echo "AppInsights Connection String: $aiConString"
 
-# az containerapp env create -n $acaenv -g $grp -l $loc --logs-workspace-id $wsId --logs-workspace-key $wsKey
+az cosmosdb create --name $dbacct --kind GlobalDocumentDB -g $grp --enable-free-tier true
+az cosmosdb sql database create --account-name $dbacct --name $dbname -g $grp
+
+# az containerapp env create -n $acea -g $grp -l $loc --logs-destination log-analytics --logs-workspace-id $wsId --logs-workspace-key $wsKey
