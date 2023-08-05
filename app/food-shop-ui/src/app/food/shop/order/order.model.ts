@@ -2,7 +2,6 @@ import { CartItem } from '../cart-item.model';
 
 export class Order {
   constructor() {
-    this.id = Math.random().toString(36).replace('0.', 'order_');
     this.customer = new Customer();
     this.payment = new Payment();
     this.items = [];

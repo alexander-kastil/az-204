@@ -66,7 +66,6 @@ export class CartFacade {
   }
 
   checkout(order: Order) {
-    // this.store.dispatch(CartActions.checkout({ item: order }));
     this.orders.checkout(order).subscribe(() => {
       console.log('Order placed successfully');
     });
