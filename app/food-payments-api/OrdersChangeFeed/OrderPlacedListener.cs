@@ -18,8 +18,9 @@ namespace FoodApp
         public void Run([CosmosDBTrigger(
             databaseName: "fooddb-dev",
             collectionName: "orders",
+            CreateLeaseCollectionIfNotExists = true,
             ConnectionStringSetting = "fooddev_DOCUMENTDB",
-            LeaseCollectionName = "leases")] IReadOnlyList<MyDocument> input)
+            LeaseCollectionName = "leases")] IReadOnlyList<Order> input)
         {
             if (input != null && input.Count > 0)
             {
@@ -27,16 +28,5 @@ namespace FoodApp
                 _logger.LogInformation("First document Id: " + input[0].Id);
             }
         }
-    }
-
-    public class MyDocument
-    {
-        public string Id { get; set; }
-
-        public string Text { get; set; }
-
-        public int Number { get; set; }
-
-        public bool Boolean { get; set; }
     }
 }

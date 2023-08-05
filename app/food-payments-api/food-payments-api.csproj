@@ -4,7 +4,7 @@
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disabled</Nullable>
+    <Nullable>disable</Nullable>
     <RootNamespace>food_payments_api</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
