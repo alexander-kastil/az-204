@@ -8,11 +8,11 @@ export class Order {
     this.status = 'cart';
   }
 
-  id = 0;
+  id: string = '';
   customer: Customer;
   payment: Payment;
   items: CartItem[];
-  Total = 0;
+  total = 0;
   status: orderstatus;
 }
 

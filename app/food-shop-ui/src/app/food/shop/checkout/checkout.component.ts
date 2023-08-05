@@ -18,8 +18,8 @@ export class CheckoutComponent {
   constructor() {
     combineLatest([this.cart.getItems(), this.cart.getSumTotal()]).pipe(
       map(([items, total]) => {
-        return Object.assign(new Order(), mockOrder, { items: [...items] },
-          { Total: total })
+        return Object.assign(new Order(), mockOrder, { id: Math.random().toString(36).replace('0.', 'order_') }, { items: [...items] },
+          { total: total })
       })).subscribe(o => this.order = o);
   }
 

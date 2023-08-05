@@ -1,8 +1,8 @@
 <mat-toolbar>
   <span>Checkout</span>
 </mat-toolbar>
-<form class="col" [formGroup]="orderForm">
-  <div formGroupName="customer" column>
+<form [formGroup]="orderForm" border>
+  <div formGroupName="customer" column border>
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input matInput  formControlName="name" />
@@ -17,7 +17,7 @@
     </mat-form-field>
   </div>
 
-  <div formGroupName="payment" column>
+  <div formGroupName="payment" column border>
     <mat-form-field>
       <mat-label>Payment type</mat-label>
       <input matInput placeholder="Payment type" formControlName="type" />
@@ -28,12 +28,10 @@
     </mat-form-field>
   </div>
 
-  <div formArrayName="items" >
+  <div formArrayName="items" border>
     <ng-container *ngFor="let cartItemForm of this.orderForm.controls['items'].controls; let i = index">
       <div formGroupName="{{i}}" class="row">
-        <label>id:</label>
         <input type="text" formControlName="itemId" class="id"/>
-        <label>name:</label>
         <input type="text" formControlName="itemName" class="name" />
         <label>quantity:</label>
         <input type="text" formControlName="itemQuantity" class="quantity" />
@@ -43,7 +41,7 @@
     </ng-container>
   </div>
   <div border>
-    Total: {{ order.Total | toEuro }}
+    Total: {{ order.total | toEuro }}
   </div>
 
   <button
