@@ -42,6 +42,6 @@ cosmosCS=$(az cosmosdb list-connection-strings -n $dbacct -g $grp --query connec
 az keyvault secret set --vault-name $vault --name "cosmosCS" --value $cosmosCS
 
 az cosmosdb sql container create --account-name $dbacct --database-name $dbname --name orders --partition-key-path "/customerId"  --throughput 1000 -g $grp
-
+az cosmosdb sql container create --account-name $dbacct --database-name $dbname --name payments --partition-key-path "/customerId"  --throughput 1000 -g $grp
 
 # az containerapp env create -n $acea -g $grp -l $loc --logs-destination log-analytics --logs-workspace-id $wsId --logs-workspace-key $wsKey

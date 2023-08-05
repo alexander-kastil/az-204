@@ -5,13 +5,13 @@ using Microsoft.Extensions.Logging;
 
 namespace FoodApp
 {
-    public class executePayment
+    public class ExecutePayment
     {
         private readonly ILogger _logger;
 
-        public executePayment(ILoggerFactory loggerFactory)
+        public ExecutePayment(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<executePayment>();
+            _logger = loggerFactory.CreateLogger<ExecutePayment>();
         }
 
         [Function("executePayment")]
