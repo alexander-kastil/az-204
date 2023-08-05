@@ -1,4 +1,4 @@
-# Scaling a container hosted Azure Function using KEDA
+# Scaling a container hosted Azure Function using KEDA and Azure Container Apps
 
 [Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/overview)
 
@@ -6,11 +6,11 @@
 
 ## Demo
 
->Note: This demos uses [/app/food-payments](/app/food-payments/).
+[food-invoices](/app/food-invoices/) is a service that generates invoices for the food orders. It is triggered by a message in a queue. The service is implemented as an Azure Function that runs in a container. The container is hosted in an Azure Container App. The Azure Container App is scaled using KEDA based on the length of the queue.
 
-- `create-food-payments.azcli` contains all required steps to deploy the demo
+- `create-food-invoices.azcli` contains all required steps to deploy the demo
 
-- Examine `./food-payments/functions/generateInvoice.cs` Azure Function that will run in a container. It mocks a long running process by sleeping for 500ms and is triggered by a message in a queue.
+- Examine `./food-invoices/functions/generateInvoice.cs` Azure Function that will run in a container. It mocks a long running process by sleeping for 500ms and is triggered by a message in a queue.
 
     ```c#
     [FunctionName("generateInvoice")]
@@ -19,7 +19,7 @@
         log.LogInformation($"Processing Payment for item: {item}");            
         Util.CheckThrottle();
     ```
-    >Note: You can also examin the `./food-payments/Dockerfile` to understand details of the container image creation. You have to provide a valid connection string
+    >Note: You can also examin the `./food-invoices/Dockerfile` to understand details of the container image creation. You have to provide a valid connection string
 
 - Create a storage account with a queue, a container for the generated invoices and get its connection string
 
@@ -39,7 +39,7 @@
     az storage message put --content $messageOne --queue-name $queue 
         \--connection-string $queueConStr
     docker run -d --rm -p 5052:80 -e "PaymentConnectionString=<CONNECTION_STRING>" \
-        -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=<AI_Key>" food-payments
+        -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=<AI_Key>" food-invoices
     ```
 
     >Note: You can check the state of the queue using the Azure Portal or the Azure CLI:

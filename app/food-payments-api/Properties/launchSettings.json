@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "food_payments_api": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7118",
+      "launchBrowser": false
+    }
+  }
+}
