@@ -5,7 +5,7 @@ grp=foodapp-$env
 mi=foodappmi-$env
 vault=foodvault-$env
 cfg=foodcfg-$env
-ws=foodlogs-$env
+logA=foodlogs-$env
 acr=foodcontainers$env
 ace=foodace-$env
 storageAcct=foodstorage$env
@@ -28,7 +28,7 @@ az deployment group create -f base.bicep -g $grp \
     -p acrName=$acr \
     -p storageName=$storageAcct \
     -p rgLocation=$loc \
-    -p logAnalyticsName=$ws \
+    -p logAnalyticsName=$logA \
     -p aiName=$ai \
     -p sbNamespace=$sbns \
     -p dbAccount=$dbacct \
