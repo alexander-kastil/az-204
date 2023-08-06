@@ -113,6 +113,22 @@ resource storageAcct 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   }
 }
 
+resource storageKey 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  parent: keyVault
+  name: 'storageKey'
+  properties: {
+    value: storageAcct.listKeys().keys[0].value
+  }
+}
+
+resource storageCS 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  parent: keyVault
+  name: 'storageConStr'
+  properties: {
+    value: 'DefaultEndpointsProtocol=https;AccountName=${storageAcct.name};AccountKey=${storageAcct.listKeys().keys[0].value};EndpointSuffix=${environment().suffixes.storage}'
+  }
+}
+
 resource storage_blobs 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
   name: 'default'
   parent: storageAcct
@@ -154,7 +170,7 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-12-01-pr
   }
 }
 
-resource acrPassword 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource acrPassword 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
   name: 'acrPassword'
   properties: {
@@ -172,7 +188,7 @@ resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
   }
 }
 
-resource wsId 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource wsId 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
   name: 'wsId'
   properties: {
@@ -180,7 +196,7 @@ resource wsId 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
   }
 }
 
-resource wsKey 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource wsKey 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
   name: 'wsKey'
   properties: {
@@ -198,7 +214,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
-resource aiKey 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource aiKey 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
   name: 'aiKey'
   properties: {
@@ -206,7 +222,7 @@ resource aiKey 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
   }
 }
 
-resource aiConStr 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource aiConStr 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
   name: 'aiConStr'
   properties: {
@@ -214,12 +230,9 @@ resource aiConStr 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
   }
 }
 
-resource acaEnvironment 'Microsoft.App/managedEnvironments@2022-06-01-preview' = {
+resource acaEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' = {
   name: acaEnv
   location: rgLocation
-  sku: {
-    name: 'Consumption'
-  }
   properties: {
     appLogsConfiguration: {
       destination: 'log-analytics'
@@ -258,9 +271,9 @@ resource cosmosDBAcct 'Microsoft.DocumentDB/databaseAccounts@2023-04-15' = {
   }
 }
 
-resource cosmosCS 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource cosmosCS 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
-  name: 'cosmosCS'
+  name: 'cosmosConStr'
   properties: {
     value: cosmosDBAcct.listConnectionStrings().connectionStrings[0].connectionString
   }

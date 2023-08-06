@@ -35,11 +35,14 @@ az containerapp env create -n $acea -g $grp -l $loc --no-wait
 
 # Storage Account
 az storage account create -n $storageAcct -g $grp -l $loc --sku Standard_LRS
-storageKey=$(az storage account keys list -n $storageAcct -g $grp --query "[0].value" -o tsv)
 az storage container create -n invoices --account-name $storageAcct --account-key $storageKey
 az storage container create -n pictures --account-name $storageAcct --account-key $storageKey
 az storage container create -n prictures-drop --account-name $storageAcct --account-key $storageKey
 az storage queue create -n food-orders --account-name $storageAcct --account-key $storageKey
+storageKey=$(az storage account keys list -n $storageAcct -g $grp --query "[0].value" -o tsv)
+storageConStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
+az keyvault secret set --vault-name $vault --name "storageKey" --value $storageKey
+az keyvault secret set --vault-name $vault --name "logsWSkey" --value $storageConStr
 
 # Log Analytics & Application Insights
 wsId=$(az monitor log-analytics workspace create -g $grp --workspace-name $ws --query  id -o tsv)
@@ -58,7 +61,7 @@ az keyvault secret set --vault-name $vault --name "aiConStr" --value $aiConStrin
 az cosmosdb create --name $dbacct --kind GlobalDocumentDB -g $grp --enable-free-tier true
 az cosmosdb sql database create --account-name $dbacct --name $dbname -g $grp
 cosmosCS=$(az cosmosdb list-connection-strings -n $dbacct -g $grp --query connectionStrings[0].connectionString -o tsv)
-az keyvault secret set --vault-name $vault --name "cosmosCS" --value $cosmosCS
+az keyvault secret set --vault-name $vault --name "cosmosConStr" --value $cosmosCS
 
 az cosmosdb sql container create --account-name $dbacct --database-name $dbname --name orders --partition-key-path "/customerId"  --throughput 1000 -g $grp
 az cosmosdb sql container create --account-name $dbacct --database-name $dbname --name payments --partition-key-path "/customerId"  --throughput 1000 -g $grp
