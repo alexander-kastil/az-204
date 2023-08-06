@@ -1,12 +1,10 @@
 env=dev
-grp=az204-m10-keda-scaling-$env
 loc=westeurope
-logs=food-app-$env
-ai=food-app-$env
-acr=configacr$env
+grp=az204-m10-keda-scaling-$env
+acr=foodcontainers$env
 img=food-payments
-contaienrenv=food-app-env
-acct=foodpayment$env
+acaenv=foodace-$env
+storageAcct=foodpayment$env
 blobcontainer=invoices
 queue=food-orders
 arm=./food-payments.json
@@ -15,14 +13,14 @@ acaname=foodpayments
 az group create -n $grp -l $loc
 
 # azure container app environment
-az containerapp env create -n $contaienrenv -g $grp --location $loc --no-wait
+az containerapp env create -n $acaenv -g $grp --location $loc --no-wait
 
 # create storage queue
-az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
-key=$(az storage account keys list -n $acct --query "[0].value")
-az storage container create --account-name $acct --account-key $key --name $blobcontainer
-az storage queue create -n $queue --account-key $key --account-name $acct
-storageConStr=$(az storage account show-connection-string -n $acct -g $grp \
+storageAz storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
+storageAey=$(az storage account keys list -n $acct --query "[0].value")
+storageAz storage container create --account-name $acct --account-key $key --name $blobcontainer
+storageAz storage queue create -n $queue --account-key $key --account-name $acct
+storageAtorageConStr=$(az storage account show-connection-string -n $acct -g $grp \
   --query connectionString -o tsv)
 
 # put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
@@ -52,7 +50,7 @@ az storage message put --content $messageTwo --queue-name $queue \
   --connection-string $storageConStr
 
 ## Check if an invoice has been created in the blob container
-az storage blob list --container-name $blobcontainer --output table --account-name $acct --account-key $key
+az storage blob list --container-name $blobcontainer --output table storageA-account-name $acct --account-key $key
 
 # Optional - if you want you could also test the container using Azure Container Instances
 az container create -g $grp -l $loc -n foodpayment$env --image arambazamba/food-payments --cpu 1 --memory 1 --dns-name-label foodpayment$env --environment-variables \
@@ -66,7 +64,7 @@ az storage message put --content $messageThree --queue-name $queue \
   --connection-string $storageConStr      
 
 # Create container app environment and deploy a container to it
-az containerapp create -n $acaname -g $grp --environment $contaienrenv \
+az containerapp create -n $acaname -g $grp --environment $acaenv \
   --registry-server $acr.azurecr.io \
   --registry-username $acr \
   --registry-password $acrpwd \

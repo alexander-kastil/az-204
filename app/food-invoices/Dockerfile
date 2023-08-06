@@ -16,8 +16,8 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
 
 COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
 
-# docker build --rm -f Dockerfile -t food-payments .
-# docker run -d --rm -p 5052:80 -e "PaymentConnectionString=DefaultEndpointsProtocol=https;AccountName=foodpayment27404;AccountKey=c8b3/fvrP6uDVsAlYQzvzMX9pvKNazmmidICZW/cj10imcYyIIDuJz6VbzJUzObw+sIjKqFSiHFs+AStEPXFkw==;EndpointSuffix=core.windows.net" -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=80fe34b9-dae6-4532-9d81-7ee056098c81" food-payments
+# docker build --rm -f Dockerfile -t food-invoices .
+# docker run -d --rm -p 5052:80 -e "InvoiceConnectionString=DefaultEndpointsProtocol=https;AccountName=foodpayment27404;AccountKey=c8b3/fvrP6uDVsAlYQzvzMX9pvKNazmmidICZW/cj10imcYyIIDuJz6VbzJUzObw+sIjKqFSiHFs+AStEPXFkw==;EndpointSuffix=core.windows.net" -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=80fe34b9-dae6-4532-9d81-7ee056098c81" food-invoices
 
-# docker tag food-payments arambazamba/food-payments
-# docker push arambazamba/food-payments
+# docker tag food-invoices arambazamba/food-invoices
+# docker push arambazamba/food-invoices

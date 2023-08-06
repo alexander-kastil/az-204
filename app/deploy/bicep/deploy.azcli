@@ -8,6 +8,7 @@ cfg=foodcfg-$env
 ws=foodlogs-$env
 acr=foodcontainers$env
 ace=foodace-$env
+storageAcct=foodstorage$env
 ai=foodai-$env
 acaenv=food-$env
 dbacct=food-$env
@@ -25,6 +26,7 @@ az deployment group create -f base.bicep -g $grp \
     -p kvUser=$kvUser \
     -p acaEnv=$ace \
     -p acrName=$acr \
+    -p storageName=$storageAcct \
     -p rgLocation=$loc \
     -p logAnalyticsName=$ws \
     -p aiName=$ai \

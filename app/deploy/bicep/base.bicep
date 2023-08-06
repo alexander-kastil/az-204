@@ -28,6 +28,9 @@ param aiName string
 @description('Name of the Service Bus')
 param sbNamespace string
 
+@description('Name of the Storage Account')
+param storageName string
+
 @description('Name of the Cosmos DB Account')
 param dbAccount string
 
@@ -87,6 +90,57 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' = {
       }
     ]
   }
+}
+
+resource storageAcct 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: storageName
+  location: rgLocation
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+    allowBlobPublicAccess: false
+    minimumTlsVersion: 'TLS1_2'
+    networkAcls: {
+      bypass: 'AzureServices'
+      defaultAction: 'Deny'
+      ipRules: []
+      virtualNetworkRules: []
+    }
+    supportsHttpsTrafficOnly: true
+  }
+}
+
+resource storage_blobs 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
+  name: 'default'
+  parent: storageAcct
+}
+
+resource invoicesContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
+  name: 'invoices'
+  parent: storage_blobs
+}
+
+resource picturesContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
+  name: 'pictures'
+  parent: storage_blobs
+}
+
+resource dropContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
+  name: 'pictures-drop'
+  parent: storage_blobs
+}
+
+resource storage_queues 'Microsoft.Storage/storageAccounts/queueServices@2021-09-01' = {
+  name: 'default'
+  parent: storageAcct
+}
+
+resource orderQueue 'Microsoft.Storage/storageAccounts/queueServices/queues@2022-09-01' = {
+  name: 'food-orders'
+  parent: storage_queues
 }
 
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-12-01-preview' = {

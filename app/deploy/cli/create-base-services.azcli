@@ -4,11 +4,12 @@ grp=foodapp-$env
 mi=foodappmi-$env
 vault=foodvault-$env
 cfg=foodcfg-$env
-ws=foodlogs-$env
 acr=foodcontainers$env
+acaenv=foodace-$env
+storageAcct=foodstorage$env
+ws=foodlogs-$env
 ace=foodace-$env
 ai=foodai-$env
-acaenv=food-$env
 dbacct=food-$env
 dbname=fooddb-$env
 sbns=foodsbns$env
@@ -29,7 +30,16 @@ az acr update -n $acr --admin-enabled true
 acrPwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv) 
 az keyvault secret set --vault-name $vault --name "acrPassword" --value $acrPwd
 
+# ACA
 az containerapp env create -n $acea -g $grp -l $loc --no-wait
+
+# Storage Account
+az storage account create -n $storageAcct -g $grp -l $loc --sku Standard_LRS
+storageKey=$(az storage account keys list -n $storageAcct -g $grp --query "[0].value" -o tsv)
+az storage container create -n invoices --account-name $storageAcct --account-key $storageKey
+az storage container create -n pictures --account-name $storageAcct --account-key $storageKey
+az storage container create -n prictures-drop --account-name $storageAcct --account-key $storageKey
+az storage queue create -n food-orders --account-name $storageAcct --account-key $storageKey
 
 # Log Analytics & Application Insights
 wsId=$(az monitor log-analytics workspace create -g $grp --workspace-name $ws --query  id -o tsv)
