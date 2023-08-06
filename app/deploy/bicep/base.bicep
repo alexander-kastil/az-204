@@ -188,22 +188,6 @@ resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
   }
 }
 
-resource wsId 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  parent: keyVault
-  name: 'wsId'
-  properties: {
-    value: logAnalytics.id
-  }
-}
-
-resource wsKey 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
-  parent: keyVault
-  name: 'wsKey'
-  properties: {
-    value: logAnalytics.listKeys().primarySharedKey
-  }
-}
-
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: aiName
   location: rgLocation
