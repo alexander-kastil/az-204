@@ -6,18 +6,6 @@
 2. Deploy to Azure Button
 3. Introduction to Bicep (optional)
 
-## Readings
-
-[ARM Templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
-
-[Azure Quickstarter Templates](https://azure.microsoft.com/en-us/resources/templates/)
-
-[Github Quickstarter Templates](https://github.com/Azure/azure-quickstart-templates)
-
-[Deploy resources with ARM templates and Azure CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-cli)
-
-[Bicep Documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
-
 ## CLI Reference
 
 [az deployment](https://docs.microsoft.com/en-us/cli/azure/deployment?view=azure-cli-latest)

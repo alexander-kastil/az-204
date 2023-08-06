@@ -1,0 +1,51 @@
+env=dev
+loc=westeurope
+grp=foodapp-$env
+ws=foodlogs-$env
+acr=foodcontainers$env
+ace=foodace-$env
+ai=foodai-$env
+acaenv=food-$env
+dbacct=food-$env
+dbname=fooddb-$env
+vault=foodvault-$env
+sbns=foodsbns$env
+
+az group create -n $grp -l $loc
+
+# Key Vault
+az keyvault create -l $loc -n $vault -g $grp --sku Standard
+
+# ACR
+az acr create -g $grp -n $acr --sku Basic
+az acr login --name $acr
+az acr update -n $acr --admin-enabled true
+acrPwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv) 
+az keyvault secret set --vault-name $vault --name "acrPassword" --value $acrPwd
+
+az containerapp env create -n $acea -g $grp -l $loc --no-wait
+
+# Log Analytics & Application Insights
+wsId=$(az monitor log-analytics workspace create -g $grp --workspace-name $ws --query  id -o tsv)
+wsKey=$(az monitor log-analytics workspace get-shared-keys -g $grp --workspace-name $ws --query primarySharedKey -o tsv)
+az keyvault secret set --vault-name $vault --name "logsWSid" --value $wsId
+az keyvault secret set --vault-name $vault --name "logsWSkey" --value $wsKey
+
+az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --workspace $wsId
+
+aiKey=$(az monitor app-insights component show --app $ai -g $grp --query instrumentationKey -o tsv)                                    
+aiConString=$(az monitor app-insights component show --app $ai -g $grp --query connectionString -o tsv) 
+az keyvault secret set --vault-name $vault --name "aiKey" --value $aiKey
+az keyvault secret set --vault-name $vault --name "aiConStr" --value $aiConString
+
+# Cosmos DB
+az cosmosdb create --name $dbacct --kind GlobalDocumentDB -g $grp --enable-free-tier true
+az cosmosdb sql database create --account-name $dbacct --name $dbname -g $grp
+cosmosCS=$(az cosmosdb list-connection-strings -n $dbacct -g $grp --query connectionStrings[0].connectionString -o tsv)
+az keyvault secret set --vault-name $vault --name "cosmosCS" --value $cosmosCS
+
+az cosmosdb sql container create --account-name $dbacct --database-name $dbname --name orders --partition-key-path "/customerId"  --throughput 1000 -g $grp
+az cosmosdb sql container create --account-name $dbacct --database-name $dbname --name payments --partition-key-path "/customerId"  --throughput 1000 -g $grp
+
+# Service Bus
+az servicebus namespace create -g $grp -n $sbns -l $loc --sku Basic

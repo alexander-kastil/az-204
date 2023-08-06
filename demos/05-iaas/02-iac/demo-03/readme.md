@@ -3,10 +3,13 @@
 ## Demos
 
 - Export Bicep from existing Ressource
+- Compare Azure CLI and Bicep Deployment of Food App
 
 ## Readings
 
 [Bicep Documentation](https://docs.microsoft.com/en-us/azure/azure-resource-manager/bicep/)
+
+[Define resources with Bicep, ARM templates, and Terraform AzAPI provider](https://learn.microsoft.com/en-us/azure/templates/)
 
 [List of all Bicep modules](https://learn.microsoft.com/en-us/azure/templates/microsoft.web/sites?pivots=deployment-language-bicep)
 
