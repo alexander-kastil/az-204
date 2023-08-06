@@ -4,6 +4,9 @@ param rgLocation string = resourceGroup().location
 @description('Name of the Key Vault')
 param kvName string
 
+@description('ObjectId of the user with kv access')
+param kvUser string 
+
 @description('Name of the connected Container Registry')
 param acrName string
 
@@ -31,22 +34,24 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' ={
   name: kvName
   location: rgLocation
   properties: {
+    enabledForDeployment: true
+    enabledForTemplateDeployment: true
     sku: {
       family: 'A'
       name: 'standard'
     }
     tenantId: subscription().tenantId
     accessPolicies: [
-      {
+      {      
         tenantId: subscription().tenantId
-        objectId: subscription().subscriptionId
+        objectId: kvUser
         permissions: {
           keys: ['all']
           secrets: ['all']
           certificates: ['all']
         }
       }
-    ]
+    ]    
   }
 }
 
@@ -58,6 +63,14 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-12-01-pr
   }
   properties: {
     adminUserEnabled: true
+  }
+}
+
+resource secret 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+  parent: keyVault
+  name: 'acrPassword'
+  properties: {
+    value: containerRegistry.listCredentials().passwords[0].value
   }
 }
 
