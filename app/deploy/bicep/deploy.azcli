@@ -1,6 +1,10 @@
 env=dev
+user='alexander.pajer@integrations.at'
 loc=westeurope
 grp=foodapp-$env
+mi=foodappmi-$env
+vault=foodvault-$env
+cfg=foodcfg-$env
 ws=foodlogs-$env
 acr=foodcontainers$env
 ace=foodace-$env
@@ -8,14 +12,15 @@ ai=foodai-$env
 acaenv=food-$env
 dbacct=food-$env
 dbname=fooddb-$env
-vault=foodvault-$env
 sbns=foodsbns$env
 
 az group create -n $grp -l $loc
 
-kvUser=$(az ad user list --query "[?contains(userPrincipalName, 'alexander.pajer@integrations.at')].id" -o tsv)
+kvUser=$(az ad user list --query "[?contains(userPrincipalName, '$user')].id" -o tsv)
 
 az deployment group create -f base.bicep -g $grp \
+    -p miName=$mi \
+    -p cfgName=$cfg \
     -p kvName=$vault \
     -p kvUser=$kvUser \
     -p acaEnv=$ace \
@@ -26,18 +31,3 @@ az deployment group create -f base.bicep -g $grp \
     -p sbNamespace=$sbns \
     -p dbAccount=$dbacct \
     -p dbName=$dbname
-
-# Log Analytics & Application Insights
-wsId=$(az monitor log-analytics workspace create -g $grp --workspace-name $ws --query  id -o tsv)
-wsKey=$(az monitor log-analytics workspace get-shared-keys -g $grp --workspace-name $ws --query primarySharedKey -o tsv)
-az keyvault secret set --vault-name $vault --name "logsWSid" --value $wsId
-az keyvault secret set --vault-name $vault --name "logsWSkey" --value $wsKey
-
-aiKey=$(az monitor app-insights component show --app $ai -g $grp --query instrumentationKey -o tsv)                                    
-aiConString=$(az monitor app-insights component show --app $ai -g $grp --query connectionString -o tsv) 
-az keyvault secret set --vault-name $vault --name "aiKey" --value $aiKey
-az keyvault secret set --vault-name $vault --name "aiConStr" --value $aiConString
-
-# Cosmos DB
-cosmosCS=$(az cosmosdb list-connection-strings -n $dbacct -g $grp --query connectionStrings[0].connectionString -o tsv)
-az keyvault secret set --vault-name $vault --name "cosmosCS" --value $cosmosCS

@@ -1,11 +1,17 @@
 @description('Name of the RG')
 param rgLocation string = resourceGroup().location
 
+@description('Name of the managed identity')
+param miName string
+
 @description('Name of the Key Vault')
 param kvName string
 
+@description('Name of the App Config')
+param cfgName string
+
 @description('ObjectId of the user with kv access')
-param kvUser string 
+param kvUser string
 
 @description('Name of the connected Container Registry')
 param acrName string
@@ -29,8 +35,29 @@ param dbAccount string
 param dbName string
 
 // ressources
+resource mi 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
+  name: miName
+  location: rgLocation
+}
 
-resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' ={
+resource appCfg 'Microsoft.AppConfiguration/configurationStores@2023-03-01' = {
+  name: cfgName
+  location: rgLocation
+  sku: {
+    name: 'Free'
+  }
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${mi.id}':{}
+    }
+  }
+  properties: {
+    publicNetworkAccess: 'Enabled'
+  }
+}
+
+resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' = {
   name: kvName
   location: rgLocation
   properties: {
@@ -42,16 +69,23 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-10-01' ={
     }
     tenantId: subscription().tenantId
     accessPolicies: [
-      {      
+      {
         tenantId: subscription().tenantId
         objectId: kvUser
         permissions: {
-          keys: ['all']
-          secrets: ['all']
-          certificates: ['all']
+          keys: [ 'all' ]
+          secrets: [ 'all' ]
+          certificates: [ 'all' ]
         }
       }
-    ]    
+      {
+        tenantId: subscription().tenantId
+        objectId: mi.properties.principalId
+        permissions: {
+          secrets: [ 'LIST', 'GET' ]
+        }
+      }
+    ]
   }
 }
 
@@ -66,7 +100,7 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-12-01-pr
   }
 }
 
-resource secret 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+resource acrPassword 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
   parent: keyVault
   name: 'acrPassword'
   properties: {
@@ -81,17 +115,49 @@ resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
     sku: {
       name: 'PerGB2018'
     }
-  }  
+  }
+}
+
+resource wsId 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+  parent: keyVault
+  name: 'wsId'
+  properties: {
+    value: logAnalytics.id
+  }
+}
+
+resource wsKey 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+  parent: keyVault
+  name: 'wsKey'
+  properties: {
+    value: logAnalytics.listKeys().primarySharedKey
+  }
 }
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: aiName
   location: rgLocation
   kind: 'web'
-  properties:{
+  properties: {
     Application_Type: 'web'
     WorkspaceResourceId: logAnalytics.id
-  }    
+  }
+}
+
+resource aiKey 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+  parent: keyVault
+  name: 'aiKey'
+  properties: {
+    value: appInsights.properties.InstrumentationKey
+  }
+}
+
+resource aiConStr 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+  parent: keyVault
+  name: 'aiConStr'
+  properties: {
+    value: appInsights.properties.ConnectionString
+  }
 }
 
 resource acaEnvironment 'Microsoft.App/managedEnvironments@2022-06-01-preview' = {
@@ -118,14 +184,14 @@ resource serviceBus 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' = {
     capacity: 1
     name: 'Standard'
     tier: 'Standard'
-  }  
+  }
 }
 
 resource cosmosDBAcct 'Microsoft.DocumentDB/databaseAccounts@2023-04-15' = {
   name: dbAccount
   location: rgLocation
   kind: 'GlobalDocumentDB'
-  properties:{
+  properties: {
     enableFreeTier: true
     databaseAccountOfferType: 'Standard'
     locations: [
@@ -138,14 +204,22 @@ resource cosmosDBAcct 'Microsoft.DocumentDB/databaseAccounts@2023-04-15' = {
   }
 }
 
+resource cosmosCS 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
+  parent: keyVault
+  name: 'cosmosCS'
+  properties: {
+    value: cosmosDBAcct.listConnectionStrings().connectionStrings[0].connectionString
+  }
+}
+
 resource cosmosDB 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2023-04-15' = {
-  name: dbName  
+  name: dbName
   location: rgLocation
   parent: cosmosDBAcct
   properties: {
     resource: {
-      id: dbName  
-    }   
+      id: dbName
+    }
   }
 }
 

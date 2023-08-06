@@ -1,6 +1,9 @@
 env=dev
 loc=westeurope
 grp=foodapp-$env
+mi=foodappmi-$env
+vault=foodvault-$env
+cfg=foodcfg-$env
 ws=foodlogs-$env
 acr=foodcontainers$env
 ace=foodace-$env
@@ -8,13 +11,16 @@ ai=foodai-$env
 acaenv=food-$env
 dbacct=food-$env
 dbname=fooddb-$env
-vault=foodvault-$env
 sbns=foodsbns$env
 
 az group create -n $grp -l $loc
 
 # Key Vault
 az keyvault create -l $loc -n $vault -g $grp --sku Standard
+
+# Managed Identity
+miId=$(az identity create -g $grp -n $mi --query principalId -o tsv)
+az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
 
 # ACR
 az acr create -g $grp -n $acr --sku Basic
