@@ -7,8 +7,10 @@ imgShopUI=food-shop-ui
 imgOrders=food-orders-api
 imgPicOptimizer=food-pic-optimizer-api
 imgPayments=food-payments-api
-imgDaemon=mail-daemon-api
+imgDaemon=graph-mail-daemon-api
 imgInvoices=food-invoices
+imgOrdersDashboard=food-orders-dashboard
+imgOrdersDashboardFunc=food-orders-dashboard-func
 
 az group create -n $grp -l $loc
 az acr create -g $grp -n $acr --sku Basic
@@ -41,4 +43,12 @@ cd ..
 
 cd $imgInvoices
 az acr build --image $imgInvoices --registry $acr --file Dockerfile .
+cd ..
+
+cd $imgOrdersDashboard
+az acr build --image $imgOrdersDashboard --registry $acr --file Dockerfile .
+cd ..
+
+cd $imgOrdersDashboardFunc
+az acr build --image $imgOrdersDashboardFunc --registry $acr --file Dockerfile .
 cd ..

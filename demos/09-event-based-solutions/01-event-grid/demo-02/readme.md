@@ -1,6 +1,8 @@
 # Real-time connected Angular Microfrontend using Azure Event Grid and SignalR
 
-Food orders kitchen Dashboard `food-orders-ui` imlplemented as Angular Microfronend using `@ngrx/component-store`
+[Food orders dashboard](/app/food-orders-dashboard/) `food-orders-ui` imlplemented as Angular Microfronend using `@ngrx/component-store`
+
+[Food orders dashboard function](/app/food-orders-dashboard-func/) that acts as an endpoint for the event grid topic webhook subscription and communicates with the SignalR service that provides a real time connection to the orders dashboard
 
 ![architecture](_images/architecture.png)
 
