@@ -46,12 +46,8 @@ az keyvault secret set --vault-name $vault --name "logsWSkey" --value $storageCo
 
 # Log Analytics & Application Insights
 wsId=$(az monitor log-analytics workspace create -g $grp --workspace-name $ws --query  id -o tsv)
-wsKey=$(az monitor log-analytics workspace get-shared-keys -g $grp --workspace-name $ws --query primarySharedKey -o tsv)
-az keyvault secret set --vault-name $vault --name "logsWSid" --value $wsId
-az keyvault secret set --vault-name $vault --name "logsWSkey" --value $wsKey
 
 az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --workspace $wsId
-
 aiKey=$(az monitor app-insights component show --app $ai -g $grp --query instrumentationKey -o tsv)                                    
 aiConString=$(az monitor app-insights component show --app $ai -g $grp --query connectionString -o tsv) 
 az keyvault secret set --vault-name $vault --name "aiKey" --value $aiKey
