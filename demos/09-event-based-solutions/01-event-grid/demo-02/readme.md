@@ -1,4 +1,4 @@
-# Real-time connected Angular Microfrontend that is a part of an Event Driven Architecture (EDA)
+# Real-time connected Angular Microfrontend using Azure Event Grid and SignalR
 
 Food orders kitchen Dashboard `food-orders-ui` imlplemented as Angular Microfronend using `@ngrx/component-store`
 
