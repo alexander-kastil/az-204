@@ -1,10 +1,10 @@
 env=dev
-grp=az204-m09-realtime-foodorders-$env
 loc=westeurope
+grp=foodapp-$env
 storageAcct=foodorders
-app=foodorders-$env
 signalR=foodhub-$env
 topic=foodevents-$env
+funcApp=foodorders-$env
 dashboardUrl=http://localhost:4200
 
 az group create -n $grp -l $loc
@@ -14,26 +14,25 @@ az signalr create  -g $grp -n $signalR --sku Free_F1 --service-mode Serverless -
 conStrSignalR=$(az signalr key list --name $signalR -g $grp --query primaryConnectionString -o tsv)
 
 # eventgrid
-topicid=$(az eventgrid topic create -g $grp -n $topic -l $loc --input-schema cloudeventschemav1_0 --query id -o tsv)
+az eventgrid topic create -g $grp -n $topic -l $loc --input-schema cloudeventschemav1_0
+topicid=$(az eventgrid topic list -g $grp --odata-query "Contains(name, '$topic')" --query [0].id -o tsv)
 
 # function app
-az storageAcct account  create -n $storageAcct -g $grp 
-funcId=$(az functionapp create -n $app -g $grp -s $storageAcct --consumption-plan-location $loc --runtime dotnet --functions-version 4 --app-insights $app --query id -o tsv)
-az functionapp config appsettings set -n $app -g $grp --settings "AzureSignalRConnectionString=$conStrSignalR"
-az functionapp cors add -g $grp -n $app --allowed-origins $dashboardUrl
+az storage account  create -n $storageAcct -g $grp 
+funcId=$(az functionapp create -n $funcApp -g $grp -s $storageAcct --consumption-plan-location $loc --runtime dotnet --functions-version 4 --query id -o tsv)
+az functionapp config appsettings set -n $funcApp -g $grp --settings "AzureSignalRConnectionString=$conStrSignalR"
+az functionapp cors add -g $grp -n $funcApp --allowed-origins $dashboardUrl
 az resource update --ids $funcId/config/web --set properties.cors.supportCredentials="true"
-webhookEP=$(az functionapp show -n $app -g $grp --query "hostNames" --output tsv)
+webhookEP=$(az functionapp show -n $funcApp -g $grp --query "hostNames" --output tsv)
 
-# Deploy food-orders-func to az function app
-cd food-orders-func
-func azure functionapp publish $app --csharp
-cd ..
+# Deploy food-orders-dashboard-func from /app/food-orders-dashboard-func to azure
+# Execute: ./publish-orders-func.sh
 
 # subscribe event grid topc
-az eventgrid event-subscription create --name $app --source-resource-id $topicid --endpoint https://$webhookEP/api/orderSubscription --endpoint-type webhook --event-delivery-schema cloudeventschemav1_0
+az eventgrid event-subscription create --name $funcApp --source-resource-id $topicid --endpoint https://$webhookEP/api/orderSubscription --endpoint-type webhook --event-delivery-schema cloudeventschemav1_0
 
 # status
-fxEndpoint=$(az functionapp list --query "[?name=='$app'].{defaultHostName:defaultHostName}[0].defaultHostName" -o tsv)
+fxEndpoint=$(az functionapp list --query "[?name=='$funcApp'].{defaultHostName:defaultHostName}[0].defaultHostName" -o tsv)
 
 topicurl=$(az eventgrid topic show -n $topic -g $grp --query "endpoint" --output tsv)
 topickey=$(az eventgrid topic key list -n $topic -g $grp --query "key1" --output tsv)

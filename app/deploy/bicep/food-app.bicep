@@ -127,7 +127,7 @@ resource storageKey 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   }
 }
 
-resource storageCS 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+resource storageConStr 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
   name: 'storageConStr'
   properties: {
