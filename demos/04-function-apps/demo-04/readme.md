@@ -1,6 +1,6 @@
 # Node based Functions
 
-[/app/food-utils/](/app/food-utils/) is a utility service that provides the following functions:
+[food-utils-api](food-utils-api/) is a utility service that provides the following functions:
 
 - Currency Converter
 - Simple Interest Calculator

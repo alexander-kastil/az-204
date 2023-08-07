@@ -8,7 +8,8 @@ export class Order {
     this.status = 'cart';
   }
 
-  id: string = '';
+  id = '';
+  type = 'order'
   customer: Customer;
   payment: Payment;
   items: CartItem[];

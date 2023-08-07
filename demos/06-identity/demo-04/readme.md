@@ -4,8 +4,8 @@
 
 This demo uses:
 
-- [/app/food-catalog-api](/app/food-catalog-api) - .NET Api  
-- [/app/food-shop-ui](/app/food-shop-ui) - Angular UI
+- [food-catalog-api](/app/food-catalog-api) - .NET Api  
+- [food-shop-ui](/app/food-shop-ui) - Angular UI
 
 - Create App Registrations
 - Configure Angular MSAL Auth

@@ -9,7 +9,7 @@
 ## Demos
 
 - Microsoft Graph Essentials
-- MSAL Client Credential Flow using [/app/mail-daemon-api](/app/mail-daemon-api)
+- MSAL Client Credential Flow using [Graph mail daemon api](/app/graph-mail-daemon-api)
 
     >Note: App Registration & Required permissions for mail daemon service can be created by executing `create-confidential-appreg.azcli`:
 

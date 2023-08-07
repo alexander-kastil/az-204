@@ -14,7 +14,7 @@ namespace Integrations
     public class OptimizePicture
     {
         [FunctionName("OptimizePicture")]
-        public void Run([BlobTrigger("drop/{name}", Connection = "AzureWebJobsStorage")]Stream image, string name, ILogger log, [Blob("processed/{name}", FileAccess.Write)] Stream imageSmall)
+        public void Run([BlobTrigger("prictures-drop/{name}", Connection = "AzureWebJobsStorage")]Stream image, string name, ILogger log, [Blob("pictures/{name}", FileAccess.Write)] Stream imageSmall)
         {
             IImageFormat format;
             using (Image<Rgba32> input = Image.Load<Rgba32>(image, out format))

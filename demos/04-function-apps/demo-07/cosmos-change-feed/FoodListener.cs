@@ -17,7 +17,7 @@ namespace Integrations
             CreateLeaseCollectionIfNotExists = true,
             LeaseCollectionName = "leases")]IReadOnlyList<Document> input, ILogger log)
         {
-            log.LogInformation("Documents modified " + input.Count);
+            log.LogInformation("Received orders: " + input.Count);
 
             foreach (var document in input)
             {

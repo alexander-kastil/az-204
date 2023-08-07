@@ -10,7 +10,7 @@ namespace Integrations
         // Delay mock to simulate complex processing and allow scaling
         public static void CheckThrottle()
         {
-            var sleep = Int32.Parse(Environment.GetEnvironmentVariable("Sleep"));
+            var sleep = int.Parse(Environment.GetEnvironmentVariable("Sleep"));
             if (sleep > 0)
             {
                 System.Threading.Thread.Sleep(sleep);

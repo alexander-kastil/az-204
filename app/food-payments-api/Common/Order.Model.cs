@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FoodApp.Orders
+namespace FoodApp
 {
     public class Order
     {

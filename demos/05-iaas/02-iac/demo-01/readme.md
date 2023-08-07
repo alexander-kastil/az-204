@@ -1,5 +1,13 @@
 # Using ARM Templates
 
+[ARM Templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
+
+[Azure Quickstarter Templates](https://azure.microsoft.com/en-us/resources/templates/)
+
+[Github Quickstarter Templates](https://github.com/Azure/azure-quickstart-templates)
+
+[Deploy resources with ARM templates and Azure CLI](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-cli)
+
 [Use Azure Key Vault to pass secure parameter value during deployment](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/key-vault-parameter?tabs=azure-cli)
 
 ## Demo
