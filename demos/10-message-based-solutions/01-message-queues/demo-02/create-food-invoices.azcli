@@ -1,6 +1,7 @@
 env=dev
 loc=westeurope
-grp=az204-m10-keda-scaling-$env
+# grp=az204-m10-keda-scaling-$env
+grp=foodapp-$env
 acr=foodcontainers$env
 acaenv=foodace-$env
 storageAcct=foodstorage$env
@@ -15,52 +16,43 @@ az group create -n $grp -l $loc
 az containerapp env create -n $acaenv -g $grp --location $loc --no-wait
 
 # create storage queue
-az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
-storageKey=$(az storage account keys list -n $acct --query "[0].value")
-az storage container create --account-name $acct --account-key $storageKey --name $container
-az storage queue create -n $queue --account-key $key --account-name $acct
-storageConStr=$(az storage account show-connection-string -n $acct -g $grp \
+az storage account create -n $storageAcct -g $grp --kind StorageV2 --sku Standard_LRS
+key=$(az storage account keys list -n $storageAcct --query "[0].value")
+az storage container create --account-name $storageAcct --account-key $key --name $container
+az storage queue create -n $queue --account-key $key --account-name $storageAcct
+conStr=$(az storage account show-connection-string -n $storageAcct -g $grp \
   --query connectionString -o tsv)
 
 # put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
 messageOne=$(echo "Hello Queue Reader App" | base64)
 az storage message put --content $messageOne --queue-name $queue \
- --connection-string $storageConStr
+ --connection-string $conStr
 
-# create container registry 
-az acr create -g $grp -n $acr --sku Basic
-az acr login -n $acr
-az acr update -n $acr --admin-enabled true
-acrpwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv) 
-
-# create the function app container  & publish the image to azure container registry
-cd food-payments
+# create a local function app container 
+cd food-invoices
 docker build --rm -f Dockerfile -t $img .
-docker tag $img $acr.azurecr.io/$img
-docker push $acr.azurecr.io/$img
-cd ..
 
 # start container locally and show how it fetches the message
-docker run -d --rm -p 5052:80 -e "PaymentConnectionString="$storageConStr -e "Sleep=500" food-payments
+docker run -d --rm -p 5052:80 -e "InvoiceConnectionString=$conStr" -e "Sleep=500" food-invoices
 
 # Add another message to the queue and see the logs again
 messageTwo=$(echo "Another Hello to Queue Reader App" | base64) 
 az storage message put --content $messageTwo --queue-name $queue \
-  --connection-string $storageConStr
+  --connection-string $conStr
 
 ## Check if an invoice has been created in the blob container
-az storage blob list --container-name $container --output table storageA-account-name $acct --account-key $key
+az storage blob list --container-name $container --connection-string $conStr --output table 
 
-# Optional - if you want you could also test the container using Azure Container Instances
-az container create -g $grp -l $loc -n foodpayment$env --image arambazamba/food-payments --cpu 1 --memory 1 --dns-name-label foodpayment$env --environment-variables \
-  PaymentConnectionString=$storageConStr Sleep=500 --no-wait
+## Stop the local container
 
-az container delete -g $grp -n foodpayment$env --yes
+## Build the container using ACR & get the password for the ACR
+az acr build -r $acr -t $img .
+acrpwd=$(az acr credential show -n $acr --query "passwords[0].value" -o tsv)  
 
 # Add a third message to the queue 
 messageThree=$(echo "Third Hello to Queue Reader App" | base64)
 az storage message put --content $messageThree --queue-name $queue \
-  --connection-string $storageConStr      
+  --connection-string $conStr      
 
 # Create container app environment and deploy a container to it
 az containerapp create -n $app -g $grp --environment $acaenv \
@@ -68,20 +60,24 @@ az containerapp create -n $app -g $grp --environment $acaenv \
   --registry-username $acr \
   --registry-password $acrpwd \
   --image $acr.azurecr.io/$img \
-  --secrets "storageconstring=$storageConStr" \
-  --env-vars Sleep=500 PaymentConnectionString=secretref:storageconstring
+  --secrets "storagecon=$conStr" \
+  --env-vars Sleep=500 InvoiceConnectionString=secretref:storagecon
+
+# Check the queue for the third message. It should be gone
+# Run the order-creator to create a bunch of orders
+# Check the queue again. It should have a bunch of messages in it
+# Add a scale rule to the container app
 
 az containerapp update -n $app -g $grp \
-  --scale-rule-name queue-scale-rule \
+  --scale-rule-name queue-scaling \
   --scale-rule-type azure-queue \
   --scale-rule-metadata queueName=food-orders queueLength=10 \
-  --scale-rule-auth secretRef=storageconstring triggerParameter=PaymentConnectionString
+  --scale-rule-auth secretRef=storagecon triggerParameter=InvoiceConnectionString
 
-# Send a bunch of messages to the queue
 i=0
 while [ $i -ne 1000 ]
 do
     i=$(($i+1))
     msg=$(echo "Hello Queue Reader App $i" | base64)
-    az storage message put --content $msg --queue-name $queue --connection-string $storageConStr  
+    az storage message put --content $msg --queue-name $queue --connection-string $conStr  
 done

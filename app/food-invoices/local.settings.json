@@ -3,9 +3,9 @@
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "InvoiceConnectionString": "DefaultEndpointsProtocol=https;AccountName=foodpayment18854;AccountKey=Se7kbwJh1aA36+kHSyEBhws+23kk0X5OVbvN/+l11CBhnsb/PKJJtbkI9wwt7WxtEfxZHcKXa/MZ+ASt/6Z2UQ==;EndpointSuffix=core.windows.net",
-    "Sleep": 0,
+    "InvoiceConnectionString": "DefaultEndpointsProtocol=https;AccountName=foodstoragedev;AccountKey=VCiAO87DzI/Ky7owXumcwqtJZwfetvt1gY+tlSqs9+tLEKTK3vINHqVM4shx38y6xmf6W63fU7AA+AStHWiTQA==;EndpointSuffix=core.windows.net",
+    "Sleep": 10,
     "APPINSIGHTS_INSTRUMENTATIONKEY": "80fe34b9-dae6-4532-9d81-7ee056098c81",
-    "WEBSITE_SITE_NAME": "FoodPayment"
+    "WEBSITE_SITE_NAME": "food-invoices"
   }
 }
