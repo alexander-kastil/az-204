@@ -14,12 +14,15 @@ acaenv=food-$env
 dbacct=food-$env
 dbname=fooddb-$env
 sbns=foodsbns$env
+signalR=foodhub-$env
+topic=foodevents-$env
 
 az group create -n $grp -l $loc
 
 kvUser=$(az ad user list --query "[?contains(userPrincipalName, '$user')].id" -o tsv)
 
-az deployment group create -f base.bicep -g $grp \
+az deployment group create -f food-app-base.bicep -g $grp \
+    -p rgLocation=$loc \
     -p miName=$mi \
     -p cfgName=$cfg \
     -p kvName=$vault \
@@ -27,9 +30,13 @@ az deployment group create -f base.bicep -g $grp \
     -p acaEnv=$ace \
     -p acrName=$acr \
     -p storageName=$storageAcct \
-    -p rgLocation=$loc \
     -p logAnalyticsName=$logA \
     -p aiName=$ai \
     -p sbNamespace=$sbns \
     -p dbAccount=$dbacct \
     -p dbName=$dbname
+
+az deployment group create -f food-app-realtime.bicep -g $grp \
+    -p rgLocation=$loc \
+    -p signalRName=$signalR \
+    -p egTopic=$topic

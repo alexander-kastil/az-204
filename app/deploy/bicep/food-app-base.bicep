@@ -307,3 +307,4 @@ resource paymentsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/c
     }
   }
 }
+

@@ -1,30 +1,27 @@
-env=$RANDOM
+env=dev
 grp=az204-m09-realtime-foodorders-$env
 loc=westeurope
-storage=foodorders
+storageAcct=foodorders
 app=foodorders-$env
-signalrhub=foodhub-$env
+signalR=foodhub-$env
 topic=foodevents-$env
-ngurl=http://localhost:4200
+dashboardUrl=http://localhost:4200
 
 az group create -n $grp -l $loc
 
 # signalr
-az signalr create  -g $grp -n $signalrhub --sku Free_F1 --service-mode Serverless -l $loc 
-conStrSignalR=$(az signalr key list --name $signalrhub -g $grp --query primaryConnectionString -o tsv)
+az signalr create  -g $grp -n $signalR --sku Free_F1 --service-mode Serverless -l $loc 
+conStrSignalR=$(az signalr key list --name $signalR -g $grp --query primaryConnectionString -o tsv)
 
 # eventgrid
 topicid=$(az eventgrid topic create -g $grp -n $topic -l $loc --input-schema cloudeventschemav1_0 --query id -o tsv)
 
-# app insights
-az monitor app-insights component create --app $app --location $loc --kind web -g $grp --application-type web --retention-time 30
-
 # function app
-az storage account  create -n $storage -g $grp 
-fxid=$(az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4 --app-insights $app --query id -o tsv)
+az storageAcct account  create -n $storageAcct -g $grp 
+funcId=$(az functionapp create -n $app -g $grp -s $storageAcct --consumption-plan-location $loc --runtime dotnet --functions-version 4 --app-insights $app --query id -o tsv)
 az functionapp config appsettings set -n $app -g $grp --settings "AzureSignalRConnectionString=$conStrSignalR"
-az functionapp cors add -g $grp -n $app --allowed-origins $ngurl
-az resource update --ids $fxid/config/web --set properties.cors.supportCredentials="true"
+az functionapp cors add -g $grp -n $app --allowed-origins $dashboardUrl
+az resource update --ids $funcId/config/web --set properties.cors.supportCredentials="true"
 webhookEP=$(az functionapp show -n $app -g $grp --query "hostNames" --output tsv)
 
 # Deploy food-orders-func to az function app
