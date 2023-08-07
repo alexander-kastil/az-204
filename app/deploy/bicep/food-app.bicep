@@ -37,6 +37,12 @@ param dbAccount string
 @description('Name of the Cosmos DB')
 param dbName string
 
+@description('Name of the signalR')
+param signalRName string
+
+@description('Name of the EventGrid Topic')
+param egTopic string
+
 // ressources
 resource mi 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
   name: miName
@@ -170,9 +176,9 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-12-01-pr
   }
 }
 
-resource acrPassword 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+resource acrPwd 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
-  name: 'acrPassword'
+  name: 'acrPwd'
   properties: {
     value: containerRegistry.listCredentials().passwords[0].value
   }
@@ -198,17 +204,17 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 
-resource aiKey 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+resource appInsightKey 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
-  name: 'aiKey'
+  name: 'appInsightKey'
   properties: {
     value: appInsights.properties.InstrumentationKey
   }
 }
 
-resource aiConStr 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+resource appInsightConStr 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   parent: keyVault
-  name: 'aiConStr'
+  name: 'appInsightConStr'
   properties: {
     value: appInsights.properties.ConnectionString
   }
@@ -308,3 +314,35 @@ resource paymentsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/c
   }
 }
 
+resource signalR 'Microsoft.SignalRService/signalR@2023-02-01' ={
+  name: signalRName
+  location: rgLocation
+  sku: {
+    capacity: 1
+    name: 'Free_F1'
+  }
+  properties: {
+    features: [
+      {
+        flag: 'ServiceMode'
+        value: 'Serverless'
+      }
+    ]
+  }
+}
+
+resource signalRConStr 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  parent: keyVault
+  name: 'signalRConStr'
+  properties: {
+    value: signalR.listKeys().primaryConnectionString
+  }
+}
+
+resource topic 'Microsoft.EventGrid/topics@2023-06-01-preview' = {
+  name: egTopic
+  location: rgLocation
+  sku: {
+    name: 'Basic'
+  }
+}
