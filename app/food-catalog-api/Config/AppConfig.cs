@@ -11,7 +11,7 @@ namespace FoodApp
         public string Title { get; set; }
         public bool AuthEnabled { get; set; } 
         public bool UseSQLite {get;set;}
-        public bool UseApplicationInsights {get;set;}
+        public bool UseAppConfig {get;set;}
         public bool UseManagedIdentity {get;set;}
         public ConnectionStrings ConnectionStrings { get; set; }       
     }

@@ -1,7 +1,6 @@
 using System;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using FoodApp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -12,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
-
+using FoodApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,12 +20,9 @@ IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(Configuration);
 var cfg = Configuration.Get<AppConfig>();
 
-// App insights using Feature Flag
-if (cfg.FoodCatalogApi.UseApplicationInsights)
-{
-    builder.Services.AddApplicationInsightsTelemetry();
-    builder.Services.AddSingleton<AILogger>();
-}
+// Application insights
+builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddSingleton<AILogger>();
 
 // Connection String
 string conString = cfg.FoodCatalogApi.UseSQLite? cfg.FoodCatalogApi.ConnectionStrings.SQLiteDBConnection : cfg.FoodCatalogApi.ConnectionStrings.SQLServerConnection;
