@@ -1,6 +1,5 @@
 env=dev
 loc=westeurope
-# grp=az204-m10-keda-scaling-$env
 grp=foodapp-$env
 acr=foodcontainers$env
 acaenv=foodace-$env

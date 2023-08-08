@@ -34,9 +34,6 @@ az deployment group create -f food-app-base.bicep -g $grp \
     -p aiName=$ai \
     -p sbNamespace=$sbns \
     -p dbAccount=$dbacct \
-    -p dbName=$dbname
-
-az deployment group create -f food-app-realtime.bicep -g $grp \
-    -p rgLocation=$loc \
+    -p dbName=$dbname \
     -p signalRName=$signalR \
     -p egTopic=$topic
