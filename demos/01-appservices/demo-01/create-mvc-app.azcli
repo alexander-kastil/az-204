@@ -1,0 +1,14 @@
+env=dev
+grp=az204-m01-appservices-$env
+loc=westeurope
+plan=appservices-$env
+
+az group create -n $grp -l $loc
+az appservice plan create -n $plan -g $grp --sku S1
+
+# create the mvc-app using dotnet cli:
+# dotnet new mvc -n mvc-app -f net6.0
+az webapp create -n mvc-app-$env -g $grp --plan $plan -r "dotnet:6"
+
+# used for github actions
+az webapp create -n food-catalog-api-github-actions -g $grp --plan $plan -r "dotnet:6"
