@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Newtonsoft.Json;
 
-namespace FoodApi
+namespace FoodApp
 {
     public class CloudEvent<T> where T : class
     {
         public CloudEvent(T item){
             specversion = "1.0";
             type = "FoodApp." + this.GetType().ToString();
-            source = "FoodApi";
+            source = "FoodApp";
             time = DateTime.UtcNow;
             dataschema = "#";
             Data = item;

@@ -1,7 +1,6 @@
 using System;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using FoodApi;
 using FoodApp;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -20,24 +19,23 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(Configuration);
-var cfg = Configuration.Get<FoodConfig>();
+var cfg = Configuration.Get<AppConfig>();
 
 // App insights using Feature Flag
-if (cfg.App.UseApplicationInsights)
+if (cfg.FoodCatalogApi.UseApplicationInsights)
 {
     builder.Services.AddApplicationInsightsTelemetry();
     builder.Services.AddSingleton<AILogger>();
 }
 
-
 // Connection String
-string conString = cfg.App.UseSQLite? cfg.App.ConnectionStrings.SQLiteDBConnection : cfg.App.ConnectionStrings.SQLServerConnection;
+string conString = cfg.FoodCatalogApi.UseSQLite? cfg.FoodCatalogApi.ConnectionStrings.SQLiteDBConnection : cfg.FoodCatalogApi.ConnectionStrings.SQLServerConnection;
 
-if(cfg.App.UseManagedIdentity){
+if(cfg.FoodCatalogApi.UseManagedIdentity){
     Console.WriteLine($"Using KeyVault: {cfg.Azure.KeyVault}");            
     var client = new SecretClient(new Uri(cfg.Azure.KeyVault), new DefaultAzureCredential());
    
-    if(cfg.App.UseSQLite){
+    if(cfg.FoodCatalogApi.UseSQLite){
         conString = client.GetSecret("conSQLite").Value?.Value;
     }
     else{
@@ -46,7 +44,7 @@ if(cfg.App.UseManagedIdentity){
 }
 
 //Database
-if (cfg.App.UseSQLite)
+if (cfg.FoodCatalogApi.UseSQLite)
 {   
     builder.Services.AddDbContext<FoodDBContext>(options => options.UseSqlite(conString));
 }
@@ -57,7 +55,7 @@ else
 
 //Microsoft Identity auth
 var az = Configuration.GetSection("Azure");
-if (cfg.App.AuthEnabled && az != null)
+if (cfg.FoodCatalogApi.AuthEnabled && az != null)
 {
     builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(az)
@@ -83,7 +81,7 @@ else
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Food-Catalog-Api", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = cfg.FoodCatalogApi.Title, Version = "v1" });
 });
 
 // Cors
@@ -108,7 +106,7 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food-Api");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", cfg.FoodCatalogApi.Title);
     c.RoutePrefix = string.Empty;
 });
 
@@ -117,9 +115,9 @@ app.UseCors("nocors");
 app.UseHttpsRedirection();
 
 //Set Authorize Attribute on Controllers using a policy
-if (cfg.App.AuthEnabled)
+if (cfg.FoodCatalogApi.AuthEnabled)
 {
-    Console.WriteLine($"Using auth with App Reg: {cfg.Azure.ClientId}");
+    Console.WriteLine($"Using auth with App Reg: {cfg.Azure.AppReg.ClientId}");
     app.UseAuthentication();
     app.UseAuthorization();
 }

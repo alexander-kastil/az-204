@@ -1,30 +1,33 @@
 namespace FoodApp
 {
-    public class FoodConfig    {
-        public AppConfig App { get; set; } 
+    public class AppConfig    {
+        public FoodCatalogApiConfig FoodCatalogApi { get; set; } 
         public Azure Azure { get; set; } 
         public FeatureManagement FeatureManagement { get; set; } 
         public Logging Logging { get; set; } 
     }
 
-     public class AppConfig    {
+     public class FoodCatalogApiConfig    {
+        public string Title { get; set; }
         public bool AuthEnabled { get; set; } 
         public bool UseSQLite {get;set;}
         public bool UseApplicationInsights {get;set;}
         public bool UseManagedIdentity {get;set;}
-        public ConnectionStrings ConnectionStrings { get; set; } 
+        public ConnectionStrings ConnectionStrings { get; set; }       
     }
-   
-    public class Azure    {
+
+    public class AppRegistration{
         public string TenantId { get; set; } 
         public string ClientId { get; set; } 
         public string Instance {get;set;}
         public string cacheLocation { get; set; } 
-        public string ApplicationInsights { get; set; } 
-        public string AppConfigurationCS { get; set; } 
+    }
+   
+    public class Azure    {
         public string KeyVault { get; set; } 
         public string EventGridKey { get; set; }
         public string EventGridEP { get; set; }
+        public AppRegistration AppReg { get; set; }
     }    
 
     public class ConnectionStrings    {

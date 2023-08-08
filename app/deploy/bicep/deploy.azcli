@@ -21,7 +21,7 @@ az group create -n $grp -l $loc
 
 kvUser=$(az ad user list --query "[?contains(userPrincipalName, '$user')].id" -o tsv)
 
-az deployment group create -f food-app-base.bicep -g $grp \
+az deployment group create -f food-app.bicep -g $grp \
     -p rgLocation=$loc \
     -p miName=$mi \
     -p cfgName=$cfg \
