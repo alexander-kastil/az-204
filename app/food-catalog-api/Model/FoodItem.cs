@@ -1,4 +1,4 @@
-namespace FoodApi
+namespace FoodApp
 {
     public class FoodItem
     {

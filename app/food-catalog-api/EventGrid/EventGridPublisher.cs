@@ -10,15 +10,15 @@ using Microsoft.Azure.EventGrid.Models;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace FoodApi
+namespace FoodApp
 {
     public class EventGridPublisher
     {
-        FoodConfig cfg;
+        AppConfig cfg;
 
         public EventGridPublisher(IConfiguration config)
         {
-            cfg = config.Get<FoodConfig>();
+            cfg = config.Get<AppConfig>();
         }
 
         public async void PublishEvent(FoodItem item, FoodEventType type)

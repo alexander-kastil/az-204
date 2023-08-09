@@ -11,7 +11,7 @@ Use [.NET Core CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/).
 Scaffold and run App:
 
 ```bash
-dotnet new webapi -n cli-api -f net6.0
+dotnet new mvc -n mvc-app -f net6.0
 dotnet run
 ```
 
@@ -20,6 +20,8 @@ Publish app
 ```bash
 dotnet publish
 ```
+
+Execute `create-mvc-app.azcli` to create App Service Plan & App Service
 
 Deploy App using [Azure App Service](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
 
@@ -62,33 +64,19 @@ dotnet publish /p:Configuration=Release /p:PublishProfile=Properties\PublishProf
 
 > Note: Make sure you use the published path
 
-## Deploy using az webapp up
+## Deploy food-catalog-api using az webapp up
 
-Create an app service plan and a web app:
-
-```bash
-rnd=$RANDOM
-grp=az204-m01-appservices-$rnd
-loc=westeurope
-appPlan=appservices-$rnd
-app=blazorapp-$rnd
-az group create -n $grp -l $loc
-az appservice plan create -n $appPlan -g $grp --sku Free
-az webapp create -n $app -g $grp --plan $appPlan --runtime "DOTNET|5.0"
-```
-
-`az webapp up` is a shortcut to, build, publishes and deploys the web app. Navigate to `./blazor-wasm-app/` and execute:
-
+[food-catalog-api](/app/food-catalog-api/) is a .NET Core Api. Deploy it using [az webapp up](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az_webapp_up)
 
 ```bash
-rnd=$RANDOM
-grp=az204-m01-appservices-$rnd
+env=dev
 loc=westeurope
-appPlan=appservices-$rnd
-app=blazorapp-$rnd
+grp=foodapp-$env
+plan=foodplan-$env
+app=food-catalog-api-appservice-$env
 
 az group create -n $grp -l $loc
-az webapp up -n $app -g $grp -p $appPlan -l $loc --sku Free -r "DOTNET|5.0"
+az webapp up -n $app -g $grp -p $plan --sku F1 -l $loc --runtime "dotnet:6"
 ```
 
 ![az-webapp-up](_images/az-webapp-up.png)
@@ -102,7 +90,7 @@ Demo Steps:
 - Creat App Service Plan & Deploy Api using GitHub Actions
 - Swap Slots
 
-> Note: FoodApp is a seperate Git Repo: [https://github.com/ARambazamba/FoodApp](https://github.com/ARambazamba/FoodApp)
+> Note: [https://github.com/arambazamba/food-app](https://github.com/arambazamba/food-app)
 
 Deploy Api using [GitHub Actions](https://github.com/Azure/actions) and fix the path in the [DOTNET CLI](https://docs.microsoft.com/en-us/dotnet/core/tools/) tasks in order to avoid path issues becaus of monorepo-pattern.
 
@@ -118,7 +106,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@master
@@ -126,19 +114,18 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: "5.0.x"
+          dotnet-version: "6.0.x"
 
       - name: Build with dotnet
-        run: dotnet build ${{ github.workspace }}/FoodApi/FoodApi.csproj --configuration Release
+        run: dotnet build ${{ github.workspace }}/apps/catalog-api/api/catalog-api.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ${{ github.workspace }}/FoodApi/FoodApi.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
+        run: dotnet publish ${{ github.workspace }}/apps/catalog-api/api/catalog-api.csproj -c Release -o ${{env.DOTNET_ROOT}}/api
+                        
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "foodapi-007"
-          slot-name: "production"
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_dfa93fdd00d148a19ae19d4b90d30039 }}
-          package: ${{env.DOTNET_ROOT}}/myapp
+          app-name: ${{ env.Appservice }}
+          publish-profile: ${{ secrets.CATALOG_API_PROFILE }}
+          package: ${{env.DOTNET_ROOT}}/api
 ```

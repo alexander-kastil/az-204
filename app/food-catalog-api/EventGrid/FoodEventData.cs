@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace FoodApi
+namespace FoodApp
 {
     class FoodEventData {
         [JsonProperty (PropertyName = "id")]

@@ -31,6 +31,9 @@ param sbNamespace string
 @description('Name of the Storage Account')
 param storageName string
 
+@description('Containers to create in the Storage Account')
+param storageContainers array = ['invoices', 'pictures', 'pictures_drop']
+
 @description('Name of the Cosmos DB Account')
 param dbAccount string
 
@@ -140,20 +143,10 @@ resource storage_blobs 'Microsoft.Storage/storageAccounts/blobServices@2023-01-0
   parent: storageAcct
 }
 
-resource invoicesContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
-  name: 'invoices'
-  parent: storage_blobs
-}
-
-resource picturesContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
-  name: 'pictures'
-  parent: storage_blobs
-}
-
-resource dropContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
-  name: 'pictures-drop'
-  parent: storage_blobs
-}
+resource containers 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = [for (container, i) in storageContainers: {
+  name: container
+  parent: storageAcct
+}]
 
 resource storage_queues 'Microsoft.Storage/storageAccounts/queueServices@2021-09-01' = {
   name: 'default'

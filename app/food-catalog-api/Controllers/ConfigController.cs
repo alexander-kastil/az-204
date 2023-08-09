@@ -2,12 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FoodApp;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
-namespace FoodApi
+namespace FoodApp
 {
     [Route("[controller]")]
     [ApiController]
@@ -30,7 +29,7 @@ namespace FoodApi
            var useSQLite = cfg.GetValue<string>("AppSettings:UseSQLite");
            
            //get string typed config
-           var config = cfg.Get<FoodConfig>();
+           var config = cfg.Get<AppConfig>();
            return Ok(config);  
         }
 
