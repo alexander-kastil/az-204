@@ -1,5 +1,0 @@
-grp=az204-m04-binding-19555
-file=ressource-export.json
-
-az group export -n $grp > $file
-az bicep decompile --file ./$file

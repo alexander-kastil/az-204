@@ -1,23 +1,21 @@
-# Build Serverless APIs with Azure Functions
+# Cosmos DB Change Feed
 
-- Run `create-db.azcli` in folder `db-setup` to create the db
-- Replace the connection string in `local.settings.json`
+[Change feed in Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/change-feed)
 
-    ```json
-    {
-        "IsEncrypted": false,
-        "Values": {
-            "AzureWebJobsStorage": "",
-            "FUNCTIONS_WORKER_RUNTIME": "node",
-            "CONNECTION_STRING": "YOUR CONNECTION_STRING",
-            "dbname": "productsdb"
-        },
-        "Host": {
-            "CORS": "*"
-        }
-    }
-    ```
+## Demo
 
-- Execute `create-product.http`
-- Execute `get-products.http`
+- Explain Change Feed basics and start debuggin
+- Change food item in `fooddb`
 
+`local.settings.json`:
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "conCosmosDB": "AccountEndpoint=https://az204-cosmos-111.documents.azure.com:443/;AccountKey=...;"
+  }
+}
+```
