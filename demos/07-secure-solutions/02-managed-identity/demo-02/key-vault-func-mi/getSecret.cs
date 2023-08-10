@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Azure.Security.KeyVault.Secrets;
 using Azure.Identity;
 
-namespace Company.Function
+namespace Integrations
 {
     public static class getSecret
     {
