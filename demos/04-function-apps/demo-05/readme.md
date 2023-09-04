@@ -1,6 +1,13 @@
-# Build Serverless APIs with Azure Functions
+# Build Serverless OData APIs with Azure Functions
 
-- Run `create-db.azcli` in folder `db-setup` to create the db
+- Install packages in [/db-setup](db-setup) and [/products-crud](products-crud) folders
+
+    ```bash
+    npm install
+    ```
+
+- Run [db-setup/create-db.azcli](db-setup/create-db.azcli) in folder `db-setup` to create the db. It uses `@azure/cosmos` to populate the db with sample data.
+
 - Replace the connection string in `local.settings.json`
 
     ```json
@@ -18,6 +25,5 @@
     }
     ```
 
-- Execute `create-product.http`
-- Execute `get-products.http`
+- Use [products-crud/products-tester.http](products-crud/products-tester.http) to test the api
 

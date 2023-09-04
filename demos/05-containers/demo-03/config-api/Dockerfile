@@ -13,10 +13,10 @@ COPY --from=build /app .
 ENTRYPOINT ["dotnet", "config-api.dll"]
 
 # Build Image
-# docker build --rm -f Dockerfile -t config-api .
+# docker build --rm -f dockerfile -t config-api .
 
 # Run Image without env vars
-# docker run -it --rm -p 5051:80 config-api -e "App:UseEnv=true" 
+# docker run -it --rm -p 5051:80 config-api
 
 # Browse using: 
 # http://localhost:5051/

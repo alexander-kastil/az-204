@@ -1,7 +1,0 @@
-POST  http://localhost:7071/api/products HTTP/1.1
-content-type: application/json
-
-{
-    "name": "Azure Skills",
-    "price": 22
-}

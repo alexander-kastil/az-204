@@ -17,7 +17,7 @@ content-type: application/json
 }
 
 ### Add Blini with Salmon
-POST   {{cartUrl}}/cart/add HTTP/1.1
+POST   {{cartUrl}}/cart/update HTTP/1.1
 content-type: application/json
 
 {
@@ -25,6 +25,7 @@ content-type: application/json
     "name": "Blini with Salmon",
     "price": 9,
     "quantity": 2,
+    "add": true,
     "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
 }
 
@@ -32,7 +33,7 @@ content-type: application/json
 GET {{cartOrch.response.body.statusQueryGetUri}} HTTP/1.1
 
 ### Add Butter Chicken
-POST   {{cartUrl}}/cart/add HTTP/1.1
+POST {{cartUrl}}/cart/update HTTP/1.1
 content-type: application/json
 
 {
@@ -40,22 +41,59 @@ content-type: application/json
     "name": "Butter Chicken",
     "price": 12,
     "quantity": 1,
+    "add": true,
     "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
 }
 
+### Add Butter Chicken
+POST {{cartUrl}}/cart/update HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Butter Chicken",
+    "price": 12,
+    "quantity": 3,
+    "add": true,
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
+}
+
+### Get Orchestration State using statusQueryGetUri
+GET {{cartOrch.response.body.statusQueryGetUri}} HTTP/1.1
+
 ### Remove Blini with Salmon
-DELETE    {{cartUrl}}/cart/remove HTTP/1.1
+POST {{cartUrl}}/cart/update HTTP/1.1
 content-type: application/json
 
 {
     "id": 2,
+    "name": "Blini with Salmon",
+    "price": 9,
+    "quantity": 1,
+    "add": false,
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
+}
+
+### Remove Blini with Salmon - should remove completely
+POST {{cartUrl}}/cart/update HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2,
+    "name": "Blini with Salmon",
+    "price": 9,
+    "quantity": 3,
+    "add": false,
     "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
 }
 
 ### Complete 
-POST   {{cartUrl}}/cart/complete HTTP/1.1
+POST {{cartUrl}}/cart/complete HTTP/1.1
 content-type: application/json
 
 {
     "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
 }
+
+### Get Orchestration State using statusQueryGetUri
+GET {{cartOrch.response.body.statusQueryGetUri}} HTTP/1.1

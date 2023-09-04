@@ -1,21 +1,24 @@
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng-config-env';
-  apiUrl = environment.apiUrl;
+  http = inject(HttpClient)
+  title = 'config-ui';
+  apiUrl = environment.api;
   cfg: any;
 
-  constructor(private http: HttpClient) {}
-
   ngOnInit(): void {
-    this.http.get(this.apiUrl + '/settings').subscribe((settings) => {
+    this.http.get(`${environment.api}/settings`).subscribe((settings) => {
       this.cfg = settings;
     });
   }

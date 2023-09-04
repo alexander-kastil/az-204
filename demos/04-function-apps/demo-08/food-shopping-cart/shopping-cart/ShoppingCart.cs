@@ -33,35 +33,44 @@ namespace FoodApp
             CartMetadata cart = context.GetInput<CartMetadata>();
 
             //define activities and get current activity
-            var addToCart = context.WaitForExternalEvent<OrderItem>("AddToCart");
-            var removeFromCart = context.WaitForExternalEvent<OrderRemoveModel>("RemovFromCart");
+            var updateCart = context.WaitForExternalEvent<CartItem>("UpdateCart");
             var checkoutCart = context.WaitForExternalEvent<CheckoutCartModel>("CheckoutCart");
-            
-            var evt = await Task.WhenAny(addToCart, removeFromCart, checkoutCart);
+
+            var evt = await Task.WhenAny(updateCart, checkoutCart);
 
             //handle activities
-            if (evt == addToCart)
+            if (evt == updateCart)
             {
-                var exists = cart.Items.FirstOrDefault(f => f.Id == addToCart.Result.Id);
-                if (exists != null)
+                if (updateCart.Result.Add)
                 {
-                    exists.Quantity += addToCart.Result.Quantity;
-                    log.LogInformation($"Food {addToCart.Result.Name} already exists in foodlist updating quantity");
+                    var exists = cart.Items.FirstOrDefault(f => f.Id == updateCart.Result.Id);
+                    if (exists != null)
+                    {
+                        exists.Quantity += updateCart.Result.Quantity;
+                        log.LogInformation($"Food {updateCart.Result.Name} already exists in foodlist adding items");
+                    }
+                    else
+                    {
+                        cart.Items.Add(updateCart.Result);
+                        log.LogInformation($"Added food {updateCart.Result.Name} to foodlist");
+                    }
                 }
                 else
                 {
-                    cart.Items.Add(addToCart.Result);
-                    log.LogInformation($"Added food {addToCart.Result.Name} to foodlist");
+                    var exists = cart.Items.FirstOrDefault(i => i.Id == updateCart.Result.Id);
+                    if (exists != null && exists.Quantity > updateCart.Result.Quantity)
+                    {
+                        exists.Quantity = exists.Quantity - updateCart.Result.Quantity;
+                        log.LogInformation($"Food {updateCart.Result.Name} exists in foodlist reducing items");
+                    }
+                    else 
+                    {
+                        cart.Items.Remove(exists);
+                        log.LogInformation($"Food {updateCart.Result.Name} will be removed from cart");
+                    }
                 }
             }
-            
-            if (evt == removeFromCart)
-            {
-                var idx = Array.FindIndex(cart.Items.ToArray(), f => f.Id == removeFromCart.Result.Id);
-                cart.Items.RemoveAt(idx);
-            }
-            
-            if (evt == checkoutCart )
+            if (evt == checkoutCart)
             {
                 log.LogInformation($"Foodlist orchestration completed");
                 return cart;
