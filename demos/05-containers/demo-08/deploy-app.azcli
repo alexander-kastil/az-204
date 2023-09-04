@@ -1,0 +1,32 @@
+env=dev
+grp=foodapp-$env
+loc=westeurope
+acr=foodcontainers$env
+acaenv=food-$env
+storage=aznative$env
+app=food-api-dapr
+img=$acr.azurecr.io/$appBackend
+
+pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
+loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
+
+az storage account create -n $storage -g $grp -l $loc --sku Standard_LRS
+key=$(az storage account keys list --account-name $storage - $grp --output json --query "[0].value")
+echo "key: $key"
+
+az containerapp env dapr-component set -n $acaenv -g $grp \
+    --dapr-component-name statestore \
+    --yaml './statestore.yaml'
+
+az containerapp create -n $app -g $grp \
+    --image $img \
+    --environment $acaenv \
+    --target-port 80 --ingress external \
+    --min-replicas 0 --max-replicas 1 \
+    --enable-dapr \
+    --dapr-app-port 80 \
+    --dapr-app-id $app \
+    --registry-server $loginSrv \
+    --registry-username $acr \
+    --registry-password $pwd 
+
