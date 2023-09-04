@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/net6.0/net-env-vars.dll",
+            "program": "${workspaceFolder}/bin/Debug/net6.0/config-api.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -32,7 +32,7 @@
             "request": "launch",
             "preLaunchTask": "docker-run: debug",
             "netCore": {
-                "appProject": "${workspaceFolder}/net-env-vars.csproj"
+                "appProject": "${workspaceFolder}/config-api.csproj"
             },
             "dockerServerReadyAction": {
                 "uriFormat": "%s://localhost:%s/settings"

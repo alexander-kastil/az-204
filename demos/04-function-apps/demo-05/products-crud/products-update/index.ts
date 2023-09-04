@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import productsService from "../services/productsService";
+import productsService from "../product-service";
 
 const httpTrigger: AzureFunction = async function (
   context: Context,
@@ -8,9 +8,8 @@ const httpTrigger: AzureFunction = async function (
   let response;
 
   try {
-    const id = req.params.id;
-    const brand = req.body.brand;
-    const result = await productsService.delete(id, brand.name);
+    const product = req.body;
+    const result = await productsService.update(product);
     response = { body: result, status: 200 };
   } catch (err) {
     response = { body: err.message, status: 500 };

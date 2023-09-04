@@ -8,22 +8,22 @@ using Microsoft.Extensions.Logging;
 
 namespace FoodApp
 {
-    public static class ShoppingCartRemoveActivity
+    public static class ShoppingCartCheckoutActivity
     {
-        [FunctionName(nameof(ShoppingCartRemoveActivity))]
+        [FunctionName(nameof(ShoppingCartCheckoutActivity))]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "cart/remove")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "cart/complete")] HttpRequestMessage req,
             [DurableClient] IDurableOrchestrationClient orchclient,
             ILogger logger)
         {
-            
-            var eventData = await req.Content.ReadAsAsync<OrderRemoveModel>();
-            string eventName = "RemovFromCart";
+
+            var eventData = await req.Content.ReadAsAsync<CheckoutCartModel>();
             await orchclient.RaiseEventAsync(
                 eventData.OrchestrationInstanceId,
-                eventName,
+                "CheckoutCart",
                 eventData);
+
             return new HttpResponseMessage(HttpStatusCode.OK);
-        }    
+        }
     }
-}    
+}

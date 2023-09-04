@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace AppSettingsWebApi
+namespace ConfigApi
 {
     public class AppConfig
     {
@@ -18,10 +18,13 @@ namespace AppSettingsWebApi
 
     public class AppSettings
     {
+        public string Title { get; set; }
         public bool AuthEnabled { get; set; }
         public bool UseSQLite { get; set; }
         public bool UseAppConfig { get; set; }
-        public bool UseEnv {get;set;}
+        public string AppConfigConnection { get; set; }
+        public string Environment { get; set; }
+        public string MockSetting { get; set; }
         public ConnectionStrings ConnectionStrings { get; set; }
     }
     

@@ -1,6 +1,6 @@
-env=$RANDOM
+env=dev
+grp=az-native-$env
 loc=westeurope
-grp=az204-m04-rest-$env
 acct=productsapi-$RANDOM
 databaseName=productsdb
 containerName=products
@@ -16,8 +16,8 @@ key=$(az cosmosdb keys list -g $grp -n $acct --type keys --query "primaryMasterK
 npm install > "/dev/null" 2>&1
 
 # run populate-db.js
-node ./populate-db.js --endpoint $endpoint --key $key --databaseName $databaseName --containerName $containerName
-echo "This is your connection string. Copy it to your clipboard..."
-az cosmosdb keys list -n $acct -g $grp --type connection-strings --query "connectionStrings[0].connectionString" -o tsv
+node ./db-setup/populate-db.js --endpoint $endpoint --key $key --databaseName $databaseName --containerName $containerName
+cs=$(az cosmosdb keys list -n $acct -g $grp --type connection-strings --query "connectionStrings[0].connectionString" -o tsv)
+echo "Connection string: $cs"
 
 

@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/net-env-vars.csproj",
+                "${workspaceFolder}/config-api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/net-env-vars.csproj",
+                "${workspaceFolder}/config-api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/net-env-vars.csproj"
+                "${workspaceFolder}/config-api.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -44,14 +44,14 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "netenvvars:dev",
+                "tag": "config-api:dev",
                 "target": "base",
                 "dockerfile": "${workspaceFolder}/debug.dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true,
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/net-env-vars.csproj"
+                "appProject": "${workspaceFolder}/config-api.csproj"
             },
         },
         {
@@ -61,13 +61,13 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "netenvvars:latest",
+                "tag": "config-api:latest",
                 "dockerfile": "${workspaceFolder}/debug.dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/net-env-vars.csproj"
+                "appProject": "${workspaceFolder}/config-api.csproj"
             }
         },
         {
@@ -79,12 +79,11 @@
             "dockerRun": {
                 "ports": [{"hostPort": 5050, "containerPort": 80}],
                 "env": {
-                    "App__UseEnv":"true",
-                    "Azure__TenantId":"d92b0000-90e0-4469-a129-6a32866c0d0a"
+                    "App__MockSetting":"ChangedMockValue",
                 }
             },
             "netCore": {
-                "appProject": "${workspaceFolder}/net-env-vars.csproj",
+                "appProject": "${workspaceFolder}/config-api.csproj",
                 "enableDebugging": true
             }
         },
@@ -96,7 +95,7 @@
             ],
             "dockerRun": {},
             "netCore": {
-                "appProject": "${workspaceFolder}/net-env-vars.csproj"
+                "appProject": "${workspaceFolder}/config-api.csproj"
             }
         }
     ]
