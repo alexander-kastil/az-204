@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Azure.Identity;
 using Microsoft.Graph;
 
-namespace FoodApp.MailDeamon
+namespace FoodApp.MailDaemon
 {
     public class GraphHelper
     {
@@ -13,7 +13,7 @@ namespace FoodApp.MailDeamon
 
             foreach (var r in Recipient)
             {
-                AddReciepient(recipients, r);
+                AddRecipient(recipients, r);
             }
 
             var body = new ItemBody
@@ -30,24 +30,24 @@ namespace FoodApp.MailDeamon
             };
             SendMailUsingGraph(config, message);            
         }       
-        private static void SendMailUsingGraph(GraphCfg gconfig, Message msg)
+        private static void SendMailUsingGraph(GraphCfg config, Message msg)
         {
             //Get Graph Client
-            var gOptions = new ClientSecretCredentialOptions
+            var graphOptions = new ClientSecretCredentialOptions
             {
                 AuthorityHost = AzureAuthorityHosts.AzurePublicCloud,
             };  
-            var clientSecretCredential = new ClientSecretCredential(gconfig.TenantId, gconfig.ClientId, gconfig.ClientSecret, gOptions);
+            var clientSecretCredential = new ClientSecretCredential(config.TenantId, config.ClientId, config.ClientSecret, graphOptions);
             var graphClient = new GraphServiceClient(clientSecretCredential);
             
             //Send mail
             //POST /users/{id | userPrincipalName}/sendMail
-            graphClient.Users[gconfig.MailSender].SendMail(msg, false).Request().PostAsync();                        
+            graphClient.Users[config.MailSender].SendMail(msg, false).Request().PostAsync();                        
         }
 
-        private static void AddReciepient(List<Recipient> toRecipientsList, string r)
+        private static void AddRecipient(List<Recipient> toRecipientsList, string r)
         {
-            var emailAddress = new Microsoft.Graph.EmailAddress
+            var emailAddress = new EmailAddress
             {
                 Address = r,
             };

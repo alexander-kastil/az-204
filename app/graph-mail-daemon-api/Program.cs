@@ -1,4 +1,7 @@
-using FoodApp.MailDeamon;
+using FoodApp.MailDaemon;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,11 +12,12 @@ builder.Services.AddSingleton<IConfiguration>(Configuration);
 var cfg = Configuration.Get<AppConfig>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MSAL Daemon", Version = "v1" });
+    c.EnableAnnotations();
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Graph Mail Daemon", Version = "v1" });
 });
 
 // Cors
@@ -32,7 +36,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "MSAL Daemon");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Graph Mail Daemon");
     c.RoutePrefix = string.Empty;
 });
 

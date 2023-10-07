@@ -25,23 +25,26 @@ builder.Services.AddApplicationInsightsTelemetry();
 builder.Services.AddSingleton<AILogger>();
 
 // Connection String
-string conString = cfg.FoodCatalogApi.UseSQLite? cfg.FoodCatalogApi.ConnectionStrings.SQLiteDBConnection : cfg.FoodCatalogApi.ConnectionStrings.SQLServerConnection;
+string conString = cfg.FoodCatalogApi.UseSQLite ? cfg.FoodCatalogApi.ConnectionStrings.SQLiteDBConnection : cfg.FoodCatalogApi.ConnectionStrings.SQLServerConnection;
 
-if(cfg.FoodCatalogApi.UseManagedIdentity){
-    Console.WriteLine($"Using KeyVault: {cfg.Azure.KeyVault}");            
+if (cfg.FoodCatalogApi.UseManagedIdentity)
+{
+    Console.WriteLine($"Using KeyVault: {cfg.Azure.KeyVault}");
     var client = new SecretClient(new Uri(cfg.Azure.KeyVault), new DefaultAzureCredential());
-   
-    if(cfg.FoodCatalogApi.UseSQLite){
+
+    if (cfg.FoodCatalogApi.UseSQLite)
+    {
         conString = client.GetSecret("conSQLite").Value?.Value;
     }
-    else{
+    else
+    {
         conString = client.GetSecret("conSQLServer").Value?.Value;
     }
 }
 
 //Database
 if (cfg.FoodCatalogApi.UseSQLite)
-{   
+{
     builder.Services.AddDbContext<FoodDBContext>(options => options.UseSqlite(conString));
 }
 else
@@ -59,7 +62,7 @@ if (cfg.FoodCatalogApi.AuthEnabled && az != null)
     .AddInMemoryTokenCaches();
     builder.Services.AddAuthorization();
 
-    //Add auth policy instead of Autorize Attribute on Controllers
+    //Add auth policy instead of Authorize Attribute on Controllers
     builder.Services.AddControllers(obj =>
     {
         var policy = new AuthorizationPolicyBuilder()
@@ -77,6 +80,7 @@ else
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.EnableAnnotations();
     c.SwaggerDoc("v1", new OpenApiInfo { Title = cfg.FoodCatalogApi.Title, Version = "v1" });
 });
 

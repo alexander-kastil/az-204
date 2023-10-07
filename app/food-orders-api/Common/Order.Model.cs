@@ -1,42 +1,48 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace FoodApp.Orders
 {
     public class Order
     {
-        [JsonPropertyName("id")]
+
+        public Order()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
+        [JsonProperty("id")]
         public string Id { get; set; }
-        [JsonPropertyName("customerId")]
+        [JsonProperty("customerId")]
         public int CustomerId { get; set; }
-        [JsonPropertyName("type")]
+        [JsonProperty("type")]
         public string Type { get; set; }
-        [JsonPropertyName("total")]
+        [JsonProperty("total")]
         public decimal Total { get; set; }
-        [JsonPropertyName("customer")]
+        [JsonProperty("customer")]
         public Customer Customer { get; set; }
-        [JsonPropertyName("items")]
+        [JsonProperty("items")]
         public List<OrderItem> Items { get; set; }
     }
 
     public class Customer
     {
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
-        [JsonPropertyName("email")]
+        [JsonProperty("email")]
         public string EMail { get; set; }
-        [JsonPropertyName("address")]
+        [JsonProperty("address")]
         public string Address { get; set; }
     }
 
     public class OrderItem
     {
-        [JsonPropertyName("id")]
+        [JsonProperty("id")]
         public int Id { get; set; }
-        [JsonPropertyName("name")]
+        [JsonProperty("name")]
         public string Name { get; set; }
-        [JsonPropertyName("price")]
+        [JsonProperty("price")]
         public decimal Price { get; set; }
-        [JsonPropertyName("quantity")]
+        [JsonProperty("quantity")]
         public int Quantity { get; set; }
     }
 
@@ -48,6 +54,6 @@ namespace FoodApp.Orders
         preparing,
         ready_for_delivery,
         delivered,
-        rejcted
+        rejected
     }
 }

@@ -25,8 +25,6 @@ namespace FoodApp
    
     public class Azure    {
         public string KeyVault { get; set; } 
-        public string EventGridKey { get; set; }
-        public string EventGridEP { get; set; }
         public AppRegistration AppReg { get; set; }
     }    
 
