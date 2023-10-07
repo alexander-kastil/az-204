@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 
-namespace FoodApp.MailDeamon
+namespace FoodApp.MailDaemon
 {
     [Route("[controller]")]
     [ApiController]
@@ -19,7 +16,15 @@ namespace FoodApp.MailDeamon
 
         [HttpPost]
         [Route("send")]
-        public ActionResult SendMail([FromBody]MailModel mail)
+        public ActionResult SendMail([FromBody]Mail mail)
+        {
+            GraphHelper.SendMail(mail.subject, mail.text, new[] { mail.recipient }, config.GraphCfg);
+            return Ok();
+        }   
+
+        [HttpPost]
+        [Route("sendConfirmation")]
+        public ActionResult SendConfirmation([FromBody]Mail mail)
         {
             GraphHelper.SendMail(mail.subject, mail.text, new[] { mail.recipient }, config.GraphCfg);
             return Ok();

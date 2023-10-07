@@ -1,4 +1,4 @@
-namespace FoodApp.MailDeamon
+namespace FoodApp.MailDaemon
 {
     public class LogLevel
     {

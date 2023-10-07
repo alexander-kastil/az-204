@@ -33,9 +33,9 @@ namespace FoodApp
            return Ok(config);  
         }
 
-        // https://localhost:5001/config/getAllEnv
-        [HttpGet("getAllEnv")]
-        public ActionResult GetAllEnv()
+        // https://localhost:5001/config/getEnvVars
+        [HttpGet("getEnvVars")]
+        public ActionResult GetEnvVars()
         {
             var val = Environment.GetEnvironmentVariables();
             return Ok(val);  
