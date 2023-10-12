@@ -1,0 +1,25 @@
+@baseUrl = http://localhost:5011/v1.0/invoke/food-api/method
+
+### Consume the api using the dapr sidecar
+GET http://localhost:5011/v1.0/invoke/food-api/method/food HTTP/1.1
+
+### Add a food item to pubsub -> returns http 204
+POST http://localhost:5011/v1.0/invoke/food-api/method/food/add  HTTP/1.1
+content-type: application/json
+
+{
+    "id": 15,
+    "name": "Pad Kra Pao",
+    "price": 12.0,
+    "inStock": 9,
+    "pictureUrl": null,
+    "code": "kra"
+}
+
+### Get the count and increment it by 1
+GET {{baseUrl}}/count/getcount 
+content-type: application/json
+
+### Get secret
+GET {{baseUrl}}/keyvault/getsecret?secretName=dapr-secret
+content-type: application/json

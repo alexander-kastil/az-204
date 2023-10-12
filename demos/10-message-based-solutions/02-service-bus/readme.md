@@ -4,6 +4,8 @@
 
 - Using Service Bus Queues 
 - Connecting Microservices using Integration Events and Service Bus Topics
+- Using Service Bus Topics
+- Using Service Bus Dapr
 
 ## Readings
 

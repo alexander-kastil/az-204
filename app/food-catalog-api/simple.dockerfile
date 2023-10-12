@@ -13,14 +13,14 @@ COPY --from=build /app .
 ENTRYPOINT ["dotnet", "catalog-api.dll"]
 
 # Build Image
-# docker build --rm -f dockerfile -t food-catalog-api .
+# docker build --rm -f simple.dockerfile -t food-catalog-api .
 # docker run -it --rm -p 5051:80 food-catalog-api
 
 # docker tag food-catalog-api arambazamba/food-catalog-api
 # docker push arambazamba/food-catalog-api
 
 # Injecting environment variables into the container
-# docker run -it --rm -p 5051:80 food-catalog-api -e "App:AuthEnabled"="false"
+# docker run -it --rm -p 5051:80 food-catalog-api -e "FoodCatalogApi:AuthEnabled"="true"
 
 # Browse using: 
 # http://localhost:5051
