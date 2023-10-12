@@ -9,5 +9,5 @@ az acr login --name $acr
 az acr update -n $acr --admin-enabled true
 
 cd $img
-az acr build --image $img--registry $acr --file dockerfile .
+az acr build --image $img --registry $acr --file dockerfile .
 cd ..

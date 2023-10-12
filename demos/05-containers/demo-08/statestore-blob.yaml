@@ -1,15 +1,15 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: <NAME>
+  name: foodstore
 spec:
   type: state.azure.blobstorage
   version: v1
   metadata:
   - name: accountName
-    value: "[your_account_name]"
+    value: "aznativedev"
   - name: accountKey
     value: "[your_account_key]"
   - name: containerName
-    value: "[your_container_name]"
+    value: "foodstore"
 
