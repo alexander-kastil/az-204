@@ -1,12 +1,12 @@
 env=dev
 grp=az-native-$env
 loc=westeurope
-acr=foodcontainers$env
-acaenv=food-$env
+acr=aznativedev
+acaenv=aznative-$env
 storage=aznative$env
 container=foodstore
 app=food-api-dapr
-img=$acr.azurecr.io/$appBackend
+img=aznativedev.azurecr.io/food-api-dapr
 
 pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
 loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
@@ -17,12 +17,7 @@ az storage account create -n $storage -g $grp -l $loc --sku Standard_LRS
 key=$(az storage account keys list --account-name $storage -g $grp --output json --query "[0].value")
 az storage container create -n $container --account-key $key --account-name $storage
 
-echo "Update values in statestore-blob.yaml"
-echo "accountKey: $key"
-
-az containerapp env dapr-component set -n $acaenv -g $grp \
-    --dapr-component-name statestore \
-    --yaml './statestore.yaml'
+# Add generic dapr component using azure portal
 
 az containerapp create -n $app -g $grp \
     --image $img \
@@ -35,4 +30,3 @@ az containerapp create -n $app -g $grp \
     --registry-server $loginSrv \
     --registry-username $acr \
     --registry-password $pwd 
-
