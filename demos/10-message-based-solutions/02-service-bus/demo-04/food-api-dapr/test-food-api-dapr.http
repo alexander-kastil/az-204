@@ -1,10 +1,10 @@
-@baseUrl = http://localhost:5010/v1.0/invoke/food-api/method
+@baseUrl = http://localhost:5011/v1.0/invoke/food-api/method
 
 ### Consume the api using the dapr sidecar
-GET http://localhost:5010/v1.0/invoke/food-api/method/food HTTP/1.1
+GET http://localhost:5011/v1.0/invoke/food-api/method/food HTTP/1.1
 
 ### Add a food item to pubsub -> returns http 204
-POST http://localhost:5010/v1.0/invoke/food-api/method/food/add  HTTP/1.1
+POST http://localhost:5011/v1.0/invoke/food-api/method/food/add  HTTP/1.1
 content-type: application/json
 
 {

@@ -11,10 +11,10 @@ namespace FoodDapr
     public class InvoiceController : ControllerBase
     {
         [HttpPost]
-        [Dapr.Topic("food-pubsub", "food-items")]
+        [Dapr.Topic("foodpubsub", "food-items")]
         public ActionResult CreateInvoice([FromBody] FoodItem food )
         {
-            
+            Console.WriteLine($"Invoice Created for {food.Name} at {food.Price}");
             return Ok("Invoice Created");
         }    
     }

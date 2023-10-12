@@ -99,10 +99,16 @@ Dapr pub/sub building block provides a platform-agnostic API framework to send a
 
     >Note: The `Topic` attribute is used to register the subscriber with the pub/sub component. `food-items` is the topic name and `food-pubsub` is the name of the pub/sub component.
 
+- Start the subscriber using Dapr:
+
+    ```bash
+    dapr run --app-id food-invoices --app-port 5003 --dapr-http-port 5012 --resources-path './components' dotnet watch run
+    ```    
+
 - To publish an item use:
 
     ```
-    POST http://localhost:5010/v1.0/publish/food-pubsub/food-items HTTP/1.1
+    POST http://localhost:5011/v1.0/publish/food-pubsub/food-items HTTP/1.1
     content-type: application/json
 
     {
