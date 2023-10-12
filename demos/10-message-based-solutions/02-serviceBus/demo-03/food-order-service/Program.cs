@@ -1,7 +1,6 @@
 using FoodApp.Common;
 using FoodApp.OrderService;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
