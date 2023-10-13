@@ -8,7 +8,7 @@
 ## Demo
 
 
-[Food orders dashboard](/app/food-orders-dashboard/) `food-orders-ui` imlplemented as Angular Microfronend using `@ngrx/component-store`
+[Food orders dashboard](/app/food-orders-dashboard/) `food-orders-ui` implemented as Angular Micro-Frontend using `@ngrx/component-store`
 
 [Food orders dashboard function](/app/food-orders-dashboard-func/) that acts as an endpoint for the event grid topic webhook subscription and communicates with the SignalR service that provides a real time connection to the orders dashboard
 
@@ -21,7 +21,7 @@
 
 ### Setup & Steps
 
--   Execute `create-foodorder-app.azcli` in [wsl bash](https://learn.microsoft.com/en-us/windows/wsl/install) to provision the environment and deploy the function app. Navigate to the Azure portal and check that the ressources have been created.
+-   Execute `create-food-order-app.azcli` in [wsl bash](https://learn.microsoft.com/en-us/windows/wsl/install) to provision the environment and deploy the function app. Navigate to the Azure portal and check that the resources have been created.
 
     ![azure](_images/azure.png)
 
@@ -36,7 +36,7 @@
     };
     ```
 
--   Start the microfrontend using `ng serve` in `food-orders-dashboard` and open [http://localhost:4200](http://localhost:4200). Open the F12 Dev tools and check that the SignalR connection is established.
+-   Start the Micro-Frontend using `ng serve` in `food-orders-dashboard` and open [http://localhost:4200](http://localhost:4200). Open the F12 Dev tools and check that the SignalR connection is established.
 
     ![websocket](_images/websocket.png)
 
