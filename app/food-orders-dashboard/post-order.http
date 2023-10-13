@@ -1,5 +1,5 @@
-@topicurl=https://foodevents-8248.westeurope-1.eventgrid.azure.net/api/events
-@topickey=AdMe4XsnwNpxzKy/W6Z+Ur3UkizjgGV5+aIdUmVTAdg=
+@topicurl=https://foodevents-13090.westeurope-1.eventgrid.azure.net/api/events
+@topickey=WRqJ4HYKiycoAKXSDOCZbhOz2T3w/rmVxBYuGUcjYo4=
 
 POST  {{topicurl}} HTTP/1.1
 content-type: application/cloudevents+json; charset=utf-8
@@ -14,30 +14,26 @@ aeg-sas-key: {{topickey}}
    "datacontenttype":"application/json",
    "data":{
       "id": "5c60fe1d-9851-47ca-aab9-622ca857ea29",
-      "total": 25,
       "customer": {
-        "name": "Alexander Pajer",
-        "email": "alexander.pajer@integrations.at",
-        "address": "Hauptstraße 1, Wien, Austria"
-      },
+         "id": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
+         "name": "John Doe",
+         "address": "123 Main Street, Seattle, WA 98101",
+         "email": "alexander.pajer@integrations.at"
+      },      
       "payment": {
-        "type": "Credit Card",
-        "account": "**** **** **** 1234"
-      },
+         "type": "Paypal",
+         "account": "abcdsdfsdf"
+      },         
       "status": "paid",
       "items": [
-        {
-          "id": 3,
-          "name": "Wiener Schnitzel",
-          "price": 18,
-          "quantity": 1
-        },
-        {
-          "id": 1,
-          "name": "Butter Chicken",
-          "price": 12,
-          "quantity": 1
-        },
+         {
+            "name": "butter chicken",
+            "quantity": 2
+         },
+         {
+            "name": "badam kheer",
+            "quantity": 1
+         }
       ]
    }
 }
