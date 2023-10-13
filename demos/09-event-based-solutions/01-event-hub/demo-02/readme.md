@@ -57,4 +57,4 @@
 
 - F5 Debug the function app `graph-processor` in a new code instance.
 
-- Send yourself an email.
+- Send an email to your monitored inbox and watch the azure function.
