@@ -21,7 +21,7 @@ cd order-processor-func
 func azure functionapp publish $app --csharp
 cd ..
 
-echo '** Update in publish-order-topic/Program.cs:'
+echo '** Update in publish-order-topic/appsettings.json:'
 echo '** Topic: ' $topic
 echo '** Topic Key: ' $key
 # echo '** env: ' $env
