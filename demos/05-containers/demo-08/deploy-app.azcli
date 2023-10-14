@@ -17,8 +17,9 @@ az storage account create -n $storage -g $grp -l $loc --sku Standard_LRS
 key=$(az storage account keys list --account-name $storage -g $grp --output json --query "[0].value")
 az storage container create -n $container --account-key $key --account-name $storage
 
-# Add generic dapr component using azure portal
+az containerapp env create -n $acaenv -g $grp -l $loc
 
+# Add generic dapr component using azure portal
 az containerapp create -n $app -g $grp \
     --image $img \
     --environment $acaenv \
