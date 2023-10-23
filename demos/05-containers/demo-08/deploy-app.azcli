@@ -5,6 +5,7 @@ acr=aznativedev
 acaenv=aznative-$env
 storage=aznative$env
 container=foodstore
+statestore=food-state
 app=food-api-dapr
 img=aznativedev.azurecr.io/food-api-dapr
 
@@ -18,6 +19,10 @@ key=$(az storage account keys list --account-name $storage -g $grp --output json
 az storage container create -n $container --account-key $key --account-name $storage
 
 az containerapp env create -n $acaenv -g $grp -l $loc
+
+az containerapp env dapr-component set -n $acaenv -g $grp \
+    --dapr-component-name $statestore \
+    --yaml statestore-blob.yaml
 
 # Add generic dapr component using azure portal
 az containerapp create -n $app -g $grp \
