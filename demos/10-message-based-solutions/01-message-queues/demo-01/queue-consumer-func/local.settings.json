@@ -1,7 +1,7 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "",
+    "AzureWebJobsStorage":"UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
     "msgqueue22493_STORAGE": "DefaultEndpointsProtocol=https;AccountName=msgqueue22493;AccountKey=+CilbQ16fg0OY5RCKNASHN2xdU+Nx6KvLeAm563lFCjdWgj8dC69PQgIYH9qQJLzaS4Bg89Y2h0W+AStr00Ycw==;EndpointSuffix=core.windows.net"
   }

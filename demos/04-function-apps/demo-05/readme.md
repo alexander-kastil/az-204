@@ -14,7 +14,7 @@
     {
         "IsEncrypted": false,
         "Values": {
-            "AzureWebJobsStorage": "",
+            "AzureWebJobsStorage": "UseDevelopmentStorage=true",
             "FUNCTIONS_WORKER_RUNTIME": "node",
             "CONNECTION_STRING": "YOUR CONNECTION_STRING",
             "dbname": "productsdb"
