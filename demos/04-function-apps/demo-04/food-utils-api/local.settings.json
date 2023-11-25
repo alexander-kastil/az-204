@@ -1,0 +1,8 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "node",
+        "FixerKey": "a2de760f8e41e7eada41f92d9ec9e524"
+    }
+}
