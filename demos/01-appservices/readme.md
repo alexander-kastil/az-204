@@ -2,14 +2,16 @@
 
 ## Demos
 
-1. - Create and Deploy Web App
-    1. - Using VS Extension
-    2. - az webapp up
-2. - Deploy Static HTML App using GitHub Actions
-3. - App Settings and Environment
-4. - Using Easy Authentication
-6. - Deployment Slots
-5. - Geo Routing with Traffic Manager (optional)
+1. Create and Deploy Web App
+    1. Using VS Extension
+    2. az webapp up
+2. Deploy Static HTML App using GitHub Actions
+3. App Settings and Environment
+4. Using Easy Authentication
+5. Deployment Slots
+6. Geo Routing with Traffic Manager (optional)
+7. Static Web Apps (optional)
+
 
 ## Readings
 
