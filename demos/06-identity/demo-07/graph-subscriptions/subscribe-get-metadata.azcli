@@ -1,0 +1,2 @@
+tenantId=$(az account show --query tenantId --output tsv)
+subscriptionId=$(az account show --query id --output tsv)
