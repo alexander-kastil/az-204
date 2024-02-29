@@ -8,8 +8,8 @@
 
 ## Demos
 
-- Create and publish .NET 6 Api image from [food-catalog-api](/app/food-catalog-api/)
-- Create and publish Angular UI image from [food-shop-ui](/app/food-shop-ui/)
+- Create and publish .NET 8 Api image from [catalog-service](./catalog-service/)
+- Create and publish Angular UI image from [food-shop](./food-shop/)
 
 ### Setup Requirements on Windows and Linux
 
