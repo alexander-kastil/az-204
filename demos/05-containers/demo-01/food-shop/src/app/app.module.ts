@@ -17,9 +17,9 @@ import { AppComponent } from './app.component';
 import { MsalAuthUtilModule } from './auth/msal-auth-util.module';
 import { ErrHandlerService } from './shared/err-handler/err-handler.service';
 import { metaReducers, reducers } from './state/state';
-import { NavbarComponent } from './menus/navbar/navbar.component';
-import { SidebarComponent } from './menus/sidebar/sidebar.component';
-import { apimInterceptor } from './apim.interceptor';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { apimInterceptor } from './shared/apim/apim.interceptor';
 
 registerLocaleData(localeDe);
 
@@ -45,7 +45,7 @@ const bootstrap = environment.authEnabled
     }),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot({}),
-    !environment.production ? StoreDevtoolsModule.instrument({connectInZone: true}) : [],
+    !environment.production ? StoreDevtoolsModule.instrument({ connectInZone: true }) : [],
     MsalAuthUtilModule,
     MatSidenavModule,
     NavbarComponent,

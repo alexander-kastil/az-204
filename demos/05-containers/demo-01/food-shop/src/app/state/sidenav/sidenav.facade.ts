@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { combineLatestWith, tap } from 'rxjs/operators';
 import { SideNavActions } from './sidenav.actions';
-import { SidenavState, sidenavFeature } from './sidenav.state';
+import { SidenavState, sidenavState } from './sidenav.state';
 
 @Injectable({
   providedIn: 'root',
@@ -23,15 +23,15 @@ export class SidenavFacade {
     );
 
   getSideNavEnabled() {
-    return this.store.select(sidenavFeature.selectSideNavEnabled);
+    return this.store.select(sidenavState.selectSideNavEnabled);
   }
 
   getSideNavVisible() {
-    return this.store.select(sidenavFeature.selectSideNavVisible);
+    return this.store.select(sidenavState.selectSideNavVisible);
   }
 
   getSideNavPosition() {
-    return this.store.select(sidenavFeature.selectSideNavPosition);
+    return this.store.select(sidenavState.selectSideNavPosition);
   }
 
   setSideNavEnabled(val: boolean) {

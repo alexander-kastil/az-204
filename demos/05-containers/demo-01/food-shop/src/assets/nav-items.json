@@ -4,12 +4,12 @@
         "url": "/"
     },
     {
-        "title": "Food",
-        "url": "/food"
+        "title": "Shop",
+        "url": "/shop"
     },
     {
         "title": "Catalog",
-        "url": "/food/catalog"
+        "url": "/catalog"
     },
     {
         "title": "About",

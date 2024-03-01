@@ -29,6 +29,7 @@
     "@microsoft/applicationinsights-angularplugin-js": "^15.0.1",
     "@microsoft/applicationinsights-web": "^3.0.5",
     "@ngrx/data": "^17.1.1",
+    "@ngrx/effects": "^17.1.1",
     "@ngrx/entity": "^17.1.1",
     "@ngrx/router-store": "^17.1.1",
     "@ngrx/store": "^17.1.1",

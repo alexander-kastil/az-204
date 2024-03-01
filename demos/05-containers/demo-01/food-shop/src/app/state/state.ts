@@ -1,7 +1,7 @@
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
-import { AILoggerService } from '../logger/ai-logger.service';
+import { AILoggerService } from '../shared/logger/ai-logger.service';
 import * as fromMenu from './sidenav/sidenav.state';
 
 export interface State {
@@ -18,7 +18,7 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
 }
 
 export const reducers: ActionReducerMap<State> = {
-  sidenav: fromMenu.sidenavFeature.reducer,
+  sidenav: fromMenu.sidenavState.reducer,
 };
 
 export const metaReducers: MetaReducer<any>[] = environment.features.logging

@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div (click)="toggleMenu()" class="menu">
+      <mat-icon color="accent" class="clickable">menu</mat-icon>
+    </div>
+    @for (mi of menuItems | async; track mi) {
+      <div
+        routerLink="{{ '/' + mi.url }}"
+        routerLinkActive="navLink-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="navLink"
+        >
+        {{ mi.title }}
+      </div>
+    }
+  </mat-toolbar-row>
+</mat-toolbar>

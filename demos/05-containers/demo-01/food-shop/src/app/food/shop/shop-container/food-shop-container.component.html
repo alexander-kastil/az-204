@@ -1,3 +1,0 @@
-<div class="box">
-    <app-shop-item *ngFor="let f of food | async" [food]="f" [inCart]="getItemsInCart(f.id) | async" (amountChange)="updateCart($event)" ></app-shop-item>
-</div>
