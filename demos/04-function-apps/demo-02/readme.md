@@ -1,8 +1,16 @@
-# Azure Function Core Tools
+# Azure Function Local Development using Azure Function Core Tools
+
+This demo will show how to create a Function App using Visual Studio Code and Azure Function Core Tools. 
+
+The current version of the [Azure Function Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) is based on [Python 3.11](https://www.python.org/downloads/release/python-3110/)
+
+## References
 
 [Work with Azure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v3%2Cwindows%2Ccsharp%2Cportal%2Cbash)
 
 [host.json Reference](https://docs.microsoft.com/en-us/azure/azure-functions/functions-host-json)
+
+[Microsoft Azure Functions using Spring integration](https://docs.spring.io/spring-cloud-function/docs/current/reference/html/azure.html)
 
 ## Demo
 

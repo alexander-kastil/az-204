@@ -25,3 +25,7 @@
 ## Additional Labs & Walkthroughs
 
 [Store application data with Azure Blob storage - Java option](https://docs.microsoft.com/en-us/learn/modules/store-app-data-with-azure-blob-storage/)
+
+[Connect an app to Azure Storage - JavaScript option](https://learn.microsoft.com/en-us/training/modules/connect-an-app-to-azure-storage/)
+
+[Quickstart: Azure Blob Storage client library for Python](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-python?tabs=managed-identity%2Croles-azure-portal%2Csign-in-azure-cli&pivots=blob-storage-quickstart-scratch)

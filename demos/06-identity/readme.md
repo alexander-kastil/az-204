@@ -8,6 +8,8 @@
 - MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular`
 - Graph REST Samples
 - Consume Graph REST API in Azure Function using MSAL
+- Graph Change Notifications with Azure Function and Graph SDK (JavaScript)
+
 ## Readings
 
 [Microsoft Identity Platform Docs](https://learn.microsoft.com/en-us/azure/active-directory/develop/)

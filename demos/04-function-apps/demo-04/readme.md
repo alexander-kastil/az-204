@@ -23,7 +23,7 @@
     }
     ```
 
-## Http-Trigger - Currency Calculater
+## Http-Trigger - Currency Calculator
 
 - Get your Api Key at [Fixer.io](https://fixer.io/)
 - Replace in `create-func-app.azcli` and `local.settings.json`

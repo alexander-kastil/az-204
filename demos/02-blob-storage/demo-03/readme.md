@@ -4,5 +4,5 @@
 
 ## Demo
 
-Execute `create-fileshare.azcli`
-Attach the fileshare to lab vm
+Execute `create-file-share.azcli`
+Attach the file share to lab vm

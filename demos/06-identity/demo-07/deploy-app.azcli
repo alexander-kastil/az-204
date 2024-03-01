@@ -1,0 +1,17 @@
+env=dev
+loc=westeurope
+grp=vouchers-app-$env
+topic=graph-events-$env
+storage=vouchersstorage
+func=graph-functions-$env
+
+az group create -n $grp -l $loc
+
+az storage account create -n $storage -g $grp -l $loc --sku Standard_LRS --kind StorageV2
+
+az functionapp create -n $func -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4
+
+az eventgrid topic create -n $topic -g $grp -l $loc --sku Basic 
+topicid=$(az eventgrid topic list -g $grp --odata-query "Contains(name, '$topic')" --query [0].id -o tsv)
+
+# az evengrid event-subscription create -n $func --source-resource-id $topicid --endpoint $func.azurewebsites.net/api/GraphEvent --endpoint-type webhook

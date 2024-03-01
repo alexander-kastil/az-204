@@ -40,3 +40,5 @@
 [Develop Java serverless Functions on Azure using Maven](https://docs.microsoft.com/en-us/learn/modules/develop-azure-functions-app-with-maven-plugin/?WT.mc_id=java-11777-judubois&source=learn)
 
 [Build Serverless APIs with Azure Functions](https://docs.microsoft.com/en-us/learn/modules/build-api-azure-functions/)
+
+[Deploy serverless APIs with Azure Functions, Logic Apps, and Azure SQL Database - Python option](https://learn.microsoft.com/en-us/training/modules/deploy-backend-apis/)

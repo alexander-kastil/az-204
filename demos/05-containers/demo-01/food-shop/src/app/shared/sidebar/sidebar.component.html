@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="toolbar">Actions</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="info">
+  @if (this.cart.getItems() | async; as items) {
+    <h3>{{ ct | async }} items in cart</h3>
+    <h3>Sum Total: {{ total | async | toEuro }}</h3>
+    @if (persistCart) {
+      <mat-slide-toggle
+        [formControl]="fcSaveCart"
+        color="accent"
+        >Keep cart
+      </mat-slide-toggle>
+    }
+    <button
+      mat-raised-button
+      (click)="doCheckout()"
+      [disabled]="items.length === 0"
+      color="accent">
+      <mat-icon>shopping_cart_checkout</mat-icon><span>Checkout</span>
+    </button>
+  }
+  @if (authEnabled | async) {
+    <app-current-user></app-current-user>
+    <button
+      mat-raised-button
+      (click)="logout()"
+      color="accent">
+      <mat-icon>logout</mat-icon><span>Logout</span>
+    </button>
+  }
+</div>

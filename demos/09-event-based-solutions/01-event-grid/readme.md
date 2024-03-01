@@ -3,7 +3,8 @@
 ## Demos
 
 - Console Publisher / Az Func Subscriber
-- Real-time connected Angular Microfrontend using Azure Event Grid and SignalR
+- Event Grid & Azure Functions with local debugging
+- Real-time connected Angular Micro-frontend using Azure Event Grid and SignalR
 
 ## Readings
 

@@ -8,8 +8,8 @@
 
 ## Demos
 
-- Ceate and publish .NET 6 Api image from [food-catalog-api](/app/food-catalog-api/)
-- Ceate and publish Angular UI image from [food-shop-ui](/app/food-shop-ui/)
+- Create and publish .NET 8 Api image from [catalog-service](./catalog-service/)
+- Create and publish Angular UI image from [food-shop](./food-shop/)
 
 ### Setup Requirements on Windows and Linux
 
@@ -27,7 +27,7 @@ Linux:
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     ```
 
-### Create Image & publish to Dockerhub
+### Create Image & publish to Docker Hub
 
 Create Images for .NET Core Api & Angular UI using `*.dockerfile`
 
