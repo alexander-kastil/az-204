@@ -1,0 +1,4 @@
+POST http://localhost:7071/api/HttpExample
+Content-Type: text/plain
+
+Your text content goes here.

@@ -28,8 +28,8 @@ Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
 choco install googlechrome -y
 choco install vscode -y
 choco install dotnetcore-sdk -y
-choco install dotnet-6.0-sdk -y
-choco install nodejs-lts --version=16.15.0 -y
+choco install dotnet-8.0-sdk -y
+choco install nodejs-lts --version=18.17.1 -y
 choco install azure-cli -y
 choco install azurepowershell -y
 choco install curl -y
@@ -69,7 +69,6 @@ code --install-extension vs-publisher-1448185.keyoti-changeallendoflinesequence
 code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
 code --install-extension alex-pattison.theme-cobalt3
 code --install-extension savranweb.cosmosdbsqlapi
-code --install-extension ms-kubernetes-tools.vscode-aks-tools
 
 # Azurite Storage Emulator & Function Core Tools v4
 npm install -g azure-functions-core-tools@4 --unsafe-perm true --force
