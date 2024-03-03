@@ -23,6 +23,8 @@
 
     - [Get started using Python for web development on Windows](https://learn.microsoft.com/en-us/windows/python/web-frameworks)    
 
+    >Note: You could also use `setup-python.ps1`
+
 ## Create a virtual environment    
 
 A virtual environment is a self-contained directory tree that contains a Python installation for a particular version of Python, plus a number of additional packages.
