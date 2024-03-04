@@ -60,7 +60,7 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 
 ## Demo VS Code Function Apps
 
-Create Funtion App in Azure by executing `create-vscode-app.azcli`
+Create Function App in Azure by executing `create-vscode-app.azcli`
 
 Create a function project:
 
@@ -75,7 +75,7 @@ func templates list
 func new -n GreetingFunctions --template "Http Trigger"
 ```
 
->  **Note**: If you get an `No templates found matching: 'HTTPtrigger'` error this can be caused by multible versions of the .NET SDK being installed on your machien. You can fix this issue by creating a `global.json` using `dotnet new globaljson` an by setting the correct framework version.
+>  **Note**: If you get an `No templates found matching: 'HTTPtrigger'` error this can be caused by multiple versions of the .NET SDK being installed on your machine. You can fix this issue by creating a `global.json` using `dotnet new global.json` an by setting the correct framework version.
 
 Run function locally:
 
@@ -83,7 +83,7 @@ Run function locally:
 func start
 ```
 
-Use az rest in another terminaln instance:
+Use az rest in another terminal instance:
 
 ```bash
 az rest -m post -u http://localhost:7071/api/MyHttpTrigger -b "{'name':'Azure Rocks'}"

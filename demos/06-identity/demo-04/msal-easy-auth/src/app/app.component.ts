@@ -9,6 +9,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'msal-easy-auth';
+  title = 'Angular and External Authentication (Easy Auth)';
   authenticated = signal(false);
 }
