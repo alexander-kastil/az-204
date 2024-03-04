@@ -1,7 +1,7 @@
 env=$RANDOM
 grp=az204-m04-binding-$env
 loc=westeurope
-storage=picprocessor$env
+storage=bindings$env
 path='./pictures'
 source=drop
 target=processed

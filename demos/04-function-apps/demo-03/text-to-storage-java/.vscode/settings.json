@@ -4,5 +4,6 @@
     "azureFunctions.projectLanguage": "Java",
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.preDeployTask": "package (functions)"
+    "azureFunctions.preDeployTask": "package (functions)",
+    "azureFunctions.templateFilter": "All"
 }
