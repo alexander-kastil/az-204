@@ -1,0 +1,9 @@
+<div class="box">
+  @for (f of food | async; track f) {
+  <app-shop-item
+    [food]="f"
+    [inCart]="getItemsInCart(f.id) | async"
+    (amountChange)="updateCart($event)"
+  ></app-shop-item>
+  }
+</div>

@@ -13,7 +13,7 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
     - [Docker and WSL Setup](./tooling/08-docker-wsl)
     - [Configure VS Code REST Client Extension](./tooling/07-rest-client)
   - [Lab VM Setup](./setup)
-    - [Base Dev Environment Setup inkluding Visual Studio Code Extensions](./setup/#basics)
+    - [Base Dev Environment Setup including Visual Studio Code Extensions](./setup/#basics)
   - [Labs](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure)
 
 > Note: Labs are taken from the official repo [AZ-204: Developing solutions for Microsoft Azure](https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure). Please clone the repo to your local machine and follow the instructions in 'Instructions/'
@@ -21,7 +21,7 @@ Companion Material for Class Delivery by [Alexander Pajer](https://www.integrati
 ```
 git clone https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicrosoftAzure
 ```
-## Required Cloud Ressources
+## Required Cloud Resources
 
 - [Github User Account](https://github.com/)
 

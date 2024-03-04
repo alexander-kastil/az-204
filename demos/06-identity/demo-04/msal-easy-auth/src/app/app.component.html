@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="toolbar">
+    <h2>Angular & Easy Auth App</h2>
+    <button>Login</button>
+  </div>
+  @if(authenticated()){
+  <div id="auth">Authenticated</div>
+  } @else(){
+  <div id="noauth">You are not authenticated</div>
+  }
+</div>
