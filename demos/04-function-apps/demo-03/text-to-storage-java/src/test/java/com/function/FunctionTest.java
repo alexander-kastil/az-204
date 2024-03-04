@@ -24,13 +24,13 @@ public class FunctionTest {
     public void testHttpTriggerJava() throws Exception {
         // Setup
         @SuppressWarnings("unchecked")
-        final HttpRequestMessage<Optional<String>> req = mock(HttpRequestMessage.class);
+        final HttpRequestMessage<String> req = mock(HttpRequestMessage.class);
 
         final Map<String, String> queryParams = new HashMap<>();
         queryParams.put("name", "Azure");
         doReturn(queryParams).when(req).getQueryParameters();
 
-        final Optional<String> queryBody = Optional.empty();
+        final String queryBody = "HTTP Body";
         doReturn(queryBody).when(req).getBody();
 
         doAnswer(new Answer<HttpResponseMessage.Builder>() {
