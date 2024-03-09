@@ -1,7 +1,7 @@
 <div class="container">
   <div class="toolbar">
     <h2>{{title}}</h2>
-    <button>Login</button>
+    <button (click)="login()" >Login</button>
   </div>
   @if(authenticated()){
   <div id="auth">Authenticated</div>

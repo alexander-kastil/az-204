@@ -1,5 +1,5 @@
 ##### Stage 1 - Create the build-image
-FROM node:16-alpine as build
+FROM node:18-alpine as build
 LABEL author="Alexander Pajer"
 
 WORKDIR /app
@@ -18,8 +18,8 @@ COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 # Substitute environment vars
 CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
 
-# docker build --rm -f dockerfile -t config-ui .
-# docker run -d --rm -p 5052:80 --env ENV_API_URL="https://localhost:5001" config-ui
+# docker build --rm -f Dockerfile -t config-ui .
+# docker run -d --rm -p 5052:80 --env ENV_API_URL="http://localhost:5000" config-ui
 
 # browse using http://localhost:5052/
 

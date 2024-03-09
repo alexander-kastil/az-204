@@ -1,8 +1,8 @@
 env=dev
 loc=westeurope
 grp=foodapp-$env
-acr=foodcontainers$env
-acaenv=foodace-$env
+acr=az204demos$env
+acaenv=az204-demo-$env
 storageAcct=foodstorage$env
 container=invoices
 queue=food-orders

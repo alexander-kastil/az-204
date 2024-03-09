@@ -1,6 +1,4 @@
 using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore;
-using FoodDapr;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +20,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Cors
-builder.Services.AddCors(o => o.AddPolicy("nocors", builder =>
+builder.Services.AddCors(o => o.AddPolicy("noCors", builder =>
 {
     builder
         .SetIsOriginAllowed(host => true)
@@ -44,9 +42,8 @@ app.UseSwaggerUI(c =>
 });
 
 //Cors and Routing
-app.UseCors("nocors");
+app.UseCors("noCors");
 
-// app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 

@@ -1,7 +1,7 @@
 env=dev
 loc=westeurope
 grp=foodapp-$env
-acr=foodcontainers$env
+acr=az204demos$env
 img=food-shopping-cart
 
 az group create -n $grp -l $loc

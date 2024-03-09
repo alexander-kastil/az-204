@@ -1,0 +1,50 @@
+apiVersion: v1
+data:
+  ENV_API_URL: http://foodapi.azure.com/food
+kind: ConfigMap
+metadata:
+  name: food_config_map
+---  
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-env
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-env
+  template:
+    metadata:
+      labels:
+        app: config-env
+    spec:
+      containers:
+        - name: config-env
+          image: arambazamba/config-env
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
+          env:
+          - name: ENV_API_URL
+            valueFrom:
+              configMapKeyRef:
+                name: food_config_map
+                key: ENV_API_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-env-lb
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8088
+      targetPort: 80
+  selector:
+    app: config-env
+---

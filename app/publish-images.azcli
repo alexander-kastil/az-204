@@ -1,7 +1,7 @@
 env=dev
 loc=westeurope
-grp=foodapp-$env
-acr=foodcontainers$env
+grp=az-204-demos-$env
+acr=az204demos$env
 imgCatalog=food-catalog-api
 imgShopUI=food-shop-ui
 imgOrders=food-orders-api

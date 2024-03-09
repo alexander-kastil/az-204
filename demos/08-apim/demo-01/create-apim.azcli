@@ -13,8 +13,8 @@ workspace=food-$env
 mail="alexander.pajer@integrations.at"
 publisher="food"
 vault=foodvault-$env
-acr=foodcontainers$env
-acaenv=foodacaenv-$env
+acr=az204demos$env
+acaenv=az204-demo-$env
 apiimg=arambazamba/food-catalog-api:1.1.0
 uiimg=arambazamba/food-shop-ui
 

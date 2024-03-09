@@ -1,7 +1,7 @@
 env=dev
 grp=az204-m05-containers
 loc=westeurope
-acr=configacr$env
+acr=az204demos$env
 apiapp=config-api
 uiapp=config-ui
 apiImg=$acr.azurecr.io/$apiapp

@@ -1,12 +1,3 @@
-# Azure Container Registry Build Task
-
-## Config-api & Config-ui - Simple 2-tier app
-
-Remove existing `node_modules` and `.angular` folders in `config-ui`, if present to reduce upload time to Azrue container registry.
-
-Execute [publish-containers.azcli](publish-images.azcli) in the current folder:
-
-```bash
 env=dev
 grp=az204-m05-containers
 loc=westeurope
@@ -27,4 +18,3 @@ cd ..
 cd $imgUI
 az acr build --image $imgUI --registry $acr --file Dockerfile .
 cd ..
-```

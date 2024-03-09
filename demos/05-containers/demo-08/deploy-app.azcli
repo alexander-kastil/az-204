@@ -1,13 +1,13 @@
 env=dev
-grp=az-native-$env
+grp=az204-m05-containers
 loc=westeurope
-acr=aznativedev
-acaenv=aznative-$env
-storage=aznative$env
+acr=az204demos$env
+acaenv=az204-demo-$env
+storage=daprdemo$env
 container=foodstore
 statestore=food-state
 app=food-api-dapr
-img=aznativedev.azurecr.io/food-api-dapr
+img=$acr.azurecr.io/food-api-dapr
 
 pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
 loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
@@ -19,6 +19,9 @@ key=$(az storage account keys list --account-name $storage -g $grp --output json
 az storage container create -n $container --account-key $key --account-name $storage
 
 az containerapp env create -n $acaenv -g $grp -l $loc
+
+# Make sure that you have updated the ACCOUNT_KEY> placeholders in the statestore-blob.yaml file with the correct values for your Azure Storage account.
+echo "storage key: $key"
 
 az containerapp env dapr-component set -n $acaenv -g $grp \
     --dapr-component-name $statestore \

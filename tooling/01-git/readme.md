@@ -56,7 +56,7 @@ git add file.txt | *.ts
 Commit files:
 
 ```
-git commit -m "your checkin comment"
+git commit -m "your check-in comment"
 ```
 
 ## Branching
@@ -76,7 +76,7 @@ git branch -r
 Create Branch:
 
 ```
-git branch feature/myfeature
+git branch feature/my-feature
 ```
 
 Push new Branch to remote:
@@ -99,11 +99,11 @@ Merge Branch:
 git merge [branch_to_merge]
 ```
 
-> Note: You might have to switch to the branch that you might want to merge into befor executing merge
+> Note: You might have to switch to the branch that you might want to merge into before executing merge
 
 ## Checkout specific Commits
 
-Get a spcific Commit:
+Get a specific Commit:
 
 ```
 git checkout <sha1>
@@ -133,7 +133,7 @@ git branch save-detached-head
 
 ## Changing Branches
 
-Saving work befor switching the branch - alternative to stage and commit:
+Saving work before switching the branch - alternative to stage and commit:
 
 ```
 git stash | git stash push
@@ -165,7 +165,7 @@ Cleaning up after branch switches - ie to remove untracked files from other bran
 -fx flag is used to remove untracked and ignored files.
 
 ```
-git clean -fd | git clean -f folderpath 
+git clean -fd | git clean -f <FOLDER_PATH>
 ```
 
 Update a Branch from master / main:
@@ -239,7 +239,7 @@ git pull / git push
 
 ![forking-wf](_images/forking-workflow.jpg)
 
-Original Repo could be: `https://github.com/ARambazamba/AZ-204` where `ARambazamba` is the `original-owner-github-username` and `AZ-204` is the `reponame`
+Original Repo could be: `https://github.com/ARambazamba/AZ-204` where `ARambazamba` is the `original-owner-github-username` and `AZ-204` is the name of the GitHub Repo.
 
 ### Listing the current Remotes
 
@@ -300,13 +300,13 @@ git submodule update --remote --merge
 
 GitFlow is a branching model for Git, created by Vincent Driessen. It has attracted a lot of attention because it is very well suited to collaboration and scaling the development team.
 
-[Git-flow Intoduction & Cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
+[Git-flow Introduction & Cheat-sheet](https://danielkummer.github.io/git-flow-cheatsheet/)
 
 ![git-flow](_images/git-flow.png)
 
 > Note: Require GIT 2.24.0+ - Check with `git --version`
 
-Initialize repo for gitflow:
+Initialize repo for git-flow:
 
 ```
 git flow init
@@ -315,19 +315,19 @@ git flow init
 Start a new feature:
 
 ```
-git flow feature start MYFEATURE
+git flow feature start <MY_FEATURE>
 ```
 
 Finish feature:
 
 ```
-git flow feature finish MYFEATURE
+git flow feature finish <MY_FEATURE>
 ```
 
 Publish a feature:
 
 ```
-git flow feature publish  MYFEATURE
+git flow feature publish  <MY_FEATURE>
 ```
 
 Start a release:
