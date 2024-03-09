@@ -40,3 +40,21 @@ git clone https://github.com/MicrosoftLearning/AZ-204-DevelopingSolutionsforMicr
 ## Contributing
 
 Feel free to contribute. When contribute implement your changes / additions on a feature branch in your fork and issue a pull request after completion. An introduction video into forks and pull requests can be found [here](https://www.youtube.com/watch?v=nT8KGYVurIU)
+
+## License & Re-Use
+
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+
+You are free to:
+- Share: Copy and redistribute the material in any medium or format
+- Adapt: Remix, transform, and build upon the material
+
+Under the following terms:
+- Attribution: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+- NonCommercial: You may not use the material for commercial purposes.
+- ShareAlike: If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+No additional restrictions: You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+
+For commercial use please contact the author via [LinkedIn](https://www.linkedin.com/in/alexander-pajer-3bb26511a/) or [email](mailto:alexander.pajer@integrations.at)
+
