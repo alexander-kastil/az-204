@@ -1,16 +1,8 @@
 <div>
-    <app-catalog-list
-      [food]="food | async"
-      (foodSelected)="selectFood($event)"
-      (foodDeleted)="deleteFood($event)"
-      (foodAdding)="addFood($event)"
-    ></app-catalog-list>
-  
-    @if (selected) {
-      <app-catalog-edit
-        [food]="selected"
-        (saveFood)="foodSaved($event)"
-      ></app-catalog-edit>
-    }
-  </div>
-  
+  <app-catalog-list
+    [food]="food | async"
+    (foodSelected)="selectFood($event)"
+    (foodDeleted)="deleteFood($event)"
+    (foodAdding)="addFood()"
+  ></app-catalog-list>
+</div>

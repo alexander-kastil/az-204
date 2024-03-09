@@ -57,7 +57,7 @@ namespace FoodApp
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteFood(int id)
         {
-            var item = GetById(id);
+            CatalogItem item = await ctx.Food.FirstOrDefaultAsync(v => v.ID == id);
             if (item != null)
             {
                 ctx.Remove(item);
