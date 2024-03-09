@@ -1,7 +1,7 @@
 # Class Environment Setup
 
 - Install Software
-- [Install Windows Subsystem Linux - Optional](./windows-subsystem-linux/)
+- [Install Windows Subsystem Linux - Optional](./wsl/)
 - [Setup local container support - Optional](./docker/)
 - [Create Lab VM - Optional](./lab-vm/)
 

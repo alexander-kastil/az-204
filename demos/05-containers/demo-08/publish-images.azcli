@@ -1,12 +1,11 @@
 env=dev
-grp=az-native-$env
+grp=az204-m05-containers
 loc=westeurope
-acr=aznative$env
+acr=az204demos$env
 img=food-api-dapr
 
-az acr create -g $grp -n $acr --sku Basic
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
 az acr login --name $acr
-az acr update -n $acr --admin-enabled true
 
 cd $img
 az acr build --image $img --registry $acr --file dockerfile .

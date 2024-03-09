@@ -1,0 +1,36 @@
+.container {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--main-color);
+        width: 80%;
+        padding: 1rem;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.container > div {
+    margin-top: 1rem;  
+    font-size: 1.5rem;
+    margin: 1px solid black;
+    background-color: var(--accent-color);
+    padding: 1rem;
+}
+
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+button{
+        padding: 0.5rem;
+        width: 80px;
+        background-color: var(--main-color);
+        border-radius: 5px; // added rounded border
+        border-color: var(--main-color);    
+}

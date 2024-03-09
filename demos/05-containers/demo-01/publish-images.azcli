@@ -1,0 +1,20 @@
+env=dev
+grp=az204-m05-containers
+loc=westeurope
+acr=az204demos$env
+imgApi=catalog-service
+imgUI=food-shop
+
+az group create -n $grp -l westeurope
+
+az acr create -g $grp -n $acr --sku Basic
+az acr login --name $acr
+az acr update -n $acr --admin-enabled true
+
+cd $imgApic
+az acr build --image $imgApi --registry $acr --file dockerfile .
+cd ..
+
+cd $imgUI
+az acr build --image $imgUI --registry $acr --file dockerfile .
+cd ..

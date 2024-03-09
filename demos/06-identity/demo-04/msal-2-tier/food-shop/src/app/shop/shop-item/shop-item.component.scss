@@ -1,0 +1,29 @@
+.gridContent{
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: 3fr 1fr;
+  grid-template-areas: 
+    "imgContainer textContainer"
+    "imgContainer actionsContainer";
+}
+
+.imgContainer {
+  grid-area: imgContainer;
+}
+
+img {
+  padding-left: 0.5rem;
+  padding-top: 1rem;
+  max-width: 200px;
+}
+
+.textContainer {
+  grid-area: textContainer;
+  padding-top: 1rem;
+}
+
+.actionsContainer {
+  grid-area: actionsContainer;
+  display: flex;
+  flex-direction: row-reverse;
+}

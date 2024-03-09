@@ -1,0 +1,18 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ food.name }} - {{ food.price | toEuro }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="gridContent">
+    <div class="imgContainer">
+      <img matCardImage src="assets/images/{{food.pictureUrl}}" />
+    </div>
+    <div class="textContainer">
+      {{ food.description }}
+    </div>
+    <div class="actionsContainer">
+      <app-number-picker
+      (amountChanged)="handleAmountChange($event)" [formControl]="nbrPicker"
+    ></app-number-picker>
+    </div>
+  </mat-card-content>
+</mat-card>

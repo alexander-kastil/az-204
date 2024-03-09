@@ -1,7 +1,7 @@
 env=dev
 loc=westeurope
 grp=az204-m08-apim-$env
-acr=foodcontainers$env
+acr=az204demos$env
 img=food-orders-dashboard
 
 az acr login --name $acr

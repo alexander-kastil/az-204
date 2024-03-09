@@ -1,19 +1,16 @@
 # Azure Container Registry Build Task
 
-## Food App
-
-Examine [/app/publish-containers](/app/publish-containers.azcli). This script builds the containers for food-app and pushes them to Azure Container Registry.
-
 ## Config-api & Config-ui - Simple 2-tier app
+
 Remove existing `node_modules` and `.angular` folders in `config-ui`, if present to reduce upload time to Azrue container registry.
 
-Execute [publish-containers.azcli](publish-containers.azcli) in the current folder:
+Execute [publish-containers.azcli](publish-images.azcli) in the current folder:
 
 ```bash
 env=dev
 grp=az204-m05-containers
 loc=westeurope
-acr=configacr$env
+acr=az204demos$env
 imgApi=config-api
 imgUI=config-ui
 

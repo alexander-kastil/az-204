@@ -1,0 +1,8 @@
+<div class="container">
+  @if (order.items.length>0) {
+    <app-checkout-form [order]="order " (onCheckout)="completeCheckout($event)"></app-checkout-form>
+  }
+  @if (response!=null && order.items.length==0) {
+    <app-checkout-response [response]="response"></app-checkout-response>
+  }
+</div>

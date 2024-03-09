@@ -12,7 +12,7 @@ Configuration of of [Dapr components](https://docs.dapr.io/concepts/components-c
     apiVersion: dapr.io/v1alpha1
     kind: Component
     metadata:
-    name: foodstore
+    name: food-state
     spec:
     type: state.redis
     version: v1
@@ -95,33 +95,31 @@ Configuration of of [Dapr components](https://docs.dapr.io/concepts/components-c
 - Examine `CountController.cs` and call `getCount()` multiple times to increment the counter and receive its current value:
 
     ```c#
-    public CountController(DaprClient daprClient)
-    {
-        client = daprClient;
-    }
+    [Route("[controller]")]
+    [ApiController]
+    public class CountController(DaprClient client, IConfiguration config) : ControllerBase
+    {        
+        const string key = "counter";
 
-    [HttpGet("getCount")]
-    public async Task<int> Get()
-    {
-        var counter = await client.GetStateAsync<int>(storeName, key);
-        await client.SaveStateAsync(storeName, key, counter + 1);
-        return counter;
+        [HttpGet("getCount")]
+        public async Task<int> Get()
+        {
+            var storeName = config.GetValue<string>("STATE_STORE");
+            var counter = await client.GetStateAsync<int>(storeName, key);
+            await client.SaveStateAsync(storeName, key, counter + 1);
+            return counter;
+        }
     }
     ```
 
 - To increment the counter you can use the pre-configured REST calls in [test-dapr.http](./food-api-dapr/test-dapr.http) which is using the [Rest Client for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).      
 
     ```bash
-    @baseUrl = http://localhost:5000
+    @baseUrl = http://localhost:5010/v1.0/invoke/food-api/method
     ### Get the count and increment it by 1
-    GET {{baseUrl}}/count/getcount HTTP/1.1
+    GET {{baseUrl}}/count/getCount 
+    content-type: application/json
     ```
-
-- Check the state store data in the default state store - Redis:
-
-    ```bash
-    dapr state list --store-name statestore
-    ```   
 
 - Examine the `Dapr Attach` config in `launch.json` and use it to attach the debugger to the `food-api-dapr` process and debug the state store code:
 
@@ -143,7 +141,7 @@ Configuration of of [Dapr components](https://docs.dapr.io/concepts/components-c
     env=dev
     grp=az-native-$env
     loc=westeurope
-    acr=aznative$env
+    acr=az204demos$env
     az acr build --image $img--registry $acr --file dockerfile .
     ```
 - Create a storage account to be used as state store
