@@ -18,10 +18,25 @@ export class ColumnDirective {
     'style': `
     display: flex;
     flex-direction: row;
+    gap: 1rem;
     `},
   standalone: true
 })
 export class RowDirective {
+}
+
+@Directive({
+  selector: '[command-row]',
+  host: {
+    'style': `
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; 
+    gap: 1rem;
+    `},
+  standalone: true
+})
+export class CommandRowDirective {
 }
 
 @Directive({

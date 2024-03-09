@@ -4,6 +4,6 @@ export class CatalogItem {
   price = 0;
   inStock = 0;
   code = '';
-  pictureUrl?: string;
-  description?: string;
+  pictureUrl = '';
+  description = '';
 }

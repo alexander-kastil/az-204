@@ -1,8 +1,8 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, ENVIRONMENT_INITIALIZER, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter } from '@angular/router';
-import { DefaultDataServiceConfig, provideEntityData, withEffects } from '@ngrx/data';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { DefaultDataServiceConfig, EntityDataService, provideEntityData, withEffects } from '@ngrx/data';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -12,21 +12,35 @@ import { sidenavState } from './state/sidenav/sidenav.state';
 import { foodDataServiceConfig } from './catalog/state/food-data.service.config';
 import { foodEntityConfig } from './catalog/state/food.metadata';
 import { cartState } from './shop/state/cart.state';
+import { FoodDataService } from './catalog/state/food-data.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideHttpClient(withInterceptors([apimInterceptor])),
-        provideRouter(appRoutes),
+        provideRouter(
+            appRoutes,
+            withComponentInputBinding()
+        ),
         provideAnimations(),
         provideStore(),
         provideEffects(),
-        //NgRx State slices
+        // NgRx State slices
         provideState(sidenavState),
         provideState(cartState),
-        //NgRx Data
+        // NgRx Data
         provideEntityData(foodEntityConfig, withEffects()),
         { provide: DefaultDataServiceConfig, useValue: foodDataServiceConfig },
-        //NgRx DevTools
+        // NgRx Data Custom Data Service 
+        {
+            provide: ENVIRONMENT_INITIALIZER,
+            useValue() {
+                const entityDataService = inject(EntityDataService);
+                const foodDataService = inject(FoodDataService);
+                entityDataService.registerService('Food', foodDataService);
+            },
+            multi: true,
+        },
+        // NgRx DevTools
         provideStoreDevtools({ maxAge: 25 }),
     ]
 };

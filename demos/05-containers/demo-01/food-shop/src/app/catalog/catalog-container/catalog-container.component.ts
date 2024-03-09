@@ -1,27 +1,28 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { AILoggerService } from 'src/app/shared/logger/ai-logger.service';
-import { CatalogItem } from '../catalog-item.model';
-import { FoodEntityService } from '../state/food-entity.service';
-import { CatalogListComponent } from '../catalog-list/catalog-list.component';
 import { CatalogEditComponent } from '../catalog-edit/catalog-edit.component';
+import { CatalogItem } from '../catalog-item.model';
+import { CatalogListComponent } from '../catalog-list/catalog-list.component';
+import { FoodEntityService } from '../state/food-entity.service';
 
 @Component({
   selector: 'app-catalog-container',
   standalone: true,
   imports: [
+    AsyncPipe,
     CatalogListComponent,
     CatalogEditComponent,
-    AsyncPipe
   ],
   templateUrl: './catalog-container.component.html',
   styleUrl: './catalog-container.component.scss'
 })
 export class CatalogContainerComponent {
+  router = inject(Router);
   service = inject(FoodEntityService);
   logger = inject(AILoggerService);
   food = this.service.entities$;
-  selected: CatalogItem | null = null;
 
   ngOnInit() {
     this.service.loaded$.subscribe((loaded) => {
@@ -31,12 +32,12 @@ export class CatalogContainerComponent {
     });
   }
 
-  addFood(item: CatalogItem) {
-    this.selected = item;
+  addFood() {
+    this.router.navigate(['/catalog', 0]);
   }
 
   selectFood(f: CatalogItem) {
-    this.selected = { ...f };
+    this.router.navigate(['/catalog', f.id]);
   }
 
   deleteFood(f: CatalogItem) {
