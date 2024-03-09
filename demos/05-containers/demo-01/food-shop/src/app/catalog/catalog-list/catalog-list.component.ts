@@ -33,7 +33,7 @@ export class CatalogListComponent {
     'id',
     'name',
     'price',
-    'instock',
+    'inStock',
     'deleteItem',
     'editItem',
   ];

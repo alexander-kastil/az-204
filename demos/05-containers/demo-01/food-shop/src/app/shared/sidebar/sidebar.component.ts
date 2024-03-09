@@ -3,7 +3,6 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-// import { MsalAuthFacade } from 'src/app/auth/state/auth.facade';
 import { EuroPipe } from '../pipes/euro.pipe';
 import { CurrentUserComponent } from '../../auth/components/current-user/current-user.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,17 +32,12 @@ import { CartFacade } from 'src/app/shop/state/cart.facade';
 export class SidebarComponent {
   cart = inject(CartFacade);
   router = inject(Router);
-  // auth = inject(MsalAuthFacade);
-
-  // user = this.auth.getUser();
   user = of("alexander.pajer@integrations.at");
   ct = this.cart.getItemsCount();
   total = this.cart.getSumTotal();
   persistToCart = this.cart.getPersist();
   items = this.cart.getItems();
   authEnabled = of(false);
-  // authEnabled = this.auth.getAuthEnabled();
-
 
   persistCart = environment.features.persistCart;
   fcSaveCart: FormControl<boolean> = new FormControl();
@@ -66,7 +60,7 @@ export class SidebarComponent {
       .subscribe();
   }
 
-  ngonDestroy() {
+  ngOnDestroy() {
     if (this.cartSetting) this.cartSetting.unsubscribe();
   }
 
@@ -75,6 +69,6 @@ export class SidebarComponent {
   }
 
   doCheckout() {
-    this.router.navigate(['/food/checkout']);
+    this.router.navigate(['/shop/checkout']);
   }
 }

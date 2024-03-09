@@ -25,12 +25,9 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     SidebarComponent
   ]
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent {
   router = inject(Router);
-  mf = inject(SidenavFacade);
   title = environment.title;
-  sidenavMode: MatDrawerMode = 'side';
-  sidenavVisible = this.mf.getSideNavVisible();
   isIframe = window !== window.parent && !window.opener;
 
   authEnabled = environment.authEnabled;
@@ -45,34 +42,4 @@ export class AppComponent implements OnDestroy {
       console.log('publicRoute', result);
     })
   );
-
-  private destroy$ = new Subject();
-
-  constructor(
-  ) {
-    this.mf.getSideNavPosition()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((mode: string) => {
-        this.sidenavMode = mode as MatDrawerMode;
-      });
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
-
-  getWorkbenchStyle() {
-    let result = {};
-    this.mf.getSideNavVisible()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((visible: boolean) => {
-        result = visible
-          ? {
-            'padding-left': '10px',
-          }
-          : {};
-      });
-    return result;
-  }
 }
