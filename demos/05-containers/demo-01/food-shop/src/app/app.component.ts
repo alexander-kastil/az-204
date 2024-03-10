@@ -1,15 +1,13 @@
-import { Component, OnDestroy, inject } from '@angular/core';
-import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
+import { AsyncPipe, NgStyle, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID, inject } from '@angular/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { Subject, of, takeUntil } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
-import { SidenavFacade } from './state/sidenav/sidenav.facade';
 import { LoginComponent } from './auth/components/login/login.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { AsyncPipe, NgStyle } from '@angular/common';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { MsalAuthFacade } from './auth/state/auth.facade';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
@@ -34,6 +32,20 @@ export class AppComponent {
 
   authEnabled = environment.authEnabled;
   authenticated = this.auth.isAuthenticated();
+
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+    this.setMSALIframe();
+  }
+
+  setMSALIframe() {
+    console.log('setMSALIframe', this.isIframe);
+    if (isPlatformBrowser(this.platformId)) {
+      // Use the window reference: this.windowRef
+      this.isIframe = window !== window.parent && !window.opener
+    }
+  }
+
   publicRoute = this.router.events.pipe(
     startWith(false),
     filter((e) => e instanceof NavigationEnd),
