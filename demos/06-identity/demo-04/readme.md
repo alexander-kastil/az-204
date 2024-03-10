@@ -1,4 +1,4 @@
-# MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular version 3-beta`
+# MSAL & Angular using @azure/msal-angular
 
 ## Demo
 
