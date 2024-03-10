@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { authFeatureKey, MsalAuthState } from './auth.reducer';
+import { authFeatureKey, MsalAuthState } from './auth.state';
 
 export const getAuthState =
   createFeatureSelector<MsalAuthState>(authFeatureKey);

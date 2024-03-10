@@ -32,6 +32,5 @@ export const environment = {
     logging: false,
     remoteCart: false,
     persistCart: false,
-  },
-  testuser: 'alexander.pajer@integrations.at',
+  }
 };

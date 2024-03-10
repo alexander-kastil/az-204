@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   MsalBroadcastService,
   MsalGuardConfiguration,
@@ -8,8 +8,8 @@ import {
   BrowserCacheLocation,
   EventMessage,
   EventType,
-  InteractionType,
   IPublicClientApplication,
+  InteractionType,
   LogLevel,
   PublicClientApplication,
 } from '@azure/msal-browser';
@@ -18,15 +18,16 @@ import { combineLatestWith, filter, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { MsalBroadcastServiceMock } from '../mocks/MsalBroadcastService.mock';
 import { AuthActions } from './auth.actions';
-import { MsalAuthState } from './auth.reducer';
 import { getAuthEnabled, getLoggedIn, getUser } from './auth.selectors';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class MsalAuthFacade {
-  constructor(
-    private msalBC: MsalBroadcastService,
-    private store: Store<MsalAuthState>
-  ) {
+  msalBC = inject(MsalBroadcastService);
+  store = inject(Store);
+
+  constructor() {
     this.handleLoginSuccess(this.msalBC);
   }
 

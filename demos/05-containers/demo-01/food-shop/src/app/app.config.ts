@@ -1,5 +1,5 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, ENVIRONMENT_INITIALIZER, inject } from '@angular/core';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { ApplicationConfig, ENVIRONMENT_INITIALIZER, importProvidersFrom, inject } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { DefaultDataServiceConfig, EntityDataService, provideEntityData, withEffects } from '@ngrx/data';
@@ -14,9 +14,17 @@ import { foodEntityConfig } from './catalog/state/food.metadata';
 import { cartState } from './shop/state/cart.state';
 import { FoodDataService } from './catalog/state/food-data.service';
 
+import { MsalInterceptor, MSAL_INSTANCE, MSAL_GUARD_CONFIG, MSAL_INTERCEPTOR_CONFIG, MsalService, MsalGuard, MsalBroadcastService } from '@azure/msal-angular';
+import { MSALInstanceFactory, MSALGuardConfigFactory, MSALInterceptorConfigFactory } from './auth/state/auth.facade';
+import { authState } from './auth/state/auth.state';
+import { MsalAuthUtilModule } from './auth/msal-auth-util.module';
+
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideHttpClient(withInterceptors([apimInterceptor])),
+        provideHttpClient(
+            withInterceptorsFromDi(),
+            withInterceptors([apimInterceptor])
+        ),
         provideRouter(
             appRoutes,
             withComponentInputBinding()
@@ -27,6 +35,29 @@ export const appConfig: ApplicationConfig = {
         // NgRx State slices
         provideState(sidenavState),
         provideState(cartState),
+        // NGRX State auth
+        // importProvidersFrom(MsalAuthUtilModule),
+        provideState(authState),
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: MsalInterceptor,
+            multi: true
+        },
+        {
+            provide: MSAL_INSTANCE,
+            useFactory: MSALInstanceFactory
+        },
+        {
+            provide: MSAL_GUARD_CONFIG,
+            useFactory: MSALGuardConfigFactory
+        },
+        {
+            provide: MSAL_INTERCEPTOR_CONFIG,
+            useFactory: MSALInterceptorConfigFactory
+        },
+        MsalService,
+        MsalGuard,
+        MsalBroadcastService,
         // NgRx Data
         provideEntityData(foodEntityConfig, withEffects()),
         { provide: DefaultDataServiceConfig, useValue: foodDataServiceConfig },

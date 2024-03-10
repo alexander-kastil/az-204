@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AsyncPipe, NgStyle } from '@angular/common';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { MsalAuthFacade } from './auth/state/auth.facade';
 
 @Component({
   selector: 'app-root',
@@ -27,11 +28,12 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 })
 export class AppComponent {
   router = inject(Router);
+  auth = inject(MsalAuthFacade);
   title = environment.title;
   isIframe = window !== window.parent && !window.opener;
 
   authEnabled = environment.authEnabled;
-  authenticated = of(true)
+  authenticated = this.auth.isAuthenticated();
   publicRoute = this.router.events.pipe(
     startWith(false),
     filter((e) => e instanceof NavigationEnd),
