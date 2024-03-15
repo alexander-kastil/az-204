@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   title: 'Food Shop',
-  authEnabled: true,
+  authEnabled: false,
   mockCheckout: true,
   catalogApi: 'http://localhost:5001/',
   ordersApi: 'http://localhost:5002/',

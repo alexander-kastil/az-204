@@ -87,25 +87,25 @@ export const loggerCallback = (logLevel: LogLevel, message: string) => {
 
 //https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/initialization.md
 export function MSALInstanceFactory(): IPublicClientApplication {
-  let config = {
+  return new PublicClientApplication({
     auth: {
       clientId: environment.azure.appReg.clientId,
       authority: environment.azure.appReg.authority,
       redirectUri: '/',
+      postLogoutRedirectUri: '/'
     },
     cache: {
-      cacheLocation: BrowserCacheLocation.LocalStorage,
-      storeAuthStateInCookie: isIE, // set to true for IE 11
+      cacheLocation: BrowserCacheLocation.LocalStorage
     },
     system: {
+      allowNativeBroker: false, // Disables WAM Broker
       loggerOptions: {
         loggerCallback,
         logLevel: LogLevel.Info,
-        piiLoggingEnabled: false,
-      },
-    },
-  };
-  return new PublicClientApplication(config);
+        piiLoggingEnabled: false
+      }
+    }
+  });
 }
 
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
