@@ -1,5 +1,8 @@
 package com.function;
 
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
+
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
@@ -23,31 +26,36 @@ public class Function {
 
         @FunctionName("UploadNewsletter")
         public HttpResponseMessage run(
-                @HttpTrigger(name = "req", methods = {
-                                HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<String> request,
-                final ExecutionContext context) {
+                        @HttpTrigger(name = "req", methods = {
+                                        HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<String> request,
+                        final ExecutionContext context) {
                 context.getLogger().info("Java HTTP trigger processed a request.");
 
                 // Parse query parameter
                 final String text = request.getBody();
                 String fileName = "newsletter-" + java.util.UUID.randomUUID() + ".txt";
-                
-                // Load environment variables
-                Dotenv dotenv = Dotenv.load();
-                String connectionString = dotenv.get("CONNECTION_STRING");
-                String containerName = dotenv.get("CONTAINER_NAME");
 
-                // Create a BlobServiceClient object which will be used to create a container client
-                BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionString).buildClient();
+                // Load environment variables
+                String connectionString = System.getenv("CONNECTION_STRING");
+                String containerName = System.getenv("CONTAINER_NAME");
+
+                // Create a BlobServiceClient object which will be used to create a container
+                // client
+                BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connectionString)
+                                .buildClient();
 
                 // Create the container and return a container client object
                 BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
 
-                // Get a reference to a blob
                 BlobClient blobClient = containerClient.getBlobClient(fileName);
 
+                // Get a reference to a blob
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8));
+
                 // Upload the blob
-                blobClient.uploadFromFile(text);
+                // blobClient.
+                blobClient.upload(inputStream, text.length(), true);
+                
                 return request.createResponseBuilder(HttpStatus.OK).body("File uploaded successfully").build();
         }
 }
