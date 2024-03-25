@@ -19,7 +19,7 @@ COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
 
 # docker build --rm -f dockerfile -t food-shop .
-# docker run -d --rm -p 5053:80 -e ENV_CATALOG_API_URL="http://localhost:5051" food-shop
+# docker run -d --rm -p 5053:80 -e ENV_CATALOG_API_URL="http://localhost:5001/" food-shop
 
 # browse using http://localhost:5053/
 

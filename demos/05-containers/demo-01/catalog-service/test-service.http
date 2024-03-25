@@ -1,0 +1,16 @@
+### Get All
+GET http://localhost:5001/food
+
+### POST 
+POST http://localhost:5001/food
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "Falafel Plates",
+    "inStock": 9,
+    "price": 12,
+    "description": "Falafel is a deep-fried ball, doughnut or patty made from ground chickpeas. Served with hummus, pita bread, and salad.",
+    "code": "",
+    "pictureUrl": "falafel.jpg"
+}

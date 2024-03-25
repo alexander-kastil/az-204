@@ -5,7 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BorderDirective, ColumnDirective } from 'src/app/shared/formatting/formatting-directives';
+import { RouterLink } from '@angular/router';
+import { BorderDirective, CommandRowDirective, ColumnDirective } from 'src/app/shared/formatting/formatting-directives';
 import { EuroPipe } from 'src/app/shared/pipes/euro.pipe';
 import { CartItem } from '../../cart-item.model';
 import { Order } from '../../order/order.model';
@@ -18,12 +19,14 @@ import { Order } from '../../order/order.model';
   imports: [
     MatToolbarModule,
     ReactiveFormsModule,
+    RouterLink,
     BorderDirective,
     ColumnDirective,
+    CommandRowDirective,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    EuroPipe
+    EuroPipe,
   ]
 })
 export class CheckoutFormComponent {

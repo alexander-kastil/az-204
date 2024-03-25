@@ -31,15 +31,15 @@ Linux:
 
 Create Images for .NET Core Api & Angular UI using `*.dockerfile`
 
-#### .NET 6 Api
+#### .NET 8 Api
 
-Examine [/app/food-catalog-api/Dockerfile](/app/food-catalog-api/Dockerfile):
+Examine [./catalog-service/dockerfile](./catalog-service/dockerfile)):
 
 ```docker
 
 ```yaml
 # Build Image
-FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
 WORKDIR /build
 
 COPY . .
@@ -47,7 +47,7 @@ RUN dotnet restore "catalog-api.csproj"
 RUN dotnet publish -c Release -o /app
 
 # Runtime Image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app .
 ENTRYPOINT ["dotnet", "catalog-api.dll"]
@@ -71,7 +71,7 @@ docker push arambazamba/food-catalog-api
 
 ### Angular UI
 
-Examine Examine [/app/food-shop-ui/Dockerfile](/app/food-shop-ui/Dockerfile)::
+Examine Examine [./food-shop/dockerfile](./food-shop/dockerfile)::
 
 ```docker
 FROM node:18-alpine as build
@@ -87,7 +87,7 @@ FROM nginx:alpine
 VOLUME /var/cache/nginx
 
 # Take output from node build
-COPY --from=build /app/dist/food-shop-ui/ /usr/share/nginx/html
+COPY --from=build /app/dist/food-shop/ /usr/share/nginx/html
 # Add nginx url rewriteconfig
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 # Substitute environment vars
@@ -97,7 +97,7 @@ CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js
 Build & Run Image:
 
 ```
-docker build --rm -f Dockerfile -t food-shop-ui .
+docker build --rm -f Dockerfile -t food-shop .
 docker run -d --rm -p 5052:80 --env ENV_API_URL="https://localhost:5051" 
 ```
 
@@ -106,6 +106,6 @@ Browse using `http://localhost:5052`
 Publish Image to Docker Hub:
 
 ```
-docker tag food-shop-ui arambazamba/food-shop-ui
-docker push arambazamba/food-shop-ui
+docker tag food-shop-ui arambazamba/food-shop
+docker push arambazamba/food-shop
 ```

@@ -5,11 +5,11 @@
   <div formGroupName="customer" column border>
     <mat-form-field>
       <mat-label>Id</mat-label>
-      <input matInput  formControlName="id" />
+      <input matInput formControlName="id" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput  formControlName="name" />
+      <input matInput formControlName="name" />
     </mat-form-field>
     <mat-form-field>
       <mat-label>E-Mail</mat-label>
@@ -52,26 +52,31 @@
   </div>
 
   <div formArrayName="items" border>
-    @for (cartItemForm of this.orderForm.controls['items'].controls; track cartItemForm; let i = $index) {
-      <div formGroupName="{{i}}" class="row">
-        <input type="text" formControlName="itemQuantity" class="quantity" />
-        <input type="text" formControlName="itemName" class="name" />
-        <label>item price:</label>
-        <input type="text" formControlName="itemPrice" class="price"/>
-      </div>
+    @for (cartItemForm of this.orderForm.controls['items'].controls; track
+    cartItemForm; let i = $index) {
+    <div formGroupName="{{ i }}" class="row">
+      <input type="text" formControlName="itemQuantity" class="quantity" />
+      <input type="text" formControlName="itemName" class="name" />
+      <label>item price:</label>
+      <input type="text" formControlName="itemPrice" class="price" />
+    </div>
     }
   </div>
   <div border>
     Total: {{ order.total | toEuro }}
   </div>
+  <div command-row>
+    <button mat-raised-button [routerLink]="['/shop']" color="primary">
+      Cancel Checkout
+    </button>
 
-  <button
-    mat-raised-button
-    (click)="completeCheckout()"
-    color="primary"
-    [disabled]="!orderForm.valid"
-    type="submit"
-    >
-    Complete Checkout
-  </button>
+    <button
+      mat-raised-button
+      (click)="completeCheckout()"
+      color="primary"
+      [disabled]="!orderForm.valid"
+      type="submit">
+      Complete Checkout
+    </button>
+  </div>
 </form>

@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <button mat-raised-button (click)="addFood()" color="accent">Add Food</button>
+  <button mat-raised-button (click)="addFood()" color="accent">Add Food</button>
 </mat-toolbar>
 
 <mat-card appearance="outlined">
@@ -19,7 +19,7 @@
       <td mat-cell *matCellDef="let element">{{ element.price }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="instock">
+    <ng-container matColumnDef="inStock">
       <th mat-header-cell *matHeaderCellDef>In Stock</th>
       <td mat-cell *matCellDef="let element">{{ element.inStock }}</td>
     </ng-container>
@@ -43,10 +43,6 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns"
-      (click)="selectFood(row)"
-    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </mat-card>

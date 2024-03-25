@@ -1,0 +1,72 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "Total": 48,
+      "customer": {
+        "name": "Alexander Pajer",
+        "email": "alexander.pajer@integrations.at",
+        "phone": "+43 664 1234567"
+      },
+      "payment": {
+        "type": "Credit Card",
+        "account": "**** **** **** 1234"
+      },
+      "items": [
+        {
+          "id": 2,
+          "name": "Blini with Salmon",
+          "price": 9,
+          "quantity": 2
+        },
+        {
+          "id": 1,
+          "name": "Butter Chicken",
+          "price": 12,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "Wiener Schnitzel",
+          "price": 18,
+          "quantity": 1
+        }
+      ],
+      "status": "cart"
+    },
+    {
+      "id": 2,
+      "Total": 0,
+      "customer": {
+        "name": "Alexander Pajer",
+        "email": "alexander.pajer@integrations.at",
+        "address": "Hauptstraße 1, Wien, Austria"
+      },
+      "payment": {
+        "type": "Credit Card",
+        "account": "**** **** **** 1234"
+      },
+      "items": [
+        {
+          "id": 2,
+          "name": "Blini with Salmon",
+          "price": 9,
+          "quantity": 2
+        },
+        {
+          "id": 1,
+          "name": "Butter Chicken",
+          "price": 12,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "Wiener Schnitzel",
+          "price": 18,
+          "quantity": 1
+        }
+      ],
+      "status": "cart"
+    }
+  ]
+}

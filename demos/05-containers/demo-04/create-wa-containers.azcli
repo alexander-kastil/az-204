@@ -3,7 +3,7 @@ grp=az204-m01-wacontainers-$env
 loc=westeurope
 plan=config-api-wac-$env
 app=config-api-wac-$env
-acr=configacr$env
+acr=az204demos$env
 img=$acr.azurecr.io/config-api
 
 az group create --name $grp --location $loc

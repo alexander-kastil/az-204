@@ -4,6 +4,6 @@ metadata:
 - name: accountName
   value: "aznativestoragedev"
 - name: accountKey
-  value: "<ACCOUNT_KEY>"
+  value: "2JwRDitR2dizmgpTmYllpGv7cdAjgPfz6I9WCE9g4YNwcavST84fu0qv2oJ8IBh8pHeNKPzeTeai+AStCqDoIw=="
 - name: containerName
   value: "food-state"

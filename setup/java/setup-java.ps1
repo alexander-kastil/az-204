@@ -1,4 +1,4 @@
-choco install openjdk -y
+choco install openjdk --version=17.0.2 -y
 choco install tomcat -y -PackageParameters "/D=C:\Program Files\Tomcat"
 choco install maven -y
 

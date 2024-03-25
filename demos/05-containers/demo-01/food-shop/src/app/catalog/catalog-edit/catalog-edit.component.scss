@@ -2,6 +2,13 @@ form {
   width: 100%;
 }
 
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // Added this line
+  padding-bottom: 0.5rem;
+}
+
 mat-form-field {
   width: 100%;
 }
@@ -10,11 +17,10 @@ mat-form-field {
   margin-top: 0.5rem !important;
 }
 
-.actions {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
 .cardContent {
   padding-top: 1rem;
+}
+
+.description {
+  height: 6rem !important;
 }
