@@ -1,15 +1,15 @@
-app=msal-mail-daemon
+app=msal-graph-daemon
 replyuri=https://localhost:5001
 supportedAcctTypes=AzureADMyOrg
 
-az ad app list --all --query "[?displayName=='msal-mail-daemon']"
+az ad app list --all --query "[?displayName=='msal-graph-daemon']"
 
 clientId=$(az ad app create --display-name $app \
     --sign-in-audience $supportedAcctTypes \
     --enable-id-token-issuance false \
     --enable-access-token-issuance  false \
     --web-redirect-uris $replyuri \
-    --required-resource-accesses @mail-daemon.manifest.json \
+    --required-resource-accesses @graph-daemon.manifest.json \
     --query appId -o tsv)
 
 az ad app permission admin-consent --id $clientId

@@ -1,4 +1,4 @@
-# MSAL secured Mail Daemon Service with Microsoft Graph
+# MSAL secured Graph Daemon Service
 
 [Microsoft Graph SDKs](https://docs.microsoft.com/en-us/graph/sdks/sdks-overview?view=graph-rest-1.0)
 
@@ -9,8 +9,8 @@
 ## Demos
 
 - Microsoft Graph Essentials
-- MSAL Client Credential Flow using [Graph mail daemon api](/app/graph-mail-daemon-api)
+- MSAL Client Credential Flow using [Graph Daemon Api](./graph-daemon-api/)
 
-    >Note: App Registration & Required permissions for mail daemon service can be created by executing `create-confidential-appreg.azcli`:
+    >Note: App Registration & Required permissions for graph daemon service can be created by executing `create-confidential-appreg.azcli`:
 
     ![msal](_images/daemon-permissions.png)

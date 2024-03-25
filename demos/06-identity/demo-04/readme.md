@@ -1,4 +1,6 @@
-# MSAL secured .NET 6 Api consumed by Angular App using `@azure/msal-angular version 3-beta`
+# MSAL & Angular using @azure/msal-angular
+
+[Microsoft Authentication Library for JavaScript](https://azuread.github.io/microsoft-authentication-library-for-js/ref/modules/_azure_msal_angular.html)
 
 ## Demo
 

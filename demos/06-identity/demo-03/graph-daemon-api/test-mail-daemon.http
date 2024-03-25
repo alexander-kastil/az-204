@@ -1,0 +1,8 @@
+POST https://localhost:5051/mail/send HTTP/1.1
+Content-Type: application/json
+
+{
+    "subject": "A test mail",
+    "text": "Explore - Let life surprise you!",
+    "recipient": "alexander.pajer@integrations.at"
+}

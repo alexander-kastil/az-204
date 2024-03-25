@@ -1,8 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import {
+  MSAL_GUARD_CONFIG,
   MsalGuardConfiguration,
   MsalService,
-  MSAL_GUARD_CONFIG,
 } from '@azure/msal-angular';
 import {
   AuthenticationResult,
@@ -11,51 +12,50 @@ import {
   RedirectRequest,
 } from '@azure/msal-browser';
 import { environment } from '../../../../environments/environment';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    standalone: true,
-    imports: [MatButtonModule],
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  standalone: true,
+  imports: [MatButtonModule],
 })
 export class LoginComponent implements OnInit {
+  auth = inject(MsalService);
   entryPic = '/assets/images/food.png';
   isIframe = false;
 
-  constructor(
-    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
-    private authService: MsalService
-  ) {}
+  constructor(@Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration) { }
 
   ngOnInit(): void {
     this.isIframe = window !== window.parent && !window.opener;
   }
 
-  login() {
+  async login() {
     if (environment.authEnabled) {
+      await this.auth.initialize();
+      await this.auth.handleRedirectObservable();
       if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
         if (this.msalGuardConfig.authRequest) {
-          this.authService
+          this.auth
             .loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
             .subscribe((response: AuthenticationResult) => {
-              this.authService.instance.setActiveAccount(response.account);
+              this.auth.instance.setActiveAccount(response.account);
             });
         } else {
-          this.authService
+          this.auth
             .loginPopup()
             .subscribe((response: AuthenticationResult) => {
-              this.authService.instance.setActiveAccount(response.account);
+              this.auth.instance.setActiveAccount(response.account);
             });
         }
       } else {
         if (this.msalGuardConfig.authRequest) {
-          this.authService.loginRedirect({
+          this.auth.loginRedirect({
             ...this.msalGuardConfig.authRequest,
           } as RedirectRequest);
         } else {
-          this.authService.loginRedirect();
+          this.auth.loginRedirect();
         }
       }
     }
