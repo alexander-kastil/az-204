@@ -10,11 +10,12 @@ app=picture-processor
 az group create -n $grp -l $loc
 
 az storage account create -l $loc -n $storage -g $grp --sku Standard_LRS
-key=$(az storage account keys list -n $storage --query "[0].value")
+key=$(az storage account keys list -n $storage -g $grp --query "[0].value")
 conStr=$(az storage account show-connection-string -n $storage -g $grp --query connectionString -o tsv)
 echo $conStr
 az storage container create -n $source --account-name $storage --account-key $key
 az storage container create -n $target --account-name $storage --account-key $key
+az storage container create -n newsletters --account-name $storage --account-key $key
 
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
 az functionapp config appsettings set -n $app -g $grp --settings "AzureWebJobsStorage=$conStr"

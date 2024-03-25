@@ -6,7 +6,7 @@
 
 ## Demo
 
-[food-invoices](/app/fo od-invoices/) is a service that generates invoices for the food orders. It is triggered by a message in a queue. The service is implemented as an Azure Function that runs in a container. The container is hosted in an Azure Container App. The Azure Container App is scaled using KEDA based on the length of the queue.
+[food-invoices](./food-invoices/) is a service that generates invoices for the food orders. It is triggered by a message in a queue. The service is implemented as an Azure Function that runs in a container. The container is hosted in an Azure Container App. The Azure Container App is scaled using KEDA based on the length of the queue.
 
 - `create-food-invoices.azcli` contains all required steps to deploy the demo
 
