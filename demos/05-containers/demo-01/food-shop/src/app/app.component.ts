@@ -8,6 +8,7 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { MsalAuthFacade } from './auth/state/auth.facade';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,12 +27,13 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 })
 export class AppComponent {
   router = inject(Router);
-  auth = inject(MsalAuthFacade);
+  // auth = inject(MsalAuthFacade);
   title = environment.title;
   isIframe = window !== window.parent && !window.opener;
 
   authEnabled = environment.authEnabled;
-  authenticated = this.auth.isAuthenticated();
+  authenticated = of(true); // this.auth.isAuthenticated(
+  // authenticated = this.auth.isAuthenticated();
 
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
