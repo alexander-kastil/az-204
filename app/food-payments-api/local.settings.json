@@ -1,8 +1,0 @@
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
-    "fooddev_DOCUMENTDB": "AccountEndpoint=https://food-dev.documents.azure.com:443/;AccountKey=GaI475lz1MQnBosPHiX0CWD4H2WggvnYm7PnZrXT5Qk04FsFRXFtZbGry0wImaqqcincRC6tg9KjACDb2tFZPw==;"
-  }
-}
