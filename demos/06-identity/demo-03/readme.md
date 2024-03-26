@@ -8,9 +8,9 @@
 
 ## Demos
 
-- Microsoft Graph Essentials
-- MSAL Client Credential Flow using [Graph Daemon Api](./graph-daemon-api/)
+-   Microsoft Graph Essentials
+-   MSAL Client Credential Flow using [Graph Daemon Api](./graph-daemon-api/)
 
-    >Note: App Registration & Required permissions for graph daemon service can be created by executing `create-confidential-appreg.azcli`:
+    > Note: App Registration & Required permissions for graph daemon service can be created by executing `create-confidential-app-reg.azcli`:
 
     ![msal](_images/daemon-permissions.png)
