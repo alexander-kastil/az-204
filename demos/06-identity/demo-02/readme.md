@@ -9,7 +9,7 @@
 ## Demos
 
 - Manage App Registration using Azure CLI 
-  - Examine `manage-appregs.azcli`
+  - Examine `create-app-reg.azcli`
 - Explain Token Types
 
 ### Explain Token Types
@@ -49,7 +49,7 @@ npm i
 http-server
 ```
 
-> Note: Use http://localhost:8080/ as this is used in the App Registation
+> Note: Use http://localhost:8080/ as this is used in the App Registration
 
 Consent Screen:
 
@@ -57,4 +57,4 @@ Consent Screen:
 
 ### Create App Registration using Azure CLI
 
-Examine and execute `create-appreg.azcli`
+Examine and execute `create-app-reg.azcli`

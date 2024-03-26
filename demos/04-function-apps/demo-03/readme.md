@@ -6,7 +6,7 @@
 
 ## Demo
 
-[food-pic-optimizer-api](./pic-optimizer-api/) is a .NET utility service that optimizes pictures stored in an Azure Storage account after upload.
+[pic-optimizer-api](./pic-optimizer-api/) is a .NET utility service that optimizes pictures stored in an Azure Storage account after upload.
 
 
 Provision function app by executing `create-bindings-app.azcli`
