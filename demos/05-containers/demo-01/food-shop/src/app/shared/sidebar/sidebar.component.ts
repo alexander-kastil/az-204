@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Subscription, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EuroPipe } from '../pipes/euro.pipe';
-import { CurrentUserComponent } from '../../auth/components/current-user/current-user.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -24,7 +23,6 @@ import { CartFacade } from 'src/app/shop/state/cart.facade';
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-    CurrentUserComponent,
     AsyncPipe,
     EuroPipe
   ],

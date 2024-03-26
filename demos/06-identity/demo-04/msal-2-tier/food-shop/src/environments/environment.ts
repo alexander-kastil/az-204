@@ -7,7 +7,7 @@ declare global {
 export const environment = {
   production: true,
   title: 'Food Shop',
-  authEnabled: false,
+  authEnabled: true,
   mockCheckout: true,
   catalogApi: window['env'].CATALOG_API_URL || 'http://localhost:5001/',
   ordersApi: window['env'].ORDERS_API_URL || 'http://localhost:5002/',
@@ -32,6 +32,5 @@ export const environment = {
     logging: false,
     remoteCart: false,
     persistCart: false,
-  },
-  testuser: 'alexander.pajer@integrations.at',
+  }
 };

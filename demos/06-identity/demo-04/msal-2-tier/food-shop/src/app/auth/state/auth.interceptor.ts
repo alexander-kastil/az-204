@@ -8,7 +8,7 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { first, mergeMap } from 'rxjs/operators';
-import { MsalAuthState } from './auth.reducer';
+import { MsalAuthState } from './auth.state';
 import { getToken } from './auth.selectors';
 
 //TODO: Not used here

@@ -15,8 +15,6 @@ import { cartState } from './shop/state/cart.state';
 import { FoodDataService } from './catalog/state/food-data.service';
 
 import { MsalInterceptor, MSAL_INSTANCE, MSAL_GUARD_CONFIG, MSAL_INTERCEPTOR_CONFIG, MsalService, MsalGuard, MsalBroadcastService } from '@azure/msal-angular';
-import { MSALInstanceFactory, MSALGuardConfigFactory, MSALInterceptorConfigFactory } from './auth/state/auth.facade';
-// import { authState } from './auth/state/auth.state';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -34,28 +32,6 @@ export const appConfig: ApplicationConfig = {
         // NgRx State slices
         provideState(sidenavState),
         provideState(cartState),
-        // NGRX State auth
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: MsalInterceptor,
-        //     multi: true
-        // },
-        // {
-        //     provide: MSAL_INSTANCE,
-        //     useFactory: MSALInstanceFactory
-        // },
-        // {
-        //     provide: MSAL_GUARD_CONFIG,
-        //     useFactory: MSALGuardConfigFactory
-        // },
-        // {
-        //     provide: MSAL_INTERCEPTOR_CONFIG,
-        //     useFactory: MSALInterceptorConfigFactory
-        // },
-        // MsalService,
-        // MsalGuard,
-        // MsalBroadcastService,
-        // provideState(authState),
         // NgRx Data
         provideEntityData(foodEntityConfig, withEffects()),
         { provide: DefaultDataServiceConfig, useValue: foodDataServiceConfig },
