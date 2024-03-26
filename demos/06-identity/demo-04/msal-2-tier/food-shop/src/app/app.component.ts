@@ -1,13 +1,12 @@
-import { Component, OnDestroy, inject } from '@angular/core';
-import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
+import { AsyncPipe, NgStyle, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID, inject } from '@angular/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { Subject, of, takeUntil } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
-import { SidenavFacade } from './state/sidenav/sidenav.facade';
 import { LoginComponent } from './auth/components/login/login.component';
+import { MsalAuthFacade } from './auth/state/auth.facade';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { AsyncPipe, NgStyle } from '@angular/common';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 @Component({
@@ -25,16 +24,33 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     SidebarComponent
   ]
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent {
   router = inject(Router);
-  mf = inject(SidenavFacade);
+  auth = inject(MsalAuthFacade);
   title = environment.title;
-  sidenavMode: MatDrawerMode = 'side';
-  sidenavVisible = this.mf.getSideNavVisible();
   isIframe = window !== window.parent && !window.opener;
 
   authEnabled = environment.authEnabled;
-  authenticated = of(true)
+  authenticated = this.auth.isAuthenticated().pipe(
+    tap((result) => {
+      console.log('authenticated', result);
+    })
+
+  );
+
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+    this.setMSALIframe();
+  }
+
+  setMSALIframe() {
+    console.log('setMSALIframe', this.isIframe);
+    if (isPlatformBrowser(this.platformId)) {
+      // Use the window reference: this.windowRef
+      this.isIframe = window !== window.parent && !window.opener
+    }
+  }
+
   publicRoute = this.router.events.pipe(
     startWith(false),
     filter((e) => e instanceof NavigationEnd),
@@ -45,34 +61,4 @@ export class AppComponent implements OnDestroy {
       console.log('publicRoute', result);
     })
   );
-
-  private destroy$ = new Subject();
-
-  constructor(
-  ) {
-    this.mf.getSideNavPosition()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((mode: string) => {
-        this.sidenavMode = mode as MatDrawerMode;
-      });
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
-
-  getWorkbenchStyle() {
-    let result = {};
-    this.mf.getSideNavVisible()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((visible: boolean) => {
-        result = visible
-          ? {
-            'padding-left': '10px',
-          }
-          : {};
-      });
-    return result;
-  }
 }

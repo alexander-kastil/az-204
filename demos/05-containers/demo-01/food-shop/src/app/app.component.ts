@@ -4,8 +4,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map, startWith, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
-import { LoginComponent } from './auth/components/login/login.component';
-import { MsalAuthFacade } from './auth/state/auth.facade';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { of } from 'rxjs';
@@ -20,21 +18,17 @@ import { of } from 'rxjs';
     AsyncPipe,
     NgStyle,
     RouterOutlet,
-    LoginComponent,
     NavbarComponent,
     SidebarComponent
   ]
 })
 export class AppComponent {
   router = inject(Router);
-  // auth = inject(MsalAuthFacade);
   title = environment.title;
   isIframe = window !== window.parent && !window.opener;
 
   authEnabled = environment.authEnabled;
-  authenticated = of(true); // this.auth.isAuthenticated(
-  // authenticated = this.auth.isAuthenticated();
-
+  authenticated = of(true);
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     this.setMSALIframe();

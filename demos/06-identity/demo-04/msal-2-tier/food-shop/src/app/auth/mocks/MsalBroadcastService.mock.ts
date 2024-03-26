@@ -6,7 +6,7 @@ import {
 } from '@azure/msal-browser';
 import { Observable, of } from 'rxjs';
 
-// used when auth is turned off to avoid errorsx
+// used when auth is turned off to avoid errors
 @Injectable()
 export class MsalBroadcastServiceMock {
   constructor() {

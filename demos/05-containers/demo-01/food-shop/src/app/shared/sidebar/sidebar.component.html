@@ -22,7 +22,6 @@
     <mat-icon>shopping_cart_checkout</mat-icon><span>Checkout</span>
   </button>
   } @if (authEnabled | async) {
-  <app-current-user></app-current-user>
   <button mat-raised-button (click)="logout()" color="accent">
     <mat-icon>logout</mat-icon><span>Logout</span>
   </button>

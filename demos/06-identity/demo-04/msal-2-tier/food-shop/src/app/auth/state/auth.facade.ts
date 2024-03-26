@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   MsalBroadcastService,
   MsalGuardConfiguration,
@@ -8,8 +8,8 @@ import {
   BrowserCacheLocation,
   EventMessage,
   EventType,
-  InteractionType,
   IPublicClientApplication,
+  InteractionType,
   LogLevel,
   PublicClientApplication,
 } from '@azure/msal-browser';
@@ -18,15 +18,16 @@ import { combineLatestWith, filter, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { MsalBroadcastServiceMock } from '../mocks/MsalBroadcastService.mock';
 import { AuthActions } from './auth.actions';
-import { MsalAuthState } from './auth.reducer';
 import { getAuthEnabled, getLoggedIn, getUser } from './auth.selectors';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class MsalAuthFacade {
-  constructor(
-    private msalBC: MsalBroadcastService,
-    private store: Store<MsalAuthState>
-  ) {
+  msalBC = inject(MsalBroadcastService);
+  store = inject(Store);
+
+  constructor() {
     this.handleLoginSuccess(this.msalBC);
   }
 
@@ -84,27 +85,26 @@ export const loggerCallback = (logLevel: LogLevel, message: string) => {
   console.log(logLevel, message);
 };
 
-//https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/docs/v2-docs/initialization.md
 export function MSALInstanceFactory(): IPublicClientApplication {
-  let config = {
+  return new PublicClientApplication({
     auth: {
       clientId: environment.azure.appReg.clientId,
       authority: environment.azure.appReg.authority,
-      redirectUri: '/',
+      redirectUri: window.location.origin,
+      postLogoutRedirectUri: '/'
     },
     cache: {
-      cacheLocation: BrowserCacheLocation.LocalStorage,
-      storeAuthStateInCookie: isIE, // set to true for IE 11
+      cacheLocation: BrowserCacheLocation.LocalStorage
     },
     system: {
+      allowNativeBroker: false, // Disables WAM Broker
       loggerOptions: {
         loggerCallback,
         logLevel: LogLevel.Info,
-        piiLoggingEnabled: false,
-      },
-    },
-  };
-  return new PublicClientApplication(config);
+        piiLoggingEnabled: false
+      }
+    }
+  });
 }
 
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
