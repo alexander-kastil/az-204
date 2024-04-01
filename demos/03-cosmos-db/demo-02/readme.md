@@ -6,22 +6,19 @@
 
 ## Demo
 
-- Explain .NET Data Access
-- Show Linq Sample
-- Explain Trigger
-- Create Stored Proc 'getFirstItem' and use it
+- Explain base .NET Data Access
 
-Trigger Source:
+- Sample Trigger:
 
-```javascript
-function trigger() {
-  var context = getContext();
-  var request = context.getRequest();
-  var item = request.getBody();
+  ```javascript
+  function trigger() {
+    var context = getContext();
+    var request = context.getRequest();
+    var item = request.getBody();
 
-  if (!("kitchen" in item)) {
-    item["kitchen"] = "unspecified";
+    if (!("kitchen" in item)) {
+      item["kitchen"] = "unspecified";
+    }
+    request.setBody(item);
   }
-  request.setBody(item);
-}
-```
+  ```
