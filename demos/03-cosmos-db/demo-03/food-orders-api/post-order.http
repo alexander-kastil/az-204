@@ -1,0 +1,33 @@
+@ordersUrl = https://localhost:5002
+
+### Add new order
+POST {{ordersUrl}}/orders/add HTTP/1.1
+content-type: application/json
+
+{
+    "id": "19",
+    "customerId": 1,
+    "type": "order",
+    "total": 18,
+    "customer": {
+        "name": "Alexander Pajer",
+        "email": "alexander.pajer@integrations.at",
+        "address": "Hauptstraße 1, Wien, Austria"
+    },
+    "payment": {
+        "type": "Credit Card",
+        "account": "**** **** **** 1234"
+    },
+    "items": [
+        {
+            "id": 2,
+            "name": "Blini with Salmon",
+            "price": 9,
+            "quantity": 2
+        }
+    ]
+}
+
+### Get all documents of type order
+GET {{ordersUrl}}/orders/getOrders HTTP/1.1
+content-type: application/json

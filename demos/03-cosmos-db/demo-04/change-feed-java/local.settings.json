@@ -1,0 +1,8 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "foodcosmosdev_DOCUMENTDB": "AccountEndpoint=https://food-cosmos-dev.documents.azure.com:443/;AccountKey=xHMlBU28CSCWjJmvKK3upgY7gVsH2RK316rTQ1oAE40UxqqOdfLjlywvLsa0xTWM0vyanJcVm9UUACDb3kOBYg==;"
+  }
+}

@@ -16,10 +16,10 @@ namespace FoodApp
         AppConfig cfg;
         BlobContainerClient client;
 
-        public InvoicesController(IConfiguration config, BlobContainerClient bclient)
+        public InvoicesController(IConfiguration config, BlobContainerClient containerClient)
         {
             cfg = config.Get<AppConfig>();
-            client = bclient;
+            client = containerClient;
         }
 
         [HttpGet]
