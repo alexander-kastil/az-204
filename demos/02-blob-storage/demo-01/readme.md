@@ -6,4 +6,21 @@
 
 ## Demo
 
-Execute `create-blob-app.azcli` to create the demo
+- Execute `create-blob-app.azcli` to create the base resources
+
+### Java
+
+- Make sure Azure Developer CLI is installed und run:
+
+    ```shell
+    azd init --template blob-storage-quickstart-java
+    ```
+
+
+### Spring Boot
+
+```java
+spring init --dependencies=web blob-console-spring
+```
+
+```java
