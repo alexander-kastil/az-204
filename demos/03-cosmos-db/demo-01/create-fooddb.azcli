@@ -1,6 +1,6 @@
 env=dev
 loc=westeurope
-grp=foodapp-$env
+grp=az204-m03-cosmos-$env
 acct=food-cosmos-$env
 dbname=fooddb-$env
 
@@ -11,7 +11,7 @@ az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp --enable-free-ti
 az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
 
 # Create a container with even partitioning: food.json
-az cosmosdb sql container create --account-name $acct --database-name $dbname --name food --partition-key-path "/id"  --throughput 1000 -g $grp
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name food --partition-key-path "/id" -g $grp
 
 # Create a container with read optimized partitioning: orders.json, customers.json
-az cosmosdb sql container create --account-name $acct --database-name $dbname --name orders --partition-key-path "/customerId"  --throughput 1000 -g $grp
+az cosmosdb sql container create --account-name $acct --database-name $dbname --name orders --partition-key-path "/customerId" -g $grp
