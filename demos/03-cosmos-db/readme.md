@@ -5,6 +5,7 @@
 1. Create and use Cosmos DB
 2. Use Cosmos DB in .NET Core - Code Snippets
 3. Orders Api using Cosmos DB
+4. Cosmos DB & Change Feed
 
 ## Readings
 
