@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'com.azure:azure-storage-blob:12.14.2' // Add this line
+	implementation 'com.azure:azure-storage-blob:12.25.0' // Add this line
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
