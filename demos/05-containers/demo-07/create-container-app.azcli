@@ -12,8 +12,8 @@ az group create -n $grp -l $loc
 
 az containerapp env create -n $acaenv -g $grp -l $loc
 
-pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
-loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
+pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
+loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv) 
 
 apiUrl=$(az containerapp create -n $apiApp-$env -g $grp --image $apiImg \
     --environment $acaenv \

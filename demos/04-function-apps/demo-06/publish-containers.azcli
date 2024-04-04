@@ -8,5 +8,5 @@ az acr login --name $acr
 az acr update -n $acr --admin-enabled true
 
 cd func-app-docker
-az acr build --image $img --registry $acr --file Dockerfile .
+az acr build --image $img -g $grp --registry $acr --file Dockerfile .
 cd ..

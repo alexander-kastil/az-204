@@ -8,5 +8,5 @@ az acr create -g $grp -n $acr --sku Basic --admin-enabled true
 az acr login --name $acr
 
 cd $img
-az acr build --image $img --registry $acr --file dockerfile .
+az acr build --image $img -g $grp --registry $acr --file dockerfile .
 cd ..
