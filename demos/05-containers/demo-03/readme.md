@@ -21,10 +21,10 @@ az acr login --name $acr
 az acr update -n $acr --admin-enabled true
 
 cd $imgApi
-az acr build --image $imgApi --registry $acr --file Dockerfile .
+az acr build --image $imgApi -g $grp --registry $acr --file Dockerfile .
 cd ..
 
 cd $imgUI
-az acr build --image $imgUI --registry $acr --file Dockerfile .
+az acr build --image $imgUI -g $grp --registry $acr --file Dockerfile .
 cd ..
 ```

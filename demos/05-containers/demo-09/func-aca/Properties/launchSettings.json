@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "func_aca": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7211",
+      "launchBrowser": false
+    }
+  }
+}

@@ -11,7 +11,6 @@
 5. Deployment Slots
 6. Geo Routing with Traffic Manager (optional)
 7. Static Web Apps (optional)
-8. Azure Spring Apps (optional)
 
 ## Readings
 

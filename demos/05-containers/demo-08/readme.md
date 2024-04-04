@@ -142,7 +142,7 @@ Configuration of of [Dapr components](https://docs.dapr.io/concepts/components-c
     grp=az-native-$env
     loc=westeurope
     acr=az204demos$env
-    az acr build --image $img--registry $acr --file dockerfile .
+    az acr build --image $img -g $grp --registry $acr --file dockerfile .
     ```
 - Create a storage account to be used as state store
 

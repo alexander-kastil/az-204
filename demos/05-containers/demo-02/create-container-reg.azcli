@@ -8,8 +8,8 @@ az group create -n $grp -l westeurope
 az acr create -g $grp -n $acr --sku Basic --admin-enabled true
 az acr login -n $acr
 
-loginSrv=$(az acr list --query "[].loginServer" -o tsv) #for demos purposes only
-pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv) #for demos purposes only
+pwd=$(az acr credential show -n $acr -g $grp  --query passwords[0].value -o tsv) #for demos purposes only
+loginSrv=$(az acr list -g $grp --query "[].loginServer" -o tsv) #for demos purposes only
 
 # Tag img & upload to ACR
 docker tag catalog-service $acr.azurecr.io/catalog-service

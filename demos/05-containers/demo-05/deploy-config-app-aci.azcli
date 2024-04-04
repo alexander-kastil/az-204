@@ -7,8 +7,8 @@ uiapp=config-ui
 apiImg=$acr.azurecr.io/$apiapp
 uiImg=$acr.azurecr.io/$uiapp
 
-pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
-loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
+pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
+loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv) 
 
 # net api
 apiUrl=$(az container create -g $grp -l $loc -n $apiapp --image $apiImg  --cpu 1 --memory 1 --dns-name-label $apiapp --port 80 --registry-password $pwd --registry-username $acr --registry-login-server $loginSrv --query ipAddress.fqdn -o tsv)
