@@ -1,5 +1,15 @@
 # Java Setup
 
+[Spring Docs](https://docs.spring.io/spring-cli/reference/installation.html)
+
+## Install Java
+
+- Execute `setup-java.ps1`:
+
+    ```powershell
+    .\setup-java.ps1
+    ```
+
 - Set JavaHome environment variable to `C:\Program Files\OpenJDK\jdk-20.0.2`
 
     ```powershell

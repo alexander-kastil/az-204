@@ -27,11 +27,10 @@ Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
 
 choco install googlechrome -y
 choco install vscode -y
-choco install dotnetcore-sdk -y
 choco install dotnet-8.0-sdk -y
 choco install nodejs-lts --version=18.17.1 -y
 choco install azure-cli -y
-choco install azurepowershell -y
+choco install azd -y
 choco install curl -y
 choco install azure-data-studio -y 
 choco install azure-cosmosdb-emulator -y
