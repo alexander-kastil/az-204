@@ -1,0 +1,12 @@
+### Get data
+GET  http://localhost:3001
+Accept: application/json
+
+### Post data
+POST http://localhost:3001/api/areacode/detailcode?event=something 
+Accept: application/json
+
+{ "data": 1234 }
+
+### Delete data
+DELETE http://localhost:3001/api/1

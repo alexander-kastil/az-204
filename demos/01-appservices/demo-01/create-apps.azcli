@@ -2,22 +2,17 @@ env=dev
 grp=az204-m01-appservices-$env
 loc=westeurope
 plan=appservices-$env
-mvcapp=mvc-app-$env
-githubactions=food-catalog-api-github-actions-$env
 
 az group create -n $grp -l $loc
 az appservice plan create -n $plan -g $grp --sku F1
 
 # create the mvc-app using dotnet cli:
-# dotnet new mvc -n mvc-app -f net6.0
-az webapp create -n $mvcapp -g $grp -p $plan -r "dotnet:6"
+az webapp create -n mvcapp-$RANDOM -g $grp -p $plan -r "dotnet:8"
 
-# github actions
-az webapp create -n $app -g $grp -p $plan -r "dotnet:6"
+cd net-api
+az webapp up -n net-api-$RANDOM -g $grp -p $plan -l $loc -r "dotnet:8"
+cd ..   
 
-user=$(az webapp deployment list-publishing-profiles -g $grp -n $app --query [1].userName -o tsv)
-pwd=$(az webapp deployment list-publishing-profiles -g $grp -n $app --query [1].userPWD -o tsv)
-
-echo "Publishing Profile downloaded:"
-echo "UserName: $user"
-echo "Password: $pwd"
+cd node-express-api
+az webapp up -n node-express-api-$RANDOM -g $grp -p $plan -l $loc -r "node|18-lts"
+cd ..

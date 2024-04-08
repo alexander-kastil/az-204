@@ -1,0 +1,19 @@
+[color]
+       ui = true
+[alias]
+   s = status
+   ac = !git add . && git commit
+   acm = !git add . && git commit -m
+   l = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+   ll = log --stat --abbrev-commit
+   lg = log --oneline --graph --decorate --all
+   d = diff
+   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
+   undo = reset HEAD~1 --mixed
+[push]
+       default = simple
+[mergetool]
+       keepTemporaries = false
+       prompt = false
+       keepBackup = false
+
