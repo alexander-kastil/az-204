@@ -14,5 +14,5 @@ az webapp up -n net-api-$RANDOM -g $grp -p $plan -l $loc -r "dotnet:8"
 cd ..   
 
 cd node-express-api
-az webapp up -n node-express-api-$RANDOM -g $grp -p $plan -l $loc -r "node|18-lts"
+az webapp up -n node-express-api-$RANDOM -g $grp -p $plan-linux -l $loc -r "node|18-lts"
 cd ..

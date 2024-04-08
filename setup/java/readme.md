@@ -2,6 +2,8 @@
 
 [Spring Docs](https://docs.spring.io/spring-cli/reference/installation.html)
 
+[Install the Azure Toolkit for IntelliJ](https://learn.microsoft.com/en-us/azure/developer/java/toolkit-for-intellij/install-toolkit)
+
 ## Install Java
 
 - Execute `setup-java.ps1`:
