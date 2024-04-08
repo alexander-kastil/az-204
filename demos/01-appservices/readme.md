@@ -48,6 +48,11 @@
 
 [Deploy a Java web app to Azure App Service](https://docs.microsoft.com/en-us/learn/modules/create-java-webapp-to-app-service-linux/?WT.mc_id=java-11777-judubois&source=learn)
 
+>Note: You might have to execute the following code:
+    ```bash
+        mvn package com.microsoft.azure:azure-webapp-maven-plugin:2.9.0:deploy
+    ```
+
 [Deploying and running Java applications in Azure Spring Apps](https://learn.microsoft.com/en-us/training/paths/deploy-run-java-applications-azure-spring-apps/)
 
 ![multi-framework](_images/multi-framework.png)
