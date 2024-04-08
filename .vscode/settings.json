@@ -1,3 +1,4 @@
 {
-    "dotnet.defaultSolution": "disable"
+    "dotnet.defaultSolution": "disable",
+    "azureAutomation.directory.basePath": "c:\\Program Files\\Microsoft VS Code"
 }

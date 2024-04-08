@@ -21,6 +21,8 @@
 
 [Azure Cosmos DB Desktop Data Migration Tool](https://github.com/AzureCosmosDB/data-migration-desktop-tool)
 
+[Azure Cosmos DB for NoSQL: Java SDK v4 examples](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/samples-java)
+
 [Quickstarts - Available for different frameworks](https://docs.microsoft.com/en-us/azure/cosmos-db/create-sql-api-java?tabs=sync)
 
 ## CLI Reference
