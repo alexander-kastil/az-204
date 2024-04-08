@@ -1,3 +1,4 @@
 {
-    "appService.defaultWebAppToDeploy": "None"
+    "appService.defaultWebAppToDeploy": "None",
+    "azureAutomation.directory.basePath": "c:\\Program Files\\Microsoft VS Code"
 }

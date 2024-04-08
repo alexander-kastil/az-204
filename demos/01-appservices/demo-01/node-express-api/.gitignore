@@ -1,0 +1,15 @@
+.idea
+log
+logfiles
+node_modules
+bower_components
+client/bower_components
+daemon
+out
+*backup
+conf.backup.*
+dist
+conf
+db
+tmp
+.DS_Store
