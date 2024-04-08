@@ -26,4 +26,4 @@
 
 [Enable reliable messaging for Big Data applications using Azure Event Hubs](https://docs.microsoft.com/en-us/learn/modules/enable-reliable-messaging-for-big-data-apps-using-event-hubs/)
 
-[How to create a Spring Cloud Stream Binder application with Azure Event Hubs - Java](https://learn.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-azure-event-hub?source=recommendations)
+(Build a real-time event-driven Java solution in Azure)[https://learn.microsoft.com/en-us/training/modules/deploy-real-time-event-driven-app/]
