@@ -13,6 +13,10 @@
 9. Host a Function on ACA (optional)
 10. Azure Spring Apps (optional)
 
+## Readings
+
+[Comparing Container Apps with other Azure container options](https://learn.microsoft.com/en-us/azure/container-apps/compare-options)
+
 ## Tools & Extensions
 
 [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)

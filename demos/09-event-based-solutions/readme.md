@@ -26,4 +26,4 @@
 
 [Enable reliable messaging for Big Data applications using Azure Event Hubs](https://docs.microsoft.com/en-us/learn/modules/enable-reliable-messaging-for-big-data-apps-using-event-hubs/)
 
-(Build a real-time event-driven Java solution in Azure)[https://learn.microsoft.com/en-us/training/modules/deploy-real-time-event-driven-app/]
+[Build a real-time event-driven Java solution in Azure](https://learn.microsoft.com/en-us/training/modules/deploy-real-time-event-driven-app/)

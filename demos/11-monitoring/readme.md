@@ -12,3 +12,5 @@
 ## Additional Labs & Walkthroughs
 
 [Design a holistic monitoring strategy on Azure](https://docs.microsoft.com/en-us/learn/modules/design-monitoring-strategy-on-azure/)
+
+[Monitoring Java applications on Azure](https://learn.microsoft.com/en-us/training/modules/monitor-java-azure/)

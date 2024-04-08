@@ -18,6 +18,9 @@
 
 [Facebook, Google, and external provider authentication in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-6.0&tabs=visual-studio)
 
+[Azure Identity Examples - Java](https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples)
+
+[## Links & Resources](https://learn.microsoft.com/en-us/entra/msal/java/advanced/managed-identity)
 
 ## Additional Labs & Walkthroughs
 
