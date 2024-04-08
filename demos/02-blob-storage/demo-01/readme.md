@@ -19,8 +19,7 @@
 
 ### Spring Boot
 
-```java
-spring init --dependencies=web blob-console-spring
-```
-
-```java
+- Init a new Spring Boot project with the following command:
+    ```java
+    spring init --dependencies=web blob-console-spring
+    ```
