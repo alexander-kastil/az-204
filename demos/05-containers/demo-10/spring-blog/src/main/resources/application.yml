@@ -1,0 +1,19 @@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: spring-blog
+    description: A blog with articles about The Spring Framework.
+    author: Dan Vega
+    version: '@project.version@'
+spring:
+  profiles:
+    active: dev
