@@ -8,7 +8,9 @@ az group create -n $grp -l $loc
 
 az storage account  create -n $storage -g $grp 
 
-url=$(az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4 --query defaultHostName -o tsv)
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
+
+url=$(az functionapp show -n $app -g $grp --query defaultHostName -o tsv)
 
 adminkey=$(az functionapp keys list -n $app -g $grp --query masterKey -o tsv)
 
