@@ -23,7 +23,7 @@ az group create -n $grp -l $loc
 az storage account  create -n $storage -g $grp 
 
 # acr
-az acr create -g $grp -n $acr --sku Basic --admin-enabled true
+az acr create -g az204-$env -n $acr --sku Basic --admin-enabled true
 az acr login -n $acr
 
 # utils

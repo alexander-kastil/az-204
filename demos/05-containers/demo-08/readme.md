@@ -139,7 +139,7 @@ Configuration of of [Dapr components](https://docs.dapr.io/concepts/components-c
 
     ```bash
     env=dev
-    grp=az-native-$env
+    grp=az204-$env
     loc=westeurope
     acr=az204demos$env
     az acr build --image $img -g $grp --registry $acr --file dockerfile .

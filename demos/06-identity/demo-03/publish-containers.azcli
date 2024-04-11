@@ -1,11 +1,11 @@
 env=dev
 loc=westeurope
-grp=food-app
+grp=az204-$env
 acr=az204demos$env
 img=mail-daemon
 
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
 az acr login --name $acr
-az acr update -n $acr --admin-enabled true
 
 cd $img
 az acr build --image $img -g $grp --registry $acr --file Dockerfile .

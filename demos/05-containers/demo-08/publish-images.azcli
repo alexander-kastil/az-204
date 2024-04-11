@@ -1,5 +1,5 @@
 env=dev
-grp=az204-m05-containers
+grp=az204-$env
 loc=westeurope
 acr=az204demos$env
 img=food-api-dapr

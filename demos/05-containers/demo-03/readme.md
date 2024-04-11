@@ -8,7 +8,7 @@ Execute [publish-containers.azcli](publish-images.azcli) in the current folder:
 
 ```bash
 env=dev
-grp=az204-m05-containers
+grp=az204-$env
 loc=westeurope
 acr=az204demos$env
 imgApi=config-api
@@ -16,9 +16,8 @@ imgUI=config-ui
 
 az group create -n $grp -l westeurope
 
-az acr create -g $grp -n $acr --sku Basic
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
 az acr login --name $acr
-az acr update -n $acr --admin-enabled true
 
 cd $imgApi
 az acr build --image $imgApi -g $grp --registry $acr --file Dockerfile .
