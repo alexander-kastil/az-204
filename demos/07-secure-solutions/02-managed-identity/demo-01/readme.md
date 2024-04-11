@@ -2,7 +2,7 @@
 
 - Execute `appservice-use-mi.azcli`. It deploys `food-api-mi`.
 
-- Explain [food-catalog-api](/app/food-catalog-api/) and it's `UseManagedIdentity` property in `appsettings.json`.
+- Explain [food-api-mi](./food-api-mi/) and it's `UseManagedIdentity` property in `appsettings.json`.
 
     ```json
     "FoodCatalogApi": {
