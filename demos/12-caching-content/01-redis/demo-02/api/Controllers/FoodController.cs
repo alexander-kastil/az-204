@@ -30,11 +30,11 @@ namespace FoodApi
         public IEnumerable<FoodItem> GetFood()
         {
             verfiyScope(); // could be implemented using a custom filter
-            var chachedFood = cache.GetString("food");
-            if (!string.IsNullOrEmpty(chachedFood))
+            var cachedFood = cache.GetString("food");
+            if (!string.IsNullOrEmpty(cachedFood))
             {
                 Console.WriteLine("Using cached food");
-                return Newtonsoft.Json.JsonConvert.DeserializeObject<FoodItem[]>(chachedFood);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<FoodItem[]>(cachedFood);
             }
             else
             {
