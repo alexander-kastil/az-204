@@ -2,5 +2,5 @@ POST http://localhost:7071/api/getGraphUser
 Content-Type: application/json
 
 {
-    "user": "alexander.pajer@integrations.at"
+    "user": "alexander.kastil@integrations.at"
 }

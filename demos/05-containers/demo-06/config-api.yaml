@@ -14,11 +14,9 @@ spec:
     spec:
       containers:
       - name: configapi
-        image: configacrdev.azurecr.io/config-api:latest
+        image: az204demosdev.azurecr.io/config-api:latest
         env: 
           - name: App__UseSQLite
-            value: 'true'
-          - name: App__UseEnv
             value: 'true'
         imagePullPolicy: Always
         ports:
