@@ -7,7 +7,7 @@ vault=foodvault-$env
 
 az group create -n $grp -l $loc
 az storage account  create -n $storage -g $grp 
-az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4 
 
 mi=$(az functionapp identity assign -n $app -g $grp --query principalId -o tsv)
 az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
