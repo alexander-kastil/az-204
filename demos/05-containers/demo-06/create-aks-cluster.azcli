@@ -6,7 +6,6 @@ aks=az204cluster-$env
 ns=config-app
 
 # Install kubectl command line client locally:
-# az aks install-cli
 az group create -n $grp -l $loc
 az aks create -g $grp -n $aks --node-count 2 --attach-acr $acr --generate-ssh-keys 
 az aks get-credentials -g $grp -n $aks

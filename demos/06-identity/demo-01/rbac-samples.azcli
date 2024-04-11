@@ -2,7 +2,7 @@ env=$RANDOM
 grp=az204-m06-rbac-$env
 loc=westeurope
 acct=rbac$RANDOM
-user=alexander.pajer@integrations.at
+user=alexander.kastil@integrations.at
 app=msal-token-flow
 
 # Get a specific user

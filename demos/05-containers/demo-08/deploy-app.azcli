@@ -9,8 +9,8 @@ statestore=food-state
 app=food-api-dapr
 img=$acr.azurecr.io/food-api-dapr
 
-pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
-loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
+pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
+loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv) 
 
 az group create -n $grp -l $loc
 
@@ -31,7 +31,7 @@ az containerapp env dapr-component set -n $acaenv -g $grp \
 az containerapp create -n $app -g $grp \
     --image $img \
     --environment $acaenv \
-    --target-port 80 --ingress external \
+    --target-port 8080 --ingress external \
     --min-replicas 0 --max-replicas 1 \
     --enable-dapr \
     --dapr-app-port 80 \

@@ -23,18 +23,17 @@ az group create -n $grp -l $loc
 az storage account  create -n $storage -g $grp 
 
 # acr
-az acr create -g $grp -n $acr --sku Basic
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
 az acr login -n $acr
-az acr update -n $acr --admin-enabled true
 
 # utils
-az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
+az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 18 --functions-version 4 
 
 # shopping cart
 az functionapp create -n $cart -g $grp --storage-account $storage --consumption-plan-location $loc --functions-version 4 
 
 # payment - used for mocking in portal function
-az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4 
+az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 18 --functions-version 4 
 
 # catalog api
 az containerapp env create -n $acaenv -g $grp -l $loc
