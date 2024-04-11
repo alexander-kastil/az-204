@@ -5,13 +5,13 @@ vault=foodvault-$env
 plan=foodplan-$env
 app=foodapi-$env
 
-cd food-catalog-api-mi
-az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "dotnet:6" 
+cd catalog-service
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "dotnet:8" 
 cd ..
 
 # activate system assigned identity on web app
 mi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)
 # assign permission to the mi on the key vault
-az keyvault set-policy -n $vault --object-id $mi --secret-permissions list get
+az keyvault set-policy -n $vault --object-id $mi -g $grp --secret-permissions list get
 
 az webapp config appsettings set -g $grp -n $app --settings Azure:KevVault=$vault.vault.azure.net
