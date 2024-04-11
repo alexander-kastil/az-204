@@ -1,4 +1,4 @@
-env=$RANDOM
+env=19824
 grp=az204-m12-cdn-$env
 loc=westeurope
 acct=staticwebsite$env
@@ -10,7 +10,7 @@ az group create -n $grp -l $loc
 
 az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 
-key=$(az storage account keys list -n $acct --query "[0].value")
+key=$(az storage account keys list -n $acct -g $grp --query "[0].value")
 
 echo "Website Key: " $key
 
