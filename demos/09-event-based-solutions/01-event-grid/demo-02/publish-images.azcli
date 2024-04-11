@@ -4,6 +4,8 @@ grp=az204-$env
 acr=az204demos$env
 img=food-orders-dashboard
 
+az group create -n $grp -l $loc
+
 az acr create -g $grp -n $acr --sku Basic --admin-enabled true
 az acr login --name $acr
 
