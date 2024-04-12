@@ -16,7 +16,7 @@ az containerapp env create -n $acaenv -g $grp --location $loc --no-wait
 
 # create storage queue
 az storage account create -n $storageAcct -g $grp --kind StorageV2 --sku Standard_LRS
-key=$(az storage account keys list -n $storageAcct --query "[0].value")
+key=$(az storage account keys list -n $storageAcct -g $grp --query "[0].value")
 az storage container create --account-name $storageAcct --account-key $key --name $container
 az storage queue create -n $queue --account-key $key --account-name $storageAcct
 conStr=$(az storage account show-connection-string -n $storageAcct -g $grp \
