@@ -8,7 +8,7 @@ app=func-aca
 
 az group create -n $grp -l $loc
 
-az acr create -g $grp -n $acr --sku Basic --admin-enabled true
+az acr create -g az204-$env -n $acr --sku Basic --admin-enabled true
 az acr login --name $acr
 
 pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)

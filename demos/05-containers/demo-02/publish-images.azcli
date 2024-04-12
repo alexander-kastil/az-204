@@ -1,0 +1,15 @@
+env=dev
+loc=westeurope
+grp=az204-$env
+acr=az204demos$env
+
+az group create -n $grp -l westeurope
+
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
+az acr login -n $acr
+
+# Tag img & upload to ACR
+docker tag catalog-service $acr.azurecr.io/catalog-service
+
+# Upload Image
+docker push $acr.azurecr.io/catalog-service

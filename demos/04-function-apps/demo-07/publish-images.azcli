@@ -1,8 +1,8 @@
 env=dev
-grp=az204-$env
 loc=westeurope
+grp=az204-$env
 acr=az204demos$env
-img=food-api-dapr
+img=food-shopping-cart
 
 az group create -n $grp -l $loc
 
@@ -10,5 +10,5 @@ az acr create -g $grp -n $acr --sku Basic --admin-enabled true
 az acr login --name $acr
 
 cd $img
-az acr build --image $img -g $grp --registry $acr --file dockerfile .
+az acr build --image $img -g $grp --registry $acr --file Dockerfile .
 cd ..

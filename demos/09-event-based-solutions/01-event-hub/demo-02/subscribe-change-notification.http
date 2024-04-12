@@ -1,5 +1,5 @@
-@user="alexander.pajer@integrations.at"
-@notificationUrl="EventHub:https://m10-graphevents-29581.vault.azure.net/secrets/graphConStr?tenantId=integrations.at"
+@user="alexander.kastil@integrations.at"
+@notificationUrl="EventHub:https://m10-graphevents-32052.vault.azure.net/secrets/graphConStr?tenantId=integrations.at"
 
 # @name auth
 POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1

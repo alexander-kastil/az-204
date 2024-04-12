@@ -7,7 +7,7 @@ queue=orders
 az group create -n $grp -l $loc
 
 az storage account create -n $acct -g $grp --kind StorageV2 --sku Standard_LRS
-key=$(az storage account keys list -n $acct --query "[0].value")
+key=$(az storage account keys list -n $acct -g $grp --query "[0].value")
 az storage queue create -n $queue --account-key $key --account-name $acct
 conStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
 
