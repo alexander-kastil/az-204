@@ -4,5 +4,6 @@
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish (functions)",
-    "dotnet.defaultSolution": "food-orders-func.sln"
+    "dotnet.defaultSolution": "food-orders-func.sln",
+    "azureAutomation.directory.basePath": "c:\\Program Files\\Microsoft VS Code"
 }

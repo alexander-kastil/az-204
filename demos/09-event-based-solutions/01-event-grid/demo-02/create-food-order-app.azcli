@@ -25,15 +25,16 @@ az functionapp cors add -g $grp -n $funcApp --allowed-origins $dashboardUrl
 az resource update --ids $funcId/config/web --set properties.cors.supportCredentials="true"
 webhookEP=$(az functionapp show -n $funcApp -g $grp --query "hostNames" --output tsv)
 
-# Use a new terminal to deploy food-orders-dashboard-func from /app/food-orders-dashboard-func to azure
-# Execute: ./publish-orders-func.sh
+# Deploy food-orders-func to az function app
+cd food-orders-dashboard-func
+func azure functionapp publish $funcApp --csharp
+cd ..
 
-# Return back to this terminal
 # Subscribe event grid topc
 az eventgrid event-subscription create --name $funcApp --source-resource-id $topicid --endpoint https://$webhookEP/api/orderSubscription --endpoint-type webhook --event-delivery-schema cloudeventschemav1_0
 
 # status
-ep=$(az functionapp list --query "[?name=='$funcApp'].{defaultHostName:defaultHostName}[0].defaultHostName" -o tsv)
+ep=$(az functionapp list -g $grp --query "[?name=='$funcApp'].{defaultHostName:defaultHostName}[0].defaultHostName" -o tsv)
 
 topicurl=$(az eventgrid topic show -n $topic -g $grp --query "endpoint" --output tsv)
 topickey=$(az eventgrid topic key list -n $topic -g $grp --query "key1" --output tsv)
