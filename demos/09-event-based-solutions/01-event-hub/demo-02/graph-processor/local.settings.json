@@ -3,6 +3,6 @@
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "EventHubKey": "Endpoint=sb://graphevents-ns-7150.servicebus.windows.net/;SharedAccessKeyName=grapheventspolicy;SharedAccessKey=g6FB3VTEazwi7AiX0RFZhk6Rw8kcMDZDI+AEhFWMHSM=;EntityPath=graphevents-hub-7150"    
+    "EventHubKey": "Endpoint=sb://graphevents-ns-32052.servicebus.windows.net/;SharedAccessKeyName=grapheventspolicy;SharedAccessKey=OIJpOFQXRsjTYf0RqP+fsZLiRU7RnC/jO+AEhLf15/A=;EntityPath=graphevents-hub-32052"    
   }
 }
