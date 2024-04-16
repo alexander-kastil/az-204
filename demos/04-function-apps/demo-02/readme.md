@@ -12,9 +12,15 @@ The current version of the [Azure Function Extension](https://marketplace.visual
 
 [Microsoft Azure Functions using Spring integration](https://docs.spring.io/spring-cloud-function/docs/current/reference/html/azure.html)
 
-## Demo
+## Demos
 
-### Environment Setup
+- Use Azure Function Core Tools
+- Demo VS Code Function Apps
+- Use Langchain in Azure Function Python
+
+### Use Azure Function Core Tools
+
+#### Environment Setup
 
 Install azure-function-tools:
 
@@ -34,7 +40,7 @@ Run Azurite in console:
 azurite
 ```
 
-### Selecting Runtime Version
+#### Selecting Runtime Version
 
 Install [Azure Function - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 
@@ -42,8 +48,7 @@ Install [Azure Function - Visual Studio Code Extension](https://marketplace.visu
 
 ![select-net-version](_images/select-net-version.jpg)
 
-
-### Testing Options
+#### Testing Options
 
 To Execute REST Calls you could use:
 
@@ -58,7 +63,7 @@ Install httprepl which used in labs:
 dotnet tool install -g Microsoft.dotnet-httprepl
 ```
 
-## Demo VS Code Function Apps
+### Demo VS Code Function Apps
 
 Create Function App in Azure by executing `create-vscode-app.azcli`
 
@@ -112,3 +117,17 @@ cd vscode-cs
 func azure functionapp publish $app
 cd ..
 ```
+
+### Use Langchain in Azure Function Python
+
+This demo shows how to create a Function App using Python and LangChain.
+
+- Install the [Python Environment Manager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager) extension in Visual Studio Code.
+
+- Setup the environment using F1 - Create Python Environment.
+
+    ![create-env](_images/create-env.jpg)
+
+- Select Venv as the environment and select the Python version (3.11). Install packages using pip.
+
+    ![select-venv](_images/select-env.jpg)    
