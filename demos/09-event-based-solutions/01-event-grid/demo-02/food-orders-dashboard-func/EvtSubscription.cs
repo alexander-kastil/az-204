@@ -12,9 +12,9 @@ using System.Linq;
 
 namespace Integrations
 {
-    public static class EvtSubscription
+    public static class EventSubscription
     {
-        // Azure Function for handling negotiation protocol for SignalR. It returns a connection info
+        // Azure Function for handling negotation protocol for SignalR. It returns a connection info
         // that will be used by Client applications to connect to the SignalR service.
         // It is recommended to authenticate this Function in production environments.
         [FunctionName("negotiate")]
