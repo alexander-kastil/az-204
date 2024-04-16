@@ -1,10 +1,21 @@
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using FoodDapr;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton(Configuration);
+
+// EF Core
+string conString = Configuration["SQLiteDBConnection"];
+builder.Services.AddDbContext<FoodDBContext>(options =>
+   {
+       options.UseSqlite(conString);
+       options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+   }
+);
 
 // Dapr
 builder.Services.AddDaprClient();
@@ -20,7 +31,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // Cors
-builder.Services.AddCors(o => o.AddPolicy("noCors", builder =>
+builder.Services.AddCors(o => o.AddPolicy("nocors", builder =>
 {
     builder
         .SetIsOriginAllowed(host => true)
@@ -42,12 +53,13 @@ app.UseSwaggerUI(c =>
 });
 
 //Cors and Routing
-app.UseCors("noCors");
+app.UseCors("nocors");
 
 app.UseAuthorization();
 app.MapControllers();
 
 // Dapr Subscribe Handler used for Pub Sub
+app.UseCloudEvents();
 app.MapSubscribeHandler();
 
 app.Run();
