@@ -2,8 +2,8 @@ componentType: state.azure.blobstorage
 version: v1
 metadata:
 - name: accountName
-  value: "aznativestoragedev"
+  value: "foodstoragedev"
 - name: accountKey
-  value: "2JwRDitR2dizmgpTmYllpGv7cdAjgPfz6I9WCE9g4YNwcavST84fu0qv2oJ8IBh8pHeNKPzeTeai+AStCqDoIw=="
+  value: "bysJQApv6V3pgSdVlc83dTJpnZ+6vQYrcDN4Q47LNFmSGcpoI6/OSj49Hso56PVc9IgObuKx8bK8+AStMlTrlQ=="
 - name: containerName
   value: "food-state"
