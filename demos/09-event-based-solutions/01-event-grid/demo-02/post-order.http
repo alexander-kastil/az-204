@@ -1,5 +1,5 @@
-@topicurl=https://foodevents-dev.westeurope-1.eventgrid.azure.net/api/events
-@topickey=thwlEwS+7FFB7LQemXmyBq0jgR/udpUzYb8KDsRv9bc=
+@topicurl=https://foodevents-dev-29058.westeurope-1.eventgrid.azure.net/api/events
+@topickey=csCvpG5tbhlv4ACrUJQN3FGdLlSSaTs/C4hVmpBkXuY=
 
 POST  {{topicurl}} HTTP/1.1
 content-type: application/cloudevents+json; charset=utf-8
@@ -14,17 +14,10 @@ aeg-sas-key: {{topickey}}
    "datacontenttype":"application/json",
    "data":{
       "id": "5c60fe1d-9851-47ca-aab9-622ca857ea29",
-      "customer": {
-         "id": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
-         "name": "John Doe",
-         "address": "123 Main Street, Seattle, WA 98101",
-         "email": "alexander.pajer@integrations.at"
-      },      
-      "payment": {
-         "type": "Paypal",
-         "account": "abcdsdfsdf"
-      },         
-      "status": "paid",
+      "customerId": "7c5fe5c7-1b03-469b-8c71-13823d6a8049",
+      "customerName": "Hansi Meier",
+      "address": "123 Main Street, Seattle, WA 98101",
+      "status": "incoming",
       "items": [
          {
             "name": "butter chicken",
