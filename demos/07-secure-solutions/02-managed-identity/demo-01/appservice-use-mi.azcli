@@ -5,7 +5,7 @@ vault=foodvault-$env
 plan=foodplan-$env
 app=foodapi-$env
 
-cd catalog-service
+cd food-api-mi
 az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "dotnet:8" 
 cd ..
 

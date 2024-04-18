@@ -23,11 +23,10 @@ apiUrl=$(az containerapp create -n $apiApp-$env -g $grp --image $apiImg \
     --registry-password $pwd \
     --query properties.configuration.ingress.fqdn -o tsv)
 
-uiUrl=$(az containerapp create -n $uiApp-$env -g $grp --image $uiImg \
+az containerapp create -n $uiApp-$env -g $grp --image $uiImg \
     --environment $acaenv \
     --target-port 80 --ingress external \
     --registry-server $loginSrv \
     --registry-username $acr \
     --registry-password $pwd \
-    --env-vars ENV_API_URL=https://$apiUrl \
-    --query properties.configuration.ingress.fqdn -o tsv)    
+    --env-vars ENV_API_URL=https://$apiUrl  

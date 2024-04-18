@@ -37,7 +37,7 @@ namespace Integrations
                 log.LogInformation($"Obtaining secret {secret} from {kvName}");
 
                 var client = new SecretClient(new Uri($"https://{kvName}.vault.azure.net/"), new DefaultAzureCredential());
-                var response = await client.GetSecretAsync("conSQLite");     
+                var response = await client.GetSecretAsync(secret);     
                 dbconstring = response.Value.Value;
             }
 
