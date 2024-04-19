@@ -22,36 +22,26 @@ az group create -n $grp -l $loc
 
 az storage account  create -n $storage -g $grp 
 
-# acr
-az acr create -g az204-$env -n $acr --sku Basic --admin-enabled true
-az acr login -n $acr
-
 # utils
 az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 18 --functions-version 4 
-
-# shopping cart
-az functionapp create -n $cart -g $grp --storage-account $storage --consumption-plan-location $loc --functions-version 4 
 
 # payment - used for mocking in portal function
 az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 18 --functions-version 4 
 
-# catalog api
-az containerapp env create -n $acaenv -g $grp -l $loc
-
-apifqdn=$(az containerapp create -n foodapi-$env -g $grp --image $apiimg \
+apifqdn=$(az containerapp create -n foodapi-$env -g az204-m05-containers --image $apiimg \
     --environment $acaenv \
     --target-port 80 --ingress external \
     --query properties.configuration.ingress.fqdn -o tsv)
 
-az containerapp ingress cors enable -n foodapi-$env -g $grp --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins $apifqdn
+az containerapp ingress cors enable -n foodapi-$env -g az204-m05-containers --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins $apifqdn
 
-az containerapp create -n foodui-$env -g $grp --image $uiimg \
+az containerapp create -n foodui-$env -g az204-m05-containers --image $uiimg \
     --environment $acaenv \
     --target-port 80 --ingress external \
     --env-vars ENV_API_URL=https://$apifqdn/ 
 
 # api management
-az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Developer 
+az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Consumption 
 
 # publish api & function apps
 # catalog
@@ -61,8 +51,4 @@ cd ..
 
 cd foodutil-functs-js
 func azure functionapp publish $utils --javascript
-cd ..
-
-cd food-shopping-cart
-func azure functionapp publish $cart 
 cd ..

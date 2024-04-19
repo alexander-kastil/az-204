@@ -1,4 +1,4 @@
-env=19824
+env=$RANDOM
 grp=az204-m12-cdn-$env
 loc=westeurope
 acct=staticwebsite$env
