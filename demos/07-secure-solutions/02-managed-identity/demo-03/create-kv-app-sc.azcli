@@ -1,0 +1,26 @@
+env=dev
+grp=az204-m07-secure-solutions-$env
+loc=westeurope
+acr=az204demos$env
+acaenv=az204-demo-$env
+vault=foodvault-$env
+app=kv-serviceconnector-$env
+img=$acr.azurecr.io/kv-serviceconnector
+mi=service-connector-$env
+
+az group create -n $grp -l $loc
+
+az identity create --name $mi -g $grp
+clientID=$(az identity show -g $grp --name $mi --query "clientId" -o tsv)
+
+az keyvault create -n $kv -g $grp -l $loc --sku standard
+az keyvault list  -g $grp
+az keyvault secret set --vault-name $kv --name "sc-secret" --value "service connector secret"
+
+pwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv)
+loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
+
+# create service connector in azure portal
+
+az containerapp update -n $app -g $grp --image $img \
+    --replace-env-vars AZURE_CLIENT_ID=$clientID 

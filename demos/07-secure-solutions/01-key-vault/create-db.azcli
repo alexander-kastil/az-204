@@ -1,6 +1,6 @@
 env=dev
 grp=az204-m07-secure-solutions-$env
-loc=eastus2
+loc=westeurope
 server=foodsqlserver$env
 db=foodb$env
 vault=foodvault-$env

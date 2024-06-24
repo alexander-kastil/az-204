@@ -4,4 +4,5 @@
 
 azure-functions
 langchain
+langchain-community
 youtube-transcript-api

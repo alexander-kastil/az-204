@@ -9,14 +9,14 @@ plan=config-plan-$env
 # create appconfig and add a value
 appconfigid=$(az appconfig create -g $grp -n $cfg -l $loc --sku free --query id -o tsv)
 az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo Dev" -y
-az appconfig kv set -n $cfg -g $grp --key "Settings:Title" --value "App Config Demo" -y --label production
+az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo" -y --label production
 
 az appconfig kv set -n $cfg --key "Settings:Sentinel" --value 1 -y 
 az appconfig kv set -n $cfg --key "Settings:Sentinel" --value 1 -y --label production
 
 # app config key-vault binding
 cfgmi=$(az appconfig identity assign -g $grp -n $cfg --query principalId -o tsv)
-az keyvault set-policy -n $vault --object-id $cfgmi --secret-permissions get list
+az keyvault set-policy -n $vault -g $grp --object-id $cfgmi --secret-permissions get list
 
 az appconfig kv set-keyvault -n $cfg --key "Settings:DBConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLite" -y
 az appconfig kv set-keyvault -n $cfg --key "Settings:DBConnectionString" --secret-identifier "https://$vault.vault.azure.net/Secrets/conSQLServer" -y --label production

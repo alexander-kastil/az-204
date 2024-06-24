@@ -4,6 +4,7 @@
 
 1. Use System assigned Managed Identities to access Key Vault
 2. Use Managed Identity in Function App to access Key Vault
+3. Use Service Connectors
 
 ## Readings
 
