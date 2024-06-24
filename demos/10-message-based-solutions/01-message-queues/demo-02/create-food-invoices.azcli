@@ -1,9 +1,9 @@
 env=dev
 loc=westeurope
-grp=foodapp-$env
+grp=queue-scaling-$env
 acr=az204demos$env
 acaenv=az204-demo-$env
-storageAcct=foodstorage$env
+storageAcct=foodstorage$env$RANDOM
 container=invoices
 queue=food-orders
 img=food-invoices
@@ -12,7 +12,7 @@ app=food-invoices
 az group create -n $grp -l $loc
 
 # azure container app environment
-az containerapp env create -n $acaenv -g $grp --location $loc --no-wait
+az containerapp env create -n $acaenv -g az204-m05-containers --location $loc --no-wait
 
 # create storage queue
 az storage account create -n $storageAcct -g $grp --kind StorageV2 --sku Standard_LRS
@@ -27,9 +27,12 @@ messageOne=$(echo "Hello Queue Reader App" | base64)
 az storage message put --content $messageOne --queue-name $queue \
  --connection-string $conStr
 
-# create a local function app container 
+# create a local function app container and also publish it to ACR
 cd food-invoices
 docker build --rm -f Dockerfile -t $img .
+az acr build --image $img -g az204-m05-containers --registry $acr --file Dockerfile .
+acrpwd=$(az acr credential show -n $acr -g az204-m05-containers --query "passwords[0].value" -o tsv)  
+cd ..
 
 # start container locally and show how it fetches the message
 docker run -d --rm -p 5052:80 -e "InvoiceConnectionString=$conStr" -e "Sleep=500" food-invoices
@@ -44,17 +47,14 @@ az storage blob list --container-name $container --connection-string $conStr --o
 
 ## Stop the local container
 
-## Build the container using ACR & get the password for the ACR
-az acr build -r $acr -t $img .
-acrpwd=$(az acr credential show -n $acr --query "passwords[0].value" -o tsv)  
-
 # Add a third message to the queue 
 messageThree=$(echo "Third Hello to Queue Reader App" | base64)
 az storage message put --content $messageThree --queue-name $queue \
   --connection-string $conStr      
 
 # Create container app environment and deploy a container to it
-az containerapp create -n $app -g $grp --environment $acaenv \
+az containerapp create -n $app -g az204-m05-containers \
+  --environment $acaenv \
   --registry-server $acr.azurecr.io \
   --registry-username $acr \
   --registry-password $acrpwd \
@@ -67,7 +67,7 @@ az containerapp create -n $app -g $grp --environment $acaenv \
 # Check the queue again. It should have a bunch of messages in it
 # Add a scale rule to the container app
 
-az containerapp update -n $app -g $grp \
+az containerapp update -n $app -g az204-m05-containers \
   --scale-rule-name queue-scaling \
   --scale-rule-type azure-queue \
   --scale-rule-metadata queueName=food-orders queueLength=10 \
