@@ -10,7 +10,7 @@
 6. Kubernetes Intro (optional)
 7. Azure Container Apps: Publish 2-tier app
 8. Azure Container Apps: Introduction to Dapr (optional)
-9. Host a Function on ACA (optional)
+9. Azure Container Apps: Functions (optional)
 10. Azure Spring Apps (optional)
 
 ## Readings
