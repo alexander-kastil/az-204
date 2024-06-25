@@ -11,7 +11,7 @@ content-type: application/json
     "Customer": {
         "Name": "Willi",
         "Address": "123 Main Street, Seattle, WA 98101",
-        "EMail": "alexander.pajer@integrations.at"
+        "EMail": "alexander.kastil@integrations.at"
     },
     "Items": []              
 }

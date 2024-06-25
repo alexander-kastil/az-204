@@ -1,6 +1,6 @@
 ##### Stage 1 - Create the build-image
 FROM node:18-alpine as build
-LABEL author="Alexander Pajer"
+LABEL author="Alexander Kastil"
 
 WORKDIR /app
 COPY . .

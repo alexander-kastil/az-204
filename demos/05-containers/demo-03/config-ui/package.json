@@ -1,8 +1,8 @@
 {
   "name": "config-ui",
   "author": {
-    "name": "Alexander Pajer",
-    "email": "alexander.pajer@integrations.at"
+    "name": "Alexander Kastil",
+    "email": "alexander.kastil@integrations.at"
   },
   "version": "17.0.0",
   "scripts": {

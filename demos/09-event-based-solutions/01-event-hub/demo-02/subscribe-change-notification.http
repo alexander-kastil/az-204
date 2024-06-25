@@ -18,7 +18,7 @@ Content-Type: application/json
 {
     "changeType": "created,updated",
     "notificationUrl": {{notificationUrl}},
-    "resource": "/users/alexander.pajer@integrations.at/mailfolders('inbox')/messages",
+    "resource": "/users/alexander.kastil@integrations.at/mailfolders('inbox')/messages",
     "expirationDateTime": "2023-08-05T11:00:00.0000000Z",
     "clientState": "SecretClientState"
 }
