@@ -30,7 +30,7 @@ import { CartFacade } from 'src/app/shop/state/cart.facade';
 export class SidebarComponent {
   cart = inject(CartFacade);
   router = inject(Router);
-  user = of("alexander.pajer@integrations.at");
+  user = of("alexander.kastil@integrations.at");
   ct = this.cart.getItemsCount();
   total = this.cart.getSumTotal();
   persistToCart = this.cart.getPersist();

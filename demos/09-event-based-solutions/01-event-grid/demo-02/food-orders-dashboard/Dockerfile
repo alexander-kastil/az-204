@@ -1,6 +1,6 @@
 ##### Stage 1 - Create the build-image
 FROM node:18 as node
-LABEL author="Alexander Pajer"
+LABEL author="Alexander Kastil"
 WORKDIR /app
 COPY package.json package.json
 RUN npm install

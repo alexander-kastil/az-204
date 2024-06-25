@@ -15,7 +15,7 @@ grant_type=client_credentials
 
 ### get a specific user
 # @name user
-GET {{graph}}/users/alexander.pajer@integrations.at
+GET {{graph}}/users/alexander.kastil@integrations.at
 Authorization: Bearer {{auth.response.body.access_token}}
 
 

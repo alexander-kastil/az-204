@@ -10,10 +10,6 @@ IConfiguration Configuration = builder.Configuration;
 builder.Services.AddSingleton<IConfiguration>(Configuration);
 var cfg = Configuration.Get<AppConfig>();
 
-// Application Insights
-builder.Services.AddApplicationInsightsTelemetry();
-builder.Services.AddSingleton<AILogger>();
-
 // Add cosmos client
 CosmosClient client = new CosmosClient(cfg.CosmosDB.GetConnectionString());
 builder.Services.AddSingleton(client);

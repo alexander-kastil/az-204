@@ -23,7 +23,7 @@ namespace BlobStorageConsole
             BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(blobContainerName);
 
             Dictionary<string,string> metadata = new Dictionary<string, string>();
-            metadata.Add("restaurant", "fusion");
+            metadata.Add("restaurant", "aisa");
             await containerClient.SetMetadataAsync(metadata);
 
             await

@@ -75,7 +75,7 @@ Examine Examine [./food-shop/dockerfile](./food-shop/dockerfile)::
 
 ```docker
 FROM node:18-alpine as build
-LABEL author="Alexander Pajer"
+LABEL author="Alexander Kastil"
 
 WORKDIR /app
 COPY . .
