@@ -3,6 +3,6 @@
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "conCosmosDB": "AccountEndpoint=https://az204-cosmos-17464.documents.azure.com:443/;AccountKey=AAwdNo9Yeh2fl6xerk7w7dpEGccqUn5oUbpOOejYKDtUJQQ2Qi3Ub52rC8ANWrAYRzospfHhqI2a67G1Y7p1Yw==;"
+    "conCosmosDB": "AccountEndpoint=https://food-cosmos-dev.documents.azure.com:443/;AccountKey=oEcTBz0aY9vJiDG2HBW6sMXN9cMY8Rd0HoMPxoUBSY8iDeBsftogQ3t8ajcL8buv1XclZMd0QESRACDbcvoB1Q==;"
   }
 }

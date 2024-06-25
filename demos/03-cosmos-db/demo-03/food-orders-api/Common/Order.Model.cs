@@ -4,7 +4,6 @@ namespace FoodApp.Orders
 {
     public class Order
     {
-
         public Order()
         {
             this.Id = Guid.NewGuid().ToString();

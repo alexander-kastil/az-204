@@ -15,15 +15,13 @@ namespace FoodApp.Orders
         AppConfig cfg;
         IWebHostEnvironment env;
         CosmosClient client;
-        AILogger logger;
         ICosmosDbService service;
 
-        public OrdersController(IConfiguration config, IWebHostEnvironment environment, CosmosClient cosmosClient, ICosmosDbService cs,  AILogger aILogger)
+        public OrdersController(IConfiguration config, IWebHostEnvironment environment, CosmosClient cosmosClient, ICosmosDbService cs)
         {
             cfg = config.Get<AppConfig>(); ;
             env = environment;
             client = cosmosClient;
-            logger = aILogger;
             service = cs;
         }
 

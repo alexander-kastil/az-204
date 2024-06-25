@@ -12,10 +12,6 @@ namespace FoodApp.Orders{
         }
     }
 
-    public class ApplicationInsights{
-        public string ConnectionString {get;set;}
-    }
-
     public class Logging
     {
         public LogLevel LogLevel { get; set; }
@@ -32,7 +28,5 @@ namespace FoodApp.Orders{
         public Logging Logging { get; set; }
         public CosmosDB CosmosDB { get; set; }
         public string AllowedHosts { get; set; }
-        public ApplicationInsights ApplicationInsights {get;set;}
     }
-
 }
