@@ -1,0 +1,8 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=picprocessor32272;AccountKey=RIKALx52YQIHxDQnHPJ00Vo+KLySlq2tpb35/vpNsUdiaPu+Hq9ay1gLeP1Szj3YG8NZCFIhGcyp+AStzpJohQ==;EndpointSuffix=core.windows.net",
+    "CONTAINER_NAME": "newsletters"
+  }
+}

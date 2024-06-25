@@ -25,7 +25,7 @@ echo "storage-acct: $storage"
 echo "storage-connectionString: " $conStr
 
 # Deploy to function app
-cd foodpic-optimizer
+cd pic-optimizer-api
 func azure functionapp publish $app --csharp
 cd ..
 

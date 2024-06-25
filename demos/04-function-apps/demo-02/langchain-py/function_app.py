@@ -4,8 +4,8 @@ import logging
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
-@app.route(route="transcribe-video", methods=["POST"])
-def video_transcript(req: func.HttpRequest) -> func.HttpResponse:
+@app.route(route="transcribe")
+def transcribe(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     req_body = req.get_json()

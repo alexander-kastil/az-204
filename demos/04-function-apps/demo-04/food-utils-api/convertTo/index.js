@@ -20,6 +20,4 @@ module.exports = async function (context, req) {
             body: "err with params or in function"
         };
     }
-
-
 }
