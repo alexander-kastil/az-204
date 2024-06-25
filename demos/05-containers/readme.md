@@ -5,12 +5,12 @@
 1. Docker Basics & Multistage Build
 2. Publish Image to Azure Container Registry
 3. Use Azure Container Registry Build Task
-4. Web Apps for Containers - Angular
+4. Web Apps for Containers (optional)
 5. Azure Container Instances (ACI)
 6. Kubernetes Intro (optional)
-7. Azure Container Apps: Publish 2-tier app
+7. Azure Container Apps: 2-tier App & Configuration
 8. Azure Container Apps: Introduction to Dapr (optional)
-9. Azure Container Apps: Functions (optional)
+9. Azure Container Apps: Azure Functions (optional)
 10. Azure Spring Apps (optional)
 
 ## Readings
