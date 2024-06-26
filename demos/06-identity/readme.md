@@ -8,7 +8,6 @@
 - MSAL & Angular using `@azure/msal-angular`
 - Graph REST Samples
 - Consume Graph REST API in Azure Function using MSAL
-- Graph Change Notifications with Azure Function and Graph SDK (JavaScript)
 
 ## Readings
 
