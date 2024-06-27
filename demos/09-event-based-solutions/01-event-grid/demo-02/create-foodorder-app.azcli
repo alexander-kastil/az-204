@@ -1,7 +1,7 @@
 env=dev-$RANDOM
 grp=az204-realtime-$env
 loc=westeurope
-storage=foodorders$env
+storage=foodorders$RANDOM
 funcApp=foodorders-$env
 signalrhub=foodsignalrhub-$env
 topic=foodevents-$env
