@@ -11,7 +11,7 @@ pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
 loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv) 
 
 # net api
-apiUrl=$(az container create -g $grp -l $loc -n $apiapp --image $apiImg  --cpu 1 --memory 1 --dns-name-label $apiapp --port 80 --registry-password $pwd --registry-username $acr --registry-login-server $loginSrv --query ipAddress.fqdn -o tsv)
+apiUrl=$(az container create -g $grp -l $loc -n $apiapp --image $apiImg  --cpu 1 --memory 1 --dns-name-label $apiapp --port 8080 --registry-password $pwd --registry-username $acr --registry-login-server $loginSrv --query ipAddress.fqdn -o tsv)
 
 echo "ENV_API_URL=https://$apiUrl"
 

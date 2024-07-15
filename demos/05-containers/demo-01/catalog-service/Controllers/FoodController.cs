@@ -7,18 +7,8 @@ namespace FoodApp
 {
     [Route("[controller]")]
     [ApiController]
-    public class FoodController : ControllerBase
-    {
-        AILogger logger;
-
-        public FoodController(FoodDBContext context, AILogger ai)
-        {
-            ctx = context;
-            logger = ai;
-        }
-
-        FoodDBContext ctx;
-
+    public class FoodController (FoodDBContext ctx, AILogger logger): ControllerBase
+    {        
         // http://localhost:PORT/food
         [HttpGet()]
         public async Task<IEnumerable<CatalogItem>> GetFood()

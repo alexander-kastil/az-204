@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "queue-consumer-func", "queue-consumer-func.csproj", "{C42B48D9-BFB2-4987-BC82-3C8937508511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvc-app", "mvc-app.csproj", "{8510DB7B-5C97-4DA3-87EE-B099924E47C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C42B48D9-BFB2-4987-BC82-3C8937508511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C42B48D9-BFB2-4987-BC82-3C8937508511}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C42B48D9-BFB2-4987-BC82-3C8937508511}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C42B48D9-BFB2-4987-BC82-3C8937508511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8510DB7B-5C97-4DA3-87EE-B099924E47C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8510DB7B-5C97-4DA3-87EE-B099924E47C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8510DB7B-5C97-4DA3-87EE-B099924E47C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8510DB7B-5C97-4DA3-87EE-B099924E47C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6548EFBA-042E-43CD-B862-F52FF294C0C1}
+		SolutionGuid = {6A7C0502-2814-4CD2-8AEE-D90DD9401591}
 	EndGlobalSection
 EndGlobal
