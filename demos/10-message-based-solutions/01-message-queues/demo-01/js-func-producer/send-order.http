@@ -1,7 +1,0 @@
-POST http://localhost:7071/api/addToQueue HTTP/1.1
-
-{
-    "Id": 1,
-    "Quantity": 10,
-    "Product": "Toilet Paper"
-}
