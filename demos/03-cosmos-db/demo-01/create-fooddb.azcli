@@ -8,6 +8,11 @@ az group create --name $grp --location $loc
 
 # cosmos db account with sql api
 az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp --enable-free-tier true
+
+# enable vector search
+az cosmosdb update -g $grp -n $acct --capabilities EnableNoSQLVectorSearch
+
+# create a database
 az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
 
 # Create a container with even partitioning: food.json
