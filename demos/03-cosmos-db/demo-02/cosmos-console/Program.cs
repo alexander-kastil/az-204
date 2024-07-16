@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Microsoft.Azure.Cosmos;
+﻿using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
 using Microsoft.Extensions.Configuration;
 
@@ -14,11 +13,11 @@ var db = configuration["DBName"];
 var containerName = configuration["Collection"];
 var conStr = $"AccountEndpoint={accountEndpoint};AccountKey={accountKey};";
 
-CosmosClientOptions options = new CosmosClientOptions()
-{
-    ConsistencyLevel = ConsistencyLevel.Session,
-    ConnectionMode = ConnectionMode.Direct
-};
+// CosmosClientOptions options = new CosmosClientOptions()
+// {
+//     ConsistencyLevel = ConsistencyLevel.Session,
+//     ConnectionMode = ConnectionMode.Direct
+// };
 CosmosClient client = new CosmosClient(conStr);
 
 AccountProperties account = await client.ReadAccountAsync();
@@ -82,14 +81,14 @@ context.Food.Add(new Food() { id = "2222", name = "Hazelenut Protein", amount = 
 context.SaveChanges();
 
 // Discontinued Trigger
-Food discont = new Food
+Food food = new Food
 {
     id = "1111",
     name = "Orange Soda Bitter",
     amount = 2
 };
 
-Food triggerItem = await container.CreateItemAsync(discont, null, new ItemRequestOptions
+Food triggerItem = await container.CreateItemAsync(food, null, new ItemRequestOptions
 {
     PostTriggers = new List<string>{
         "KitchenTrigger"
