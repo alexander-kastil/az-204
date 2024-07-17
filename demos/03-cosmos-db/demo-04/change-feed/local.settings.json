@@ -1,8 +1,8 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "conCosmosDB": "AccountEndpoint=https://food-cosmos-dev.documents.azure.com:443/;AccountKey=oEcTBz0aY9vJiDG2HBW6sMXN9cMY8Rd0HoMPxoUBSY8iDeBsftogQ3t8ajcL8buv1XclZMd0QESRACDbcvoB1Q==;"
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "foodcosmosdev_DOCUMENTDB": "AccountEndpoint=https://food-cosmos-dev.documents.azure.com:443/;AccountKey=H8OqSdMVnHiWIY2IbuqyB9kjwfEtJeDymKC9I3OyyysgmG6xhSviHgdZlgBvMAga85ecTr1qf2ToACDb8klfPw==;"
   }
 }

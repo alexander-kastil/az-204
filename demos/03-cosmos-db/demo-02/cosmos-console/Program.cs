@@ -10,7 +10,7 @@ IConfigurationRoot configuration = builder.Build();
 var accountEndpoint = configuration["accountEndpoint"];
 var accountKey = configuration["accountKey"];
 var db = configuration["DBName"];
-var containerName = configuration["Collection"];
+var containerName = configuration["Container"];
 var conStr = $"AccountEndpoint={accountEndpoint};AccountKey={accountKey};";
 
 // CosmosClientOptions options = new CosmosClientOptions()
