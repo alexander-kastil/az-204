@@ -11,4 +11,4 @@ az group create --name $grp --location $loc
 pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
 
 az appservice plan create --name $plan -g $grp --sku B1 --is-linux --number-of-workers 1
-az webapp create -g $grp -p $plan -n $app -i $img --container-registry-user $acr --container-registry-user $pwd
+az webapp create -g $grp -p $plan -n $app -i $img --container-registry-user $acr --container-registry-password $pwd
