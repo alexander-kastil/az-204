@@ -5,7 +5,7 @@ apim=food-$env
 ai=food-$env
 storage=foodfiles$env
 appPlan=food-$env
-catalog=foodcatalogapi-$env
+catalog=food-catalog-$env
 utils=foodutil-$env
 cart=foodcart-$env
 payment=foodpayment-$env
@@ -15,29 +15,37 @@ publisher="food"
 vault=foodvault-$env
 acr=az204demos$env
 acaenv=az204-demo-$env
-apiimg=arambazamba/food-catalog-api:1.1.0
-uiimg=arambazamba/food-shop-ui
+apiimg=$acr.azurecr.io/catalog-service
+uiimg=$acr.azurecr.io/food-shop-ui
 
 az group create -n $grp -l $loc
 
 az storage account  create -n $storage -g $grp 
 
 # utils
-az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 18 --functions-version 4 
+az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc \
+    --runtime node --runtime-version 18 --functions-version 4 
 
 # payment - used for mocking in portal function
-az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc --runtime node --runtime-version 18 --functions-version 4 
+az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc \
+    --runtime node --runtime-version 18 --functions-version 4 
 
-apifqdn=$(az containerapp create -n foodapi-$env -g az204-m05-containers --image $apiimg \
+apifqdn=$(az containerapp create -n catalog-service-$env -g az204-m05-containers \
+    --image $apiimg \
     --environment $acaenv \
-    --target-port 80 --ingress external \
+    --min-replicas 1 --max-replicas 1 \
+    --target-port 8080 \
+    --ingress external \
     --query properties.configuration.ingress.fqdn -o tsv)
 
-az containerapp ingress cors enable -n foodapi-$env -g az204-m05-containers --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins $apifqdn
+az containerapp ingress cors enable -n catalog-service-$env -g az204-m05-containers \
+    --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins $apifqdn
 
-az containerapp create -n foodui-$env -g az204-m05-containers --image $uiimg \
+az containerapp create -n foodui-$env -g az204-m05-containers \
+    --image $uiimg \
     --environment $acaenv \
-    --target-port 80 --ingress external \
+    --target-port 8080 \
+    --ingress external \
     --env-vars ENV_API_URL=https://$apifqdn/ 
 
 # api management
@@ -45,8 +53,8 @@ az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name
 
 # publish api & function apps
 # catalog
-cd food-api
-az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "dotnet:6"
+cd catalog-service
+az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "dotnet:8"
 cd ..
 
 cd foodutil-functs-js

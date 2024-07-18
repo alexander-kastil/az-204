@@ -5,7 +5,6 @@ public class AppSettings
     public string DBConnectionString { get; set; }
     public string KeyVault { get; set; }
     public string AppConfigEndpoint { get; set; }
-    public string AppConfigConnection { get; set; }    
     public string Sentinel { get; set; }
     public string Environment { get; set; }
 }
