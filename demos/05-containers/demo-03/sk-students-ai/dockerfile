@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+WORKDIR /build
+COPY . .
+RUN dotnet restore "sk-students-ai.csproj"
+RUN dotnet publish -c Release -o /app
+
+# Runtime Image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "sk-students-ai.dll"]
+
+# Build Image
+# docker build --rm -f dockerfile -t sk-students-ai .
+
+# Run Image without env vars
+# docker run -it --rm -p 5051:8080 sk-students-ai
+
+# Run Image with env vars
+# docker run -it --rm -p 5051:8080 sk-students-ai -e "AzureOpenAiSettings:Endpoint=true" -e "AzureOpenAiSettings:Key=true" -e "AzureOpenAiSettings:Model=true"
