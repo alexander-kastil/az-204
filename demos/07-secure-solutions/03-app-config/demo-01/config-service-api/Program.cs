@@ -15,13 +15,13 @@ builder.Services.AddSingleton<IConfiguration>(Configuration);
 var cfg = Configuration.Get<AppConfig>();
 
 builder.Configuration.AddAzureAppConfiguration(options =>
-{    
-    options.Connect(cfg.Settings.AppConfigConnection)
+{
+    options.Connect(new Uri(cfg.Settings.AppConfigEndpoint), new DefaultAzureCredential())
         .ConfigureKeyVault(kv =>
         {
             kv.SetCredential(new DefaultAzureCredential());
         })
-        .Select("*", cfg.Settings.Environment)        
+        .Select("*", cfg.Settings.Environment)
         .ConfigureRefresh(refreshOptions =>
             refreshOptions.Register("Settings:Sentinel", refreshAll: true));
 });
