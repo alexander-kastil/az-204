@@ -4,7 +4,7 @@ loc=westeurope
 acct=staticwebsite$env
 path='./food-shop-ui/dist/food-shop-ui'
 profile=ngfoodapp$env
-epname=ngendpoint
+epname=ngendpoint$env
 
 az group create -n $grp -l $loc
 

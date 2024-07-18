@@ -15,8 +15,8 @@ publisher="food"
 vault=foodvault-$env
 acr=az204demos$env
 acaenv=az204-demo-$env
-apiimg=arambazamba/food-catalog-api:1.1.0
-uiimg=arambazamba/food-shop-ui
+apiimg=$acr.azurecr.io/catalog-service
+uiimg=$acr.azurecr.io/food-shop-ui
 
 az group create -n $grp -l $loc
 
@@ -30,14 +30,15 @@ az functionapp create -n $utils -g $grp --storage-account $storage --consumption
 az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc \
     --runtime node --runtime-version 18 --functions-version 4 
 
-apifqdn=$(az containerapp create -n foodapi-$env -g az204-m05-containers \
+apifqdn=$(az containerapp create -n catalog-service-$env -g az204-m05-containers \
     --image $apiimg \
     --environment $acaenv \
+    --min-replicas 1 --max-replicas 1 \
     --target-port 8080 \
     --ingress external \
     --query properties.configuration.ingress.fqdn -o tsv)
 
-az containerapp ingress cors enable -n foodapi-$env -g az204-m05-containers \
+az containerapp ingress cors enable -n catalog-service-$env -g az204-m05-containers \
     --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins $apifqdn
 
 az containerapp create -n foodui-$env -g az204-m05-containers \
