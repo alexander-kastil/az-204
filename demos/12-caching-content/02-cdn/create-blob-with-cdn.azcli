@@ -12,12 +12,6 @@ az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 
 key=$(az storage account keys list -n $acct -g $grp --query "[0].value")
 
-echo "Website Key: " $key
-
-ep=$(az storage account show -g $grp -n $acct --query "primaryEndpoints.web")
-
-echo "Primary Endpoint for Static Web: " $ep
-
 # Enable static webstie on storage acct
 
 az storage blob service-properties update --account-name $acct --static-website --404-document error.html --index-document index.html
