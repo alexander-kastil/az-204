@@ -1,6 +1,6 @@
 # Static Web Apps
 
-Static Web App (Angular) is located at [https://github.com/arambazamba/angular-devops](https://github.com/arambazamba/angular-devops)
+Static Web App (Angular) is located at [https://github.com/alexander-kastil/angular-devops](https://github.com/alexander-kastil/angular-devops)
 
 ## Readings
 

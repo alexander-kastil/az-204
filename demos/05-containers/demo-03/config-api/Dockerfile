@@ -22,5 +22,5 @@ ENTRYPOINT ["dotnet", "config-api.dll"]
 # http://localhost:5051/
 
 # Publish Image to dockerhub
-# docker tag config-api arambazamba/config-api
-# docker push arambazamba/config-api
+# docker tag config-api alexander-kastil/config-api
+# docker push alexander-kastil/config-api

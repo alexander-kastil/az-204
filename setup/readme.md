@@ -15,7 +15,7 @@ To install Software run the script `setup-az-204.ps1` from an elevated PowerShel
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force;
-Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/arambazamba/az-204/main/setup/setup-az-204.ps1'))
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/alexander-kastil/az-204/main/setup/setup-az-204.ps1'))
 ```
 
 > Note: This script will run for approx 15 min. 
@@ -31,7 +31,7 @@ gh auth login
 Fork the class repository:
 
 ```bash
-gh repo fork https://github.com/arambazamba/az-204/
+gh repo fork https://github.com/alexander-kastil/az-204/
 ```
 
 Download the forked repository:

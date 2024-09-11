@@ -3,7 +3,7 @@ grp=az204-m01-easy-auth-$env
 appPlan=easyauth-$env
 app=easyauth-website-$env
 appregName=easyauth-app
-gitrepo="https://github.com/arambazamba/git-deploy-app"
+gitrepo="https://github.com/alexander-kastil/git-deploy-app"
 tenantID=d92b247e-90e0-4469-a129-6a32866c0d0a
 
 az group create -n $grp -l westeurope

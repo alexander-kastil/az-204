@@ -47,7 +47,7 @@ npm install -g @angular/cli
 
 #### .NET 6 SDK - Optional
 
->Note: All required .NET Api's are available containerized at [https://hub.docker.com/repositories/arambazamba](https://hub.docker.com/repositories/arambazamba) if you want to skip .NET SDK installation. You need to sign up for a [free Docker Hub account](https://hub.docker.com/) to access the images.
+>Note: All required .NET Api's are available containerized at [https://hub.docker.com/repositories/alexander-kastil](https://hub.docker.com/repositories/alexander-kastil) if you want to skip .NET SDK installation. You need to sign up for a [free Docker Hub account](https://hub.docker.com/) to access the images.
 
 Install .NET 6 SDK:
 

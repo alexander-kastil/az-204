@@ -19,5 +19,5 @@ COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
 # docker build --rm -f Dockerfile -t food-invoices .
 # docker run -d --rm -p 5052:80 -e "InvoiceConnectionString=DefaultEndpointsProtocol=https;AccountName=foodstoragedev;AccountKey=tu+FsWzY8Dpl7JS1I1FxZhOC5NHt0GR+Nb/mEbgwffVRXHf4nMqSfCmXHk+wxUEOaWwZLDDLj3DK+AStKv2X/Q==;EndpointSuffix=core.windows.net" -e "Sleep=500" -e "APPINSIGHTS_INSTRUMENTATIONKEY=80fe34b9-dae6-4532-9d81-7ee056098c81" food-invoices
 
-# docker tag food-invoices arambazamba/food-invoices
-# docker push arambazamba/food-invoices
+# docker tag food-invoices alexander-kastil/food-invoices
+# docker push alexander-kastil/food-invoices

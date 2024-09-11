@@ -2,7 +2,7 @@ env=$RANDOM
 grp=az204-m01-gitdeploy-$env
 appPlan=gitdeploy-$env
 app=gitdeploy-website-$env
-gitrepo="https://github.com/arambazamba/git-deploy-app"
+gitrepo="https://github.com/alexander-kastil/git-deploy-app"
 
 az group create -n $grp -l westeurope
 az appservice plan create -n $appPlan -g $grp --sku F1

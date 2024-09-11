@@ -16,8 +16,8 @@ ENTRYPOINT ["dotnet", "mail-daemon.dll"]
 # docker build --rm -f dockerfile -t mail-daemon .
 # docker run -it --rm -p 5051:80 mail-daemon
 
-# docker tag mail-daemon arambazamba/mail-daemon
-# docker push arambazamba/mail-daemon
+# docker tag mail-daemon alexander-kastil/mail-daemon
+# docker push alexander-kastil/mail-daemon
 
 # Injecting environment variables into the container
 # docker run -it --rm -p 5051:80 mail-daemon -e "GraphCfg:ClientSecret=cez8Q~YN3BCUROOC35.FmYiixCgxtalUISBy3dyc"

@@ -1,10 +1,11 @@
 # Getting Started
 
+To avoid problems with saved credentials I recommend using an alternate browser or log of all accounts in your browser before starting the lab.
+
+- [Get the Azure Pass from the GoDeploy Lab](../09-godeploy-lab)
 - [Register your Azure Pass](../05-azurepass)
 - [Configure CloudShell for first use in your Azure Tenant](../04-cli/#configure-cloud-shell)
 - [Register GitHub Account](https://github.com/)
-- Activate your Lab Environment by using the Access Code provided by the instructor
-    - You can also work on your own machine by execute [setup-az-204.ps1](../../setup/setup-az-204.ps1) to install the required Software on a Windows machine, or [Setup a Lab Machine in Azure & install required Software using Script - optional](../../setup)
 - Configure Git on the Lab VM
 - Setup Git and Fork the class repo
 
@@ -19,10 +20,10 @@ git config --global user.email "your.email@yourdomain.com"
 
 ## Setup Git and Fork the class repo
 
-Go to `https://github.com/ARambazamba/az-204` and fork the repo or use the GitHub CLI:
+Go to `https://github.com/alexander-kastil/az-204` and fork the repo or use the GitHub CLI:
 
 ```
-gh repo fork https://github.com/arambazamba/az-204
+gh repo fork https://github.com/alexander-kastil/az-204
 ```
 
 ![forking-wf](_images/fork.jpg)
@@ -37,4 +38,4 @@ Clone Class Repo:
 git clone https://github.com/Student01/az-204
 ```
 
-> Note: If you have forked the class repo clone your own fork, otherwise use https://github.com/ARambazamba/az-204
+> Note: If you have forked the class repo clone your own fork, otherwise use https://github.com/alexander-kastil/az-204

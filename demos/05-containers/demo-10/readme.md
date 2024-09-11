@@ -8,5 +8,5 @@
 
 ## Demos
 
-- Demo is available in here [https://github.com/arambazamba/spring-blog](https://github.com/arambazamba/spring-blog)
+- Demo is available in here [https://github.com/alexander-kastil/spring-blog](https://github.com/alexander-kastil/spring-blog)
 

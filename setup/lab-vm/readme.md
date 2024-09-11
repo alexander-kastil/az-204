@@ -3,7 +3,7 @@
 Execute `create-lab-vm.azcli` or run the following remote script in Cloud Shell
 
 ```bash
-curl https://raw.githubusercontent.com/arambazamba/ng-adv/main/setup/lab-vm/create-lab-vm.azcli | bash
+curl https://raw.githubusercontent.com/alexander-kastil/ng-adv/main/setup/lab-vm/create-lab-vm.azcli | bash
 ```
 
 ![create-labvm](_images/create-lab-vm.jpg)

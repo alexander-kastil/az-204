@@ -24,5 +24,5 @@ CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js
 # browse using http://localhost:5052/
 
 # Publish Image to dockerhub
-# docker tag food-shop-ui arambazamba/food-shop-ui
-# docker push arambazamba/food-shop-ui
+# docker tag food-shop-ui alexander-kastil/food-shop-ui
+# docker push alexander-kastil/food-shop-ui

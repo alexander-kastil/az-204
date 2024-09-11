@@ -12,7 +12,7 @@ grp=az204-m01-wacontainers-$rnd
 loc=westeurope
 appPlan=foodapp-wac$rnd
 app=foodui-wac-$rnd
-img=arambazamba/foodui
+img=alexander-kastil/foodui
 
 az group create --name $grp --location $loc
 az appservice plan create --name $appPlan -g $grp --sku B1 --is-linux --number-of-workers 1
@@ -39,6 +39,6 @@ Build and publish docker image:
 
 ```bash
 docker build --rm -f Dockerfile -t foodapi .
-docker tag foodapi arambazamba/foodapi
-docker push arambazamba/foodapi
+docker tag foodapi alexander-kastil/foodapi
+docker push alexander-kastil/foodapi
 ```

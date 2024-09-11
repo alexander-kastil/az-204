@@ -2,8 +2,8 @@ env=dev
 grp=az204-m11-$env
 loc=westeurope
 ai=foodapp$env
-api=arambazamba/food-catalog-api:latest
-ui=arambazamba/food-shop-ui:latest
+api=alexander-kastil/food-catalog-api:latest
+ui=alexander-kastil/food-shop-ui:latest
 
 az group create -n $grp -l $loc
 

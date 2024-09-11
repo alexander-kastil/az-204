@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: config-env
-          image: arambazamba/config-env
+          image: alexander-kastil/config-env
           imagePullPolicy: Always
           ports:
             - containerPort: 80
