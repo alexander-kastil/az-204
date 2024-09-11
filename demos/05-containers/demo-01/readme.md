@@ -65,8 +65,8 @@ Browse using `http://localhost:5051/food`
 Publish Image to Docker Hub:
 
 ```
-docker tag food-catalog-api arambazamba/food-catalog-api
-docker push arambazamba/food-catalog-api
+docker tag food-catalog-api alexander-kastil/food-catalog-api
+docker push alexander-kastil/food-catalog-api
 ```
 
 ### Angular UI
@@ -106,6 +106,6 @@ Browse using `http://localhost:5052`
 Publish Image to Docker Hub:
 
 ```
-docker tag food-shop-ui arambazamba/food-shop
-docker push arambazamba/food-shop
+docker tag food-shop-ui alexander-kastil/food-shop
+docker push alexander-kastil/food-shop
 ```

@@ -22,5 +22,5 @@ ENTRYPOINT ["dotnet", "food-api-dapr.dll"]
 # http://localhost:5051/
 
 # Publish Image to dockerhub
-# docker tag food-api-dapr arambazamba/food-api-dapr
-# docker push arambazamba/food-api-dapr
+# docker tag food-api-dapr alexander-kastil/food-api-dapr
+# docker push alexander-kastil/food-api-dapr

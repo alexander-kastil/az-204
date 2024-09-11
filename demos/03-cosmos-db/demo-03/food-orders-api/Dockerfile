@@ -16,8 +16,8 @@ ENTRYPOINT ["dotnet", "orders-api.dll"]
 # docker build --rm -f Dockerfile -t food-orders-api .
 # docker run -it --rm -p 5054:80 food-orders-api
 
-# docker tag food-orders-api arambazamba/food-orders-api
-# docker push arambazamba/food-orders-api
+# docker tag food-orders-api alexander-kastil/food-orders-api
+# docker push alexander-kastil/food-orders-api
 
 # Injecting environment variables into the container
 # docker run -it --rm -p 5051:80 food-orders-api -e "App__2__AuthEnabled"="false"

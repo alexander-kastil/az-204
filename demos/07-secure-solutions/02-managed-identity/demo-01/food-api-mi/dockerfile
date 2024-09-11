@@ -16,5 +16,5 @@ ENTRYPOINT ["dotnet", "food-api.dll"]
 # docker build --rm -f dockerfile -t food-api-mi .
 # docker run -it --rm -p 5051:80 food-api-mi
 
-# docker tag food-api-mi arambazamba/food-api-mi
-# docker push arambazamba/food-api-mi
+# docker tag food-api-mi alexander-kastil/food-api-mi
+# docker push alexander-kastil/food-api-mi

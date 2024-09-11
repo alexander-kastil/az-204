@@ -16,7 +16,7 @@ COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
 # docker build --rm -f Dockerfile -t func-app-docker .
 # docker run -d --rm -p 5053:80 -e "MyEnvVar=Changed" func-app-docker
 
-# docker tag func-app-config arambazamba/func-app-docker
-# docker push arambazamba/func-app-docker
+# docker tag func-app-config alexander-kastil/func-app-docker
+# docker push alexander-kastil/func-app-docker
 
 # Browse: http://localhost:5053/api/getEnvValue

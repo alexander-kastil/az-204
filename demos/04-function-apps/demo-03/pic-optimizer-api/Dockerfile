@@ -20,5 +20,5 @@ COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
 
 # docker run -d --rm -p 5054:80 -e "AzureWebJobsStorage=DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=picprocessor4241;AccountKey=zT1cbseG40s8JpdLxhanppLQO0CAOKFPIt2X5AuVquLDH4bznOCTBcRrer+WyCuuVF35IQsdIkp3+AStaljIzw==;BlobEndpoint=https://picprocessor4241.blob.core.windows.net/;FileEndpoint=https://picprocessor4241.file.core.windows.net/;QueueEndpoint=https://picprocessor4241.queue.core.windows.net/;TableEndpoint=https://picprocessor4241.table.core.windows.net/" food-picoptimizer 
 
-# docker tag food-picoptimizer arambazamba/food-picoptimizer
-# docker push arambazamba/food-picoptimizer
+# docker tag food-picoptimizer alexander-kastil/food-picoptimizer
+# docker push alexander-kastil/food-picoptimizer
