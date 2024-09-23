@@ -9,8 +9,7 @@
 3. App Settings and Environment
 4. Using Easy Authentication
 5. Deployment Slots
-6. Geo Routing with Traffic Manager (optional)
-7. Static Web Apps (optional)
+6. Static Web Apps (optional)
 
 ## Readings
 
@@ -36,7 +35,7 @@
 
 [Azure CLI](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli)
 
-[Azrue Account](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account)
+[Azure Account](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azure-account)
 
 [Azure App Services](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
 

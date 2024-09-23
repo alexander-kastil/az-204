@@ -1,7 +1,4 @@
-# Azure Traffic Manager
+# Azure Static Web Apps
 
-[Controlling Azure App Service traffic with Azure Traffic Manager](https://docs.microsoft.com/en-us/azure/app-service/web-sites-traffic-manager)
+This demo uses the [Azure Static Web Apps](https://docs.microsoft.com/en-us/azure/static-web-apps/) service to deploy a static web application implemented using Angular and published to [https://github.com/alexander-kastil/static-web-apps](https://github.com/alexander-kastil/static-web-apps)
 
-- Execute `traffic-manager.azcli`
-- Modify Start Pages using Kudu
-- Call from within the VM to demonstrate Traffic Manager to hit corresponding Start Page

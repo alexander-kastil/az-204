@@ -2,8 +2,6 @@
 
 [Cosmos DB Samples](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-dotnet-v3sdk-samples)
 
-[LINQ to SQL translation](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-linq-to-sql)
-
 ## Demo
 
 - Explain base .NET Data Access
