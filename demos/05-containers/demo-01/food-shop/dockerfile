@@ -1,5 +1,5 @@
 ##### Stage 1 - Create the build-image
-FROM node:18-alpine as build
+FROM node:20-alpine as build
 LABEL author="Alexander Kastil"
 
 WORKDIR /app
