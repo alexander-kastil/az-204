@@ -36,7 +36,7 @@ namespace Integrations
                     var json = document.ToString();
                     if (json != null)
                     {
-                        var food = JsonSerializer.Deserialize<Food>(json);
+                        var food = JsonConvert.DeserializeObject<Food>(json);
                          logger.LogInformation("Changed food " + food?.name);
                     }
                    

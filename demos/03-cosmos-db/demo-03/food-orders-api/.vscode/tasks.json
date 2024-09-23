@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/food-orders-api.sln",
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/6909aed1f92348d69f374cbfd165bb1a/ms-dotnettools.csdevkit/food-orders-api.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/food-orders-api.sln",
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/6909aed1f92348d69f374cbfd165bb1a/ms-dotnettools.csdevkit/food-orders-api.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/food-orders-api.sln"
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/6909aed1f92348d69f374cbfd165bb1a/ms-dotnettools.csdevkit/food-orders-api.sln"
             ],
             "problemMatcher": "$msCompile"
         }
