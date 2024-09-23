@@ -15,6 +15,9 @@ public class Student {
 
    [Required]
    public string? School { get; set; }
+
+   [Required]
+   public int Age { get; set; }
  
    public override string ToString() {
       return $"Student ID: {StudentId}, First Name: {FirstName}, Last Name: {LastName}, School: {School}";
