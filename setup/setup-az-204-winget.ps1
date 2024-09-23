@@ -19,8 +19,7 @@ Write-Host "*****" -ForegroundColor red
 Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
 
 winget install -e --id Google.Chrome
-winget install -e --id Microsoft.DotNet.SDK.3_1
-winget install -e --id Microsoft.DotNet.SDK.6
+winget install -e --id Microsoft.DotNet.SDK.8
 winget install -e --id CoreyButler.NVMforWindows
 winget install -e --id Microsoft.AzureCLI
 winget install -e --id Microsoft.AzureDataStudio
@@ -63,8 +62,8 @@ code --install-extension savranweb.cosmosdbsqlapi
 code --install-extension ms-kubernetes-tools.vscode-aks-tools
 
 # Azurite Storage Emulator & Function Core Tools v4
-nvm install 16.15.0
-nvm use 16.15.0
+nvm install 20.12.2
+nvm use 20.12.2
 npm install -g azure-functions-core-tools@4 --unsafe-perm true --force
 npm install -g azurite
 
