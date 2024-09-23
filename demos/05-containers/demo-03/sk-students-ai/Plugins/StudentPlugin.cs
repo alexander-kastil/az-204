@@ -34,6 +34,29 @@ public class StudentPlugin
   }
 
   /// <summary>
+  /// Get the age of a student by first name and last name.
+  /// </summary>
+  /// <param name="firstName">The student's first name.</param>
+  /// <param name="lastName">The student's last name.</param>
+  /// <returns>The student's age as an integer, or null if not found.</returns>
+  [KernelFunction, Description("Get the age of a student by first name and last name")]
+  public static int? GetStudentAge(
+    [Description("student first name, e.g. Kim")]
+    string firstName,
+    [Description("student last name, e.g. Ash")]
+    string lastName
+  )
+  {
+    var db = Utils.GetDbContext();
+    var student = db.Students
+      .Where(s => s.FirstName == firstName && s.LastName == lastName).FirstOrDefault();
+    if (student == null)
+      return null;
+    return student.Age;
+  }
+  /// 
+
+  /// <summary>
   /// Get students in a school given the school name.
   /// </summary>
   /// <param name="school">The name of the school.</param>
