@@ -15,7 +15,7 @@ url=$(az functionapp show -n $app -g $grp --query defaultHostName -o tsv)
 adminkey=$(az functionapp keys list -n $app -g $grp --query masterKey -o tsv)
 
 # Deploy to function app
-cd vscode-cs
+cd greet-cs
 func azure functionapp publish $app --csharp
 cd ..
 
