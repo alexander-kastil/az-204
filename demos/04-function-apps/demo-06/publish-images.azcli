@@ -2,11 +2,13 @@ env=dev
 loc=westeurope
 grp=az204-$env
 acr=az204demos$env
-img=food-mock-func
+img=food-shopping-cart
+
+az group create -n $grp -l $loc
 
 az acr create -g $grp -n $acr --sku Basic --admin-enabled true
-az acr login -n $acr
+az acr login --name $acr
 
-cd func-app-docker
+cd $img
 az acr build --image $img -g $grp --registry $acr --file Dockerfile .
 cd ..

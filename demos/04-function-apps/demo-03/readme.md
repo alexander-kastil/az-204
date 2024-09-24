@@ -1,12 +1,41 @@
-# Introduction to Bindings using Blob Storage
+# Node based Functions
 
-[Azure Functions triggers and bindings concepts](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
+[food-utils-api](food-utils-api/) is a utility service that provides the following functions:
 
-[Register Bindings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-register)
+- Currency Converter
+- Simple Interest Calculator
+- A mock function that returns an xml array of mock food items
 
-## Demo
+## Http-Trigger - Simple Interest
 
-[pic-optimizer-api](./pic-optimizer-api/) is a .NET utility service that optimizes pictures stored in an Azure Storage account after upload.
+- Run `npm run start`
 
+- Test using [Rest Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) and execute `call-get-interest.http` or use curl, az rest, Postman:
 
-Provision function app by executing `create-bindings-app.azcli`
+    ```json
+    POST  http://localhost:7071/api/getInterest HTTP/1.1
+    content-type: application/json
+
+    {
+        "principal": 100,
+        "rate": 10,
+        "term": 2
+    }
+    ```
+
+## Http-Trigger - Currency Calculator
+
+- Get your Api Key at [Fixer.io](https://fixer.io/)
+- Replace in `create-func-app.azcli` and `local.settings.json`
+
+    ```json
+    {
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "node",
+        "FixerKey": "YOUR API KEY"
+    }
+    ```
+
+- Start function app and execute `convert-to.http`
