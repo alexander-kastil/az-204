@@ -1,11 +1,12 @@
 import logging
 import azure.functions as func
-from bs4 import BeautifulSoup
 import requests
 import json
+import os
+from bs4 import BeautifulSoup
 from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 from datetime import datetime
-import os
+from azure.identity import DefaultAzureCredential
 
 app = func.FunctionApp()
 
@@ -18,8 +19,9 @@ def scrape_rates(myTimer: func.TimerRequest) -> None:
     logging.info('Python timer trigger function executed.')
 
     url = os.getenv("SCRAPING_URL")
-    connection_string = os.getenv("BLOB_STORAGE_CONNECTION_STRING")
     container_name = os.getenv("BLOB_CONTAINER_NAME")
+    account_url = os.getenv("ACCOUNT_URL")
+    default_credential = DefaultAzureCredential()
 
     response = requests.get(url)
 
@@ -34,8 +36,7 @@ def scrape_rates(myTimer: func.TimerRequest) -> None:
             return func.HttpResponse("Second table not found", status_code=404)
         table = tables[1]
         
-    # Extract headers
-      
+    # Extract headers      
     data = []
 
     # Iterate over the rows in the table
@@ -64,7 +65,7 @@ def scrape_rates(myTimer: func.TimerRequest) -> None:
     filename = f"rates_{current_time}.json"
 
     # Create the BlobServiceClient object
-    blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+    blob_service_client = BlobServiceClient(account_url=account_url, credential=default_credential)
 
     # Create a container client
     container_client = blob_service_client.get_container_client(container_name)
