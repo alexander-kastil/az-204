@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "vscode_cs": {
+    "greet_cs": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7214",
+      "commandLineArgs": "--port 7154",
       "launchBrowser": false
     }
   }

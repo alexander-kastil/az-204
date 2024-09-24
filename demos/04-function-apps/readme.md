@@ -2,13 +2,12 @@
 
 ## Demos
 
-1. Create Hello World Function App using Portal using Portal Designer
-2. Azure Function Core Tools & Visual Studio Code
-3. Introduction to Bindings using Blob Storage
-4. Using App Settings in Java Script projects
-5. Azure Functions REST Api (optional)
-7. Azure Functions as Container & Configuration Injection (optional)
-8. Durable Functions (optional)
+1. Azure Function Core Tools & Visual Studio Code
+2. Introduction to Bindings using Blob Storage
+3. Using App Settings in Java Script projects
+4. Azure Functions REST Api (optional)
+5. Azure Functions as Container & Configuration Injection (optional)
+6. Durable Functions (optional)
 
 ## Readings
 
