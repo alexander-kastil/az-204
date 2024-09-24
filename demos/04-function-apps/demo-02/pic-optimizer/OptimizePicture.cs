@@ -1,37 +1,31 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
-using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 
-namespace Company.Function
+namespace Integrations
 {
-    public class OptimizeImages
+    public class OptimizePicture
     {
-        private readonly ILogger<OptimizeImages> _logger;
-
-        public OptimizeImages(ILogger<OptimizeImages> logger)
+        [FunctionName("OptimizePicture")]
+        public void Run(
+            [BlobTrigger("drop/{name}", Connection = "AzureWebJobsStorage")] Stream image, string name, ILogger log,
+            [Blob("processed/{name}", FileAccess.Write)] Stream imageSmall)
         {
-            _logger = logger;
-        }
-
-        [Function(nameof(OptimizeImages))]
-        public async Task Run([BlobTrigger("drop/{name}", Connection = "conStorage")] Stream stream, string name)
-        {
-            // using var blobStreamReader = new StreamReader(stream);
-            // var content = await blobStreamReader.ReadToEndAsync();        
-           IImageFormat format;
-            using (Image<Rgba32> input = Image.Load<Rgba32>(stream, out format))
+            IImageFormat format;
+            using (Image<Rgba32> input = Image.Load<Rgba32>(image, out format))
             {
                 ResizeImage(input, imageSmall, ImageSize.ExtraSmall, format);
                 log.LogInformation($"resized: {name}");
             }
         }
 
-         public static void ResizeImage(Image<Rgba32> input, Stream output, ImageSize size, IImageFormat format)
+        public static void ResizeImage(Image<Rgba32> input, Stream output, ImageSize size, IImageFormat format)
         {
             var dimensions = imageDimensionsTable[size];
             input.Mutate(x => x.Resize(dimensions.Item1, dimensions.Item2));
@@ -47,3 +41,4 @@ namespace Company.Function
         };
     }
 }
+

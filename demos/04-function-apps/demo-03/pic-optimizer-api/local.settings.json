@@ -1,7 +1,0 @@
-{
-    "IsEncrypted": false,
-    "Values": {
-        "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=picprocessor22287;AccountKey=Grhib0ucyRWWnZkSOaVZwYm9Pdvp4vAlUr5hOx3mqE1cmXWMkzQgu3kiInBoxND4ztt10UcDCq/N+AStPGVnyg==;EndpointSuffix=core.windows.net",
-        "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-    }
-}
