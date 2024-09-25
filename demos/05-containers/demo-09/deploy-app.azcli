@@ -14,3 +14,5 @@ loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv)
 az storage account  create -n $storage -g $grp
 
 az functionapp create --name $app -g $grp --storage-account $storage --environment $acaenv --functions-version 4 --runtime dotnet-isolated --image $acr.azurecr.io/$app --registry-username $acr --registry-password $pwd --registry-server $loginSrv 
+
+az functionapp create --name youtube-transcribe -g $grp --storage-account $storage --environment $acaenv --functions-version 4 --runtime python --image $acr.azurecr.io/youtube-transcribe-py --registry-username $acr --registry-password $pwd --registry-server $loginSrv 

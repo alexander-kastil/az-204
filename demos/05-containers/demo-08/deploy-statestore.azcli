@@ -14,6 +14,9 @@ storageKey=$(az storage account keys list -n $storageAcct -g $grp --query "[0].v
 az storage container create -n $container --account-name $storageAcct --account-key $storageKey
 
 ### stop here
+### update storageKey in statestore-blob.yaml
+echo $storageKey
+
 pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
 loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv) 
 
@@ -24,8 +27,8 @@ az containerapp env dapr-component set -n $acaenv -g $grp \
 az containerapp create -n $app -g $grp \
     --image $img \
     --environment $acaenv \
-    --target-port 80 --ingress external \
-    --min-replicas 0 --max-replicas 1 \
+    --target-port 8080 --ingress external \
+    --min-replicas 1 --max-replicas 1 \
     --enable-dapr \
     --dapr-app-port 80 \
     --dapr-app-id $app \
