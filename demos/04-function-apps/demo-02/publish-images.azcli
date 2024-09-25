@@ -1,0 +1,13 @@
+env=dev
+grp=az204-m05-containers
+loc=westeurope
+acr=az204demos$env
+
+az group create -n $grp -l $loc
+
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
+az acr login --name $acr
+
+cd gold-scraper-timer-py
+az acr build --image gold-scraper-timer-py --registry $acr -g $grp --file dockerfile .
+cd ..

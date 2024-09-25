@@ -1,6 +1,6 @@
 env=dev
-grp=az204-m05-containers
-loc=westeurope
+grp=az204-m05-containers-eastus
+loc=eastus
 acr=az204demos$env
 aks=az204cluster-$env
 ns=config-app

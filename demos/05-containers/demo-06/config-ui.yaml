@@ -17,7 +17,7 @@ spec:
         image: az204demosdev.azurecr.io/config-ui:latest
         env: 
           - name: ENV_API_URL
-            value: 'http://20.238.155.158/'
+            value: 'http://4.236.227.246'
         imagePullPolicy: Always
         ports:
         - containerPort: 80        
