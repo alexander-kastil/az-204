@@ -1,0 +1,8 @@
+@url=https://func-aca.greenisland-f200acc8.westeurope.azurecontainerapps.io
+
+POST {{url}}/api/acatrigger
+Content-Type: application/json
+
+{
+    "name": "Azure"
+}
