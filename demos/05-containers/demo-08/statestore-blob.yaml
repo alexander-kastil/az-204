@@ -4,6 +4,6 @@ metadata:
 - name: accountName
   value: "foodstoragedev"
 - name: accountKey
-  value: "bysJQApv6V3pgSdVlc83dTJpnZ+6vQYrcDN4Q47LNFmSGcpoI6/OSj49Hso56PVc9IgObuKx8bK8+AStMlTrlQ=="
+  value: "<ACCOUNT_KEY>"
 - name: containerName
   value: "food-state"

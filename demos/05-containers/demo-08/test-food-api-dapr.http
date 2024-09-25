@@ -1,0 +1,11 @@
+# @baseUrl=http://localhost:5010/v1.0/invoke/food-api/method
+@baseUrl=https://food-statestore-app.greenisland-f200acc8.westeurope.azurecontainerapps.io/v1.0/invoke/food-api/method
+
+### Get the count and increment it by 1
+GET {{baseUrl}}/count/get 
+content-type: application/json
+
+### reset the count
+GET {{baseUrl}}/count/reset 
+content-type: application/json
+
