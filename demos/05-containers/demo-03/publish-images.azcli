@@ -19,5 +19,5 @@ az acr build --image $imgUI -g $grp --registry $acr --file Dockerfile .
 cd ..
 
 cd sk-students-ai
-az acr build --image sk-students-ai -g $grp --registry $acr --file Dockerfile .
+az acr build --image sk-students-ai -g $grp --registry $acr --file dockerfile .
 cd ..
