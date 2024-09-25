@@ -2,7 +2,7 @@ env=dev
 grp=az204-m05-containers
 loc=westeurope
 acr=az204demos$env
-img=food-api-dapr
+img=func-aca
 
 az group create -n $grp -l $loc
 
