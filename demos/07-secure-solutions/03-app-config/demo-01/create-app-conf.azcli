@@ -7,7 +7,9 @@ app=config-api-$env
 plan=config-plan-$env
 
 # create appconfig and add a value
-appconfigid=$(az appconfig create -g $grp -n $cfg -l $loc --sku free --query id -o tsv)
+az appconfig create -g $grp -n $cfg -l $loc --sku free
+appconfigid=$(az appconfig show -g $grp -n $cfg --query id -o tsv)
+
 az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo Dev" -y --label dev
 az appconfig kv set -n $cfg --key "Settings:Title" --value "App Config Demo" -y --label production
 

@@ -1,6 +1,10 @@
 {
   "name": "angular-standalone-component",
-  "version": "0.0.0",
+  "version": "18.0.0",
+  "author": {
+    "name": "Alexander Kastil",
+    "email": "alexander.kastil@integrations.at"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -1,0 +1,32 @@
+env=dev
+grp=az204-m07-secure-solutions-$env
+loc=westeurope
+vault=foodvault-rbac-$env
+plan=foodplan-$env
+app=foodapi-$env
+
+az group create -n $grp -l $loc
+
+cd food-api-mi
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "dotnet:8" 
+cd ..
+
+az keyvault create -l $loc -n $vault -g $grp --sku Standard
+kvid=$(az keyvault show -n $vault -g $grp --query id -o tsv)
+
+# activate system assigned identity on web app
+mi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)
+
+# Get the key vault secret officer role
+# https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
+roleid=$(az role definition list --name "Key Vault Secrets Officer" --query [0].id -o tsv)
+
+# add the current user
+currUserId=$(az ad signed-in-user show --query id -o tsv)
+az role assignment create --role $roleid --assignee $currUserId --scope $kvid
+
+# add the mi to the role
+az role assignment create --role $roleid --assignee $mi --scope $kvid
+
+
+az webapp config appsettings set -g $grp -n $app --settings Azure:KevVault=$vault.vault.azure.net
