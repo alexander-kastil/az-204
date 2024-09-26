@@ -20,6 +20,9 @@ uiimg=$acr.azurecr.io/food-shop-ui
 
 az group create -n $grp -l $loc
 
+# api management
+az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Consumption --no-wait
+
 az storage account  create -n $storage -g $grp 
 
 # utils
@@ -47,9 +50,6 @@ az containerapp create -n foodui-$env -g az204-m05-containers \
     --target-port 8080 \
     --ingress external \
     --env-vars ENV_API_URL=https://$apifqdn/ 
-
-# api management
-az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Consumption 
 
 # publish api & function apps
 # catalog
