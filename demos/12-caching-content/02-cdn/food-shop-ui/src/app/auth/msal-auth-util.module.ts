@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import {
   MsalAuthFacade,
@@ -31,49 +31,48 @@ import { MaterialModule } from '../material.module';
 
 const modules = environment.authEnabled
   ? [
-      CommonModule,
-      MaterialModule,
-      HttpClientModule,
-      StoreModule.forFeature(authFeatureKey, authReducer),
-      EffectsModule.forFeature([AuthEffects]),
-      MsalModule,
-    ]
+    CommonModule,
+    MaterialModule,
+    StoreModule.forFeature(authFeatureKey, authReducer),
+    EffectsModule.forFeature([AuthEffects]),
+    MsalModule,
+  ]
   : [
-      CommonModule,
-      MaterialModule,
-      HttpClientModule,
-      StoreModule.forFeature(authFeatureKey, authReducer),
-      EffectsModule.forFeature([]),
-    ];
+    CommonModule,
+    MaterialModule,
+    StoreModule.forFeature(authFeatureKey, authReducer),
+    EffectsModule.forFeature([]),
+  ];
 
 const providers = environment.authEnabled
   ? [
-      MsalAuthFacade,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: MsalInterceptor,
-        multi: true,
-      },
-      {
-        provide: MSAL_INSTANCE,
-        useFactory: MSALInstanceFactory,
-      },
-      {
-        provide: MSAL_GUARD_CONFIG,
-        useFactory: MSALGuardConfigFactory,
-      },
-      {
-        provide: MSAL_INTERCEPTOR_CONFIG,
-        useFactory: MSALInterceptorConfigFactory,
-      },
-      MsalService,
-      MsalGuard,
-      MsalBroadcastService,
-    ]
+    provideHttpClient(),
+    MsalAuthFacade,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true,
+    },
+    {
+      provide: MSAL_INSTANCE,
+      useFactory: MSALInstanceFactory,
+    },
+    {
+      provide: MSAL_GUARD_CONFIG,
+      useFactory: MSALGuardConfigFactory,
+    },
+    {
+      provide: MSAL_INTERCEPTOR_CONFIG,
+      useFactory: MSALInterceptorConfigFactory,
+    },
+    MsalService,
+    MsalGuard,
+    MsalBroadcastService,
+  ]
   : [
-      MsalAuthFacade,
-      { provide: MsalBroadcastService, useClass: MsalBroadcastServiceMock },
-    ];
+    MsalAuthFacade,
+    { provide: MsalBroadcastService, useClass: MsalBroadcastServiceMock },
+  ];
 
 @NgModule({
   declarations: [LoginComponent, CurrentUserComponent],
@@ -81,4 +80,4 @@ const providers = environment.authEnabled
   imports: modules,
   providers: providers,
 })
-export class MsalAuthUtilModule {}
+export class MsalAuthUtilModule { }

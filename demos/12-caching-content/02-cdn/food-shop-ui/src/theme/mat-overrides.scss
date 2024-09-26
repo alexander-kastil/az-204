@@ -38,7 +38,7 @@ $medium-toolbar: 45px;
 .mat-toolbar {
     margin-bottom: 1.5rem;
     // Todo: change to theme color
-    background-color: mat.get-color-from-palette($primary);
+    background-color: mat.m2-get-color-from-palette($primary);
     color: whitesmoke;
 }
 
@@ -50,7 +50,7 @@ $medium-toolbar: 45px;
 }
 
 .mat-mdc-card-header {
-  background-color: mat.get-color-from-palette($primary);
+  background-color: mat.m2-get-color-from-palette($primary);
   color: whitesmoke;
   min-height: $medium-toolbar;
   padding-top: $small-gap;
@@ -68,7 +68,7 @@ $medium-toolbar: 45px;
   padding-bottom: $medium-gap !important;
 
   button {
-    background-color: mat.get-color-from-palette($primary, 700);
+    background-color: mat.m2-get-color-from-palette($primary, 700);
     color: whitesmoke;
   }
 }
@@ -76,7 +76,7 @@ $medium-toolbar: 45px;
 //Sidenav
 .mat-sidenav {
   width: 220px;
-  background-color: mat.get-color-from-palette($primary);
+  background-color: mat.m2-get-color-from-palette($primary);
   color: whitesmoke;
   padding: 0 1rem;
 }
@@ -89,13 +89,13 @@ $medium-toolbar: 45px;
 
 //Table
 mat-header-row {
-  background-color: mat.get-color-from-palette($primary);
+  background-color: mat.m2-get-color-from-palette($primary);
 }
 
 mat-row {
-  background-color: mat.get-color-from-palette($primary);
+  background-color: mat.m2-get-color-from-palette($primary);
 }
 
 mat-header-cell {
-  color: mat.get-color-from-palette($primary) !important;
+  color: mat.m2-get-color-from-palette($primary) !important;
 }

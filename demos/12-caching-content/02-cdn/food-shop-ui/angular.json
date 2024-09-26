@@ -43,8 +43,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "food-shop-ui:build:production"
+              "buildTarget": "food-shop-ui:build:production"
             },
             "development": {
-              "browserTarget": "food-shop-ui:build:development"
+              "buildTarget": "food-shop-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "food-shop-ui:build"
+            "buildTarget": "food-shop-ui:build"
           }
         },
         "test": {
@@ -118,6 +118,7 @@
   "cli": {
     "cache": {
       "enabled": false
-    }
+    },
+    "analytics": false
   }
 }

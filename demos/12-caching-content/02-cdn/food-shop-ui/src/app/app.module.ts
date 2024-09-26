@@ -1,5 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import localeDe from '@angular/common/locales/de';
 import { ErrorHandler, LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,34 +27,27 @@ const bootstrap = environment.authEnabled
   ? [AppComponent, MsalRedirectComponent]
   : [AppComponent];
 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
-
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-      },
-    }),
-    EffectsModule.forRoot([]),
-    EntityDataModule.forRoot({}),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    MsalAuthUtilModule,
-    MenusModule,
-  ],
-  providers: [
-    { provide: ErrorHandler, useClass: ErrHandlerService },
-    { provide: LOCALE_ID, useValue: 'de' },
-  ],
-  bootstrap: bootstrap,
-})
+@NgModule({ declarations: [AppComponent, AboutComponent, HomeComponent],
+    bootstrap: bootstrap, imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MaterialModule,
+        StoreModule.forRoot(reducers, {
+            metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true,
+            },
+        }),
+        EffectsModule.forRoot([]),
+        EntityDataModule.forRoot({}),
+        !environment.production ? StoreDevtoolsModule.instrument({ connectInZone: true }) : [],
+        MsalAuthUtilModule,
+        MenusModule], providers: [
+        { provide: ErrorHandler, useClass: ErrHandlerService },
+        { provide: LOCALE_ID, useValue: 'de' },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
