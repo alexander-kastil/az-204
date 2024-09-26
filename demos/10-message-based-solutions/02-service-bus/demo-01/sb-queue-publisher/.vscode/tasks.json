@@ -7,9 +7,9 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/sb-queue-publisher.csproj",
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/9eb27b8b07ff0257c5529c9a9ea85bcd/ms-dotnettools.csdevkit/sb-queue-publisher.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -19,9 +19,9 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/sb-queue-publisher.csproj",
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/9eb27b8b07ff0257c5529c9a9ea85bcd/ms-dotnettools.csdevkit/sb-queue-publisher.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -32,9 +32,8 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/sb-queue-publisher.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "--project",
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/9eb27b8b07ff0257c5529c9a9ea85bcd/ms-dotnettools.csdevkit/sb-queue-publisher.sln"
             ],
             "problemMatcher": "$msCompile"
         }

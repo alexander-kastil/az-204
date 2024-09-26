@@ -8,7 +8,7 @@ namespace SBConsole
 {
     public class Program
     {
-        static string connectionString = "Endpoint=sb://sbdemosdev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SxLHsPCPL6uQXA+BNdVY1wUUUjFfl7TBMRSlPmIHWwo=";
+        static string connectionString = "<connection-string>";
         static string topic = "console-topic";
         static string subs = "console-topic-subs";
 
