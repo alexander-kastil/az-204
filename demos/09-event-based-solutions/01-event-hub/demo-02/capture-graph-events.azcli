@@ -17,10 +17,20 @@ az eventhubs eventhub authorization-rule create --name $evhpolicyname --eventhub
 evtHubConStr=`az eventhubs eventhub authorization-rule keys list --name $evhpolicyname --eventhub-name $hub --namespace-name $evns -g $grp --query "primaryConnectionString" --output tsv`
 
 az keyvault create --name $kv -g $grp -l $loc --sku standard --retention-days 90
+kvid=$(az keyvault show -n $kv -g $grp --query id -o tsv)
+
+roleid=$(az role definition list --name "Key Vault Secrets Officer" --query [0].id -o tsv)
+
+# add the current user
+currUserId=$(az ad signed-in-user show --query id -o tsv)
+az role assignment create --role $roleid --assignee $currUserId --scope $kvid
+
+# add the connection string to the key vault
 az keyvault secret set --name $kvsecret --value $evtHubConStr --vault-name $kv
 
+# add permisions to the graph change tracking service principal
 graphspn=$(az ad sp list --display-name 'Microsoft Graph Change Tracking' --query "[].appId" --output tsv)
-az keyvault set-policy --name $kv -g $grp --secret-permissions get --spn $graphspn 
+az role assignment create --role $roleid --assignee $graphspn --scope $kvid
 
 keyvaulturi=$(az keyvault show --name $kv -g $grp --query "properties.vaultUri" --output tsv)
 
