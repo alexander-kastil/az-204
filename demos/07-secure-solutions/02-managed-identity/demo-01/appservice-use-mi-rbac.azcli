@@ -7,12 +7,15 @@ app=foodapi-$env
 
 az group create -n $grp -l $loc
 
+az keyvault create -l $loc -n $vault -g $grp --sku Standard
+az keyvault secret set --vault-name $vault --name "conSQLite" --value "Data Source=./food.db"
+az keyvault secret set --vault-name $vault --name "sqlServerConnection" --value "Server=myServerAddress;Database=myDataBase;User Id=myUsername;Password=myPassword;"
+kvid=$(az keyvault show -n $vault -g $grp --query id -o tsv)
+
+# create the web application
 cd food-api-mi
 az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "dotnet:8" 
 cd ..
-
-az keyvault create -l $loc -n $vault -g $grp --sku Standard
-kvid=$(az keyvault show -n $vault -g $grp --query id -o tsv)
 
 # activate system assigned identity on web app
 mi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)
@@ -28,5 +31,8 @@ az role assignment create --role $roleid --assignee $currUserId --scope $kvid
 # add the mi to the role
 az role assignment create --role $roleid --assignee $mi --scope $kvid
 
-
+# add the name of the key vault to the app settings
 az webapp config appsettings set -g $grp -n $app --settings Azure:KevVault=$vault.vault.azure.net
+# add the linked kv secret to the app settings
+kvRef="@Microsoft.KeyVault(SecretUri=https://$vault/secrets/sqlServerConnection/)"
+az webapp config appsettings set -g $grp -n $app --settings ConnectionStrings:SQLServerConnection=$kvRef
