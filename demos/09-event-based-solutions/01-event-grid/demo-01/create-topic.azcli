@@ -1,8 +1,8 @@
-env=$RANDOM
+env=dev
 loc=westeurope
 grp=az204-m09-evtgrid-customevt-$env
 topic=foodorder-topic-$env
-storage=orderprocessor$env
+storage=orderprocessor$env$RANDOM
 app=order-processor-$env
 
 az group create --name $grp --location $loc

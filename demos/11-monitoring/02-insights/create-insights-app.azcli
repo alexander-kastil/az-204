@@ -1,17 +1,24 @@
 env=dev
-grp=az204-m11-$env
 loc=westeurope
-ai=foodapp$env
-api=alexander-kastil/food-catalog-api:latest
-ui=alexander-kastil/food-shop-ui:latest
+grp=az204-m05-containers
+logws=az400-log-$env
+acr=az204demos$env
+acaenv=az204-demo-$env
 
 az group create -n $grp -l $loc
 
-az monitor app-insights component create --app $ai --location $loc --kind web -g $grp --application-type web --retention-time 30
+acrPwd=$(az acr credential show -n $acr --query passwords[0].value -o tsv) 
+loginSrv=$(az acr list --query "[?name=='$acr'].loginServer" -o tsv) 
 
-aikey=$(az monitor app-insights component show --app $ai -g $grp --query instrumentationKey -o tsv)                                    
-aiConString=$(az monitor app-insights component show --app $ai -g $grp --query connectionString -o tsv)                                    
-
-az container create -g $grp -l $loc -n food-catalog-api --image $api --cpu 1 --memory 1 --dns-name-label food-catalog-api-$env --port 80 --environment-variables "ApplicationInsights__ConnectionString"="<CON_STRING>" --no-wait
-
-az container create -g $grp -l $loc -n food-shop-ui --image $ui --cpu 1 --memory 1 --dns-name-label food-shop-ui-$env --port 80 --environment-variables ENV_API_URL="http://food-catalog-api-$env.westeurope.azurecontainer.io/" ENV_APP_INSIGHTS=$aikey --no-wait
+az deployment group create -f main.bicep -g $grp \
+    -p appName=food-app-$env \
+    -p rgLocation=westeurope \
+    -p acaEnvName=$acaenv \
+    -p acrName=$acr \
+    -p acrPwd=$acrPwd \
+    -p catalogName='catalog-service' \
+    -p catalogImage='catalog-service' \
+    -p shopName='food-shop' \
+    -p shopImage='food-shop' \
+    -p orderName='order-service' \
+    -p orderImage='order-service' 
