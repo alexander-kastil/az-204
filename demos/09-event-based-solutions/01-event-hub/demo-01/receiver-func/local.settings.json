@@ -1,0 +1,8 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "evthubnsdev_RootManageSharedAccessKey_EVENTHUB": "Endpoint=sb://evthubns-dev.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=ypIE5m49GIJEy2zchm6ZApxUuj86aWP1/+AEhKSoPlw=;EntityPath=evthub-dev"
+  }
+}
