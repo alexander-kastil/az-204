@@ -28,21 +28,22 @@ namespace FoodApp.MailDaemon
                 Body = body,
                 ToRecipients = recipients,
             };
-            SendMailUsingGraph(config, message);            
-        }       
+            SendMailUsingGraph(config, message);
+        }
         private static void SendMailUsingGraph(GraphCfg config, Message msg)
         {
             //Get Graph Client
-            var graphOptions = new ClientSecretCredentialOptions
-            {
-                AuthorityHost = AzureAuthorityHosts.AzurePublicCloud,
-            };  
-            var clientSecretCredential = new ClientSecretCredential(config.TenantId, config.ClientId, config.ClientSecret, graphOptions);
-            var graphClient = new GraphServiceClient(clientSecretCredential);
-            
+            var credentials = new ClientSecretCredential(
+                    config.TenantId,
+                    config.ClientId,
+                    config.ClientSecret
+                );
+
+            GraphServiceClient graphClient = new GraphServiceClient(credentials, new[] { "https://graph.microsoft.com/.default" });
+
             //Send mail
             //POST /users/{id | userPrincipalName}/sendMail
-            graphClient.Users[config.MailSender].SendMail(msg, false).Request().PostAsync();                        
+            graphClient.Users[config.MailSender].SendMail(msg, false).Request().PostAsync();
         }
 
         private static void AddRecipient(List<Recipient> toRecipientsList, string r)
