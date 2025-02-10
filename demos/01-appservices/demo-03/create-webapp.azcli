@@ -10,20 +10,19 @@ az group create -n $grp -l $loc
 
 # create and deploy app
 cd settings-api
-az webapp up -n $app -g $grp -p $plan -l $loc -r "dotnet:6"
+az webapp up -n $app -g $grp -p $plan -l $loc -r "dotnet:9"
 cd ..
 
 # set custom app settings
 az webapp config appsettings set -g $grp -n $app --settings AppSettings:UseSQLite=false
 # set the timezone
 az webapp config appsettings set -g $grp -n $app --settings WEBSITE_TIME_ZONE='Central European Standard Time'
-# set a connection string 
+# set a connection string
 az webapp config connection-string set -g $grp -n $app -t SQLAzure \
     --settings conSQLServer='Server=tcp:fakeserver.database.windows.net,1433;Database=appdb;User ID=$user;Password='$pwd';Encrypt=true;Connection Timeout=30;'
 
 # add cors
-az webapp cors add -g $grp -n $app --allowed-origins http://localhost:4200    
+az webapp cors add -g $grp -n $app --allowed-origins http://localhost:4200
 
 # Get outbound ip-address
 az webapp show -g $grp -n $app --query outboundIpAddresses --output tsv
-

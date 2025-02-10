@@ -6,12 +6,11 @@ plan=appservices-$env
 az group create -n $grp -l $loc
 az appservice plan create -n $plan -g $grp --sku F1
 
-# create the mvc-app using dotnet cli:
-az webapp create -n mvcapp-$RANDOM -g $grp -p $plan -r "dotnet:8"
+az webapp create -n mvcapp-$RANDOM -g $grp -p $plan -r "dotnet:9"
 
 cd net-api
-az webapp up -n net-api-$RANDOM -g $grp -p $plan -l $loc -r "dotnet:8"
-cd ..   
+az webapp up -n net-api-$RANDOM -g $grp -p $plan -l $loc -r "dotnet:9"
+cd ..
 
 cd node-express-api
 az webapp up -n node-express-api-$RANDOM -g $grp -p $plan-linux -l $loc -r "node|18-lts"
