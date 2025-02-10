@@ -1,5 +1,5 @@
 # Build Image
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
 WORKDIR /build
 
 COPY . .
@@ -7,7 +7,7 @@ RUN dotnet restore "orders-api.csproj"
 RUN dotnet publish -c Release -o /app
 
 # Runtime Image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 COPY --from=build /app .
 ENTRYPOINT ["dotnet", "orders-api.dll"]
