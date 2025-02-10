@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "func_aca": {
+    "aca_trigger_func": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7211",
+      "commandLineArgs": "--port 7230",
       "launchBrowser": false
     }
   }
