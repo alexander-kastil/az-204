@@ -8,7 +8,7 @@ slot=dev
 az group create -n $grp -l $loc
 
 az appservice plan create -n $appPlan -g $grp --sku S1
-az webapp create -n $app -g $grp --plan $appPlan --runtime "dotnet:6"
+az webapp create -n $app -g $grp --plan $appPlan --runtime "dotnet:9"
 
 az webapp deployment slot create -n $app -g $grp --slot $slot
 
@@ -20,4 +20,4 @@ az webapp deployment slot swap
 
 az webapp deployment slot create -n $app -g $grp --slot canary
 
-az webapp traffic-routing set -n $app -g $grp --distribution canary=10 
+az webapp traffic-routing set -n $app -g $grp --distribution canary=10
