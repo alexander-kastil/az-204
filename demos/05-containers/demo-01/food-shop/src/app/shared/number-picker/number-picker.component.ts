@@ -15,23 +15,22 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-number-picker',
-  templateUrl: './number-picker.component.html',
-  styleUrls: ['./number-picker.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: NumberPickerComponent,
-    },
-    {
-      provide: NG_VALIDATORS,
-      multi: true,
-      useExisting: NumberPickerComponent,
-    },
-  ],
-  standalone: true,
-  imports: [MatIconModule],
+    selector: 'app-number-picker',
+    templateUrl: './number-picker.component.html',
+    styleUrls: ['./number-picker.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: NumberPickerComponent,
+        },
+        {
+            provide: NG_VALIDATORS,
+            multi: true,
+            useExisting: NumberPickerComponent,
+        },
+    ],
+    imports: [MatIconModule]
 })
 export class NumberPickerComponent implements ControlValueAccessor, Validator {
   quantity = 0;

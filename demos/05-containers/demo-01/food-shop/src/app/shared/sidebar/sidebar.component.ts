@@ -13,19 +13,18 @@ import { environment } from '../../../environments/environment';
 import { CartFacade } from 'src/app/shop/state/cart.facade';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatSlideToggleModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule,
-    AsyncPipe,
-    EuroPipe
-  ],
+    selector: 'app-sidebar',
+    templateUrl: './sidebar.component.html',
+    styleUrls: ['./sidebar.component.scss'],
+    imports: [
+        MatToolbarModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatIconModule,
+        AsyncPipe,
+        EuroPipe
+    ]
 })
 export class SidebarComponent {
   cart = inject(CartFacade);

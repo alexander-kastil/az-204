@@ -4,14 +4,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FoodEntityService } from '../state/food-entity.service';
-import { CommandRowDirective } from 'src/app/shared/formatting/formatting-directives';
 import { Router, RouterLink } from '@angular/router';
-import { JsonPipe } from '@angular/common';
+import { CommandRowDirective } from 'src/app/shared/formatting/formatting-directives';
+import { FoodEntityService } from '../state/food-entity.service';
 
 @Component({
   selector: 'app-catalog-edit',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     MatCardModule,
@@ -19,7 +17,6 @@ import { JsonPipe } from '@angular/common';
     MatInputModule,
     MatButtonModule,
     RouterLink,
-    JsonPipe,
     CommandRowDirective
   ],
   templateUrl: './catalog-edit.component.html',

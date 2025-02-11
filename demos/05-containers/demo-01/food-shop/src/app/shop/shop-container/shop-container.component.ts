@@ -5,7 +5,6 @@ import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { Subscription, combineLatestWith, map, skip, startWith } from 'rxjs';
 import { CatalogItem } from 'src/app/catalog/catalog-item.model';
 import { FoodEntityService } from 'src/app/catalog/state/food-entity.service';
-import { BoxedDirective } from 'src/app/shared/formatting/formatting-directives';
 import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
 import { SidenavFacade } from 'src/app/state/sidenav/sidenav.facade';
 import { environment } from 'src/environments/environment';
@@ -15,12 +14,10 @@ import { CartFacade } from '../state/cart.facade';
 
 @Component({
   selector: 'app-shop-container',
-  standalone: true,
   imports: [
     MatSidenavModule,
     AsyncPipe,
     NgStyle,
-    BoxedDirective,
     SidebarComponent,
     ShopItemComponent,
   ],
