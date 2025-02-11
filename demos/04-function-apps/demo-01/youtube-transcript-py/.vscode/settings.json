@@ -5,6 +5,5 @@
     "azureFunctions.projectLanguage": "Python",
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.projectLanguageModel": 2,
-    "azureAutomation.directory.basePath": "c:\\Users\\AlexanderKastil"
+    "azureFunctions.projectLanguageModel": 2
 }

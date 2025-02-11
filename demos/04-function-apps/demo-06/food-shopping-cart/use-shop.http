@@ -9,7 +9,7 @@ content-type: application/json
     "Id": "5c60fe1d-9851-47ca-aab9-622ca857ea29",
     "Total": 0,
     "Customer": {
-        "Name": "Willi",
+        "Name": "Alex",
         "Address": "123 Main Street, Seattle, WA 98101",
         "EMail": "alexander.kastil@integrations.at"
     },
