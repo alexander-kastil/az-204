@@ -8,17 +8,16 @@ import { SidenavFacade } from '../../state/sidenav/sidenav.facade';
 import { NavItem } from './nav-item.model';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatIconModule,
-    RouterLinkActive,
-    RouterLink,
-    AsyncPipe
-  ],
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    imports: [
+        MatToolbarModule,
+        MatIconModule,
+        RouterLinkActive,
+        RouterLink,
+        AsyncPipe
+    ]
 })
 export class NavbarComponent {
   http = inject(HttpClient);

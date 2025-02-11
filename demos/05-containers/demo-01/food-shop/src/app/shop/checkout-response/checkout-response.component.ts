@@ -5,11 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { AILoggerService } from 'src/app/shared/logger/ai-logger.service';
 
 @Component({
-  selector: 'app-checkout-response',
-  standalone: true,
-  imports: [MatCardModule],
-  templateUrl: './checkout-response.component.html',
-  styleUrls: ['./checkout-response.component.scss']
+    selector: 'app-checkout-response',
+    imports: [MatCardModule],
+    templateUrl: './checkout-response.component.html',
+    styleUrls: ['./checkout-response.component.scss']
 })
 export class CheckoutResponseComponent {
   @Input() response: OrderEventResponse | null = null;

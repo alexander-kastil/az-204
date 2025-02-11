@@ -2,18 +2,15 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AILoggerService } from 'src/app/shared/logger/ai-logger.service';
-import { CatalogEditComponent } from '../catalog-edit/catalog-edit.component';
 import { CatalogItem } from '../catalog-item.model';
 import { CatalogListComponent } from '../catalog-list/catalog-list.component';
 import { FoodEntityService } from '../state/food-entity.service';
 
 @Component({
   selector: 'app-catalog-container',
-  standalone: true,
   imports: [
     AsyncPipe,
-    CatalogListComponent,
-    CatalogEditComponent,
+    CatalogListComponent
   ],
   templateUrl: './catalog-container.component.html',
   styleUrl: './catalog-container.component.scss'

@@ -9,7 +9,7 @@ namespace Integrations
     public class ProcessFeed
     {
         private readonly ILogger logger;
-  
+
         public ProcessFeed(ILoggerFactory loggerFactory)
         {
             logger = loggerFactory.CreateLogger<ProcessFeed>();
@@ -33,15 +33,10 @@ namespace Integrations
             {
                 foreach (var document in input)
                 {
-                    var json = document.ToString();
-                    if (json != null)
-                    {
-                        var food = JsonConvert.DeserializeObject<Food>(json);
-                         logger.LogInformation("Changed food " + food?.name);
-                    }
-                   
+                    Food food = document;
+                    logger.LogInformation("Changed food " + food?.name);
                 }
-            }           
+            }
         }
     }
 }

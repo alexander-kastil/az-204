@@ -5,22 +5,20 @@ import { MatDrawerMode, MatSidenavModule } from '@angular/material/sidenav';
 import { Subscription, combineLatestWith, map, skip, startWith } from 'rxjs';
 import { CatalogItem } from 'src/app/catalog/catalog-item.model';
 import { FoodEntityService } from 'src/app/catalog/state/food-entity.service';
-import { BoxedDirective } from 'src/app/shared/formatting/formatting-directives';
 import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
 import { SidenavFacade } from 'src/app/state/sidenav/sidenav.facade';
 import { environment } from 'src/environments/environment';
 import { CartItem } from '../cart-item.model';
 import { ShopItemComponent } from '../shop-item/shop-item.component';
 import { CartFacade } from '../state/cart.facade';
+import { AILoggerService } from 'src/app/shared/logger/ai-logger.service';
 
 @Component({
   selector: 'app-shop-container',
-  standalone: true,
   imports: [
     MatSidenavModule,
     AsyncPipe,
     NgStyle,
-    BoxedDirective,
     SidebarComponent,
     ShopItemComponent,
   ],
@@ -32,6 +30,7 @@ export class ShopContainerComponent {
   service = inject(FoodEntityService);
   cart = inject(CartFacade);
   mf = inject(SidenavFacade);
+  ai = inject(AILoggerService);
   food = toSignal<CatalogItem[]>(this.service.entities$);
   cartItems = toSignal<CartItem[]>(this.cart.getItems());
 
@@ -90,6 +89,7 @@ export class ShopContainerComponent {
   }
 
   updateCart(f: CartItem) {
+    this.ai.logEvent('cart', { action: 'update', item: f });
     this.cart.set(f);
   }
 

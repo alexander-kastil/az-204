@@ -8,18 +8,17 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CatalogItem } from '../catalog-item.model';
 
 @Component({
-  selector: 'app-catalog-list',
-  standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTableModule,
-    MatIconModule,
-    MatTooltipModule,
-  ],
-  templateUrl: './catalog-list.component.html',
-  styleUrl: './catalog-list.component.scss'
+    selector: 'app-catalog-list',
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatCardModule,
+        MatTableModule,
+        MatIconModule,
+        MatTooltipModule,
+    ],
+    templateUrl: './catalog-list.component.html',
+    styleUrl: './catalog-list.component.scss'
 })
 export class CatalogListComponent {
   @Input() food: CatalogItem[] | null = [];

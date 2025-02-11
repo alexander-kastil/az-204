@@ -7,7 +7,7 @@ export const environment = {
   ordersApi: 'http://localhost:5002/',
   azure: {
     apimSubscriptionKey: "39fc8b24086a4346a6317d047869f983",
-    applicationInsights: 'd1588cb9-4e43-4fdc-9aef-99436565d628'
+    applicationInsights: '52b8acc5-249c-491e-88f9-f89cde4b37d1'
   },
   features: {
     logging: false,

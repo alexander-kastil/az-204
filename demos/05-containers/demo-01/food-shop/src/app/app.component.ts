@@ -1,25 +1,20 @@
-import { AsyncPipe, NgStyle, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID, inject } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { of } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   imports: [
     MatSidenavModule,
-    AsyncPipe,
-    NgStyle,
     RouterOutlet,
     NavbarComponent,
-    SidebarComponent
   ]
 })
 export class AppComponent {

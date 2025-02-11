@@ -11,11 +11,10 @@ import { OrderEventResponse } from '../order/order-event-response';
 import { CheckoutResponseComponent } from '../checkout-response/checkout-response.component';
 
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss'],
-  standalone: true,
-  imports: [CheckoutFormComponent, CheckoutResponseComponent],
+    selector: 'app-checkout',
+    templateUrl: './checkout.component.html',
+    styleUrls: ['./checkout.component.scss'],
+    imports: [CheckoutFormComponent, CheckoutResponseComponent]
 })
 export class CheckoutComponent {
   fb = inject(FormBuilder);

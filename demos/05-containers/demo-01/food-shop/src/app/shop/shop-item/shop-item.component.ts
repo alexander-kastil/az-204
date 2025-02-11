@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output, effect, input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { NumberPickerComponent } from 'src/app/shared/number-picker/number-picker.component';
-import { EuroPipe } from 'src/app/shared/pipes/euro.pipe';
 import { CatalogItem } from '../../catalog/catalog-item.model';
 import { CartItem } from '../cart-item.model';
 
@@ -10,13 +9,11 @@ import { CartItem } from '../cart-item.model';
   selector: 'app-shop-item',
   templateUrl: './shop-item.component.html',
   styleUrls: ['./shop-item.component.scss'],
-  standalone: true,
   imports: [
     MatCardModule,
     NumberPickerComponent,
-    ReactiveFormsModule,
-    EuroPipe,
-  ],
+    ReactiveFormsModule
+  ]
 })
 export class ShopItemComponent {
   food = input<CatalogItem>(new CatalogItem());

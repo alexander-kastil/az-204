@@ -4,11 +4,10 @@ import { MatCardModule } from '@angular/material/card';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss'],
-  standalone: true,
-  imports: [MatCardModule, JsonPipe]
+    selector: 'app-about',
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss'],
+    imports: [MatCardModule, JsonPipe]
 })
 export class AboutComponent {
   config = environment;
