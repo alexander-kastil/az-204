@@ -2,11 +2,10 @@ import azure.functions as func
 import logging
 from langchain_community.document_loaders import youtube
 
-
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
-@app.route(route="do_transcribe")
-def do_transcribe(req: func.HttpRequest) -> func.HttpResponse:
+@app.route(route="get_transcription")
+def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     req_body = req.get_json()
