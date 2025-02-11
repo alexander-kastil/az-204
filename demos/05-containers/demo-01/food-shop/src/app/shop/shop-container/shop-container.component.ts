@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { CartItem } from '../cart-item.model';
 import { ShopItemComponent } from '../shop-item/shop-item.component';
 import { CartFacade } from '../state/cart.facade';
+import { AILoggerService } from 'src/app/shared/logger/ai-logger.service';
 
 @Component({
   selector: 'app-shop-container',
@@ -29,6 +30,7 @@ export class ShopContainerComponent {
   service = inject(FoodEntityService);
   cart = inject(CartFacade);
   mf = inject(SidenavFacade);
+  ai = inject(AILoggerService);
   food = toSignal<CatalogItem[]>(this.service.entities$);
   cartItems = toSignal<CartItem[]>(this.cart.getItems());
 
@@ -87,6 +89,7 @@ export class ShopContainerComponent {
   }
 
   updateCart(f: CartItem) {
+    this.ai.logEvent('cart', { action: 'update', item: f });
     this.cart.set(f);
   }
 
