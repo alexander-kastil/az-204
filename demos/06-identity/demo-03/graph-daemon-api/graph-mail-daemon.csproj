@@ -5,15 +5,10 @@
         <RootNamespace>FoodApp.MailDeamon</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Azure.Identity"
-                          Version="1.9.0" />
-        <PackageReference Include="Microsoft.Graph"
-                          Version="4.54.0" />
-        <PackageReference Include="Newtonsoft.Json"
-                          Version="13.0.3" />
-        <PackageReference Include="Swashbuckle.AspNetCore"
-                          Version="6.5.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations"
-                          Version="6.5.0" />
+        <PackageReference Include="Azure.Identity" Version="1.13.2" />
+        <PackageReference Include="Microsoft.Graph" Version="5.69.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.2.0" />
     </ItemGroup>
 </Project>

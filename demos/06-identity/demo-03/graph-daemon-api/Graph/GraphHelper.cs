@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Azure.Identity;
 using Microsoft.Graph;
+using Microsoft.Graph.Models;
 
 namespace FoodApp.MailDaemon
 {
     public class GraphHelper
     {
-        public static void SendMail(string Subject, string Message, string[] Recipient, GraphCfg config)
+        public static async Task SendMail(string Subject, string Message, string[] Recipient, GraphCfg config)
         {
             var recipients = new List<Recipient>();
 
@@ -28,9 +30,9 @@ namespace FoodApp.MailDaemon
                 Body = body,
                 ToRecipients = recipients,
             };
-            SendMailUsingGraph(config, message);
+            await SendMailUsingGraphAsync(config, message);
         }
-        private static void SendMailUsingGraph(GraphCfg config, Message msg)
+        private static async Task SendMailUsingGraphAsync(GraphCfg config, Message msg)
         {
             //Get Graph Client
             var credentials = new ClientSecretCredential(
@@ -43,7 +45,12 @@ namespace FoodApp.MailDaemon
 
             //Send mail
             //POST /users/{id | userPrincipalName}/sendMail
-            graphClient.Users[config.MailSender].SendMail(msg, false).Request().PostAsync();
+            var requestBody = new Microsoft.Graph.Users.Item.SendMail.SendMailPostRequestBody
+            {
+                Message = msg,
+                SaveToSentItems = false
+            };
+            await graphClient.Users[config.MailSender].SendMail.PostAsync(requestBody);
         }
 
         private static void AddRecipient(List<Recipient> toRecipientsList, string r)
