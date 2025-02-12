@@ -12,13 +12,13 @@ img=$acr.azurecr.io/food-api-dapr
 az storage account create -n $storageAcct -g $grp -l $loc --sku Standard_LRS
 storageKey=$(az storage account keys list -n $storageAcct -g $grp --query "[0].value" -o tsv)
 az storage container create -n $container --account-name $storageAcct --account-key $storageKey
+echo $storageKey
 
 ### stop here
 ### update storageKey in statestore-blob.yaml
-echo $storageKey
 
 pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
-loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv) 
+loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv)
 
 az containerapp env dapr-component set -n $acaenv -g $grp \
     --dapr-component-name $statestore \
@@ -34,4 +34,4 @@ az containerapp create -n $app -g $grp \
     --dapr-app-id $app \
     --registry-server $loginSrv \
     --registry-username $acr \
-    --registry-password $pwd     
+    --registry-password $pwd

@@ -16,7 +16,7 @@ ENTRYPOINT ["dotnet", "food-api-dapr.dll"]
 # docker build --rm -f dockerfile -t food-api-dapr .
 
 # Run Image without env vars
-# docker run -it --rm -p 5051:80 food-api-dapr
+# docker run -it --rm -p 5051:8080 food-api-dapr
 
 # Browse using: 
 # http://localhost:5051/
