@@ -5,4 +5,4 @@ Content-Type: application/json
     "subject": "A test mail",
     "text": "Explore - Let life surprise you!",
     "recipient": "alexander.kastil@integrations.at"
-}
+} 
