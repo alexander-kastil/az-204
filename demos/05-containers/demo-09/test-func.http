@@ -1,5 +1,5 @@
 ### Test Hello World Function
-@url=https://func-aca.greenisland-f200acc8.westeurope.azurecontainerapps.io
+@url=https://aca-trigger-func.greenisland-f200acc8.westeurope.azurecontainerapps.io
 
 POST {{url}}/api/acatrigger
 Content-Type: application/json
@@ -9,10 +9,13 @@ Content-Type: application/json
 }
 
 ### Test YouTube Transcribe Function
-@url=https://youtube-transcribe.greenisland-f200acc8.westeurope.azurecontainerapps.io
-POST {{url}}/api/do_transcribe
+@url=https://youtube-transcribe-py.icytree-59696c07.westeurope.azurecontainerapps.io
+
+POST {{url}}/api/get_transcription HTTP/1.1
 Content-Type: application/json
 
 {
-    "url": "https://www.youtube.com/watch?v=9bZkp7q19f0"
+    "url": "https://www.youtube.com/watch?v=vYjAg27aHkA&t=1570s",
+    "lang": "german",    
+    "length": "detailed"
 }

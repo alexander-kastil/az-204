@@ -4,15 +4,19 @@ loc=westeurope
 acr=az204demos$env
 acaenv=az204-demo-$env
 storage=funcstorage$RANDOM
-app=func-aca
+triggerApp=aca-trigger-func
+transcribeApp=youtube-transcribe-py
+key=<LLM_API_KEY>
 
 az group create -n $grp -l $loc
 
 pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
-loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv) 
+loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv)
 
-az storage account  create -n $storage -g $grp
+az storage account create -n $storage -g $grp
 
-az functionapp create --name $app -g $grp --storage-account $storage --environment $acaenv --functions-version 4 --runtime dotnet-isolated --image $acr.azurecr.io/$app --registry-username $acr --registry-password $pwd --registry-server $loginSrv 
+az functionapp create --name $triggerApp -g $grp --storage-account $storage --environment $acaenv --functions-version 4 --runtime dotnet-isolated --image $acr.azurecr.io/$triggerApp --registry-username $acr --registry-password $pwd --registry-server $loginSrv
 
-az functionapp create --name youtube-transcribe -g $grp --storage-account $storage --environment $acaenv --functions-version 4 --runtime python --image $acr.azurecr.io/youtube-transcribe-py --registry-username $acr --registry-password $pwd --registry-server $loginSrv 
+az functionapp create --name $transcribeApp -g $grp --storage-account $storage --environment $acaenv --functions-version 4 --runtime python --image $acr.azurecr.io/$transcribeApp --registry-username $acr --registry-password $pwd --registry-server $loginSrv
+
+az functionapp config appsettings set -n $transcribeApp -g $grp --settings "API_KEY=$key"
