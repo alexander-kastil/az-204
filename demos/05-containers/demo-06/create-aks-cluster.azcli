@@ -8,7 +8,7 @@ ns=config-app
 # Install kubectl command line client locally:
 az group create -n $grp -l $loc
 
-az aks create -g $grp -n $aks --node-count 2 --attach-acr $acr --generate-ssh-keys 
+az aks create -g $grp -n $aks --node-count 2 --attach-acr $acr --generate-ssh-keys
 az aks get-credentials -g $grp -n $aks
 
 # Get a list of cluster nodes:
@@ -25,7 +25,7 @@ kubectl get deployment configapi -n $ns
 kubectl get pods -n $ns
 kubectl get pods -l app=configapi -n $ns
 
-# Get the serive IP and use it on the assigned port
+# Get the service IP and use it on the assigned port
 kubectl get service config-api -n $ns
 
 # browse deployment - port taken from yaml
