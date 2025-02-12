@@ -1,5 +1,5 @@
 ### Test Hello World Function
-@url=https://func-aca.greenisland-f200acc8.westeurope.azurecontainerapps.io
+@url=https://aca-trigger-func.greenisland-f200acc8.westeurope.azurecontainerapps.io
 
 POST {{url}}/api/acatrigger
 Content-Type: application/json

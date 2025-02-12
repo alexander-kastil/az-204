@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0-preview AS installer-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS installer-env
 
 COPY . /src/dotnet-function-app
 RUN cd /src/dotnet-function-app && \
-mkdir -p /home/site/wwwroot && \
-dotnet publish *.csproj --output /home/site/wwwroot
+    mkdir -p /home/site/wwwroot && \
+    dotnet publish *.csproj --output /home/site/wwwroot
 
 # To enable ssh & remote debugging on app service change the base image to the one below
 # FROM mcr.microsoft.com/azure-functions/dotnet-isolated:4-dotnet-isolated8.0-appservice
@@ -12,3 +12,9 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
     AzureFunctionsJobHost__Logging__Console__IsEnabled=true
 
 COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
+
+# Build Image
+# docker build --rm -f Dockerfile -t aca-trigger-func .
+
+# Run Image without env vars
+# docker run -it --rm -p 5051:8080 aca-trigger-func
