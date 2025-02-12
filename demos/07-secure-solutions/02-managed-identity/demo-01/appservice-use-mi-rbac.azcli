@@ -1,7 +1,7 @@
 env=dev
 grp=az204-m07-secure-solutions-$env
 loc=westeurope
-vault=foodvault-rbac-$env
+vault=foodvault-$env
 plan=foodplan-$env
 app=foodapi-$env
 
@@ -14,7 +14,7 @@ kvid=$(az keyvault show -n $vault -g $grp --query id -o tsv)
 
 # create the web application
 cd food-api-mi
-az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "dotnet:8" 
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free -r "dotnet:9"
 cd ..
 
 # activate system assigned identity on web app
