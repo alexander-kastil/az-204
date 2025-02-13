@@ -24,7 +24,3 @@ ENTRYPOINT ["dotnet", "catalog-service.dll"]
 # http://localhost:5051
 # http://localhost:5051/food
 # http://localhost:5051/config
-
-# Publish Image to dockerhub
-# docker tag catalog-service alexander-kastil/catalog-service
-# docker push alexander-kastil/catalog-service
