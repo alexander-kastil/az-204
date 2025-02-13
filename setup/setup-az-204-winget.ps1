@@ -20,9 +20,10 @@ Write-Host "Refresh Path Env - 3/6" -ForegroundColor yellow
 
 winget install -e --id Google.Chrome
 winget install -e --id Microsoft.DotNet.SDK.8
+winget install -e --id Microsoft.DotNet.SDK.9
 winget install -e --id CoreyButler.NVMforWindows
 winget install -e --id Microsoft.AzureCLI
-winget install -e --id Microsoft.AzureDataStudio
+winget install -e --id Microsoft.Azd
 
 # Refresh Path Env
 Write-Host "Refresh Path Env - 4/6" -ForegroundColor yellow
@@ -30,9 +31,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 # Install Azure CLI Extensions without prompt
 az config set extension.use_dynamic_install=yes_without_prompt
-
-# Install httprepl
-dotnet tool install -g Microsoft.dotnet-httprepl
 
 # Set NuGet Source
 dotnet nuget add source https://api.nuget.org/v3/index.json -n nuget.org

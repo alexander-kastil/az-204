@@ -4,7 +4,7 @@ POST http://localhost:7071/api/get_transcription HTTP/1.1
 Content-Type: application/json
 
 {
-    "url": "https://www.youtube.com/watch?v=vYjAg27aHkA&t=1574s"
+    "url": "https://www.youtube.com/watch?v=LFCyo4ZBgP4"
 }
 
 

@@ -1,5 +1,5 @@
 env=dev-$RANDOM
-grp=az204-realtime-$env
+grp=az204-m09-realtime-$env
 loc=westeurope
 storage=foodorders$RANDOM
 funcApp=foodorders-$env
@@ -12,7 +12,7 @@ containerUrl=http://localhost:5052
 az group create -n $grp -l $loc
 
 # signalr
-az signalr create  -g $grp -n $signalrhub --sku Free_F1 --service-mode Serverless -l $loc 
+az signalr create -g $grp -n $signalrhub --sku Free_F1 --service-mode Serverless -l $loc
 conStrSignalR=$(az signalr key list --name $signalrhub -g $grp --query primaryConnectionString -o tsv)
 
 # eventgrid
@@ -24,9 +24,11 @@ topickey=$(az eventgrid topic key list -n $topic -g $grp --query "key1" --output
 az monitor app-insights component create --app $funcApp --location $loc --kind web -g $grp --application-type web --retention-time 30
 
 # function app
-az storage account  create -n $storage -g $grp 
-az functionapp create -n $funcApp -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4 --app-insights $funcApp 
+az storage account create -n $storage -g $grp
+az functionapp create -n $funcApp -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4 --app-insights $funcApp
 fxid=$(az functionapp show -n $funcApp -g $grp --query id -o tsv)
+
+sleep 3
 
 az functionapp config appsettings set -n $funcApp -g $grp --settings "AzureSignalRConnectionString=$conStrSignalR"
 az functionapp cors add -g $grp -n $funcApp --allowed-origins $ngUrl $containerUrl $pwaUrl
@@ -38,7 +40,7 @@ cd food-orders-dashboard-func
 func azure functionapp publish $funcApp --csharp
 cd ..
 
-# subscribe event grid topc
+# subscribe event grid topic
 az eventgrid event-subscription create --name $funcApp \
     --source-resource-id $topicid \
     --endpoint https://$funcEP/api/orderSubscription \

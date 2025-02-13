@@ -12,7 +12,7 @@ az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
 
 key=$(az storage account keys list -n $acct -g $grp --query "[0].value")
 
-# Enable static webstie on storage acct
+# Enable static website on storage acct
 
 az storage blob service-properties update --account-name $acct --static-website --404-document error.html --index-document index.html
 
@@ -32,12 +32,12 @@ az cdn endpoint create -g $grp --name $epname --profile-name $profile --origin $
 az cdn endpoint rule add -n $epname -g $grp --profile-name $profile --rule-name urlrewrite --order 1 --action-name "UrlRewrite" --source-pattern '/' --destination /index.html --preserve-unmatched-path false --match-variable UrlFileExtension --operator LessThan --match-value 1
 
 # Enforce Https
-az cdn endpoint rule add -n $epname -g $grp --profile-name $profile --rule-name enforcehttps --order 2 --action-name "UrlRedirect"  --redirect-type Found --redirect-protocol HTTPS --match-variable RequestScheme --operator Equal --match-value HTTP
+az cdn endpoint rule add -n $epname -g $grp --profile-name $profile --rule-name enforcehttps --order 2 --action-name "UrlRedirect" --redirect-type Found --redirect-protocol HTTPS --match-variable RequestScheme --operator Equal --match-value HTTP
 
 # Preload Endpoint on Higher Level SKUs as Replication might take hours
 
 az cdn endpoint load -g $grp -n $epname --profile-name $profile --content-paths $content'index.html'
 
-# Purge 
+# Purge
 
 az cdn endpoint purge -g $grp -n $epname --profile-name $profile --content-paths $content'index.html'

@@ -1,5 +1,6 @@
 {
     "dotnet.defaultSolution": "disable",
     "azureAutomation.directory.basePath": "c:\\Users\\AlexanderKastil",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "java.compile.nullAnalysis.mode": "disabled"
 }
