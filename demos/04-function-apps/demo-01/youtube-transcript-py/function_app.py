@@ -18,7 +18,7 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
         transcript=loader.load()
         content = transcript[0].page_content
 
-        endpoint = os.environ["MODEL_ENDPOINT"]
+        endpoint = os.environ["AZENDPOINT"]
         api_key = os.environ["API_KEY"]
 
         headers = {
@@ -33,7 +33,7 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
             "content": [
                 {
                 "type": "text",
-                "text": "You are an AI assistant specialized in creating comprehensive and detailed summaries. Create an in-depth analysis and summary of the provided content. Focus on key points, main arguments, and important details. Do not summarize personal conversations or irrelevant information and persons. Focus on the technical aspects of the content. When switching to a new topic, introduce chapters. Format your response as markdown"
+                "text": "You are an AI assistant specialized in creating comprehensive and detailed summaries. Create an in-depth analysis and summary of the provided content. Focus on key points, main arguments, and important details."
                 }
             ]
             },
@@ -59,7 +59,7 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
             raise SystemExit(f"Failed to make the request. Error: {e}")
 
 
-        return func.HttpResponse(f"Transcribed by Integrations: {url}: {response.json()}")
+        return func.HttpResponse(f"Transcript by Alex for his friend: {url}: {response.json()}")
     else:
         return func.HttpResponse(
              "This HTTP triggered function executed successfully. Pass a valid youtube url in the query string or in the request body for transcript.",

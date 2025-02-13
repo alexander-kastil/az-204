@@ -1,6 +1,6 @@
 # Azure Function Local Development using Azure Function Core Tools
 
-This demo will show how to create a Function App using Visual Studio Code and Azure Function Core Tools. 
+This demo will show how to create a Function App using Visual Studio Code and Azure Function Core Tools.
 
 The current version of the [Azure Function Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) is based on [Python 3.11](https://www.python.org/downloads/release/python-3110/)
 
@@ -52,16 +52,10 @@ Install [Azure Function - Visual Studio Code Extension](https://marketplace.visu
 
 To Execute REST Calls you could use:
 
--   [REST Client - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) with [instructions](https://github.com/Huachao/vscode-restclient/blob/master/README.md)
--   [az rest](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_rest)
--   [Postman](https://www.postman.com/)
--   [httprepl](https://docs.microsoft.com/en-us/aspnet/core/web-api/http-repl/?view=aspnetcore-6.0&tabs=windows)
-
-Install httprepl which used in labs:
-
-```
-dotnet tool install -g Microsoft.dotnet-httprepl
-```
+- [REST Client - Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) with [instructions](https://github.com/Huachao/vscode-restclient/blob/master/README.md)
+- [az rest](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest#az_rest)
+- [Postman](https://www.postman.com/)
+- [httprepl](https://docs.microsoft.com/en-us/aspnet/core/web-api/http-repl/?view=aspnetcore-6.0&tabs=windows)
 
 ### Demo VS Code Function Apps
 
@@ -80,7 +74,7 @@ func templates list
 func new -n GreetingFunctions --template "Http Trigger"
 ```
 
->  **Note**: If you get an `No templates found matching: 'HTTPtrigger'` error this can be caused by multiple versions of the .NET SDK being installed on your machine. You can fix this issue by creating a `global.json` using `dotnet new global.json` an by setting the correct framework version.
+> **Note**: If you get an `No templates found matching: 'HTTPtrigger'` error this can be caused by multiple versions of the .NET SDK being installed on your machine. You can fix this issue by creating a `global.json` using `dotnet new global.json` an by setting the correct framework version.
 
 Run function locally:
 
@@ -126,8 +120,8 @@ This demo shows how to create a Function App using Python and LangChain.
 
 - Setup the environment using F1 - Create Python Environment.
 
-    ![create-env](_images/create-env.jpg)
+  ![create-env](_images/create-env.jpg)
 
 - Select Venv as the environment and select the Python version (3.11). Install packages using pip.
 
-    ![select-venv](_images/select-env.jpg)    
+  ![select-venv](_images/select-env.jpg)
