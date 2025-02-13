@@ -2,7 +2,6 @@ import azure.functions as func
 import logging
 import os
 import requests
-import base64
 from langchain_community.document_loaders import youtube
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
@@ -13,15 +12,13 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
 
     req_body = req.get_json()
     url = req_body.get('url')
-    lang = req_body.get('lang')
-    length = req_body.get('length')
 
     if url:
         loader=youtube.YoutubeLoader.from_youtube_url(url)
         transcript=loader.load()
         content = transcript[0].page_content
 
-        endpoint = os.environ["AZENDPOINT"]
+        endpoint = os.environ["MODEL_ENDPOINT"]
         api_key = os.environ["API_KEY"]
 
         headers = {
@@ -31,24 +28,24 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
 
         payload = {
             "messages": [
+            {
+            "role": "system",
+            "content": [
                 {
-                "role": "system",
-                "content": [
-                    {
-                    "type": "text",
-                    "text": "You are an AI assistant that summarizing and translating articles to german. First summarize the input and then translate it to" + lang + ". Hold the summary " + length + " concerning length."
-                    }
-                ]
-                },
-                {
-                "role": "user",
-                "content": [
-                    {
-                    "type": "text",
-                    "text": content
-                    }
-                ]
+                "type": "text",
+                "text": "You are an AI assistant specialized in creating comprehensive and detailed summaries. Create an in-depth analysis and summary of the provided content. Focus on key points, main arguments, and important details. Do not summarize personal conversations or irrelevant information and persons. Focus on the technical aspects of the content. When switching to a new topic, introduce chapters. Format your response as markdown"
                 }
+            ]
+            },
+            {
+            "role": "user",
+            "content": [
+                {
+                "type": "text",
+                "text": content
+                }
+            ]
+            }
             ],
             "temperature": 0.7,
             "top_p": 0.95,

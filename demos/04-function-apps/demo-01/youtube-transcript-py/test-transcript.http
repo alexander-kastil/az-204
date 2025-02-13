@@ -2,7 +2,5 @@ POST http://localhost:7071/api/get_transcription HTTP/1.1
 Content-Type: application/json
 
 {
-    "url": "https://www.youtube.com/watch?v=QfiQXIpF1e4",
-    "lang": "german",    
-    "length": "detailed"
+    "url": "https://www.youtube.com/watch?v=vYjAg27aHkA&t=1574s"
 }
