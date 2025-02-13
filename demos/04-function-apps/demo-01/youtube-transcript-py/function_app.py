@@ -59,7 +59,7 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
             raise SystemExit(f"Failed to make the request. Error: {e}")
 
 
-        return func.HttpResponse(f"Transcript by Alex for his friend: {url}: {response.json()}")
+        return func.HttpResponse(f"Transcribed by Integrations: {url}: {response.json()}")
     else:
         return func.HttpResponse(
              "This HTTP triggered function executed successfully. Pass a valid youtube url in the query string or in the request body for transcript.",
