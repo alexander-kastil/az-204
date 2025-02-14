@@ -1,7 +1,7 @@
 env=$RANDOM
 loc=westeurope
-grp=az204-m10-msgqueue-$env
-acct=msgqueue$env
+grp=az204-m10-storage-queue-$env
+acct=storagequeue$env
 queue=orders
 
 az group create -n $grp -l $loc

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "processor_func": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7132",
+      "launchBrowser": false
+    }
+  }
+}
