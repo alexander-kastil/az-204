@@ -6,7 +6,7 @@
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
     "TENANT_ID": "d92b247e-90e0-4469-a129-6a32866c0d0a",
     "CLIENT_ID": "91094449-ff5e-4754-9e2e-be5464e6e8cd",
-    "CLIENT_SECRET": "zRJ8Q~cXqPAyFTYvn8AjvrGP4NKj2nQWSgFhccEu",
-    "MAILBOX": "alexander.pajer@integrations.at"
+    "CLIENT_SECRET": "<Secret>",
+    "MAILBOX": "alexander.kastil@integrations.at"
   }
 }

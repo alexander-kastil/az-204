@@ -1,45 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Azure.EventHubs;
-using Microsoft.Azure.WebJobs;
+using Azure.Messaging.EventHubs;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
 namespace Integrations
 {
     public class GraphProcessor
     {
-        [FunctionName("GraphProcessor")]
-        public async Task Run([EventHubTrigger("graphevents-hub-23196", Connection = "EventHubKey")] EventData[] events, ILogger log)
+        private readonly ILogger<GraphProcessor> _logger;
+
+        public GraphProcessor(ILogger<GraphProcessor> logger)
         {
-            var exceptions = new List<Exception>();
+            _logger = logger;
+        }
 
-            foreach (EventData eventData in events)
+        [Function(nameof(GraphProcessor))]
+        public void Run([EventHubTrigger("graphevents-hub-927", Connection = "EventHubConnection")] EventData[] events)
+        {
+            foreach (EventData @event in events)
             {
-                try
-                {
-                    string messageBody = Encoding.UTF8.GetString(eventData.Body.Array, eventData.Body.Offset, eventData.Body.Count);
-
-                    // Replace these two lines with your processing logic.
-                    log.LogInformation($"C# Event Hub trigger function processed a message: {messageBody}");
-                    await Task.Yield();
-                }
-                catch (Exception e)
-                {
-                    // We need to keep processing the rest of the batch - capture this exception and continue.
-                    // Also, consider capturing details of the message that failed processing so it can be processed again later.
-                    exceptions.Add(e);
-                }
+                _logger.LogInformation("Event Body: {body}", @event.Body);
+                _logger.LogInformation("Event Content-Type: {contentType}", @event.ContentType);
             }
-
-            // Once processing of the batch is complete, if any messages in the batch failed processing throw an exception so that there is a record of the failure.
-            if (exceptions.Count > 1)
-                throw new AggregateException(exceptions);
-
-            if (exceptions.Count == 1)
-                throw exceptions.Single();
         }
     }
 }
