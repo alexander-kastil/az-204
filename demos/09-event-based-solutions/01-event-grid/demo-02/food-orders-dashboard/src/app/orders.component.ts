@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +15,6 @@ import { OrdersStore } from './orders.store';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [
     CommonModule,
     MatCardModule,
@@ -24,11 +22,10 @@ import { OrdersStore } from './orders.store';
     MatButtonModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
-    HttpClientModule
   ],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
-  providers: [OrdersStore],
+  providers: [OrdersStore]
 })
 export class OrdersComponent {
   private store = inject(OrdersStore);
