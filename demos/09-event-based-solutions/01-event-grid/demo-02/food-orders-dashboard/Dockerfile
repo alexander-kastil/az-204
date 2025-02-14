@@ -1,5 +1,5 @@
 ##### Stage 1 - Create the build-image
-FROM node:18 as node
+FROM node:20 as node
 LABEL author="Alexander Kastil"
 WORKDIR /app
 COPY package.json package.json
@@ -24,5 +24,5 @@ CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js
 # browse using http://localhost:5052/
 
 # Publish Image to dockerhub
-# docker tag food-orders-dashboard alexander-kastil/food-orders-dashboard
-# docker push alexander-kastil/food-orders-dashboard
+# docker tag food-orders-dashboard arambazamba/food-orders-dashboard
+# docker push arambazamba/food-orders-dashboard
