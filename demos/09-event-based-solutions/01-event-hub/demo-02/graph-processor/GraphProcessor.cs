@@ -20,7 +20,9 @@ namespace Integrations
             foreach (EventData @event in events)
             {
                 _logger.LogInformation("Event Body: {body}", @event.Body);
-                _logger.LogInformation("Event Content-Type: {contentType}", @event.ContentType);
+
+                string data = System.Text.Encoding.UTF8.GetString(@event.Body.ToArray());
+                _logger.LogInformation("Event Data: {data}", data);
             }
         }
     }
