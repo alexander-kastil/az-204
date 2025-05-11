@@ -6,36 +6,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace SemanticKernel.FunctionCalling
+namespace SKFunctionCalling;
+public class DetailsModel : PageModel
 {
-    public class DetailsModel : PageModel
+    private readonly ApplicationDbContext _context;
+
+    public DetailsModel(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
+        _context = context;
+    }
 
-        public DetailsModel(ApplicationDbContext context)
+    public Student Student { get; set; } = default!;
+
+    public async Task<IActionResult> OnGetAsync(int? id)
+    {
+        if (id == null)
         {
-            _context = context;
+            return NotFound();
         }
 
-        public Student Student { get; set; } = default!;
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        var student = await _context.Students.FirstOrDefaultAsync(m => m.StudentId == id);
+        if (student == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var student = await _context.Students.FirstOrDefaultAsync(m => m.StudentId == id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                Student = student;
-            }
-            return Page();
+            return NotFound();
         }
+        else
+        {
+            Student = student;
+        }
+        return Page();
     }
 }

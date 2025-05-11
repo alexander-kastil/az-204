@@ -1,5 +1,5 @@
 @page
-@model SemanticKernel.FunctionCalling.CreateModel
+@model SKFunctionCalling.CreateModel
 
 @{
     ViewData["Title"] = "Create";
@@ -40,5 +40,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

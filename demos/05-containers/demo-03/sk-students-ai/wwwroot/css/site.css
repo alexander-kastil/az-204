@@ -21,17 +21,11 @@ body {
   margin-bottom: 60px;
 }
 
-.instructions{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1rem 0;
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
 }
 
-h5{
-  margin-bottom: 1rem;
-}
-
-h4{
-  margin-bottom: 1rem;
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
 }

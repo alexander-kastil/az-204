@@ -6,22 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace SemanticKernel.FunctionCalling
+namespace SKFunctionCalling;
+
+public class StudentIndexModel : PageModel
 {
-    public class StudentIndexModel : PageModel
+    private readonly ApplicationDbContext _context;
+
+    public StudentIndexModel(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
+        _context = context;
+    }
 
-        public StudentIndexModel(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+    public IList<Student> Student { get; set; } = default!;
 
-        public IList<Student> Student { get;set; } = default!;
-
-        public async Task OnGetAsync()
-        {
-            Student = await _context.Students.ToListAsync();
-        }
+    public async Task OnGetAsync()
+    {
+        Student = await _context.Students.ToListAsync();
     }
 }
