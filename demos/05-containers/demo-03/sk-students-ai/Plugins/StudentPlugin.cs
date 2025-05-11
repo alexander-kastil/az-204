@@ -4,84 +4,61 @@ using System.ComponentModel;
 using System.Text.Json;
 using Microsoft.SemanticKernel;
 
-namespace SemanticKernel.FunctionCalling;
+namespace SKFunctionCalling;
 
-/// <summary>
-/// Represents a plugin for retrieving student information.
-/// </summary>
 public class StudentPlugin
 {
-  /// <summary>
-  /// Get student details by first name and last name.
-  /// </summary>
-  /// <param name="firstName">The student's first name.</param>
-  /// <param name="lastName">The student's last name.</param>
-  /// <returns>The student details as a string, or null if not found.</returns>
-  [KernelFunction, Description("Get student details by first name and last name")]
+  [KernelFunction, Description("Retrieves detailed information about a specific student by their first and last name (case-insensitive). Returns null if student is not found.")]
   public static string? GetStudentDetails(
-    [Description("student first name, e.g. Kim")]
+    [Description("The student's first name to search for (case-insensitive)")]
     string firstName,
-    [Description("student last name, e.g. Ash")]
+    [Description("The student's last name to search for (case-insensitive)")]
     string lastName
   )
   {
     var db = Utils.GetDbContext();
     var studentDetails = db.Students
-      .Where(s => s.FirstName == firstName && s.LastName == lastName).FirstOrDefault();
+      .Where(s => s.FirstName == firstName && s.LastName == lastName)
+      .FirstOrDefault();
     if (studentDetails == null)
       return null;
     return studentDetails.ToString();
   }
 
-  /// <summary>
-  /// Get the age of a student by first name and last name.
-  /// </summary>
-  /// <param name="firstName">The student's first name.</param>
-  /// <param name="lastName">The student's last name.</param>
-  /// <returns>The student's age as an integer, or null if not found.</returns>
-  [KernelFunction, Description("Get the age of a student by first name and last name")]
+  [KernelFunction, Description("Retrieves the age of a specific student identified by their full name (case-insensitive). Returns null if student is not found.")]
   public static int? GetStudentAge(
-    [Description("student first name, e.g. Kim")]
+    [Description("The student's first name to search for (case-insensitive)")]
     string firstName,
-    [Description("student last name, e.g. Ash")]
+    [Description("The student's last name to search for (case-insensitive)")]
     string lastName
   )
   {
     var db = Utils.GetDbContext();
     var student = db.Students
-      .Where(s => s.FirstName == firstName && s.LastName == lastName).FirstOrDefault();
+      .Where(s => s.FirstName == firstName && s.LastName == lastName)
+      .FirstOrDefault();
     if (student == null)
       return null;
     return student.Age;
   }
-  /// 
 
-  /// <summary>
-  /// Get students in a school given the school name.
-  /// </summary>
-  /// <param name="school">The name of the school.</param>
-  /// <returns>The list of students in the school as a serialized JSON string, or null if no students found.</returns>
-  [KernelFunction, Description("Get students in a school given the school name")]
+  [KernelFunction, Description("Retrieves a list of all students enrolled in a specific school (case-insensitive). Returns the students as a JSON string, or null if no students are found.")]
   public static string? GetStudentsBySchool(
-    [Description("The school name, e.g. Nursing")]
+    [Description("The name of the school to search for students (case-insensitive)")]
     string school
   )
   {
     var studentsBySchool = Utils.GetDbContext().Students
-      .Where(s => s.School == school).ToList();
+      .Where(s => s.School == school)
+      .ToList();
     if (studentsBySchool.Count == 0)
       return null;
     return JsonSerializer.Serialize(studentsBySchool);
   }
 
-  /// <summary>
-  /// Get the school with the most or least students.
-  /// </summary>
-  /// <param name="isMost">A boolean argument indicating whether to get the school with the most students (true) or the least students (false). Default is true.</param>
-  /// <returns>The name of the school with the most or least students, along with the student count, as a string, or null if no schools found.</returns>
-  [KernelFunction, Description("Get the school with most or least students. Takes boolean argument with true for most and false for least.")]
+  [KernelFunction, Description("Identifies the school with either the highest or lowest student enrollment and returns information about its student count.")]
   static public string? GetSchoolWithMostOrLeastStudents(
-    [Description("isMost is a boolean argument with true for most and false for least. Default is true.")]
+    [Description("Set to true to find the school with most students, false to find the school with least students")]
     bool isMost = true
   )
   {
@@ -99,11 +76,7 @@ public class StudentPlugin
       return null;
   }
 
-  /// <summary>
-  /// Get students grouped by school.
-  /// </summary>
-  /// <returns>The students grouped by school as a serialized JSON string, or null if no students found.</returns>
-  [KernelFunction, Description("Get students grouped by school.")]
+  [KernelFunction, Description("Retrieves all students grouped by their school, sorted by enrollment count in descending order. Returns the data as a JSON string.")]
   static public string? GetStudentsInSchool()
   {
     var students = Utils.GetDbContext().Students.ToList().GroupBy(s => s.School)

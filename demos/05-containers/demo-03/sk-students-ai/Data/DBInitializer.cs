@@ -1,7 +1,7 @@
 using System.Globalization;
 using CsvHelper;
 
-namespace SemanticKernel.FunctionCalling;
+namespace SKFunctionCalling;
 
 public static class DBInitializer
 {

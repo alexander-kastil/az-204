@@ -1,8 +1,8 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SemanticKernel.FunctionCalling;
-public class Student {
+namespace SKFunctionCalling;
+public class Student
+{
    public int StudentId { get; set; }
 
    [Display(Name = "First Name")]
@@ -18,8 +18,9 @@ public class Student {
 
    [Required]
    public int Age { get; set; }
- 
-   public override string ToString() {
+
+   public override string ToString()
+   {
       return $"Student ID: {StudentId}, First Name: {FirstName}, Last Name: {LastName}, School: {School}";
    }
 }
