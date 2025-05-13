@@ -1,5 +1,5 @@
 env=dev
-loc=westeurope
+loc=eastus2
 grp=az204-m03-cosmos-$env
 acct=food-cosmos-$env
 dbname=fooddb-$env
@@ -10,7 +10,7 @@ az group create --name $grp --location $loc
 az cosmosdb create --name $acct --kind GlobalDocumentDB -g $grp --enable-free-tier true
 
 # enable vector search
-az cosmosdb update -g $grp -n $acct --capabilities EnableNoSQLVectorSearch
+# az cosmosdb update -g $grp -n $acct --capabilities EnableNoSQLVectorSearch
 
 # create a database
 az cosmosdb sql database create --account-name $acct --name $dbname -g $grp
