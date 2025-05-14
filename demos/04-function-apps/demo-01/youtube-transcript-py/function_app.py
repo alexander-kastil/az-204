@@ -18,7 +18,7 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
         transcript=loader.load()
         content = transcript[0].page_content
 
-        endpoint = os.environ["AZENDPOINT"]
+        endpoint = os.environ["MODEL_ENDPOINT"]
         api_key = os.environ["API_KEY"]
 
         headers = {
@@ -59,7 +59,7 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
             raise SystemExit(f"Failed to make the request. Error: {e}")
 
 
-        return func.HttpResponse(f"Transcript by Alex for his friend: {url}: {response.json()}")
+        return func.HttpResponse(f"Transcript: {url}: {response.json()}")
     else:
         return func.HttpResponse(
              "This HTTP triggered function executed successfully. Pass a valid youtube url in the query string or in the request body for transcript.",
