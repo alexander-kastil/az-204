@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -11,23 +12,15 @@ namespace FoodApp.MailDaemon
         AppConfig config { get; set; }
         public MailController(IConfiguration cfg)
         {
-            config =  cfg.Get<AppConfig>();
+            config = cfg.Get<AppConfig>();
         }
 
         [HttpPost]
         [Route("send")]
-        public ActionResult SendMail([FromBody]Mail mail)
+        public async Task<ActionResult> SendMail([FromBody] Mail mail)
         {
-            GraphHelper.SendMail(mail.subject, mail.text, new[] { mail.recipient }, config.GraphCfg);
+            await GraphHelper.SendMail(mail.subject, mail.text, new[] { mail.recipient }, config.GraphCfg);
             return Ok();
-        }   
-
-        [HttpPost]
-        [Route("sendConfirmation")]
-        public ActionResult SendConfirmation([FromBody]Mail mail)
-        {
-            GraphHelper.SendMail(mail.subject, mail.text, new[] { mail.recipient }, config.GraphCfg);
-            return Ok();
-        }        
+        }
     }
 }
