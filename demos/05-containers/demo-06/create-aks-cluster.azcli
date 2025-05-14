@@ -1,6 +1,6 @@
 env=dev
 grp=az204-m05-containers-eastus
-loc=eastus
+loc=eastus2
 acr=az204demos$env
 aks=az204cluster-$env
 ns=config-app
@@ -15,7 +15,10 @@ az aks get-credentials -g $grp -n $aks
 kubectl get nodes
 
 # Create a namespace
+kubectl create namespace students-ai
 kubectl create namespace $ns
+
+kubectl apply -f students-ai.yaml --namespace students-ai
 kubectl apply -f config-api.yaml --namespace $ns
 # Note ip address of the api loadbalancer and update it in config-ui.yaml as a value for ENV_API_URL
 kubectl apply -f config-ui.yaml --namespace $ns

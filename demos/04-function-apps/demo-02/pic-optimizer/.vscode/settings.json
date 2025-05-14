@@ -4,5 +4,6 @@
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
     "azureFunctions.preDeployTask": "publish (functions)",
-    "azureAutomation.directory.basePath": "c:\\Users\\AlexanderKastil"
+    "azureAutomation.directory.basePath": "c:\\Users\\AlexanderKastil",
+    "azureFunctions.templateFilter": "All"
 }
