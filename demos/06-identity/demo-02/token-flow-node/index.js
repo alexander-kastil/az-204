@@ -1,9 +1,3 @@
-/**
- * MSAL Authentication Implementation using @azure/msal-browser
- * Following Azure best practices for authentication with Microsoft Identity platform
- */
-
-// MSAL configuration
 const msalConfig = {
   auth: {
     clientId: 'eeb155cb-d4c6-4864-9184-cf10a6e02715',
@@ -37,6 +31,7 @@ const msalInstance = new msal.PublicClientApplication(msalConfig);
 
 // Initialize MSAL instance at load time
 let msalInitialized = false;
+
 msalInstance
   .initialize()
   .then(() => {
