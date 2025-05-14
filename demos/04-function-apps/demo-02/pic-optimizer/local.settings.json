@@ -1,7 +1,7 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=picprocessor30178;AccountKey=IV7/Od+Ahtwuy2fmBCC8/xyckOYUfDq6lRN1UBAqaOkzvY05GizRwD77et8BYuVIZFraPFkVcHLs+AStVeL9dA==;BlobEndpoint=https://picprocessor30178.blob.core.windows.net/;FileEndpoint=https://picprocessor30178.file.core.windows.net/;QueueEndpoint=https://picprocessor30178.queue.core.windows.net/;TableEndpoint=https://picprocessor30178.table.core.windows.net/",
+    "AzureWebJobsStorage": "",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet"
   }
 }

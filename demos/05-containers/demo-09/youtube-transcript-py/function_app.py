@@ -18,7 +18,7 @@ def get_transcription(req: func.HttpRequest) -> func.HttpResponse:
         transcript=loader.load()
         content = transcript[0].page_content
 
-        endpoint = os.environ["MODEL_REST_ENDPOINT"]
+        endpoint = os.environ["MODEL_ENDPOINT"]
         api_key = os.environ["API_KEY"]
 
         headers = {

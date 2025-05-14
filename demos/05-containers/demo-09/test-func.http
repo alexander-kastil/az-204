@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 ### Test YouTube Transcribe Function
-@url=https://youtube-transcribe-py.icytree-59696c07.westeurope.azurecontainerapps.io
+@url=https://aca-youtube-transcriber.redisland-788712ff.westeurope.azurecontainerapps.io
 
 POST {{url}}/api/get_transcription HTTP/1.1
 Content-Type: application/json
