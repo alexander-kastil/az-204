@@ -7,12 +7,11 @@
     "start": "http-server -c-1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "alexanderp@cloud-dev.io",
+  "author": "alexander.kastil@integrations.at",
   "license": "ISC",
   "dependencies": {
     "@azure/msal-browser": "^4.12.0",
-    "bootstrap": "^5.3.6",
-    "msal": "^1.4.18"
+    "bootstrap": "^5.3.6"
   },
   "devDependencies": {
     "http-server": "^14.1.1"
