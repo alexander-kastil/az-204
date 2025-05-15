@@ -20,8 +20,10 @@ uiimg=$acr.azurecr.io/food-shop-ui
 
 az group create -n $grp -l $loc
 
-pwd=$(az acr credential show -n $acr -g az204-m05-containers --query passwords[0].value -o tsv)
-loginSrv=$(az acr list -g az204-m05-containers --query "[?name=='$acr'].loginServer" -o tsv)
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
+
+pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
+loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv)
 
 # api management
 az apim create -n $apim -g $grp -l $loc --publisher-email $mail --publisher-name $publisher --sku-name Consumption --no-wait
@@ -30,13 +32,19 @@ az storage account create -n $storage -g $grp
 
 # utils
 az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc \
-    --runtime node --runtime-version 18 --functions-version 4
+    --runtime node --runtime-version 22 --functions-version 4
 
 # payment - used for mocking in portal function
 az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc \
-    --runtime node --runtime-version 18 --functions-version 4
+    --runtime node --runtime-version 22 --functions-version 4
 
-apifqdn=$(az containerapp create -n catalog-service-$env -g az204-m05-containers \
+# publish webapps, containers & function apps
+
+cd catalog-service
+az acr build --image catalog-service -g $grp --registry $acr --file dockerfile .
+cd ..    
+
+apifqdn=$(az containerapp create -n catalog-service-$env -g $grp \
     --image $apiimg \
     --environment $acaenv \
     --min-replicas 1 --max-replicas 1 \
@@ -47,21 +55,9 @@ apifqdn=$(az containerapp create -n catalog-service-$env -g az204-m05-containers
     --ingress external \
     --query properties.configuration.ingress.fqdn -o tsv)
 
-az containerapp ingress cors enable -n catalog-service-$env -g az204-m05-containers \
+az containerapp ingress cors enable -n catalog-service-$env -g $grp \
     --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins "*"
 
-az containerapp create -n foodui-$env -g az204-m05-containers \
-    --image $uiimg \
-    --environment $acaenv \
-    --registry-server $loginSrv \
-    --registry-username $acr \
-    --registry-password $pwd \
-    --target-port 8080 \
-    --ingress external \
-    --env-vars ENV_API_URL=https://$apifqdn/
-
-# publish api & function apps
-# catalog
 cd catalog-service
 az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "dotnet:8"
 cd ..
