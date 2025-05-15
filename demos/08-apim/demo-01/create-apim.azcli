@@ -16,7 +16,6 @@ vault=foodvault-$env
 acr=az204demos$env
 acaenv=az204-demo-$env
 apiimg=$acr.azurecr.io/catalog-service
-uiimg=$acr.azurecr.io/food-shop-ui
 
 az group create -n $grp -l $loc
 
@@ -44,7 +43,7 @@ cd catalog-service
 az acr build --image catalog-service -g $grp --registry $acr --file dockerfile .
 cd ..    
 
-apifqdn=$(az containerapp create -n catalog-service-$env -g $grp \
+az containerapp create -n catalog-service-$env -g $grp \
     --image $apiimg \
     --environment $acaenv \
     --min-replicas 1 --max-replicas 1 \
@@ -52,8 +51,7 @@ apifqdn=$(az containerapp create -n catalog-service-$env -g $grp \
     --registry-username $acr \
     --registry-password $pwd \
     --target-port 8080 \
-    --ingress external \
-    --query properties.configuration.ingress.fqdn -o tsv)
+    --ingress external 
 
 az containerapp ingress cors enable -n catalog-service-$env -g $grp \
     --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins "*"
