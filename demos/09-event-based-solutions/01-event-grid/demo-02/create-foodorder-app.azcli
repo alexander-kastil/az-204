@@ -28,7 +28,7 @@ az storage account create -n $storage -g $grp
 az functionapp create -n $funcApp -g $grp -s $storage --consumption-plan-location $loc --runtime dotnet --functions-version 4 --app-insights $funcApp
 fxid=$(az functionapp show -n $funcApp -g $grp --query id -o tsv)
 
-sleep 3
+sleep 10
 
 az functionapp config appsettings set -n $funcApp -g $grp --settings "AzureSignalRConnectionString=$conStrSignalR"
 az functionapp cors add -g $grp -n $funcApp --allowed-origins $ngUrl $containerUrl $pwaUrl

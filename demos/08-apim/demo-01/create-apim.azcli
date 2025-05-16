@@ -33,6 +33,9 @@ az storage account create -n $storage -g $grp
 az functionapp create -n $utils -g $grp --storage-account $storage --consumption-plan-location $loc \
     --runtime node --runtime-version 22 --functions-version 4
 
+# Add CORS entry to utils function app
+az functionapp cors add -n $utils -g $grp --allowed-origins "https://food-dev.azure-api.net" --allow-credentials true
+
 # payment - used for mocking in portal function
 az functionapp create -n $payment -g $grp --storage-account $storage --consumption-plan-location $loc \
     --runtime node --runtime-version 22 --functions-version 4
