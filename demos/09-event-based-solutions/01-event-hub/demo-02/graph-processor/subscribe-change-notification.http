@@ -1,8 +1,12 @@
-@user="alexander.kastil@integrations.at"
-@notificationUrl="EventHub:https://m10-graphevents-927.vault.azure.net/secrets/graphConStr?tenantId=integrations.at"
+@user=alexander.kastil@integrations.at
+@vault=m10-graphevents-27657
+@secret=graphConStr
+@tenant=integrations.at
+@date=2025-05-17T11:00:00.0000000Z
+@notificationUrl=EventHub:https://{{vault}}.vault.azure.net/secrets/{{secret}}?tenantId={{tenant}}
 
 # @name auth
-POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token HTTP/1.1
 Content-type: application/x-www-form-urlencoded
 
 grant_type=client_credentials
@@ -17,8 +21,8 @@ Content-Type: application/json
 
 {
     "changeType": "created,updated",
-    "notificationUrl": {{notificationUrl}},
-    "resource": "/users/alexander.kastil@integrations.at/mailfolders('inbox')/messages",
-    "expirationDateTime": "2025-02-15T11:00:00.0000000Z",
+    "notificationUrl": "{{notificationUrl}}",
+    "resource": "/users/{{user}}/mailfolders('inbox')/messages",
+    "expirationDateTime": "{{date}}",
     "clientState": "SecretClientState"
 }
