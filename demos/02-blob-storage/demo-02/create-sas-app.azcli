@@ -10,11 +10,11 @@ expiry=2023-09-01
 
 az group create -n $grp -l $loc
 
-url=$(az storage account create -n $acct --access-tier hot --kind StorageV2 -g $grp --query primaryEndpoints.blob)
+url=$(az storage account create -n $acct --access-tier hot --kind StorageV2 --allow-blob-public-access true -g $grp --query primaryEndpoints.blob)
 
 key=$(az storage account keys list -n $acct --query "[0].value" -o tsv)
 
-az storage container create -n $container --account-name $acct --account-key $key
+az storage container create -n $container --account-name $acct --account-key $key --public-access blob
 
 az storage blob upload-batch --account-name $acct --account-key $key -s $path -d $container
 

@@ -1,6 +1,6 @@
 # AZ-204: Developing solutions for Microsoft Azure
 
-Companion Material for Class Delivery by Alexander Pajer containing:
+Companion Material for Class Delivery by [Alexander Kastil](https://www.linkedin.com/in/alexander-kastil-3bb26511a/) containing:
 
 - Getting Started
 - Instructor Demos

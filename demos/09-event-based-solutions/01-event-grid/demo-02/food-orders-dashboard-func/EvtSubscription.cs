@@ -14,7 +14,7 @@ namespace Integrations
 {
     public static class EventSubscription
     {
-        // Azure Function for handling negotation protocol for SignalR. It returns a connection info
+        // Azure Function for handling negotiation protocol for SignalR. It returns a connection info
         // that will be used by Client applications to connect to the SignalR service.
         // It is recommended to authenticate this Function in production environments.
         [FunctionName("negotiate")]
@@ -37,10 +37,10 @@ namespace Integrations
         {
             if (HttpMethods.IsOptions(req.Method))
             {
-                if(req.Headers.TryGetValue("Webhook-Request-Origin", out var headerValues))
+                if (req.Headers.TryGetValue("Webhook-Request-Origin", out var headerValues))
                 {
                     var originValue = headerValues.FirstOrDefault();
-                    if(!string.IsNullOrEmpty(originValue))
+                    if (!string.IsNullOrEmpty(originValue))
                     {
                         req.HttpContext.Response.Headers.Add("Webhook-Allowed-Origin", originValue);
                         return new OkResult();
@@ -49,10 +49,10 @@ namespace Integrations
                     return new BadRequestObjectResult("Missing 'Webhook-Request-Origin' header when validating");
                 }
             }
-            
+
             // Handle an event received from EventGrid. It reads the event from the request payload and send 
             // it to the SignalR serverless service using the Azure Function output binding
-            if(HttpMethods.IsPost(req.Method)) 
+            if (HttpMethods.IsPost(req.Method))
             {
                 string @event = await new StreamReader(req.Body).ReadToEndAsync();
                 await signalRMessages.AddAsync(new SignalRMessage

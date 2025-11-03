@@ -3,7 +3,7 @@ grp=az204-m07-secure-solutions-$env
 loc=westeurope
 cfg=foodconfig-$env
 vault=foodvault-$env
-app=config-api-$env
+app=config-api-prod
 plan=config-plan-$env
 
 # create appconfig and add a value
@@ -30,7 +30,7 @@ az appconfig kv set-keyvault -n $cfg --key "Settings:DBConnectionString" --secre
 
 # create hosting webapp and add keyvault permissions to managed identity
 cd config-service-api
-az webapp up -n $app -g $grp -p $plan -l $loc --sku Free --runtime "dotnet:6" 
+az webapp up -n $app -g $grp -p $plan -l $loc --sku Free --runtime "dotnet:8" 
 cd ..
 
 webmi=$(az webapp identity assign -g $grp -n $app --query principalId -o tsv)

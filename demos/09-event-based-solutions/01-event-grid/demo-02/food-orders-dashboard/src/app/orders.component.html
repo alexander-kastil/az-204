@@ -10,48 +10,51 @@
   <div><button mat-raised-button (click)="resetOrders()">Reset</button></div>
 </mat-toolbar>
 <div class="content" role="main">
-  <mat-card
-    appearance="outlined"
-    *ngFor="let evt of view | async"
+  @for (evt of view | async; track evt) {
+    <mat-card
+      appearance="outlined"
     [ngStyle]="
       evt.data?.status == 'preparing'
         ? { 'background-color': '#16680f' }
         : { 'background-color': '#808080' }
     "
-  >
-    <mat-card-header>
-      <mat-card-title
-        >{{ evt.data?.customerName }}, {{ evt.data?.address }}</mat-card-title
       >
-      <mat-card-subtitle>{{ evt.time | date: "medium" }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <div *ngFor="let el of evt.data?.items" class="item">
-        {{ el.quantity }} serving(s): {{ el.name }}
-      </div>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="changeOrderStatus(evt, 'rejected')"
-      >
-        Reject
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="changeOrderStatus(evt, 'preparing')"
-      >
-        Start
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="changeOrderStatus(evt, 'ready')"
-      >
-        Ready
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+      <mat-card-header>
+        <mat-card-title
+          >{{ evt.data?.customerName }}, {{ evt.data?.address }}</mat-card-title
+          >
+          <mat-card-subtitle>{{ evt.time | date: "medium" }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          @for (el of evt.data?.items; track el) {
+            <div class="item">
+              {{ el.quantity }} serving(s): {{ el.name }}
+            </div>
+          }
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="changeOrderStatus(evt, 'rejected')"
+            >
+            Reject
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="changeOrderStatus(evt, 'preparing')"
+            >
+            Start
+          </button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="changeOrderStatus(evt, 'ready')"
+            >
+            Ready
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>

@@ -1,3 +1,3 @@
 export const environment = {
-  funcWebhookEP: 'https://foodorders-dev-10468.azurewebsites.net/api',
+  funcWebhookEP: 'https://foodorders-dev-9396.azurewebsites.net/api',
 };
