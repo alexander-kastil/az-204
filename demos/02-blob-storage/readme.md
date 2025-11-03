@@ -1,5 +1,7 @@
 # Develop solutions that use Microsoft Azure Storage
 
+[Lab](https://lms.godeploy.it/ng-students/#/sessions/4106da90-bfb8-f011-b684-00155d5e1100)
+
 ## Demos
 
 1. Provision and use Blob Storage
