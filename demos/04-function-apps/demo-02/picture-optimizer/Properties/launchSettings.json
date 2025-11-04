@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "picture_optimizer": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7006",
+      "launchBrowser": false
+    }
+  }
+}
