@@ -19,7 +19,7 @@ namespace Integrations
         public void Run([CosmosDBTrigger(
             databaseName: "fooddb-dev",
             containerName: "food",
-            Connection = "foodcosmosdev_DOCUMENTDB",
+            Connection = "CosmosDBConStr",
             LeaseContainerName = "leases",
             CreateLeaseContainerIfNotExists = true)] IReadOnlyList<Food> input)
         {
