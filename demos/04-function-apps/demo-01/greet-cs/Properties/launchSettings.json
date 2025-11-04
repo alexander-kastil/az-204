@@ -2,7 +2,7 @@
   "profiles": {
     "greet_cs": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7154",
+      "commandLineArgs": "--port 7031",
       "launchBrowser": false
     }
   }

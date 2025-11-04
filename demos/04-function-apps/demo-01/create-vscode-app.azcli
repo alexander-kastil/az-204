@@ -10,17 +10,6 @@ az storage account  create -n $storage -g $grp
 
 az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
 
-url=$(az functionapp show -n $app -g $grp --query defaultHostName -o tsv)
-
-adminkey=$(az functionapp keys list -n $app -g $grp --query masterKey -o tsv)
-
-# Deploy to function app
 cd greet-cs
 func azure functionapp publish $app --csharp
 cd ..
-
-funckey=$(az functionapp function keys list -g $grp -n $app --function-name greetFuncKey --query default -o tsv)
-
-echo "Funtions app created: $app at $url"
-echo "Admin key: $adminkey"
-echo "Function key: $funckey"
