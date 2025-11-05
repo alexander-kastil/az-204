@@ -1,0 +1,4 @@
+POST http://localhost:7071/api/greetMe
+Content-Type: application/json
+
+{"name": "John"}

@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "greet_cs": {
+    "picture_optimizer": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7031",
+      "commandLineArgs": "--port 7006",
       "launchBrowser": false
     }
   }

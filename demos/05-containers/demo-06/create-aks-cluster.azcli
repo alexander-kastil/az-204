@@ -1,6 +1,6 @@
 env=dev
-grp=az204-m05-containers-eastus
-loc=eastus2
+grp=az204-m05-containers
+loc=westeurope
 acr=az204demos$env
 aks=az204cluster-$env
 ns=config-app
@@ -8,7 +8,7 @@ ns=config-app
 # Install kubectl command line client locally:
 az group create -n $grp -l $loc
 
-az aks create -g $grp -n $aks --node-count 2 --attach-acr $acr --generate-ssh-keys
+az aks create -g $grp -n $aks --node-count 2 --attach-acr $acr --generate-ssh-keys --node-vm-size Standard_D2s_v3
 az aks get-credentials -g $grp -n $aks
 
 # Get a list of cluster nodes:
