@@ -6,40 +6,26 @@
         <RootNamespace>SKFunctionCalling</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="CsvHelper"
-                          Version="33.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore"
-                          Version="9.0.4" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore"
-                          Version="9.0.4" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI"
-                          Version="9.0.4" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore"
-                          Version="9.0.4" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design"
-                          Version="9.0.4">
+        <PackageReference Include="CsvHelper" Version="33.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.10" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.10" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.10">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite"
-                          Version="9.0.4" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite.Design"
-                          Version="1.1.6" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer"
-                          Version="9.0.4" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools"
-                          Version="9.0.4">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite.Design" Version="1.1.6" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.SemanticKernel"
-                          Version="1.49.0" />
-        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design"
-                          Version="9.0.0" />
+        <PackageReference Include="Microsoft.SemanticKernel" Version="1.67.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
     </ItemGroup>
     <ItemGroup>
-        <None Update="app.db"
-              CopyToOutputDirectory="PreserveNewest"
-              ExcludeFromSingleFile="true" />
+        <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
     </ItemGroup>
 </Project>
