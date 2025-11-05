@@ -1,0 +1,109 @@
+### Set the graph base url
+@graph=https://graph.microsoft.com/v1.0
+@tenanat=integrationsonline
+@splistapp=6a04eb4c-afa8-4673-829a-19ca38640abb
+
+# Autenticate User
+# @name auth
+POST https://login.microsoftonline.com/{{tenantId}}/oauth2/v2.0/token HTTP/1.1
+Content-type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientId}}
+&client_secret={{clientSecret}}
+&scope={{scope}}
+
+### get a specific user
+# @name user
+GET {{graph}}/users/alexander.kastil@integrations.at
+Authorization: Bearer {{auth.response.body.access_token}}
+
+
+### Create group
+# @name m365grp
+POST {{graph}}/groups
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+{
+  "displayName":"graph-teams",
+  "mailNickname":"graph-teams",
+  "description":"a group for teams development",
+  "visibility":"Private",
+  "groupTypes":["Unified"],
+  "mailEnabled":true,
+  "securityEnabled":false,
+  "members@odata.bind":[
+    "{{graph}}/users/{{user.response.body.id }}",
+  ],
+  "owners@odata.bind":[
+    "{{graph}}/users/{{user.response.body.id }}"
+  ]
+}
+
+### List groups
+GET {{graph}}/groups
+Accept: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Convert it to a Microsoft Teams
+# @name team
+POST {{graph}}/teams
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+{
+  "template@odata.bind": "{{graph}}/teamsTemplates('standard')",
+  "group@odata.bind": "{{graph}}/groups('{{m365grp.response.body.id}}')"
+}
+
+### List Teams
+GET {{graph}}/groups?$select=id,displayName,resourceProvisioningOptions
+Accept: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### List all teams the current user has joined:
+GET {{graph}}/users/{{user.response.body.id }}/joinedTeams
+Accept: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Get channel id of default channel
+# @name channel
+GET {{graph}}/teams/{{m365grp.response.body.id}}/channels
+Accept: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### todo install app https://docs.microsoft.com/en-us/graph/api/team-list-installedapps?view=graph-rest-1.0&tabs=http
+### Get installed apps
+GET {{graph}}/teams/{{m365grp.response.body.id}}/installedApps
+Accept: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+### Install app
+POST {{graph}}/teams/{{m365grp.response.body.id}}/installedApps
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+{
+   "teamsApp@odata.bind":"{{graph}}/appCatalogs/teamsApps/{{splistapp}}"
+}
+
+### Add a tab to a teams default channel
+POST {{graph}}/teams/{{m365grp.response.body.id}}/channels/{channelId}/tabs
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{auth.response.body.access_token}}
+
+{
+  "displayName": "Skills",
+  "teamsApp@odata.bind" : "{{graph}}//appCatalogs/teamsApps/{{m365grp.response.body.id}}",
+  "configuration": {
+    "entityId": "2a527703-1f6f-4559-a332-d8a7d288cd88",
+    "contentUrl": "https://{tenant}.sharepoint.com/sites/m365-dev/skills",
+    "removeUrl": null,
+    "websiteUrl": null
+  }
+}

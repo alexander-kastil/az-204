@@ -1,0 +1,36 @@
+env=$RANDOM
+grp=az204-m04-vscode-$env
+loc=westeurope
+app=youtube-transcript-$env
+storage=youtubetranscript$env
+
+# Create resource group
+az group create -n $grp -l $loc
+
+# Create storage account
+az storage account create -n $storage -g $grp -l $loc --sku Standard_LRS
+
+# Create function app with Python 3.11
+az functionapp create \
+    --name $app \
+    --resource-group $grp \
+    --storage-account $storage \
+    --consumption-plan-location $loc \
+    --runtime python \
+    --runtime-version 3.11 \
+    --functions-version 4 \
+    --os-type linux
+
+# Configure function app settings
+az functionapp config appsettings set -n $app -g $grp --settings \
+    FUNCTIONS_EXTENSION_VERSION=~4 \
+    MODEL_ENDPOINT="<MODEL_ENDPOINT>" \
+    API_KEY="YOUR_API_KEY_HERE" # Replace with a secure reference to your API key
+
+# Build and publish using Azure Functions Core Tools
+echo "Building and publishing function app..."
+func azure functionapp publish $app
+
+# Display the function URL
+echo "Function URL:"
+az functionapp function show -g $grp -n $app --function-name get_transcription --query "invokeUrlTemplate" -o tsv

@@ -1,0 +1,23 @@
+env=dev
+grp=az204-m05-containers
+loc=westeurope
+acr=az204demos$env
+imgApi=config-api
+imgUI=config-ui
+
+az group create -n $grp -l westeurope
+
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
+az acr login --name $acr
+
+cd $imgApi
+az acr build --image $imgApi -g $grp --registry $acr --file Dockerfile .
+cd ..
+
+cd $imgUI
+az acr build --image $imgUI -g $grp --registry $acr --file Dockerfile .
+cd ..
+
+cd sk-students-ai
+az acr build --image sk-students-ai -g $grp --registry $acr --file dockerfile .
+cd ..

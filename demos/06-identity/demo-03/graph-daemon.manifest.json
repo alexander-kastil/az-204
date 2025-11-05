@@ -1,0 +1,15 @@
+[
+    {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+            {
+                "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+                "type": "Scope"
+            },
+            {
+                "id": "b633e1c5-b582-4048-a93e-9f11b44c7e96",
+                "type": "Role"
+            }
+        ]
+    }
+]

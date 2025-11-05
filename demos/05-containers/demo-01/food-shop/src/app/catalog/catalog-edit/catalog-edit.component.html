@@ -1,0 +1,60 @@
+<form [formGroup]="form" (ngSubmit)="saveForm(form)" novalidate>
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Edit: {{ form.controls.name.value }}</mat-card-title>
+      <button mat-raised-button color="accent">Scan</button>
+    </mat-card-header>
+    <mat-card-content class="cardContent">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Name" formControlName="name" />
+      </mat-form-field>
+      @if ( form.controls['name'].touched && form.controls['name'].errors !==
+      null ) {
+      <mat-error> Name is required & must be more than 3 chars </mat-error>
+      }
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="price"
+        />
+      </mat-form-field>
+      @if ( form.controls['price'].touched && form.controls['price'].errors !==
+      null ) {
+      <mat-error> Price must be greater than 1€ </mat-error>
+      }
+      <mat-form-field>
+        <mat-label>In Stock</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="inStock"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" class="description"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Picture Url</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="pictureUrl"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>EAN Code</mat-label>
+        <input matInput formControlName="code"/>
+      </mat-form-field>
+      <div command-row>
+        <button mat-raised-button [routerLink]="['/catalog']" color="accent">
+          Cancel
+        </button>
+        <button mat-raised-button color="accent" type="submit">Save</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>

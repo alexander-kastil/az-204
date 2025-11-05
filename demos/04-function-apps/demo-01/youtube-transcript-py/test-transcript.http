@@ -1,0 +1,25 @@
+### test function
+
+POST http://localhost:7071/api/get_transcription HTTP/1.1
+Content-Type: application/json
+
+{
+    "url": "https://www.youtube.com/watch?v=rAouIMxsmtg"
+}
+
+
+### test container
+POST http://localhost:5056/api/get_transcription HTTP/1.1
+Content-Type: application/json
+
+{
+    "url": "https://www.youtube.com/watch?v=vYjAg27aHkA&t=1574s"
+}
+
+### test online
+POST http://youtube-transcript-15942.azurewebsites.net/api/get_transcription HTTP/1.1
+Content-Type: application/json
+
+{
+    "url": "https://www.youtube.com/watch?v=LFCyo4ZBgP4"
+}

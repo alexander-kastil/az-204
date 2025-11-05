@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "SCRAPING_URL": "https://muenzshop.rlbooe.at/3870_DE-Services-Kundenblatt_Gold.htm",
+    "BLOB_STORAGE_CONNECTION_STRING": "DefaultEndpointsProtocol=https;AccountName=picprocessor9051;AccountKey=w+tUPqxKgyOVFtzW2Hss5/DUxoyk8fVYgntJtZOelX7D2z2ijnBTv/DkLH1l3DKsrW3oZ4AL/8wO+AStgpFG7w==;EndpointSuffix=core.windows.net",
+    "BLOB_CONTAINER_NAME": "rates"
+  }
+}

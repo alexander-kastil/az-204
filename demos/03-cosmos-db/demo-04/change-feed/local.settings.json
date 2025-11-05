@@ -1,0 +1,8 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "foodcosmosdev_DOCUMENTDB": "AccountEndpoint=https://food-cosmos-dev.documents.azure.com:443/;AccountKey=WJeFz7o74FWQwpGH1TVDvUUIXjqbrGHXIspEWPYBKHL3b33IpNfIItpai8Vw5mGW74xsim5htgSoACDbkJcK9A==;"
+  }
+}

@@ -1,0 +1,5 @@
+[
+    { "customerId": 1, "type": "customer", "name": "Alexander Kastil", "age": 53, "address": "Hauptstraße 1, Wien, Austria" },
+    { "customerId": 2, "type": "customer", "name": "Giro the Galgo", "age": 13, "address": "Hauptstraße 1, Wien, Austria" },
+    { "customerId": 3, "type": "customer", "name": "Princess Soi", "age": 10, "address": "Castle in the cloud" }
+]

@@ -1,0 +1,35 @@
+env=dev
+grp=az204-m07-secure-solutions-$env
+loc=westeurope
+app=func-mi-$env
+storage=funcmi$env
+vault=foodvault-$env
+
+az group create -n $grp -l $loc
+az storage account create -n $storage -g $grp 
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4 
+
+# Create Key Vault with RBAC authorization model
+kvid=$(az keyvault show -n $vault -g $grp --query id -o tsv)
+
+# Assign managed identity to function app
+mi=$(az functionapp identity assign -n $app -g $grp --query principalId -o tsv)
+
+# Get the Key Vault Secrets Officer role
+# https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
+roleid=$(az role definition list --name "Key Vault Secrets Officer" --query [0].id -o tsv)
+
+# Add the function app's managed identity to the role
+az role assignment create --role $roleid --assignee $mi --scope $kvid
+
+# Add the Key Vault name to the app settings
+az functionapp config appsettings set -g $grp -n $app --settings Azure:KeyVault=$vault.vault.azure.net
+
+# Add a Key Vault reference to the app settings
+kvRef="@Microsoft.KeyVault(SecretUri=https://$vault.vault.azure.net/secrets/funcAppConnection/)"
+az functionapp config appsettings set -g $grp -n $app --settings ConnectionStrings:FunctionConnection=$kvRef
+
+# Deploy to function app
+cd mi-func
+func azure functionapp publish $app --csharp
+cd ..

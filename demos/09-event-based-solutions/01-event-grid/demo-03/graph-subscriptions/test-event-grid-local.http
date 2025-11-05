@@ -1,0 +1,31 @@
+@url=http://localhost:7071
+# @url=https://bbb6-62-178-154-89.ngrok-free.app
+
+### Invoke EventGrid Triggered Function
+POST  {{url}}/runtime/webhooks/EventGrid?functionName=processNotification HTTP/1.1
+content-type: application/json
+aeg-event-type: Notification
+
+{
+    "type": "Microsoft.Graph.MessageCreated",
+    "specversion": "1.0",
+    "source": "/tenants/d92b247e-90e0-4469-a129-6a32866c0d0a/applications/b9865fd5-e515-478c-8ad1-905e3791579a",
+    "subject": "Users/25853297-1418-4fc4-96ec-22f8bc83a64b/Messages/AAMkADA1NmI1Y2U2LWM2ZjctNDJmNi04OGEyLWE0MGE1ODdlMWFkMgBGAAAAAAC9jQHbIA-qT4LCJT6lQWmEBwBBR9eVJtdKT7j2oIakIqsIAAAAAAEMAABBR9eVJtdKT7j2oIakIqsIAAegg3wpAAA=",
+    "id": "dbf37187-ac33-4216-ae46-be5f586bb860",
+    "time": "2024-02-28T14:31:24.7103014Z",
+    "datacontenttype": "application/json",
+    "data": {
+        "SubscriptionId": "bc923bf3-cdf8-4482-ac30-4211bc1abbc2",
+        "SubscriptionExpirationDateTime": "2024-03-01T12:00:00+01:00",
+        "ChangeType": "created",
+        "Resource": "Users/25853297-1418-4fc4-96ec-22f8bc83a64b/Messages/AAMkADA1NmI1Y2U2LWM2ZjctNDJmNi04OGEyLWE0MGE1ODdlMWFkMgBGAAAAAAC9jQHbIA-qT4LCJT6lQWmEBwBBR9eVJtdKT7j2oIakIqsIAAAAAAEMAABBR9eVJtdKT7j2oIakIqsIAAegg3wpAAA=",
+        "ResourceData": {
+            "@odata.type": "#Microsoft.Graph.Message",
+            "@odata.id": "Users/25853297-1418-4fc4-96ec-22f8bc83a64b/Messages/AAMkADA1NmI1Y2U2LWM2ZjctNDJmNi04OGEyLWE0MGE1ODdlMWFkMgBGAAAAAAC9jQHbIA-qT4LCJT6lQWmEBwBBR9eVJtdKT7j2oIakIqsIAAAAAAEMAABBR9eVJtdKT7j2oIakIqsIAAegg3wpAAA=",
+            "@odata.etag": "W/\"CQAAABYAAABBR9eVJtdKT7j2oIakIqsIAAedo2/t\"",
+            "Id": "AAMkADA1NmI1Y2U2LWM2ZjctNDJmNi04OGEyLWE0MGE1ODdlMWFkMgBGAAAAAAC9jQHbIA-qT4LCJT6lQWmEBwBBR9eVJtdKT7j2oIakIqsIAAAAAAEMAABBR9eVJtdKT7j2oIakIqsIAAegg3wpAAA="
+        },
+        "clientState": "SecretClientState",
+        "tenantId": "d92b247e-90e0-4469-a129-6a32866c0d0a"
+    }
+}

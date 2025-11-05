@@ -1,0 +1,99 @@
+# Set base URL as global variable
+@cartUrl = http://localhost:7071/api
+### Start orchestration 
+# @name cartOrch
+POST {{cartUrl}}/cart/init HTTP/1.1
+content-type: application/json
+
+{
+    "Id": "5c60fe1d-9851-47ca-aab9-622ca857ea29",
+    "Total": 0,
+    "Customer": {
+        "Name": "Alex",
+        "Address": "123 Main Street, Seattle, WA 98101",
+        "EMail": "alexander.kastil@integrations.at"
+    },
+    "Items": []              
+}
+
+### Add Blini with Salmon
+POST   {{cartUrl}}/cart/update HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2,
+    "name": "Blini with Salmon",
+    "price": 9,
+    "quantity": 2,
+    "add": true,
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
+}
+
+### Get Orchestration State using statusQueryGetUri
+GET {{cartOrch.response.body.statusQueryGetUri}} HTTP/1.1
+
+### Add Butter Chicken
+POST {{cartUrl}}/cart/update HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Butter Chicken",
+    "price": 12,
+    "quantity": 1,
+    "add": true,
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
+}
+
+### Add Butter Chicken
+POST {{cartUrl}}/cart/update HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "Butter Chicken",
+    "price": 12,
+    "quantity": 3,
+    "add": true,
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
+}
+
+### Get Orchestration State using statusQueryGetUri
+GET {{cartOrch.response.body.statusQueryGetUri}} HTTP/1.1
+
+### Remove Blini with Salmon
+POST {{cartUrl}}/cart/update HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2,
+    "name": "Blini with Salmon",
+    "price": 9,
+    "quantity": 1,
+    "add": false,
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
+}
+
+### Remove Blini with Salmon - should remove completely
+POST {{cartUrl}}/cart/update HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2,
+    "name": "Blini with Salmon",
+    "price": 9,
+    "quantity": 3,
+    "add": false,
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
+}
+
+### Complete 
+POST {{cartUrl}}/cart/complete HTTP/1.1
+content-type: application/json
+
+{
+    "OrchestrationInstanceId": "{{cartOrch.response.body.id}}"
+}
+
+### Get Orchestration State using statusQueryGetUri
+GET {{cartOrch.response.body.statusQueryGetUri}} HTTP/1.1

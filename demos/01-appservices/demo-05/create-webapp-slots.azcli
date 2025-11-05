@@ -1,0 +1,23 @@
+env=$RANDOM
+grp=az204-m01-deployment-slots-$env
+appPlan=deployment-slots-$env
+app=deployment-slots-app-$env
+loc=westeurope
+slot=dev
+
+az group create -n $grp -l $loc
+
+az appservice plan create -n $appPlan -g $grp --sku S1
+az webapp create -n $app -g $grp --plan $appPlan --runtime "dotnet:9"
+
+az webapp deployment slot create -n $app -g $grp --slot $slot
+
+# STOP HERE AND WAIT FOR THE INSTRUCTOR TO CONTINUE
+
+az webapp deployment slot swap
+
+# STOP HERE AND WAIT FOR THE INSTRUCTOR TO CONTINUE
+
+az webapp deployment slot create -n $app -g $grp --slot canary
+
+az webapp traffic-routing set -n $app -g $grp --distribution canary=10

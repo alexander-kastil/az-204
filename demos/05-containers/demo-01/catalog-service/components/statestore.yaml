@@ -1,0 +1,29 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: food-state
+spec:
+  type: state.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    value: localhost:6379
+  - name: redisPassword
+    value: ""
+
+# apiVersion: dapr.io/v1alpha1
+# kind: Component
+# metadata:
+#   name: food-state
+# spec:
+#   type: state.azure.cosmosdb
+#   version: v1
+#   metadata:
+#   - name: url
+#     value: https://az-native-cosmos-nosql-dev.documents.azure.com:443/
+#   - name: masterKey
+#     value: 9YJC7sPsRlaMoQQE7eRfEwX2EKsjOnjbYGTAFrVZyMA4nNkJvJO0g4oVSpZRIiVF0xAKAb0yUVNNACDbgjqprg==
+#   - name: database
+#     value: food-nosql-dev
+#   - name: collection
+#     value: bank-actor

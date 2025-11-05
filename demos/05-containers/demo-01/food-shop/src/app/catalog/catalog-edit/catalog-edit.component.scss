@@ -1,0 +1,26 @@
+form {
+  width: 100%;
+}
+
+mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // Added this line
+  padding-bottom: 0.5rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-mdc-card-title {
+  margin-top: 0.5rem !important;
+}
+
+.cardContent {
+  padding-top: 1rem;
+}
+
+.description {
+  height: 6rem !important;
+}

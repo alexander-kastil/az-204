@@ -1,0 +1,17 @@
+az extension add -n spring --allow-preview false
+
+env=dev
+grp=az204-m01-spring-cloud-$env
+loc=westeurope
+cloud=spring-cloud-$env
+app=spring-cloudapp-$env
+
+az group create -n $grp -l $loc
+
+az spring create -n $cloud -g $grp -l $loc
+
+az spring app create -n $app -s $cloud -g $grp --runtime-version Java_17 --assign-endpoint  true
+
+mvn clean package -DskipTests
+
+az spring app deploy -g $grp --service $cloud --name $app --artifact-path ./target/spring-blog-0.0.1-SNAPSHOT.jar

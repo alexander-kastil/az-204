@@ -1,0 +1,42 @@
+env=dev
+grp=az204-m05-containers
+loc=westeurope
+acr=az204demos$env
+acaenv=az204-demo-$env
+apiApp=config-api
+uiApp=config-ui
+apiImg=$acr.azurecr.io/$apiApp
+uiImg=$acr.azurecr.io/$uiApp
+
+az group create -n $grp -l $loc
+
+az containerapp env create -n $acaenv -g $grp -l $loc
+
+pwd=$(az acr credential show -n $acr -g $grp --query passwords[0].value -o tsv)
+loginSrv=$(az acr list -g $grp --query "[?name=='$acr'].loginServer" -o tsv) 
+
+az containerapp create -n students-ai -g $grp --image $acr.azurecr.io/sk-students-ai \
+    --environment $acaenv \
+    --target-port 8080 \
+    --ingress external \
+    --registry-server $loginSrv \
+    --registry-username $acr \
+    --registry-password $pwd
+
+apiUrl=$(az containerapp create -n $apiApp-$env -g $grp --image $apiImg \
+    --environment $acaenv \
+    --target-port 8080 \
+    --ingress external \
+    --registry-server $loginSrv \
+    --registry-username $acr \
+    --registry-password $pwd \
+    --query properties.configuration.ingress.fqdn -o tsv)
+
+az containerapp create -n $uiApp-$env -g $grp --image $uiImg \
+    --environment $acaenv \
+    --target-port 80 \
+    --ingress external \
+    --registry-server $loginSrv \
+    --registry-username $acr \
+    --registry-password $pwd \
+    --env-vars ENV_API_URL=https://$apiUrl  

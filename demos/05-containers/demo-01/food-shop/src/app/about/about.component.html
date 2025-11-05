@@ -1,0 +1,27 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <img
+      matCardAvatar
+      src="https://avatars3.githubusercontent.com/u/16348023?s=460&v=4"
+    />
+    <mat-card-title>{{config.title}}</mat-card-title>
+    <mat-card-subtitle><a href="http://www.integrations.at" target="_blank">By alexander.kastil&#64;integrations.at</a></mat-card-subtitle>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/alexander-kastil-3bb26511a/" target="_blank">
+        <img src="assets/images/linkedin.png" alt="LinkedIn Profile" />
+      </a>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      A .NET Core Api and Angular UI implemented a Cloud Native App with step by
+      step Installation Scripts used for ng-dev, ng-adv, az-native, az-400 and az-204
+    </div>
+    <div>
+      <span>Using config:</span>
+      <pre>
+        <p>{{ config | json }}</p>
+      </pre>
+    </div>
+  </mat-card-content>
+</mat-card>

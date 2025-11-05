@@ -1,0 +1,124 @@
+[
+    {
+        "id": "9",
+        "name": "Kaeng Masaman",
+        "price": 16,
+        "pictureUrl": null,
+        "code": "mmc",
+        "date": "2022-03-19T00:00:00",
+        "kitchen": "Thai",
+        "tags": [
+            "Mild",
+            "Asia",
+            "Curry"
+        ],
+        "protein": [
+            "beef",
+            "chicken"
+        ],
+        "servings" : [
+            {
+                "type": "starter",
+                "size": "300ml"
+            },
+            {
+                "type": "full",
+                "size": "500ml"
+            }
+        ],
+        "reviews": 0
+    },
+    {
+      "id": "1",
+      "name": "Butter Chicken",
+      "price": 12,
+      "pictureUrl": null,
+      "code": "btc",
+      "date": "2022-03-19T00:00:00",
+      "kitchen": "India",
+      "tags": [
+          "Mild",
+          "Asia"
+      ],
+      "reviews": 0
+    },
+    {
+      "id": "2",
+      "name": "Blini with Salmon",
+      "price": 9,
+      "pictureUrl": null,
+      "code": "bls",
+      "date": "2022-03-19T00:00:00",
+      "kitchen": "Russia",
+      "reviews": 0
+    },
+    {
+      "id": "3",
+      "name": "Wiener Schnitzel",
+      "price": 18,
+      "pictureUrl": null,
+      "code": "ws",
+      "date": "2022-03-19T00:00:00",
+      "kitchen": "Austria",
+      "reviews": 0
+    },
+    {
+        "id": "4",
+        "name": "Pad Kra Pao",
+        "price": 18,
+        "pictureUrl": null,
+        "code": "pkp",
+        "date": "2022-03-19T00:00:00",
+        "kitchen": "Thai",
+        "tags": [
+            "Spicy",
+            "Asia"
+        ],
+        "reviews": 0
+    },
+    {
+        "id": "5",
+        "name": "Borschtsch",
+        "price": 9,
+        "pictureUrl": null,
+        "code": "bor",
+        "date": "2022-03-19T00:00:00",
+        "kitchen": "Russia",
+        "reviews": 0,
+        "promotion": true
+    },
+    {
+        "id": "6",
+        "name": "Tafelspitz",
+        "price": 22,
+        "pictureUrl": null,
+        "code": "tfl",
+        "date": "2022-03-19T00:00:00",
+        "kitchen": "Austria",
+        "reviews": 0
+    },
+    {
+        "id": "7",
+        "name": "Curry Wurst",
+        "price": 7,
+        "pictureUrl": null,
+        "code": "cws",
+        "date": "2022-03-19T00:00:00",
+        "kitchen": "German",
+        "reviews": 0
+    },
+    {
+        "id": "8",
+        "name": "Malai Kofta",
+        "price": 12,
+        "pictureUrl": null,
+        "code": "btc",
+        "date": "2022-03-19T00:00:00",
+        "kitchen": "India",
+        "tags": [
+            "Vegetarian",
+            "Asia"
+        ],
+        "reviews": 0
+      }
+  ]

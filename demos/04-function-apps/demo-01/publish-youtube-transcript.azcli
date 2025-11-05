@@ -1,0 +1,9 @@
+env=$RANDOM
+grp=az204-m04-vscode-$env
+loc=westeurope
+app=youtube-transcript
+storage=youtubetranscript$env
+
+az group create -n $grp -l $loc
+
+az storage account create -n $storage -g $grp

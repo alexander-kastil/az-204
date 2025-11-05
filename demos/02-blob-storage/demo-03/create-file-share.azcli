@@ -1,0 +1,14 @@
+env=$RANDOM
+grp=az-lab
+loc=westeurope
+acct=labvm$env
+
+az group create -n $grp -l $loc
+
+az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
+
+key=$(az storage account keys list -n $acct --query "[0].value" -o tsv)
+
+az storage share create --account-name $acct -n labfileshare --account-key $key
+
+echo 'labfileshare create at '$acct

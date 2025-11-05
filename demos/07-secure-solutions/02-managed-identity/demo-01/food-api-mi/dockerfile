@@ -1,0 +1,17 @@
+# Build Image
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
+WORKDIR /build
+
+COPY . .
+RUN dotnet restore "food-api.csproj"
+RUN dotnet publish -c Release -o /app
+
+# Runtime Image
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "food-api.dll"]
+
+# Build Image
+# docker build --rm -f dockerfile -t food-api-mi .
+# docker run -it --rm -p 5051:80 food-api-mi

@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/4c1b96bc030b54e32965908ea0f14e14/ms-dotnettools.csdevkit/receive-events-console.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/4c1b96bc030b54e32965908ea0f14e14/ms-dotnettools.csdevkit/receive-events-console.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/c:/Users/AlexanderKastil/AppData/Roaming/Code/User/workspaceStorage/4c1b96bc030b54e32965908ea0f14e14/ms-dotnettools.csdevkit/receive-events-console.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

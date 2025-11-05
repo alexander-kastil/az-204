@@ -1,0 +1,20 @@
+# Build Image
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
+WORKDIR /build
+
+COPY . .
+RUN dotnet restore "kv-api.csproj"
+RUN dotnet publish -c Release -o /app
+
+# Runtime Image
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "kv-api.dll"]
+
+# Build Image
+# docker build --rm -f dockerfile -t kv-api-sc .
+# docker run -it --rm -p 5051:80 kv-api-sc
+
+# docker tag kv-api-sc alexander-kastil/kv-api-sc
+# docker push alexander-kastil/kv-api-sc

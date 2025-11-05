@@ -1,0 +1,26 @@
+env=dev
+loc=westeurope
+grp=az204-m09-evthub-send-receive-$env
+namespace=evthubns-$env
+hub=evthub-$env
+storage=eventhub$env$RANDOM
+container=evthubcheckpoints
+
+az group create --name $grp --location $loc
+
+# Create Group & Hub, List permissions
+az eventhubs namespace create -n $namespace -g $grp -l $loc --sku Basic
+nsconStr=$(az eventhubs namespace authorization-rule keys list --name RootManageSharedAccessKey --namespace-name $namespace -g $grp --query primaryConnectionString -o tsv)
+az eventhubs eventhub create -n $hub -g $grp --namespace-name $namespace --cleanup-policy Delete --partition-count 2 --retention-time 1 
+
+# Create Storage Acct
+az storage account create --name $storage -g $grp --sku Standard_RAGRS --encryption-services blob
+key=$(az storage account keys list -n $storage -g $grp --query "[0].value")
+az storage container create -n $container --account-key $key --account-name $storage
+
+az storage account keys list --account-name $storage -g $grp
+conStr=$(az storage account show-connection-string -n $storage -g $grp --query connectionString)
+az storage container create -n $container --connection-string $conStr
+
+echo "*** connectionString to use for both projects: $nsconStr"
+echo "*** blobStorageConnectionString used in Receive projects: $conStr"

@@ -1,0 +1,111 @@
+# Docker Basics & Multistage Build
+
+[Docker](https://www.docker.com/products/docker-desktop)
+
+[Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/)
+
+[NGINX](https://www.nginx.com/)
+
+## Demos
+
+- Create and publish .NET 8 Api image from [catalog-service](./catalog-service/)
+- Create and publish Angular UI image from [food-shop](./food-shop/)
+
+### Setup Requirements on Windows and Linux
+
+Windows:
+
+- [Windows Subsystem Linux - WSL 2](https://docs.microsoft.com/en-us/windows/wsl/wsl2-about)
+
+- [Install WSL 2 on Windows 10](https://pureinfotech.com/install-windows-subsystem-linux-2-windows-10/)
+
+Linux:
+
+- Install Azure CLI in WSL Bash:
+
+    ```bash
+    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    ```
+
+### Create Image & publish to Docker Hub
+
+Create Images for .NET Core Api & Angular UI using `*.dockerfile`
+
+#### .NET 8 Api
+
+Examine [./catalog-service/dockerfile](./catalog-service/dockerfile)):
+
+```docker
+
+```yaml
+# Build Image
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+WORKDIR /build
+
+COPY . .
+RUN dotnet restore "catalog-api.csproj"
+RUN dotnet publish -c Release -o /app
+
+# Runtime Image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "catalog-api.dll"]
+```
+
+Build & Run Image:
+
+```
+docker build --rm -f Dockerfile -t food-catalog-api .
+docker run -it --rm -p 5051:80 food-catalog-api
+```
+
+Browse using `http://localhost:5051/food`
+
+Publish Image to Docker Hub:
+
+```
+docker tag food-catalog-api alexander-kastil/food-catalog-api
+docker push alexander-kastil/food-catalog-api
+```
+
+### Angular UI
+
+Examine Examine [./food-shop/dockerfile](./food-shop/dockerfile)::
+
+```docker
+FROM node:18-alpine as build
+LABEL author="Alexander Kastil"
+
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+##### Stage 2 - Create the run-time-image
+FROM nginx:alpine
+VOLUME /var/cache/nginx
+
+# Take output from node build
+COPY --from=build /app/dist/food-shop/ /usr/share/nginx/html
+# Add nginx url rewriteconfig
+COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
+# Substitute environment vars
+CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/env.template.js > /usr/share/nginx/html/assets/env.js && exec nginx -g 'daemon off;'"]
+```
+
+Build & Run Image:
+
+```
+docker build --rm -f Dockerfile -t food-shop .
+docker run -d --rm -p 5052:80 --env ENV_API_URL="https://localhost:5051" 
+```
+
+Browse using `http://localhost:5052`
+
+Publish Image to Docker Hub:
+
+```
+docker tag food-shop-ui alexander-kastil/food-shop
+docker push alexander-kastil/food-shop
+```

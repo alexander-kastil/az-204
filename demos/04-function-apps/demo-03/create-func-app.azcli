@@ -1,0 +1,16 @@
+env=$RANDOM
+grp=az204-m04-foodutil-js-$env
+loc=westeurope
+app=foodutil-$env
+storage=az204foodutil$env
+
+az group create --name $grp --location $loc
+az storage account  create -n $storage -g $grp 
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --runtime node --runtime-version 14 --functions-version 4
+# Get Fixer Key at fixer.io
+az functionapp config appsettings set -n $app -g $grp --settings "FixerKey=<YOUR API KEY>"
+
+# Deploy to function app
+cd foodutil-functs-js
+func azure functionapp publish $app 
+cd ..

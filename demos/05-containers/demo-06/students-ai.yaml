@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentsai
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: studentsai
+  template:
+    metadata:
+      labels:
+        app: studentsai
+    spec:
+      containers:
+        - name: studentsai
+          image: az204demosdev.azurecr.io/sk-students-ai:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "0.2"
+              memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: students-ai-load-balancer
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: studentsai
+---
+

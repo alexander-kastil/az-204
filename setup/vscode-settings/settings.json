@@ -1,0 +1,155 @@
+{
+    "[aspnetcorerazor]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    },
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "DotJoshJohnson.xml"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "azureFunctions.showCoreToolsWarning": false,
+    "azureFunctions.showProjectWarning": false,
+    "csharp.format.enable": true,
+    "csharp.suppressBuildAssetsNotification": true,
+    "csharp.suppressDotnetInstallWarning": true,
+    "csharp.suppressDotnetRestoreNotification": true,
+    "csharp.suppressProjectJsonWarning": true,
+    "debug.terminal.clearBeforeReusing": true,
+    "dotnet-test-explorer.autoWatch": true,
+    "dotnet-test-explorer.runInParallel": true,
+    "dotnet-test-explorer.testProjectPath": "**/*tests.csproj",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.fontSize": 15,
+    "editor.minimap.enabled": false,
+    "editor.unicodeHighlight.allowedCharacters": {
+        " ": true
+    },
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.wordWrap": "on",
+    "emmet.triggerExpansionOnTab": true,
+    "eslint.enable": false,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.openEditors.visible": 0,
+    "extensions.ignoreRecommendations": true,
+    "files.hotExit": "off",
+    "git.autofetch": true,
+    "git.autofetchPeriod": 90,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "githubIssues.queries": [
+        {
+            "label": "My Issues",
+            "query": "default"
+        },
+        {
+            "label": "Created Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
+        },
+        {
+            "label": "Recent Issues",
+            "query": "state:open repo:${owner}/${repository} sort:updated-desc"
+        }
+    ],
+    "githubPullRequests.createOnPublishBranch": "never",
+    "githubPullRequests.fileListLayout": "flat",
+    "javascript.preferences.quoteStyle": "single",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "json.maxItemsComputed": 6000,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "mssql.connections": [
+        {
+            "authenticationType": "Integrated",
+            "database": "",
+            "password": "",
+            "server": "localhost"
+        }
+    ],
+    "omnisharp.enableImportCompletion": true,
+    "prettier.embeddedLanguageFormatting": "off",
+    "prettier.jsxSingleQuote": true,
+    "prettier.printWidth": 160,
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4,
+    "problems.autoReveal": false,
+    "problems.decorations.enabled": false,
+    "redhat.telemetry.enabled": false,
+    "rest-client.defaultHeaders": {
+        "User-Agent": "vscode-restclient"
+    },
+    "rest-client.excludeHostsForProxy": [
+        "localhost"
+    ],
+    "security.workspace.trust.untrustedFiles": "open",
+    "shellLauncher.shells.windows": [
+        {
+            "label": "WSL Bash",
+            "shell": "C:\\Windows\\System32\\wsl.exe"
+        },
+        {
+            "label": "CMD",
+            "shell": "C:\\Windows\\System32\\cmd.exe"
+        },
+        {
+            "label": "PowerShell",
+            "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+        }
+    ],
+    "terminal.integrated.allowMnemonics": true,
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.persistentSessionReviveProcess": "never",
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "[ ]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "typescript.preferences.quoteStyle": "single",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "update.enableWindowsBackgroundUpdates": false,
+    "update.mode": "start",
+    "window.restoreWindows": "none",
+    "window.zoomLevel": 1,
+    "workbench.colorCustomizations": {
+        "terminal.ansiBlack": "#1D2021",
+        "terminal.ansiBlue": "#0D6678",
+        "terminal.ansiBrightBlack": "#ebe6e2",
+        "terminal.ansiBrightBlue": "#0D6678",
+        "terminal.ansiBrightCyan": "#8BA59B",
+        "terminal.ansiBrightGreen": "#95C085",
+        "terminal.ansiBrightMagenta": "#8F4673",
+        "terminal.ansiBrightRed": "#FB543F",
+        "terminal.ansiBrightWhite": "#FDF4C1",
+        "terminal.ansiBrightYellow": "#FAC03B",
+        "terminal.ansiCyan": "#8BA59B",
+        "terminal.ansiGreen": "#95C085",
+        "terminal.ansiMagenta": "#8F4673",
+        "terminal.ansiRed": "#FB543F",
+        "terminal.ansiWhite": "#A89984",
+        "terminal.ansiYellow": "#FAC03B",
+        "terminal.background": "#6b7477",
+        "terminal.foreground": "#e6ddd3",
+        "terminalCursor.background": "#d33f12",
+        "terminalCursor.foreground": "#ec1426"
+    },
+    "workbench.colorTheme": "Cobalt3",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.restoreViewState": false,
+    "workbench.editor.revealIfOpen": true,
+    "workbench.startupEditor": "none",
+    "yaml.schemaStore.enable": false
+}

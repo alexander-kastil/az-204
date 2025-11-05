@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configapi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: configapi
+  template:
+    metadata:
+      labels:
+        app: configapi
+    spec:
+      containers:
+        - name: configapi
+          image: az204demosdev.azurecr.io/config-api:latest
+          env:
+            - name: App__UseSQLite
+              value: "true"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "0.2"
+              memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: configapi-load-balancer
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: configapi
+---
+

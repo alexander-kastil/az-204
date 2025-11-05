@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Simple HTML POST</title>
+    <script language="JavaScript">
+        async function exec_post() {
+            const rawResponse = await fetch('http://localhost:3001/api/area_1/detail_1', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({a: 1, b: 'Textual content'})
+            });
+            const content = await rawResponse.json();
+
+            console.log(content);
+        }
+    </script>
+</head>
+<body>
+<h1>Please click the link</h1>
+<a href="#" onclick="exec_post()">Please Click here</a>
+</body>
+</html>

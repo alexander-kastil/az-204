@@ -1,0 +1,14 @@
+env=$RANDOM
+grp=az204-m04-statefulapp-$env
+loc=westeurope
+app=statefulapp-$env
+storage=statefulapp$env
+
+az group create --name $grp --location $loc
+az storage account  create -n $storage -g $grp 
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
+
+# Deploy to function app
+cd food-shopping-cart
+func azure functionapp publish $app 
+cd ..

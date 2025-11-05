@@ -1,0 +1,23 @@
+env=dev
+grp=az-native-$env
+loc=westeurope
+acct=productsapi-$RANDOM
+databaseName=productsdb
+containerName=products
+endpoint=https://$acct.documents.azure.com:443
+
+az group create -n $grp -l $loc
+az cosmosdb create -n $acct -g $grp 
+az cosmosdb sql database create -a $acct -g $grp -n $databaseName -o none
+az cosmosdb sql container create -g $grp -a $acct -d $databaseName -n $containerName -p /brand/name -o none
+key=$(az cosmosdb keys list -g $grp -n $acct --type keys --query "primaryMasterKey" -o json)
+
+# silent npm install
+npm install > "/dev/null" 2>&1
+
+# run populate-db.js
+node ./db-setup/populate-db.js --endpoint $endpoint --key $key --databaseName $databaseName --containerName $containerName
+cs=$(az cosmosdb keys list -n $acct -g $grp --type connection-strings --query "connectionStrings[0].connectionString" -o tsv)
+echo "Connection string: $cs"
+
+

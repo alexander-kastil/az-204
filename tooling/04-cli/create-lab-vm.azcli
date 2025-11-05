@@ -1,0 +1,10 @@
+rnd=$RANDOM
+loc=westeurope
+grp=az204-lab
+vmname=labvm-$rnd
+user=az204lab
+pwd=Lab@dmin1233
+
+az group create -n $grp -l $loc
+
+az vm create -g $grp -n $vmname --admin-username $user --admin-password $pwd --image  MicrosoftWindowsDesktop:Windows-10:20h2-pro:19042.746.2101092352 --size Standard_E2s_v3

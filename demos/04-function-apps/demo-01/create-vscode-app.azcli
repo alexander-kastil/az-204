@@ -1,0 +1,15 @@
+env=$RANDOM
+grp=az204-m04-vscode-$env
+loc=westeurope
+app=vscodeapp-$env
+storage=vscodeapp$env
+
+az group create -n $grp -l $loc
+
+az storage account  create -n $storage -g $grp 
+
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
+
+cd greet-cs
+func azure functionapp publish $app --csharp
+cd ..

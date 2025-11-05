@@ -1,0 +1,29 @@
+env=dev
+grp=az204-m02-foodpics-$env
+loc=westeurope
+acct=foodpics$env
+container="food"
+blob_name=shrimp-vindaloo.jpg
+file_to_upload="./food-pics/shrimp-vindaloo.jpg"
+destination_file="./downloaded/shrimp-vindaloo.jpg"
+
+az group create -n $grp -l $loc
+
+az storage account create -l $loc -n $acct -g $grp --sku Standard_LRS
+
+key=$(az storage account keys list -n $acct -g $grp --query "[0].value" -o tsv)
+
+az storage container create -n $container --account-key $key --account-name $acct
+
+az storage blob upload --container-name $container --file $file_to_upload --name $blob_name --account-key $key --account-name $acct
+
+az storage blob list --container-name $container --output table --account-name $acct --account-key $key
+
+az storage blob download --container-name $container --name $blob_name --file $destination_file --output table --account-key $key --account-name $acct
+
+conStr=$(az storage account show-connection-string -n $acct -g $grp --query connectionString -o tsv)
+
+# update appsettings.json
+sed -i "s/<BLOB_CONNECTION_STRING>/$key/g"  ./blob-console/appsettings.json
+
+echo "storage connection string: " $conStr

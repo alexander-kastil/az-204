@@ -1,0 +1,9 @@
+componentType: state.azure.blobstorage
+version: v1
+metadata:
+  - name: accountName
+    value: "foodstoragedev"
+  - name: accountKey
+    value: "<ACCOUNT_KEY>"
+  - name: containerName
+    value: "food-state"

@@ -1,0 +1,82 @@
+env=dev
+loc=westeurope
+grp=queue-scaling-$env
+acr=az204demos$env
+acaenv=az204-demo-$env
+storageAcct=foodstorage$env$RANDOM
+container=invoices
+queue=food-orders
+img=food-invoices
+app=food-invoices
+
+az group create -n $grp -l $loc
+
+# azure container app environment
+az containerapp env create -n $acaenv -g az204-m05-containers --location $loc --no-wait
+
+# create storage queue
+az storage account create -n $storageAcct -g $grp --kind StorageV2 --sku Standard_LRS
+key=$(az storage account keys list -n $storageAcct -g $grp --query "[0].value")
+az storage container create --account-name $storageAcct --account-key $key --name $container
+az storage queue create -n $queue --account-key $key --account-name $storageAcct
+conStr=$(az storage account show-connection-string -n $storageAcct -g $grp \
+  --query connectionString -o tsv)
+
+# put a base64 encoded message in the queue -> base 64 encoding is required for the message to be consumed in an Azure Function
+messageOne=$(echo "Hello Queue Reader App" | base64)
+az storage message put --content $messageOne --queue-name $queue \
+ --connection-string $conStr
+
+# create a local function app container and also publish it to ACR
+cd food-invoices
+docker build --rm -f Dockerfile -t $img .
+az acr build --image $img -g az204-m05-containers --registry $acr --file Dockerfile .
+acrpwd=$(az acr credential show -n $acr -g az204-m05-containers --query "passwords[0].value" -o tsv)  
+cd ..
+
+# start container locally and show how it fetches the message
+docker run -d --rm -p 5052:80 -e "InvoiceConnectionString=$conStr" -e "Sleep=500" food-invoices
+
+# Add another message to the queue and see the logs again
+messageTwo=$(echo "Another Hello to Queue Reader App" | base64) 
+az storage message put --content $messageTwo --queue-name $queue \
+  --connection-string $conStr
+
+## Check if an invoice has been created in the blob container
+az storage blob list --container-name $container --connection-string $conStr --output table 
+
+## Stop the local container
+
+# Add a third message to the queue 
+messageThree=$(echo "Third Hello to Queue Reader App" | base64)
+az storage message put --content $messageThree --queue-name $queue \
+  --connection-string $conStr      
+
+# Create container app environment and deploy a container to it
+az containerapp create -n $app -g az204-m05-containers \
+  --environment $acaenv \
+  --registry-server $acr.azurecr.io \
+  --registry-username $acr \
+  --registry-password $acrpwd \
+  --image $acr.azurecr.io/$img \
+  --secrets "storagecon=$conStr" \
+  --env-vars Sleep=500 InvoiceConnectionString=secretref:storagecon
+
+# Check the queue for the third message. It should be gone
+# Run the order-creator to create a bunch of orders
+# Check the queue again. It should have a bunch of messages in it
+# Add a scale rule to the container app
+
+az containerapp update -n $app -g az204-m05-containers \
+  --scale-rule-name queue-scaling \
+  --scale-rule-type azure-queue \
+  --scale-rule-metadata queueName=food-orders queueLength=10 \
+  --scale-rule-auth secretRef=storagecon triggerParameter=InvoiceConnectionString
+
+i=0
+while [ $i -ne 1000 ]
+do
+    i=$(($i+1))
+    msg=$(echo "Hello Queue Reader App $i" | base64)
+    az storage message put --content $msg --queue-name $queue --connection-string $conStr  
+done

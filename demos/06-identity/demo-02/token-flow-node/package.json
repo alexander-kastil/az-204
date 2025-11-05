@@ -1,0 +1,19 @@
+{
+  "name": "token-flow-node",
+  "version": "1.0.0",
+  "description": "a simple msal token flow",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "alexander.kastil@integrations.at",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/msal-browser": "^4.12.0",
+    "bootstrap": "^5.3.6"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

@@ -1,0 +1,35 @@
+env=dev
+grp=az204-m05-containers
+loc=westeurope
+acr=az204demos$env
+aks=az204cluster-$env
+ns=config-app
+
+# Install kubectl command line client locally:
+az group create -n $grp -l $loc
+
+az aks create -g $grp -n $aks --node-count 2 --attach-acr $acr --generate-ssh-keys
+az aks get-credentials -g $grp -n $aks
+
+# Get a list of cluster nodes:
+kubectl get nodes
+
+# Create a namespace
+kubectl create namespace students-ai
+kubectl create namespace $ns
+
+kubectl apply -f students-ai.yaml --namespace students-ai
+kubectl apply -f config-api.yaml --namespace $ns
+# Note ip address of the api loadbalancer and update it in config-ui.yaml as a value for ENV_API_URL
+kubectl apply -f config-ui.yaml --namespace $ns
+
+# Get some metadata
+kubectl get deployment configapi -n $ns
+kubectl get pods -n $ns
+kubectl get pods -l app=configapi -n $ns
+
+# Get the service IP and use it on the assigned port
+kubectl get service config-api -n $ns
+
+# browse deployment - port taken from yaml
+# ie: http://20.101.229.69

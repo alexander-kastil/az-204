@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "InvoiceConnectionString": "DefaultEndpointsProtocol=https;AccountName=foodstoragedev;AccountKey=VCiAO87DzI/Ky7owXumcwqtJZwfetvt1gY+tlSqs9+tLEKTK3vINHqVM4shx38y6xmf6W63fU7AA+AStHWiTQA==;EndpointSuffix=core.windows.net",
+    "Sleep": 10,
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "80fe34b9-dae6-4532-9d81-7ee056098c81",
+    "WEBSITE_SITE_NAME": "food-invoices"
+  }
+}

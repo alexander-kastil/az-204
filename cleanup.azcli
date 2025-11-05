@@ -1,0 +1,8 @@
+groups=$(az group list --query "[?starts_with(name, 'az204')].name" )
+echo $groups
+
+for grp in "${groups[@]}"
+do
+   echo $grp
+   bash az group delete -n $grp
+done

@@ -1,0 +1,17 @@
+env=dev
+grp=az204-m05-containers
+loc=westeurope
+acr=az204demos$env
+
+az group create -n $grp -l $loc
+
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
+az acr login --name $acr
+
+cd aca-trigger-func
+az acr build --image aca-func:latest --registry $acr -g $grp --file dockerfile .
+cd ..
+
+cd func-youtube-transcriber-py
+az acr build --image youtube-transcriber:latest --registry $acr -g $grp --file dockerfile .
+cd ..

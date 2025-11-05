@@ -1,0 +1,30 @@
+@use "@angular/material" as mat;
+@use "reset.scss";
+@use "mat-overrides.scss";
+
+@include mat.elevation-classes();
+@include mat.app-background();
+
+$primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+$accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+$warn: mat.m2-define-palette(mat.$m2-red-palette);
+$bg: mat.m2-define-palette(mat.$m2-blue-grey-palette, 100);
+
+$food-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($food-theme);
+
+:root {
+  --color-primary: #1e88e5;
+  --color-accent: #b0bec5;
+  --color-warn: red;
+  --color-font: white;
+}

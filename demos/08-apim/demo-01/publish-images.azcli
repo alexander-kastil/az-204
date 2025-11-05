@@ -1,0 +1,17 @@
+env=dev
+grp=az204-m05-containers
+loc=westeurope
+acr=az204demos$env
+
+az group create -n $grp -l westeurope
+
+az acr create -g $grp -n $acr --sku Basic --admin-enabled true
+az acr login --name $acr
+
+cd catalog-service
+az acr build --image catalog-service -g $grp --registry $acr --file dockerfile .
+cd ..
+
+cd hr-mcp-server
+az acr build --image hr-mcp-server -g $grp --registry $acr --file Dockerfile .
+cd ..

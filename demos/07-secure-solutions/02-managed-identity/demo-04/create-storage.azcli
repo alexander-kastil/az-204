@@ -1,0 +1,9 @@
+env=dev
+grp=az204-m07-scraper-py-$env
+loc=westeurope
+storage=rates$env$RANDOM
+
+az group create -n $grp -l $loc
+
+az storage account create -l $loc -n $storage -g $grp --sku Standard_LRS
+key=$(az storage account keys list -n $storage -g $grp --query "[0].value")

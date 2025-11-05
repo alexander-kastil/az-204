@@ -1,0 +1,4 @@
+azure-functions
+requests
+beautifulsoup4
+azure.storage.blob
