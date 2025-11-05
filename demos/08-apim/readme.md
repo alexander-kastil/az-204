@@ -2,7 +2,7 @@
 
 [API Management Documentation](https://docs.microsoft.com/en-us/azure/api-management/)
 
-[Swaggger](https://swagger.io/)
+[Swagger](https://swagger.io/)
 
 [az apim](https://docs.microsoft.com/en-us/cli/azure/apim?view=azure-cli-latest)
 

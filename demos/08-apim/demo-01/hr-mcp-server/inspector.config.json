@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+        "hr-mcp": {
+            "type": "streamable-http",
+            "url": "http://localhost:47002",
+            "note": "Local HR MCP Server running on port 47002"
+        },
+        "hr-mcp-azure": {
+            "type": "streamable-http",
+            "url": "https://human-resource-mcp-dev.azurewebsites.net",
+            "note": "Dev deployment hosted on Azure App Service"
+        }
+    }
+}
