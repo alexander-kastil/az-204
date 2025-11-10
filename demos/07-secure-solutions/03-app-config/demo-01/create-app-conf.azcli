@@ -3,7 +3,7 @@ grp=az204-m07-secure-solutions-$env
 loc=westeurope
 cfg=foodconfig-$env
 vault=foodvault-$env
-app=config-api-prod
+app=config-api-$env
 plan=config-plan-$env
 
 # create appconfig and add a value

@@ -60,7 +60,7 @@ az containerapp ingress cors enable -n catalog-service-$env -g $grp \
     --allow-credentials true --allowed-headers "*" --allowed-methods GET,POST,OPTIONS --allowed-origins "*"
 
 cd catalog-service
-az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "dotnet:8"
+az webapp up -n $catalog -g $grp -p $appPlan -l $loc --sku Free -r "dotnet:9"
 cd ..
 
 cd foodutil-functs-js

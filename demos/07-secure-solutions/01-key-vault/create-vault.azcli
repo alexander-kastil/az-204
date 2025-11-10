@@ -1,4 +1,4 @@
-env=dev
+env=prod
 grp=az204-m07-secure-solutions-$env
 loc=westeurope
 vault=foodvault-$env
