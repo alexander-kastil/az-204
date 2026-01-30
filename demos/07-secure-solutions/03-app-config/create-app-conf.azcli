@@ -1,0 +1,14 @@
+env=dev
+grp=az400-$env
+loc=westeurope
+cfg=foodconfig-$env
+
+az appconfig create -g $grp -n $cfg -l $loc --sku free
+
+appconfigid=$(az appconfig show -g $grp -n $cfg --query id -o tsv)
+currentUserObjectId=$(az ad signed-in-user show --query id -o tsv)
+
+az role assignment create --role "App Configuration Data Reader" --assignee-object-id $currentUserObjectId --scope $appconfigid
+
+az appconfig kv set -n $cfg --key "Title" --value "Catalog Service Dev" -y --label dev
+az appconfig feature enable -n $cfg --feature PremiumFeature --label dev -y
