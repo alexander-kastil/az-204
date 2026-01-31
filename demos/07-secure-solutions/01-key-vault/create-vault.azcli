@@ -7,6 +7,15 @@ server=foodserver-$env
 az group create -n $grp -l $loc
 
 az keyvault create -l $loc -n $vault -g $grp --sku Standard
+
+# Assign Key Vault Secrets Officer role to yourself (manage secrets)
+userId=$(az ad signed-in-user show --query id -o tsv)
+miObjectId=$(az identity show -g $grp -n $miName --query principalId -o tsv)
+az role assignment create \
+  --role "Key Vault Secrets Officer" \
+  --assignee-object-id $userId \
+  --scope $kvId
+
 az keyvault secret set --vault-name $vault --name "conSQLite" --value "Data Source=./food.db"
 az keyvault secret set --vault-name $vault --name "DBUser" --value "azlabadmin"
 az keyvault secret set --vault-name $vault --name "DBPassword" --value "Lab@dmin1234"
