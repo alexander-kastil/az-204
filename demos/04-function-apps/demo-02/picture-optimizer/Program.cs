@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,11 @@ builder.ConfigureFunctionsWebApplication();
 
 builder.Services
     .AddApplicationInsightsTelemetryWorkerService()
-    .ConfigureFunctionsApplicationInsights();
+    .ConfigureFunctionsApplicationInsights()
+    .AddSingleton(sp =>
+    {
+        var connStr = Environment.GetEnvironmentVariable("picprocessordev_STORAGE");
+        return new BlobContainerClient(connStr, "processed");
+    });
 
 builder.Build().Run();

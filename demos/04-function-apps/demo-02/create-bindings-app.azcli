@@ -1,31 +1,31 @@
-env=$RANDOM
-grp=az204-m04-binding-$env
+env=dev
+grp=rg-ase-optimizer-$env
 loc=westeurope
 storage=picprocessor$env
 path='./food-pictures'
 source=drop
 target=processed
-app=picture-processor
+app=picture-optimizer
+connStrVar=picprocessor${env}_STORAGE
 
 az group create -n $grp -l $loc
 
 az storage account create -l $loc -n $storage -g $grp --sku Standard_LRS
 key=$(az storage account keys list -n $storage -g $grp --query "[0].value")
 conStr=$(az storage account show-connection-string -n $storage -g $grp --query connectionString -o tsv)
-echo $conStr
+
 az storage container create -n $source --account-name $storage --account-key $key
 az storage container create -n $target --account-name $storage --account-key $key
-az storage container create -n newsletters --account-name $storage --account-key $key
 
-az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4
-az functionapp config appsettings set -n $app -g $grp --settings "AzureWebJobsStorage=$conStr"
+az functionapp create -n $app -g $grp -s $storage --consumption-plan-location $loc --functions-version 4 --runtime dotnet-isolated --runtime-version 10.0
+az functionapp config appsettings set -n $app -g $grp --settings "$connStrVar=$conStr"
 
 echo $app" provisioned"
 echo "storage-acct: $storage"
 echo "storage-connectionString: " $conStr
 
 # Deploy to function app
-cd pic-optimizer
+cd picture-optimizer
 func azure functionapp publish $app --csharp
 cd ..
 
